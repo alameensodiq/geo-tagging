@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Login from "./Reusable/Login";
+import ChangePassword from "./Reusable/ChangePassword";
+import CorporateLogin from "./Reusable/CorporateLogin";
+import CorporateChangePassword from "./Reusable/CorporateChangePassword";
+import { businessreps, clients } from "./Routes";
+import ClientAdminDashboardIndex from "./MainComponents/AdminClients/ClentAdminDashboardIndex";
+import ClientAdminDashboard from "./MainComponents/AdminClients/ClientAdminDashboard";
+import ClientAdminBusinessReps from "./MainComponents/AdminClients/ClientAdminBusinessReps";
+import ClientAdminBusinessDetails from "./MainComponents/AdminClients/ClientAdminBusinessDetails";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/corporate-login" element={<CorporateLogin />} />
+        <Route
+          path="/corporate-changepassword"
+          element={<CorporateChangePassword />}
+        />
+        <Route path={clients} element={<ClientAdminDashboardIndex />}>
+          <Route index element={<ClientAdminDashboard title="Dashboard" />} />
+          <Route
+            path={businessreps}
+            element={<ClientAdminBusinessReps title="Business Reps" />}
+          />
+          <Route
+            path={`${businessreps}/:id`}
+            element={<ClientAdminBusinessDetails title="Business Reps" />}
+          />
+          <Route />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
