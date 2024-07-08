@@ -59,9 +59,9 @@ const CorporateLogin = () => {
 
   const { corporateuser, authenticating } = useSelector((state) => state.corporateuser);
   console.log(corporateuser)
-  if (corporateuser?.status && !authenticating && log) {
+  if (corporateuser?.status && !authenticating && log && !corporateuser?.data?.hasChangeDefaultPassword) {
     navigate(`${clients}`);
-  } else if(!corporateuser?.data?.data?.hasChangeDefaultPassword && !authenticating && log){
+  } else if(corporateuser?.status && corporateuser?.data?.hasChangeDefaultPassword && !authenticating && log){
     navigate('/corporate-reset')
   }
 
