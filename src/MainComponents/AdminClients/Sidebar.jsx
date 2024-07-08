@@ -12,7 +12,9 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../../src/assets/smalllogo.svg";
 import { ReactComponent as Logout } from "../../../src/assets/logout.svg";
 import { ReactComponent as Rep } from "../../../src/assets/Rep.svg";
-import { clients } from "../../Routes";
+import { ReactComponent as Project } from "../../../src/assets/Project.svg";
+import { ReactComponent as User } from "../../../src/assets/usermanage.svg";
+import { businessprojects, businessusers, clients } from "../../Routes";
 
 import { LogOutAuthentication } from "../../bits/LogOutAuthentication";
 import { businessreps } from "../../Routes";
@@ -97,16 +99,25 @@ function Sidebar({ name, role, open, setOpen }) {
             {businessrep?.data?.data?.length}
           </span>
         </Link>
-        {/* <Link
-                to={livemonitor}
-                className={`item ${router.pathname === `${client}/${livemonitor}`
-                || router.pathname.startsWith(`${client}/${livemonitordetails}`) ? "active" : ""}`}
+        <Link
+                to={businessusers}
+                className={`item ${router.pathname === `${clients}/${businessusers}`
+                || router.pathname.startsWith(`${clients}/${businessusers}`) ? "active" : ""}`}
              >
             <div className="paint"></div>
-            <Livemonitor className="nav-svg1" />
-            <p className="man">Live Monitor</p>
+            <User className="nav-svg1" />
+            <p className="man">User management</p>
           </Link>
-          <Link
+        <Link
+                to={businessprojects}
+                className={`item ${router.pathname === `${clients}/${businessprojects}`
+                || router.pathname.startsWith(`${clients}/${businessprojects}`) ? "active" : ""}`}
+             >
+            <div className="paint"></div>
+            <Project className="nav-svg1" />
+            <p className="man">Projects</p>
+          </Link>
+          {/* <Link
                to={screenshot}
                className={`item ${router.pathname === `${client}/${screenshot}` ? "active" : ""}`}
              >

@@ -12,7 +12,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
   const [update, setUpdate] = useState("");
-  const [bustate, setBusstate] = useState(false)
+  const [bustate, setBusstate] = useState(false);
   const [regbus, setRegbus] = useState({
     name: "",
     rcNumber: "",
@@ -25,18 +25,18 @@ const AppUserModal = ({ setStep, step, setReload }) => {
   const { createbus, authenticatingcreatebus } = useSelector(
     (state) => state.createbus
   );
-//   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
-//     setStep(3);
-//     toast.success(createbus?.message)
-//     setRegbus({
-//       name: "",
-//       rcNumber: "",
-//       address: "",
-//       phone: "",
-//       email: "",
-//       avatar: ''
-//     });
-//   }
+  //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
+  //     setStep(3);
+  //     toast.success(createbus?.message)
+  //     setRegbus({
+  //       name: "",
+  //       rcNumber: "",
+  //       address: "",
+  //       phone: "",
+  //       email: "",
+  //       avatar: ''
+  //     });
+  //   }
 
   useEffect(() => {
     setRegbus((currData) => {
@@ -45,8 +45,8 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         avatar: update
       };
     });
-    if(bustate && createbus?.status){
-        setStep(3)
+    if (bustate && createbus?.status) {
+      setStep(3);
     }
 
     console.log(update);
@@ -126,23 +126,21 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         avatar
       })
     );
-    setBusstate(true)
+    setBusstate(true);
   };
-
- 
 
   const handleCloseModal4 = () => {
     setStep(0);
     setRegbus({
-        name: "",
-        rcNumber: "",
-        address: "",
-        phone: "",
-        email: "",
-        avatar: ''
+      name: "",
+      rcNumber: "",
+      address: "",
+      phone: "",
+      email: "",
+      avatar: ""
     });
-    setBusstate(false)
-    setReload(true)
+    setBusstate(false);
+    setReload(true);
   };
 
   return (
@@ -325,6 +323,260 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             }}
           >
             <span>You have successfully Added a new Business Rep</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={4}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            <Success />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                fontWeight: "bold"
+              }}
+            >
+              Deactivate Project
+            </div>
+            <span>Are you sure you want to deactivate this project?</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton title="No" large onClick={() => setStep(0)} />
+            <LargeSignInButton
+              title="Yes"
+              onClick={() => setStep(5)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={5}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              fontWeight: "bold"
+            }}
+          >
+            Deactivated Successfully
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully deactivated this project</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={6}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            <Success />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                fontWeight: "bold"
+              }}
+            >
+              Activate Project
+            </div>
+            <span>Are you sure you want to activate this project?</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton title="No" large onClick={() => setStep(0)} />
+            <LargeSignInButton
+              title="Yes"
+              onClick={() => setStep(7)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={7}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              fontWeight: "bold"
+            }}
+          >
+            Activated Successfully
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully activated this project</span>
           </div>
           <div
             style={{

@@ -58,7 +58,7 @@ const CorporateChangePassword = () => {
           <span className="unique">Forgot Password</span>
           <div className="welcome">
             <span className="statement">
-              Change your auto generated password to your personal
+              Get/Recover your auto generated password to your personal
             </span>
             <span className="statement">password, then proceed to login</span>
           </div>

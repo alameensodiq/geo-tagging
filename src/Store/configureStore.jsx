@@ -4,6 +4,7 @@ import { CorporateForgotPasswordSlice } from './Reducers/CorporateForgotPassword
 import { CorporateBusinessRepSlice } from './Reducers/CorporateBusinessRep';
 import { CorporateBusinessRepDetailsSlice } from './Reducers/CorporateBusinessRepDetails';
 import { CreateBusinessRepCorporateSlice } from './Reducers/CreateBusinessRepCorporate';
+import { CorporateResetPasswordSlice } from './Reducers/CorporateResetPassword';
 
 
 
@@ -15,7 +16,8 @@ export default configureStore({
         forgotpassword: CorporateForgotPasswordSlice?.reducer,
         businessrep: CorporateBusinessRepSlice?.reducer,
         businessrepdetails: CorporateBusinessRepDetailsSlice?.reducer,
-        createbus: CreateBusinessRepCorporateSlice?.reducer
+        createbus: CreateBusinessRepCorporateSlice?.reducer,
+        resetpassword: CorporateResetPasswordSlice?.reducer
       
     }
 });

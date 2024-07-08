@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Plus} from '../assets/Plus.svg'
+import {ReactComponent as PlusWhite} from '../assets/Pluswhite.svg'
 
 
 export const ModalButton = ({title, background, 
-  color, reduce, marg, noborder, onClick, remove}) => {
+  color, reduce, marg, noborder, onClick, remove, whitey}) => {
   return (
     <Flex  remove={remove} background={background} marg={marg} color={color} reduce={reduce} noborder={noborder}>
         <button onClick={() => onClick()} className='authenticationbutton'>
             {
-              !remove && <Plus/>
+              whitey ? <PlusWhite /> : !remove ? <Plus/>  : ''
             }
             {title}
         </button>  
@@ -23,8 +24,8 @@ const Flex = styled.div`
     justify-content: center;
     align-items: center;
     gap: 6px;
-    background-color: #1A87D7;
-    color: ${(props) => (props.color ? '#FFFFFF' :(props.noborder ? '#8B909A' : '#8D9196'))};
+    background-color: ${(props) => (props.background ? '#1A87D7' :(props.noborder ? '#8B909A' : '#FFFFFF'))};
+    color: ${(props) => (props.color ? '#FFFFFF' :(props.noborder ? '#8B909A' : '#1A87D7'))};
     border-radius: 5px;
     /* border-color: ${(props) => (props.background? '#2563EB' : '#E2E8F0')}; */
     border-width: 1px;
@@ -37,7 +38,7 @@ const Flex = styled.div`
     text-align: left;
     min-height: 40px;
     cursor: pointer;
-    border: ${(props) => (props.reduce ? `1px solid #E2E8F0` : 'none')};
+    border: ${(props) => (props.reduce ? `1px solid #1A87D7` : 'none')};
     width: ${(props) => (props.remove ? '100px' : '180px')};
     /* border: ${(props) => (props.noborder ? '0px' : `1px solid ${(props) => (props.background ? '#2563EB' : '#E2E8F0')}`)} */
 }
