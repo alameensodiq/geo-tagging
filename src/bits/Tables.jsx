@@ -127,19 +127,22 @@ const Tables = ({
             >
               <TableHead>
                 <TableRow style={{ paddingRight: "0px" }}>
-                  <StyledTableCell style={{ width: "8%" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
                     PHOTO ID
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "14%" }}>
+                  <StyledTableCell style={{ width: "13%" }}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       BUSINESS REP NAMES
                     </div>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     TOTAL ACTIVE HOURS
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
+                  <StyledTableCell style={{ width: "13%" }}>
                     PUNCTUALITY RATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    PHONE NUMBER
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "12%" }}>
                     TOTAL EARNED PAY
@@ -147,13 +150,8 @@ const Tables = ({
                   <StyledTableCell style={{ width: "12%" }}>
                     ASSIGNED PROJECT
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    PHONE NUMBER
-                  </StyledTableCell>
+
                   <StyledTableCell style={{ width: "10%" }}>
-                    DATE CREATED
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "8%" }}>
                     ACTIONS
                   </StyledTableCell>
                 </TableRow>
@@ -161,7 +159,7 @@ const Tables = ({
               <TableBody>
                 {data?.map((item) => (
                   <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "8%" }}>
+                    <StyledTableCell style={{ width: "10%" }}>
                       <div
                         style={{
                           display: "flex",
@@ -189,14 +187,17 @@ const Tables = ({
                         />
                       </div>
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "14%" }}>
+                    <StyledTableCell style={{ width: "13%" }}>
                       {item?.lastName} {item?.firstName}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
+                    <StyledTableCell style={{ width: "15%" }}>
                       10 hours
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
+                    <StyledTableCell style={{ width: "13%" }}>
                       50%
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                    {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
                       5000
@@ -204,13 +205,10 @@ const Tables = ({
                     <StyledTableCell style={{ width: "12%" }}>
                       Building Homes
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
-                      {item?.phoneNumber}
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
+                    {/* <StyledTableCell style={{ width: "12%" }}>
                       <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "8%" }}>
+                    </StyledTableCell> */}
+                    <StyledTableCell style={{ width: "10%" }}>
                       <Action onClick={() => Details(item?.id)} />
                       {open && identify === item?.id && (
                         <div className="active">
@@ -245,20 +243,23 @@ const Tables = ({
               aria-label="customized table"
             >
               <TableHead>
-                <TableRow style={{ paddingRight: "0px" }}>
-                  <StyledTableCell style={{ width: "8%" }}>
+              <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
                     PHOTO ID
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "14%" }}>
+                  <StyledTableCell style={{ width: "13%" }}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       BUSINESS REP NAMES
                     </div>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     TOTAL ACTIVE HOURS
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
+                  <StyledTableCell style={{ width: "13%" }}>
                     PUNCTUALITY RATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    PHONE NUMBER
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "12%" }}>
                     TOTAL EARNED PAY
@@ -266,13 +267,8 @@ const Tables = ({
                   <StyledTableCell style={{ width: "12%" }}>
                     ASSIGNED PROJECT
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    PHONE NUMBER
-                  </StyledTableCell>
+
                   <StyledTableCell style={{ width: "10%" }}>
-                    DATE CREATED
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "8%" }}>
                     ACTIONS
                   </StyledTableCell>
                 </TableRow>
@@ -280,7 +276,7 @@ const Tables = ({
               <TableBody>
                 {data?.map((item) => (
                   <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "8%" }}>
+                    <StyledTableCell style={{ width: "10%" }}>
                       <div
                         style={{
                           display: "flex",
@@ -308,28 +304,28 @@ const Tables = ({
                         />
                       </div>
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "14%" }}>
+                    <StyledTableCell style={{ width: "13%" }}>
                       {item?.lastName} {item?.firstName}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
+                    <StyledTableCell style={{ width: "15%" }}>
                       10 hours
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
+                    <StyledTableCell style={{ width: "13%" }}>
                       50%
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                    {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
                       5000
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      Building Homes
+                      Building Hospital
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
-                      {item?.phoneNumber}
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
+                    {/* <StyledTableCell style={{ width: "12%" }}>
                       <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "8%" }}>
+                    </StyledTableCell> */}
+                    <StyledTableCell style={{ width: "10%" }}>
                       <Action onClick={() => Detailsinactive(item?.id)} />
                       {open2 && identifyinactive === item?.id && (
                         <div className="active">
