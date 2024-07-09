@@ -1,18 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import {ReactComponent as Plus} from '../assets/Plus.svg'
-import {ReactComponent as PlusWhite} from '../assets/Pluswhite.svg'
+
+import {ReactComponent as Left} from '../assets/left.svg'
+import {ReactComponent as Right} from '../assets/right.svg'
 
 
-export const ModalButton = ({title, background, 
+export const LocationModalButton = ({title, background, 
   color, reduce, marg, noborder, onClick, remove, whitey, short}) => {
   return (
     <Flex short={short}  remove={remove} background={background} marg={marg} color={color} reduce={reduce} noborder={noborder}>
         <button onClick={() => onClick()} className='authenticationbutton'>
             {
-              whitey ? <PlusWhite /> : !remove ? <Plus/>  : ''
+              whitey ? <Left /> : ''
             }
             {title}
+            {
+                remove ? <Right/>  : ''
+            }
         </button>  
     </Flex>
   )
@@ -24,8 +28,8 @@ const Flex = styled.div`
     justify-content: center;
     align-items: center;
     gap: 6px;
-    background-color: ${(props) => (props.background ? '#1A87D7' :(props.noborder ? '#8B909A' : '#FFFFFF'))};
-    color: ${(props) => (props.color ? '#FFFFFF' :(props.noborder ? '#8B909A' : '#1A87D7'))};
+    background-color: ${(props) => (props.background ? '#1A87D7' :(props.noborder ? '#8B909A' : '#F1F2F4'))};
+    color: ${(props) => (props.color ? '#FFFFFF' :(props.noborder ? '#8B909A' : '#5A6376'))};
     border-radius: 5px;
     /* border-color: ${(props) => (props.background? '#2563EB' : '#E2E8F0')}; */
     border-width: 1px;
@@ -39,7 +43,7 @@ const Flex = styled.div`
     min-height: 40px;
     cursor: pointer;
     border: ${(props) => (props.reduce ? `1px solid #1A87D7` : 'none')};
-    width: ${(props) => (props.remove ? '100px' : props.short ? '110px'  : '180px')};
+    width: ${(props) => (props.remove ? '140px' : props.short ? '110px'  : '140px')};
     /* border: ${(props) => (props.noborder ? '0px' : `1px solid ${(props) => (props.background ? '#2563EB' : '#E2E8F0')}`)} */
 }
 
