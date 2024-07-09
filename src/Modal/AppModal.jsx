@@ -41,7 +41,7 @@ export default function AppModal({
               justifyContent: "flex-end",
               alignItems: "center",
               borderBottom: heading ? "1px solid #cacaca" : '',
-              padding: heading ? "0 50px" : confirm ? "0px" : "0px"
+              padding: heading ? "0 37px" : confirm ? "0px" : "0px"
             }}
           >
             <div className="head">

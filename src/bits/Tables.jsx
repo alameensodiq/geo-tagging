@@ -16,7 +16,7 @@ import { ReactComponent as Activate } from "../assets/activate.svg";
 import { ReactComponent as Location } from "../assets/location.svg";
 
 import { ThemeProvider, createTheme } from "@mui/material";
-import { businessprojects, businessreps } from "../Routes";
+import { businessprojects, businessreps, businessusers } from "../Routes";
 
 const Tables = ({
   active,
@@ -38,6 +38,7 @@ const Tables = ({
   const [identifyinactive, setIdentifyinactive] = useState(0);
   const [projectactive, setProject] = useState(false);
   const [openprodetails, setopenprodetails] = useState(false);
+  const [useractive, setuseractive] = useState(false);
   const navigate = useNavigate();
 
   const theme = createTheme({
@@ -112,6 +113,11 @@ const Tables = ({
   const DeactivateProdetails = () => {
     setopenprodetails(!openprodetails);
   };
+
+  const UserActive = () => {
+    setuseractive(!useractive)
+
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -197,7 +203,7 @@ const Tables = ({
                       50%
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                    {item?.phoneNumber}
+                      {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
                       5000
@@ -243,7 +249,7 @@ const Tables = ({
               aria-label="customized table"
             >
               <TableHead>
-              <TableRow style={{ paddingRight: "0px" }}>
+                <TableRow style={{ paddingRight: "0px" }}>
                   <StyledTableCell style={{ width: "10%" }}>
                     PHOTO ID
                   </StyledTableCell>
@@ -314,7 +320,7 @@ const Tables = ({
                       50%
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                    {item?.phoneNumber}
+                      {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
                       5000
@@ -935,26 +941,41 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                  <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      Abdul warith
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      Super Admin
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      alameensodiq@gmail.com
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      07057007046
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "10%" }}>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Abdul warith
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Super Admin
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    alameensodiq@gmail.com
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    07057007046
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
                     <Moment format="DD-MM-YYYY">12-03-2024</Moment>
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "10%" }}>
-                      <Action  />
-                    </StyledTableCell>
-                  </StyledTableRow>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <Action  onClick={() => UserActive()}/>
+                    {useractive && (
+                      <div className="activeusermodal">
+                        <div className="row" onClick={() => setStep(11)}>
+                          <Deactivate />
+                          <span>Deactivate</span>
+                        </div>
+                        <div
+                          className="row"
+                          onClick={() => navigate(`../${businessusers}/:id`)}
+                        >
+                          <View />
+                          <span>View more</span>
+                        </div>
+                      </div>
+                    )}
+                  </StyledTableCell>
+                </StyledTableRow>
               </TableBody>
             </Table>
           </TableContainer>
@@ -995,6 +1016,28 @@ const Flex = styled.div`
   .activeprojectmodal {
     width: 150px;
     height: 90px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    right: 90px;
+    bottom: 10px;
+    flex-direction: column;
+    box-shadow: 4px 4px 4px 4px #0a0a0a0d;
+    position: absolute;
+    border-color: #ebebeb;
+    gap: 9px;
+    .row {
+      display: flex;
+      flex-direction: row;
+      gap: 7px;
+      color: #1a87d7;
+      align-items: center;
+    }
+  }
+  .activeusermodal {
+    width: 150px;
+    height: 70px;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 15px;

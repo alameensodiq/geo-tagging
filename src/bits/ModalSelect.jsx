@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Email } from "../assets/email.svg";
 
-const ModalText = ({
+const ModalSelect = ({
   placeholder,
   reduce,
   auth,
@@ -15,14 +15,17 @@ const ModalText = ({
   console.log(auth);
   return (
     <Flex reduce={reduce} auth={auth} fixedWidth={fixedWidth}>
-      {logo ? <Email  className="close" /> : ""}
-      <input
+      {/* {logo ? <Email  className="close" /> : ""} */}
+      {/* <input
         name={name}
         value={value}
         onChange={(e) => onChange(e)}
         placeholder={placeholder}
         className="input"
-      />
+      /> */}
+      <select onChange={(e) => onChange(e)} className="input" defaultValue={placeholder}>
+        <option value={value}>Super Admin</option>
+      </select>
     </Flex>
   );
 };
@@ -76,4 +79,4 @@ const Flex = styled.div`
   }
 `;
 
-export default ModalText;
+export default ModalSelect;
