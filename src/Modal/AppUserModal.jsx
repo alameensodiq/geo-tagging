@@ -1301,7 +1301,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         // updateUserListData(update);
         // window.location.reload()
       >
-       <Tables editrole />
+       <Tables editrole setStep={() => handleCloseModal4()} />
       </AppModal>
     </div>
   );
