@@ -5,7 +5,12 @@ import Login from "./Reusable/Login";
 import ChangePassword from "./Reusable/ChangePassword";
 import CorporateLogin from "./Reusable/CorporateLogin";
 import CorporateChangePassword from "./Reusable/CorporateChangePassword";
-import { businessprojects, businessreps, businessusers, clients } from "./Routes";
+import {
+  businessprojects,
+  businessreps,
+  businessusers,
+  clients
+} from "./Routes";
 import ClientAdminDashboardIndex from "./MainComponents/AdminClients/ClentAdminDashboardIndex";
 import ClientAdminDashboard from "./MainComponents/AdminClients/ClientAdminDashboard";
 import ClientAdminBusinessReps from "./MainComponents/AdminClients/ClientAdminBusinessReps";
@@ -16,6 +21,7 @@ import CorporateResetPassword from "./Reusable/CorporateResetPassword";
 import ClientAdminProject from "./MainComponents/AdminClients/ClientAdminProject";
 import ClientProjectDetails from "./MainComponents/AdminClients/ClientProjectDetails";
 import ClientUsermanagement from "./MainComponents/AdminClients/ClientUsermanagement";
+import ClientLocationDetails from "./MainComponents/AdminClients/ClientLocationDetails";
 
 function App() {
   return (
@@ -46,6 +52,11 @@ function App() {
           <Route
             path={`${businessprojects}/:id`}
             element={<ClientProjectDetails title="Projects" />}
+          />
+
+          <Route
+            path={`${businessprojects}/location/:location`}
+            element={<ClientLocationDetails title="Projects" />}
           />
 
           <Route

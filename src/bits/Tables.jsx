@@ -891,7 +891,13 @@ const Tables = ({
                     <Action onClick={() => DeactivateProdetails()} />
                     {openprodetails && (
                       <div className="activeprojectdetailsmodal">
-                        <div className="row">
+                        <div
+                          className="row"
+                          onClick={() => {
+                            navigate(`../${businessprojects}/location/:location`);
+                            setopenprodetails(!openprodetails);
+                          }}
+                        >
                           <Location />
                           <span>Change Location</span>
                         </div>
