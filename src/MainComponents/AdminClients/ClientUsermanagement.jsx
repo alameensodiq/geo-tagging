@@ -267,7 +267,7 @@ const ClientUsermanagement = ({ title }) => {
                 </div>
                 <div className="editrole">
                   <ModalButton
-                    onClick={() => ''}
+                    onClick={() => setStep(19)}
                     background
                     color
                     remove

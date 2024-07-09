@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { CreateBusinessRepCorporate } from "../Store/Apis/CreateBusinessRepCorporate";
 import { useDispatch, useSelector } from "react-redux";
 import ModalInputSelect from "../bits/ModalInputSelect";
+import Tables from "../bits/Tables";
 
 const AppUserModal = ({ setStep, step, setReload }) => {
   const dispatch = useDispatch();
@@ -1292,6 +1293,15 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             />
           </div>
         </div>
+      </AppModal>
+      <AppModal
+        step={19}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+       <Tables editrole />
       </AppModal>
     </div>
   );

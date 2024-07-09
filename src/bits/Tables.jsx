@@ -14,9 +14,12 @@ import { ReactComponent as Deactivate } from "../assets/deactivate.svg";
 import { ReactComponent as View } from "../assets/view.svg";
 import { ReactComponent as Activate } from "../assets/activate.svg";
 import { ReactComponent as Location } from "../assets/location.svg";
+import { ReactComponent as Colormark } from "../assets/colormark.svg";
+import { ReactComponent as Uncolormark } from "../assets/uncolormark.svg";
 
 import { ThemeProvider, createTheme } from "@mui/material";
 import { businessprojects, businessreps, businessusers } from "../Routes";
+import { ModalButton } from "./ModalButton";
 
 const Tables = ({
   active,
@@ -28,7 +31,8 @@ const Tables = ({
   inactiveproject,
   setStep,
   detailsproject,
-  manageuser
+  manageuser,
+  editrole
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -115,9 +119,8 @@ const Tables = ({
   };
 
   const UserActive = () => {
-    setuseractive(!useractive)
-
-  }
+    setuseractive(!useractive);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -958,7 +961,7 @@ const Tables = ({
                     <Moment format="DD-MM-YYYY">12-03-2024</Moment>
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    <Action  onClick={() => UserActive()}/>
+                    <Action onClick={() => UserActive()} />
                     {useractive && (
                       <div className="activeusermodal">
                         <div className="row" onClick={() => setStep(11)}>
@@ -979,6 +982,109 @@ const Tables = ({
               </TableBody>
             </Table>
           </TableContainer>
+        ) : editrole ? (
+          <>
+            <TableContainer
+              // component={Paper}
+              style={{ boxShadow: "none" }}
+            >
+              <Table
+                sx={{ minWidth: 400, tableLayout: "auto" }}
+                aria-label="customized table"
+              >
+                <TableHead>
+                  <TableRow style={{ paddingRight: "0px" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      ACTIVITY MENU
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      CAN VIEW
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      CAN EDIT
+                    </StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Dashboard
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Business Reps
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      User management
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Subscriptions
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Projects
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Reports
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <div className="editrole">
+              <ModalButton
+                onClick={() => setStep(0)}
+                background
+                color
+                remove
+                title="Save"
+              />
+            </div>
+          </>
         ) : (
           ""
         )}
@@ -1126,6 +1232,14 @@ const Flex = styled.div`
   .projectactivate {
     color: #1a87d7;
     font-size: 12px;
+  }
+  .editrole {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-inline: 20px;
+    align-items: center;
+    padding-top: 20px;
   }
 `;
 
