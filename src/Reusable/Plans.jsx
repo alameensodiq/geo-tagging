@@ -126,7 +126,7 @@ const Flex = styled.div`
   border: 1px solid #ebebeb;
   gap: 15px;
   border-radius: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 40px;
   .header {
     display: flex;
     flex-direction: column;
