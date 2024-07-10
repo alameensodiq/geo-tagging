@@ -25,11 +25,13 @@ function Sidebar({ name, role, open, setOpen }) {
   const router = useLocation();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(CorporateBusinessRep())
+    dispatch(CorporateBusinessRep());
   }, []);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
-  console.log(businessrep?.data?.data)
+  const { businessrep, authenticatingbusinessrep } = useSelector(
+    (state) => state.businessrep
+  );
+  console.log(businessrep?.data?.data);
 
   // background: ${({open})  => ( open ? '#333481' : 'transparent')};
   return (
@@ -76,7 +78,10 @@ function Sidebar({ name, role, open, setOpen }) {
         <Link
           to={businessreps}
           className={`item ${
-            router.pathname === `${clients}/${businessreps}` || router.pathname.startsWith(`${clients}/${businessreps}`) ? "active" : ""
+            router.pathname === `${clients}/${businessreps}` ||
+            router.pathname.startsWith(`${clients}/${businessreps}`)
+              ? "active"
+              : ""
           }`}
         >
           <div className="paint"></div>
@@ -85,39 +90,47 @@ function Sidebar({ name, role, open, setOpen }) {
           <span
             style={{
               width: "20%",
-              height:'40%',
+              height: "40%",
               background: "#FF0007",
               color: "#FFFFFF",
               fontSize: "10px",
-              display:'flex',
-              flexDirection:'row',
+              display: "flex",
+              flexDirection: "row",
               borderRadius: "10px",
-              justifyContent:'center',
-              alignItems:'center',
+              justifyContent: "center",
+              alignItems: "center"
             }}
           >
             {businessrep?.data?.data?.length}
           </span>
         </Link>
         <Link
-                to={businessusers}
-                className={`item ${router.pathname === `${clients}/${businessusers}`
-                || router.pathname.startsWith(`${clients}/${businessusers}`) ? "active" : ""}`}
-             >
-            <div className="paint"></div>
-            <User className="nav-svg1" />
-            <p className="man">User management</p>
-          </Link>
+          to={businessprojects}
+          className={`item ${
+            router.pathname === `${clients}/${businessprojects}` ||
+            router.pathname.startsWith(`${clients}/${businessprojects}`)
+              ? "active"
+              : ""
+          }`}
+        >
+          <div className="paint"></div>
+          <Project className="nav-svg1" />
+          <p className="man">Projects</p>
+        </Link>
         <Link
-                to={businessprojects}
-                className={`item ${router.pathname === `${clients}/${businessprojects}`
-                || router.pathname.startsWith(`${clients}/${businessprojects}`) ? "active" : ""}`}
-             >
-            <div className="paint"></div>
-            <Project className="nav-svg1" />
-            <p className="man">Projects</p>
-          </Link>
-          {/* <Link
+          to={businessusers}
+          className={`item ${
+            router.pathname === `${clients}/${businessusers}` ||
+            router.pathname.startsWith(`${clients}/${businessusers}`)
+              ? "active"
+              : ""
+          }`}
+        >
+          <div className="paint"></div>
+          <User className="nav-svg1" />
+          <p className="man">User management</p>
+        </Link>
+        {/* <Link
                to={screenshot}
                className={`item ${router.pathname === `${client}/${screenshot}` ? "active" : ""}`}
              >
