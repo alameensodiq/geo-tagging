@@ -201,7 +201,7 @@ const Flex = styled.div`
           }
         }
         .about {
-          font-size: 10px;
+          font-size: 14px;
           font-weight: 400;
           line-height: 24px;
           letter-spacing: 0em;
