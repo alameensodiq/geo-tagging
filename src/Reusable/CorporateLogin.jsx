@@ -113,7 +113,7 @@ const CorporateLogin = () => {
                 Forgot password?
               </Link>
             </div>
-          </div>
+        </div>
         <div className="fourth">
           <LargeSignInButton
             onClick={() => Authentication()}
@@ -234,17 +234,17 @@ const Flex = styled.div`
     .statementer {
       display: flex;
       flex-direction: row;
-      justify-items: flex-start;
+      /* justify-items: flex-start; */
       color: #8d9196;
       font-size: 14px;
       font-weight: 400;
       line-height: 5px;
       letter-spacing: 0em;
-      width: 100%;
-      padding-left: 20%;
-      /* text-align: left; */
+      width: 500px;
+
       .colored {
         font-size: 14px;
+        /* margin-left: 20%; */
         font-weight: 400;
         line-height: 5px;
         letter-spacing: 0em;
@@ -252,7 +252,9 @@ const Flex = styled.div`
         color: #2563eb;
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        width: 200px;
+        margin-left: 8%;
+        /* justify-content: flex-start; */
       }
     }
   }
