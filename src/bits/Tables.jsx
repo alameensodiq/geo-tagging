@@ -976,7 +976,7 @@ const Tables = ({
                         </div>
                         <div
                           className="row"
-                          onClick={() => navigate(`../${businessusers}/:id`)}
+                          onClick={() => ''}
                         >
                           <View />
                           <span>View more</span>
