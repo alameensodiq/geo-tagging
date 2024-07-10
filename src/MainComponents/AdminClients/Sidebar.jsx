@@ -14,7 +14,8 @@ import { ReactComponent as Logout } from "../../../src/assets/logout.svg";
 import { ReactComponent as Rep } from "../../../src/assets/Rep.svg";
 import { ReactComponent as Project } from "../../../src/assets/Project.svg";
 import { ReactComponent as User } from "../../../src/assets/usermanage.svg";
-import { businessprojects, businessusers, clients } from "../../Routes";
+import { ReactComponent as Sub } from "../../../src/assets/subscription.svg";
+import { businessprojects, businessusers, clients, businesssub } from "../../Routes";
 
 import { LogOutAuthentication } from "../../bits/LogOutAuthentication";
 import { businessreps } from "../../Routes";
@@ -129,6 +130,19 @@ function Sidebar({ name, role, open, setOpen }) {
           <div className="paint"></div>
           <User className="nav-svg1" />
           <p className="man">User management</p>
+        </Link>
+        <Link
+          to={businesssub}
+          className={`item ${
+            router.pathname === `${clients}/${businesssub}` ||
+            router.pathname.startsWith(`${clients}/${businesssub}`)
+              ? "active"
+              : ""
+          }`}
+        >
+          <div className="paint"></div>
+          <Sub className="nav-svg1" />
+          <p className="man">Subscriptions</p>
         </Link>
         {/* <Link
                to={screenshot}

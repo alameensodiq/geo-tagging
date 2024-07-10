@@ -32,7 +32,8 @@ const Tables = ({
   setStep,
   detailsproject,
   manageuser,
-  editrole
+  editrole,
+  subhistory
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -579,7 +580,7 @@ const Tables = ({
                           <Deactivate />
                           <span>Deactivate</span>
                         </div>
-                        <div className="row" onClick={() => setStep(8)}>
+                        <div className="row" onClick={() => ''}>
                           <View />
                           <span>Renew Subscription</span>
                         </div>
@@ -894,8 +895,11 @@ const Tables = ({
                         <div
                           className="row"
                           onClick={() => {
-                            navigate(`../${businessprojects}/location/:location`);
-                            setopenprodetails(!openprodetails);
+                            ''
+                            // navigate(
+                            //   `../${businessprojects}/location/:location`
+                            // );
+                            // setopenprodetails(!openprodetails);
                           }}
                         >
                           <Location />
@@ -974,10 +978,7 @@ const Tables = ({
                           <Deactivate />
                           <span>Deactivate</span>
                         </div>
-                        <div
-                          className="row"
-                          onClick={() => ''}
-                        >
+                        <div className="row" onClick={() => ""}>
                           <View />
                           <span>View more</span>
                         </div>
@@ -1091,6 +1092,74 @@ const Tables = ({
               />
             </div>
           </>
+        ) : subhistory ? (
+          <TableContainer
+          // component={Paper}
+          style={{ boxShadow: "none" }}
+        >
+          <Table
+            sx={{ minWidth: 700, tableLayout: "auto" }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow style={{ paddingRight: "0px" }}>
+                <StyledTableCell style={{ width: "10%" }}>
+                  S/N
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "15%" }}>
+                  PROJECT NAME
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "15%" }}>
+                  NAME OF BUSINESS REPS
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "15%" }}>
+                  SUBSCRIPTION TYPE
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "15%" }}>
+                  PAYMENT METHOD
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "15%" }}>
+                  DATE SUBSCRIBED
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "15%" }}>
+                  ACTIONS
+                </StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <StyledTableRow>
+                <StyledTableCell style={{ width: "10%" }}>
+                  1
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "15%" }}>
+                  Cowbell Fest
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "10%" }}>
+                  10
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "10%" }}>
+                  Standard
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "15%" }}>
+                  Bank Transfer
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "10%" }}>
+                  <Moment format="DD-MM-YYYY">
+                    12-07-2024
+                  </Moment>
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "10%" }}>
+                  <span
+                    className="projectactivate"
+                    onClick={() => setStep(6)}
+                  >
+                    View Receipt
+                  </span>
+                </StyledTableCell>
+              </StyledTableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
         ) : (
           ""
         )}

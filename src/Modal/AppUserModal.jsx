@@ -3,11 +3,13 @@ import AppModal from "./AppModal";
 import ModalInputText from "../bits/ModalInputText";
 import { LargeSignInButton } from "../bits/LargeSignInButton";
 import { ReactComponent as Success } from "../assets/successful.svg";
+import { ReactComponent as Logo } from "../assets/Logo.svg";
 import toast from "react-hot-toast";
 import { CreateBusinessRepCorporate } from "../Store/Apis/CreateBusinessRepCorporate";
 import { useDispatch, useSelector } from "react-redux";
 import ModalInputSelect from "../bits/ModalInputSelect";
 import Tables from "../bits/Tables";
+import { LocationModalButton } from "../bits/LocationModalButton";
 
 const AppUserModal = ({ setStep, step, setReload }) => {
   const dispatch = useDispatch();
@@ -146,8 +148,8 @@ const AppUserModal = ({ setStep, step, setReload }) => {
   };
 
   const CreatUsermanagement = () => {
-    setStep(10)
-  }
+    setStep(10);
+  };
 
   return (
     <div>
@@ -684,7 +686,9 @@ const AppUserModal = ({ setStep, step, setReload }) => {
               color: "#667085"
             }}
           >
-            <span>You are about to add a User management, Are you sure the</span>
+            <span>
+              You are about to add a User management, Are you sure the
+            </span>
             <span>details are accurate?</span>
           </div>
           <div
@@ -785,7 +789,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             alignItems: "center"
           }}
         >
-          <div
+          {/* <div
             style={{
               display: "flex",
               flexDirection: "row",
@@ -793,7 +797,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             }}
           >
             <Success />
-          </div>
+          </div> */}
           <div
             style={{
               display: "flex",
@@ -817,7 +821,6 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             </div>
             <span>Are you sure you want to deactivate User manager, Are</span>
             <span>you sure?</span>
-            
           </div>
           <div
             style={{
@@ -899,7 +902,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         </div>
       </AppModal>
       <AppModal
-        step={12}
+        step={13}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
@@ -922,7 +925,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
           placeholder={`${`Select Permissions`}`}
         />
         <LargeSignInButton
-          onClick={() => setStep(13)}
+          onClick={() => setStep(14)}
           bigger
           title={"Submit"}
           background
@@ -930,7 +933,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         />
       </AppModal>
       <AppModal
-        step={13}
+        step={14}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
@@ -984,7 +987,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             />
             <LargeSignInButton
               title="Confirm"
-              onClick={() => setStep(14)}
+              onClick={() => setStep(15)}
               large
               background
               color
@@ -993,7 +996,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         </div>
       </AppModal>
       <AppModal
-        step={14}
+        step={15}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
@@ -1051,7 +1054,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         </div>
       </AppModal>
       <AppModal
-        step={15}
+        step={16}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
@@ -1105,7 +1108,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             />
             <LargeSignInButton
               title="Confirm"
-              onClick={() => setStep(16)}
+              onClick={() => setStep(17)}
               large
               background
               color
@@ -1114,7 +1117,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         </div>
       </AppModal>
       <AppModal
-        step={16}
+        step={17}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
@@ -1173,7 +1176,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         </div>
       </AppModal>
       <AppModal
-        step={17}
+        step={18}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
@@ -1227,7 +1230,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             />
             <LargeSignInButton
               title="Confirm"
-              onClick={() => setStep(18)}
+              onClick={() => setStep(19)}
               large
               background
               color
@@ -1236,7 +1239,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         </div>
       </AppModal>
       <AppModal
-        step={18}
+        step={19}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
@@ -1272,7 +1275,9 @@ const AppUserModal = ({ setStep, step, setReload }) => {
               color: "#667085"
             }}
           >
-            <span>You have successfully granted this user the permission to</span>
+            <span>
+              You have successfully granted this user the permission to
+            </span>
             <span>edit projects</span>
           </div>
           <div
@@ -1295,13 +1300,210 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         </div>
       </AppModal>
       <AppModal
-        step={19}
+        step={20}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
         // window.location.reload()
       >
-       <Tables editrole setStep={() => handleCloseModal4()} />
+        <Tables editrole setStep={() => handleCloseModal4()} />
+      </AppModal>
+      <AppModal
+        step={21}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            paddingInline: "45px"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            <Logo />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "10px"
+            }}
+          >
+            <span style={{ fontSize: "15px", color: "#1E1B39" }}>
+              Hello, Sheidu Susan
+            </span>
+            <div style={{ fontSize: "14px", color: "#5A6376" }}>
+              <span>
+                You have successfully made a payment of 10,000 naira to add a
+              </span>
+              <span>total of 5 business reps</span>
+            </div>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+            <span style={{ color: "#1A87D7", fontSize: "18px" }}>10,000</span>
+            <span style={{ color: "#5A6376", fontSize: "14px" }}>
+              Paid June 1st, 2023
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              borderTop: "1px solid #EBEBEB",
+              paddingTop: "15px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>Time</span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>2:23pm</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>Date</span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
+                10-12-2023
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>
+                Payment method
+              </span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
+                Bank Transfer
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>
+                Bank name
+              </span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
+                GT Bank
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>
+                Account number
+              </span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
+                0123670987
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>
+                Subscription Plan
+              </span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
+                Enterprise
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>
+                Transaction ID
+              </span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
+                009474647489959595
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>
+                Transaction Status
+              </span>
+              <span style={{ color: "#2A9341", fontSize: "14px" }}>
+                Successful
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <span style={{ color: "#5A6376", fontSize: "14px" }}>
+                No of Business Reps
+              </span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
+                Five(5)
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LocationModalButton
+              background
+              color
+              downloading
+              onClick={() => ""}
+              title="Share"
+            />
+            <LocationModalButton sharing  onClick={() => ""} title="Download" />
+          </div>
+        </div>
       </AppModal>
     </div>
   );

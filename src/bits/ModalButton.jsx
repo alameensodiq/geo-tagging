@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Plus} from '../assets/Plus.svg'
 import {ReactComponent as PlusWhite} from '../assets/Pluswhite.svg'
+import {ReactComponent as Export} from '../assets/exportdownload.svg'
 
 
 export const ModalButton = ({title, background, 
-  color, reduce, marg, noborder, onClick, remove, whitey, short}) => {
+  color, reduce, marg, noborder, onClick, remove, whitey, short, exportdownload}) => {
   return (
     <Flex short={short}  remove={remove} background={background} marg={marg} color={color} reduce={reduce} noborder={noborder}>
         <button onClick={() => onClick()} className='authenticationbutton'>
             {
-              whitey ? <PlusWhite /> : !remove ? <Plus/>  : ''
+              whitey ? <PlusWhite /> : !remove ? <Plus/>  : exportdownload ? <Export/> : ''
             }
             {title}
         </button>  
@@ -39,7 +40,7 @@ const Flex = styled.div`
     min-height: 40px;
     cursor: pointer;
     border: ${(props) => (props.reduce ? `1px solid #1A87D7` : 'none')};
-    width: ${(props) => (props.remove ? '100px' : props.short ? '110px'  : '180px')};
+    width: ${(props) => (props.remove ? '150px' : props.short ? '110px'  : props.exportdownload ? '180px' : '180px')};
     /* border: ${(props) => (props.noborder ? '0px' : `1px solid ${(props) => (props.background ? '#2563EB' : '#E2E8F0')}`)} */
 }
 

@@ -126,7 +126,7 @@ const ClientUsermanagement = ({ title }) => {
               />
             ) : pend ? (
               <ModalButton
-                onClick={() => setStep(12)}
+                onClick={() => setStep(13)}
                 background
                 color
                 title="New Role"
@@ -201,11 +201,11 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">1.Dashboard</span>
                   <div className="button-group">
-                    <button className="view" onClick={() => setStep(15)}>
+                    <button className="view" onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
-                    <button className="view" onClick={() => setStep(17)}>
+                    <button className="view" onClick={() => setStep(18)}>
                       <Editeye />
                       Edit
                     </button>
@@ -215,7 +215,7 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">2.Business Reps</span>
                   <div className="button-group">
-                    <button className="view" onClick={() => setStep(15)}>
+                    <button className="view" onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
@@ -224,7 +224,7 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">3. User management</span>
                   <div className="button-group">
-                    <button className="view"  onClick={() => setStep(15)}>
+                    <button className="view"  onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
@@ -233,11 +233,11 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">4. Subscriptions</span>
                   <div className="button-group">
-                    <button className="view"  onClick={() => setStep(15)}>
+                    <button className="view"  onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
-                    <button className="view"  onClick={() => setStep(17)}>
+                    <button className="view"  onClick={() => setStep(18)}>
                       <Editeye />
                       Edit
                     </button>
@@ -246,11 +246,11 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">5. Projects</span>
                   <div className="button-group">
-                    <button className="view"  onClick={() => setStep(15)}>
+                    <button className="view"  onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
-                    <button className="view"  onClick={() => setStep(17)}>
+                    <button className="view"  onClick={() => setStep(18)}>
                       <Editeye />
                       Edit
                     </button>
@@ -259,7 +259,7 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">6.Reports</span>
                   <div className="button-group">
-                    <button className="view"  onClick={() => setStep(15)}>
+                    <button className="view"  onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
@@ -267,7 +267,7 @@ const ClientUsermanagement = ({ title }) => {
                 </div>
                 <div className="editrole">
                   <ModalButton
-                    onClick={() => setStep(19)}
+                    onClick={() => setStep(20)}
                     background
                     color
                     remove

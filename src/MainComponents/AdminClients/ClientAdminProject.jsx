@@ -7,6 +7,8 @@ import InputSearch from "../../bits/InputSearch";
 import Tables from "../../bits/Tables";
 import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
+import { businessprojects } from "../../Routes";
+import { useNavigate } from "react-router-dom";
 
 const ClientAdminProject = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -26,6 +28,7 @@ const ClientAdminProject = ({ title }) => {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     // dispatch(CorporateBusinessRep())
@@ -89,7 +92,8 @@ const ClientAdminProject = ({ title }) => {
           </div>
           <div>
             <ModalButton
-              onClick={() => ''}
+              onClick={() => navigate(
+                `../${businessprojects}/location/:location`)}
               background
               color
               title="New Project"

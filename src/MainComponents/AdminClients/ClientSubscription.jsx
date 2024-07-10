@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Navbar from "./Navbar";
 import { ModalButton } from "../../bits/ModalButton";
 import { useDispatch, useSelector } from "react-redux";
-import InputSearch from "../../bits/InputSearch";
-import { ReactComponent as Goback } from "../../assets/goback.svg";
+import { ReactComponent as Eye } from "../../assets/eye.svg";
+import { ReactComponent as Calendar } from "../../assets/calender.svg";
 import Tables from "../../bits/Tables";
-import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
-import { useNavigate } from "react-router-dom";
-import { businessprojects } from "../../Routes";
+import InputSearch from "../../bits/InputSearch";
+import DatePicker from "react-datepicker";
 
-const ClientProjectDetails = ({ title }) => {
+const ClientSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
   const [activated, SetActivate] = useState(true);
   const [pend, SetPend] = useState(false);
@@ -29,7 +28,6 @@ const ClientProjectDetails = ({ title }) => {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     // dispatch(CorporateBusinessRep())
@@ -39,17 +37,11 @@ const ClientProjectDetails = ({ title }) => {
     }
   }, [reload]);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector(
-    (state) => state.businessrep
-  );
-  console.log(businessrep?.data?.data);
+  //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
+  //   console.log(businessrep?.data?.data)
 
-  const activate = businessrep?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === true
-  );
-  const inactivate = businessrep?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === false
-  );
+  //   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
+  //   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
 
   const setActivate = () => {
     SetActivate(true);
@@ -79,39 +71,68 @@ const ClientProjectDetails = ({ title }) => {
       setFirst("pending");
     }, [500]);
   };
+
+  const datePickerRefs = useRef(null);
+
+  const dateChangers = (date) => {
+    console.log(date);
+    setEndDate(date);
+  };
+
+  const PickDater = () => {
+    datePickerRefs.current.setOpen(true);
+  };
+
   return (
     <Flex>
       <Navbar title={title} />
       <AppUserModal setStep={setStep} step={step} setReload={setReload} />
       <div className="maincontainer">
-        <div className="firstdiv">
-          <div className="backbutton">
-            <Goback
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate(-1)}
-            />
-            <span className="name">Project Name: Building Homes</span>
+        <div className="top">
+          <div className="start">
+            <div className="numbers">
+              <span className="name">Subscriptions</span>
+            </div>
+            <span className="about">
+              This overview provides a comprehensive showof the amount of money
+              spent on Subscriptions
+            </span>
           </div>
-          <div className="modal-div">
-            <ModalButton
-              onClick={() =>
-                navigate(`../${businessprojects}/location/:location`)
-              }
-              whitey
-              reduce
-              title={"New Business Reps"}
-            />
-            <ModalButton
-              onClick={() =>
-                navigate(`../${businessprojects}/location/:location`)
-              }
-              background
-              color
-              title={"New Locations"}
-            />
-          </div>
+          {/* <div>
+            {activated ? (
+              <ModalButton
+                onClick={() => setStep(8)}
+                background
+                color
+                title="New User Management"
+              />
+            ) : pend ? (
+              <ModalButton
+                onClick={() => setStep(12)}
+                background
+                color
+                title="New Role"
+              />
+            ) : (
+              ""
+            )}
+          </div> */}
         </div>
         <div className="table">
+          <div className="statuses">
+            <div
+              onClick={() => setActivate()}
+              className={`${activated ? "active" : "status"}`}
+            >
+              <span>Subscription History</span>
+            </div>
+            <div
+              onClick={() => setPending()}
+              className={`${pend ? "active" : "status"}`}
+            >
+              <span>Plans Overview</span>
+            </div>
+          </div>
           <div className="date-search">
             {/* <div className="main">
               <DatePicker
@@ -125,26 +146,42 @@ const ClientProjectDetails = ({ title }) => {
                 popperPlacement="bottom-start"
               />
               <Calendar onClick={() => PickDate()} className="calendar" />
-            </div>
-            <div className="main">
-              <DatePicker
-                className="input"
-                selected={endDate}
-                ref={datePickerRefs}
-                onChange={(date) => dateChangers(date)}
-                showTimeSelect={false}
-                dateFormat="MMM d yyyy"
-                placeholderText="13 Oct 2023"
-                popperPlacement="bottom-start"
-              />
-              <Calendar onClick={() => PickDater()} className="calendar" />
             </div> */}
             <InputSearch
               onChange={(e) => setSearcher(e.target.value)}
-              placeholder="Search for Sub Corporate Admin name, email, e.t.c"
+              placeholder="Search for project name, business rep name e.t.c"
             />
+            <div className="filter">
+              <div className="main">
+                <DatePicker
+                  className="input"
+                  selected={endDate}
+                  ref={datePickerRefs}
+                  onChange={(date) => dateChangers(date)}
+                  showTimeSelect={false}
+                  dateFormat="MMM d yyyy"
+                  placeholderText="13 Oct 2023"
+                  popperPlacement="bottom-start"
+                />
+                <Calendar onClick={() => PickDater()} className="calendar" />
+              </div>
+              <ModalButton
+                onClick={() => setStep(21)}
+                background
+                color
+                exportdownload
+                remove
+                title="Export History"
+              />
+            </div>
           </div>
-          <Tables detailsproject data={activate} setStep={setStep} />
+          {activated ? (
+            <Tables subhistory data={[]} setStep={setStep} />
+          ) : pend ? (
+            ""
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </Flex>
@@ -161,27 +198,45 @@ const Flex = styled.div`
     padding-top: 20px;
     padding-inline: 25px;
     gap: 50px;
-    .firstdiv {
+    .top {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      .backbutton {
+      .start {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        .name {
-          font-size: 15px;
-          font-weight: 500;
+        gap: 5px;
+        .numbers {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+          .name {
+            color: #212529;
+            font-size: 20px;
+            font-weight: bold;
+          }
+          .count {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40%;
+            background-color: #f4f3ff;
+            width: 90px;
+            height: 20px;
+            color: #1a87d7;
+            font-size: 9px;
+          }
+        }
+        .about {
+          font-size: 10px;
+          font-weight: 400;
           line-height: 24px;
           letter-spacing: 0em;
           text-align: left;
-          color: #212529;
+          color: #8d9196;
         }
-      }
-      .modal-div {
-        display: flex;
-        flex-direction: row;
-        gap: 15px;
       }
     }
     .table {
@@ -196,7 +251,7 @@ const Flex = styled.div`
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        gap: 30px;
+        /* gap: 10px; */
         border-bottom: 1.02px solid #dbdade;
         .status {
           display: flex;
@@ -209,10 +264,10 @@ const Flex = styled.div`
           text-align: left;
           color: #8d9196;
           cursor: pointer;
-          width: 240px;
+          width: 180px;
           justify-content: center;
           align-items: center;
-          padding-left: 30px;
+          /* padding-left: 20px; */
         }
         .active {
           display: flex;
@@ -226,10 +281,10 @@ const Flex = styled.div`
           color: #1a87d7;
           border-bottom: 1.02px solid #1a87d7;
           cursor: pointer;
-          width: 250px;
+          width: 180px;
           justify-content: center;
           align-items: center;
-          padding-left: 30px;
+          /* padding-left: 20px; */
         }
         .active-number {
           display: flex;
@@ -255,26 +310,33 @@ const Flex = styled.div`
       .date-search {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         gap: 20px;
         height: 35px;
         padding-inline: 20px;
-        .main {
-          position: relative;
-          .input {
-            width: 143px;
-            height: 40px;
-            padding: 12px 18px 12px 15px;
-            border-radius: 5px;
-            border: 1px;
-            color: #8d9196;
-            outline: none;
-            cursor: pointer;
-            border: 1px solid #e2e8f0;
-          }
-          .calendar {
-            position: absolute;
-            right: 10px;
-            top: 10px;
+        .filter {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          .main {
+            position: relative;
+            .input {
+              width: 113px;
+              height: 40px;
+              padding: 12px 18px 12px 15px;
+              border-radius: 5px;
+              border: 1px;
+              color: #8d9196;
+              font-size: 10px;
+              outline: none;
+              cursor: pointer;
+              border: 1px solid #e2e8f0;
+            }
+            .calendar {
+              position: absolute;
+              right: 7px;
+              top: 10px;
+            }
           }
         }
       }
@@ -282,4 +344,4 @@ const Flex = styled.div`
   }
 `;
 
-export default ClientProjectDetails;
+export default ClientSubscription;
