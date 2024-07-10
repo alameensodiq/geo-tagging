@@ -166,7 +166,7 @@ const Flex = styled.div`
   .maincontainer {
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
+    padding-top: 40px;
     padding-inline: 25px;
     gap: 50px;
     .top {
@@ -184,8 +184,8 @@ const Flex = styled.div`
           gap: 10px;
           .name {
             color: #212529;
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 26px;
+            font-weight: 600;
           }
           .count {
             display: flex;
@@ -197,7 +197,8 @@ const Flex = styled.div`
             width: 90px;
             height: 20px;
             color: #1a87d7;
-            font-size: 9px;
+            font-size: 12px;
+            font-weight: 500;
           }
         }
         .about {

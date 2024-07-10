@@ -158,7 +158,7 @@ const Flex = styled.div`
   .maincontainer {
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
+    padding-top: 40px;
     padding-inline: 25px;
     gap: 50px;
     .firstdiv {
