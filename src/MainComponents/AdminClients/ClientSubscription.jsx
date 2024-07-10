@@ -248,7 +248,7 @@ const Flex = styled.div`
           }
         }
         .about {
-          font-size: 10px;
+          font-size: 14px;
           font-weight: 400;
           line-height: 24px;
           letter-spacing: 0em;
@@ -275,7 +275,7 @@ const Flex = styled.div`
           display: flex;
           flex-direction: row;
           gap: 7px;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 400;
           line-height: 23px;
           letter-spacing: 0px;
@@ -291,7 +291,7 @@ const Flex = styled.div`
           display: flex;
           flex-direction: row;
           gap: 7px;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 600;
           line-height: 23px;
           letter-spacing: 0px;

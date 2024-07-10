@@ -192,7 +192,7 @@ const Flex = styled.div`
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            border-radius: 40%;
+            border-radius: 10px;
             background-color: #f4f3ff;
             width: 90px;
             height: 20px;
@@ -228,7 +228,7 @@ const Flex = styled.div`
           display: flex;
           flex-direction: row;
           gap: 7px;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 400;
           line-height: 23px;
           letter-spacing: 0px;
@@ -244,7 +244,7 @@ const Flex = styled.div`
           display: flex;
           flex-direction: row;
           gap: 7px;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 600;
           line-height: 23px;
           letter-spacing: 0px;
@@ -262,9 +262,11 @@ const Flex = styled.div`
           flex-direction: row;
           justify-content: center;
           width: 40px;
-          background-color: #edf4f9;
-          border-radius: 50%;
+          align-items: center;
+          height: 20px;
           color: #65ace0;
+          background-color: #edf4f9;
+          border-radius: 10px;
           font-size: 10px;
         }
         .status-number {
@@ -272,8 +274,10 @@ const Flex = styled.div`
           flex-direction: row;
           justify-content: center;
           width: 40px;
+          align-items: center;
+          height: 20px;
           background-color: #f0f0f0;
-          border-radius: 50%;
+          border-radius: 10px;
           color: #868e96;
           font-size: 10px;
         }

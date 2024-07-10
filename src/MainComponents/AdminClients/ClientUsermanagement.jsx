@@ -318,7 +318,7 @@ const Flex = styled.div`
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            border-radius: 40%;
+            border-radius: 10px;
             background-color: #f4f3ff;
             width: 90px;
             height: 20px;
@@ -327,7 +327,7 @@ const Flex = styled.div`
           }
         }
         .about {
-          font-size: 10px;
+          font-size: 14px;
           font-weight: 400;
           line-height: 24px;
           letter-spacing: 0em;
@@ -354,7 +354,7 @@ const Flex = styled.div`
           display: flex;
           flex-direction: row;
           gap: 7px;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 400;
           line-height: 23px;
           letter-spacing: 0px;
@@ -370,7 +370,7 @@ const Flex = styled.div`
           display: flex;
           flex-direction: row;
           gap: 7px;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 600;
           line-height: 23px;
           letter-spacing: 0px;
