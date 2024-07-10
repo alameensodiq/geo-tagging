@@ -9,6 +9,8 @@ import Tables from "../../bits/Tables";
 import AppUserModal from "../../Modal/AppUserModal";
 import InputSearch from "../../bits/InputSearch";
 import DatePicker from "react-datepicker";
+import FeaturesGrid from "../../Reusable/FeaturesGrid";
+import Plans from "../../Reusable/Plans";
 
 const ClientSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -84,7 +86,7 @@ const ClientSubscription = ({ title }) => {
   };
 
   return (
-    <Flex>
+    <Flex activated={activated}>
       <Navbar title={title} />
       <AppUserModal setStep={setStep} step={step} setReload={setReload} />
       <div className="maincontainer">
@@ -147,38 +149,54 @@ const ClientSubscription = ({ title }) => {
               />
               <Calendar onClick={() => PickDate()} className="calendar" />
             </div> */}
-            <InputSearch
-              onChange={(e) => setSearcher(e.target.value)}
-              placeholder="Search for project name, business rep name e.t.c"
-            />
-            <div className="filter">
-              <div className="main">
-                <DatePicker
-                  className="input"
-                  selected={endDate}
-                  ref={datePickerRefs}
-                  onChange={(date) => dateChangers(date)}
-                  showTimeSelect={false}
-                  dateFormat="MMM d yyyy"
-                  placeholderText="13 Oct 2023"
-                  popperPlacement="bottom-start"
+            {activated ? (
+              <>
+                <InputSearch
+                  onChange={(e) => setSearcher(e.target.value)}
+                  placeholder="Search for project name, business rep name e.t.c"
                 />
-                <Calendar onClick={() => PickDater()} className="calendar" />
-              </div>
-              <ModalButton
-                onClick={() => setStep(21)}
-                background
-                color
-                exportdownload
-                remove
-                title="Export History"
-              />
-            </div>
+                <div className="filter">
+                  <div className="main">
+                    <DatePicker
+                      className="input"
+                      selected={endDate}
+                      ref={datePickerRefs}
+                      onChange={(date) => dateChangers(date)}
+                      showTimeSelect={false}
+                      dateFormat="MMM d yyyy"
+                      placeholderText="13 Oct 2023"
+                      popperPlacement="bottom-start"
+                    />
+                    <Calendar
+                      onClick={() => PickDater()}
+                      className="calendar"
+                    />
+                  </div>
+                  <ModalButton
+                    onClick={() => setStep(21)}
+                    background
+                    color
+                    exportdownload
+                    remove
+                    title="Export History"
+                  />
+                </div>
+              </>
+            ) : pend ? (
+              ""
+            ) : (
+              ""
+            )}
           </div>
           {activated ? (
             <Tables subhistory data={[]} setStep={setStep} />
           ) : pend ? (
-            ""
+            <FeaturesGrid dashboard row={4}>
+              <Plans standard />
+              <Plans enterprise />
+              <Plans plus />
+              <Plans />
+            </FeaturesGrid>
           ) : (
             ""
           )}
@@ -246,7 +264,7 @@ const Flex = styled.div`
       padding-bottom: 40px;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: ${(props) => (props.activated ? '30px' : '10px')};
       .statuses {
         display: flex;
         flex-direction: row;

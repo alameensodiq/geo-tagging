@@ -1151,7 +1151,7 @@ const Tables = ({
                 <StyledTableCell style={{ width: "10%" }}>
                   <span
                     className="projectactivate"
-                    onClick={() => setStep(6)}
+                    onClick={() => setStep(21)}
                   >
                     View Receipt
                   </span>
