@@ -117,7 +117,7 @@ const Flex = styled.div`
             display: flex;
             flex-direction: column;
             width: 130px;
-            gap: 10px;
+            gap: 4px;
           
 
             .thirdsecond{
