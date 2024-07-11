@@ -18,7 +18,8 @@ const AppUserModal = ({ setStep, step, setReload }) => {
   const [update, setUpdate] = useState("");
   const [bustate, setBusstate] = useState(false);
   const [regbus, setRegbus] = useState({
-    name: "",
+    firstname: "",
+    lastname: "",
     rcNumber: "",
     address: "",
     phone: "",
@@ -29,6 +30,8 @@ const AppUserModal = ({ setStep, step, setReload }) => {
   const { createbus, authenticatingcreatebus } = useSelector(
     (state) => state.createbus
   );
+
+  console.log(createbus)
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
   //     setStep(3);
   //     toast.success(createbus?.message)
@@ -49,12 +52,12 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         avatar: update
       };
     });
-    if (bustate && createbus?.status) {
+    if (bustate && createbus?.status && !authenticatingcreatebus) {
       setStep(3);
     }
 
     console.log(update);
-  }, [update, bustate]);
+  }, [update, bustate, createbus?.status, authenticatingcreatebus]);
 
   const Change = (e) => {
     const { name, value } = e.target;
@@ -119,7 +122,8 @@ const AppUserModal = ({ setStep, step, setReload }) => {
   console.log(regbus.avatar);
 
   const SendDetails = () => {
-    const { name, rcNumber, address, phone, email, avatar } = regbus;
+    const { lastname, firstname, rcNumber, address, phone, email, avatar } = regbus;
+    const name = `${firstname} ${lastname}`;
     dispatch(
       CreateBusinessRepCorporate({
         name,
@@ -136,7 +140,8 @@ const AppUserModal = ({ setStep, step, setReload }) => {
   const handleCloseModal4 = () => {
     setStep(0);
     setRegbus({
-      name: "",
+      firstname: "",
+      lastname: "",
       rcNumber: "",
       address: "",
       phone: "",
@@ -163,11 +168,18 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         heading="Add Business Reps"
       >
         <ModalInputText
-          label="Full Name"
+          label="First Name"
           onChange={(e) => Change(e)}
-          name="name"
-          value={regbus?.name}
-          placeholder={`${`Enter Business Rep's Full Name`}`}
+          name="firstname"
+          value={regbus?.firstname}
+          placeholder={`${`Enter Business Rep's First Name`}`}
+        />
+        <ModalInputText
+          label="Last Name"
+          onChange={(e) => Change(e)}
+          name="lastname"
+          value={regbus?.lastname}
+          placeholder={`${`Enter Business Rep's Last Name`}`}
         />
         <ModalInputText
           label="Phone Number"
