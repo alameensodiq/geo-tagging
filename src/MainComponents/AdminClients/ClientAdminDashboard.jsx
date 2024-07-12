@@ -10,6 +10,8 @@ import OverviewTotalCards from "../../Reusable/OverviewTotalCards";
 import DatePicker from "react-datepicker";
 import DoubleBarChart from "../../bits/DoubleBarChart";
 import Tables from "../../bits/Tables";
+import Radial from "../../bits/Radial";
+import Donuts from "../../bits/Donuts";
 
 const ClientAdminDashboard = ({ title, overviewadmin }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -136,6 +138,99 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             percent4={2.5}
           />
         </FeaturesGrid>
+        <FeaturesGrid dashboard superoverview row={2}>
+          <div className="table">
+            <div className="punctuality">
+              <div className="start">
+                <div className="numbers">
+                  <span className="name">Time Stamp Compliance Rate</span>
+                </div>
+              </div>
+              <div className="main">
+                <DatePicker
+                  className="input"
+                  selected={endDate}
+                  ref={datePickerRefs}
+                  onChange={(date) => dateChangers(date)}
+                  showTimeSelect={false}
+                  dateFormat="MMM d yyyy"
+                  placeholderText="13 Oct 2023"
+                  popperPlacement="bottom-start"
+                />
+                <Calendar onClick={() => PickDater()} className="calendar" />
+              </div>
+            </div>
+            <Donuts overview />
+            <div className="detailscompliance">
+              <div className="firstcompliance">
+                <span className="comp">Compliance</span>
+                <div className="bardiv">
+                  <div className="backgrounddiv">
+                    <div className="bar"></div>
+                  </div>
+                  <span className="percent">65%</span>
+                </div>
+              </div>
+              <div className="firstcompliance">
+                <span className="comp">Non Compliance</span>
+                <div className="bardiv">
+                  <div className="backgrounddiv">
+                    <div className="nonbar"></div>
+                  </div>
+                  <span className="percent">35%</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div className="table">
+            <div className="punctuality">
+              <div className="start">
+                <div className="numbers">
+                  <span className="name">Punctuality Rate</span>
+                </div>
+              </div>
+              <div className="main">
+                <DatePicker
+                  className="input"
+                  selected={endDate}
+                  ref={datePickerRefs}
+                  onChange={(date) => dateChangers(date)}
+                  showTimeSelect={false}
+                  dateFormat="MMM d yyyy"
+                  placeholderText="13 Oct 2023"
+                  popperPlacement="bottom-start"
+                />
+                <Calendar onClick={() => PickDater()} className="calendar" />
+              </div>
+            </div>
+            <div className="last">
+              <div className="radial">
+                <Radial overview />
+              </div>
+              <div className="circle">
+                <span className="label">Total Punctuality Rate</span>
+                <span className="name">80%</span>
+              </div>
+              <div className="target">
+                <div className="attendance">
+                  <div className="wrap">
+                    <span className="first"></span>
+                    <span className="targeted">Punctual</span>
+                  </div>
+                  <span>60%</span>
+                </div>
+                <div className="attendant">
+                  <div className="wrap">
+                    <span className="second"></span>
+                    <span className="targeted">Not Punctual</span>
+                  </div>
+                  <span>20%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </FeaturesGrid>
         <div className="table">
           <div className="punctuality">
             <div className="start">
@@ -176,7 +271,9 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
           <DoubleBarChart />
         </div>
         <div className="table">
-          <div className="projects"><span>Projects</span></div>
+          <div className="projects">
+            <span>Projects</span>
+          </div>
           <Tables overviewproject />
         </div>
       </div>
@@ -259,7 +356,7 @@ const Flex = styled.div`
       display: flex;
       flex-direction: column;
       gap: 30px;
-      .projects{
+      .projects {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -273,8 +370,10 @@ const Flex = styled.div`
         flex-direction: row;
         border-bottom: 1.02px solid #dbdade;
         padding-inline: 10px;
-        padding-block: 15px;
+        padding-top: 0px;
+        padding-bottom: 10px;
         justify-content: space-between;
+        align-items: center;
         .start {
           display: flex;
           flex-direction: column;
@@ -331,6 +430,138 @@ const Flex = styled.div`
             right: 97px;
             top: 13px;
           }
+        }
+      }
+      .detailscompliance{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-inline: 20px;
+        width: 100%;
+        /* gap: 30px; */
+        .firstcompliance{
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 50%;
+          .comp{
+            color: #141414;
+            font-size: 14px;
+          }
+          .bardiv{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+            .backgrounddiv{
+              background: #EAECF0;
+              border-radius: 6px;
+              width: 50%;
+              height: 10px;
+              .bar{
+                width: 70%;
+                height: 10px;
+                background: #1A87D7;
+                border-radius: 6px;
+              }
+              .nonbar{
+                width: 70%;
+                height: 10px;
+                background: #28385C;
+                border-radius: 6px;
+              }
+            }
+            .percent{
+              color: #141414;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .last {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        .radial {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
+        .circle {
+          width: 125px;
+          height: 125px;
+          position: absolute;
+          border-radius: 50%;
+          background: #f2f4f7;
+          z-index: 1000;
+          margin-top: 64px;
+          margin-left: 2px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: #101828;
+          .name {
+            font-size: 25px;
+            font-weight: 600;
+          }
+          .label{
+            font-size: 10px;
+          }
+        }
+        .target {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          gap: 40px;
+          .attendance {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 50px;
+            .wrap {
+              display: flex;
+              flex-direction: row;
+              gap: 20px;
+              .first {
+                background: #65ace0;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+              }
+              .targeted {
+                font-size: 10px;
+                color: #667085;
+              }
+            }
+          }
+          .attendant {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .wrap {
+              display: flex;
+              flex-direction: row;
+              gap: 20px;
+              .second {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #28385c;
+              }
+              .targeted {
+                font-size: 10px;
+                color: #667085;
+              }
+            }
+          }
+        }
+        .count {
+          display: flex;
+          flex-direction: row;
+          padding-inline: 100px;
+          gap: 130px;
         }
       }
       .doublebar {

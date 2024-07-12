@@ -30,12 +30,12 @@ const ClientAdminBusinessDetails = ({ title }) => {
 
   const datePickerRef = useRef(null);
   const dispatch = useDispatch();
-  console.log(window?.location?.pathname.split('/')[3])
-  let id = window?.location?.pathname.split('/')[3]
-  console.log(id)
+  console.log(window?.location?.pathname.split("/")[3]);
+  let id = window?.location?.pathname.split("/")[3];
+  console.log(id);
 
   useEffect(() => {
-    dispatch(CorporateBusinessRepDetails({id}))
+    dispatch(CorporateBusinessRepDetails({ id }));
   }, [id]);
 
   const PickDate = () => {
@@ -71,9 +71,10 @@ const ClientAdminBusinessDetails = ({ title }) => {
     SetPend2(true);
   };
 
-  const { businessrepdetails, authenticatingbusinessrepdetails } = useSelector((state) => state.businessrepdetails);
-  console.log(businessrepdetails)
-
+  const { businessrepdetails, authenticatingbusinessrepdetails } = useSelector(
+    (state) => state.businessrepdetails
+  );
+  console.log(businessrepdetails);
 
   return (
     <Flex>
@@ -85,7 +86,10 @@ const ClientAdminBusinessDetails = ({ title }) => {
               style={{ cursor: "pointer" }}
               onClick={() => navigate(-1)}
             />
-            <span className="name">{businessrepdetails?.data?.lastName} {businessrepdetails?.data?.firstName}</span>
+            <span className="name">
+              {businessrepdetails?.data?.lastName}{" "}
+              {businessrepdetails?.data?.firstName}
+            </span>
           </div>
         </div>
         <div className="top-div">
@@ -95,9 +99,17 @@ const ClientAdminBusinessDetails = ({ title }) => {
             </div>
             <div className="activedetails">
               <span className="image"></span>
-              <span className="name">{businessrepdetails?.data?.lastName} {businessrepdetails?.data?.firstName}</span>
+              <span className="name">
+                {businessrepdetails?.data?.lastName}{" "}
+                {businessrepdetails?.data?.firstName}
+              </span>
               <span className="assigned">Assigned Project: Building Home</span>
-              <span className="date">Date Created: <Moment format="DD-MM-YYYY">{businessrepdetails?.data?.dateJoined}</Moment></span>
+              <span className="date">
+                Date Created:{" "}
+                <Moment format="DD-MM-YYYY">
+                  {businessrepdetails?.data?.dateJoined}
+                </Moment>
+              </span>
             </div>
             <ModalButton onClick={() => ""} remove color title={"Deactivate"} />
           </div>
@@ -108,7 +120,9 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 <Call />
                 <div className="phone">
                   <span className="mobile">Mobile Number</span>
-                  <span className="number">{businessrepdetails?.data?.phoneNumber}</span>
+                  <span className="number">
+                    {businessrepdetails?.data?.phoneNumber}
+                  </span>
                 </div>
               </div>
               <Contact />
@@ -118,7 +132,9 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 <Call />
                 <div className="phone">
                   <span className="mobile">Email Address</span>
-                  <span className="number">{businessrepdetails?.data?.email}</span>
+                  <span className="number">
+                    {businessrepdetails?.data?.email}
+                  </span>
                 </div>
               </div>
               {/* <Contact /> */}
@@ -128,7 +144,9 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 <Call />
                 <div className="phone">
                   <span className="mobile">Address</span>
-                  <span className="number">{businessrepdetails?.data?.address}</span>
+                  <span className="number">
+                    {businessrepdetails?.data?.address}
+                  </span>
                 </div>
               </div>
               <Contact />
@@ -137,6 +155,10 @@ const ClientAdminBusinessDetails = ({ title }) => {
           <div className="last">
             <div className="radial">
               <Radial />
+            </div>
+            <div className="circle">
+              <span className="label">Total Attendance</span>
+              <span className="name">50%</span>
             </div>
             <div className="target">
               <div className="attendance">
@@ -430,10 +452,33 @@ const Flex = styled.div`
         display: flex;
         flex-direction: column;
         width: 40%;
+        position: relative;
         .radial {
           display: flex;
           flex-direction: row;
           justify-content: center;
+        }
+        .circle {
+          width: 95px;
+          height: 95px;
+          position: absolute;
+          border-radius: 50%;
+          background: #f2f4f7;
+          z-index: 1000;
+          margin-top: 45px;
+          margin-left: 171px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: #101828;
+          .name {
+            font-size: 25px;
+            font-weight: 600;
+          }
+          .label {
+            font-size: 10px;
+          }
         }
         .target {
           display: flex;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function Donuts() {
+function Donuts({overview}) {
   //  const series = data?.subscriptionPlan((item) => item.value)
   const series = [60, 40];
 
@@ -37,7 +37,7 @@ function Donuts() {
       lineCap: "butt"
     },
     fill: {
-      colors: ["#28385C", "#F3827C"]
+      colors: overview ? ["#1A87D7", "#28385C"]  : ["#28385C", "#F3827C"]
       //   colors: backgroundColors?.map((item) => item),
     },
     responsive: [

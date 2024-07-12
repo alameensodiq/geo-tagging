@@ -1,46 +1,75 @@
+import zIndex from "@mui/material/styles/zIndex";
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function Radial() {
+function Radial({overview}) {
   const series = [50];
 
   const options = {
     chart: {
-      width: 380,
+      width: overview ? 420 : 380,
       type: "radialBar"
     },
+    // plotOptions: {
+    //   radialBar: {
+    //     startAngle: -90,
+    //     endAngle: 270,
+    //     hollow: {
+    //       margin: 0,
+    //       size: "70%",
+    //       background: "#fff",
+    //       image: undefined,
+    //       imageOffsetX: 0,
+    //       imageOffsetY: 0,
+    //       position: "front",
+    //       dropShadow: {
+    //         enabled: true,
+    //         top: 3,
+    //         left: 0,
+    //         blur: 4,
+    //         opacity: 0.0008
+    //       }
+    //     }
+    //   },
+    //   track: {
+    //     background: "#ffffff",
+    //     strokeWidth: "67%",
+    //     margin: 0, // margin is in pixels
+    //     dropShadow: {
+    //       enabled: true,
+    //       top: -3,
+    //       left: 0,
+    //       blur: 4,
+    //       opacity: 0.35
+    //     }
+    //   }
+    // },
     plotOptions: {
       radialBar: {
         startAngle: -90,
-        endAngle: 270,
-        hollow: {
-          margin: 0,
-          size: "70%",
-          background: "#fff",
-          image: undefined,
-          imageOffsetX: 0,
-          imageOffsetY: 0,
-          position: "front",
+        endAngle: 90,
+        track: {
+          background: ['#65ACE0','#28385C'],
+          strokeWidth: '97%',
+          margin: 5, // margin is in pixels
           dropShadow: {
             enabled: true,
-            top: 3,
+            top: 2,
             left: 0,
-            blur: 4,
-            opacity: 0.0008
+            color: '#999',
+            opacity: 1,
+            blur: 2
           }
-        }
-      },
-      track: {
-        background: "#ffffff",
-        strokeWidth: "67%",
-        margin: 0, // margin is in pixels
-        dropShadow: {
-          enabled: true,
-          top: -3,
-          left: 0,
-          blur: 4,
-          opacity: 0.35
+        },
+        dataLabels: {
+          name: {
+            show: false
+          },
+          value: {
+            offsetY: -2,
+            fontSize: '22px'
+          }
         }
       }
     },
@@ -52,41 +81,58 @@ function Radial() {
       name: {
         offsetY: -10,
         show: true,
+        zIndex: 10000,
         // color: "#888",
-        fontSize: "14px"
+        fontSize: overview ?  "10px" :  "14px",
       },
       value: {
         formatter: function (val) {
           return parseInt(val);
         },
         color: "#111",
-        fontSize: "14px",
+        fontSize: overview ?  "10px" :  "12px",
         show: true
       }
     },
+    grid: {
+      padding: {
+        top: -10
+      }
+    },
+    // fill: {
+    //   type: "gradient",
+    //   colors: ["#65ACE0", "#28385C"],
+    //   gradient: {
+    //     // shade: "dark",
+    //     type: "horizontal",
+    //     shadeIntensity: 0.1,
+    //     gradientToColors: ["#65ACE0", "#28385C"],
+    //     inverseColors: true,
+    //     opacityFrom: 1,
+    //     opacityTo: 1,
+    //     stops: [0, 100]
+    //   }
+    // },
     fill: {
-      type: "gradient",
-      colors: ["#65ACE0", "#28385C"],
+      type: 'gradient',
       gradient: {
-        // shade: "dark",
-        type: "horizontal",
-        shadeIntensity: 0.1,
-        gradientToColors: ["#65ACE0", "#28385C"],
-        inverseColors: true,
+        shade: 'light',
+        shadeIntensity: 0.4,
+        inverseColors: false,
         opacityFrom: 1,
         opacityTo: 1,
-        stops: [0, 100]
-      }
+        stops: [0, 50, 53, 91]
+      },
     },
     stroke: {
         lineCap: 'round'
     },
-    labels: ['Total Attendance']
+    labels: [overview ? 'Total Punctuality Rate' : 'Total Attendance']
   };
 
   return (
     <Flex>
-      <Chart options={options} series={series} type="radialBar" height={220} />
+      <Chart options={options} series={series} type="radialBar" height={overview ? 290 : 220} />
     </Flex>
   );
 }
