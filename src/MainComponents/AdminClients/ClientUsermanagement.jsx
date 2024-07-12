@@ -109,7 +109,7 @@ const ClientUsermanagement = ({ title }) => {
         <div className="top">
           <div className="start">
             <div className="numbers">
-              <span className="name">Usermanagement</span>
+              <span className="name">User Management</span>
               <span className="count">500 members</span>
             </div>
             <span className="about">
