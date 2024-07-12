@@ -15,8 +15,8 @@ const FeaturesGrid = ({children, info, row, state, top,
 const Flex = styled.div`
 width: 100%;
 padding-block: ${(props) => props.top ? '50px' : props.info ? '20px' : '0px'};
-padding-left: ${(props) => props.dashboard ? '15px' : props.info ? '0px' : props?.sub ? '10px' : '70px'};
-padding-right: ${(props) => props.dashboard ? '15px' : props.info ? '0px' : props?.sub ? '40px' : '70px'};
+padding-left: ${(props) => props.dashboard ? '5px' : props.info ? '0px' : props?.sub ? '10px' : '70px'};
+padding-right: ${(props) => props.dashboard ? '5px' : props.info ? '0px' : props?.sub ? '40px' : '70px'};
 display: grid;
 row-gap: 30px;
 max-width: 100%;

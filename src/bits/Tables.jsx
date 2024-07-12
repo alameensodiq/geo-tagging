@@ -33,7 +33,8 @@ const Tables = ({
   detailsproject,
   manageuser,
   editrole,
-  subhistory
+  subhistory,
+  overviewproject
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -1160,9 +1161,133 @@ const Tables = ({
             </TableBody>
           </Table>
         </TableContainer>
-        ) : (
-          ""
-        )}
+        ) : overviewproject ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    PROJECT NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    DATE CREATED
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    BUSINESS REPS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    SUBSCRIPTION TYPE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    TOTAL EARNED PAY
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "13%" }}>
+                    COMPLIANCE RATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "12%" }}>
+                   PUNCTUALITY RATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "5%" }}>
+                    STAUS
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    Cowbell Outreach
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>20-09-2023</StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                   10
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    Enterprise
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    80,000
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "13%" }}>
+                  20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "12%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "5%" }}>
+                    <button className="activer-button">
+                      <div className="activer">
+                        <span className="round"></span>Active
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    Cowbell Outreach
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>20-09-2023</StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                   10
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    Enterprise
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    80,000
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "13%" }}>
+                  20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "12%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "5%" }}>
+                    <button className="activer-button">
+                      <div className="activer">
+                        <span className="round"></span>Active
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    Cowbell Outreach
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>20-09-2023</StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                   10
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    Enterprise
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    80,000
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "13%" }}>
+                  20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "12%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "5%" }}>
+                    <button className="activer-button">
+                      <div className="activer">
+                        <span className="round"></span>Active
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                </StyledTableRow>
+
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ): ""}
       </Flex>
     </ThemeProvider>
   );
