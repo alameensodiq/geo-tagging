@@ -23,7 +23,7 @@ max-width: 100%;
 column-gap: 20px;
 grid-template-columns: ${(props) =>
     props.unequal ? '56% 42%' : props.reportunequal ? '49% 49%' : props.overviewthree ?
-    '37.09% 22.1% 37.09%' : props?.sub ? '33.02% 33.02% 33.02%' : props?.big ? '50% 50%' : `repeat(${props.$row}, 1fr)`};
+    '37.09% 22.1% 37.09%' : props?.sub ? '33.02% 33.02% 33.02%' : props?.big ? '40% 60%' : `repeat(${props.$row}, 1fr)`};
 
 
 @media screen and (max-width: 1200px) {

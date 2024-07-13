@@ -341,9 +341,9 @@ const Flex = styled.div`
   .maincontainer {
     display: flex;
     flex-direction: column;
-    padding-top: 40px;
+    padding-top: 30px;
     padding-inline: 45px;
-    gap: 30px;
+    gap: 20px;
     .firstdiv {
       display: flex;
       flex-direction: row;

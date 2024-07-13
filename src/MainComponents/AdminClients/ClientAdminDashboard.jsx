@@ -138,7 +138,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             percent4={2.5}
           />
         </FeaturesGrid>
-        <FeaturesGrid dashboard superoverview row={2}>
+        <FeaturesGrid dashboard big superoverview row={2}>
           <div className="table">
             <div className="punctuality">
               <div className="start">
@@ -288,9 +288,9 @@ const Flex = styled.div`
   .maincontainer {
     display: flex;
     flex-direction: column;
-    padding-top: 40px;
+    padding-top: 30px;
     padding-inline: 25px;
-    gap: 50px;
+    gap: 20px;
     .top {
       display: flex;
       flex-direction: row;

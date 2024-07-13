@@ -44,6 +44,9 @@ function Sidebar({ name, role, open, setOpen }) {
       </div>
 
       <div className={`body ${open ? "sum" : "body"}`}>
+        <div className="menu-div">
+          <span className="menu">Menu</span>
+        </div>
         <Link
           to={clients}
           className={`item ${router.pathname === `${clients}` ? "active" : ""}`}
@@ -301,6 +304,19 @@ const Sidecontent = styled.div`
     padding-bottom: 50px;
     border-bottom: 0.5px solid;
     border-bottom-color: #e2e8f0;
+    .menu-div{
+      display: flex;
+      flex-direction: row;
+      padding-inline: 17px;
+      padding-block: 25px;
+      .menu{
+        display: flex;
+        flex-direction: row;
+        color: #5A6376;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
 
     .item {
       display: flex;
