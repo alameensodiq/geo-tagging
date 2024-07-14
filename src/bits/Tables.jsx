@@ -34,7 +34,8 @@ const Tables = ({
   manageuser,
   editrole,
   subhistory,
-  overviewproject
+  overviewproject,
+  reporttable
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -581,7 +582,7 @@ const Tables = ({
                           <Deactivate />
                           <span>Deactivate</span>
                         </div>
-                        <div className="row" onClick={() => ''}>
+                        <div className="row" onClick={() => ""}>
                           <View />
                           <span>Renew Subscription</span>
                         </div>
@@ -896,7 +897,7 @@ const Tables = ({
                         <div
                           className="row"
                           onClick={() => {
-                            ''
+                            "";
                             // navigate(
                             //   `../${businessprojects}/location/:location`
                             // );
@@ -1095,72 +1096,66 @@ const Tables = ({
           </>
         ) : subhistory ? (
           <TableContainer
-          // component={Paper}
-          style={{ boxShadow: "none" }}
-        >
-          <Table
-            sx={{ minWidth: 700, tableLayout: "auto" }}
-            aria-label="customized table"
+            // component={Paper}
+            style={{ boxShadow: "none" }}
           >
-            <TableHead>
-              <TableRow style={{ paddingRight: "0px" }}>
-                <StyledTableCell style={{ width: "10%" }}>
-                  S/N
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "15%" }}>
-                  PROJECT NAME
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "15%" }}>
-                  NAME OF BUSINESS REPS
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "15%" }}>
-                  SUBSCRIPTION TYPE
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "15%" }}>
-                  PAYMENT METHOD
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "15%" }}>
-                  DATE SUBSCRIBED
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "15%" }}>
-                  ACTIONS
-                </StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <StyledTableRow>
-                <StyledTableCell style={{ width: "10%" }}>
-                  1
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "15%" }}>
-                  Cowbell Fest
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "10%" }}>
-                  10
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "10%" }}>
-                  Standard
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "15%" }}>
-                  Bank Transfer
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "10%" }}>
-                  <Moment format="DD-MM-YYYY">
-                    12-07-2024
-                  </Moment>
-                </StyledTableCell>
-                <StyledTableCell style={{ width: "10%" }}>
-                  <span
-                    className="projectactivate"
-                    onClick={() => setStep(21)}
-                  >
-                    View Receipt
-                  </span>
-                </StyledTableCell>
-              </StyledTableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    S/N
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    PROJECT NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    NAME OF BUSINESS REPS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    SUBSCRIPTION TYPE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    PAYMENT METHOD
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    DATE SUBSCRIBED
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    ACTIONS
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow>
+                  <StyledTableCell style={{ width: "10%" }}>1</StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    Cowbell Fest
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>10</StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    Standard
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    Bank Transfer
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <Moment format="DD-MM-YYYY">12-07-2024</Moment>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      onClick={() => setStep(21)}
+                    >
+                      View Receipt
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
         ) : overviewproject ? (
           <TableContainer
             // component={Paper}
@@ -1191,7 +1186,7 @@ const Tables = ({
                     COMPLIANCE RATE
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "12%" }}>
-                   PUNCTUALITY RATE
+                    PUNCTUALITY RATE
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "5%" }}>
                     STAUS
@@ -1203,10 +1198,10 @@ const Tables = ({
                   <StyledTableCell style={{ width: "10%" }}>
                     Cowbell Outreach
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>20-09-2023</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                   10
+                    20-09-2023
                   </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>10</StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
                     Enterprise
                   </StyledTableCell>
@@ -1214,7 +1209,7 @@ const Tables = ({
                     80,000
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "13%" }}>
-                  20%
+                    20%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "12%" }}>
                     20%
@@ -1231,10 +1226,10 @@ const Tables = ({
                   <StyledTableCell style={{ width: "10%" }}>
                     Cowbell Outreach
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>20-09-2023</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                   10
+                    20-09-2023
                   </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>10</StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
                     Enterprise
                   </StyledTableCell>
@@ -1242,7 +1237,7 @@ const Tables = ({
                     80,000
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "13%" }}>
-                  20%
+                    20%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "12%" }}>
                     20%
@@ -1259,10 +1254,10 @@ const Tables = ({
                   <StyledTableCell style={{ width: "10%" }}>
                     Cowbell Outreach
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>20-09-2023</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                   10
+                    20-09-2023
                   </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>10</StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
                     Enterprise
                   </StyledTableCell>
@@ -1270,7 +1265,7 @@ const Tables = ({
                     80,000
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "13%" }}>
-                  20%
+                    20%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "12%" }}>
                     20%
@@ -1283,11 +1278,164 @@ const Tables = ({
                     </button>
                   </StyledTableCell>
                 </StyledTableRow>
-
               </TableBody>
             </Table>
           </TableContainer>
-        ): ""}
+        ) : reporttable ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    PHOTO ID
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    BUSINESS REP'S NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    INCIDENT REPORT(%)
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                     Reports
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    STAUS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    DATE SUBMITTED
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
+                  <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "10px"
+                        }}
+                      >
+                        <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                      </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <button className="activer-button">
+                      <div className="activer">
+                        <span className="round"></span>Read
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
+                  <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "10px"
+                        }}
+                      >
+                        <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                      </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <button className="activer-button">
+                      <div className="activer">
+                        <span className="round"></span>Read
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
+                  <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "10px"
+                        }}
+                      >
+                        <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                      </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <button className="inactive-button">
+                      <div className="inactive">
+                        <span className="round"></span>Unread
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          ""
+        )}
       </Flex>
     </ThemeProvider>
   );

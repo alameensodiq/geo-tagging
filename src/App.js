@@ -7,6 +7,7 @@ import CorporateLogin from "./Reusable/CorporateLogin";
 import CorporateChangePassword from "./Reusable/CorporateChangePassword";
 import {
   businessprojects,
+  businessreport,
   businessreps,
   businesssub,
   businessusers,
@@ -24,6 +25,7 @@ import ClientProjectDetails from "./MainComponents/AdminClients/ClientProjectDet
 import ClientUsermanagement from "./MainComponents/AdminClients/ClientUsermanagement";
 import ClientLocationDetails from "./MainComponents/AdminClients/ClientLocationDetails";
 import ClientSubscription from "./MainComponents/AdminClients/ClientSubscription";
+import ClientAdminReports from "./MainComponents/AdminClients/ClientAdminReports";
 
 function App() {
   return (
@@ -69,6 +71,11 @@ function App() {
           <Route
             path={`${businesssub}`}
             element={<ClientSubscription title="Subscriptions" />}
+          />
+
+          <Route
+            path={`${businessreport}`}
+            element={<ClientAdminReports title="Reports" />}
           />
           <Route />
         </Route>

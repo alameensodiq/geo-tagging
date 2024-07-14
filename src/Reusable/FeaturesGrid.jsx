@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const FeaturesGrid = ({children, info, row, state, top, 
   dashboard, unequal, reportunequal, nopad, superoverview, overviewthree
-, overviewreport, sub, big }) => {
+, overviewreport, sub, big, bigger }) => {
   return (
-    <Flex big={big}  sub={sub} overviewreport={overviewreport} overviewthree={overviewthree} reportunequal={reportunequal} nopad={nopad} $row={row} info={info} top={top} dashboard={dashboard} unequal={unequal}>
+    <Flex big={big} bigger={bigger}  sub={sub} overviewreport={overviewreport} overviewthree={overviewthree} reportunequal={reportunequal} nopad={nopad} $row={row} info={info} top={top} dashboard={dashboard} unequal={unequal}>
         {children}
     </Flex>
   )
@@ -23,7 +23,7 @@ max-width: 100%;
 column-gap: 20px;
 grid-template-columns: ${(props) =>
     props.unequal ? '56% 42%' : props.reportunequal ? '49% 49%' : props.overviewthree ?
-    '37.09% 22.1% 37.09%' : props?.sub ? '33.02% 33.02% 33.02%' : props?.big ? '40% 60%' : `repeat(${props.$row}, 1fr)`};
+    '37.09% 22.1% 37.09%' : props?.sub ? '33.02% 33.02% 33.02%' : props?.big ? '40% 60%' : props?.bigger ? '60% 40%' : `repeat(${props.$row}, 1fr)`};
 
 
 @media screen and (max-width: 1200px) {

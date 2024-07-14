@@ -91,7 +91,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             </div>
           )}
           {showDatePicker && (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", flexDirection: "column",position:'absolute', justifyContent:'flex-end',right:'0%',zIndex:'1000'}}>
               <DateRangePicker
                 ranges={[
                   {
@@ -295,6 +295,7 @@ const Flex = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      position: relative;
       .start {
         display: flex;
         flex-direction: column;
@@ -515,6 +516,7 @@ const Flex = styled.div`
           flex-direction: row;
           justify-content: center;
           gap: 40px;
+          padding-top: 70px;
           .attendance {
             display: flex;
             flex-direction: column;
