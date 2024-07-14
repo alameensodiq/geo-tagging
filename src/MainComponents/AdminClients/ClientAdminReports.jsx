@@ -72,7 +72,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
         <div className="top">
           <div className="start">
             <div className="numbers">
-              <span className="name">Dashboard</span>
+              <span className="name">Reports</span>
             </div>
             <span className="about">
               This overview provides a comprehensive view of analysis of reports
