@@ -26,6 +26,8 @@ import ClientUsermanagement from "./MainComponents/AdminClients/ClientUsermanage
 import ClientLocationDetails from "./MainComponents/AdminClients/ClientLocationDetails";
 import ClientSubscription from "./MainComponents/AdminClients/ClientSubscription";
 import ClientAdminReports from "./MainComponents/AdminClients/ClientAdminReports";
+import ClientAdminNormalReport from "./MainComponents/AdminClients/ClientAdminNormalReport";
+import ClientAdminAbnormalReport from "./MainComponents/AdminClients/ClientAdminAbnormalReport";
 
 function App() {
   return (
@@ -76,6 +78,16 @@ function App() {
           <Route
             path={`${businessreport}`}
             element={<ClientAdminReports title="Reports" />}
+          />
+
+          <Route
+            path={`${businessreport}/normal`}
+            element={<ClientAdminNormalReport title="Reports" />}
+          />
+
+          <Route
+            path={`${businessreport}/abnormal`}
+            element={<ClientAdminAbnormalReport title="Reports" />}
           />
           <Route />
         </Route>

@@ -35,7 +35,9 @@ const Tables = ({
   editrole,
   subhistory,
   overviewproject,
-  reporttable
+  reporttable,
+  reportnormal,
+  reportabnormal
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -1302,7 +1304,7 @@ const Tables = ({
                     INCIDENT REPORT(%)
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
-                     Reports
+                    Reports
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     STAUS
@@ -1315,14 +1317,14 @@ const Tables = ({
               <TableBody>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "15%" }}>
-                  <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          gap: "10px"
-                        }}
-                      >
-                        <div
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
                         style={{
                           borderRadius: "50%",
                           width: "30px",
@@ -1330,7 +1332,7 @@ const Tables = ({
                           backgroundColor: "black"
                         }}
                       ></div>
-                      </div>
+                    </div>
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
                     Sheidu Susan
@@ -1354,14 +1356,14 @@ const Tables = ({
                 </StyledTableRow>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "15%" }}>
-                  <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          gap: "10px"
-                        }}
-                      >
-                        <div
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
                         style={{
                           borderRadius: "50%",
                           width: "30px",
@@ -1369,7 +1371,7 @@ const Tables = ({
                           backgroundColor: "black"
                         }}
                       ></div>
-                      </div>
+                    </div>
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
                     Sheidu Susan
@@ -1393,14 +1395,14 @@ const Tables = ({
                 </StyledTableRow>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "15%" }}>
-                  <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          gap: "10px"
-                        }}
-                      >
-                        <div
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
                         style={{
                           borderRadius: "50%",
                           width: "30px",
@@ -1408,7 +1410,7 @@ const Tables = ({
                           backgroundColor: "black"
                         }}
                       ></div>
-                      </div>
+                    </div>
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
                     Sheidu Susan
@@ -1428,6 +1430,313 @@ const Tables = ({
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
                     20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : reportnormal ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    PHOTO ID
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    BUSINESS REP'S NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    PROJECT NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Reports
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    DATE SUBMITTED
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : reportabnormal ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    PHOTO ID
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    BUSINESS REP'S NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    PROJECT NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    REPORTS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    DATE SUBMITTED
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    STATUS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    ACTIONS
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "1%0" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <button className="activer-button">
+                      <div className="activer">
+                        <span className="round"></span>Read
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      // onClick={() => setStep(6)}
+                    >
+                      Activate
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Party Time
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <button className="activer-button">
+                      <div className="activer">
+                        <span className="round"></span>Read
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      // onClick={() => setStep(6)}
+                    >
+                      Activate
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "10%"}}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Cowbell
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <button className="inactive-button">
+                      <div className="inactive">
+                        <span className="round"></span>Unread
+                      </div>
+                    </button>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      onClick={() => setStep(6)}
+                    >
+                      Activate
+                    </span>
                   </StyledTableCell>
                 </StyledTableRow>
               </TableBody>

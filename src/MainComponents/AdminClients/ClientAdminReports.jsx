@@ -16,6 +16,8 @@ import Radial from "../../bits/Radial";
 import Donuts from "../../bits/Donuts";
 import InputSearch from "../../bits/InputSearch";
 import CorporateReportCards from "../../Reusable/CorporateReportCards";
+import { businessreport } from "../../Routes";
+import { useNavigate } from "react-router-dom";
 
 const ClientAdminReports = ({ title, overviewadmin }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -32,6 +34,8 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
   const toggleDatePicker = () => {
     setShowDatePicker(!showDatePicker); // Toggle date picker visibility
   };
+
+  const navigate = useNavigate()
 
   const handleSelect = (ranges) => {
     console.log(ranges);
@@ -125,7 +129,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
             <div className="reportdonut">
               <Donuts report />
               <div className="detailscompliancy">
-                <div className="firstcompliance">
+                <div className="firstcompliance" onClick={() => navigate(`../${businessreport}/normal`)}>
                   <span className="comp">
                     Incident <span className="percent">65%</span>
                   </span>
@@ -140,7 +144,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     </span>
                   </div>
                 </div>
-                <div className="firstcompliance">
+                <div className="firstcompliance" onClick={() => navigate(`../${businessreport}/abnormal`)}>
                   <span className="comp">
                     Incident free <span className="percent">35%</span>
                   </span>
@@ -559,6 +563,7 @@ const Flex = styled.div`
             border: 1px solid #ebebeb;
             padding-inline: 15px;
             padding-block: 10px;
+            cursor: pointer;
             .comp {
               color: #141414;
               font-size: 14px;
@@ -1041,6 +1046,7 @@ const Flex = styled.div`
             border: 1px solid #ebebeb;
             padding-inline: 15px;
             padding-block: 10px;
+            cursor: pointer;
             .comp {
               color: #141414;
               font-size: 14px;
