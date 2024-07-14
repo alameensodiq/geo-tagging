@@ -37,7 +37,8 @@ const Tables = ({
   overviewproject,
   reporttable,
   reportnormal,
-  reportabnormal
+  reportabnormal,
+  reportemoji
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -1599,7 +1600,7 @@ const Tables = ({
               </TableHead>
               <TableBody>
                 <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "1%0" }}>
+                  <StyledTableCell style={{ width: "10" }}>
                     <div
                       style={{
                         display: "flex",
@@ -1742,9 +1743,123 @@ const Tables = ({
               </TableBody>
             </Table>
           </TableContainer>
-        ) : (
-          ""
-        )}
+        ) : reportemoji ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    PHOTO ID
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    BUSINESS REP'S NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    PROJECT NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    DATE REPORTED
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "25" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "25" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "25" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                      ></div>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Sheidu Susan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : ""}
       </Flex>
     </ThemeProvider>
   );

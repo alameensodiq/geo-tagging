@@ -28,6 +28,7 @@ import ClientSubscription from "./MainComponents/AdminClients/ClientSubscription
 import ClientAdminReports from "./MainComponents/AdminClients/ClientAdminReports";
 import ClientAdminNormalReport from "./MainComponents/AdminClients/ClientAdminNormalReport";
 import ClientAdminAbnormalReport from "./MainComponents/AdminClients/ClientAdminAbnormalReport";
+import ClientAdminEmoji from "./MainComponents/AdminClients/ClientAdminEmoji";
 
 function App() {
   return (
@@ -88,6 +89,11 @@ function App() {
           <Route
             path={`${businessreport}/abnormal`}
             element={<ClientAdminAbnormalReport title="Reports" />}
+          />
+
+          <Route
+            path={`${businessreport}/emoji`}
+            element={<ClientAdminEmoji title="Reports" />}
           />
           <Route />
         </Route>

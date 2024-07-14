@@ -194,7 +194,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                 <div className="firstcompliance">
                   <span className="emoji">😃</span>
                   <div className="main">
-                    <span className="comp">Incident</span>
+                    <span className="comp">Great</span>
                     <div className="bardiv">
                       <div className="backgrounddiv">
                         <div className="bar"></div>
@@ -206,9 +206,9 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                 </div>
                 {/* <span className="emoji">😃</span> */}
                 <div className="firstcompliance">
-                  <span className="emoji">😃</span>
+                  <span className="emoji">😊</span>
                   <div className="main">
-                    <span className="comp">Incident free</span>
+                    <span className="comp">Happy</span>
                     <div className="bardiv">
                       <div className="backgrounddiv">
                         <div className="nonbar"></div>
@@ -219,12 +219,38 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   </div>
                 </div>
                 <div className="firstcompliance">
-                  <span className="emoji">😃</span>
+                  <span className="emoji">😌</span>
                   <div className="main">
-                    <span className="comp">Incident free</span>
+                    <span className="comp">Okay</span>
                     <div className="bardiv">
                       <div className="backgrounddiv">
-                        <div className="nonbar"></div>
+                        <div className="nonbar" style={{background:'#7C65E0'}}></div>
+                      </div>
+                      <span className="percent">35%</span>
+                      <LeftCarat className="carat" />
+                    </div>
+                  </div>
+                </div>
+                <div className="firstcompliance">
+                  <span className="emoji">😏</span>
+                  <div className="main">
+                    <span className="comp">Frustrated</span>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                        <div className="nonbar" style={{background:'#F3827C'}}></div>
+                      </div>
+                      <span className="percent">35%</span>
+                      <LeftCarat className="carat" />
+                    </div>
+                  </div>
+                </div>
+                <div className="firstcompliance" onClick={() => navigate(`../${businessreport}/emoji`)}>
+                  <span className="emoji">😡</span>
+                  <div className="main">
+                    <span className="comp">Angry</span>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                        <div className="nonbar" style={{background:'#FE6510'}}></div>
                       </div>
                       <span className="percent">35%</span>
                       <LeftCarat className="carat" />
@@ -955,6 +981,7 @@ const Flex = styled.div`
             border-radius: 5px;
             padding-inline: 15px;
             padding-top: 5px;
+            cursor: pointer;
             .emoji {
               display: flex;
               flex-direction: row;
