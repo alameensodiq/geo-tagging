@@ -341,8 +341,8 @@ const Flex = styled.div`
         gap: 5px;
         color: #344054;
         align-items: center;
-        font-size: 14px;
-        font-weight: 500;
+        font-size: 13px;
+        font-weight: 400;
         width: 27%;
         height: 48px;
         border-radius: 8px;
@@ -422,6 +422,7 @@ const Flex = styled.div`
             border: 1px;
             color: #344054;
             font-size: 13px;
+            font-weight: 400;
             outline: none;
             cursor: pointer;
             border: 1px solid #e2e8f0;

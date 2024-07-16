@@ -300,9 +300,11 @@ const Flex = styled.div`
           justify-content: center;
           width: 40px;
           background-color: #edf4f9;
-          border-radius: 50%;
+          border-radius: 10px;
           color: #65ace0;
           font-size: 10px;
+          height: 20px;
+          align-items: center;
         }
         .status-number {
           display: flex;
@@ -310,9 +312,11 @@ const Flex = styled.div`
           justify-content: center;
           width: 40px;
           background-color: #f0f0f0;
-          border-radius: 50%;
+          border-radius: 10px;
           color: #868e96;
           font-size: 10px;
+          height: 20px;
+          align-items: center;
         }
       }
       .date-search {

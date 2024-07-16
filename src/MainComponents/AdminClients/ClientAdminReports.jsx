@@ -104,12 +104,12 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     Situation
                     Reports
                   </span>
-                  <span className="name">
-                    <span className="round"></span>Incident reports
+                  {/* <span className="name">
+                    <span className="round"></span>With Incident 
                   </span>
                   <span className="name">
-                    <span className="rounder"></span>Incident free Reports
-                  </span>
+                    <span className="rounder"></span>Without Incident
+                  </span> */}
                 </div>
               </div>
               <div className="main">
@@ -131,7 +131,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
               <div className="detailscompliancy">
                 <div className="firstcompliance" onClick={() => navigate(`../${businessreport}/normal`)}>
                   <span className="comp">
-                    Incident <span className="percent">65%</span>
+                    With Incident <span className="percent">65%</span>
                   </span>
                   <div className="bardiv">
                     <div className="backgrounddiv">
@@ -146,7 +146,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                 </div>
                 <div className="firstcompliance" onClick={() => navigate(`../${businessreport}/abnormal`)}>
                   <span className="comp">
-                    Incident free <span className="percent">35%</span>
+                    Without Incident <span className="percent">35%</span>
                   </span>
                   <div className="bardiv">
                     <div className="backgrounddiv">
@@ -393,7 +393,7 @@ const Flex = styled.div`
         padding-top: 0px;
         padding-bottom: 10px;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         .start {
           display: flex;
           flex-direction: column;
@@ -457,6 +457,7 @@ const Flex = styled.div`
             padding: 12px 10px 12px 24px;
             border-radius: 5px;
             border: 1px;
+            font-weight: 400;
             color: #344054;
             font-size: 13px;
             outline: none;
@@ -571,8 +572,9 @@ const Flex = styled.div`
         flex-direction: row;
         align-items: center;
         gap: 10px;
+        padding-top: 30px;
         width: 100%;
-        justify-content: flex-start;
+        justify-content: center;
         .detailscompliancy {
           display: flex;
           flex-direction: column;
@@ -875,7 +877,7 @@ const Flex = styled.div`
         padding-top: 0px;
         padding-bottom: 0px;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         .start {
           display: flex;
           flex-direction: column;
@@ -940,6 +942,7 @@ const Flex = styled.div`
             border-radius: 5px;
             border: 1px;
             color: #344054;
+            font-weight: 400;
             font-size: 13px;
             outline: none;
             cursor: pointer;
