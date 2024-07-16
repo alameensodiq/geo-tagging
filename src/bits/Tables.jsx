@@ -18,7 +18,14 @@ import { ReactComponent as Colormark } from "../assets/colormark.svg";
 import { ReactComponent as Uncolormark } from "../assets/uncolormark.svg";
 
 import { ThemeProvider, createTheme } from "@mui/material";
-import { businessprojects, businessreps, businessusers, corporate } from "../Routes";
+import {
+  businessprojects,
+  businessreps,
+  businessusers,
+  corporate,
+  superadmins,
+  superusers
+} from "../Routes";
 import { ModalButton } from "./ModalButton";
 
 const Tables = ({
@@ -43,7 +50,8 @@ const Tables = ({
   supercorporateinactive,
   superactivedetails,
   audit,
-  superuser
+  superuser,
+  superuserdetail
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -134,10 +142,9 @@ const Tables = ({
     setuseractive(!useractive);
   };
 
-
   const SuperserActiveMethod = () => {
-    setSuperuseractivity(!superuseractivity)
-  }
+    setSuperuseractivity(!superuseractivity);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -2008,7 +2015,7 @@ const Tables = ({
               </TableBody>
             </Table>
           </TableContainer>
-        ) : supercorporateinactive ?  (
+        ) : supercorporateinactive ? (
           <TableContainer
             // component={Paper}
             style={{ boxShadow: "none" }}
@@ -2164,30 +2171,30 @@ const Tables = ({
                     NUMBER OF BUSINESS REPS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
-                  NUMBER OF GEO-LOCATION
+                    NUMBER OF GEO-LOCATION
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
-                   SUBSCRIPTION TYPE
+                    SUBSCRIPTION TYPE
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
-                   PUNCTUALITY RATE
+                    PUNCTUALITY RATE
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>TIME STAMP RATE</StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    TIME STAMP RATE
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "18" }}>
-                  Customer Loyalty Program
+                    Customer Loyalty Program
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
                     100
                   </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>1</StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
-                    1
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "16%" }}>
-                  Enterprise Plan
+                    Enterprise Plan
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
                     20%
@@ -2198,16 +2205,14 @@ const Tables = ({
                 </StyledTableRow>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "18" }}>
-                  Customer Loyalty Program
+                    Customer Loyalty Program
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
                     100
                   </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>1</StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
-                    1
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "16%" }}>
-                  Enterprise Plan
+                    Enterprise Plan
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
                     20%
@@ -2218,16 +2223,14 @@ const Tables = ({
                 </StyledTableRow>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "18" }}>
-                  Customer Loyalty Program
+                    Customer Loyalty Program
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
                     100
                   </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>1</StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
-                    1
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "16%" }}>
-                  Enterprise Plan
+                    Enterprise Plan
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
                     20%
@@ -2260,51 +2263,51 @@ const Tables = ({
                     DATE AND TIME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
-                   ACTION PERFORMED
+                    ACTION PERFORMED
                   </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "25%" }}>
-                   Warith
+                    Warith
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
                     Super-admin
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
-                  12/04/23, 09:11:04
+                    12/04/23, 09:11:04
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
-                  Login
+                    Login
                   </StyledTableCell>
                 </StyledTableRow>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "25%" }}>
-                   Warith
+                    Warith
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
                     Super-admin
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
-                  12/04/23, 09:11:04
+                    12/04/23, 09:11:04
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
-                  Login
+                    Login
                   </StyledTableCell>
                 </StyledTableRow>
                 <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "25%" }}>
-                   Warith
+                    Warith
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
                     Super-admin
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
-                  12/04/23, 09:11:04
+                    12/04/23, 09:11:04
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "25%" }}>
-                  Login
+                    Login
                   </StyledTableCell>
                 </StyledTableRow>
               </TableBody>
@@ -2323,7 +2326,7 @@ const Tables = ({
                 <TableRow style={{ paddingRight: "0px" }}>
                   <StyledTableCell style={{ width: "20%" }}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
-                    SUB-ADMIN NAME
+                      SUB-ADMIN NAME
                     </div>
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
@@ -2359,23 +2362,29 @@ const Tables = ({
                     08023249058
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
-                  12/04/23, 09:11:04
+                    12/04/23, 09:11:04
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
-                  Support and Troubleshooting
+                    Support and Troubleshooting
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     <Action onClick={() => SuperserActiveMethod()} />
                     {superuseractivity && (
                       <div className="superactiveusermodal">
-                        <div className="row" onClick={() => {
-                          setSuperuseractivity(false)
-                          setStep(32)
-                        }}>
+                        <div
+                          className="row"
+                          onClick={() => {
+                            setSuperuseractivity(false);
+                            setStep(32);
+                          }}
+                        >
                           <Deactivate />
                           <span>Deactivate</span>
                         </div>
-                        <div className="row" onClick={() => ""}>
+                        <div
+                          className="row"
+                          onClick={() => navigate(`../${superusers}/:id`)}
+                        >
                           <View />
                           <span>View more</span>
                         </div>
@@ -2386,7 +2395,101 @@ const Tables = ({
               </TableBody>
             </Table>
           </TableContainer>
-        )  : (
+        ) : superuserdetail ? (
+          <>
+            <TableContainer
+              // component={Paper}
+              style={{ boxShadow: "none" }}
+            >
+              <Table
+                sx={{ minWidth: 400, tableLayout: "auto" }}
+                aria-label="customized table"
+              >
+                <TableHead>
+                  <TableRow style={{ paddingRight: "0px" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      PERMISSIONS
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      CAN VIEW
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      CAN EDIT
+                    </StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                     Support and Troubleshooting
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                     Corporate Management
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                     <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                    Subscription Management
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                    Security Management
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                    Policy and Compliance
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                    Policy and Compliance
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </>
+        ) : (
           ""
         )}
       </Flex>
@@ -2560,7 +2663,7 @@ const Flex = styled.div`
       display: flex;
       flex-direction: row;
       gap: 7px;
-      color: #5A6376;
+      color: #5a6376;
       align-items: center;
     }
   }

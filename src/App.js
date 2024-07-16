@@ -15,7 +15,8 @@ import {
   clients,
   corporate,
   superadmins,
-  superuser
+  superuser,
+  superusers
 } from "./Routes";
 import ClientAdminDashboardIndex from "./MainComponents/AdminClients/ClentAdminDashboardIndex";
 import ClientAdminDashboard from "./MainComponents/AdminClients/ClientAdminDashboard";
@@ -39,6 +40,7 @@ import SuperAdminDashboard from "./MainComponents/SuperAdmin/SuperAdminDashboard
 import SuperAdminCorporateDetails from "./MainComponents/SuperAdmin/SuperAdminCorporateDetails";
 import SuperAdminAudit from "./MainComponents/SuperAdmin/SuperAdminAudit";
 import SuperAdminUsermanagement from "./MainComponents/SuperAdmin/SuperAdminUsermanagement";
+import SuperAdminUserDetails from "./MainComponents/SuperAdmin/SuperAdminUserDetails";
 
 function App() {
   return (
@@ -122,8 +124,13 @@ function App() {
             element={<SuperAdminAudit title="Audit Trails" />}
           />
           <Route
-            path={superuser}
+            path={superusers}
             element={<SuperAdminUsermanagement title="Sub Admin" />}
+          />
+
+          <Route
+            path={`${superusers}/:id`}
+            element={<SuperAdminUserDetails title="Sub Admin" />}
           />
           {/* <Route
             path={`${businessreps}/:id`}

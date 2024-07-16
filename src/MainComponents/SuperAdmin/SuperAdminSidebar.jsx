@@ -17,7 +17,7 @@ import { ReactComponent as Auditor } from "../../../src/assets/Auditor.svg";
 import { ReactComponent as User } from "../../../src/assets/usermanage.svg";
 import { ReactComponent as Sub } from "../../../src/assets/subscription.svg";
 // import { ReactComponent as Report } from "../../../src/assets/Reporting.svg";
-import { corporate, superadmins, clients, businessusers,businesssub, audit, superuser } from "../../Routes";
+import { corporate, superadmins, clients, businessusers,businesssub, audit, superusers } from "../../Routes";
 
 import { LogOutAuthentication, LogOutAuthenticationSuperAdmin } from "../../bits/LogOutAuthentication";
 import { businessreps } from "../../Routes";
@@ -123,10 +123,10 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
           <p className="man">Subscriptions</p>
         </Link>
         <Link
-          to={superuser}
+          to={superusers}
           className={`item ${
-            router.pathname === `${superadmins}/${superuser}` ||
-            router.pathname.startsWith(`${superadmins}/${superuser}`)
+            router.pathname === `${superadmins}/${superusers}` ||
+            router.pathname.startsWith(`${superadmins}/${superusers}`)
               ? "active"
               : ""
           }`}
