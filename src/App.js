@@ -6,6 +6,7 @@ import ChangePassword from "./Reusable/ChangePassword";
 import CorporateLogin from "./Reusable/CorporateLogin";
 import CorporateChangePassword from "./Reusable/CorporateChangePassword";
 import {
+  accounting,
   audit,
   businessprojects,
   businessreport,
@@ -41,6 +42,7 @@ import SuperAdminCorporateDetails from "./MainComponents/SuperAdmin/SuperAdminCo
 import SuperAdminAudit from "./MainComponents/SuperAdmin/SuperAdminAudit";
 import SuperAdminUsermanagement from "./MainComponents/SuperAdmin/SuperAdminUsermanagement";
 import SuperAdminUserDetails from "./MainComponents/SuperAdmin/SuperAdminUserDetails";
+import SuperAdminAccount from "./MainComponents/SuperAdmin/SuperAdminAccount";
 
 function App() {
   return (
@@ -132,14 +134,12 @@ function App() {
             path={`${superusers}/:id`}
             element={<SuperAdminUserDetails title="Sub Admin" />}
           />
-          {/* <Route
-            path={`${businessreps}/:id`}
-            element={<ClientAdminBusinessDetails title="Business Reps" />}
-          />
+
           <Route
-            path={`${businessprojects}`}
-            element={<ClientAdminProject title="Projects" />}
-          /> */}
+            path={accounting}
+            element={<SuperAdminAccount title="My Account" />}
+          />
+
           <Route />
         </Route>
       </Routes>
