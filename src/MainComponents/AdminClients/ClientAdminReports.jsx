@@ -454,18 +454,18 @@ const Flex = styled.div`
           .input {
             width: 113px;
             height: 40px;
-            padding: 12px 18px 12px 18px;
+            padding: 12px 10px 12px 24px;
             border-radius: 5px;
             border: 1px;
-            color: #8d9196;
-            font-size: 10px;
+            color: #344054;
+            font-size: 13px;
             outline: none;
             cursor: pointer;
             border: 1px solid #e2e8f0;
           }
           .calendar {
             position: absolute;
-            right: 97px;
+            right: 90px;
             top: 13px;
           }
         }
@@ -936,18 +936,18 @@ const Flex = styled.div`
           .input {
             width: 113px;
             height: 40px;
-            padding: 12px 18px 12px 18px;
+            padding: 12px 10px 12px 24px;
             border-radius: 5px;
             border: 1px;
-            color: #8d9196;
-            font-size: 10px;
+            color: #344054;
+            font-size: 13px;
             outline: none;
             cursor: pointer;
             border: 1px solid #e2e8f0;
           }
           .calendar {
             position: absolute;
-            right: 97px;
+            right: 90px;
             top: 13px;
           }
         }
