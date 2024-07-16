@@ -183,12 +183,12 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                 <Calendar onClick={() => PickDater()} className="calendar" />
               </div>
             </div>
-            <div className="emojidiv">
+            {/* <div className="emojidiv">
               <span className="emoji">😃</span>
               <span className="emoji">😃</span>
               <span className="emoji">😡</span>
               <span className="emoji">😃</span>
-            </div>
+            </div> */}
             <div className="welfare">
               <div className="detailscompliancy">
                 <div className="firstcompliance">
