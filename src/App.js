@@ -6,12 +6,15 @@ import ChangePassword from "./Reusable/ChangePassword";
 import CorporateLogin from "./Reusable/CorporateLogin";
 import CorporateChangePassword from "./Reusable/CorporateChangePassword";
 import {
+  audit,
   businessprojects,
   businessreport,
   businessreps,
   businesssub,
   businessusers,
-  clients
+  clients,
+  corporate,
+  superadmins
 } from "./Routes";
 import ClientAdminDashboardIndex from "./MainComponents/AdminClients/ClentAdminDashboardIndex";
 import ClientAdminDashboard from "./MainComponents/AdminClients/ClientAdminDashboard";
@@ -29,6 +32,11 @@ import ClientAdminReports from "./MainComponents/AdminClients/ClientAdminReports
 import ClientAdminNormalReport from "./MainComponents/AdminClients/ClientAdminNormalReport";
 import ClientAdminAbnormalReport from "./MainComponents/AdminClients/ClientAdminAbnormalReport";
 import ClientAdminEmoji from "./MainComponents/AdminClients/ClientAdminEmoji";
+import SuperAdminDashboardIndex from "./MainComponents/SuperAdmin/SuperAdminDashboardIndex";
+import SuperAdminCorporate from "./MainComponents/SuperAdmin/SuperAdminCorporate";
+import SuperAdminDashboard from "./MainComponents/SuperAdmin/SuperAdminDashboard";
+import SuperAdminCorporateDetails from "./MainComponents/SuperAdmin/SuperAdminCorporateDetails";
+import SuperAdminAudit from "./MainComponents/SuperAdmin/SuperAdminAudit";
 
 function App() {
   return (
@@ -95,6 +103,30 @@ function App() {
             path={`${businessreport}/emoji`}
             element={<ClientAdminEmoji title="Reports" />}
           />
+          <Route />
+        </Route>
+        <Route path={superadmins} element={<SuperAdminDashboardIndex />}>
+          <Route index element={<SuperAdminDashboard title="Dashboard" />} />
+          <Route
+            path={corporate}
+            element={<SuperAdminCorporate title="Corporates" />}
+          />
+          <Route
+            path={`${corporate}/:id`}
+            element={<SuperAdminCorporateDetails title="Corporates" />}
+          />
+          <Route
+            path={audit}
+            element={<SuperAdminAudit title="Audit Trails" />}
+          />
+          {/* <Route
+            path={`${businessreps}/:id`}
+            element={<ClientAdminBusinessDetails title="Business Reps" />}
+          />
+          <Route
+            path={`${businessprojects}`}
+            element={<ClientAdminProject title="Projects" />}
+          /> */}
           <Route />
         </Route>
       </Routes>

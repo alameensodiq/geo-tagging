@@ -21,24 +21,24 @@ const InputSearch = ({ placeholder, reduce, auth, fixedWidth, onChange }) => {
 const Flex = styled.div`
   display: flex;
   flex-direction: row;
-  position: relative;
   width: 100%;
 
   .inputer {
     /* background: linear-gradient(0deg, #E2E8F0, #E2E8F0),
 linear-gradient(0deg, #FFFFFF, #FFFFFF); */
     border: 1px solid #e2e8f0;
-    width: 44%;
+    width: 500px;
     border-radius: 7px;
     padding-left: 35px;
     color: #8d9196;
     outline: none;
     font-size: 12px;
+    /* position: relative; */
   }
   .close {
     position: absolute;
     margin-left: 1%;
-    margin-top: 1%;
+    margin-top: 0.7%;
     cursor: pointer;
   }
 

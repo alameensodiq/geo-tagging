@@ -17,7 +17,8 @@ export default function AppModal({
   pdf,
   Unread,
   Archived,
-  mark
+  mark,
+  noheadborder
 }) {
   return (
     <div
@@ -34,19 +35,19 @@ export default function AppModal({
         maxWidth={maxWidth}
         closeModal={closeModal}
       >
-        <AppModalStyle>
+        <AppModalStyle noheadborder={noheadborder}>
           <div
             style={{
               display: "flex",
-              justifyContent: "flex-end",
+              justifyContent: noheadborder ? "space-between"  : "flex-end",
               alignItems: "center",
-              borderBottom: heading ? "1px solid #cacaca" : '',
+              borderBottom: heading && !noheadborder ? "1px solid #cacaca" : heading && noheadborder ? ''  : '',
               padding: heading ? "0 37px" : confirm ? "0px" : "0px"
             }}
           >
             <div className="head">
               <div className="heading">
-                <div style={{ fontSize: "17px", paddingBlock: "20px" }}>
+                <div style={{ fontSize: "15px", paddingBlock: "20px", color:'#1E1B39', fontWeight:'600'}}>
                   {heading}
                 </div>
               </div>
@@ -95,10 +96,10 @@ const AppModalStyle = styled.div`
   .head {
     display: flex;
     flex-direction: row;
-    padding-left: 35%;
+    padding-left: ${(props) => props.noheadborder ? '0px' : '35%'};
     align-items: center;
-    justify-items:'flex-end';
-    gap: 90px;
+    justify-items: ${(props) => props.noheadborder ? 'space-between' : 'flex-end'};
+    gap: ${(props) => props.noheadborder ? '285px' : '90px'};
     .heading {
       position: relative;
       width: fit-content;

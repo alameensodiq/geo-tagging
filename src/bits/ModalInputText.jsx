@@ -12,14 +12,15 @@ const ModalInputText = ({
   onChange,
   logo,
   photo,
-  onClick
+  onClick,
+  nosign
 }) => {
   return (
     <Flex>
       <div className="container">
         <span className="label">
           {label}
-          <span className="asterik">*</span>
+          {nosign ? '' : <span className="asterik">*</span>}
         </span>
         {photo ? (
           <Take onClick={onClick} />

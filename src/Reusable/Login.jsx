@@ -9,6 +9,7 @@ import AuthInputPassword from "../bits/AuthInputPassword";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
+import { corporate, superadmins } from "../Routes";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Login = () => {
   };
 
   const Authentication = () => {
-    // navigate(`${superadmin}`)
+    navigate(`${superadmins}/${corporate}`)
   };
 
   return (

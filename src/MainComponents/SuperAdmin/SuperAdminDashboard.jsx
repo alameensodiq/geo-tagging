@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Navbar from "./Navbar";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
@@ -12,8 +11,9 @@ import DoubleBarChart from "../../bits/DoubleBarChart";
 import Tables from "../../bits/Tables";
 import Radial from "../../bits/Radial";
 import Donuts from "../../bits/Donuts";
+import SuperAdminNavbar from "./SuperAdminNavbar";
 
-const ClientAdminDashboard = ({ title, overviewadmin }) => {
+const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
@@ -62,221 +62,8 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
   console.log(dateRange);
   return (
     <Flex>
-      <Navbar title={title} />
-      <div className="maincontainer">
-        <div className="top">
-          <div className="start">
-            <div className="numbers">
-              <span className="name">Dashboard</span>
-            </div>
-            <span className="about">
-              All general information appears in this field showing a summary of
-              system status and key metrics
-            </span>
-          </div>
-          {/* <div className="cover"> */}
-          {!showDatePicker && (
-            <div className="date" onClick={() => toggleDatePicker()}>
-              <span>Showing for:</span>
-              <Calendar />
-              <span>
-                {dateRange?.startDate
-                  ? formatDateString(dateRange.startDate)
-                  : ""}
-              </span>
-              -
-              <span>
-                {dateRange?.endDate ? formatDateString(dateRange.endDate) : ""}
-              </span>
-            </div>
-          )}
-          {showDatePicker && (
-            <div style={{ display: "flex", flexDirection: "column",position:'absolute', justifyContent:'flex-end',right:'0%',zIndex:'1000'}}>
-              <DateRangePicker
-                ranges={[
-                  {
-                    startDate: dateRange.startDate,
-                    endDate: dateRange.endDate,
-                    key: "selection"
-                  }
-                ]}
-                onChange={handleSelect}
-              />
-              {/* <button
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  width: "100px",
-                  height: "40px",
-                  backgroundColor: "red",
-                  fontSize: "12px",
-                  border: "none",
-                  borderRadius: "8px",
-                  marginLeft: "20px",
-                  color: "white",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-                onClick={() => toggleDatePicker()}
-              >
-                Close
-              </button> */}
-            </div>
-          )}
-          {/* </div> */}
-        </div>
-        <FeaturesGrid dashboard superoverview row={1}>
-          <OverviewTotalCards
-            data={[]}
-            number1={[]}
-            number2={`[]`}
-            number3={`[]`}
-            number4={`[]`}
-            percent1={1.0}
-            percent2={2.0}
-            percent3={4.0}
-            percent4={2.5}
-          />
-        </FeaturesGrid>
-        <FeaturesGrid dashboard big superoverview row={2}>
-          <div className="table">
-            <div className="punctuality">
-              <div className="start">
-                <div className="numbers">
-                  <span className="name">Time Stamp Compliance Rate</span>
-                </div>
-              </div>
-              <div className="main">
-                <DatePicker
-                  className="input"
-                  selected={endDate}
-                  ref={datePickerRefs}
-                  onChange={(date) => dateChangers(date)}
-                  showTimeSelect={false}
-                  dateFormat="MMM d yyyy"
-                  placeholderText="13 Oct 2023"
-                  popperPlacement="bottom-start"
-                />
-                <Calendar onClick={() => PickDater()} className="calendar" />
-              </div>
-            </div>
-            <Donuts overview />
-            <div className="detailscompliance">
-              <div className="firstcompliance">
-                <span className="comp">Compliance</span>
-                <div className="bardiv">
-                  <div className="backgrounddiv">
-                    <div className="bar"></div>
-                  </div>
-                  <span className="percent">65%</span>
-                </div>
-              </div>
-              <div className="firstcompliance">
-                <span className="comp">Non Compliance</span>
-                <div className="bardiv">
-                  <div className="backgrounddiv">
-                    <div className="nonbar"></div>
-                  </div>
-                  <span className="percent">35%</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <div className="table">
-            <div className="punctuality">
-              <div className="start">
-                <div className="numbers">
-                  <span className="name">Punctuality Rate</span>
-                </div>
-              </div>
-              <div className="main">
-                <DatePicker
-                  className="input"
-                  selected={endDate}
-                  ref={datePickerRefs}
-                  onChange={(date) => dateChangers(date)}
-                  showTimeSelect={false}
-                  dateFormat="MMM d yyyy"
-                  placeholderText="13 Oct 2023"
-                  popperPlacement="bottom-start"
-                />
-                <Calendar onClick={() => PickDater()} className="calendar" />
-              </div>
-            </div>
-            <div className="last">
-              <div className="radial">
-                <Radial overview />
-              </div>
-              <div className="circle">
-                <span className="label">Total Punctuality Rate</span>
-                <span className="name">80%</span>
-              </div>
-              <div className="target">
-                <div className="attendance">
-                  <div className="wrap">
-                    <span className="first"></span>
-                    <span className="targeted">Punctual</span>
-                  </div>
-                  <span className="percent">60%</span>
-                </div>
-                <div className="attendant">
-                  <div className="wrap">
-                    <span className="second"></span>
-                    <span className="targeted">Not Punctual</span>
-                  </div>
-                  <span className="percent">20%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </FeaturesGrid>
-        <div className="table">
-          <div className="punctuality">
-            <div className="start">
-              <div className="numbers">
-                <span className="name">
-                  Punctuality Rate VS Time Stamp Compliance Rate(%)
-                </span>
-              </div>
-              <span className="about">
-                Overview of punctuality rate and time stamp compliance rate in
-                the past months
-              </span>
-            </div>
-            <div className="main">
-              <DatePicker
-                className="input"
-                selected={endDate}
-                ref={datePickerRefs}
-                onChange={(date) => dateChangers(date)}
-                showTimeSelect={false}
-                dateFormat="MMM d yyyy"
-                placeholderText="13 Oct 2023"
-                popperPlacement="bottom-start"
-              />
-              <Calendar onClick={() => PickDater()} className="calendar" />
-            </div>
-          </div>
-          <div className="doublebar">
-            <div className="high">
-              <span className="row">
-                <span className="square"></span>Punctuality Rate(%)
-              </span>
-              <span className="row">
-                <span className="squaretwo"></span>Time Stamp Compliance Rate(%)
-              </span>
-            </div>
-          </div>
-          <DoubleBarChart />
-        </div>
-        <div className="table">
-          <div className="projects">
-            <span>Projects</span>
-          </div>
-          <Tables overviewproject />
-        </div>
-      </div>
+      <SuperAdminNavbar title={title} />
+     
     </Flex>
   );
 };
@@ -697,4 +484,4 @@ const Flex = styled.div`
   }
 `;
 
-export default ClientAdminDashboard;
+export default SuperAdminDashboard;

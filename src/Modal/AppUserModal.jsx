@@ -4,12 +4,15 @@ import ModalInputText from "../bits/ModalInputText";
 import { LargeSignInButton } from "../bits/LargeSignInButton";
 import { ReactComponent as Success } from "../assets/successful.svg";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
+import { ReactComponent as Dot } from "../assets/dotcircle.svg";
+import { ReactComponent as Markgreen } from "../assets/markgreen.svg";
 import toast from "react-hot-toast";
 import { CreateBusinessRepCorporate } from "../Store/Apis/CreateBusinessRepCorporate";
 import { useDispatch, useSelector } from "react-redux";
 import ModalInputSelect from "../bits/ModalInputSelect";
 import Tables from "../bits/Tables";
 import { LocationModalButton } from "../bits/LocationModalButton";
+import styled from "styled-components";
 
 const AppUserModal = ({ setStep, step, setReload }) => {
   const dispatch = useDispatch();
@@ -31,7 +34,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
     (state) => state.createbus
   );
 
-  console.log(createbus)
+  console.log(createbus);
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
   //     setStep(3);
   //     toast.success(createbus?.message)
@@ -122,7 +125,8 @@ const AppUserModal = ({ setStep, step, setReload }) => {
   console.log(regbus.avatar);
 
   const SendDetails = () => {
-    const { lastname, firstname, rcNumber, address, phone, email, avatar } = regbus;
+    const { lastname, firstname, rcNumber, address, phone, email, avatar } =
+      regbus;
     const name = `${firstname} ${lastname}`;
     dispatch(
       CreateBusinessRepCorporate({
@@ -1513,12 +1517,1013 @@ const AppUserModal = ({ setStep, step, setReload }) => {
               onClick={() => ""}
               title="Share"
             />
-            <LocationModalButton sharing  onClick={() => ""} title="Download" />
+            <LocationModalButton sharing onClick={() => ""} title="Download" />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={22}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        heading="Add New Corporate"
+        noheadborder
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              paddingInline: "50px",
+              gap: "10px",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                position: "relative"
+              }}
+            >
+              <Dot />
+              <span
+                style={{
+                  width: "34px",
+                  height: "34px",
+                  color: "white",
+                  borderRadius: "50%",
+                  background: "#5081E9",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "absolute",
+                  top: "7px",
+                  left: "8px"
+                }}
+              >
+                1
+              </span>
+            </div>
+            <div
+              style={{
+                backgroundColor: "#CDCDCD",
+                width: "110px",
+                height: "4px"
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: "#5081E9",
+                  width: "55px",
+                  height: "4px"
+                }}
+              ></div>
+            </div>
+            <span
+              style={{
+                width: "34px",
+                height: "34px",
+                color: "white",
+                borderRadius: "50%",
+                background: "#CDCDCD",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                top: "7px",
+                left: "8px"
+              }}
+            >
+              2
+            </span>
+            <div
+              style={{
+                backgroundColor: "#CDCDCD",
+                width: "110px",
+                height: "4px"
+              }}
+            ></div>
+            <span
+              style={{
+                width: "34px",
+                height: "34px",
+                color: "white",
+                borderRadius: "50%",
+                background: "#CDCDCD",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                top: "7px",
+                left: "8px"
+              }}
+            >
+              3
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "40px",
+              paddingInline: "17px",
+              fontSize: "14px",
+              paddingTop: "10px"
+            }}
+          >
+            <span style={{ color: "#1A87D7" }}>Business Information</span>
+            <span style={{ color: "#1E1B39" }}>Subscription Plan</span>
+            <span style={{ color: "#1E1B39" }}>Review & Submit</span>
+          </div>
+          <ModalInputText
+            nosign
+            label="Business Name"
+            // onChange={(e) => Change(e)}
+            name="firstname"
+            // value={regbus?.firstname}
+            placeholder={`${`Enter Corporate’s Business Nmae`}`}
+          />
+          <ModalInputText
+            nosign
+            label="RC Number"
+            // onChange={(e) => Change(e)}
+            name="firstname"
+            // value={regbus?.firstname}
+            placeholder={`${`Enter Corporate’s RC Number`}`}
+          />
+          <ModalInputText
+            nosign
+            label="Address"
+            // onChange={(e) => Change(e)}
+            name="firstname"
+            // value={regbus?.firstname}
+            placeholder={`${`Enter Corporate’s Address`}`}
+          />
+          <ModalInputText
+            nosign
+            label="Contact Phone Number"
+            // onChange={(e) => Change(e)}
+            name="firstname"
+            // value={regbus?.firstname}
+            placeholder={`${`Enter Corporate’s Phone Number`}`}
+          />
+          <ModalInputText
+            nosign
+            label="Contact Email"
+            // onChange={(e) => Change(e)}
+            name="firstname"
+            // value={regbus?.firstname}
+            placeholder={`${`Enter Corporate’s Email`}`}
+          />
+          <LargeSignInButton
+            onClick={() => setStep(23)}
+            bigger
+            title={"Next"}
+            background
+            color
+          />
+        </div>
+      </AppModal>
+      <AppModal
+        step={23}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        heading="Select Preferred Plan"
+        noheadborder
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              paddingInline: "50px",
+              gap: "10px",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                width: "34px",
+                height: "34px",
+                color: "white",
+                borderRadius: "50%",
+                background: "#12B76A",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                top: "7px",
+                left: "8px"
+              }}
+            >
+              <Markgreen />
+            </div>
+            <div
+              style={{
+                backgroundColor: "#5081E9",
+                width: "110px",
+                height: "4px"
+              }}
+            ></div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                position: "relative"
+              }}
+            >
+              <Dot />
+              <span
+                style={{
+                  width: "34px",
+                  height: "34px",
+                  color: "white",
+                  borderRadius: "50%",
+                  background: "#5081E9",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "absolute",
+                  top: "7px",
+                  left: "8px"
+                }}
+              >
+                2
+              </span>
+            </div>
+            <div
+              style={{
+                backgroundColor: "#CDCDCD",
+                width: "110px",
+                height: "4px"
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: "#5081E9",
+                  width: "55px",
+                  height: "4px"
+                }}
+              ></div>
+            </div>
+            <span
+              style={{
+                width: "34px",
+                height: "34px",
+                color: "white",
+                borderRadius: "50%",
+                background: "#CDCDCD",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                top: "7px",
+                left: "8px"
+              }}
+            >
+              3
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "40px",
+              paddingInline: "17px",
+              fontSize: "14px",
+              paddingTop: "10px"
+            }}
+          >
+            <span style={{ color: "#12B76A" }}>Business Information</span>
+            <span style={{ color: "#5081E9" }}>Subscription Plan</span>
+            <span style={{ color: "#1E1B39" }}>Review & Submit</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              gap: "10px",
+              paddingTop: "10px"
+            }}
+          >
+            <span
+              style={{
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                border: "1px solid #E0E0E0"
+              }}
+            ></span>
+            <span
+              style={{ color: "#1E1B39", fontSize: "15px", fontWeight: "500" }}
+            >
+              Business Plan
+            </span>
+          </div>
+          <Flex>
+            <div className="addresswrapper">
+              <div className="heading">
+                <span className="title">Plan Types</span>
+                <span className="title">Minimum Users</span>
+                <span className="titlelast">Monthly fee per user</span>
+              </div>
+              <div className="arrange">
+                <div className="details">
+                  <div className="first">Standard Plan</div>
+                  <div className="second">1-99</div>
+                  <div className="third">N 20,000.00</div>
+                </div>
+                <div className="details">
+                  <div className="first">Enterprise Plan</div>
+                  <div className="second">100+</div>
+                  <div className="third">N 15,000.00</div>
+                </div>
+              </div>
+            </div>
+          </Flex>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              gap: "10px",
+              paddingTop: "10px"
+            }}
+          >
+            <span
+              style={{
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                border: "1px solid #E0E0E0"
+              }}
+            ></span>
+            <span
+              style={{ color: "#1E1B39", fontSize: "15px", fontWeight: "500" }}
+            >
+              Custom Plan
+            </span>
+          </div>
+          <Flex>
+            <div className="addresswrapper">
+              <div className="heading">
+                <span className="title">Plan Types</span>
+                <span className="title">Minimum Users</span>
+                <span className="titlelast">Monthly fee per user</span>
+              </div>
+              <div className="arrange">
+                <div className="details">
+                  <div className="first">Custom Plan</div>
+                  <div className="second">
+                    <input className="text" placeholder="Enter user amount" />
+                  </div>
+                  <div className="third">
+                    <input className="text" placeholder="Enter monthly fees" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Flex>
+
+          <LargeSignInButton
+            onClick={() => setStep(24)}
+            bigger
+            title={"Next"}
+            background
+            color
+          />
+        </div>
+      </AppModal>
+      <AppModal
+        step={24}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        heading="Select Preferred Plan"
+        noheadborder
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            alignItems: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              paddingInline: "50px",
+              gap: "10px",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                width: "34px",
+                height: "34px",
+                color: "white",
+                borderRadius: "50%",
+                background: "#12B76A",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                top: "7px",
+                left: "8px"
+              }}
+            >
+              <Markgreen />
+            </div>
+            <div
+              style={{
+                backgroundColor: "#12B76A",
+                width: "110px",
+                height: "4px"
+              }}
+            ></div>
+            <div
+              style={{
+                width: "34px",
+                height: "34px",
+                color: "white",
+                borderRadius: "50%",
+                background: "#12B76A",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                top: "7px",
+                left: "8px"
+              }}
+            >
+              <Markgreen />
+            </div>
+            <div
+              style={{
+                backgroundColor: "#5081E9",
+                width: "110px",
+                height: "4px"
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: "#5081E9",
+                  width: "55px",
+                  height: "4px"
+                }}
+              ></div>
+            </div>
+            <span
+              style={{
+                width: "34px",
+                height: "34px",
+                color: "white",
+                borderRadius: "50%",
+                background: "#CDCDCD",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                top: "7px",
+                left: "8px"
+              }}
+            >
+              3
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "40px",
+              paddingInline: "17px",
+              fontSize: "14px",
+              paddingTop: "10px"
+            }}
+          >
+            <span style={{ color: "#12B76A" }}>Business Information</span>
+            <span style={{ color: "#12B76A" }}>Subscription Plan</span>
+            <span style={{ color: "#1E1B39" }}>Review & Submit</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingTop: "40px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "15px",
+                  fontWeight: "500"
+                }}
+              >
+                Review & Submit
+              </span>
+              <span
+                style={{
+                  color: "#788194",
+                  fontSize: "10px",
+                  fontWeight: "400"
+                }}
+              >
+                Confirm Changes before you submit
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              paddingInline: "30px",
+              gap: "30px",
+              alignItems: "center",
+              paddingTop: "20px",
+              height: "100px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                width: "35%",
+                height: "100%"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "14px",
+                  fontWeight: "400"
+                }}
+              >
+                Full Name
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                Abdulwaarith Abdulazeez
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                width: "25%",
+                height: "100%"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "14px",
+                  fontWeight: "400"
+                }}
+              >
+                RC Numbber
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                090876ID
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                width: "40%",
+                height: "100%"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "14px",
+                  fontWeight: "400"
+                }}
+              >
+                Address
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                1, Idowu Taylor Street, Victoria Island, Lagos.
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              // paddingInline: '30px',
+              // gap:'50px',
+              // alignItems: "center",
+              justifyContent: "flex-start",
+              paddingTop: "20px",
+              width: "100%",
+              height: "100px",
+              paddingLeft: "30px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                // width:'35%',
+                height: "100%",
+                marginRight: "70px"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "14px",
+                  fontWeight: "400"
+                }}
+              >
+                Mobile Number
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                +234 901 785 6291
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                // width:'25%',
+                height: "100%",
+                marginRight: "40px"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "14px",
+                  fontWeight: "400"
+                }}
+              >
+                Email Address
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                info@jumia.com
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                // width:'40%',
+                height: "100%"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "14px",
+                  fontWeight: "400"
+                }}
+              >
+                Subscription Plan
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                Business Plan
+              </span>
+            </div>
+          </div>
+
+          <LargeSignInButton
+            onClick={() => setStep(25)}
+            bigger
+            title={"Submit"}
+            background
+            color
+          />
+        </div>
+      </AppModal>
+      <AppModal
+        step={25}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Account Created
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Added a new Corporate.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={26}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        heading="Activate Corporate"
+        noheadborder
+      >
+        <div style={{ display: "flex", flexDirection: "column",gap:'100px' }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              justifyContent: "flex-start",
+              alignItems: "flex-start"
+            }}
+          >
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              Are you sure you want to activate this Corporate
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => setStep(27)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={27}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Account Created
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Activated this Corporate.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
           </div>
         </div>
       </AppModal>
     </div>
   );
 };
+
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-inline: 2px;
+  .addresswrapper {
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .heading {
+      display: flex;
+      flex-direction: row;
+      padding-inline: 20px;
+      /* border-bottom: 1px solid #ebebeb; */
+      .title {
+        width: 33%;
+        color: #687182;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        padding-block: 10px;
+        flex-direction: row;
+        justify-content: center;
+        border-right: 1px solid #ebebeb;
+      }
+      .titlelast {
+        width: 33%;
+        color: #687182;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        padding-block: 10px;
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+    .arrange {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid #ebebeb;
+      .details {
+        display: flex;
+        flex-direction: row;
+        padding-inline: 20px;
+        .first {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          width: 33%;
+          gap: 2px;
+          height: 50px;
+          font-size: 12px;
+          border-right: 1px solid #ebebeb;
+          color: #5a6376;
+        }
+        .second {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          width: 33%;
+          gap: 2px;
+          height: 50px;
+          font-size: 12px;
+          border-right: 1px solid #ebebeb;
+          color: #5a6376;
+          .text {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: "#999999";
+            padding-inline: 15px;
+            width: 100%;
+          }
+        }
+        .third {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          width: 33%;
+          gap: 2px;
+          font-size: 12px;
+          height: 50px;
+          color: #5a6376;
+          .text {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: "#999999";
+            padding-inline: 15px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default AppUserModal;

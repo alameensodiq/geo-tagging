@@ -18,7 +18,7 @@ import { ReactComponent as Colormark } from "../assets/colormark.svg";
 import { ReactComponent as Uncolormark } from "../assets/uncolormark.svg";
 
 import { ThemeProvider, createTheme } from "@mui/material";
-import { businessprojects, businessreps, businessusers } from "../Routes";
+import { businessprojects, businessreps, businessusers, corporate } from "../Routes";
 import { ModalButton } from "./ModalButton";
 
 const Tables = ({
@@ -38,7 +38,11 @@ const Tables = ({
   reporttable,
   reportnormal,
   reportabnormal,
-  reportemoji
+  reportemoji,
+  supercorporateactive,
+  supercorporateinactive,
+  superactivedetails,
+  audit 
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -1694,7 +1698,7 @@ const Tables = ({
                   </StyledTableCell>
                 </StyledTableRow>
                 <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "10%"}}>
+                  <StyledTableCell style={{ width: "10%" }}>
                     <div
                       style={{
                         display: "flex",
@@ -1859,7 +1863,449 @@ const Tables = ({
               </TableBody>
             </Table>
           </TableContainer>
-        ) : ""}
+        ) : supercorporateactive ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    RC NUMBER
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    CORPORATES NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    ACTIVE PROJECT
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    ACTIVE BUSINESS REPS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    DATE CREATED
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                    024537859
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "flex-start"
+                      }}
+                    >
+                      <span>Albert Saheed</span>
+                      <span>saheedalbert@gmail.com</span>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      onClick={() => navigate(`../${corporate}/:id`)}
+                    >
+                      View
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                    024537859
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "flex-start"
+                      }}
+                    >
+                      <span>Albert Saheed</span>
+                      <span>saheedalbert@gmail.com</span>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      onClick={() => navigate(`../${corporate}/:id`)}
+                    >
+                      View
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                    024537859
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "flex-start"
+                      }}
+                    >
+                      <span>Albert Saheed</span>
+                      <span>saheedalbert@gmail.com</span>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      onClick={() => navigate(`../${corporate}/:id`)}
+                    >
+                      View
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : supercorporateinactive ?  (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    RC NUMBER
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    CORPORATES NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    ACTIVE PROJECT
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    ACTIVE BUSINESS REPS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    DATE CREATED
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                    024537859
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "flex-start"
+                      }}
+                    >
+                      <span>Albert Saheed</span>
+                      <span>saheedalbert@gmail.com</span>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      onClick={() => navigate(`../${corporate}/:id`)}
+                    >
+                      View
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                    024537859
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "flex-start"
+                      }}
+                    >
+                      <span>Albert Saheed</span>
+                      <span>saheedalbert@gmail.com</span>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      onClick={() => navigate(`../${corporate}/:id`)}
+                    >
+                      View
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                    024537859
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "flex-start"
+                      }}
+                    >
+                      <span>Albert Saheed</span>
+                      <span>saheedalbert@gmail.com</span>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Building Homes
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    Hello please I want to...
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    20-10-2024
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <span
+                      className="projectactivate"
+                      onClick={() => navigate(`../${corporate}/:id`)}
+                    >
+                      View
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : superactivedetails ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    PROJECT NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    NUMBER OF BUSINESS REPS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                  NUMBER OF GEO-LOCATION
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                   SUBSCRIPTION TYPE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                   PUNCTUALITY RATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>TIME STAMP RATE</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                  Customer Loyalty Program
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    100
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    1
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                  Enterprise Plan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    80%
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                  Customer Loyalty Program
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    100
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    1
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                  Enterprise Plan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    80%
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "18" }}>
+                  Customer Loyalty Program
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    100
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    1
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                  Enterprise Plan
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "16%" }}>
+                    20%
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "18%" }}>
+                    80%
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : audit ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    ROLE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    DATE AND TIME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                   ACTION PERFORMED
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "25%" }}>
+                   Warith
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Super-admin
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                  12/04/23, 09:11:04
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                  Login
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "25%" }}>
+                   Warith
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Super-admin
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                  12/04/23, 09:11:04
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                  Login
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "25%" }}>
+                   Warith
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    Super-admin
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                  12/04/23, 09:11:04
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                  Login
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          ""
+        )}
       </Flex>
     </ThemeProvider>
   );
