@@ -101,7 +101,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
               <div className="start">
                 <div className="numbers">
                   <span className="name">
-                    <span className="rounder"></span>Total no of Situation
+                    Situation
                     Reports
                   </span>
                   <span className="name">
@@ -968,8 +968,10 @@ const Flex = styled.div`
           flex-direction: column;
           justify-content: space-between;
           padding-inline: 20px;
+          align-items: center;
           gap: 20px;
           width: 100%;
+          padding-top: 10px;
           /* gap: 30px; */
           .firstcompliance {
             display: flex;

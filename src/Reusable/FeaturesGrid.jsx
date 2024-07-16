@@ -15,15 +15,15 @@ const FeaturesGrid = ({children, info, row, state, top,
 const Flex = styled.div`
 width: 100%;
 padding-block: ${(props) => props.top ? '50px' : props.info ? '20px' : '0px'};
-padding-left: ${(props) => props.dashboard ? '5px' : props.info ? '0px' : props?.sub ? '10px' : '70px'};
-padding-right: ${(props) => props.dashboard ? '5px' : props.info ? '0px' : props?.sub ? '40px' : '70px'};
+padding-left: ${(props) => props.dashboard ? '0px' : props.info ? '0px' : props?.sub ? '10px' : '70px'};
+padding-right: ${(props) => props.dashboard ? '0px' : props.info ? '0px' : props?.sub ? '40px' : '70px'};
 display: grid;
 row-gap: 30px;
 max-width: 100%;
 column-gap: 20px;
 grid-template-columns: ${(props) =>
     props.unequal ? '56% 42%' : props.reportunequal ? '49% 49%' : props.overviewthree ?
-    '37.09% 22.1% 37.09%' : props?.sub ? '33.02% 33.02% 33.02%' : props?.big ? '40% 60%' : props?.bigger ? '60% 40%' : `repeat(${props.$row}, 1fr)`};
+    '37.09% 22.1% 37.09%' : props?.sub ? '33.02% 33.02% 33.02%' : props?.big ? '40% 60%' : props?.bigger ? '58.07% 40.09%' : `repeat(${props.$row}, 1fr)`};
 
 
 @media screen and (max-width: 1200px) {
