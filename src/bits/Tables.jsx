@@ -42,7 +42,8 @@ const Tables = ({
   supercorporateactive,
   supercorporateinactive,
   superactivedetails,
-  audit 
+  audit,
+  superuser
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -53,6 +54,7 @@ const Tables = ({
   const [projectactive, setProject] = useState(false);
   const [openprodetails, setopenprodetails] = useState(false);
   const [useractive, setuseractive] = useState(false);
+  const [superuseractivity, setSuperuseractivity] = useState(false);
   const navigate = useNavigate();
 
   const theme = createTheme({
@@ -131,6 +133,11 @@ const Tables = ({
   const UserActive = () => {
     setuseractive(!useractive);
   };
+
+
+  const SuperserActiveMethod = () => {
+    setSuperuseractivity(!superuseractivity)
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -2303,7 +2310,83 @@ const Tables = ({
               </TableBody>
             </Table>
           </TableContainer>
-        ) : (
+        ) : superuser ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                    SUB-ADMIN NAME
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    EMAIL ADDRESS
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    PHONE NUMBER
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    DATE CREATED
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      PERMISSION
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      ACTION
+                    </div>
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow style={{ position: "relative" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Abdul warith
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    Warith@gmail.com
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "20%" }}>
+                    08023249058
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                  12/04/23, 09:11:04
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                  Support and Troubleshooting
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <Action onClick={() => SuperserActiveMethod()} />
+                    {superuseractivity && (
+                      <div className="superactiveusermodal">
+                        <div className="row" onClick={() => {
+                          setSuperuseractivity(false)
+                          setStep(32)
+                        }}>
+                          <Deactivate />
+                          <span>Deactivate</span>
+                        </div>
+                        <div className="row" onClick={() => ""}>
+                          <View />
+                          <span>View more</span>
+                        </div>
+                      </div>
+                    )}
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )  : (
           ""
         )}
       </Flex>
@@ -2458,6 +2541,28 @@ const Flex = styled.div`
     padding-inline: 20px;
     align-items: center;
     padding-top: 20px;
+  }
+  .superactiveusermodal {
+    width: 150px;
+    height: 70px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    right: 90px;
+    bottom: 10px;
+    flex-direction: column;
+    box-shadow: 4px 4px 4px 4px #0a0a0a0d;
+    position: absolute;
+    border-color: #ebebeb;
+    gap: 9px;
+    .row {
+      display: flex;
+      flex-direction: row;
+      gap: 7px;
+      color: #5A6376;
+      align-items: center;
+    }
   }
 `;
 

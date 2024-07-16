@@ -17,7 +17,7 @@ import { ReactComponent as Auditor } from "../../../src/assets/Auditor.svg";
 import { ReactComponent as User } from "../../../src/assets/usermanage.svg";
 import { ReactComponent as Sub } from "../../../src/assets/subscription.svg";
 // import { ReactComponent as Report } from "../../../src/assets/Reporting.svg";
-import { corporate, superadmins, clients, businessusers,businesssub, audit } from "../../Routes";
+import { corporate, superadmins, clients, businessusers,businesssub, audit, superuser } from "../../Routes";
 
 import { LogOutAuthentication, LogOutAuthenticationSuperAdmin } from "../../bits/LogOutAuthentication";
 import { businessreps } from "../../Routes";
@@ -112,19 +112,6 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
         <Link
           to={'#'}
           className={`item ${
-            router.pathname === `${clients}/${businessusers}` ||
-            router.pathname.startsWith(`${clients}/${businessusers}`)
-              ? "active"
-              : ""
-          }`}
-        >
-          <div className="paint"></div>
-          <User className="nav-svg1" />
-          <p className="man">User management</p>
-        </Link>
-        <Link
-          to={'#'}
-          className={`item ${
             router.pathname === `${clients}/${businesssub}` ||
             router.pathname.startsWith(`${clients}/${businesssub}`)
               ? "active"
@@ -134,6 +121,19 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
           <div className="paint"></div>
           <Sub className="nav-svg1" />
           <p className="man">Subscriptions</p>
+        </Link>
+        <Link
+          to={superuser}
+          className={`item ${
+            router.pathname === `${superadmins}/${superuser}` ||
+            router.pathname.startsWith(`${superadmins}/${superuser}`)
+              ? "active"
+              : ""
+          }`}
+        >
+          <div className="paint"></div>
+          <User className="nav-svg1" />
+          <p className="man">User management</p>
         </Link>
         <Link
           to={audit}

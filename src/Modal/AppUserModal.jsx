@@ -2323,7 +2323,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         heading="Activate Corporate"
         noheadborder
       >
-        <div style={{ display: "flex", flexDirection: "column",gap:'100px' }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "100px" }}>
           <div
             style={{
               display: "flex",
@@ -2401,6 +2401,309 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             }}
           >
             <span>You have successfully Activated this Corporate.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={28}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        heading="Add New Sub-Admin"
+        noheadborder
+      >
+        <ModalInputText
+          label="First Name"
+          // onChange={(e) => Change(e)}
+          name="firstname"
+          nosign
+          // value={regbus?.firstname}
+          placeholder={`${`Enter Business Rep's First Name`}`}
+        />
+        <ModalInputText
+          label="Last Name"
+          // onChange={(e) => Change(e)}
+          name="lastname"
+          nosign
+          // value={regbus?.lastname}
+          placeholder={`${`Enter Business Rep's Last Name`}`}
+        />
+        <ModalInputText
+          label="Email"
+          // onChange={(e) => Change(e)}
+          name="email"
+          nosign
+          // value={regbus?.email}
+          placeholder={`${`Enter Business Rep's Email`}`}
+        />
+        <ModalInputText
+          label="Phone Number"
+          // onChange={(e) => Change(e)}
+          name="phone"
+          nosign
+          // value={regbus?.phone}
+          placeholder={`${`Enter Business Rep's Phone Number`}`}
+        />
+
+        <ModalInputText
+          label="Role"
+          // onChange={(e) => Change(e)}
+          name="phone"
+          nosign
+          // value={regbus?.phone}
+          placeholder={`${`Enter Sub-Admin Role`}`}
+        />
+
+        <LargeSignInButton
+          onClick={() => setStep(29)}
+          bigger
+          title={"Submit"}
+          background
+          color
+        />
+      </AppModal>
+      <AppModal
+        step={29}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        heading="Set Initial Password"
+        noheadborder
+      >
+        <ModalInputText
+          label="Enter Password"
+          // onChange={(e) => Change(e)}
+          name="firstname"
+          nosign
+          // value={regbus?.firstname}
+          placeholder={`${`Enter Password`}`}
+        />
+        <LargeSignInButton
+          onClick={() => setStep(30)}
+          bigger
+          title={"Submit"}
+          background
+          color
+        />
+      </AppModal>
+      <AppModal
+        step={30}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        heading="Add new Sub-admin"
+        noheadborder
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "40px",width:'100%',paddingLeft:'7%' }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "flex-start"
+            }}
+          >
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              You are about to add a Sub-Admin, Are you sure the details
+            </span>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              are accurate?
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "70px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => setStep(31)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={31}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Account Created
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Added a new Sub-Admin.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={32}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        heading="Deactivate"
+        noheadborder
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "40px",width:'100%',paddingLeft:'7%' }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              Are you sure you want to deactivate this Sub-Admi
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "70px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => setStep(33)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={33}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Account Created
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully deactivated a Sub-Admin.</span>
           </div>
           <div
             style={{
