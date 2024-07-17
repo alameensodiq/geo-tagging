@@ -18,7 +18,8 @@ export default function AppModal({
   Unread,
   Archived,
   mark,
-  noheadborder
+  noheadborder,
+  subscribe
 }) {
   return (
     <div
@@ -35,7 +36,7 @@ export default function AppModal({
         maxWidth={maxWidth}
         closeModal={closeModal}
       >
-        <AppModalStyle noheadborder={noheadborder}>
+        <AppModalStyle noheadborder={noheadborder}  subscribe={subscribe}>
           <div
             style={{
               display: "flex",
@@ -99,7 +100,7 @@ const AppModalStyle = styled.div`
     padding-left: ${(props) => props.noheadborder ? '0px' : '35%'};
     align-items: center;
     justify-items: ${(props) => props.noheadborder ? 'space-between' : 'flex-end'};
-    gap: ${(props) => props.noheadborder ? '285px' : '90px'};
+    gap: ${(props) => props.noheadborder ? '285px' :  props.subscribe ? '110px' : '90px'};
     .heading {
       position: relative;
       width: fit-content;

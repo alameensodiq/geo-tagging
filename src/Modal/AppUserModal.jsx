@@ -2849,6 +2849,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
 
         heading="Free Trial Days"
         noheadborder
+        subscribe
       >
         <ModalInputText
           label="Edit free trial days"
@@ -2933,6 +2934,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
 
         heading="Business Reps"
         noheadborder
+        subscribe
       >
         <ModalInputText
           label="Edit Maximum Number of Business Reps"
@@ -3017,6 +3019,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
 
         heading="Edit Pricing"
         noheadborder
+        subscribe
       >
         <ModalInputText
           label="Monthly Price"
