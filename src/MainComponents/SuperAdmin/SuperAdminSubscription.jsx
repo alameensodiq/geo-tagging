@@ -194,7 +194,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">30 Days</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                      onClick={() => setStep(36)}
                     background
                     color
                     title="Edit Free Trial days"
@@ -236,7 +236,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">2</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                     onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
@@ -253,7 +253,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">2</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                    onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
@@ -283,7 +283,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days"> NGN 10,000</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                      onClick={() => setStep(40)}
                     background
                     color
                     title="Edit pricing"
@@ -302,7 +302,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">99</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                    onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
@@ -332,7 +332,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days"> NGN 10,000</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                    onClick={() => setStep(40)}
                     background
                     color
                     title="Edit pricing"
@@ -353,7 +353,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">100+</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                    onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
@@ -383,7 +383,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days"> NGN 10,000</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                    onClick={() => setStep(40)}
                     background
                     color
                     title="Edit pricing"
@@ -404,7 +404,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">100+</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                    onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
@@ -434,7 +434,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days"> NGN 10,000</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                    onClick={() => setStep(40)}
                     background
                     color
                     title="Edit pricing"
@@ -455,7 +455,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">100+</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                    onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
@@ -474,7 +474,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="free">Custom Plan</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                   onClick={() => setStep(40)}
                     background
                     plus
                     color
@@ -611,7 +611,7 @@ const Flex = styled.div`
       }
     }
     .table {
-      padding-top: 30px;
+      padding-top: 65px;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
       padding-bottom: 40px;

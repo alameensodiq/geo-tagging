@@ -2840,6 +2840,258 @@ const AppUserModal = ({ setStep, step, setReload }) => {
           </div>
         </div>
       </AppModal>
+      <AppModal
+        step={36}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        heading="Free Trial Days"
+        noheadborder
+      >
+        <ModalInputText
+          label="Edit free trial days"
+          // onChange={(e) => Change(e)}
+          name="firstname"
+          nosign
+          // value={regbus?.firstname}
+          placeholder={`${`30`}`}
+        />
+        <LargeSignInButton
+          onClick={() => setStep(37)}
+          bigger
+          title={"Save Changes"}
+          background
+          color
+        />
+      </AppModal>
+      <AppModal
+        step={37}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Updated free trial days.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={38}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        heading="Business Reps"
+        noheadborder
+      >
+        <ModalInputText
+          label="Edit Maximum Number of Business Reps"
+          // onChange={(e) => Change(e)}
+          name="firstname"
+          nosign
+          // value={regbus?.firstname}
+          placeholder={`${`99`}`}
+        />
+        <LargeSignInButton
+          onClick={() => setStep(39)}
+          bigger
+          title={"Save Changes"}
+          background
+          color
+        />
+      </AppModal>
+      <AppModal
+        step={39}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Updated Number Business Reps.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={40}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        heading="Edit Pricing"
+        noheadborder
+      >
+        <ModalInputText
+          label="Monthly Price"
+          // onChange={(e) => Change(e)}
+          name="firstname"
+          nosign
+          // value={regbus?.firstname}
+          placeholder={`${`NGN 10000`}`}
+        />
+        <LargeSignInButton
+          onClick={() => setStep(41)}
+          bigger
+          title={"Save Changes"}
+          background
+          color
+        />
+      </AppModal>
+      <AppModal
+        step={41}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully updated Standard plan Pricing </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
     </div>
   );
 };
