@@ -215,7 +215,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">20</span>
                   </div>
                   <SubscribeEditButton
-                    //   onClick={() => setStep(22)}
+                      onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
