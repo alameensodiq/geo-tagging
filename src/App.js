@@ -16,6 +16,7 @@ import {
   clients,
   corporate,
   superadmins,
+  supersub,
   superuser,
   superusers
 } from "./Routes";
@@ -43,6 +44,7 @@ import SuperAdminAudit from "./MainComponents/SuperAdmin/SuperAdminAudit";
 import SuperAdminUsermanagement from "./MainComponents/SuperAdmin/SuperAdminUsermanagement";
 import SuperAdminUserDetails from "./MainComponents/SuperAdmin/SuperAdminUserDetails";
 import SuperAdminAccount from "./MainComponents/SuperAdmin/SuperAdminAccount";
+import SuperAdminSubscription from "./MainComponents/SuperAdmin/SuperAdminSubscription";
 
 function App() {
   return (
@@ -138,6 +140,11 @@ function App() {
           <Route
             path={accounting}
             element={<SuperAdminAccount title="My Account" />}
+          />
+
+          <Route
+            path={supersub}
+            element={<SuperAdminSubscription title="Subscriptions" />}
           />
 
           <Route />

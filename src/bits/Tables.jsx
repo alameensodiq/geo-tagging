@@ -51,7 +51,9 @@ const Tables = ({
   superactivedetails,
   audit,
   superuser,
-  superuserdetail
+  superuserdetail,
+  currentsubscriber,
+  customplan
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -2421,7 +2423,7 @@ const Tables = ({
                 <TableBody>
                   <StyledTableRow style={{ position: "relative" }}>
                     <StyledTableCell style={{ width: "40%" }}>
-                     Support and Troubleshooting
+                      Support and Troubleshooting
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "30%" }}>
                       <Colormark />
@@ -2432,18 +2434,7 @@ const Tables = ({
                   </StyledTableRow>
                   <StyledTableRow style={{ position: "relative" }}>
                     <StyledTableCell style={{ width: "40%" }}>
-                     Corporate Management
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "30%" }}>
-                      <Colormark />
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "30%" }}>
-                     <Uncolormark />
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "40%" }}>
-                    Subscription Management
+                      Corporate Management
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "30%" }}>
                       <Colormark />
@@ -2454,18 +2445,7 @@ const Tables = ({
                   </StyledTableRow>
                   <StyledTableRow style={{ position: "relative" }}>
                     <StyledTableCell style={{ width: "40%" }}>
-                    Security Management
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "30%" }}>
-                      <Colormark />
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "30%" }}>
-                      <Colormark />
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "40%" }}>
-                    Policy and Compliance
+                      Subscription Management
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "30%" }}>
                       <Colormark />
@@ -2476,13 +2456,203 @@ const Tables = ({
                   </StyledTableRow>
                   <StyledTableRow style={{ position: "relative" }}>
                     <StyledTableCell style={{ width: "40%" }}>
-                    Policy and Compliance
+                      Security Management
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Policy and Compliance
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "30%" }}>
                       <Colormark />
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "30%" }}>
                       <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Policy and Compliance
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Colormark />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      <Uncolormark />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </>
+        ) : currentsubscriber ? (
+          <>
+            <TableContainer
+              // component={Paper}
+              style={{ boxShadow: "none" }}
+            >
+              <Table
+                sx={{ minWidth: 400, tableLayout: "auto" }}
+                aria-label="customized table"
+              >
+                <TableHead>
+                  <TableRow style={{ paddingRight: "0px" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      CORPORATES NAME
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      START DATE
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      NEXT RENEWAL DATE
+                    </StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Abdulazeez Abdulwaarith
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Abdulazeez Abdulwaarith
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Abdulazeez Abdulwaarith
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Abdulazeez Abdulwaarith
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "40%" }}>
+                      Abdulazeez Abdulwaarith
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "30%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                  </StyledTableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </>
+        ) : customplan ? (
+          <>
+            <TableContainer
+              // component={Paper}
+              style={{ boxShadow: "none" }}
+            >
+              <Table
+                sx={{ minWidth: 400, tableLayout: "auto" }}
+                aria-label="customized table"
+              >
+                <TableHead>
+                  <TableRow style={{ paddingRight: "0px" }}>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      CORPORATES NAME
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      START DATE
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      END DATE
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      MONTHS LEFT
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      RENEWAL DATE
+                    </StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      Abdulazeez Abdulwaarith
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      6 Months Left
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      Abdulazeez Abdulwaarith
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      6 Months Left
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      Abdulazeez Abdulwaarith
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      6 Months Left
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      12/04/23
                     </StyledTableCell>
                   </StyledTableRow>
                 </TableBody>

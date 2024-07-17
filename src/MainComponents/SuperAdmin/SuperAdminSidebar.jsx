@@ -26,7 +26,8 @@ import {
   businesssub,
   audit,
   superusers,
-  accounting
+  accounting,
+  supersub
 } from "../../Routes";
 
 import {
@@ -123,10 +124,10 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
           </span>
         </Link>
         <Link
-          to={"#"}
+          to={supersub}
           className={`item ${
-            router.pathname === `${clients}/${businesssub}` ||
-            router.pathname.startsWith(`${clients}/${businesssub}`)
+            router.pathname === `${superadmins}/${supersub}` ||
+            router.pathname.startsWith(`${superadmins}/${supersub}`)
               ? "active"
               : ""
           }`}

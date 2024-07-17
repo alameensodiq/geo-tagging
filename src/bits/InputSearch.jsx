@@ -22,6 +22,8 @@ const Flex = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  position: relative;
+  
 
   .inputer {
     /* background: linear-gradient(0deg, #E2E8F0, #E2E8F0),
@@ -33,7 +35,6 @@ linear-gradient(0deg, #FFFFFF, #FFFFFF); */
     color: #8d9196;
     outline: none;
     font-size: 12px;
-    /* position: relative; */
   }
   .close {
     position: absolute;
