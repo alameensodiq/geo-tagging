@@ -50,7 +50,7 @@ function Radial({overview}) {
         startAngle: -90,
         endAngle: 90,
         track: {
-          background: ['#65ACE0','#28385C'],
+          background: ['#28385C','#65ACE0'],
           strokeWidth: '97%',
           margin: 5, // margin is in pixels
           dropShadow: {

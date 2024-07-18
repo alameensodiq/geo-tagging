@@ -8,6 +8,7 @@ const FeaturesGrid = ({
   state,
   top,
   dashboard,
+  dashboarder,
   unequal,
   reportunequal,
   nopad,
@@ -23,6 +24,7 @@ const FeaturesGrid = ({
       big={big}
       bigger={bigger}
       sub={sub}
+      dashboarder={dashboarder}
       overviewreport={overviewreport}
       overviewthree={overviewthree}
       reportunequal={reportunequal}
@@ -49,6 +51,8 @@ const Flex = styled.div`
       ? "0px"
       : props?.sub
       ? "10px"
+      : props?.dashboarder
+      ? "0px"
       : "70px"};
   padding-right: ${(props) =>
     props.dashboard
@@ -57,6 +61,8 @@ const Flex = styled.div`
       ? "0px"
       : props?.sub
       ? "40px"
+      : props?.dashboarder
+      ? "20px"
       : "70px"};
   display: grid;
   row-gap: 30px;

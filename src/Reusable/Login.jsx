@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   const Authentication = () => {
-    navigate(`${superadmins}/${corporate}`)
+    navigate(`${superadmins}`)
   };
 
   return (

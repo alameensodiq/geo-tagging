@@ -5,13 +5,12 @@ import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { ReactComponent as Calendar } from "../../assets/calender.svg";
 import FeaturesGrid from "../../Reusable/FeaturesGrid";
-import OverviewTotalCards from "../../Reusable/OverviewTotalCards";
 import DatePicker from "react-datepicker";
-import DoubleBarChart from "../../bits/DoubleBarChart";
-import Tables from "../../bits/Tables";
 import Radial from "../../bits/Radial";
-import Donuts from "../../bits/Donuts";
 import SuperAdminNavbar from "./SuperAdminNavbar";
+import SuperAdminOverviewCards from "../../Reusable/SuperAdminOverviewCards";
+import DonutBorderRadius from "../../bits/DonutBorderRadius";
+import SuperAdminDoubleBarChart from "../../bits/SuperAdminDoubleBarChart";
 
 const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -63,7 +62,342 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
-     
+      <div className="maincontainer">
+        <div className="top">
+          <div className="start">
+            <div className="numbers">
+              <span className="name">Dashboard</span>
+            </div>
+            <span className="about">
+              This overview provides a comprehensive snapshot of general
+              information over time
+            </span>
+          </div>
+          {/* <div className="cover"> */}
+          {!showDatePicker && (
+            <div className="date" onClick={() => toggleDatePicker()}>
+              <span>Showing for:</span>
+              <Calendar />
+              <span>
+                {dateRange?.startDate
+                  ? formatDateString(dateRange.startDate)
+                  : ""}
+              </span>
+              -
+              <span>
+                {dateRange?.endDate ? formatDateString(dateRange.endDate) : ""}
+              </span>
+            </div>
+          )}
+          {showDatePicker && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                position: "absolute",
+                justifyContent: "flex-end",
+                right: "0%",
+                zIndex: "1000"
+              }}
+            >
+              <DateRangePicker
+                ranges={[
+                  {
+                    startDate: dateRange.startDate,
+                    endDate: dateRange.endDate,
+                    key: "selection"
+                  }
+                ]}
+                onChange={handleSelect}
+              />
+              {/* <button
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100px",
+                  height: "40px",
+                  backgroundColor: "red",
+                  fontSize: "12px",
+                  border: "none",
+                  borderRadius: "8px",
+                  marginLeft: "20px",
+                  color: "white",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+                onClick={() => toggleDatePicker()}
+              >
+                Close
+              </button> */}
+            </div>
+          )}
+          {/* </div> */}
+        </div>
+        <FeaturesGrid dashboarder superoverview row={1}>
+          <SuperAdminOverviewCards
+            data={[]}
+            number1={[]}
+            number2={`[]`}
+            number3={`[]`}
+            number4={`[]`}
+            percent1={1.0}
+            percent2={2.0}
+            percent3={4.0}
+            percent4={2.5}
+          />
+        </FeaturesGrid>
+        <FeaturesGrid dashboarder bigger superoverview row={2}>
+          <div className="table">
+            <div className="punctuality">
+              <div className="start">
+                <div className="numbers">
+                  <span className="name">Free Trial Conversion Rate</span>
+                </div>
+              </div>
+              <div className="main">
+                <DatePicker
+                  className="input"
+                  selected={endDate}
+                  ref={datePickerRefs}
+                  onChange={(date) => dateChangers(date)}
+                  showTimeSelect={false}
+                  dateFormat="MMM d yyyy"
+                  placeholderText="13 Oct 2023"
+                  popperPlacement="bottom-start"
+                />
+                <Calendar onClick={() => PickDater()} className="calendar" />
+              </div>
+            </div>
+            <div className="superadminconversion">
+              <div className="freeconvert">
+                <span className="title">Free Trial Conversion Rate</span>
+                <span className="percent">78%</span>
+              </div>
+              <div className="colortrialdiv">
+                <div className="trial">
+                  <div className="color"></div>
+                  <div className="colortitle">
+                    <span className="round"></span>
+                    <div className="progressdiv">
+                      <span className="progress">Trial in Progress</span>
+                      <span className="progresspercent">50% (90)</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="trialone">
+                  <div className="color"></div>
+                  <div className="colortitle">
+                    <span className="round"></span>
+                    <div className="progressdiv">
+                      <span className="progress">Trial Completed</span>
+                      <span className="progresspercent">50% (90)</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="trialtwo">
+                  <div className="color"></div>
+                  <div className="colortitle">
+                    <span className="round"></span>
+                    <div className="progressdiv">
+                      <span className="progress">Trial Converted</span>
+                      <span className="progresspercent">50% (90)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="table">
+            <div className="punctuality">
+              <div className="start">
+                <div className="numbers">
+                  <span className="name">Subscription Analysis</span>
+                </div>
+              </div>
+              <div className="main">
+                <DatePicker
+                  className="input"
+                  selected={endDate}
+                  ref={datePickerRefs}
+                  onChange={(date) => dateChangers(date)}
+                  showTimeSelect={false}
+                  dateFormat="MMM d yyyy"
+                  placeholderText="13 Oct 2023"
+                  popperPlacement="bottom-start"
+                />
+                <Calendar onClick={() => PickDater()} className="calendar" />
+              </div>
+            </div>
+            <div className="donutdiv">
+              <DonutBorderRadius />
+              <div className="detailsmaindiv">
+                <div className="detailsdiv">
+                  <div className="circle"></div>
+                  <span className="title">Standard (90%)</span>
+                </div>
+                <div className="detailsdiv">
+                  <div className="circletwo"></div>
+                  <span className="title">Standard Plus (50%)</span>
+                </div>
+                <div className="detailsdiv">
+                  <div className="circlethree"></div>
+                  <span className="title">Enterprise (30%)</span>
+                </div>
+              </div>
+              <div className="detailsmaindiv">
+                <div className="detailsdiv">
+                  <div className="circlefour"></div>
+                  <span className="title">Enterprise Plus (20%)</span>
+                </div>
+                <div className="detailsdiv">
+                  <div className="circlefive"></div>
+                  <span className="title">Custom (50%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </FeaturesGrid>
+        <FeaturesGrid dashboarder bigger superoverview row={2}>
+          <div className="table">
+            <div className="punctuality">
+              <div className="start">
+                <div className="numbers">
+                  <span className="name">Punctuality Rate</span>
+                </div>
+              </div>
+              <div className="main">
+                <DatePicker
+                  className="input"
+                  selected={endDate}
+                  ref={datePickerRefs}
+                  onChange={(date) => dateChangers(date)}
+                  showTimeSelect={false}
+                  dateFormat="MMM d yyyy"
+                  placeholderText="13 Oct 2023"
+                  popperPlacement="bottom-start"
+                />
+                <Calendar onClick={() => PickDater()} className="calendar" />
+              </div>
+            </div>
+            <div className="last">
+              <div className="radial">
+                <Radial overview />
+              </div>
+              <div className="circle">
+                <span className="label">Total Punctuality Rate</span>
+                <span className="name">80%</span>
+              </div>
+              <div className="target">
+                <div className="attendance">
+                  <div className="wrap">
+                    <span className="first"></span>
+                    <span className="targeted">Total Compliance</span>
+                  </div>
+                  <span className="percent">Total Number:200(40%)</span>
+                </div>
+                <div className="attendant">
+                  <div className="wrap">
+                    <span className="second"></span>
+                    <span className="targeted">Total Non-Compliance</span>
+                  </div>
+                  <span className="percent">Total Number:200(40%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="table">
+            <div className="punctuality">
+              <div className="start">
+                <div className="numbers">
+                  <span className="name">Subscription Analysis</span>
+                </div>
+              </div>
+              <div className="main">
+                <DatePicker
+                  className="input"
+                  selected={endDate}
+                  ref={datePickerRefs}
+                  onChange={(date) => dateChangers(date)}
+                  showTimeSelect={false}
+                  dateFormat="MMM d yyyy"
+                  placeholderText="13 Oct 2023"
+                  popperPlacement="bottom-start"
+                />
+                <Calendar onClick={() => PickDater()} className="calendar" />
+              </div>
+            </div>
+            <div className="donutdiv">
+              <DonutBorderRadius />
+              <div className="detailsmaindiv">
+                <div className="detailsdiv">
+                  <div className="circle"></div>
+                  <span className="title">Standard (90%)</span>
+                </div>
+                <div className="detailsdiv">
+                  <div className="circletwo"></div>
+                  <span className="title">Standard Plus (50%)</span>
+                </div>
+                <div className="detailsdiv">
+                  <div className="circlethree"></div>
+                  <span className="title">Enterprise (30%)</span>
+                </div>
+              </div>
+              <div className="detailsmaindiv">
+                <div className="detailsdiv">
+                  <div className="circlefour"></div>
+                  <span className="title">Enterprise Plus (20%)</span>
+                </div>
+                <div className="detailsdiv">
+                  <div className="circlefive"></div>
+                  <span className="title">Custom (50%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </FeaturesGrid>
+        <div className="table">
+          <div className="punctuality">
+            <div className="start">
+              <div className="numbers">
+                <span className="name">Revenue Analysis for each Plan</span>
+              </div>
+            </div>
+            <div className="doublebar">
+              <div className="high">
+                <span className="row">
+                  <span className="square"></span>Standard
+                </span>
+                <span className="row">
+                  <span className="squaretwo"></span>Standard Plus
+                </span>
+                <span className="row">
+                  <span className="squarethree"></span>Enterprise
+                </span>
+                <span className="row">
+                  <span className="squarefour"></span>Enterprise Plus
+                </span>
+                <span className="row">
+                  <span className="squarefive"></span>Custom
+                </span>
+              </div>
+            </div>
+            <div className="main">
+              <DatePicker
+                className="input"
+                selected={endDate}
+                ref={datePickerRefs}
+                onChange={(date) => dateChangers(date)}
+                showTimeSelect={false}
+                dateFormat="MMM d yyyy"
+                placeholderText="13 Oct 2023"
+                popperPlacement="bottom-start"
+              />
+              <Calendar onClick={() => PickDater()} className="calendar" />
+            </div>
+          </div>
+          <SuperAdminDoubleBarChart />
+        </div>
+      </div>
     </Flex>
   );
 };
@@ -219,47 +553,293 @@ const Flex = styled.div`
             top: 13px;
           }
         }
+        .doublebar {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding-inline: 10px;
+          .high {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            color: #000000;
+            font-size: 12px;
+            font-weight: 500;
+            align-items: center;
+            .row {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 10px;
+              .square {
+                width: 10px;
+                height: 10px;
+                background: #1A87D7;
+                border-radius: 2px;
+              }
+              .squaretwo {
+                width: 10px;
+                height: 10px;
+                background: #28385C;
+                border-radius: 2px;
+              }
+              .squarethree {
+                width: 10px;
+                height: 10px;
+                background: #7C65E0;
+                border-radius: 2px;
+              }
+              .squarefour {
+                width: 10px;
+                height: 10px;
+                background: #7CC8F3;
+                border-radius: 2px;
+              }
+              .squarefive {
+                width: 10px;
+                height: 10px;
+                background: #F3827C;
+                border-radius: 2px;
+              }
+            }
+          }
+        }
       }
-      .detailscompliance{
+      .donutdiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        .detailsmaindiv {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          .detailsdiv {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            align-items: center;
+            .circle {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #1a87d7;
+            }
+            .circletwo {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #274079;
+            }
+            .circlethree {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #7c65e0;
+            }
+            .circlefour {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #7cc8f3;
+            }
+            .circlefive {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #f3827c;
+            }
+            .title {
+              font-size: 14px;
+              font-weight: 500;
+              color: #5a6376;
+            }
+          }
+        }
+      }
+      .superadminconversion {
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+        padding-left: 10px;
+        padding-top: 30px;
+        .freeconvert {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: flex-start;
+          .title {
+            color: #5a6376;
+            font-size: 14px;
+            font-weight: 400;
+          }
+          .percent {
+            color: #1e1b39;
+            font-size: 28px;
+            font-weight: 700;
+          }
+        }
+        .colortrialdiv {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          width: 100%;
+          .trial {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: flex-start;
+            width: 30%;
+            .color {
+              width: 100%;
+              height: 6px;
+              background: #1a87d7;
+            }
+            .colortitle {
+              display: flex;
+              flex-direction: row;
+              gap: 10px;
+              .round {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #1a87d7;
+              }
+              .progressdiv {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                .progress {
+                  color: #5a6376;
+                  font-size: 14px;
+                  font-weight: 400;
+                }
+                .progresspercent {
+                  color: #212529;
+                  font-size: 16px;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+          .trialone {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: flex-start;
+            width: 30%;
+            .color {
+              width: 100%;
+              height: 6px;
+              background: #7c65e0;
+            }
+            .colortitle {
+              display: flex;
+              flex-direction: row;
+              gap: 10px;
+              .round {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #7c65e0;
+              }
+              .progressdiv {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                .progress {
+                  color: #5a6376;
+                  font-size: 14px;
+                  font-weight: 400;
+                }
+                .progresspercent {
+                  color: #212529;
+                  font-size: 16px;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+          .trialtwo {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: flex-start;
+            width: 30%;
+            .color {
+              width: 100%;
+              height: 6px;
+              background: #f3827c;
+            }
+            .colortitle {
+              display: flex;
+              flex-direction: row;
+              gap: 10px;
+              .round {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #f3827c;
+              }
+              .progressdiv {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                .progress {
+                  color: #5a6376;
+                  font-size: 14px;
+                  font-weight: 400;
+                }
+                .progresspercent {
+                  color: #212529;
+                  font-size: 16px;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+      }
+      .detailscompliance {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         padding-left: 60px;
         width: 100%;
         /* gap: 30px; */
-        .firstcompliance{
+        .firstcompliance {
           display: flex;
           flex-direction: column;
           gap: 10px;
           width: 50%;
-          .comp{
+          .comp {
             color: #141414;
             font-size: 14px;
           }
-          .bardiv{
+          .bardiv {
             display: flex;
             flex-direction: row;
             gap: 20px;
             align-items: center;
-            .backgrounddiv{
-              background: #EAECF0;
+            .backgrounddiv {
+              background: #eaecf0;
               border-radius: 6px;
               width: 50%;
               height: 10px;
-              .bar{
+              .bar {
                 width: 70%;
                 height: 10px;
-                background: #1A87D7;
+                background: #1a87d7;
                 border-radius: 6px;
               }
-              .nonbar{
+              .nonbar {
                 width: 70%;
                 height: 10px;
-                background: #28385C;
+                background: #28385c;
                 border-radius: 6px;
               }
             }
-            .percent{
+            .percent {
               color: #141414;
               font-size: 14px;
             }
@@ -294,7 +874,7 @@ const Flex = styled.div`
             font-size: 25px;
             font-weight: 600;
           }
-          .label{
+          .label {
             font-size: 10px;
           }
         }
@@ -324,7 +904,7 @@ const Flex = styled.div`
                 color: #667085;
               }
             }
-            .percent{
+            .percent {
               padding-left: 29px;
             }
           }
@@ -347,7 +927,7 @@ const Flex = styled.div`
                 color: #667085;
               }
             }
-            .percent{
+            .percent {
               padding-left: 29px;
             }
           }
@@ -357,37 +937,6 @@ const Flex = styled.div`
           flex-direction: row;
           padding-inline: 100px;
           gap: 130px;
-        }
-      }
-      .doublebar {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding-inline: 10px;
-        .high {
-          display: flex;
-          flex-direction: row;
-          gap: 15px;
-          color: #000000;
-          font-size: 12px;
-          font-weight: 500;
-          align-items: center;
-          .row {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 10px;
-            .square {
-              width: 10px;
-              height: 10px;
-              background: #1a87d7;
-            }
-            .squaretwo {
-              width: 10px;
-              height: 10px;
-              background: #28385c;
-            }
-          }
         }
       }
       .statuses {

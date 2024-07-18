@@ -63,8 +63,10 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
           <span className="menu">Menu</span>
         </div>
         <Link
-          to={"#"}
-          className={`item ${router.pathname === `${clients}` ? "active" : ""}`}
+          to={superadmins}
+          className={`item ${
+            router.pathname === `${superadmins}` ? "active" : ""
+          }`}
         >
           <div className="paint"></div>
           <svg

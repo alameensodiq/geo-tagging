@@ -180,7 +180,6 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                   <span className="percent">35%</span>
                 </div>
               </div>
-
             </div>
           </div>
           <div className="table">
