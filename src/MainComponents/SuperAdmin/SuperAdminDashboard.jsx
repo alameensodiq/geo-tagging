@@ -11,8 +11,10 @@ import SuperAdminNavbar from "./SuperAdminNavbar";
 import SuperAdminOverviewCards from "../../Reusable/SuperAdminOverviewCards";
 import DonutBorderRadius from "../../bits/DonutBorderRadius";
 import SuperAdminDoubleBarChart from "../../bits/SuperAdminDoubleBarChart";
+import Radialtime from "../../bits/Radialtime";
 
 const SuperAdminDashboard = ({ title, overviewadmin }) => {
+  const [bright, setBright] = useState(true);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
@@ -259,10 +261,28 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
         </FeaturesGrid>
         <FeaturesGrid dashboarder bigger superoverview row={2}>
           <div className="table">
+            <div className="buttongroups">
+              <div className="groupdiv">
+                <button
+                  className={`swap ${bright ? "itemize" : "notitemize"}`}
+                  onClick={() => setBright(true)}
+                >
+                  Punctuality Rate
+                </button>
+                <button
+                  className={`swap ${bright ? "notitemize" : "itemize"}`}
+                  onClick={() => setBright(false)}
+                >
+                  Time Stamp Compliance
+                </button>
+              </div>
+            </div>
             <div className="punctuality">
               <div className="start">
                 <div className="numbers">
-                  <span className="name">Punctuality Rate</span>
+                  <span className="name">
+                    {bright ? "Punctuality Rate" : "Time Stamp Compliance"}
+                  </span>
                 </div>
               </div>
               <div className="main">
@@ -281,12 +301,27 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             </div>
             <div className="last">
               <div className="radial">
-                <Radial overview />
+                {
+                  bright
+                  ?
+                  <Radial overview />
+                  :
+                  <Radialtime  />
+                }
               </div>
-              <div className="circle">
-                <span className="label">Total Punctuality Rate</span>
-                <span className="name">80%</span>
-              </div>
+                {
+                  bright
+                  ?
+                  <div className="circle">
+                  <span className="label">Total Punctuality Rate</span>
+                  <span className="name">80%</span>
+                  </div>
+                  :
+                  <div className="circler">
+                  <span className="label">Total Stamp Compliance</span>
+                  <span className="name">60%</span>
+                  </div>
+                }
               <div className="target">
                 <div className="attendance">
                   <div className="wrap">
@@ -497,7 +532,7 @@ const Flex = styled.div`
       }
     }
     .table {
-      padding-top: 30px;
+      padding-top: 15px;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
       padding-bottom: 40px;
@@ -631,6 +666,46 @@ const Flex = styled.div`
           }
         }
       }
+      .buttongroups {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1.02px solid #dbdade;
+        padding-inline: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        justify-content: flex-start;
+        align-items: center;
+        .groupdiv {
+          display: flex;
+          flex-direction: row;
+          border: 0.4px solid #7777774d;
+          width: 252px;
+          justify-content: center;
+          height: 40px;
+          border-radius: 5px;
+          background: rgba(144, 138, 138, 0.15);
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-block: 3px;
+          gap: 10px;
+          .swap {
+            font-size: 12px;
+            cursor: pointer;
+          }
+          .itemize {
+            background: #1a87d7;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            color: #ffffff;
+          }
+          .notitemize {
+            border: none;
+            color: #5a6376;
+            outline: none;
+          }
+        }
+      }
       .totalhours {
         display: flex;
         flex-direction: row;
@@ -671,9 +746,9 @@ const Flex = styled.div`
           }
         }
       }
-      .lasthours{
+      .lasthours {
         padding-inline: 10px;
-        color: #1A87D7;
+        color: #1a87d7;
         font-size: 14px;
         font-weight: 500;
         height: 5px;
@@ -935,6 +1010,28 @@ const Flex = styled.div`
           position: absolute;
           border-radius: 50%;
           background: #f2f4f7;
+          z-index: 1000;
+          margin-top: 64px;
+          margin-left: 2px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: #101828;
+          .name {
+            font-size: 25px;
+            font-weight: 600;
+          }
+          .label {
+            font-size: 10px;
+          }
+        }
+        .circler {
+          width: 125px;
+          height: 125px;
+          position: absolute;
+          border-radius: 50%;
+          background: #ffffff;
           z-index: 1000;
           margin-top: 64px;
           margin-left: 2px;
