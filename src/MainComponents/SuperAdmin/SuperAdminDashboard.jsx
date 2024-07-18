@@ -309,7 +309,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             <div className="punctuality">
               <div className="start">
                 <div className="numbers">
-                  <span className="name">Subscription Analysis</span>
+                  <span className="name">Total hours put in by project</span>
                 </div>
               </div>
               <div className="main">
@@ -326,32 +326,58 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 <Calendar onClick={() => PickDater()} className="calendar" />
               </div>
             </div>
-            <div className="donutdiv">
-              <DonutBorderRadius />
-              <div className="detailsmaindiv">
-                <div className="detailsdiv">
-                  <div className="circle"></div>
-                  <span className="title">Standard (90%)</span>
-                </div>
-                <div className="detailsdiv">
-                  <div className="circletwo"></div>
-                  <span className="title">Standard Plus (50%)</span>
-                </div>
-                <div className="detailsdiv">
-                  <div className="circlethree"></div>
-                  <span className="title">Enterprise (30%)</span>
-                </div>
+            <div className="totalhours">
+              <div className="lefthours">
+                <span className="project">Project Name</span>
+                <span className="campaign">Campaign Management</span>
               </div>
-              <div className="detailsmaindiv">
-                <div className="detailsdiv">
-                  <div className="circlefour"></div>
-                  <span className="title">Enterprise Plus (20%)</span>
-                </div>
-                <div className="detailsdiv">
-                  <div className="circlefive"></div>
-                  <span className="title">Custom (50%)</span>
-                </div>
+              <div className="righthours">
+                <div className="rightcircle"></div>
+                <span>12hours</span>
               </div>
+            </div>
+            <div className="totalhours">
+              <div className="lefthours">
+                <span className="project">Project Name</span>
+                <span className="campaign">Campaign Management</span>
+              </div>
+              <div className="righthours">
+                <div className="rightcircle"></div>
+                <span>12hours</span>
+              </div>
+            </div>
+            <div className="totalhours">
+              <div className="lefthours">
+                <span className="project">Project Name</span>
+                <span className="campaign">Campaign Management</span>
+              </div>
+              <div className="righthours">
+                <div className="rightcircle"></div>
+                <span>12hours</span>
+              </div>
+            </div>
+            <div className="totalhours">
+              <div className="lefthours">
+                <span className="project">Project Name</span>
+                <span className="campaign">Campaign Management</span>
+              </div>
+              <div className="righthours">
+                <div className="rightcircle"></div>
+                <span>12hours</span>
+              </div>
+            </div>
+            <div className="totalhours">
+              <div className="lefthours">
+                <span className="project">Project Name</span>
+                <span className="campaign">Campaign Management</span>
+              </div>
+              <div className="righthours">
+                <div className="rightcircle"></div>
+                <span>12hours</span>
+              </div>
+            </div>
+            <div className="lasthours">
+              <span>Show more</span>
             </div>
           </div>
         </FeaturesGrid>
@@ -477,7 +503,7 @@ const Flex = styled.div`
       padding-bottom: 40px;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 20px;
       .projects {
         display: flex;
         flex-direction: row;
@@ -574,36 +600,83 @@ const Flex = styled.div`
               .square {
                 width: 10px;
                 height: 10px;
-                background: #1A87D7;
+                background: #1a87d7;
                 border-radius: 2px;
               }
               .squaretwo {
                 width: 10px;
                 height: 10px;
-                background: #28385C;
+                background: #28385c;
                 border-radius: 2px;
               }
               .squarethree {
                 width: 10px;
                 height: 10px;
-                background: #7C65E0;
+                background: #7c65e0;
                 border-radius: 2px;
               }
               .squarefour {
                 width: 10px;
                 height: 10px;
-                background: #7CC8F3;
+                background: #7cc8f3;
                 border-radius: 2px;
               }
               .squarefive {
                 width: 10px;
                 height: 10px;
-                background: #F3827C;
+                background: #f3827c;
                 border-radius: 2px;
               }
             }
           }
         }
+      }
+      .totalhours {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-inline: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e9edf5;
+        .lefthours {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          .project {
+            color: #101828;
+            font-size: 14px;
+            font-weight: 500;
+          }
+          .campaign {
+            font-size: 12px;
+            font-weight: 400;
+            color: #5a6376;
+          }
+        }
+        .righthours {
+          display: flex;
+          flex-direction: row;
+          gap: 5px;
+          color: #7c65e0;
+          align-items: center;
+          font-size: 14px;
+          font-weight: 600;
+          .rightcircle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #7c65e0;
+          }
+        }
+      }
+      .lasthours{
+        padding-inline: 10px;
+        color: #1A87D7;
+        font-size: 14px;
+        font-weight: 500;
+        height: 5px;
       }
       .donutdiv {
         display: flex;
