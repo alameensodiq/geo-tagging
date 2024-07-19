@@ -62,7 +62,7 @@ const Flex = styled.div`
       : props?.sub
       ? "40px"
       : props?.dashboarder
-      ? "20px"
+      ? "0px"
       : "70px"};
   display: grid;
   row-gap: 30px;
