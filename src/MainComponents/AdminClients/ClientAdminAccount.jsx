@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Navbar from "./Navbar";
 import { ModalButton } from "../../bits/ModalButton";
 import { useDispatch, useSelector } from "react-redux";
 import InputSearch from "../../bits/InputSearch";
@@ -9,10 +8,14 @@ import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
 import { businessprojects } from "../../Routes";
 import { useNavigate } from "react-router-dom";
-import { CorporateProject } from "../../Store/Apis/CorporateProject";
-import Pagination from "../../Reusable/Pagination";
+import { DownloadCsv } from "../../bits/DownloadCsv";
+import FeaturesGrid from "../../Reusable/FeaturesGrid";
+import AccountInputText from "../../bits/AccountInputText";
+import Navbar from "./Navbar";
+import { GetUser } from "../../Store/Apis/GetUser";
+import { ChangePassword } from "../../Store/Apis/ChangePassword";
 
-const ClientAdminProject = ({ title }) => {
+const ClientAdminAccount = ({ title }) => {
   const [step, setStep] = useState(0);
   const [activated, SetActivate] = useState(true);
   const [pend, SetPend] = useState(false);
@@ -29,38 +32,50 @@ const ClientAdminProject = ({ title }) => {
   const [first, setFirst] = useState("activate");
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
+  const [log, setLog] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(CorporateProject({ searcher, currentPage }));
-    if (reload) {
-      dispatch(CorporateProject({ searcher, currentPage }));
-      setReload(false);
-    }
-  }, [reload, searcher, currentPage]);
+  const [userdetails, setUserdetails] = useState({
+    current_password: "",
+    password: "",
+    password_confirmation: ""
+  });
 
-  const { project, authenticatingproject } = useSelector(
-    (state) => state.project
+
+  const { getuser, authenticatinggetuser } = useSelector(
+    (state) => state.getuser
   );
-  console.log(project?.data?.data);
+  console.log(getuser?.data);
 
-  const next = project?.data?.meta?.next;
-  const previous = project?.data?.meta?.prev;
-  const totalPosts = project?.data?.meta?.totalCount;
+  const { changepass, authenticatingchangepass } = useSelector(
+    (state) => state.changepass
+  );
+  console.log(changepass?.data);
 
-  const paginate = (number) => {
-    //  setSorted(tran)
-    setCurrentPage(number - 1);
-    setActivater(number);
+  //   current_password, password, password_confirmation
+
+  useEffect(() => {
+    dispatch(GetUser());
+    if (reload) {
+      dispatch(GetUser());
+      setReload(false);
+      setLog(false);
+    }
+    if(changepass?.status && !authenticatingchangepass && log){
+      setStep(35)
+    }
+  }, [reload, changepass?.status, log]);
+
+  const Change = (e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setUserdetails({
+      ...userdetails,
+      [name]: value
+    });
   };
 
-  const activate = project?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === true
-  );
-  const inactivate = project?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === false
-  );
 
   const setActivate = () => {
     SetActivate(true);
@@ -90,6 +105,20 @@ const ClientAdminProject = ({ title }) => {
       setFirst("pending");
     }, [500]);
   };
+
+
+  const UpdatePassword = () => {
+    setLog(true);
+    const { current_password, password} = userdetails
+    dispatch(ChangePassword({current_password, password, password_confirmation : password }))
+  }
+
+
+//   if (changepass?.status && !authenticatingchangepass && log) {
+//     setStep(35)
+//   }
+
+
   return (
     <Flex>
       <Navbar title={title} />
@@ -98,108 +127,96 @@ const ClientAdminProject = ({ title }) => {
         <div className="top">
           <div className="start">
             <div className="numbers">
-              <span className="name">Projects</span>
+              <span className="name">My Account</span>
             </div>
             <span className="about">
-              This overview provides a comprehensive show of all projects
+              This page allows you to setup your profile
             </span>
           </div>
-          <div>
-            <ModalButton
-              onClick={() =>
-                navigate(`../${businessprojects}/location/:location`)
-              }
-              background
-              color
-              title="New Project"
-            />
-          </div>
         </div>
-        <div className="table">
-          <div className="statuses">
-            <div
-              onClick={() => setActivate()}
-              className={`${activated ? "active" : "status"}`}
-            >
-              <span>Active Projects</span>
-              <span
-                className={`${activated ? "active-number" : "status-number"}`}
-              >
-                20
+        <FeaturesGrid dashboard unequal account superoverview row={2}>
+          <div className="table">
+            <div className="start">
+              <div className="numbers">
+                <span className="name">Profile Settings</span>
+              </div>
+              <span className="about">
+                These are your personal details, they are visible to the public
               </span>
             </div>
-            <div
-              onClick={() => setPending()}
-              className={`${pend ? "active" : "status"}`}
-            >
-              <span>Inactive Projects</span>
-              <span className={`${pend ? "active-number" : "status-number"}`}>
-                40
+            <div className="inputdiv">
+              <AccountInputText
+                nosign
+                label="Full Name"
+                logo
+                // onChange={(e) => Change(e)}
+                name="firstname"
+                // value={regbus?.firstname}
+                placeholder={`${`${getuser?.data?.firstName} ${getuser?.data?.lastName}`}`}
+              />
+              <AccountInputText
+                nosign
+                label="Email"
+                emailogo
+                // onChange={(e) => Change(e)}
+                name="firstname"
+                // value={regbus?.firstname}
+                placeholder={`${`${getuser?.data?.email}`}`}
+              />
+            </div>
+            <div className="editrole">
+              <ModalButton
+                onClick={() => setStep(34)}
+                background
+                color
+                remove
+                title="Save Changes"
+              />
+            </div>
+          </div>
+          <div className="table">
+            <div className="start">
+              <div className="numbers">
+                <span className="name">Update Password</span>
+              </div>
+              <span className="about">
+                Enter your current password to make update
               </span>
             </div>
-          </div>
-          <div className="date-search">
-            {/* <div className="main">
-              <DatePicker
-                className="input"
-                selected={startDate}
-                ref={datePickerRef}
-                onChange={(date) => dateChanger(date)}
-                showTimeSelect={false}
-                dateFormat="MMM d yyyy"
-                placeholderText="13 Oct 2023"
-                popperPlacement="bottom-start"
+            <div className="inputdiv">
+              <AccountInputText
+                nosign
+                label="Current Password"
+                reduce
+                passwordlogo
+                onChange={(e) => Change(e)}
+                name="current_password"
+                value={userdetails?.current_password}
+                placeholder={`${`Enter New Password`}`}
               />
-              <Calendar onClick={() => PickDate()} className="calendar" />
+              <AccountInputText
+                nosign
+                label="New Password"
+                reduce
+                passwordlogo
+                onChange={(e) => Change(e)}
+                name="password"
+                value={userdetails?.password}
+                placeholder={`${`Enter New Password`}`}
+              />
             </div>
-            <div className="main">
-              <DatePicker
-                className="input"
-                selected={endDate}
-                ref={datePickerRefs}
-                onChange={(date) => dateChangers(date)}
-                showTimeSelect={false}
-                dateFormat="MMM d yyyy"
-                placeholderText="13 Oct 2023"
-                popperPlacement="bottom-start"
+            <div className="editrole">
+              <ModalButton
+                // onClick={() => setStep(35)}
+                onClick={() => UpdatePassword()}
+                background
+                color
+                remove
+                title={authenticatingchangepass ? "Updating Password..." : "Update Password" }
               />
-              <Calendar onClick={() => PickDater()} className="calendar" />
-            </div> */}
-            <InputSearch
-              onChange={(e) => setSearcher(e.target.value)}
-              placeholder="Search for Sub Corporate Admin name, email, e.t.c"
-            />
+            </div>
           </div>
-          {activated ? (
-            <>
-              <Tables activeproject data={[]} setStep={setStep} />
-              <Pagination
-                set={activater}
-                currentPage={currentPage}
-                postsPerPage={postsPerPage}
-                totalPosts={totalPosts}
-                paginate={paginate}
-                previous={previous}
-                next={next}
-              />
-            </>
-          ) : pend ? (
-            <>
-              <Tables inactiveproject data={[]} setStep={setStep} />
-              <Pagination
-                set={activater}
-                currentPage={currentPage}
-                postsPerPage={postsPerPage}
-                totalPosts={totalPosts}
-                paginate={paginate}
-                previous={previous}
-                next={next}
-              />
-            </>
-          ) : (
-            ""
-          )}
-        </div>
+        </FeaturesGrid>
       </div>
     </Flex>
   );
@@ -265,6 +282,59 @@ const Flex = styled.div`
       display: flex;
       flex-direction: column;
       gap: 30px;
+      .start {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding-left: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e2e8f0;
+        .numbers {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+          .name {
+            color: #212529;
+            font-size: 16px;
+            font-weight: 600;
+          }
+          .count {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background-color: #f4f3ff;
+            width: 90px;
+            height: 20px;
+            color: #1a87d7;
+            font-size: 12px;
+            font-weight: 500;
+          }
+        }
+        .about {
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0em;
+          text-align: left;
+          color: #8d9196;
+        }
+      }
+      .editrole {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 47px;
+      }
+      .inputdiv {
+        display: flex;
+        flex-direction: column;
+        padding-inline: 10px;
+        gap: 10px;
+      }
       .statuses {
         display: flex;
         flex-direction: row;
@@ -359,4 +429,4 @@ const Flex = styled.div`
   }
 `;
 
-export default ClientAdminProject;
+export default ClientAdminAccount;

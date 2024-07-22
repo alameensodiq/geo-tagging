@@ -1,26 +1,29 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const CorporateBusinessRep = createAsyncThunk(
-  "businessrep",
-  async (thunkAPI) => {
+export const ChangePassword = createAsyncThunk(
+  "changepass",
+  async ({ current_password, password, password_confirmation}, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem('token')
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/business-reps`,
+        `${process.env.REACT_APP_BASE_URL}user/change-password`,
         {
-          method: "GET",
+          method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
           },
+          body: JSON.stringify({
+            current_password, password, password_confirmation
+          })
         }
       );
       let data = await response.json();
-      // toast.success(data.message);
+      toast.success(data.message);
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);

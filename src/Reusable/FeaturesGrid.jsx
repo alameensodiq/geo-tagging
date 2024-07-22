@@ -17,7 +17,8 @@ const FeaturesGrid = ({
   overviewreport,
   sub,
   big,
-  bigger
+  bigger,
+  account
 }) => {
   return (
     <Flex
@@ -34,6 +35,7 @@ const FeaturesGrid = ({
       top={top}
       dashboard={dashboard}
       unequal={unequal}
+      account={account}
     >
       {children}
     </Flex>
@@ -94,6 +96,8 @@ const Flex = styled.div`
       props.overviewthree
         ? "1fr 1fr"
         : props.overviewreport
+        ? "1fr"
+        : props?.account
         ? "1fr"
         : "1fr 1fr"};
   }

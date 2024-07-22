@@ -16,7 +16,15 @@ import { ReactComponent as Project } from "../../../src/assets/Project.svg";
 import { ReactComponent as User } from "../../../src/assets/usermanage.svg";
 import { ReactComponent as Sub } from "../../../src/assets/subscription.svg";
 import { ReactComponent as Report } from "../../../src/assets/Reporting.svg";
-import { businessprojects, businessusers, clients, businesssub, businessreport } from "../../Routes";
+import { ReactComponent as Account } from "../../../src/assets/accounting.svg";
+import {
+  businessprojects,
+  businessusers,
+  clients,
+  businesssub,
+  businessreport,
+  businessaccounting
+} from "../../Routes";
 
 import { LogOutAuthentication } from "../../bits/LogOutAuthentication";
 import { businessreps } from "../../Routes";
@@ -161,6 +169,22 @@ function Sidebar({ name, role, open, setOpen }) {
           <Report className="nav-svg1" />
           <p className="man">Reports</p>
         </Link>
+        <div className="settingsdiv">
+          <span className="settings">SETTINGS</span>
+          <Link
+            to={businessaccounting}
+            className={`item ${
+              router.pathname === `${clients}/${businessaccounting}` ||
+              router.pathname.startsWith(`${clients}/${businessaccounting}`)
+                ? "active"
+                : ""
+            }`}
+          >
+            <div className="paint"></div>
+            <Account className="nav-svg1" />
+            <p className="man">My Account</p>
+          </Link>
+        </div>
         {/* <Link
                to={screenshot}
                className={`item ${router.pathname === `${client}/${screenshot}` ? "active" : ""}`}
@@ -318,15 +342,15 @@ const Sidecontent = styled.div`
     padding-bottom: 50px;
     border-bottom: 0.5px solid;
     border-bottom-color: #e2e8f0;
-    .menu-div{
+    .menu-div {
       display: flex;
       flex-direction: row;
       padding-inline: 17px;
       padding-block: 25px;
-      .menu{
+      .menu {
         display: flex;
         flex-direction: row;
-        color: #5A6376;
+        color: #5a6376;
         font-size: 15px;
         font-weight: 500;
       }
@@ -448,6 +472,151 @@ const Sidecontent = styled.div`
         font-weight: 500;
         line-height: 17px;
         letter-spacing: 0em;
+      }
+    }
+    .settingsdiv {
+      display: flex;
+      flex-direction: column;
+      padding-top: 40px;
+      padding-bottom: 10px;
+      gap: 10px;
+      .settings {
+        color: #5a6376;
+        font-size: 14px;
+        font-weight: 500;
+        padding-left: 15px;
+      }
+      .menu-div {
+        display: flex;
+        flex-direction: row;
+        padding-inline: 17px;
+        padding-block: 25px;
+        .menu {
+          display: flex;
+          flex-direction: row;
+          color: #5a6376;
+          font-size: 15px;
+          font-weight: 500;
+        }
+      }
+
+      .item {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 210px;
+        height: 40px;
+        gap: 4%;
+        text-transform: capitalize;
+        // padding-left: 17px;
+        border-radius: 5px;
+        padding: 0px 0px 0px 0px;
+        //   background :  #4D47C3;
+
+        p {
+          // margin-bottom: 0rem;
+
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+          color: #848d87;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+          margin-right: 10px;
+        }
+
+        .nav-svg {
+          path {
+            fill: #848d87;
+            stroke: #ffffff;
+            stroke-width: 0.1px;
+          }
+        }
+
+        .nav-svg1 {
+          path {
+            fill: #848d87;
+            stroke: #ffffff;
+            stroke-width: 0.1px;
+          }
+        }
+        .man {
+          color: #848d87 !important;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 17px;
+          letter-spacing: 0em;
+        }
+      }
+      .active {
+        background: rgba(101, 172, 224, 0.06);
+        border-radius: 6px;
+        .paint {
+          background: #1a87d7 !important;
+          width: 4px;
+          height: 40px;
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+        }
+
+        .nav-svg {
+          path {
+            fill: #1a87d7 !important;
+            stroke: #1a87d7 !important;
+            stroke-width: 0.1px;
+          }
+        }
+
+        .nav-svg1 {
+          path {
+            fill: #1a87d7 !important;
+            stroke: #1a87d7 !important;
+          }
+        }
+
+        .man {
+          color: #1a87d7 !important;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 17px;
+          letter-spacing: 0em;
+        }
+      }
+
+      .item:hover,
+      .item:focus {
+        background: #f3f6ff;
+        border-radius: 6px;
+        .paint {
+          background: #1a87d7 !important;
+          width: 4px;
+          height: 40px;
+        }
+        .nav-svg {
+          path {
+            fill: #1a87d7 !important;
+            stroke: #1a87d7 !important;
+            stroke-width: 0.1px;
+          }
+        }
+        .nav-svg1 {
+          path {
+            fill: #1a87d7 !important;
+            stroke: #1a87d7 !important;
+          }
+        }
+        .man {
+          color: #1a87d7 !important;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 17px;
+          letter-spacing: 0em;
+        }
       }
     }
   }

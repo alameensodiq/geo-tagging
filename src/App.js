@@ -8,6 +8,7 @@ import CorporateChangePassword from "./Reusable/CorporateChangePassword";
 import {
   accounting,
   audit,
+  businessaccounting,
   businessprojects,
   businessreport,
   businessreps,
@@ -45,6 +46,7 @@ import SuperAdminUsermanagement from "./MainComponents/SuperAdmin/SuperAdminUser
 import SuperAdminUserDetails from "./MainComponents/SuperAdmin/SuperAdminUserDetails";
 import SuperAdminAccount from "./MainComponents/SuperAdmin/SuperAdminAccount";
 import SuperAdminSubscription from "./MainComponents/SuperAdmin/SuperAdminSubscription";
+import ClientAdminAccount from "./MainComponents/AdminClients/ClientAdminAccount";
 
 function App() {
   return (
@@ -110,6 +112,11 @@ function App() {
           <Route
             path={`${businessreport}/emoji`}
             element={<ClientAdminEmoji title="Reports" />}
+          />
+
+          <Route
+            path={businessaccounting}
+            element={<ClientAdminAccount title="My Account" />}
           />
           <Route />
         </Route>

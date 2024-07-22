@@ -4,6 +4,7 @@ export const businessprojects = 'projects';
 export const businessusers = 'users';
 export const businesssub = 'sub'
 export const businessreport = 'report'
+export const businessaccounting = 'corporateaccount'
 
 
 

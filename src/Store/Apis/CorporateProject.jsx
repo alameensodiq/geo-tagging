@@ -1,15 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const CorporateBusinessRep = createAsyncThunk(
-  "businessrep",
+export const CorporateProject = createAsyncThunk(
+  "project",
   async (thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem('token')
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/business-reps`,
+        `${process.env.REACT_APP_BASE_URL}user/project`,
         {
           method: "GET",
           headers: {
@@ -20,7 +20,7 @@ export const CorporateBusinessRep = createAsyncThunk(
         }
       );
       let data = await response.json();
-      // toast.success(data.message);
+      toast.success(data.message);
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);
