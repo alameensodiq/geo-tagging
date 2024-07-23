@@ -21,8 +21,7 @@ export default function AppModal({
   noheadborder,
   subscribe
 }) {
-
-  console.log(subscribe)
+  console.log(subscribe);
   return (
     <div
       style={{
@@ -42,36 +41,50 @@ export default function AppModal({
           <div
             style={{
               display: "flex",
-              justifyContent: noheadborder ? "space-between"  : "flex-end",
+              justifyContent: noheadborder ? "space-between" : "flex-end",
               alignItems: "center",
-              borderBottom: heading && !noheadborder ? "1px solid #cacaca" : heading && noheadborder ? ''  : '',
-              padding: heading ? "0 37px" : confirm ? "0px" : "0px"
+              borderBottom:
+                heading && !noheadborder
+                  ? "1px solid #cacaca"
+                  : heading && noheadborder
+                  ? ""
+                  : "",
+              padding: heading ? "0px 10px" : confirm ? "0px" : "0px"
             }}
           >
             <div className="head">
               <div className="heading">
-                <div style={{ fontSize: "15px", paddingBlock: "20px", color:'#1E1B39', fontWeight:'600'}}>
+                <div
+                  style={{
+                    fontSize: "15px",
+                    paddingBlock: "20px",
+                    color: "#1E1B39",
+                    fontWeight: "600"
+                  }}
+                >
                   {heading}
                 </div>
               </div>
-              <svg
-                onClick={() => {
-                  closeModal();
-                }}
-                style={{
-                  cursor: "pointer"
-                }}
-                width="30"
-                height="32"
-                viewBox="0 0 40 42"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M30.5002 9.99224C30.1888 9.66455 29.7661 9.48039 29.3252 9.48039C28.8843 9.48039 28.4616 9.66455 28.1502 9.99224L20.0002 18.5322L11.8502 9.97474C11.5388 9.64705 11.1161 9.46289 10.6752 9.46289C10.2343 9.46289 9.81158 9.64705 9.5002 9.97474C8.8502 10.6572 8.8502 11.7597 9.5002 12.4422L17.6502 20.9997L9.5002 29.5572C8.8502 30.2397 8.8502 31.3422 9.5002 32.0247C10.1502 32.7072 11.2002 32.7072 11.8502 32.0247L20.0002 23.4672L28.1502 32.0247C28.8002 32.7072 29.8502 32.7072 30.5002 32.0247C31.1502 31.3422 31.1502 30.2397 30.5002 29.5572L22.3502 20.9997L30.5002 12.4422C31.1335 11.7772 31.1335 10.6572 30.5002 9.99224Z"
-                  fill="#a9a8a8"
-                />
-              </svg>
+              <div className="close">
+                <svg
+                  onClick={() => {
+                    closeModal();
+                  }}
+                  style={{
+                    cursor: "pointer"
+                  }}
+                  width="30"
+                  height="32"
+                  viewBox="0 0 40 42"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M30.5002 9.99224C30.1888 9.66455 29.7661 9.48039 29.3252 9.48039C28.8843 9.48039 28.4616 9.66455 28.1502 9.99224L20.0002 18.5322L11.8502 9.97474C11.5388 9.64705 11.1161 9.46289 10.6752 9.46289C10.2343 9.46289 9.81158 9.64705 9.5002 9.97474C8.8502 10.6572 8.8502 11.7597 9.5002 12.4422L17.6502 20.9997L9.5002 29.5572C8.8502 30.2397 8.8502 31.3422 9.5002 32.0247C10.1502 32.7072 11.2002 32.7072 11.8502 32.0247L20.0002 23.4672L28.1502 32.0247C28.8002 32.7072 29.8502 32.7072 30.5002 32.0247C31.1502 31.3422 31.1502 30.2397 30.5002 29.5572L22.3502 20.9997L30.5002 12.4422C31.1335 11.7772 31.1335 10.6572 30.5002 9.99224Z"
+                    fill="#a9a8a8"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
           <div
@@ -82,8 +95,8 @@ export default function AppModal({
               display: "flex",
               flexDirection: "column",
               gap: "12px",
-              alignItems:'center',
-              justifyContent:'center'
+              alignItems: "center",
+              justifyContent: "center"
             }}
           >
             {children}
@@ -99,13 +112,23 @@ const AppModalStyle = styled.div`
   .head {
     display: flex;
     flex-direction: row;
-    padding-left: ${(props) => props.noheadborder ? '0px' : '35%'};
+    width: 100%;
+    padding-left: ${(props) => (props.noheadborder ? "0px" : "35%")};
     align-items: center;
-    justify-items: ${(props) => props.noheadborder ? 'space-between' : 'flex-end'};
-    gap: ${(props) => (props.noheadborder && !props.subscribe )? '285px' :  (props.noheadborder && props.subscribe) ? '330px' : '90px'};
+    justify-items: ${(props) =>
+      props.noheadborder ? "space-between" : "space-between"};
+    gap: ${(props) =>
+      props.noheadborder && !props.subscribe
+        ? "285px"
+        : props.noheadborder && props.subscribe
+        ? "330px"
+        : "0px"};
     .heading {
       position: relative;
-      width: fit-content;
+      width: 50%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
 
       div {
         font-weight: 500;
@@ -114,6 +137,12 @@ const AppModalStyle = styled.div`
         z-index: 1;
         color: #000000;
       }
+    }
+    .close{
+      width: 50%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
     }
   }
 `;

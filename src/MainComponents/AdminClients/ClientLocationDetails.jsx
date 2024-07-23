@@ -212,7 +212,7 @@ const ClientLocationDetails = ({ title }) => {
               </div>
               <div className="lastdiv">
                 <LocationModalButton
-                  onClick={() => ""}
+                  onClick={() => setPending()}
                   background
                   remove
                   color
@@ -306,11 +306,11 @@ const ClientLocationDetails = ({ title }) => {
               <div className="lastdiv">
                 <LocationModalButton
                   whitey
-                  onClick={() => ""}
+                  onClick={() => setActivate()}
                   title="Back"
                 />
                 <LocationModalButton
-                  onClick={() => ""}
+                  onClick={() => setPendingRole1()}
                   background
                   remove
                   color
@@ -425,7 +425,7 @@ const ClientLocationDetails = ({ title }) => {
               <div className="lastdiv">
                 <LocationModalButton
                   whitey
-                  onClick={() => ""}
+                  onClick={() => setPending()}
                   title="Back"
                 />
                 <LocationModalButton
@@ -588,6 +588,10 @@ const Flex = styled.div`
               justify-content: flex-start;
               width: 30%;
               height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
               .wrapper {
                 display: flex;
                 flex-direction: row;

@@ -6,6 +6,8 @@ import { ReactComponent as Goback } from "../../assets/goback.svg";
 import { ReactComponent as Calendar } from "../../assets/calender.svg";
 import { ReactComponent as Call } from "../../assets/call.svg";
 import { ReactComponent as Contact } from "../../assets/contactedit.svg";
+import { ReactComponent as Busemail } from "../../assets/busemail.svg";
+import { ReactComponent as Buslocate } from "../../assets/buslocation.svg";
 import BusinessRepsTransactionCards from "../../Reusable/BusinessRepsTransactionCards";
 import Tables from "../../bits/Tables";
 import InputSearch from "../../bits/InputSearch";
@@ -125,11 +127,13 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   </span>
                 </div>
               </div>
-              <Contact />
+              <div className="copy">
+                <Contact />
+              </div>
             </div>
             <div className="info">
               <div className="first">
-                <Call />
+                <Busemail />
                 <div className="phone">
                   <span className="mobile">Email Address</span>
                   <span className="number">
@@ -141,7 +145,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
             </div>
             <div className="info">
               <div className="first">
-                <Call />
+                <Buslocate />
                 <div className="phone">
                   <span className="mobile">Address</span>
                   <span className="number">
@@ -149,16 +153,20 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   </span>
                 </div>
               </div>
-              <Contact />
+              <div className="copy">
+                <Contact />
+              </div>
             </div>
           </div>
           <div className="last">
-            <div className="radial">
-              <Radial />
-            </div>
-            <div className="circle">
-              <span className="label">Total Attendance</span>
-              <span className="name">50%</span>
+            <div className="cover">
+              <div className="radial">
+                <Radial />
+              </div>
+              <div className="circle">
+                <span className="label">Total Attendance</span>
+                <span className="name">50%</span>
+              </div>
             </div>
             <div className="target">
               <div className="attendance">
@@ -427,10 +435,12 @@ const Flex = styled.div`
           display: flex;
           flex-direction: row;
           gap: 10%;
+          width: 100%;
           .first {
             display: flex;
             flex-direction: row;
             gap: 10px;
+            width: 50%;
             .phone {
               display: flex;
               flex-direction: column;
@@ -446,38 +456,59 @@ const Flex = styled.div`
               }
             }
           }
+          .copy {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
       .last {
         display: flex;
         flex-direction: column;
         width: 40%;
-        position: relative;
-        .radial {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-        }
-        .circle {
-          width: 95px;
-          height: 95px;
-          position: absolute;
-          border-radius: 50%;
-          background: #f2f4f7;
-          z-index: 1000;
-          margin-top: 45px;
-          margin-left: 171px;
+        /* position: relative; */
+        gap: 50px;
+        .cover {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          color: #101828;
-          .name {
-            font-size: 25px;
-            font-weight: 600;
+          position: relative;
+          width: 100%;
+          .radial {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
           }
-          .label {
-            font-size: 10px;
+          .circle {
+            /* width: 22%;
+            height: 82%; */
+            width: 95px;
+            height: 95px;
+            position: absolute;
+            border-radius: 50%;
+            background: #f2f4f7;
+            z-index: 1000;
+            margin-top: 42px;
+            margin-left: 39.5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #101828;
+            .name {
+              font-size: 25px;
+              font-weight: 600;
+            }
+            .label {
+              font-size: 10px;
+            }
+          }
+          @media (max-width: 1200px) {
+            .circle {
+              margin-left: 36.5%; /* Adjusted margin-left for screens less than 900px */
+            }
           }
         }
         .target {
@@ -601,6 +632,7 @@ const Flex = styled.div`
           gap: 5px;
           .amount {
             color: #7c65e0;
+            font-weight: 600;
           }
         }
         .date-search {

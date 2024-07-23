@@ -11,11 +11,11 @@ function StackedBarchart() {
     {
       //   name: 'Net Profit',
       data: [220, 70, 50, 120, 100, 40, 50, 330, 120, 180, 200, 308]
-    }
+    },
   ];
 
   const options = {
-    colors: ["#EAECF0","#28385C"],
+    colors: ["#EAECF0", "#28385C"],
     chart: {
       type: "bar",
       stacked: true,
@@ -98,7 +98,7 @@ function StackedBarchart() {
     //   },
     fill: {
       opacity: 1,
-      colors: ["#EAECF0","#28385C"],
+      colors: ["#28385C","#EAECF0"],
     },
 
     tooltip: {

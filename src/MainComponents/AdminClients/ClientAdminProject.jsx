@@ -172,29 +172,33 @@ const ClientAdminProject = ({ title }) => {
           </div>
           {activated ? (
             <>
-              <Tables activeproject data={[]} setStep={setStep} />
-              <Pagination
-                set={activater}
-                currentPage={currentPage}
-                postsPerPage={postsPerPage}
-                totalPosts={totalPosts}
-                paginate={paginate}
-                previous={previous}
-                next={next}
-              />
+              <div className="wrapper">
+                <Tables activeproject data={[]} setStep={setStep} />
+                <Pagination
+                  set={activater}
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={totalPosts}
+                  paginate={paginate}
+                  previous={previous}
+                  next={next}
+                />
+              </div>
             </>
           ) : pend ? (
             <>
-              <Tables inactiveproject data={[]} setStep={setStep} />
-              <Pagination
-                set={activater}
-                currentPage={currentPage}
-                postsPerPage={postsPerPage}
-                totalPosts={totalPosts}
-                paginate={paginate}
-                previous={previous}
-                next={next}
-              />
+              <div className="wrapper">
+                <Tables inactiveproject data={[]} setStep={setStep} />
+                <Pagination
+                  set={activater}
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={totalPosts}
+                  paginate={paginate}
+                  previous={previous}
+                  next={next}
+                />
+              </div>
             </>
           ) : (
             ""
@@ -354,6 +358,11 @@ const Flex = styled.div`
             top: 10px;
           }
         }
+      }
+      .wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
       }
     }
   }

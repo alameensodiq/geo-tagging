@@ -131,19 +131,6 @@ function Sidebar({ name, role, open, setOpen }) {
           <p className="man">Projects</p>
         </Link>
         <Link
-          to={businessusers}
-          className={`item ${
-            router.pathname === `${clients}/${businessusers}` ||
-            router.pathname.startsWith(`${clients}/${businessusers}`)
-              ? "active"
-              : ""
-          }`}
-        >
-          <div className="paint"></div>
-          <User className="nav-svg1" />
-          <p className="man">User management</p>
-        </Link>
-        <Link
           to={businesssub}
           className={`item ${
             router.pathname === `${clients}/${businesssub}` ||
@@ -155,6 +142,19 @@ function Sidebar({ name, role, open, setOpen }) {
           <div className="paint"></div>
           <Sub className="nav-svg1" />
           <p className="man">Subscriptions</p>
+        </Link>
+        <Link
+          to={businessusers}
+          className={`item ${
+            router.pathname === `${clients}/${businessusers}` ||
+            router.pathname.startsWith(`${clients}/${businessusers}`)
+              ? "active"
+              : ""
+          }`}
+        >
+          <div className="paint"></div>
+          <User className="nav-svg1" />
+          <p className="man">User management</p>
         </Link>
         <Link
           to={businessreport}
