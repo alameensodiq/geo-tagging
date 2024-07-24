@@ -7,6 +7,7 @@ import { ReactComponent as Eye } from "../../assets/eye.svg";
 import { ReactComponent as Editeye } from "../../assets/editeye.svg";
 import Tables from "../../bits/Tables";
 import AppUserModal from "../../Modal/AppUserModal";
+import InputSearch from "../../bits/InputSearch";
 
 const ClientUsermanagement = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -137,7 +138,7 @@ const ClientUsermanagement = ({ title }) => {
           </div>
         </div>
         <div className="table">
-          <div className="statuses">
+          {/* <div className="statuses">
             <div
               onClick={() => setActivate()}
               className={`${activated ? "active" : "status"}`}
@@ -150,8 +151,41 @@ const ClientUsermanagement = ({ title }) => {
             >
               <span>Manage Role</span>
             </div>
+          </div> */}
+          <div className="date-search">
+            {/* <div className="main">
+              <DatePicker
+                className="input"
+                selected={startDate}
+                ref={datePickerRef}
+                onChange={(date) => dateChanger(date)}
+                showTimeSelect={false}
+                dateFormat="MMM d yyyy"
+                placeholderText="13 Oct 2023"
+                popperPlacement="bottom-start"
+              />
+              <Calendar onClick={() => PickDate()} className="calendar" />
+            </div>
+            <div className="main">
+              <DatePicker
+                className="input"
+                selected={endDate}
+                ref={datePickerRefs}
+                onChange={(date) => dateChangers(date)}
+                showTimeSelect={false}
+                dateFormat="MMM d yyyy"
+                placeholderText="13 Oct 2023"
+                popperPlacement="bottom-start"
+              />
+              <Calendar onClick={() => PickDater()} className="calendar" />
+            </div> */}
+            <InputSearch
+              onChange={(e) => setSearcher(e.target.value)}
+              placeholder="Search for name, project name e.t.c"
+            />
           </div>
-          {activated ? (
+          <Tables manageuser data={[]} setStep={setStep} />
+          {/* {activated ? (
             <Tables manageuser data={[]} setStep={setStep} />
           ) : pend ? (
             <div className="permissioncontainer">
@@ -224,7 +258,7 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">3. User management</span>
                   <div className="button-group">
-                    <button className="view"  onClick={() => setStep(16)}>
+                    <button className="view" onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
@@ -233,11 +267,11 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">4. Subscriptions</span>
                   <div className="button-group">
-                    <button className="view"  onClick={() => setStep(16)}>
+                    <button className="view" onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
-                    <button className="view"  onClick={() => setStep(18)}>
+                    <button className="view" onClick={() => setStep(18)}>
                       <Editeye />
                       Edit
                     </button>
@@ -246,11 +280,11 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">5. Projects</span>
                   <div className="button-group">
-                    <button className="view"  onClick={() => setStep(16)}>
+                    <button className="view" onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
-                    <button className="view"  onClick={() => setStep(18)}>
+                    <button className="view" onClick={() => setStep(18)}>
                       <Editeye />
                       Edit
                     </button>
@@ -259,7 +293,7 @@ const ClientUsermanagement = ({ title }) => {
                 <div className="rolename">
                   <span className="name">6.Reports</span>
                   <div className="button-group">
-                    <button className="view"  onClick={() => setStep(16)}>
+                    <button className="view" onClick={() => setStep(16)}>
                       <Eye />
                       View
                     </button>
@@ -278,7 +312,7 @@ const ClientUsermanagement = ({ title }) => {
             </div>
           ) : (
             ""
-          )}
+          )} */}
         </div>
       </div>
     </Flex>
@@ -537,7 +571,7 @@ const Flex = styled.div`
               }
             }
           }
-          .editrole{
+          .editrole {
             display: flex;
             flex-direction: row;
             justify-content: flex-end;

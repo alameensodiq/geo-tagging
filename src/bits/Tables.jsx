@@ -540,7 +540,7 @@ const Tables = ({
                     NAME OF BUSINESS REPS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    TIME STAMP
+                    PUNCTUALITY
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     ACTIVE ON
@@ -548,8 +548,8 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     DAILY WORKING HOURS
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    COMPLIANCE
+                  <StyledTableCell style={{ width: "15%" }}>
+                    TIME STAMP RATE
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     DAILY PAYOUT
@@ -557,7 +557,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "5%" }}>
                     STAUS
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "5%" }}>
                     ACTIONS
                   </StyledTableCell>
                 </TableRow>
@@ -569,7 +569,7 @@ const Tables = ({
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>15</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    Hourly
+                    40%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     12-03-2024
@@ -577,7 +577,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     4 hours
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     70%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
@@ -590,7 +590,7 @@ const Tables = ({
                       </div>
                     </button>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "5%" }}>
                     <Action onClick={() => ProjectActive()} />
                     {projectactive && (
                       <div className="activeprojectmodal">
@@ -619,7 +619,7 @@ const Tables = ({
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>15</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    Hourly
+                   30%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     12-03-2024
@@ -627,7 +627,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     4 hours
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     70%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
@@ -640,7 +640,7 @@ const Tables = ({
                       </div>
                     </button>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "5%" }}>
                     <Action />
                   </StyledTableCell>
                 </StyledTableRow>
@@ -650,7 +650,7 @@ const Tables = ({
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>15</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    Hourly
+                    20%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     12-03-2024
@@ -658,7 +658,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     4 hours
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     70%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
@@ -671,7 +671,7 @@ const Tables = ({
                       </div>
                     </button>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "5%" }}>
                     <Action />
                   </StyledTableCell>
                 </StyledTableRow>
@@ -696,7 +696,7 @@ const Tables = ({
                     NAME OF BUSINESS REPS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    TIME STAMP
+                    PUNCTAUALITY
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     ACTIVE ON
@@ -704,8 +704,8 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     DAILY WORKING HOURS
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    COMPLIANCE
+                  <StyledTableCell style={{ width: "15%" }}>
+                    TIME STAMP RATE
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     DAILY PAYOUT
@@ -713,7 +713,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "5%" }}>
                     STAUS
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "5%" }}>
                     ACTIONS
                   </StyledTableCell>
                 </TableRow>
@@ -725,7 +725,7 @@ const Tables = ({
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>15</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    Hourly
+                    45%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     12-03-2024
@@ -733,7 +733,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     4 hours
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     70%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
@@ -746,7 +746,7 @@ const Tables = ({
                       </div>
                     </button>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "5%" }}>
                     <span
                       className="projectactivate"
                       onClick={() => setStep(6)}
@@ -761,7 +761,7 @@ const Tables = ({
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>15</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    Hourly
+                    15%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     12-03-2024
@@ -769,7 +769,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     4 hours
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     70%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
@@ -782,7 +782,7 @@ const Tables = ({
                       </div>
                     </button>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "5%" }}>
                     <span className="projectactivate">Activate</span>
                   </StyledTableCell>
                 </StyledTableRow>
@@ -792,7 +792,7 @@ const Tables = ({
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>15</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    Hourly
+                    35%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     12-03-2024
@@ -800,7 +800,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     4 hours
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     70%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
@@ -813,7 +813,7 @@ const Tables = ({
                       </div>
                     </button>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "5%" }}>
                     <span className="projectactivate">Activate</span>
                   </StyledTableCell>
                 </StyledTableRow>
@@ -957,16 +957,16 @@ const Tables = ({
                       NAME
                     </div>
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
+                  {/* <StyledTableCell style={{ width: "20%" }}>
                     ROLE
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
+                  </StyledTableCell> */}
+                  <StyledTableCell style={{ width: "30%" }}>
                     EMAIL ADDRESS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
                     PHONE NUMBER
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       DATE CREATED
                     </div>
@@ -983,16 +983,16 @@ const Tables = ({
                   <StyledTableCell style={{ width: "20%" }}>
                     Abdul warith
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
+                  {/* <StyledTableCell style={{ width: "20%" }}>
                     Super Admin
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
+                  </StyledTableCell> */}
+                  <StyledTableCell style={{ width: "30%" }}>
                     alameensodiq@gmail.com
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
                     07057007046
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "20%" }}>
                     <Moment format="DD-MM-YYYY">12-03-2024</Moment>
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
@@ -1003,7 +1003,7 @@ const Tables = ({
                           <Deactivate />
                           <span>Deactivate</span>
                         </div>
-                        <div className="row" onClick={() => ""}>
+                        <div className="row" onClick={() => navigate(`../${businessusers}/id`)}>
                           <View />
                           <span>View more</span>
                         </div>

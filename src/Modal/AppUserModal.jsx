@@ -2516,7 +2516,15 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         heading="Add new Sub-admin"
         noheadborder
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "40px",width:'100%',paddingLeft:'7%' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "40px",
+            width: "100%",
+            paddingLeft: "7%"
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -2627,7 +2635,15 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         heading="Deactivate"
         noheadborder
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "40px",width:'100%',paddingLeft:'7%' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "40px",
+            width: "100%",
+            paddingLeft: "7%"
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -2748,7 +2764,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
               justifyContent: "center"
             }}
           >
-           Profile Update
+            Profile Update
           </div>
           <div
             style={{
@@ -2806,7 +2822,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
               justifyContent: "center"
             }}
           >
-           Password Updated
+            Password Updated
           </div>
           <div
             style={{
@@ -3075,6 +3091,690 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             }}
           >
             <span>You have successfully updated Standard plan Pricing </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={42}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        noheadborder
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            width: "100%",
+            paddingLeft: "7%"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "16px",
+                  fontWeight: "600"
+                }}
+              >
+                Disable Permission
+              </span>
+            </div>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              Do you want to disable this permission for this
+            </span>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              user?
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "70px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => setStep(43)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={43}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully disabled the permission to view</span>
+            <span>dashboard</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={44}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        noheadborder
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            width: "100%",
+            paddingLeft: "7%"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "16px",
+                  fontWeight: "600"
+                }}
+              >
+                Enable Permission
+              </span>
+            </div>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+             Do you want to enable this permission for this 
+            </span>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              user?
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "70px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => setStep(45)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={45}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully granted this user the permission</span>
+            <span>to activate business reps.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={46}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        noheadborder
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            width: "100%",
+            paddingLeft: "7%"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "16px",
+                  fontWeight: "600"
+                }}
+              >
+                Grant Permission
+              </span>
+            </div>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+             You are about to grant permission to this user to
+            </span>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              edit projects?
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "70px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => setStep(47)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={47}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully granted this user the permission</span>
+            <span>to edit projects.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={48}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        noheadborder
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            width: "100%",
+            paddingLeft: "7%"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "16px",
+                  fontWeight: "600"
+                }}
+              >
+                Grant Permission
+              </span>
+            </div>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+             You are about to grant permission to this user to
+            </span>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              view projects?
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "70px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => setStep(49)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={49}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully granted this user the permission</span>
+            <span>view projects.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={50}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        noheadborder
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            width: "100%",
+            paddingLeft: "7%"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "16px",
+                  fontWeight: "600"
+                }}
+              >
+                Confirm Changes
+              </span>
+            </div>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+             Do you want to assign the role of a sub admin to
+            </span>
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              this user?
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "70px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => setStep(51)}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={51}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully assigned the Sub admin role to this user</span>
           </div>
           <div
             style={{

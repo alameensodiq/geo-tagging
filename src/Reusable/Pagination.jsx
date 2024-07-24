@@ -242,7 +242,7 @@ const Flex = styled.div`
 
       .sums{
         // margin-inline: 20px;
-        background: #9932CC ;
+        background: #1A87D7 ;
         color: #FFFFFF;
         // color: black ;
         display: flex;

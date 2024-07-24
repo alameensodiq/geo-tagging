@@ -47,6 +47,7 @@ import SuperAdminUserDetails from "./MainComponents/SuperAdmin/SuperAdminUserDet
 import SuperAdminAccount from "./MainComponents/SuperAdmin/SuperAdminAccount";
 import SuperAdminSubscription from "./MainComponents/SuperAdmin/SuperAdminSubscription";
 import ClientAdminAccount from "./MainComponents/AdminClients/ClientAdminAccount";
+import ClientUsermanagementDetails from "./MainComponents/AdminClients/ClientUsermanagementDetails";
 
 function App() {
   return (
@@ -87,6 +88,11 @@ function App() {
           <Route
             path={`${businessusers}`}
             element={<ClientUsermanagement title="User management" />}
+          />
+
+          <Route
+            path={`${businessusers}/id`}
+            element={<ClientUsermanagementDetails title="User management" />}
           />
 
           <Route
