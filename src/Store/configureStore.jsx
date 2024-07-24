@@ -11,6 +11,7 @@ import { ChangePasswordSlice } from './Reducers/ChangePassword';
 import { SuperCorporateSlice } from './Reducers/SuperCorporate';
 import { SuperCorporateDetailsSlice } from './Reducers/SuperCorporateDetails';
 import { SuperCorporateDetailsProjectSlice } from './Reducers/SuperCorporateDetailsProject';
+import { SuperSubsSlice } from './Reducers/SuperSub';
 
 
 
@@ -29,6 +30,7 @@ export default configureStore({
         changepass: ChangePasswordSlice?.reducer,
         supercorporate: SuperCorporateSlice?.reducer,
         supercorporatedetails: SuperCorporateDetailsSlice?.reducer,
-        supercorporatedetailsproject: SuperCorporateDetailsProjectSlice?.reducer
+        supercorporatedetailsproject: SuperCorporateDetailsProjectSlice?.reducer,
+        supersub: SuperSubsSlice?.reducer
     }
 });

@@ -10,6 +10,7 @@ import SuperAdminNavbar from "./SuperAdminNavbar";
 import InputSearch from "../../bits/InputSearch";
 import { DownloadCsv } from "../../bits/DownloadCsv";
 import { SubscribeEditButton } from "../../bits/SubscribeEditButton";
+import { SuperSubs } from "../../Store/Apis/SuperSub";
 
 const SuperAdminSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -35,18 +36,17 @@ const SuperAdminSubscription = ({ title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(CorporateBusinessRep())
+    dispatch(SuperSubs())
     if (reload) {
-      // dispatch(CorporateBusinessRep())
+      dispatch(SuperSubs())
       setReload(false);
     }
   }, [reload]);
 
-  //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
-  //   console.log(businessrep?.data?.data)
+    const { supersub, authenticatingsupersub } = useSelector((state) => state.supersub);
+    console.log(supersub?.data)
 
-  //   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
-  //   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
+
 
   const setActivate = () => {
     SetActivate(true);
