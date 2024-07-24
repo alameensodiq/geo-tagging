@@ -36,18 +36,19 @@ import {
 } from "../../bits/LogOutAuthentication";
 import { businessreps } from "../../Routes";
 import { useDispatch, useSelector } from "react-redux";
+import { SuperCorporate } from "../../Store/Apis/SuperCorporate";
 
 function SuperAdminSidebar({ name, role, open, setOpen }) {
   const router = useLocation();
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(CorporateBusinessRep());
+    dispatch(SuperCorporate());
   }, []);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector(
-    (state) => state.businessrep
+  const { supercorporate, authenticatingsupercorporate } = useSelector(
+    (state) => state.supercorporate
   );
-  console.log(businessrep?.data?.data);
+  console.log(supercorporate?.data?.data);
 
   // background: ${({open})  => ( open ? '#333481' : 'transparent')};
   return (
@@ -122,7 +123,7 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
               alignItems: "center"
             }}
           >
-            {businessrep?.data?.data?.length}
+            {supercorporate?.data?.data?.length}
           </span>
         </Link>
         <Link

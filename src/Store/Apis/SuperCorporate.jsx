@@ -1,15 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const CorporateProject = createAsyncThunk(
-  "project",
+export const SuperCorporate = createAsyncThunk(
+  "supercorporate",
   async ({searcher, currentPage},thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem('token')
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/project`,
+        `${process.env.REACT_APP_BASE_URL}admin/corporate?search=${searcher}&page=${currentPage}`,
         {
           method: "GET",
           headers: {

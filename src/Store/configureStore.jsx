@@ -8,6 +8,9 @@ import { CorporateResetPasswordSlice } from './Reducers/CorporateResetPassword';
 import { CorporateProjectSlice } from './Reducers/CorporateProject';
 import { GetUserSlice } from './Reducers/GetUser';
 import { ChangePasswordSlice } from './Reducers/ChangePassword';
+import { SuperCorporateSlice } from './Reducers/SuperCorporate';
+import { SuperCorporateDetailsSlice } from './Reducers/SuperCorporateDetails';
+import { SuperCorporateDetailsProjectSlice } from './Reducers/SuperCorporateDetailsProject';
 
 
 
@@ -23,6 +26,9 @@ export default configureStore({
         resetpassword: CorporateResetPasswordSlice?.reducer,
         project: CorporateProjectSlice?.reducer,
         getuser: GetUserSlice?.reducer,
-        changepass: ChangePasswordSlice?.reducer  
+        changepass: ChangePasswordSlice?.reducer,
+        supercorporate: SuperCorporateSlice?.reducer,
+        supercorporatedetails: SuperCorporateDetailsSlice?.reducer,
+        supercorporatedetailsproject: SuperCorporateDetailsProjectSlice?.reducer
     }
 });

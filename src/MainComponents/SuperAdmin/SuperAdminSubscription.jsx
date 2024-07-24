@@ -513,6 +513,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div>
                   <DownloadCsv
+                  onClick={() => ''}
                     //   onClick={() => navigate(
                     //     `../${businessprojects}/location/:location`)}
                     exportdownload

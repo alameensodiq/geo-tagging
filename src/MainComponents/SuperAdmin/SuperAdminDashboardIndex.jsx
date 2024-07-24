@@ -118,9 +118,9 @@ const SuperAdminDashboardIndex = () => {
     //  window.location.href = '/super'
     //  (supers)
 
-    <Navigate to="/" replace={true} />
-  ) : (
     <Authenticated />
+  ) : (
+    <Navigate to="/" replace={true} />
     // <Navigate to="/" replace={true} />
   );
 };

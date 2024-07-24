@@ -3,13 +3,13 @@ import toast from "react-hot-toast";
 
 export const CorporateBusinessRep = createAsyncThunk(
   "businessrep",
-  async (thunkAPI) => {
+  async ({searcher, currentPage},thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem('token')
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/business-reps`,
+        `${process.env.REACT_APP_BASE_URL}user/business-reps?search=${searcher}&page=${currentPage}`,
         {
           method: "GET",
           headers: {

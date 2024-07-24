@@ -8,6 +8,8 @@ import Tables from "../../bits/Tables";
 import AppUserModal from "../../Modal/AppUserModal";
 import SuperAdminNavbar from "./SuperAdminNavbar";
 import InputSearch from "../../bits/InputSearch";
+import { SuperCorporate } from "../../Store/Apis/SuperCorporate";
+import Pagination from "../../Reusable/Pagination";
 
 const SuperAdminCorporate = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -33,18 +35,24 @@ const SuperAdminCorporate = ({ title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(CorporateBusinessRep())
+    dispatch(SuperCorporate({ searcher, currentPage }));
     if (reload) {
-      // dispatch(CorporateBusinessRep())
+      dispatch(SuperCorporate({ searcher, currentPage }));
       setReload(false);
     }
-  }, [reload]);
+  }, [reload, searcher, currentPage]);
 
-  //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
-  //   console.log(businessrep?.data?.data)
+  const { supercorporate, authenticatingsupercorporate } = useSelector(
+    (state) => state.supercorporate
+  );
+  console.log(supercorporate?.data?.data);
 
-  //   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
-  //   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
+  const activate = supercorporate?.data?.data?.filter(
+    (item) => item?.hasChangeDefaultPassword === true
+  );
+  const inactivate = supercorporate?.data?.data?.filter(
+    (item) => item?.hasChangeDefaultPassword === false
+  );
 
   const setActivate = () => {
     SetActivate(true);
@@ -75,33 +83,43 @@ const SuperAdminCorporate = ({ title }) => {
     }, [500]);
   };
 
-  const setPendingRole1 = () => {
-    SetActivating1(true);
-    SetActivating2(false);
-    SetActivating3(false);
-    SetActivating4(false);
+  const paginate = (number) => {
+    //  setSorted(tran)
+    setCurrentPage(number - 1);
+    setActivater(number);
   };
 
-  const setPendingRole2 = () => {
-    SetActivating2(true);
-    SetActivating1(false);
-    SetActivating3(false);
-    SetActivating4(false);
-  };
+  const next = supercorporate?.data?.meta?.next;
+  const previous = supercorporate?.data?.meta?.prev;
+  const totalPosts = supercorporate?.data?.meta?.totalCount;
 
-  const setPendingRole3 = () => {
-    SetActivating3(true);
-    SetActivating1(false);
-    SetActivating2(false);
-    SetActivating4(false);
-  };
+  // const setPendingRole1 = () => {
+  //   SetActivating1(true);
+  //   SetActivating2(false);
+  //   SetActivating3(false);
+  //   SetActivating4(false);
+  // };
 
-  const setPendingRole4 = () => {
-    SetActivating4(true);
-    SetActivating1(false);
-    SetActivating2(false);
-    SetActivating3(false);
-  };
+  // const setPendingRole2 = () => {
+  //   SetActivating2(true);
+  //   SetActivating1(false);
+  //   SetActivating3(false);
+  //   SetActivating4(false);
+  // };
+
+  // const setPendingRole3 = () => {
+  //   SetActivating3(true);
+  //   SetActivating1(false);
+  //   SetActivating2(false);
+  //   SetActivating4(false);
+  // };
+
+  // const setPendingRole4 = () => {
+  //   SetActivating4(true);
+  //   SetActivating1(false);
+  //   SetActivating2(false);
+  //   SetActivating3(false);
+  // };
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
@@ -111,19 +129,20 @@ const SuperAdminCorporate = ({ title }) => {
           <div className="start">
             <div className="numbers">
               <span className="name">Corporates</span>
-              <span className="count">500 members</span>
+              <span className="count">{supercorporate?.data?.data?.length} members</span>
             </div>
             <span className="about">
-            This Page shows the comprehensive list of Active and Inactive Corporate
+              This Page shows the comprehensive list of Active and Inactive
+              Corporate
             </span>
           </div>
           <div>
-              <ModalButton
-                onClick={() => setStep(22)}
-                background
-                color
-                title="New Corporate"
-              />
+            <ModalButton
+              onClick={() => setStep(22)}
+              background
+              color
+              title="New Corporate"
+            />
           </div>
         </div>
         <div className="table">
@@ -136,7 +155,7 @@ const SuperAdminCorporate = ({ title }) => {
               <span
                 className={`${activated ? "active-number" : "status-number"}`}
               >
-                50
+                {activate?.length}
               </span>
             </div>
             <div
@@ -145,7 +164,7 @@ const SuperAdminCorporate = ({ title }) => {
             >
               <span>Inactive Corporates</span>
               <span className={`${pend ? "active-number" : "status-number"}`}>
-                60
+                {inactivate?.length}
               </span>
             </div>
           </div>
@@ -182,10 +201,40 @@ const SuperAdminCorporate = ({ title }) => {
             />
           </div>
           {activated ? (
-            <Tables supercorporateactive data={[]} setStep={setStep} />
+            <div className="wrapper">
+              <Tables supercorporateactive data={activate} setStep={setStep} />
+              {activate?.length >= 1 && (
+                <Pagination
+                  set={activater}
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={totalPosts}
+                  paginate={paginate}
+                  previous={previous}
+                  next={next}
+                />
+              )}
+            </div>
           ) : pend ? (
-            <Tables supercorporateinactive data={[]} setStep={setStep} />
-          )  : (
+            <div className="wrapper">
+              <Tables
+                supercorporateinactive
+                data={inactivate}
+                setStep={setStep}
+              />
+              {inactivate?.length >= 1 && (
+                <Pagination
+                  set={activater}
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={totalPosts}
+                  paginate={paginate}
+                  previous={previous}
+                  next={next}
+                />
+              )}
+            </div>
+          ) : (
             ""
           )}
         </div>
@@ -451,7 +500,7 @@ const Flex = styled.div`
               }
             }
           }
-          .editrole{
+          .editrole {
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
@@ -459,6 +508,11 @@ const Flex = styled.div`
             padding-top: 20px;
           }
         }
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
       }
     }
   }

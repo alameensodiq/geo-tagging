@@ -619,7 +619,7 @@ const Tables = ({
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>15</StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                   30%
+                    30%
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     12-03-2024
@@ -1003,7 +1003,10 @@ const Tables = ({
                           <Deactivate />
                           <span>Deactivate</span>
                         </div>
-                        <div className="row" onClick={() => navigate(`../${businessusers}/id`)}>
+                        <div
+                          className="row"
+                          onClick={() => navigate(`../${businessusers}/id`)}
+                        >
                           <View />
                           <span>View more</span>
                         </div>
@@ -1909,7 +1912,46 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "18" }}>
+                      {item?.rcNumber}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "flex-start"
+                        }}
+                      >
+                        <span>
+                          {item?.lastName} {""} {item?.firstName}
+                        </span>
+                        <span>{item?.email}</span>
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      {item?.activeProject}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      {item?.activeBusinessReps}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <span
+                        className="projectactivate"
+                        onClick={() => navigate(`../${corporate}/${item?.id}`)}
+                      >
+                        View
+                      </span>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "18" }}>
                     024537859
                   </StyledTableCell>
@@ -1978,42 +2020,7 @@ const Tables = ({
                       View
                     </span>
                   </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "18" }}>
-                    024537859
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "flex-start"
-                      }}
-                    >
-                      <span>Albert Saheed</span>
-                      <span>saheedalbert@gmail.com</span>
-                    </div>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    Building Homes
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    Hello please I want to...
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    20-10-2024
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    <span
-                      className="projectactivate"
-                      onClick={() => navigate(`../${corporate}/:id`)}
-                    >
-                      View
-                    </span>
-                  </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>
@@ -2047,7 +2054,46 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "18" }}>
+                      024537859
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "flex-start"
+                        }}
+                      >
+                        <span>
+                          {item?.lastName} {""} {item?.firstName}
+                        </span>
+                        <span>{item?.email}</span>
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      {item?.activeProject}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      {item?.activeBusinessReps}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <span
+                        className="projectactivate"
+                        onClick={() => navigate(`../${corporate}/${item?.id}`)}
+                      >
+                        View
+                      </span>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "18" }}>
                     024537859
                   </StyledTableCell>
@@ -2116,42 +2162,7 @@ const Tables = ({
                       View
                     </span>
                   </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "18" }}>
-                    024537859
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "flex-start"
-                      }}
-                    >
-                      <span>Albert Saheed</span>
-                      <span>saheedalbert@gmail.com</span>
-                    </div>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    Building Homes
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    Hello please I want to...
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    20-10-2024
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    <span
-                      className="projectactivate"
-                      onClick={() => navigate(`../${corporate}/:id`)}
-                    >
-                      View
-                    </span>
-                  </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>
@@ -2187,7 +2198,29 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "18" }}>
+                      {item?.name}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "16%" }}>
+                      100
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "16%" }}>
+                      {item?.totalLocations}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "16%" }}>
+                      Enterprise Plan
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "16%" }}>
+                      {item?.punctualPercentage}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "18%" }}>
+                      80%
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "18" }}>
                     Customer Loyalty Program
                   </StyledTableCell>
@@ -2222,25 +2255,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "18%" }}>
                     80%
                   </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "18" }}>
-                    Customer Loyalty Program
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "16%" }}>
-                    100
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "16%" }}>1</StyledTableCell>
-                  <StyledTableCell style={{ width: "16%" }}>
-                    Enterprise Plan
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "16%" }}>
-                    20%
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "18%" }}>
-                    80%
-                  </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>

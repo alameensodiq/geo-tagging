@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { corporate, superadmins } from "../Routes";
+import { CorporateSignUser } from "../Store/Apis/CorporateSignUser";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -35,8 +36,19 @@ const Login = () => {
   };
 
   const Authentication = () => {
-    navigate(`${superadmins}`)
+    // navigate(`${superadmins}`)
+    setLog(true);
+      const { email, password } = user;
+      dispatch(CorporateSignUser({ email, password }));
   };
+
+
+  const { corporateuser, authenticating } = useSelector((state) => state.corporateuser);
+  console.log(corporateuser)
+
+  if (corporateuser?.status && !authenticating && log && !corporateuser?.data?.hasChangeDefaultPassword) {
+    navigate(`${superadmins}`);
+  }
 
   return (
     <Flex>
@@ -78,7 +90,7 @@ const Login = () => {
           <LargeSignInButton
             onClick={() => Authentication()}
             big
-            title={"Proceed"}
+            title={authenticating ? 'Loading...' : "Proceed"}
             background
             color
           />

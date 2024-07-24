@@ -20,6 +20,8 @@ import Moment from "react-moment";
 import SuperAdminNavbar from "./SuperAdminNavbar";
 import { ModalButton } from "../../bits/ModalButton";
 import AppUserModal from "../../Modal/AppUserModal";
+import { SuperCorporatedetails } from "../../Store/Apis/SuperCorporateDetail";
+import { SuperCorporateDetailProject } from "../../Store/Apis/SuperCorporateDetailProject";
 
 const SuperAdminCorporateDetails = ({ title }) => {
   const navigate = useNavigate();
@@ -39,8 +41,19 @@ const SuperAdminCorporateDetails = ({ title }) => {
   console.log(id);
 
   useEffect(() => {
-    // dispatch(CorporateBusinessRepDetails({ id }));
-  }, [id]);
+    dispatch(SuperCorporatedetails({ id }));
+    dispatch(SuperCorporateDetailProject({id, searcher}))
+  }, [id, searcher]);
+
+  const { supercorporatedetails, authenticatingsupercorporatedetails } =
+    useSelector((state) => state.supercorporatedetails);
+  console.log(supercorporatedetails?.data);
+
+  const {
+    supercorporatedetailsproject,
+    authenticatingsupercorporatedetailsproject
+  } = useSelector((state) => state.supercorporatedetailsproject);
+  console.log(supercorporatedetailsproject?.data?.data);
 
   const PickDate = () => {
     datePickerRef.current.setOpen(true);
@@ -86,7 +99,11 @@ const SuperAdminCorporateDetails = ({ title }) => {
               style={{ cursor: "pointer" }}
               onClick={() => navigate(-1)}
             />
-            <span className="name">Al-ameen Sodiq</span>
+            <span className="name">
+              {supercorporatedetails?.data?.lastName}
+              {""}
+              {supercorporatedetails?.data?.firstName}
+            </span>
           </div>
         </div>
         <div className="top-div">
@@ -94,7 +111,11 @@ const SuperAdminCorporateDetails = ({ title }) => {
             <div className="activeinfo">
               <div className="activedetails">
                 <span className="image"></span>
-                <span className="name">Al-ameen Sodiq</span>
+                <span className="name">
+                  {supercorporatedetails?.data?.lastName}
+                  {""}
+                  {supercorporatedetails?.data?.firstName}
+                </span>
                 <span className="assigned">
                   <span
                     style={{
@@ -105,7 +126,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   >
                     RC:
                   </span>
-                  102233
+                  {supercorporatedetails?.data?.rcNumber}
                 </span>
                 <span className="date">
                   <span
@@ -117,8 +138,10 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   >
                     Date Created:
                   </span>{" "}
-                  22/04/2024
-                  {/* <Moment format="DD-MM-YYYY">22-04-2024</Moment> */}
+                  {/* 22/04/2024 */}
+                  <Moment format="DD-MM-YYYY">
+                    {supercorporatedetails?.data?.dateJoined}
+                  </Moment>
                 </span>
               </div>
               <ModalButton
@@ -132,11 +155,16 @@ const SuperAdminCorporateDetails = ({ title }) => {
             <div className="last">
               <div className="workdiv">
                 <span className="active">Active Project</span>
-                <spa className="number">10</spa>
+                <spa className="number">
+                  {supercorporatedetails?.data?.activeProject}
+                </spa>
               </div>
               <div className="workdiv">
                 <span className="active">Total Business Reps</span>
-                <spa className="number">20</spa>
+                <spa className="number">
+                  {supercorporatedetails?.data?.activeBusinessReps +
+                    supercorporatedetails?.data?.inActiveBusinessReps}
+                </spa>
               </div>
               <div className="workdiv">
                 <span className="active">Total Geo Location</span>
@@ -148,7 +176,9 @@ const SuperAdminCorporateDetails = ({ title }) => {
                 <div className="first">
                   <div className="phone">
                     <span className="mobile">Mobile Number</span>
-                    <span className="number">07057007046</span>
+                    <span className="number">
+                      {supercorporatedetails?.data?.phoneNumber}
+                    </span>
                   </div>
                 </div>
                 <div className="copy">
@@ -160,7 +190,9 @@ const SuperAdminCorporateDetails = ({ title }) => {
                 <div className="first">
                   <div className="phone">
                     <span className="mobile">Email Address</span>
-                    <span className="number">alameensodiq@yahoo.com</span>
+                    <span className="number">
+                      {supercorporatedetails?.data?.email}
+                    </span>
                   </div>
                 </div>
                 <div className="copy">
@@ -172,7 +204,9 @@ const SuperAdminCorporateDetails = ({ title }) => {
                 <div className="first">
                   <div className="phone">
                     <span className="mobile">Address</span>
-                    <span className="number">29A, Berkely Street</span>
+                    <span className="number">
+                      {supercorporatedetails?.data?.address}
+                    </span>
                   </div>
                 </div>
                 <div className="copy">
@@ -188,16 +222,16 @@ const SuperAdminCorporateDetails = ({ title }) => {
                 <div className="project">
                   <span className="title">Project Details</span>
                 </div>
-                
+
                 {/* <div className="inputsearch"> */}
-                  <InputSearch
-                    className='search'
-                    onChange={(e) => setSearcher(e.target.value)}
-                    placeholder="Search here"
-                  />
+                <InputSearch
+                  className="search"
+                  onChange={(e) => setSearcher(e.target.value)}
+                  placeholder="Search here"
+                />
                 {/* </div> */}
               </div>
-              <Tables superactivedetails/>
+              <Tables superactivedetails data={supercorporatedetailsproject?.data?.data} />
             </div>
           </div>
         </div>
@@ -571,7 +605,7 @@ const Flex = styled.div`
             display: flex;
             flex-direction: row;
             /* width: 100%; */
-            height: 35px;
+            height: 30px;
             padding-inline: 20px;
             justify-content: space-between;
             width: 100%;
@@ -585,14 +619,14 @@ const Flex = styled.div`
                 font-size: 16px;
               }
             }
-            .inputsearch{
-                display: flex;
+            .inputsearch {
+              display: flex;
+              width: 100%;
+              flex-direction: row;
+              justify-content: flex-end;
+              .search {
                 width: 100%;
-                flex-direction: row;
-                justify-content: flex-end;
-                .search{
-                    width: 100%;
-                }
+              }
             }
           }
         }

@@ -7,6 +7,7 @@ import InputSearch from "../../bits/InputSearch";
 import Tables from "../../bits/Tables";
 import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
+import Pagination from "../../Reusable/Pagination";
 
 const ClientAdminBusinessReps = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -28,21 +29,34 @@ const ClientAdminBusinessReps = ({ title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(CorporateBusinessRep())
-    if(reload){
-        dispatch(CorporateBusinessRep())
-        setReload(false)
+    dispatch(CorporateBusinessRep({ searcher, currentPage }));
+    if (reload) {
+      dispatch(CorporateBusinessRep({ searcher, currentPage }));
+      setReload(false);
     }
-  }, [reload]);
+  }, [reload, searcher, currentPage]);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
-  console.log(businessrep?.data?.data)
+  const { businessrep, authenticatingbusinessrep } = useSelector(
+    (state) => state.businessrep
+  );
+  console.log(businessrep?.data?.data);
 
+  const activate = businessrep?.data?.data?.filter(
+    (item) => item?.hasChangeDefaultPassword === true
+  );
+  const inactivate = businessrep?.data?.data?.filter(
+    (item) => item?.hasChangeDefaultPassword === false
+  );
 
-  const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
-  const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
+  const next = businessrep?.data?.meta?.next;
+  const previous = businessrep?.data?.meta?.prev;
+  const totalPosts = businessrep?.data?.meta?.totalCount;
 
-
+  const paginate = (number) => {
+    //  setSorted(tran)
+    setCurrentPage(number - 1);
+    setActivater(number);
+  };
 
   const setActivate = () => {
     SetActivate(true);
@@ -81,7 +95,9 @@ const ClientAdminBusinessReps = ({ title }) => {
           <div className="start">
             <div className="numbers">
               <span className="name">Business Reps</span>
-              <span className="count">{businessrep?.data?.data?.length} members</span>
+              <span className="count">
+                {businessrep?.data?.data?.length} members
+              </span>
             </div>
             <span className="about">
               This overview provides a comprehensive snapshot of general
@@ -152,7 +168,35 @@ const ClientAdminBusinessReps = ({ title }) => {
               placeholder="Search for Business Rep’s name, Assigned Project, e.t.c"
             />
           </div>
-          {activated ? <Tables active data={activate} /> : pend ? <Tables inactive data={inactivate} /> : ""}
+          {activated ? (
+            <div className="wrapper">
+              <Tables active data={activate} />
+              <Pagination
+                set={activater}
+                currentPage={currentPage}
+                postsPerPage={postsPerPage}
+                totalPosts={totalPosts}
+                paginate={paginate}
+                previous={previous}
+                next={next}
+              />
+            </div>
+          ) : pend ? (
+            <div className="wrapper">
+              <Tables inactive data={inactivate} />
+              <Pagination
+                set={activater}
+                currentPage={currentPage}
+                postsPerPage={postsPerPage}
+                totalPosts={totalPosts}
+                paginate={paginate}
+                previous={previous}
+                next={next}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </Flex>
@@ -308,6 +352,11 @@ const Flex = styled.div`
             top: 10px;
           }
         }
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
       }
     }
   }
