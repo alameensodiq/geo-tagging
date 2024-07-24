@@ -119,9 +119,9 @@ const AppModalStyle = styled.div`
       props.noheadborder ? "space-between" : "space-between"};
     gap: ${(props) =>
       props.noheadborder && !props.subscribe
-        ? "285px"
+        ? "225px"
         : props.noheadborder && props.subscribe
-        ? "330px"
+        ? "300px"
         : "0px"};
     .heading {
       position: relative;

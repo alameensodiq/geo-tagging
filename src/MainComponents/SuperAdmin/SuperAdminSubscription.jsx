@@ -194,7 +194,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">30 Days</span>
                   </div>
                   <SubscribeEditButton
-                      onClick={() => setStep(36)}
+                    onClick={() => setStep(36)}
                     background
                     color
                     title="Edit Free Trial days"
@@ -215,7 +215,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">20</span>
                   </div>
                   <SubscribeEditButton
-                      onClick={() => setStep(38)}
+                    onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
@@ -236,7 +236,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days">2</span>
                   </div>
                   <SubscribeEditButton
-                     onClick={() => setStep(38)}
+                    onClick={() => setStep(38)}
                     background
                     color
                     title="Edit number"
@@ -283,7 +283,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="days"> NGN 10,000</span>
                   </div>
                   <SubscribeEditButton
-                      onClick={() => setStep(40)}
+                    onClick={() => setStep(40)}
                     background
                     color
                     title="Edit pricing"
@@ -474,7 +474,7 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="free">Custom Plan</span>
                   </div>
                   <SubscribeEditButton
-                   onClick={() => setStep(40)}
+                    onClick={() => setStep(40)}
                     background
                     plus
                     color
@@ -494,6 +494,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div>
                   <DownloadCsv
+                    onClick={() => ""}
                     //   onClick={() => navigate(
                     //     `../${businessprojects}/location/:location`)}
                     exportdownload
@@ -513,7 +514,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div>
                   <DownloadCsv
-                  onClick={() => ''}
+                    onClick={() => ""}
                     //   onClick={() => navigate(
                     //     `../${businessprojects}/location/:location`)}
                     exportdownload
