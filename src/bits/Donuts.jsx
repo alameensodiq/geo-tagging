@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function Donuts({overview, report}) {
+function Donuts({overview, report, data1, data2}) {
   //  const series = data?.subscriptionPlan((item) => item.value)
-  const series = [60, 40];
+  const series = [data1, data2];
 
   const options = {
     chart: {

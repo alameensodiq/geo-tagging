@@ -10,7 +10,8 @@ export const LargeSignInButton = ({
   large,
   big,
   onClick,
-  bigger
+  bigger,
+  increase
 }) => {
   return (
     <Flex
@@ -21,6 +22,7 @@ export const LargeSignInButton = ({
       noborder={noborder}
       large={large}
       bigger={bigger}
+      increase={increase}
     >
       <button className="authenticationbutton" onClick={onClick}>
         {title}
@@ -54,7 +56,7 @@ const Flex = styled.div`
     min-height: ${(props) => (props.large ? `40px` : `50px`)};
     border: ${(props) => (props.large ? `1px solid #E2E8F0` : `1px solid #E2E8F0`)};
     width: ${(props) =>
-      props.large ? "180px" : props?.big ? "430px" :  props?.bigger ? "490px" : "280px"};
+      props.large ? "180px" : props?.big ? "430px" : (props?.bigger && props?.increase) ? '570px' :  props?.bigger ? "490px"  : "280px"};
     /* border: ${(props) =>
       props.noborder
         ? "0px"

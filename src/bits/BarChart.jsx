@@ -5,11 +5,12 @@ import styled from 'styled-components';
 
 
 
- function BarChart() {
+ function BarChart({data}) {
     
     const  series = [{
         //   name: 'Net Profit',
           data: [200, 300, 500, 450, 670, 400, 450, 350, 790, 300, 200, 380]
+          // data: data?.map((item) => item?.AMOUNT)
         }]
 
     const   options = {

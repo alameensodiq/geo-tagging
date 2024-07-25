@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function Radial({overview}) {
-  const series = [50];
+function Radial({overview, data}) {
+  const series = [data ? data : '0'];
+
+  // [data?.targetAttendance, data?.attendanceCaptured]
 
   const options = {
     chart: {

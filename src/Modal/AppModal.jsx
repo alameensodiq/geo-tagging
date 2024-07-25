@@ -19,7 +19,8 @@ export default function AppModal({
   Archived,
   mark,
   noheadborder,
-  subscribe
+  subscribe,
+  wide
 }) {
   console.log(subscribe);
   return (
@@ -33,6 +34,7 @@ export default function AppModal({
       }}
     >
       <ModalLayout
+        wide={wide}
         headings={headings}
         maxWidth={maxWidth}
         closeModal={closeModal}
@@ -40,6 +42,7 @@ export default function AppModal({
         <AppModalStyle noheadborder={noheadborder} subscribe={subscribe}>
           <div
             style={{
+              width: "100%",
               display: "flex",
               justifyContent: noheadborder ? "space-between" : "flex-end",
               alignItems: "center",
@@ -49,7 +52,8 @@ export default function AppModal({
                   : heading && noheadborder
                   ? ""
                   : "",
-              padding: heading ? "0px 10px" : confirm ? "0px" : "0px"
+              padding: heading ? "0px 10px" : confirm ? "0px" : "0px",
+              // position: "sticky",
             }}
           >
             <div className="head">

@@ -8,6 +8,9 @@ import { ReactComponent as Editeye } from "../../assets/editeye.svg";
 import Tables from "../../bits/Tables";
 import AppUserModal from "../../Modal/AppUserModal";
 import InputSearch from "../../bits/InputSearch";
+import { CorporateUser } from "../../Store/Apis/CorporateUser";
+import Pagination from "../../Reusable/Pagination";
+import { Allpermission } from "../../Store/Apis/AllPermission";
 
 const ClientUsermanagement = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -33,15 +36,34 @@ const ClientUsermanagement = ({ title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(CorporateBusinessRep())
+    dispatch(CorporateUser({ searcher, currentPage }));
+    dispatch(Allpermission())
     if (reload) {
-      // dispatch(CorporateBusinessRep())
+      dispatch(CorporateUser({ searcher, currentPage }));
+      dispatch(Allpermission())
       setReload(false);
     }
-  }, [reload]);
+  }, [reload, searcher, currentPage]);
 
-  //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
-  //   console.log(businessrep?.data?.data)
+  const { userteam, authenticatinguserteam } = useSelector(
+    (state) => state.userteam
+  );
+  console.log(userteam?.data?.data);
+
+  const { allpermission, authenticatingallpermission } = useSelector(
+    (state) => state.allpermission
+  );
+  console.log(allpermission?.data);
+
+  const next = userteam?.data?.meta?.next;
+  const previous = userteam?.data?.meta?.prev;
+  const totalPosts = userteam?.data?.meta?.totalCount;
+
+  const paginate = (number) => {
+    //  setSorted(tran)
+    setCurrentPage(number - 1);
+    setActivater(number);
+  };
 
   //   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
   //   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
@@ -105,7 +127,7 @@ const ClientUsermanagement = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal data={allpermission?.data} setStep={setStep} step={step} setReload={setReload} />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
@@ -184,7 +206,20 @@ const ClientUsermanagement = ({ title }) => {
               placeholder="Search for name, project name e.t.c"
             />
           </div>
-          <Tables manageuser data={[]} setStep={setStep} />
+          <div className="wrapper">
+            <Tables manageuser data={userteam?.data?.data} setStep={setStep} />
+            {userteam?.data?.data?.length >= 1 && (
+              <Pagination
+                set={activater}
+                currentPage={currentPage}
+                postsPerPage={postsPerPage}
+                totalPosts={totalPosts}
+                paginate={paginate}
+                previous={previous}
+                next={next}
+              />
+            )}
+          </div>
           {/* {activated ? (
             <Tables manageuser data={[]} setStep={setStep} />
           ) : pend ? (
@@ -579,6 +614,11 @@ const Flex = styled.div`
             padding-top: 20px;
           }
         }
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
       }
     }
   }

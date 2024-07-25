@@ -10,11 +10,12 @@ const ModalText = ({
   name,
   value,
   onChange,
-  logo
+  logo,
+  increase
 }) => {
   console.log(auth);
   return (
-    <Flex reduce={reduce} auth={auth} fixedWidth={fixedWidth}>
+    <Flex increase={increase} reduce={reduce} auth={auth} fixedWidth={fixedWidth}>
       {logo ? <Email  className="close" /> : ""}
       <input
         name={name}
@@ -36,7 +37,7 @@ const Flex = styled.div`
     border: 1px solid #E2E8F0;
     box-shadow: 0px 1px 2px 0px #1018280d;
     width: ${(props) =>
-      props?.reduce ? "400px" : props?.auth ? "430px" : "490px"};
+      props?.reduce ? "400px" : props?.auth ? "430px" : props?.increase ? '580px' : "490px"};
     border-radius: 8px;
     padding-left: 20px;
     outline: none;

@@ -12,6 +12,9 @@ import { SuperCorporateSlice } from './Reducers/SuperCorporate';
 import { SuperCorporateDetailsSlice } from './Reducers/SuperCorporateDetails';
 import { SuperCorporateDetailsProjectSlice } from './Reducers/SuperCorporateDetailsProject';
 import { SuperSubsSlice } from './Reducers/SuperSub';
+import { CorporateUserSlice } from './Reducers/CorporateUser';
+import { AllpermissionSlice } from './Reducers/AllPermission';
+import { AddTeamSlice } from './Reducers/AddTeam';
 
 
 
@@ -31,6 +34,9 @@ export default configureStore({
         supercorporate: SuperCorporateSlice?.reducer,
         supercorporatedetails: SuperCorporateDetailsSlice?.reducer,
         supercorporatedetailsproject: SuperCorporateDetailsProjectSlice?.reducer,
-        supersub: SuperSubsSlice?.reducer
+        supersub: SuperSubsSlice?.reducer,
+        userteam: CorporateUserSlice?.reducer,
+        allpermission:AllpermissionSlice?.reducer,
+        addteam: AddTeamSlice?.reducer
     }
 });

@@ -426,38 +426,50 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    Building Homes
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    12-03-2023
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    11-12-2023
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>4</StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    Hourly
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    3 hours
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    30,000
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    70%
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    <button className="inactive-button">
-                      <div className="inactive">
-                        <span className="round"></span>Inactive
-                      </div>
-                    </button>
-                  </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow>
+                {data?.map((item) => (
+                  <StyledTableRow>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.name}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.startDate}</Moment>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.stopDate}</Moment>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.totalLocations}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.checkInCount}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.duration}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.dailyPay?.NGN}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      70%
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.isActive ? (
+                        <button className="activer-button">
+                          <div className="activer">
+                            <span className="round"></span>Active
+                          </div>
+                        </button>
+                      ) : (
+                        <button className="inactive-button">
+                          <div className="inactive">
+                            <span className="round"></span>Inactive
+                          </div>
+                        </button>
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow>
                   <StyledTableCell style={{ width: "15%" }}>
                     Building Homes
                   </StyledTableCell>
@@ -518,7 +530,7 @@ const Tables = ({
                       </div>
                     </button>
                   </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>
@@ -979,41 +991,43 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Abdul warith
-                  </StyledTableCell>
-                  {/* <StyledTableCell style={{ width: "20%" }}>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "20%" }}>
+                    {item?.lastName} {""} {item?.firstName}
+                    </StyledTableCell>
+                    {/* <StyledTableCell style={{ width: "20%" }}>
                     Super Admin
                   </StyledTableCell> */}
-                  <StyledTableCell style={{ width: "30%" }}>
-                    alameensodiq@gmail.com
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    07057007046
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    <Moment format="DD-MM-YYYY">12-03-2024</Moment>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    <Action onClick={() => UserActive()} />
-                    {useractive && (
-                      <div className="activeusermodal">
-                        <div className="row" onClick={() => setStep(11)}>
-                          <Deactivate />
-                          <span>Deactivate</span>
+                    <StyledTableCell style={{ width: "30%" }}>
+                    {item?.email}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                    {item?.phoneNumber}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <Action onClick={() => UserActive()} />
+                      {useractive  && (
+                        <div className="activeusermodal">
+                          <div className="row" onClick={() => setStep(11)}>
+                            <Deactivate />
+                            <span>Deactivate</span>
+                          </div>
+                          <div
+                            className="row"
+                            onClick={() => navigate(`../${businessusers}/id`)}
+                          >
+                            <View />
+                            <span>View more</span>
+                          </div>
                         </div>
-                        <div
-                          className="row"
-                          onClick={() => navigate(`../${businessusers}/id`)}
-                        >
-                          <View />
-                          <span>View more</span>
-                        </div>
-                      </div>
-                    )}
-                  </StyledTableCell>
-                </StyledTableRow>
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>

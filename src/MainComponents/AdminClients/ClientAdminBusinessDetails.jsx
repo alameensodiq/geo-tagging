@@ -76,7 +76,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
   const { businessrepdetails, authenticatingbusinessrepdetails } = useSelector(
     (state) => state.businessrepdetails
   );
-  console.log(businessrepdetails);
+  console.log(businessrepdetails?.data);
 
   return (
     <Flex>
@@ -89,8 +89,8 @@ const ClientAdminBusinessDetails = ({ title }) => {
               onClick={() => navigate(-1)}
             />
             <span className="name">
-              {businessrepdetails?.data?.lastName}{" "}
-              {businessrepdetails?.data?.firstName}
+              {businessrepdetails?.data?.user?.lastName}{" "}
+              {businessrepdetails?.data?.user?.firstName}
             </span>
           </div>
         </div>
@@ -100,16 +100,17 @@ const ClientAdminBusinessDetails = ({ title }) => {
               <span className="active">Active</span>
             </div>
             <div className="activedetails">
-              <span className="image"></span>
+              {/* <span className="image"></span> */}
+              <img src={businessrepdetails?.data?.user?.avatar} className="image" alt="pics"/>
               <span className="name">
-                {businessrepdetails?.data?.lastName}{" "}
-                {businessrepdetails?.data?.firstName}
+                {businessrepdetails?.data?.user?.lastName}{" "}
+                {businessrepdetails?.data?.user?.firstName}
               </span>
               <span className="assigned">Assigned Project: Building Home</span>
               <span className="date">
                 Date Created:{" "}
                 <Moment format="DD-MM-YYYY">
-                  {businessrepdetails?.data?.dateJoined}
+                  {businessrepdetails?.data?.user?.dateJoined}
                 </Moment>
               </span>
             </div>
@@ -123,7 +124,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 <div className="phone">
                   <span className="mobile">Mobile Number</span>
                   <span className="number">
-                    {businessrepdetails?.data?.phoneNumber}
+                    {businessrepdetails?.data?.user?.phoneNumber}
                   </span>
                 </div>
               </div>
@@ -137,7 +138,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 <div className="phone">
                   <span className="mobile">Email Address</span>
                   <span className="number">
-                    {businessrepdetails?.data?.email}
+                    {businessrepdetails?.data?.user?.email}
                   </span>
                 </div>
               </div>
@@ -149,7 +150,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 <div className="phone">
                   <span className="mobile">Address</span>
                   <span className="number">
-                    {businessrepdetails?.data?.address}
+                    {businessrepdetails?.data?.user?.address}
                   </span>
                 </div>
               </div>
@@ -161,7 +162,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
           <div className="last">
             <div className="cover">
               <div className="radial">
-                <Radial />
+                <Radial data={businessrepdetails?.data?.targetAttendance ? businessrepdetails?.data?.targetAttendance : []}/>
               </div>
               <div className="circle">
                 <span className="label">Total Attendance</span>
@@ -174,19 +175,19 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   <span className="first"></span>
                   <span className="targeted">Targeted Attendance</span>
                 </div>
-                <span>40</span>
+                <span>{businessrepdetails?.data?.targetAttendance}</span>
               </div>
               <div className="attendant">
                 <div className="wrap">
                   <span className="second"></span>
                   <span className="targeted">Attendance Captured</span>
                 </div>
-                <span>40</span>
+                <span>{businessrepdetails?.data?.attendanceCaptured}</span>
               </div>
             </div>
           </div>
         </div>
-        <BusinessRepsTransactionCards />
+        <BusinessRepsTransactionCards data={businessrepdetails?.data} />
         <div className="statuses">
           <div
             onClick={() => setActivate()}
@@ -235,15 +236,15 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 </div>
               </div>
               <div className="donuts">
-                <Donuts />
+                <Donuts data1={businessrepdetails?.data?.totalPunctual  ? businessrepdetails?.data?.totalPunctual: []} data2={businessrepdetails?.data?.totalNonPunctual ? businessrepdetails?.data?.totalNonPunctual : []}/>
                 <div className="label">
                   <div className="punctual-div">
                     <span className="punctual"></span>
-                    <span className="rate">Punctual-70%</span>
+                    <span className="rate">Punctual-{ businessrepdetails?.data?.totalPunctual ? (businessrepdetails?.data?.totalPunctual/(businessrepdetails?.data?.totalPunctual + businessrepdetails?.data?.totalNonPunctual)) * 100  : "0"}</span>
                   </div>
                   <div className="late-div">
                     <span className="late"></span>
-                    <span className="rate">Late-30%</span>
+                    <span className="rate">Late-{ businessrepdetails?.data?.totalNonPunctual ? (businessrepdetails?.data?.totalNonPunctual/(businessrepdetails?.data?.totalPunctual + businessrepdetails?.data?.totalNonPunctual)) * 100  : "0"}</span>
                   </div>
                 </div>
               </div>
@@ -290,48 +291,22 @@ const ClientAdminBusinessDetails = ({ title }) => {
           ) : activated2 ? (
             <>
               <div className="date-search">
-                {/* <div className="main">
-                    <DatePicker
-                        className="input"
-                        selected={startDate}
-                        ref={datePickerRef}
-                        onChange={(date) => dateChanger(date)}
-                        showTimeSelect={false}
-                        dateFormat="MMM d yyyy"
-                        placeholderText="13 Oct 2023"
-                        popperPlacement="bottom-start"
-                    />
-                    <Calendar onClick={() => PickDate()} className="calendar" />
-                    </div>
-                    <div className="main">
-                    <DatePicker
-                        className="input"
-                        selected={endDate}
-                        ref={datePickerRefs}
-                        onChange={(date) => dateChangers(date)}
-                        showTimeSelect={false}
-                        dateFormat="MMM d yyyy"
-                        placeholderText="13 Oct 2023"
-                        popperPlacement="bottom-start"
-                    />
-                    <Calendar onClick={() => PickDater()} className="calendar" />
-                    </div> */}
                 <InputSearch
                   onChange={(e) => setSearcher(e.target.value)}
                   placeholder="Search for Project name, geo location, e.t.c"
                 />
               </div>
-              <Tables projects />
+              <Tables projects data={businessrepdetails?.data?.projects ? businessrepdetails?.data?.projects : []}/>
             </>
           ) : pend2 ? (
             <>
               <div className="searchContainer">
                 <span className="rating">
                   Earned wages from Jan - Dec:{" "}
-                  <span className="amount">23,000</span>
+                  <span className="amount">{businessrepdetails?.data?.totalEarned?.AMOUNT}</span>
                 </span>
               </div>
-              <BarChart />
+              <BarChart data={businessrepdetails?.data?.monthlyWages ? businessrepdetails?.data?.monthlyWages : []} />
             </>
           ) : (
             ""

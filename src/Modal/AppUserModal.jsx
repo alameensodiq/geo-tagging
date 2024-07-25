@@ -6,6 +6,17 @@ import { ReactComponent as Success } from "../assets/successful.svg";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
 import { ReactComponent as Dot } from "../assets/dotcircle.svg";
 import { ReactComponent as Markgreen } from "../assets/markgreen.svg";
+import { ReactComponent as Call } from "../assets/call.svg";
+import { ReactComponent as Contact } from "../assets/contactedit.svg";
+import { ReactComponent as Busemail } from "../assets/busemail.svg";
+import { ReactComponent as Buslocate } from "../assets/buslocation.svg";
+import { ReactComponent as Eye } from "../assets/eye.svg";
+import { ReactComponent as Editeye } from "../assets/editeye.svg";
+import { ReactComponent as List } from "../assets/list.svg";
+import { ReactComponent as Create } from "../assets/create.svg";
+import { ReactComponent as DarkCreate } from "../assets/darkcreate.svg";
+import { ReactComponent as ActivateDark } from "../assets/activatedark.svg";
+import { ReactComponent as DeactivateDark } from "../assets/deactivatedark.svg";
 import toast from "react-hot-toast";
 import { CreateBusinessRepCorporate } from "../Store/Apis/CreateBusinessRepCorporate";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,13 +24,30 @@ import ModalInputSelect from "../bits/ModalInputSelect";
 import Tables from "../bits/Tables";
 import { LocationModalButton } from "../bits/LocationModalButton";
 import styled from "styled-components";
+import { AddTeam } from "../Store/Apis/AddTeam";
 
-const AppUserModal = ({ setStep, step, setReload }) => {
+const AppUserModal = ({ setStep, step, setReload, data }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
   const [update, setUpdate] = useState("");
   const [bustate, setBusstate] = useState(false);
+  const [bustate1, setBusstate1] = useState(false);
+  const [view1, setView1] = useState(false)
+  const [view2, setView2] = useState(false)
+  const [view3, setView3] = useState(false)
+  const [view4, setView4] = useState(false)
+  const [view5, setView5] = useState(false)
+  const [view6, setView6] = useState(false)
+  const [view7, setView7] = useState(false)
+  const [view8, setView8] = useState(false)
+  const [view9, setView9] = useState(false)
+  const [view10, setView10] = useState(false)
+  const [view11, setView11] = useState(false)
+  const [view12, setView12] = useState(false)
+  const [view13, setView13] = useState(false)
+  const [view14, setView14] = useState(false)
+  const [view15, setView15] = useState(false)
   const [regbus, setRegbus] = useState({
     firstname: "",
     lastname: "",
@@ -30,11 +58,26 @@ const AppUserModal = ({ setStep, step, setReload }) => {
     avatar: update
   });
 
+  const [team, setTeam] = useState({
+    name: "",
+    lastname: "",
+    rcNumber: "",
+    address: "",
+    permissions: [],
+    phone: "",
+    email: "",
+    avatar: update
+  });
+
   const { createbus, authenticatingcreatebus } = useSelector(
     (state) => state.createbus
   );
 
-  console.log(createbus);
+  const { addteam, authenticatingaddteam } = useSelector(
+    (state) => state.addteam
+  );
+
+  console.log(addteam);
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
   //     setStep(3);
   //     toast.success(createbus?.message)
@@ -55,18 +98,210 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         avatar: update
       };
     });
+    setTeam((currData) => {
+      return {
+        ...currData,
+        avatar: update
+      };
+    });
     if (bustate && createbus?.status && !authenticatingcreatebus) {
       setStep(3);
     }
+    if (bustate1 && addteam?.status && !authenticatingaddteam) {
+      setStep(10);
+    }
 
     console.log(update);
-  }, [update, bustate, createbus?.status, authenticatingcreatebus]);
+  }, [
+    update,
+    bustate,
+    createbus?.status,
+    authenticatingcreatebus,
+    bustate1,
+    addteam,
+    authenticatingaddteam,
+    addteam?.status
+  ]);
+
+  const Viewing = () => {
+    setView1(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'DASHBOARD_VIEW'
+      ]
+    }));
+  };
+
+  const Viewing2 = () => {
+    setView2(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'BUSINESS_REP_VIEW'
+      ]
+    }));
+  };
+
+  const Viewing3 = () => {
+    setView3(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'BUSINESS_REP_LIST'
+      ]
+    }));
+  };
+
+  const Viewing4 = () => {
+    setView4(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'BUSINESS_REP_EDIT'
+      ]
+    }));
+  };
+
+  const Viewing5 = () => {
+    setView5(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'BUSINESS_REP_CREATE'
+      ]
+    }));
+  };
+
+  const Viewing6 = () => {
+    setView6(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'BUSINESS_REP_ACTIVATE'
+      ]
+    }));
+  };
+
+  const Viewing7 = () => {
+    setView7(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'BUSINESS_REP_DEACTIVATE'
+      ]
+    }));
+  };
+
+  const Viewing8 = () => {
+    setView8(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'SUBSCRIPTION_VIEW'
+      ]
+    }));
+  };
+
+  const Viewing9 = () => {
+    setView9(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'SUBSCRIPTION_LIST'
+      ]
+    }));
+  };
+
+  const Viewing10 = () => {
+    setView10(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'PLAN_VIEW'
+      ]
+    }));
+  };
+
+  const Viewing11 = () => {
+    setView11(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'PROJECT_VIEW'
+      ]
+    }));
+  };
+
+  const Viewing12 = () => {
+    setView12(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'PROJECT_LIST'
+      ]
+    }));
+  };
+
+  const Viewing13 = () => {
+    setView13(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'PROJECT_CREATE'
+      ]
+    }));
+  };
+
+  const Viewing14 = () => {
+    setView14(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'PROJECT_EDIT'
+      ]
+    }));
+  };
+
+  const Viewing15 = () => {
+    setView15(true);
+    setTeam(prevTeam => ({
+      ...prevTeam,
+      permissions: [
+        ...(prevTeam.permissions || []), 
+        'REPORT_VIEW'
+      ]
+    }));
+  };
 
   const Change = (e) => {
     const { name, value } = e.target;
     console.log(value);
     setRegbus({
       ...regbus,
+      [name]: value
+    });
+  };
+
+  const Changeteam = (e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setTeam({
+      ...team,
       [name]: value
     });
   };
@@ -141,8 +376,49 @@ const AppUserModal = ({ setStep, step, setReload }) => {
     setBusstate(true);
   };
 
+  const SendTeam = () => {
+    const {
+      lastname,
+      name,
+      rcNumber,
+      address,
+      phone,
+      email,
+      avatar,
+      permissions
+    } = team;
+    console.log(team)
+    const names = `${name} ${lastname}`;
+    const allVariablesPresent = [
+      lastname,
+      name,
+      rcNumber,
+      address,
+      phone,
+      email,
+      avatar,
+      permissions
+    ].every((variable) => variable !== undefined && variable !== null);
+    if (allVariablesPresent) {
+      const names = `${name} ${lastname}`;
+      dispatch(
+        AddTeam({
+          name: names,
+          rcNumber,
+          address,
+          phone,
+          email,
+          avatar,
+          permissions
+        })
+      );
+      setBusstate1(true);
+    } else {
+      toast.error("One or more required fields are missing.");
+    }
+  };
+
   const handleCloseModal4 = () => {
-    setStep(0);
     setRegbus({
       firstname: "",
       lastname: "",
@@ -152,8 +428,36 @@ const AppUserModal = ({ setStep, step, setReload }) => {
       email: "",
       avatar: ""
     });
+    setTeam({
+      name: "",
+      rcNumber: "",
+      lastname: "",
+      address: "",
+      permissions: [],
+      phone: "",
+      email: "",
+      avatar: ""
+    });
+    setUpdate("")
+    setStep(0);
     setBusstate(false);
+    setBusstate1(false);
     setReload(true);
+    setView1(false)
+    setView2(false)
+    setView3(false)
+    setView4(false)
+    setView5(false)
+    setView6(false)
+    setView7(false)
+    setView8(false)
+    setView9(false)
+    setView10(false)
+    setView11(false)
+    setView12(false)
+    setView13(false)
+    setView14(false)
+    setView15(false)
   };
 
   const CreatUsermanagement = () => {
@@ -171,80 +475,84 @@ const AppUserModal = ({ setStep, step, setReload }) => {
 
         heading="Add Business Reps"
       >
-        <ModalInputText
-          label="First Name"
-          onChange={(e) => Change(e)}
-          name="firstname"
-          value={regbus?.firstname}
-          placeholder={`${`Enter Business Rep's First Name`}`}
-        />
-        <ModalInputText
-          label="Last Name"
-          onChange={(e) => Change(e)}
-          name="lastname"
-          value={regbus?.lastname}
-          placeholder={`${`Enter Business Rep's Last Name`}`}
-        />
-        <ModalInputText
-          label="Phone Number"
-          onChange={(e) => Change(e)}
-          name="phone"
-          value={regbus?.phone}
-          placeholder={`${`Enter Business Rep's Phone Number`}`}
-        />
-        <ModalInputText
-          label="Registeration Number"
-          onChange={(e) => Change(e)}
-          name="rcNumber"
-          value={regbus?.rcNumber}
-          placeholder={`${`Enter Business Rep's Reg.Number`}`}
-        />
-        <ModalInputText
-          label="Email"
-          onChange={(e) => Change(e)}
-          name="email"
-          value={regbus?.email}
-          placeholder={`${`Enter Business Rep's Email`}`}
-        />
-        <ModalInputText
-          label="Address"
-          onChange={(e) => Change(e)}
-          name="address"
-          value={regbus?.address}
-          placeholder={`${`Enter Business Rep's Address`}`}
-        />
-        {regbus?.avatar !== "" ? (
-          <img
-            src={regbus?.avatar}
-            alt="takephoto"
-            style={{ width: "492px", height: "105px" }}
-          />
-        ) : (
-          <>
-            <input
-              type="file"
-              id="uploadFile"
-              name="avatar"
-              onChange={(e) => sendingsImage(e)}
-              accept="image/*"
-              style={{ display: "none" }}
-              className="i-none"
-              ref={datePickerRef}
+        <FlexUser>
+          <div className="main">
+            <ModalInputText
+              label="First Name"
+              onChange={(e) => Change(e)}
+              name="firstname"
+              value={regbus?.firstname}
+              placeholder={`${`Enter Business Rep's First Name`}`}
             />
             <ModalInputText
-              onClick={() => PickDater()}
-              label="Take photo"
-              photo
+              label="Last Name"
+              onChange={(e) => Change(e)}
+              name="lastname"
+              value={regbus?.lastname}
+              placeholder={`${`Enter Business Rep's Last Name`}`}
             />
-          </>
-        )}
-        <LargeSignInButton
-          onClick={() => setStep(2)}
-          bigger
-          title={"Submit"}
-          background
-          color
-        />
+            <ModalInputText
+              label="Phone Number"
+              onChange={(e) => Change(e)}
+              name="phone"
+              value={regbus?.phone}
+              placeholder={`${`Enter Business Rep's Phone Number`}`}
+            />
+            <ModalInputText
+              label="Registeration Number"
+              onChange={(e) => Change(e)}
+              name="rcNumber"
+              value={regbus?.rcNumber}
+              placeholder={`${`Enter Business Rep's Reg.Number`}`}
+            />
+            <ModalInputText
+              label="Email"
+              onChange={(e) => Change(e)}
+              name="email"
+              value={regbus?.email}
+              placeholder={`${`Enter Business Rep's Email`}`}
+            />
+            <ModalInputText
+              label="Address"
+              onChange={(e) => Change(e)}
+              name="address"
+              value={regbus?.address}
+              placeholder={`${`Enter Business Rep's Address`}`}
+            />
+            {regbus?.avatar !== "" ? (
+              <img
+                src={regbus?.avatar}
+                alt="takephoto"
+                style={{ width: "492px", height: "105px" }}
+              />
+            ) : (
+              <>
+                <input
+                  type="file"
+                  id="uploadFile"
+                  name="avatar"
+                  onChange={(e) => sendingsImage(e)}
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  className="i-none"
+                  ref={datePickerRef}
+                />
+                <ModalInputText
+                  onClick={() => PickDater()}
+                  label="Take photo"
+                  photo
+                />
+              </>
+            )}
+          </div>
+          <LargeSignInButton
+            onClick={() => setStep(2)}
+            bigger
+            title={"Submit"}
+            background
+            color
+          />
+        </FlexUser>
       </AppModal>
       <AppModal
         step={2}
@@ -627,44 +935,265 @@ const AppUserModal = ({ setStep, step, setReload }) => {
         closeModal={handleCloseModal4}
         // updateUserListData(update);
         // window.location.reload()
-
+        wide
         heading="Add User management"
       >
-        <ModalInputText
-          label="Full Name"
-          onChange={(e) => Change(e)}
-          name="name"
-          value={regbus?.name}
-          placeholder={`${`Enter Business Rep's Full Name`}`}
-        />
-        <ModalInputText
-          label="Phone Number"
-          onChange={(e) => Change(e)}
-          name="phone"
-          value={regbus?.phone}
-          placeholder={`${`Enter Business Rep's Phone Number`}`}
-        />
-        <ModalInputText
-          label="Email"
-          onChange={(e) => Change(e)}
-          name="email"
-          value={regbus?.email}
-          placeholder={`${`Enter Business Rep's Email`}`}
-        />
-        <ModalInputSelect
+        <FlexUser>
+          <div className="main">
+            <ModalInputText
+              label="First Name"
+              onChange={(e) => Changeteam(e)}
+              name="name"
+              increase
+              value={team?.name}
+              placeholder={`${`Enter User management First Name`}`}
+            />
+            <ModalInputText
+              label="Last Name"
+              onChange={(e) => Changeteam(e)}
+              name="lastname"
+              increase
+              value={team?.lastname}
+              placeholder={`${`Enter User management Last Name`}`}
+            />
+            <ModalInputText
+              label="Phone Number"
+              onChange={(e) => Changeteam(e)}
+              name="phone"
+              increase
+              value={team?.phone}
+              placeholder={`${`Enter User management Phone Number`}`}
+            />
+            <ModalInputText
+              label="RC Number"
+              onChange={(e) => Changeteam(e)}
+              name="rcNumber"
+              increase
+              value={team?.rcNumber}
+              placeholder={`${`Enter User management RCNumber`}`}
+            />
+            <ModalInputText
+              label="Email"
+              onChange={(e) => Changeteam(e)}
+              name="email"
+              increase
+              value={team?.email}
+              placeholder={`${`Enter User management Email`}`}
+            />
+            <ModalInputText
+              label="Address"
+              onChange={(e) => Changeteam(e)}
+              name="address"
+              increase
+              value={team?.address}
+              placeholder={`${`Enter User management Address`}`}
+            />
+            {team?.avatar !== "" ? (
+              <img
+                src={team?.avatar}
+                alt="takephoto"
+                style={{ width: "522px", height: "105px" }}
+              />
+            ) : (
+              <>
+                <input
+                  type="file"
+                  id="uploadFile"
+                  name="avatar"
+                  onChange={(e) => sendingsImage(e)}
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  className="i-none"
+                  ref={datePickerRef}
+                />
+                <ModalInputText
+                  onClick={() => PickDater()}
+                  label="Take photo"
+                  photo
+                  increaser
+                />
+              </>
+            )}
+            <div className="flex">
+              <div className="activities">
+                <div className="activity-permission">
+                  <span className="activitynames">Activity</span>
+                  <span>Permission</span>
+                </div>
+                <div className="rolename">
+                  <span className="name">1.Dashboard</span>
+                  <div className="button-group">
+                    {data && !view1 && data[0] === "DASHBOARD_VIEW" && (
+                      <button className="view" onClick={() => Viewing()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                    {/* <button className="view" onClick={() => setStep(18)}>
+                    <Editeye />
+                    Edit
+                  </button> */}
+                  </div>
+                </div>
+                <div className="rolename">
+                  <span className="name">2.Business Reps</span>
+                  <div className="button-group">
+                    {data && !view2 && data[1] === "BUSINESS_REP_VIEW" && (
+                      <button className="view" onClick={() => Viewing2()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                    {data && !view3 && data[2] === "BUSINESS_REP_LIST" && (
+                      <button className="view" onClick={() => Viewing3()}>
+                        <List />
+                        List
+                      </button>
+                    )}
+                    {data && !view4 && data[6] === "BUSINESS_REP_EDIT" && (
+                      <button className="view" onClick={() => Viewing4()}>
+                        <Editeye />
+                        Edit
+                      </button>
+                    )}
+                    {data && !view5 && data[3] === "BUSINESS_REP_CREATE" && (
+                      <button className="view" onClick={() => Viewing5()}>
+                        <Create />
+                        Create
+                      </button>
+                    )}
+                    {/* <button className="view" onClick={() => setStep(50)}>
+                  <List />
+                  List
+                </button> */}
+                    {data && !view6 && data[4] === "BUSINESS_REP_ACTIVATE" && (
+                      <button className="view" onClick={() => Viewing6()}>
+                        <ActivateDark />
+                        Activate
+                      </button>
+                    )}
+                    {data && !view7 && data[5] === "BUSINESS_REP_DEACTIVATE" && (
+                      <button className="view" onClick={() => Viewing7()}>
+                        <DeactivateDark />
+                        Deactivate
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div className="rolename">
+                  <span className="name">3. User management</span>
+                  <div className="button-group">
+                    {/* <button className="view" onClick={() => setStep(48)}>
+                        <Eye />
+                        View
+                      </button> */}
+
+                    {/* <button className="view" onClick={() => setStep(46)}>
+                      <Editeye />
+                      Edit
+                    </button>
+                    <button className="darkview" onClick={() => setStep(50)}>
+                      <DarkCreate />
+                      Create
+                    </button> */}
+                  </div>
+                </div>
+                <div className="rolename">
+                  <span className="name">4. Subscriptions</span>
+                  <div className="button-group">
+                    {data && !view8 && data[7] === "SUBSCRIPTION_VIEW" && (
+                      <button className="view" onClick={() => Viewing8()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                    {data && !view9 && data[8] === "SUBSCRIPTION_LIST" && (
+                      <button className="view" onClick={() => Viewing9()}>
+                        <List />
+                        List
+                      </button>
+                    )}
+                    {data && !view10 && data[9] === "PLAN_VIEW" && (
+                      <button className="view" onClick={() => Viewing10()}>
+                        <Eye />
+                        Plan view
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div className="rolename">
+                  <span className="name">5. Projects</span>
+                  <div className="button-group">
+                    {data && !view11 && data[10] === "PROJECT_VIEW" && (
+                      <button className="view" onClick={() => Viewing11()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                    {data && !view12 && data[11] === "PROJECT_LIST" && (
+                      <button className="view" onClick={() => Viewing12()}>
+                        <Editeye />
+                        Edit
+                      </button>
+                    )}
+                    {data && !view13 && data[12] === "PROJECT_CREATE" && (
+                      <button className="view" onClick={() => Viewing13()}>
+                        <List />
+                        List
+                      </button>
+                    )}
+                    {data && !view14 && data[13] === "PROJECT_EDIT" && (
+                      <button className="view" onClick={() => Viewing14()}>
+                        <Create />
+                        Create
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div className="rolename">
+                  <span className="name">6.Reports</span>
+                  <div className="button-group">
+                    {data && !view15 && data[14] === "REPORT_VIEW" && (
+                      <button className="view" onClick={() => Viewing15()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <ModalInputSelect
           label="Roles"
           onChange={(e) => Change(e)}
           name="roles"
           value={regbus?.address}
           placeholder={`${`Select User management's roles`}`}
-        />
-        <LargeSignInButton
-          onClick={() => setStep(9)}
-          bigger
-          title={"Submit"}
-          background
-          color
-        />
+        /> */}
+          <div
+            style={{
+              height: "8%",
+              background: "#FFFFFF",
+              zIndex: 10000,
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center"
+              // position: "fixed"
+            }}
+          >
+            <LargeSignInButton
+              onClick={() => setStep(9)}
+              bigger
+              // increase
+              title={"Submit"}
+              background
+              color
+            />
+          </div>
+        </FlexUser>
       </AppModal>
       <AppModal
         step={9}
@@ -723,7 +1252,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             />
             <LargeSignInButton
               title="Confirm"
-              onClick={() => CreatUsermanagement()}
+              onClick={() => SendTeam()}
               large
               background
               color
@@ -3295,7 +3824,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
             >
-             Do you want to enable this permission for this 
+              Do you want to enable this permission for this
             </span>
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
@@ -3432,7 +3961,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
             >
-             You are about to grant permission to this user to
+              You are about to grant permission to this user to
             </span>
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
@@ -3569,7 +4098,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
             >
-             You are about to grant permission to this user to
+              You are about to grant permission to this user to
             </span>
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
@@ -3706,7 +4235,7 @@ const AppUserModal = ({ setStep, step, setReload }) => {
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
             >
-             Do you want to assign the role of a sub admin to
+              Do you want to assign the role of a sub admin to
             </span>
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
@@ -3774,7 +4303,9 @@ const AppUserModal = ({ setStep, step, setReload }) => {
               color: "#667085"
             }}
           >
-            <span>You have successfully assigned the Sub admin role to this user</span>
+            <span>
+              You have successfully assigned the Sub admin role to this user
+            </span>
           </div>
           <div
             style={{
@@ -3803,6 +4334,7 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
   padding-inline: 2px;
+  width: 100%;
   .addresswrapper {
     border: 1px solid #ebebeb;
     border-radius: 6px;
@@ -3894,6 +4426,178 @@ const Flex = styled.div`
             padding-inline: 15px;
             width: 100%;
           }
+        }
+      }
+    }
+  }
+  .activities {
+    padding-inline: 25px;
+    display: flex;
+    flex-direction: column;
+    .activity-permission {
+      display: flex;
+      flex-direction: row;
+      gap: 150px;
+      color: #5a6376;
+      font-size: 14px;
+      font-weight: 500;
+      .activitynames {
+        width: 12%;
+      }
+    }
+    .rolename {
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+      border-bottom: 1px solid rgba(235, 235, 235, 1);
+      align-items: center;
+      height: 70px;
+      .name {
+        color: rgba(0, 0, 0, 1);
+        font-size: 14px;
+        width: 30%;
+        font-weight: 500;
+      }
+      .button-group {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        .view {
+          display: flex;
+          flex-direction: row;
+          cursor: pointer;
+          gap: 6px;
+          border: 1px solid rgba(26, 135, 215, 1);
+          border-radius: 6px;
+          color: rgba(26, 135, 215, 1);
+          height: 24px;
+          justify-content: center;
+          width: 60px;
+          font-size: 8px;
+          align-items: center;
+          background: rgba(26, 135, 215, 0.1);
+        }
+        .darkview {
+          display: flex;
+          flex-direction: row;
+          cursor: pointer;
+          gap: 6px;
+          border: 1px solid #5a6376;
+          border-radius: 6px;
+          color: #5a6376;
+          height: 24px;
+          justify-content: center;
+          width: 60px;
+          font-size: 8px;
+          align-items: center;
+          background: #5a63761a;
+        }
+      }
+    }
+    .editrole {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      padding-top: 20px;
+    }
+  }
+`;
+
+const FlexUser = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-inline: 20px;
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  gap: 20px;
+  .main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 58vh;
+    overflow-y: scroll;
+    gap: 20px;
+    .flex {
+      display: flex;
+      flex-direction: column;
+      padding-inline: 2px;
+      width: 100%;
+      gap: 20px;
+      margin-top: 10px;
+      .activities {
+        padding-inline: 10px;
+        display: flex;
+        flex-direction: column;
+        .activity-permission {
+          display: flex;
+          flex-direction: row;
+          gap: 150px;
+          color: #5a6376;
+          font-size: 14px;
+          font-weight: 500;
+          .activitynames {
+            width: 12%;
+          }
+        }
+        .rolename {
+          display: flex;
+          flex-direction: row;
+          gap: 50px;
+          border-bottom: 1px solid rgba(235, 235, 235, 1);
+          align-items: center;
+          height: 70px;
+          .name {
+            color: rgba(0, 0, 0, 1);
+            font-size: 14px;
+            width: 30%;
+            font-weight: 500;
+          }
+          .button-group {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            .view {
+              display: flex;
+              flex-direction: row;
+              cursor: pointer;
+              gap: 6px;
+              border: 1px solid rgba(26, 135, 215, 1);
+              border-radius: 6px;
+              color: rgba(26, 135, 215, 1);
+              height: 24px;
+              justify-content: center;
+              width: 60px;
+              font-size: 8px;
+              align-items: center;
+              background: rgba(26, 135, 215, 0.1);
+            }
+            .darkview {
+              display: flex;
+              flex-direction: row;
+              cursor: pointer;
+              gap: 6px;
+              border: 1px solid #5a6376;
+              border-radius: 6px;
+              color: #5a6376;
+              height: 24px;
+              justify-content: center;
+              width: 60px;
+              font-size: 8px;
+              align-items: center;
+              background: #5a63761a;
+            }
+          }
+        }
+        .editrole {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          padding-top: 20px;
         }
       }
     }

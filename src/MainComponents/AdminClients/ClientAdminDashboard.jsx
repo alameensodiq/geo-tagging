@@ -138,7 +138,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             percent4={2.5}
           />
         </FeaturesGrid>
-        <FeaturesGrid dashboard big superoverview row={2}>
+        <FeaturesGrid dashboard  superoverview row={2}>
           <div className="table">
             <div className="punctuality">
               <div className="start">
@@ -160,7 +160,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                 <Calendar onClick={() => PickDater()} className="calendar" />
               </div>
             </div>
-            <Donuts overview />
+            <Donuts overview data1={[]} data2={[]}/>
             <div className="detailscompliance">
               <div className="firstcompliance">
                 <span className="comp">Compliance</span>

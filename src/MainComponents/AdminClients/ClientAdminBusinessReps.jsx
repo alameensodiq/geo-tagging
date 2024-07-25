@@ -89,7 +89,7 @@ const ClientAdminBusinessReps = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal  setStep={setStep} step={step} setReload={setReload} />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
@@ -171,28 +171,32 @@ const ClientAdminBusinessReps = ({ title }) => {
           {activated ? (
             <div className="wrapper">
               <Tables active data={activate} />
-              <Pagination
-                set={activater}
-                currentPage={currentPage}
-                postsPerPage={postsPerPage}
-                totalPosts={totalPosts}
-                paginate={paginate}
-                previous={previous}
-                next={next}
-              />
+              {activate?.length >= 1 && (
+                <Pagination
+                  set={activater}
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={totalPosts}
+                  paginate={paginate}
+                  previous={previous}
+                  next={next}
+                />
+              )}
             </div>
           ) : pend ? (
             <div className="wrapper">
               <Tables inactive data={inactivate} />
-              <Pagination
-                set={activater}
-                currentPage={currentPage}
-                postsPerPage={postsPerPage}
-                totalPosts={totalPosts}
-                paginate={paginate}
-                previous={previous}
-                next={next}
-              />
+              {inactivate?.length >= 1 && (
+                <Pagination
+                  set={activater}
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={totalPosts}
+                  paginate={paginate}
+                  previous={previous}
+                  next={next}
+                />
+              )}
             </div>
           ) : (
             ""

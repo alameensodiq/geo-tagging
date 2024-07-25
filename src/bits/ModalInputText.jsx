@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ModalText from "./ModalText";
-import {ReactComponent as Take} from '../assets/take.svg'
+import { ReactComponent as Take } from "../assets/take.svg";
 
 const ModalInputText = ({
   label,
@@ -13,19 +13,24 @@ const ModalInputText = ({
   logo,
   photo,
   onClick,
-  nosign
+  nosign,
+  increaser,
+  increase
 }) => {
   return (
     <Flex>
       <div className="container">
         <span className="label">
           {label}
-          {nosign ? '' : <span className="asterik">*</span>}
+          {nosign ? "" : <span className="asterik">*</span>}
         </span>
         {photo ? (
-          <Take onClick={onClick} />
+          <div style={{width: increaser ? '580px' : ''}}>
+            <Take style={{width:'100%'}} onClick={onClick} />
+          </div>
         ) : (
           <ModalText
+            increase={increase}
             name={name}
             value={value}
             onChange={onChange}
