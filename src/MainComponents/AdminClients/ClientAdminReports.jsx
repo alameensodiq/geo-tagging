@@ -35,7 +35,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
     setShowDatePicker(!showDatePicker); // Toggle date picker visibility
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSelect = (ranges) => {
     console.log(ranges);
@@ -100,10 +100,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
             <div className="punctuality">
               <div className="start">
                 <div className="numbers">
-                  <span className="name">
-                    Situation
-                    Reports
-                  </span>
+                  <span className="name">Situation Reports</span>
                   {/* <span className="name">
                     <span className="round"></span>With Incident 
                   </span>
@@ -127,9 +124,12 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
               </div>
             </div>
             <div className="reportdonut">
-              <Donuts report />
+              <Donuts report data1={[]} data2={[]} />
               <div className="detailscompliancy">
-                <div className="firstcompliance" onClick={() => navigate(`../${businessreport}/normal`)}>
+                <div
+                  className="firstcompliance"
+                  onClick={() => navigate(`../${businessreport}/normal`)}
+                >
                   <span className="comp">
                     With Incident <span className="percent">65%</span>
                   </span>
@@ -144,7 +144,10 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     </span>
                   </div>
                 </div>
-                <div className="firstcompliance" onClick={() => navigate(`../${businessreport}/abnormal`)}>
+                <div
+                  className="firstcompliance"
+                  onClick={() => navigate(`../${businessreport}/abnormal`)}
+                >
                   <span className="comp">
                     Without Incident <span className="percent">35%</span>
                   </span>
@@ -224,7 +227,10 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     <span className="comp">Okay</span>
                     <div className="bardiv">
                       <div className="backgrounddiv">
-                        <div className="nonbar" style={{background:'#7C65E0'}}></div>
+                        <div
+                          className="nonbar"
+                          style={{ background: "#7C65E0" }}
+                        ></div>
                       </div>
                       <span className="percent">35%</span>
                       <LeftCarat className="carat" />
@@ -237,20 +243,29 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     <span className="comp">Frustrated</span>
                     <div className="bardiv">
                       <div className="backgrounddiv">
-                        <div className="nonbar" style={{background:'#F3827C'}}></div>
+                        <div
+                          className="nonbar"
+                          style={{ background: "#F3827C" }}
+                        ></div>
                       </div>
                       <span className="percent">35%</span>
                       <LeftCarat className="carat" />
                     </div>
                   </div>
                 </div>
-                <div className="firstcompliance" onClick={() => navigate(`../${businessreport}/emoji`)}>
+                <div
+                  className="firstcompliance"
+                  onClick={() => navigate(`../${businessreport}/emoji`)}
+                >
                   <span className="emoji">😡</span>
                   <div className="main">
                     <span className="comp">Angry</span>
                     <div className="bardiv">
                       <div className="backgrounddiv">
-                        <div className="nonbar" style={{background:'#FE6510'}}></div>
+                        <div
+                          className="nonbar"
+                          style={{ background: "#FE6510" }}
+                        ></div>
                       </div>
                       <span className="percent">35%</span>
                       <LeftCarat className="carat" />

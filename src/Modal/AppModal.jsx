@@ -52,7 +52,7 @@ export default function AppModal({
                   : heading && noheadborder
                   ? ""
                   : "",
-              padding: heading ? "0px 10px" : confirm ? "0px" : "0px",
+              padding: heading ? "0px 10px" : confirm ? "0px" : "0px"
               // position: "sticky",
             }}
           >
@@ -123,7 +123,7 @@ const AppModalStyle = styled.div`
       props.noheadborder ? "space-between" : "space-between"};
     gap: ${(props) =>
       props.noheadborder && !props.subscribe
-        ? "225px"
+        ? "160px"
         : props.noheadborder && props.subscribe
         ? "300px"
         : "0px"};
@@ -142,7 +142,7 @@ const AppModalStyle = styled.div`
         color: #000000;
       }
     }
-    .close{
+    .close {
       width: 50%;
       display: flex;
       flex-direction: row;
