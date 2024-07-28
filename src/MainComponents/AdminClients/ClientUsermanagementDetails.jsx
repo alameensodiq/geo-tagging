@@ -806,7 +806,7 @@ const ClientUsermanagementDetails = ({ title }) => {
             <div className="activities">
               <div className="activity-permission">
                 <span className="activitynames">Activity</span>
-                <span>Permission</span>
+                <span className="permit">Permission</span>
               </div>
               <div className="rolename">
                 <span className="name">1.Dashboard</span>
@@ -1876,6 +1876,7 @@ const Flex = styled.div`
           padding-inline: 20px;
           display: flex;
           flex-direction: column;
+          width: 100%;
           .activity-permission {
             display: flex;
             flex-direction: row;
@@ -1885,6 +1886,14 @@ const Flex = styled.div`
             font-weight: 500;
             .activitynames {
               width: 12%;
+              @media screen and (max-width: 1200px) {
+                display: none;
+              }
+            }
+            .permit {
+              @media screen {
+                width: 100%;
+              }
             }
           }
           .rolename {
@@ -1894,6 +1903,61 @@ const Flex = styled.div`
             border-bottom: 1px solid rgba(235, 235, 235, 1);
             align-items: center;
             height: 90px;
+            width: 100%;
+            @media screen and (max-width: 1200px) {
+              height: 190px;
+              display: flex;
+              padding-block: 30px;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              gap: 40px;
+              width: 100%;
+              .name {
+                display: flex;
+                flex-direction: row;
+                color: rgba(0, 0, 0, 1);
+                font-size: 10px;
+                width: 100%;
+                font-weight: 500;
+                height: 20%;
+              }
+              .button-group {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                .view {
+                  display: flex;
+                  flex-direction: row;
+                  cursor: pointer;
+                  gap: 6px;
+                  border: 1px solid rgba(26, 135, 215, 1);
+                  border-radius: 6px;
+                  color: rgba(26, 135, 215, 1);
+                  height: 24px;
+                  justify-content: center;
+                  width: 80px;
+                  font-size: 10px;
+                  align-items: center;
+                  background: rgba(26, 135, 215, 0.1);
+                }
+                .darkview {
+                  display: flex;
+                  flex-direction: row;
+                  cursor: pointer;
+                  gap: 6px;
+                  border: 1px solid #5a6376;
+                  border-radius: 6px;
+                  color: #5a6376;
+                  height: 24px;
+                  justify-content: center;
+                  width: 80px;
+                  font-size: 10px;
+                  align-items: center;
+                  background: #5a63761a;
+                }
+              }
+            }
             .name {
               color: rgba(0, 0, 0, 1);
               font-size: 16px;

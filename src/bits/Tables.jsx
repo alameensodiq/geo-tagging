@@ -63,8 +63,8 @@ const Tables = ({
   const [identifyinactive, setIdentifyinactive] = useState(0);
   const [projectactive, setProject] = useState(false);
   const [openprodetails, setopenprodetails] = useState(false);
-  const [useractive, setuseractive] = useState('');
-  const [superuseractivity, setSuperuseractivity] = useState(false);
+  const [useractive, setuseractive] = useState("");
+  const [superuseractivity, setSuperuseractivity] = useState("");
   const navigate = useNavigate();
 
   const theme = createTheme({
@@ -144,8 +144,8 @@ const Tables = ({
     setuseractive(item);
   };
 
-  const SuperserActiveMethod = () => {
-    setSuperuseractivity(!superuseractivity);
+  const SuperserActiveMethod = (item) => {
+    setSuperuseractivity(item);
   };
 
   return (
@@ -994,23 +994,23 @@ const Tables = ({
                 {data?.map((item) => (
                   <StyledTableRow style={{ position: "relative" }}>
                     <StyledTableCell style={{ width: "20%" }}>
-                    {item?.lastName} {""} {item?.firstName}
+                      {item?.lastName} {""} {item?.firstName}
                     </StyledTableCell>
                     {/* <StyledTableCell style={{ width: "20%" }}>
                     Super Admin
                   </StyledTableCell> */}
                     <StyledTableCell style={{ width: "30%" }}>
-                    {item?.email}
+                      {item?.email}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "20%" }}>
-                    {item?.phoneNumber}
+                      {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "20%" }}>
                       <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
                       <Action onClick={() => UserActive(item?.id)} />
-                      {useractive === item?.id  && (
+                      {useractive === item?.id && (
                         <div className="activeusermodal">
                           <div className="row" onClick={() => setStep(11)}>
                             <Deactivate />
@@ -1018,7 +1018,9 @@ const Tables = ({
                           </div>
                           <div
                             className="row"
-                            onClick={() => navigate(`../${businessusers}/${item?.id}`)}
+                            onClick={() =>
+                              navigate(`../${businessusers}/${item?.id}`)
+                            }
                           >
                             <View />
                             <span>View more</span>
@@ -2382,47 +2384,51 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Abdul warith
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Warith@gmail.com
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    08023249058
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    12/04/23, 09:11:04
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    Support and Troubleshooting
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    <Action onClick={() => SuperserActiveMethod()} />
-                    {superuseractivity && (
-                      <div className="superactiveusermodal">
-                        <div
-                          className="row"
-                          onClick={() => {
-                            setSuperuseractivity(false);
-                            setStep(32);
-                          }}
-                        >
-                          <Deactivate />
-                          <span>Deactivate</span>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.lastName} {""} {item?.firstName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.email}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.phoneNumber}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>{" "}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      Support and Troubleshooting
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <Action onClick={() => SuperserActiveMethod(item?.id)} />
+                      {superuseractivity === item?.id && (
+                        <div className="superactiveusermodal">
+                          <div
+                            className="row"
+                            onClick={() => {
+                              // setSuperuseractivity(false);
+                              setStep(32);
+                            }}
+                          >
+                            <Deactivate />
+                            <span>Deactivate</span>
+                          </div>
+                          <div
+                            className="row"
+                            onClick={() =>
+                              navigate(`../${superusers}/${item?.id}`)
+                            }
+                          >
+                            <View />
+                            <span>View more</span>
+                          </div>
                         </div>
-                        <div
-                          className="row"
-                          onClick={() => navigate(`../${superusers}/:id`)}
-                        >
-                          <View />
-                          <span>View more</span>
-                        </div>
-                      </div>
-                    )}
-                  </StyledTableCell>
-                </StyledTableRow>
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>

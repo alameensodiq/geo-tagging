@@ -1,14 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { SuperUserDetails } from '../Apis/SuperUserdetails';
+import { createSlice } from "@reduxjs/toolkit";
+import { SuperUserDetails } from "../Apis/SuperUserdetails";
 
 export const SuperUserDetailsSlice = createSlice({
-  name: 'superuserdetails',
+  name: "superuserdetails",
   initialState: {
     superuserdetails: null,
     authenticatingsuperuserdetails: false,
     authenticated: false,
     isError: false,
-    errors: null,
+    errors: null
   },
   reducers: {
     clearState: (state) => {
@@ -17,7 +17,7 @@ export const SuperUserDetailsSlice = createSlice({
       state.authenticated = false;
       state.authenticatingsuperuserdetails = false;
       return state;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(SuperUserDetails.fulfilled, (state, action) => {
@@ -27,17 +27,17 @@ export const SuperUserDetailsSlice = createSlice({
       return state;
     });
     builder.addCase(SuperUserDetails.pending, (state, action) => {
-        state.authenticatingsuperuserdetails = true;
-        state.authenticated = true;
+      state.authenticatingsuperuserdetails = true;
+      state.authenticated = true;
     });
     builder.addCase(SuperUserDetails.rejected, (state, action) => {
-        state.errors = action.errors || action.payload;
-        state.authenticated = false;
-        state.authenticatingsuperuserdetails = false;
-        state.isError = true;
-        return state;
+      state.errors = action.errors || action.payload;
+      state.authenticated = false;
+      state.authenticatingsuperuserdetails = false;
+      state.isError = true;
+      return state;
     });
-  },
+  }
 });
 
 export const { clearState } = SuperUserDetailsSlice.actions;

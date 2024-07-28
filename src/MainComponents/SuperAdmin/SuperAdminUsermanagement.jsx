@@ -8,6 +8,8 @@ import Tables from "../../bits/Tables";
 import AppUserModal from "../../Modal/AppUserModal";
 import SuperAdminNavbar from "./SuperAdminNavbar";
 import InputSearch from "../../bits/InputSearch";
+import { AdminUser } from "../../Store/Apis/AdminUser";
+import Pagination from "../../Reusable/Pagination";
 
 const SuperAdminUsermanagement = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -33,18 +35,27 @@ const SuperAdminUsermanagement = ({ title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(CorporateBusinessRep())
+    dispatch(AdminUser({ searcher, currentPage }));
     if (reload) {
-      // dispatch(CorporateBusinessRep())
+      dispatch(AdminUser({ searcher, currentPage }));
       setReload(false);
     }
-  }, [reload]);
+  }, [reload, searcher, currentPage]);
 
-  //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
-  //   console.log(businessrep?.data?.data)
+  const { adminuserteam, authenticatingadminuserteam } = useSelector(
+    (state) => state.adminuserteam
+  );
+  console.log(adminuserteam?.data?.data);
 
-  //   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
-  //   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
+  const next = adminuserteam?.data?.meta?.next;
+  const previous = adminuserteam?.data?.meta?.prev;
+  const totalPosts = adminuserteam?.data?.meta?.totalCount;
+
+  const paginate = (number) => {
+    //  setSorted(tran)
+    setCurrentPage(number - 1);
+    setActivater(number);
+  };
 
   const setActivate = () => {
     SetActivate(true);
@@ -111,7 +122,9 @@ const SuperAdminUsermanagement = ({ title }) => {
           <div className="start">
             <div className="numbers">
               <span className="name">User Management</span>
-              <span className="count">500 members</span>
+              <span className="count">
+                {adminuserteam?.data?.data?.length} members
+              </span>
             </div>
             <span className="about">
               This Page Allow you to Manage Sub-Admin.
@@ -119,7 +132,8 @@ const SuperAdminUsermanagement = ({ title }) => {
           </div>
           <div>
             <ModalButton
-              onClick={() => setStep(28)}
+              // onClick={() => setStep(28)}
+              onClick={() => setStep(8)}
               background
               color
               title="New Sub-Admin"
@@ -159,7 +173,24 @@ const SuperAdminUsermanagement = ({ title }) => {
               placeholder="Search for Corporates name, email, RC Number, e.t.c"
             />
           </div>
-          <Tables superuser data={[]} setStep={setStep} />
+          <div className="wrapper">
+            <Tables
+              superuser
+              data={adminuserteam?.data?.data}
+              setStep={setStep}
+            />
+            {adminuserteam?.data?.data?.length >= 1 && (
+              <Pagination
+                set={activater}
+                currentPage={currentPage}
+                postsPerPage={postsPerPage}
+                totalPosts={totalPosts}
+                paginate={paginate}
+                previous={previous}
+                next={next}
+              />
+            )}
+          </div>
         </div>
       </div>
     </Flex>
@@ -426,6 +457,11 @@ const Flex = styled.div`
             padding-top: 20px;
           }
         }
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
       }
     }
   }

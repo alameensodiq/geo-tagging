@@ -25,8 +25,9 @@ import Tables from "../bits/Tables";
 import { LocationModalButton } from "../bits/LocationModalButton";
 import styled from "styled-components";
 import { AddTeam } from "../Store/Apis/AddTeam";
+import { SuperAddTeam } from "../Store/Apis/SuperAddteam";
 
-const AppUserModal = ({ setStep, step, setReload, data, setLog }) => {
+const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
@@ -77,7 +78,11 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog }) => {
     (state) => state.addteam
   );
 
-  console.log(addteam);
+  const { superaddteam, authenticatingsuperaddteam } = useSelector(
+    (state) => state.superaddteam
+  );
+
+  console.log(superaddteam);
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
   //     setStep(3);
   //     toast.success(createbus?.message)
@@ -107,7 +112,11 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog }) => {
     if (bustate && createbus?.status && !authenticatingcreatebus) {
       setStep(3);
     }
-    if (bustate1 && addteam?.status && !authenticatingaddteam) {
+    if (
+      bustate1 &&
+      addteam?.status &&
+      (!authenticatingaddteam || !authenticatingsuperaddteam)
+    ) {
       setStep(10);
     }
 
@@ -120,6 +129,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog }) => {
     bustate1,
     addteam,
     authenticatingaddteam,
+    authenticatingsuperaddteam,
     addteam?.status
   ]);
 
@@ -506,17 +516,31 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog }) => {
     ].every((variable) => variable !== undefined && variable !== null);
     if (allVariablesPresent) {
       const names = `${name} ${lastname}`;
-      dispatch(
-        AddTeam({
-          name: names,
-          rcNumber,
-          address,
-          phone,
-          email,
-          avatar,
-          permissions
-        })
-      );
+      if (!supers) {
+        dispatch(
+          AddTeam({
+            name: names,
+            rcNumber,
+            address,
+            phone,
+            email,
+            avatar,
+            permissions
+          })
+        );
+      } else {
+        dispatch(
+          SuperAddTeam({
+            name: names,
+            rcNumber,
+            address,
+            phone,
+            email,
+            avatar,
+            permissions
+          })
+        );
+      }
       setBusstate1(true);
     } else {
       toast.error("One or more required fields are missing.");
