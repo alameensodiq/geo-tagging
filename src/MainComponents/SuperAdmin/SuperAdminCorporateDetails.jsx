@@ -42,7 +42,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
 
   useEffect(() => {
     dispatch(SuperCorporatedetails({ id }));
-    dispatch(SuperCorporateDetailProject({id, searcher}))
+    dispatch(SuperCorporateDetailProject({ id, searcher }));
   }, [id, searcher]);
 
   const { supercorporatedetails, authenticatingsupercorporatedetails } =
@@ -100,8 +100,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
               onClick={() => navigate(-1)}
             />
             <span className="name">
-              {supercorporatedetails?.data?.lastName}
-              {""}
+              {supercorporatedetails?.data?.lastName}{" "}
               {supercorporatedetails?.data?.firstName}
             </span>
           </div>
@@ -112,8 +111,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
               <div className="activedetails">
                 <span className="image"></span>
                 <span className="name">
-                  {supercorporatedetails?.data?.lastName}
-                  {""}
+                  {supercorporatedetails?.data?.lastName}{" "}
                   {supercorporatedetails?.data?.firstName}
                 </span>
                 <span className="assigned">
@@ -231,7 +229,10 @@ const SuperAdminCorporateDetails = ({ title }) => {
                 />
                 {/* </div> */}
               </div>
-              <Tables superactivedetails data={supercorporatedetailsproject?.data?.data} />
+              <Tables
+                superactivedetails
+                data={supercorporatedetailsproject?.data?.data}
+              />
             </div>
           </div>
         </div>
