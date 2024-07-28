@@ -63,7 +63,7 @@ const Tables = ({
   const [identifyinactive, setIdentifyinactive] = useState(0);
   const [projectactive, setProject] = useState(false);
   const [openprodetails, setopenprodetails] = useState(false);
-  const [useractive, setuseractive] = useState(false);
+  const [useractive, setuseractive] = useState('');
   const [superuseractivity, setSuperuseractivity] = useState(false);
   const navigate = useNavigate();
 
@@ -140,8 +140,8 @@ const Tables = ({
     setopenprodetails(!openprodetails);
   };
 
-  const UserActive = () => {
-    setuseractive(!useractive);
+  const UserActive = (item) => {
+    setuseractive(item);
   };
 
   const SuperserActiveMethod = () => {
@@ -1009,8 +1009,8 @@ const Tables = ({
                       <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
-                      <Action onClick={() => UserActive()} />
-                      {useractive  && (
+                      <Action onClick={() => UserActive(item?.id)} />
+                      {useractive === item?.id  && (
                         <div className="activeusermodal">
                           <div className="row" onClick={() => setStep(11)}>
                             <Deactivate />
@@ -1018,7 +1018,7 @@ const Tables = ({
                           </div>
                           <div
                             className="row"
-                            onClick={() => navigate(`../${businessusers}/id`)}
+                            onClick={() => navigate(`../${businessusers}/${item?.id}`)}
                           >
                             <View />
                             <span>View more</span>

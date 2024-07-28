@@ -91,7 +91,7 @@ function App() {
           />
 
           <Route
-            path={`${businessusers}/id`}
+            path={`${businessusers}/:id`}
             element={<ClientUsermanagementDetails title="User management" />}
           />
 

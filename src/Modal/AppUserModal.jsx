@@ -26,28 +26,28 @@ import { LocationModalButton } from "../bits/LocationModalButton";
 import styled from "styled-components";
 import { AddTeam } from "../Store/Apis/AddTeam";
 
-const AppUserModal = ({ setStep, step, setReload, data }) => {
+const AppUserModal = ({ setStep, step, setReload, data, setLog }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
   const [update, setUpdate] = useState("");
   const [bustate, setBusstate] = useState(false);
   const [bustate1, setBusstate1] = useState(false);
-  const [view1, setView1] = useState(false)
-  const [view2, setView2] = useState(false)
-  const [view3, setView3] = useState(false)
-  const [view4, setView4] = useState(false)
-  const [view5, setView5] = useState(false)
-  const [view6, setView6] = useState(false)
-  const [view7, setView7] = useState(false)
-  const [view8, setView8] = useState(false)
-  const [view9, setView9] = useState(false)
-  const [view10, setView10] = useState(false)
-  const [view11, setView11] = useState(false)
-  const [view12, setView12] = useState(false)
-  const [view13, setView13] = useState(false)
-  const [view14, setView14] = useState(false)
-  const [view15, setView15] = useState(false)
+  const [view1, setView1] = useState(false);
+  const [view2, setView2] = useState(false);
+  const [view3, setView3] = useState(false);
+  const [view4, setView4] = useState(false);
+  const [view5, setView5] = useState(false);
+  const [view6, setView6] = useState(false);
+  const [view7, setView7] = useState(false);
+  const [view8, setView8] = useState(false);
+  const [view9, setView9] = useState(false);
+  const [view10, setView10] = useState(false);
+  const [view11, setView11] = useState(false);
+  const [view12, setView12] = useState(false);
+  const [view13, setView13] = useState(false);
+  const [view14, setView14] = useState(false);
+  const [view15, setView15] = useState(false);
   const [regbus, setRegbus] = useState({
     firstname: "",
     lastname: "",
@@ -125,166 +125,271 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
 
   const Viewing = () => {
     setView1(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'DASHBOARD_VIEW'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "DASHBOARD_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing = () => {
+    setView1(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
     }));
   };
 
   const Viewing2 = () => {
     setView2(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'BUSINESS_REP_VIEW'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "BUSINESS_REP_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing2 = () => {
+    setView2(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_VIEW"]
     }));
   };
 
   const Viewing3 = () => {
     setView3(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'BUSINESS_REP_LIST'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "BUSINESS_REP_LIST"
+      )
+    }));
+  };
+
+  const NotViewing3 = () => {
+    setView3(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_LIST"]
     }));
   };
 
   const Viewing4 = () => {
     setView4(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'BUSINESS_REP_EDIT'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "BUSINESS_REP_EDIT"
+      )
+    }));
+  };
+
+  const NotViewing4 = () => {
+    setView4(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_EDIT"]
     }));
   };
 
   const Viewing5 = () => {
     setView5(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'BUSINESS_REP_CREATE'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "BUSINESS_REP_CREATE"
+      )
+    }));
+  };
+
+  const NotViewing5 = () => {
+    setView5(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_CREATE"]
     }));
   };
 
   const Viewing6 = () => {
     setView6(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'BUSINESS_REP_ACTIVATE'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "BUSINESS_REP_ACTIVATE"
+      )
+    }));
+  };
+
+  const NotViewing6 = () => {
+    setView6(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_ACTIVATE"]
     }));
   };
 
   const Viewing7 = () => {
     setView7(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'BUSINESS_REP_DEACTIVATE'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "BUSINESS_REP_DEACTIVATE"
+      )
+    }));
+  };
+
+  const NotViewing7 = () => {
+    setView7(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_DEACTIVATE"]
     }));
   };
 
   const Viewing8 = () => {
     setView8(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'SUBSCRIPTION_VIEW'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "SUBSCRIPTION_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing8 = () => {
+    setView8(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_VIEW"]
     }));
   };
 
   const Viewing9 = () => {
     setView9(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'SUBSCRIPTION_LIST'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "SUBSCRIPTION_LIST"
+      )
+    }));
+  };
+
+  const NotViewing9 = () => {
+    setView9(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_LIST"]
     }));
   };
 
   const Viewing10 = () => {
     setView10(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'PLAN_VIEW'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "PLAN_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing10 = () => {
+    setView10(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "PLAN_VIEW"]
     }));
   };
 
   const Viewing11 = () => {
     setView11(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'PROJECT_VIEW'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "PROJECT_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing11 = () => {
+    setView11(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "PROJECT_VIEW"]
     }));
   };
 
   const Viewing12 = () => {
     setView12(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'PROJECT_LIST'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "PROJECT_EDIT"
+      )
+    }));
+  };
+
+  const NotViewing12 = () => {
+    setView12(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "PROJECT_EDIT"]
     }));
   };
 
   const Viewing13 = () => {
     setView13(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'PROJECT_CREATE'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "PROJECT_LIST"
+      )
+    }));
+  };
+
+  const NotViewing13 = () => {
+    setView13(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "PROJECT_LIST"]
     }));
   };
 
   const Viewing14 = () => {
     setView14(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'PROJECT_EDIT'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "PROJECT_CREATE"
+      )
+    }));
+  };
+
+  const NotViewing14 = () => {
+    setView14(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "PROJECT_CREATE"]
     }));
   };
 
   const Viewing15 = () => {
     setView15(true);
-    setTeam(prevTeam => ({
+    setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [
-        ...(prevTeam.permissions || []), 
-        'REPORT_VIEW'
-      ]
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "REPORT_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing15 = () => {
+    setView15(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "REPORT_VIEW"]
     }));
   };
 
@@ -387,7 +492,7 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
       avatar,
       permissions
     } = team;
-    console.log(team)
+    console.log(team);
     const names = `${name} ${lastname}`;
     const allVariablesPresent = [
       lastname,
@@ -419,6 +524,9 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
   };
 
   const handleCloseModal4 = () => {
+    if (setLog) {
+      setLog(false);
+    }
     setRegbus({
       firstname: "",
       lastname: "",
@@ -438,26 +546,26 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
       email: "",
       avatar: ""
     });
-    setUpdate("")
+    setUpdate("");
     setStep(0);
     setBusstate(false);
     setBusstate1(false);
     setReload(true);
-    setView1(false)
-    setView2(false)
-    setView3(false)
-    setView4(false)
-    setView5(false)
-    setView6(false)
-    setView7(false)
-    setView8(false)
-    setView9(false)
-    setView10(false)
-    setView11(false)
-    setView12(false)
-    setView13(false)
-    setView14(false)
-    setView15(false)
+    setView1(false);
+    setView2(false);
+    setView3(false);
+    setView4(false);
+    setView5(false);
+    setView6(false);
+    setView7(false);
+    setView8(false);
+    setView9(false);
+    setView10(false);
+    setView11(false);
+    setView12(false);
+    setView13(false);
+    setView14(false);
+    setView15(false);
   };
 
   const CreatUsermanagement = () => {
@@ -1023,8 +1131,13 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
                 <div className="rolename">
                   <span className="name">1.Dashboard</span>
                   <div className="button-group">
-                    {data && !view1 && data[0] === "DASHBOARD_VIEW" && (
+                    {data && !view1 && data[0] === "DASHBOARD_VIEW" ? (
                       <button className="view" onClick={() => Viewing()}>
+                        <Eye />
+                        View
+                      </button>
+                    ) : (
+                      <button className="darkview" onClick={() => NotViewing()}>
                         <Eye />
                         View
                       </button>
@@ -1038,26 +1151,58 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
                 <div className="rolename">
                   <span className="name">2.Business Reps</span>
                   <div className="button-group">
-                    {data && !view2 && data[1] === "BUSINESS_REP_VIEW" && (
+                    {data && !view2 && data[1] === "BUSINESS_REP_VIEW" ? (
                       <button className="view" onClick={() => Viewing2()}>
                         <Eye />
                         View
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing2()}
+                      >
+                        <Eye />
+                        View
+                      </button>
                     )}
-                    {data && !view3 && data[2] === "BUSINESS_REP_LIST" && (
+                    {data && !view3 && data[2] === "BUSINESS_REP_LIST" ? (
                       <button className="view" onClick={() => Viewing3()}>
                         <List />
                         List
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing3()}
+                      >
+                        <List />
+                        List
+                      </button>
                     )}
-                    {data && !view4 && data[6] === "BUSINESS_REP_EDIT" && (
+                    {data && !view4 && data[6] === "BUSINESS_REP_EDIT" ? (
                       <button className="view" onClick={() => Viewing4()}>
                         <Editeye />
                         Edit
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing4()}
+                      >
+                        <Editeye />
+                        Edit
+                      </button>
                     )}
-                    {data && !view5 && data[3] === "BUSINESS_REP_CREATE" && (
+                    {data && !view5 && data[3] === "BUSINESS_REP_CREATE" ? (
                       <button className="view" onClick={() => Viewing5()}>
+                        <Create />
+                        Create
+                      </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing5()}
+                      >
                         <Create />
                         Create
                       </button>
@@ -1066,14 +1211,30 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
                   <List />
                   List
                 </button> */}
-                    {data && !view6 && data[4] === "BUSINESS_REP_ACTIVATE" && (
+                    {data && !view6 && data[4] === "BUSINESS_REP_ACTIVATE" ? (
                       <button className="view" onClick={() => Viewing6()}>
                         <ActivateDark />
                         Activate
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing6()}
+                      >
+                        <ActivateDark />
+                        Activate
+                      </button>
                     )}
-                    {data && !view7 && data[5] === "BUSINESS_REP_DEACTIVATE" && (
+                    {data && !view7 && data[5] === "BUSINESS_REP_DEACTIVATE" ? (
                       <button className="view" onClick={() => Viewing7()}>
+                        <DeactivateDark />
+                        Deactivate
+                      </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing7()}
+                      >
                         <DeactivateDark />
                         Deactivate
                       </button>
@@ -1101,20 +1262,44 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
                 <div className="rolename">
                   <span className="name">4. Subscriptions</span>
                   <div className="button-group">
-                    {data && !view8 && data[7] === "SUBSCRIPTION_VIEW" && (
+                    {data && !view8 && data[7] === "SUBSCRIPTION_VIEW" ? (
                       <button className="view" onClick={() => Viewing8()}>
                         <Eye />
                         View
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing8()}
+                      >
+                        <Eye />
+                        View
+                      </button>
                     )}
-                    {data && !view9 && data[8] === "SUBSCRIPTION_LIST" && (
+                    {data && !view9 && data[8] === "SUBSCRIPTION_LIST" ? (
                       <button className="view" onClick={() => Viewing9()}>
                         <List />
                         List
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing9()}
+                      >
+                        <List />
+                        List
+                      </button>
                     )}
-                    {data && !view10 && data[9] === "PLAN_VIEW" && (
+                    {data && !view10 && data[9] === "PLAN_VIEW" ? (
                       <button className="view" onClick={() => Viewing10()}>
+                        <Eye />
+                        Plan view
+                      </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing10()}
+                      >
                         <Eye />
                         Plan view
                       </button>
@@ -1124,26 +1309,58 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
                 <div className="rolename">
                   <span className="name">5. Projects</span>
                   <div className="button-group">
-                    {data && !view11 && data[10] === "PROJECT_VIEW" && (
+                    {data && !view11 && data[10] === "PROJECT_VIEW" ? (
                       <button className="view" onClick={() => Viewing11()}>
                         <Eye />
                         View
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing11()}
+                      >
+                        <Eye />
+                        View
+                      </button>
                     )}
-                    {data && !view12 && data[11] === "PROJECT_LIST" && (
+                    {data && !view12 && data[11] === "PROJECT_EDIT" ? (
                       <button className="view" onClick={() => Viewing12()}>
                         <Editeye />
                         Edit
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing12()}
+                      >
+                        <Editeye />
+                        Edit
+                      </button>
                     )}
-                    {data && !view13 && data[12] === "PROJECT_CREATE" && (
+                    {data && !view13 && data[12] === "PROJECT_LIST" ? (
                       <button className="view" onClick={() => Viewing13()}>
                         <List />
                         List
                       </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing13()}
+                      >
+                        <List />
+                        List
+                      </button>
                     )}
-                    {data && !view14 && data[13] === "PROJECT_EDIT" && (
+                    {data && !view14 && data[13] === "PROJECT_CREATE" ? (
                       <button className="view" onClick={() => Viewing14()}>
+                        <Create />
+                        Create
+                      </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing14()}
+                      >
                         <Create />
                         Create
                       </button>
@@ -1153,8 +1370,16 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
                 <div className="rolename">
                   <span className="name">6.Reports</span>
                   <div className="button-group">
-                    {data && !view15 && data[14] === "REPORT_VIEW" && (
+                    {data && !view15 && data[14] === "REPORT_VIEW" ? (
                       <button className="view" onClick={() => Viewing15()}>
+                        <Eye />
+                        View
+                      </button>
+                    ) : (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing15()}
+                      >
                         <Eye />
                         View
                       </button>
@@ -4306,6 +4531,64 @@ const AppUserModal = ({ setStep, step, setReload, data }) => {
             <span>
               You have successfully assigned the Sub admin role to this user
             </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={52}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully edit Permissions to this user</span>
           </div>
           <div
             style={{

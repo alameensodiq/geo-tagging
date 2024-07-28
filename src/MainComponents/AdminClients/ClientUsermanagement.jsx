@@ -133,7 +133,7 @@ const ClientUsermanagement = ({ title }) => {
           <div className="start">
             <div className="numbers">
               <span className="name">User Management</span>
-              <span className="count">500 members</span>
+              <span className="count">{userteam?.data?.data?.length} members</span>
             </div>
             <span className="about">
               This overview provides a comprehensive snapshot of User management
