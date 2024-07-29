@@ -26,6 +26,7 @@ import { LocationModalButton } from "../bits/LocationModalButton";
 import styled from "styled-components";
 import { AddTeam } from "../Store/Apis/AddTeam";
 import { SuperAddTeam } from "../Store/Apis/SuperAddteam";
+import { AddSub } from "../Store/Apis/AddSub";
 
 const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
   const [update, setUpdate] = useState("");
   const [bustate, setBusstate] = useState(false);
   const [bustate1, setBusstate1] = useState(false);
+  const [bustate2, setBusstate2] = useState(false);
   const [view1, setView1] = useState(false);
   const [view2, setView2] = useState(false);
   const [view3, setView3] = useState(false);
@@ -72,6 +74,14 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     avatar: update
   });
 
+  const [sub, setSub] = useState({
+    name: "",
+    minRepCount: "",
+    maxRepCount: "",
+    maxLocationCount: "",
+    amount: 0
+  });
+
   const { createbus, authenticatingcreatebus } = useSelector(
     (state) => state.createbus
   );
@@ -83,6 +93,8 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
   const { superaddteam, authenticatingsuperaddteam } = useSelector(
     (state) => state.superaddteam
   );
+
+  const { addsub, authenticatingaddsub } = useSelector((state) => state.addsub);
 
   console.log(superaddteam);
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
@@ -127,6 +139,9 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     ) {
       setStep(10);
     }
+    if (bustate2 && addsub?.status && !authenticatingaddsub) {
+      setStep(55);
+    }
 
     console.log(update);
   }, [
@@ -139,7 +154,10 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     addteam,
     authenticatingaddteam,
     authenticatingsuperaddteam,
-    addteam?.status
+    addteam?.status,
+    authenticatingaddsub,
+    bustate2,
+    addsub?.status
   ]);
 
   const Viewing = () => {
@@ -702,6 +720,15 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     });
   };
 
+  const createSub = (e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setSub({
+      ...sub,
+      [name]: value
+    });
+  };
+
   const sendingsImage = (e) => {
     const accessToken = sessionStorage.getItem("token");
     const folder = e.target.files[0];
@@ -785,6 +812,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     } = team;
     console.log(team);
     const names = `${name} ${lastname}`;
+    console.log(address);
     const allVariablesPresent = [
       lastname,
       name,
@@ -828,10 +856,36 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     }
   };
 
+  const sendSub = () => {
+    const { name, minRepCount, maxRepCount, maxLocationCount, amount } = sub;
+    const allVariablesPresent = [
+      name,
+      minRepCount,
+      maxRepCount,
+      maxLocationCount,
+      amount
+    ].every((variable) => variable !== undefined && variable !== null);
+    if (allVariablesPresent) {
+      dispatch(
+        AddSub({ name, minRepCount, maxRepCount, maxLocationCount, amount })
+      );
+    } else {
+      toast.error("One or more required fields are missing.");
+    }
+    setBusstate2(true);
+  };
+
   const handleCloseModal4 = () => {
     if (setLog) {
       setLog(false);
     }
+    setSub({
+      name: "",
+      minRepCount: "",
+      maxRepCount: "",
+      maxLocationCount: "",
+      amount: 0
+    });
     setRegbus({
       firstname: "",
       lastname: "",
@@ -5266,6 +5320,210 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
             }}
           >
             <span>You have successfully edit Permissions to this user</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={53}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        wide
+        heading="Add Subscription"
+      >
+        <FlexUser>
+          <div className="main">
+            <ModalInputText
+              label="Name"
+              onChange={(e) => createSub(e)}
+              name="name"
+              increase
+              value={sub?.name}
+              placeholder={`${`Enter Subscription Name`}`}
+            />
+            <ModalInputText
+              label="Minimum Rep Count"
+              onChange={(e) => createSub(e)}
+              name="minRepCount"
+              increase
+              value={sub?.minRepCount}
+              placeholder={`${`Enter Minimum Rep Count`}`}
+            />
+            <ModalInputText
+              label="Maximum Rep Count"
+              onChange={(e) => createSub(e)}
+              name="maxRepCount"
+              increase
+              value={sub?.maxRepCount}
+              placeholder={`${`Enter "Maximum Rep Count`}`}
+            />
+            <ModalInputText
+              label="Maximum Location Count"
+              onChange={(e) => createSub(e)}
+              name="maxLocationCount"
+              increase
+              value={sub?.maxLocationCount}
+              placeholder={`${`Enter Maximum Location Count`}`}
+            />
+            <ModalInputText
+              label="Amount"
+              onChange={(e) => createSub(e)}
+              name="amount"
+              increase
+              value={sub?.amount}
+              placeholder={`${`Enter Amount`}`}
+            />
+          </div>
+          {/* <ModalInputSelect
+          label="Roles"
+          onChange={(e) => Change(e)}
+          name="roles"
+          value={regbus?.address}
+          placeholder={`${`Select User management's roles`}`}
+        /> */}
+          <div
+            style={{
+              height: "8%",
+              background: "#FFFFFF",
+              zIndex: 10000,
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center"
+              // position: "fixed"
+            }}
+          >
+            <LargeSignInButton
+              onClick={() => setStep(54)}
+              bigger
+              // increase
+              title={"Submit"}
+              background
+              color
+            />
+          </div>
+        </FlexUser>
+      </AppModal>
+      <AppModal
+        step={54}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Confirm Changes
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You are about to add a Subscription, Are you sure the</span>
+            <span>details are accurate?</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => sendSub()}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={55}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Account Created
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Added a new Subscription</span>
           </div>
           <div
             style={{

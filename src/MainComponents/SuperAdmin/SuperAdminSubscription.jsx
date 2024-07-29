@@ -36,17 +36,17 @@ const SuperAdminSubscription = ({ title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(SuperSubs())
+    dispatch(SuperSubs());
     if (reload) {
-      dispatch(SuperSubs())
+      dispatch(SuperSubs());
       setReload(false);
     }
   }, [reload]);
 
-    const { supersub, authenticatingsupersub } = useSelector((state) => state.supersub);
-    console.log(supersub?.data)
-
-
+  const { supersub, authenticatingsupersub } = useSelector(
+    (state) => state.supersub
+  );
+  console.log(supersub?.data);
 
   const setActivate = () => {
     SetActivate(true);
@@ -134,14 +134,14 @@ const SuperAdminSubscription = ({ title }) => {
               This page allows you to manage subscription.
             </span>
           </div>
-          {/* <div>
-              <ModalButton
-                onClick={() => setStep(22)}
-                background
-                color
-                title="New Corporate"
-              />
-          </div> */}
+          <div>
+            <ModalButton
+              onClick={() => setStep(53)}
+              background
+              color
+              title="Add Subscription"
+            />
+          </div>
         </div>
         <div className="table">
           <div className="statuses">
@@ -149,37 +149,37 @@ const SuperAdminSubscription = ({ title }) => {
               onClick={() => setActivate()}
               className={`${activated ? "active" : "status"}`}
             >
-              <span>Free Trial</span>
+              <span>{supersub?.data[0]?.name}</span>
             </div>
             <div
               onClick={() => setPending()}
               className={`${pend ? "active" : "status"}`}
             >
-              <span>Standard</span>
+              <span>{supersub?.data[1]?.name}</span>
             </div>
             <div
               onClick={() => setPendingRole1()}
               className={`${activating1 ? "active" : "status"}`}
             >
-              <span>Standard Plus</span>
+              <span>{supersub?.data[2]?.name}</span>
             </div>
             <div
               onClick={() => setPendingRole2()}
               className={`${activating2 ? "active" : "status"}`}
             >
-              <span>Enterprise</span>
+              <span>{supersub?.data[3]?.name}</span>
             </div>
             <div
               onClick={() => setPendingRole3()}
               className={`${activating3 ? "active" : "status"}`}
             >
-              <span>Enterprise Plus</span>
+              <span>{supersub?.data[4]?.name}</span>
             </div>
             <div
               onClick={() => setPendingRole4()}
               className={`${activating4 ? "active" : "status"}`}
             >
-              <span>Custom</span>
+              <span>{supersub?.data[0]?.name}</span>
             </div>
           </div>
           {activated ? (
@@ -212,7 +212,9 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="free">
                       Maximun number of Business Reps -{" "}
                     </span>
-                    <span className="days">20</span>
+                    <span className="days">
+                      {supersub?.data[0]?.maxRepCount}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(38)}
@@ -233,7 +235,9 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="free">
                       Maximum Number of Geo-Location -
                     </span>
-                    <span className="days">2</span>
+                    <span className="days">
+                      {supersub?.data[0]?.maxLocationCount}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(38)}
@@ -280,7 +284,10 @@ const SuperAdminSubscription = ({ title }) => {
                 <div className="trialdivbottom">
                   <div className="freedays">
                     <span className="free">1.Monthly Price:</span>
-                    <span className="days"> NGN 10,000</span>
+                    <span className="days">
+                      {" "}
+                      {supersub?.data[1]?.amount?.["NGN"]}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(40)}
@@ -299,7 +306,9 @@ const SuperAdminSubscription = ({ title }) => {
                 <div className="trialdivbottom">
                   <div className="freedays">
                     <span className="free">Number of Business Reps -</span>
-                    <span className="days">99</span>
+                    <span className="days">
+                      {supersub?.data[1]?.maxRepCount}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(38)}
@@ -329,7 +338,9 @@ const SuperAdminSubscription = ({ title }) => {
                 <div className="trialdivbottom">
                   <div className="freedays">
                     <span className="free">1.Monthly Price: </span>
-                    <span className="days"> NGN 10,000</span>
+                    <span className="days">
+                      {supersub?.data[2]?.amount?.["NGN"]}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(40)}
@@ -350,7 +361,9 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="free">
                       Maximum Number of Business Reps -
                     </span>
-                    <span className="days">100+</span>
+                    <span className="days">
+                      {supersub?.data[2]?.maxRepCount}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(38)}
@@ -380,7 +393,9 @@ const SuperAdminSubscription = ({ title }) => {
                 <div className="trialdivbottom">
                   <div className="freedays">
                     <span className="free">1.Monthly Price: </span>
-                    <span className="days"> NGN 10,000</span>
+                    <span className="days">
+                      {supersub?.data[3]?.amount?.["NGN"]}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(40)}
@@ -401,7 +416,9 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="free">
                       Maximum Number of Business Reps -
                     </span>
-                    <span className="days">100+</span>
+                    <span className="days">
+                      {supersub?.data[3]?.maxRepCount}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(38)}
@@ -431,7 +448,10 @@ const SuperAdminSubscription = ({ title }) => {
                 <div className="trialdivbottom">
                   <div className="freedays">
                     <span className="free">1.Monthly Price: </span>
-                    <span className="days"> NGN 10,000</span>
+                    <span className="days">
+                      {" "}
+                      {supersub?.data[4]?.amount?.["NGN"]}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(40)}
@@ -452,7 +472,9 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="free">
                       Maximum Number of Business Reps -
                     </span>
-                    <span className="days">100+</span>
+                    <span className="days">
+                      {supersub?.data[4]?.maxRepCount}
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(38)}
