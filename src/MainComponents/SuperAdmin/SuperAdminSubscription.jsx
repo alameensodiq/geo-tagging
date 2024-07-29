@@ -179,7 +179,7 @@ const SuperAdminSubscription = ({ title }) => {
               onClick={() => setPendingRole4()}
               className={`${activating4 ? "active" : "status"}`}
             >
-              <span>{supersub?.data[0]?.name}</span>
+              <span>{supersub?.data[5]?.name}</span>
             </div>
           </div>
           {activated ? (
