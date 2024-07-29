@@ -10,6 +10,7 @@ import SuperAdminNavbar from "./SuperAdminNavbar";
 import InputSearch from "../../bits/InputSearch";
 import { AdminUser } from "../../Store/Apis/AdminUser";
 import Pagination from "../../Reusable/Pagination";
+import { AdminPermissions } from "../../Store/Apis/AdminPermissions";
 
 const SuperAdminUsermanagement = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -36,14 +37,20 @@ const SuperAdminUsermanagement = ({ title }) => {
 
   useEffect(() => {
     dispatch(AdminUser({ searcher, currentPage }));
+    dispatch(AdminPermissions());
     if (reload) {
       dispatch(AdminUser({ searcher, currentPage }));
+      dispatch(AdminPermissions());
       setReload(false);
     }
   }, [reload, searcher, currentPage]);
 
   const { adminuserteam, authenticatingadminuserteam } = useSelector(
     (state) => state.adminuserteam
+  );
+
+  const { adminpermission, authenticatingadminpermission } = useSelector(
+    (state) => state.adminpermission
   );
   console.log(adminuserteam?.data?.data);
 
@@ -116,7 +123,13 @@ const SuperAdminUsermanagement = ({ title }) => {
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        data={adminpermission?.data}
+        super
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
