@@ -56,11 +56,14 @@ const ClientAdminProject = ({ title }) => {
   };
 
   const activate = project?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === true
+    (item) => item?.isActive === true
   );
   const inactivate = project?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === false
+    (item) => item?.isActive === false
   );
+
+  console.log(activate);
+  console.log(inactivate);
 
   const setActivate = () => {
     SetActivate(true);
@@ -125,7 +128,7 @@ const ClientAdminProject = ({ title }) => {
               <span
                 className={`${activated ? "active-number" : "status-number"}`}
               >
-                20
+                {activate?.length}
               </span>
             </div>
             <div
@@ -134,7 +137,7 @@ const ClientAdminProject = ({ title }) => {
             >
               <span>Inactive Projects</span>
               <span className={`${pend ? "active-number" : "status-number"}`}>
-                40
+                {inactivate?.length}
               </span>
             </div>
           </div>
@@ -173,31 +176,35 @@ const ClientAdminProject = ({ title }) => {
           {activated ? (
             <>
               <div className="wrapper">
-                <Tables activeproject data={[]} setStep={setStep} />
-                <Pagination
-                  set={activater}
-                  currentPage={currentPage}
-                  postsPerPage={postsPerPage}
-                  totalPosts={totalPosts}
-                  paginate={paginate}
-                  previous={previous}
-                  next={next}
-                />
+                <Tables activeproject data={activate} setStep={setStep} />
+                {activate?.length >= 1 && (
+                  <Pagination
+                    set={activater}
+                    currentPage={currentPage}
+                    postsPerPage={postsPerPage}
+                    totalPosts={totalPosts}
+                    paginate={paginate}
+                    previous={previous}
+                    next={next}
+                  />
+                )}
               </div>
             </>
           ) : pend ? (
             <>
               <div className="wrapper">
-                <Tables inactiveproject data={[]} setStep={setStep} />
-                <Pagination
-                  set={activater}
-                  currentPage={currentPage}
-                  postsPerPage={postsPerPage}
-                  totalPosts={totalPosts}
-                  paginate={paginate}
-                  previous={previous}
-                  next={next}
-                />
+                <Tables inactiveproject data={inactivate} setStep={setStep} />
+                {inactivate?.length >= 1 && (
+                  <Pagination
+                    set={activater}
+                    currentPage={currentPage}
+                    postsPerPage={postsPerPage}
+                    totalPosts={totalPosts}
+                    paginate={paginate}
+                    previous={previous}
+                    next={next}
+                  />
+                )}
               </div>
             </>
           ) : (
@@ -359,7 +366,7 @@ const Flex = styled.div`
           }
         }
       }
-      .wrapper{
+      .wrapper {
         display: flex;
         flex-direction: column;
         gap: 0px;

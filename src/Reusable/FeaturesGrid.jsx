@@ -18,7 +18,8 @@ const FeaturesGrid = ({
   sub,
   big,
   bigger,
-  account
+  account,
+  dashboardy
 }) => {
   return (
     <Flex
@@ -33,6 +34,7 @@ const FeaturesGrid = ({
       $row={row}
       info={info}
       top={top}
+      dashboardy={dashboardy}
       dashboard={dashboard}
       unequal={unequal}
       account={account}
@@ -55,6 +57,8 @@ const Flex = styled.div`
       ? "10px"
       : props?.dashboarder
       ? "0px"
+      : props?.dashboardy
+      ? "10px"
       : "70px"};
   padding-right: ${(props) =>
     props.dashboard
@@ -65,6 +69,8 @@ const Flex = styled.div`
       ? "40px"
       : props?.dashboarder
       ? "0px"
+      : props?.dashboardy
+      ? "10px"
       : "70px"};
   display: grid;
   row-gap: 30px;

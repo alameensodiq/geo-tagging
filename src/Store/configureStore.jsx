@@ -23,6 +23,8 @@ import { AdminEditteamSlice } from "./Reducers/AdminEditteam";
 import { SuperAddTeamSlice } from "./Reducers/SuperAddTeam";
 import { AdminPermissionsSlice } from "./Reducers/AdminPermissions";
 import { AddSubSlice } from "./Reducers/AddSub";
+import { AddProjectSlice } from "./Reducers/AddProject";
+import { AssignedRepSlice } from "./Reducers/Assigned";
 
 export default configureStore({
   reducer: {
@@ -49,6 +51,8 @@ export default configureStore({
     admineditteam: AdminEditteamSlice?.reducer,
     superaddteam: SuperAddTeamSlice?.reducer,
     adminpermission: AdminPermissionsSlice?.reducer,
-    addsub: AddSubSlice?.reducer
+    addsub: AddSubSlice?.reducer,
+    addproject: AddProjectSlice?.reducer,
+    assigned: AssignedRepSlice?.reducer
   }
 });

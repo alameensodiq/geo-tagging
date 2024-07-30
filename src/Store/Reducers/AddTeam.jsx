@@ -1,14 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { AddTeam } from '../Apis/AddTeam';
+import { createSlice } from "@reduxjs/toolkit";
+import { AddTeam } from "../Apis/AddTeam";
 
 export const AddTeamSlice = createSlice({
-  name: 'addteam',
+  name: "addteam",
   initialState: {
     addteam: null,
     authenticatingaddteam: false,
     authenticated: false,
     isError: false,
-    errors: null,
+    errors: null
   },
   reducers: {
     clearState: (state) => {
@@ -17,7 +17,7 @@ export const AddTeamSlice = createSlice({
       state.authenticated = false;
       state.authenticatingaddteam = false;
       return state;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(AddTeam.fulfilled, (state, action) => {
@@ -27,17 +27,17 @@ export const AddTeamSlice = createSlice({
       return state;
     });
     builder.addCase(AddTeam.pending, (state, action) => {
-        state.authenticatingaddteam = true;
-        state.authenticated = true;
+      state.authenticatingaddteam = true;
+      state.authenticated = true;
     });
     builder.addCase(AddTeam.rejected, (state, action) => {
-        state.errors = action.errors || action.payload;
-        state.authenticated = false;
-        state.authenticatingaddteam = false;
-        state.isError = true;
-        return state;
+      state.errors = action.errors || action.payload;
+      state.authenticated = false;
+      state.authenticatingaddteam = false;
+      state.isError = true;
+      return state;
     });
-  },
+  }
 });
 
 export const { clearState } = AddTeamSlice.actions;

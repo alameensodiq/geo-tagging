@@ -13,6 +13,9 @@ import { ReactComponent as Color } from "../../assets/colormark.svg";
 import { ReactComponent as UnColor } from "../../assets/uncolormark.svg";
 import { ReactComponent as Danger } from "../../assets/danger.svg";
 import { LocationModalButton } from "../../bits/LocationModalButton";
+import { AddProject } from "../../Store/Apis/AddProject";
+import toast from "react-hot-toast";
+import { AssignedRep } from "../../Store/Apis/AssignedRep";
 
 const ClientLocationDetails = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -25,6 +28,7 @@ const ClientLocationDetails = ({ title }) => {
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
+  const [bustate, setbustate] = useState(false);
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
@@ -34,6 +38,84 @@ const ClientLocationDetails = ({ title }) => {
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+  const [rep, setRep] = useState([
+    {
+      user_id: "",
+      location_id: ""
+    }
+  ]);
+  const [assign, setAssign] = useState(() => {
+    const today = new Date();
+    const startDate = formatDate(today);
+    const stopDate = new Date(today);
+    stopDate.setMonth(stopDate.getMonth() + 1);
+    if (stopDate.getDate() < today.getDate()) {
+      stopDate.setDate(0);
+    }
+
+    return {
+      name: "",
+      description: "",
+      startDate: startDate,
+      stopDate: formatDate(stopDate),
+      startTime: "09:00:00",
+      stopTime: "17:00:00",
+      duration: 60,
+      dailyPay: 0,
+      locations: [
+        {
+          address: "",
+          longitude: "-122.084",
+          latitude: "37.4219999",
+          type: "Office",
+          place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+        }
+      ],
+      weekdays: {
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        saturday: false,
+        sunday: false
+      }
+    };
+  });
+  // {
+  //   address: "123 Main St",
+  //   longitude: "-122.084",
+  //   latitude: "37.4219999",
+  //   type: "Office",
+  //   place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+  // }
+
+  const { addproject, authenticatingaddproject } = useSelector(
+    (state) => state.addproject
+  );
+  console.log(addproject?.data);
+
+  useEffect(() => {
+    if (addproject?.data?.locations?.length > 0) {
+      const defaultLocationId = addproject.data.locations[0].id;
+      setRep((prev) => [
+        {
+          ...prev[0],
+          location_id: defaultLocationId
+        }
+      ]);
+    }
+  }, [addproject?.data?.locations]);
+
+  useEffect(() => {
+    dispatch(CorporateBusinessRep({ searcher, currentPage }));
+  }, []);
 
   useEffect(() => {
     // dispatch(CorporateBusinessRep())
@@ -41,7 +123,13 @@ const ClientLocationDetails = ({ title }) => {
       // dispatch(CorporateBusinessRep())
       setReload(false);
     }
-  }, [reload]);
+    if (addproject?.status && !authenticatingaddproject && bustate) {
+      SetActivating1(true);
+      SetActivate(false);
+      SetPend(false);
+      setbustate(false);
+    }
+  }, [reload, addproject?.status, authenticatingaddproject, bustate]);
 
   const { businessrep, authenticatingbusinessrep } = useSelector(
     (state) => state.businessrep
@@ -87,10 +175,122 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const setPendingRole1 = () => {
-    SetActivating1(true);
-    SetActivate(false);
-    SetPend(false);
+    const { name, description, startTime, stopTime, dailyPay, locations } =
+      assign;
+    const areAllVariablesPresent =
+      name &&
+      description &&
+      startTime &&
+      stopTime &&
+      dailyPay != null &&
+      locations &&
+      locations.length > 0;
+
+    if (areAllVariablesPresent) {
+      dispatch(
+        AddProject({
+          name,
+          description,
+          startDate: assign.startDate,
+          stopDate: assign.stopDate,
+          startTime,
+          stopTime,
+          duration: assign.duration,
+          dailyPay,
+          locations,
+          weekdays: assign.weekdays
+        })
+      );
+      setbustate(true);
+    } else {
+      console.log(assign);
+      toast.error("Some required variables are missing.");
+    }
   };
+
+  const setPendingRoleReal1 = () => {
+    if (addproject?.status && !authenticatingaddproject && bustate) {
+      SetActivating1(true);
+      SetActivate(false);
+      SetPend(false);
+      setbustate(false);
+    } else {
+      toast.error("Fill Project Details and Add Locations");
+    }
+  };
+
+  const ChangeProject = (e) => {
+    const { name, value } = e.target;
+    setAssign((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const AddittionRep = () => {
+    const reps = {
+      user_id: "",
+      location_id: null
+    };
+
+    setRep((prev) => ({
+      ...prev,
+      rep: [...prev.rep, reps]
+    }));
+  };
+
+  const AssignChange = (e, index) => {
+    const { name, value } = e.target;
+
+    setRep((prev) =>
+      prev.map((item, i) =>
+        i === index
+          ? {
+              ...item,
+              [name]: value
+            }
+          : item
+      )
+    );
+  };
+
+  const addLocation = () => {
+    const newLocation = {
+      address: "",
+      longitude: "-122.084",
+      latitude: "37.4219999",
+      type: "Office",
+      place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+    };
+
+    setAssign((prevState) => ({
+      ...prevState,
+      locations: [...prevState.locations, newLocation]
+    }));
+  };
+
+  const Remover = (userId) => {
+    setRep((prev) => ({
+      ...prev,
+      rep: prev.rep.filter((item) => item.user_id !== userId)
+    }));
+  };
+
+  const Removing = (index) => {
+    setAssign((prev) => ({
+      ...prev,
+      locations: prev.locations.filter((_, i) => i !== index)
+    }));
+  };
+
+  const SendAssignRep = () => {
+    dispatch(AssignedRep({ rep, projectId: addproject?.data?.id }));
+  };
+
+  const { assigned, authenticatingassigned } = useSelector(
+    (state) => state.assigned
+  );
+  console.log(assigned);
   return (
     <Flex>
       <Navbar title={title} />
@@ -119,7 +319,7 @@ const ClientLocationDetails = ({ title }) => {
             <span>2. Add Locations</span>
           </div>
           <div
-            onClick={() => setPendingRole1()}
+            onClick={() => setPendingRoleReal1()}
             className={`${activating1 ? "active" : "status"}`}
           >
             <span>3. Assign Business Reps</span>
@@ -135,6 +335,9 @@ const ClientLocationDetails = ({ title }) => {
                   <div className="projectname">
                     <span className="name">Project name</span>
                     <input
+                      name="name"
+                      onChange={(e) => ChangeProject(e)}
+                      value={assign?.name}
                       className="nametype"
                       placeholder="Enter project name"
                     />
@@ -154,7 +357,25 @@ const ClientLocationDetails = ({ title }) => {
                   </div>
                   <div className="projectnamethree">
                     <span className="name">Daily Pay</span>
-                    <input className="nametype" placeholder="Enter daily pay" />
+                    <input
+                      className="nametype"
+                      name="dailyPay"
+                      onChange={(e) => ChangeProject(e)}
+                      value={assign?.dailyPay}
+                      placeholder="Enter daily pay"
+                    />
+                  </div>
+                </div>
+                <div className="filling">
+                  <div className="projectname">
+                    <span className="name">Description</span>
+                    <input
+                      name="description"
+                      onChange={(e) => ChangeProject(e)}
+                      value={assign?.description}
+                      className="nametype"
+                      placeholder="Enter project description"
+                    />
                   </div>
                 </div>
               </div>
@@ -164,33 +385,201 @@ const ClientLocationDetails = ({ title }) => {
                 <div className="selectors">
                   <div className="top">
                     <div className="days">
-                      <UnColor />
+                      {assign?.weekdays?.sunday ? (
+                        <Color
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                sunday: false
+                              }
+                            }))
+                          }
+                        />
+                      ) : (
+                        <UnColor
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                sunday: true
+                              }
+                            }))
+                          }
+                        />
+                      )}
                       <span className="round">Sunday</span>
                     </div>
                     <div className="days">
-                      <Color />
+                      {assign?.weekdays?.monday ? (
+                        <Color
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                monday: false
+                              }
+                            }))
+                          }
+                        />
+                      ) : (
+                        <UnColor
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                monday: true
+                              }
+                            }))
+                          }
+                        />
+                      )}
                       <span className="round">Monday</span>
                     </div>
                     <div className="days">
-                      <UnColor />
+                      {assign?.weekdays?.tuesday ? (
+                        <Color
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                tuesday: false
+                              }
+                            }))
+                          }
+                        />
+                      ) : (
+                        <UnColor
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                tuesday: true
+                              }
+                            }))
+                          }
+                        />
+                      )}
                       <span className="round">Tuesday</span>
                     </div>
                     <div className="days">
-                      <Color />
+                      {assign?.weekdays?.wednesday ? (
+                        <Color
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                wednesday: false
+                              }
+                            }))
+                          }
+                        />
+                      ) : (
+                        <UnColor
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                wednesday: true
+                              }
+                            }))
+                          }
+                        />
+                      )}
                       <span className="round">Wednesday</span>
                     </div>
                   </div>
                   <div className="top">
                     <div className="days">
-                      <UnColor />
+                      {assign?.weekdays?.thursday ? (
+                        <Color
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                thursday: false
+                              }
+                            }))
+                          }
+                        />
+                      ) : (
+                        <UnColor
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                thursday: true
+                              }
+                            }))
+                          }
+                        />
+                      )}
                       <span className="round">Thursday</span>
                     </div>
                     <div className="days">
-                      <Color />
+                      {assign?.weekdays?.friday ? (
+                        <Color
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                friday: false
+                              }
+                            }))
+                          }
+                        />
+                      ) : (
+                        <UnColor
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                friday: true
+                              }
+                            }))
+                          }
+                        />
+                      )}
                       <span className="round">Friday</span>
                     </div>
                     <div className="days">
-                      <Color />
+                      {assign?.weekdays?.saturday ? (
+                        <Color
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                saturday: false
+                              }
+                            }))
+                          }
+                        />
+                      ) : (
+                        <UnColor
+                          onClick={() =>
+                            setAssign((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                saturday: true
+                              }
+                            }))
+                          }
+                        />
+                      )}
                       <span className="round">Saturday</span>
                     </div>
                   </div>
@@ -198,14 +587,28 @@ const ClientLocationDetails = ({ title }) => {
                 <div className="filling">
                   <div className="projectname">
                     <span className="name">Resumption time</span>
-                    <select className="nametype">
-                      <option>9:00A.M</option>
+                    <select
+                      name="startTime"
+                      value={assign.startTime}
+                      onChange={(e) => ChangeProject(e)}
+                      className="nametype"
+                    >
+                      <option value="09:00:00">9:00 A.M</option>
+                      <option value="10:00:00">10:00 A.M</option>
+                      <option value="11:00:00">11:00 A.M</option>
                     </select>
                   </div>
                   <div className="projectnamethree">
                     <span className="name">Closing time</span>
-                    <select className="nametype">
-                      <option>10:00A.M</option>
+                    <select
+                      name="stopTime"
+                      value={assign.stopTime}
+                      onChange={(e) => ChangeProject(e)}
+                      className="nametype"
+                    >
+                      <option value="15:00:00">03:00 P.M</option>
+                      <option value="16:00:00">04:00 P.M</option>
+                      <option value="17:00:00">05:00 P.M</option>
                     </select>
                   </div>
                 </div>
@@ -228,19 +631,39 @@ const ClientLocationDetails = ({ title }) => {
                   Please fill in the details needed...
                 </span>
                 <div className="filling">
-                  <div className="projectname">
-                    <span className="name">Address</span>
-                    <input className="nametype" placeholder="Enter Address" />
-                  </div>
-                  <div className="projectnamethree">
-                    <span className="name">State</span>
-                    <select className="nametype">
-                      <option>Select State</option>
-                    </select>
+                  <div className="wrap">
+                    {assign?.locations?.map((item, index) => (
+                      <div className="filling">
+                        <div className="projectname">
+                          <span className="name">Address</span>
+                          <input
+                            onChange={(e) => {
+                              setAssign((prev) => ({
+                                ...prev,
+                                locations: prev.locations.map((location, i) =>
+                                  i === index
+                                    ? { ...location, address: e.target.value }
+                                    : location
+                                )
+                              }));
+                            }}
+                            value={assign.locations[index]?.address || ""}
+                            className="nametype"
+                            placeholder="Enter Address"
+                          />
+                        </div>
+                        <div className="projectnamethree">
+                          <span className="name">State</span>
+                          <select className="nametype">
+                            <option>Select State</option>
+                          </select>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                   <div className="addaddress">
                     <ModalButton
-                      onClick={() => ""}
+                      onClick={() => addLocation()}
                       background
                       color
                       short
@@ -256,7 +679,24 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="title">Action</span>
                   </div>
                   <div className="arrange">
-                    <div className="details">
+                    {assign?.locations?.map((item, index) => (
+                      <div className="details">
+                        <div className="first">
+                          {item?.address !== "" ? <Color /> : ""}
+                          {item?.address}
+                        </div>
+                        <div className="second">Lagos</div>
+                        <div className="third">Third mainland bridge</div>
+                        <div className="four">
+                          Remove{" "}
+                          <Danger
+                            style={{ cursor: "pointer" }}
+                            onClick={() => Removing(index)}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    {/* <div className="details">
                       <div className="first">
                         <Color />
                         No 62, Berkeley street
@@ -288,18 +728,7 @@ const ClientLocationDetails = ({ title }) => {
                       <div className="four">
                         Remove <Danger />
                       </div>
-                    </div>
-                    <div className="details">
-                      <div className="first">
-                        <Color />
-                        No 62, Berkeley street
-                      </div>
-                      <div className="second">Lagos</div>
-                      <div className="third">Third mainland bridge</div>
-                      <div className="four">
-                        Remove <Danger />
-                      </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -326,21 +755,47 @@ const ClientLocationDetails = ({ title }) => {
                   Please fill in the details needed...
                 </span>
                 <div className="filling">
-                  <div className="projectname">
-                    <span className="name">Business Reps</span>
-                    <select className="nametype">
-                      <option>Select business reps</option>
-                    </select>
-                  </div>
-                  <div className="projectnamethree">
-                    <span className="name">Location</span>
-                    <select className="nametype">
-                      <option>Select location</option>
-                    </select>
-                  </div>
+                  {rep?.map((item, index) => (
+                    <React.Fragment key={index}>
+                      <div className="projectname">
+                        <span className="name">Business Reps</span>
+                        <select
+                          onChange={(e) => AssignChange(e, index)}
+                          name="user_id"
+                          value={item?.user_id || ""}
+                          className="nametype"
+                        >
+                          {businessrep?.data?.data?.map((repItem) => (
+                            <option key={repItem?.id} value={repItem?.id}>
+                              {repItem?.firstName} {repItem?.lastName}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="projectnamethree">
+                        <span className="name">Location</span>
+                        <select
+                          onChange={(e) => AssignChange(e, index)}
+                          className="nametype"
+                          value={item?.location_id || ""}
+                          name="location_id"
+                        >
+                          {addproject?.data?.locations?.map((locationItem) => (
+                            <option
+                              key={locationItem?.id}
+                              value={locationItem?.id}
+                            >
+                              {locationItem?.address}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </React.Fragment>
+                  ))}
+
                   <div className="addaddress">
                     <ModalButton
-                      onClick={() => ""}
+                      onClick={() => AddittionRep()}
                       background
                       color
                       short
@@ -359,66 +814,47 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="title">Action</span>
                   </div>
                   <div className="arrange">
-                    <div className="details">
-                      <div className="front">
-                        <Color />
-                        Sheidu Susan
-                      </div>
-                      <div className="first">
-                        <Color />
-                        No 62, Berkeley street
-                      </div>
-                      <div className="second">Lagos</div>
-                      <div className="third">Third mainland bridge</div>
-                      <div className="four">
-                        Remove <Danger />
-                      </div>
-                    </div>
-                    <div className="details">
-                      <div className="front">
-                        <Color />
-                        Sheidu Susan
-                      </div>
-                      <div className="first">
-                        <Color />
-                        No 62, Berkeley street
-                      </div>
-                      <div className="second">Lagos</div>
-                      <div className="third">Third mainland bridge</div>
-                      <div className="four">
-                        Remove <Danger />
-                      </div>
-                    </div>
-                    <div className="details">
-                      <div className="front">
-                        <Color />
-                        Sheidu Susan
-                      </div>
-                      <div className="first">
-                        <Color />
-                        No 62, Berkeley street
-                      </div>
-                      <div className="second">Lagos</div>
-                      <div className="third">Third mainland bridge</div>
-                      <div className="four">
-                        Remove <Danger />
-                      </div>
-                    </div>
-                    <div className="details">
-                      <div className="front">
-                        <Color />
-                        Sheidu Susan
-                      </div>
-                      <div className="first">
-                        <Color />
-                        No 62, Berkeley street
-                      </div>
-                      <div className="second">Lagos</div>
-                      <div className="third">Third mainland bridge</div>
-                      <div className="four">
-                        Remove <Danger />
-                      </div>
-                    </div>
+                    {Array.isArray(rep) &&
+                      rep.map((item) => {
+                        // Find the matching business rep data based on user_id
+                        const businessRep = businessrep?.data?.data?.find(
+                          (list) => list.id === item?.user_id
+                        );
+
+                        return (
+                          <div className="details" key={item?.user_id}>
+                            <div className="front">
+                              {businessRep ? (
+                                <>
+                                  <Color />
+                                  {`${businessRep?.firstName} ${businessRep?.lastName}`}
+                                </>
+                              ) : (
+                                <>Not found</>
+                              )}
+                            </div>
+                            <div className="first">
+                              {businessRep ? (
+                                <>
+                                  <Color />
+                                  {`${businessRep?.address}`}
+                                </>
+                              ) : (
+                                <>No address available</>
+                              )}
+                            </div>
+                            <div className="second">Lagos</div>
+                            <div className="third">Third mainland bridge</div>
+                            <div className="four">
+                              Remove{" "}
+                              <Danger
+                                style={{ cursor: "pointer" }}
+                                onClick={() => Remover(item?.user_id)}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
                   </div>
                 </div>
               </div>
@@ -429,7 +865,7 @@ const ClientLocationDetails = ({ title }) => {
                   title="Back"
                 />
                 <LocationModalButton
-                  onClick={() => ""}
+                  onClick={() => SendAssignRep()}
                   background
                   color
                   title="Complete project"
@@ -559,7 +995,7 @@ const Flex = styled.div`
           .filling {
             display: flex;
             flex-direction: row;
-            gap: 15px;
+            gap: 10px;
             .projectname {
               display: flex;
               flex-direction: column;
@@ -645,7 +1081,106 @@ const Flex = styled.div`
               display: flex;
               flex-direction: column;
               justify-content: flex-end;
+              align-items: flex-start;
               height: 70px;
+              width: 35%;
+            }
+            .wrap {
+              display: flex;
+              flex-direction: column;
+              width: 65%;
+              .filling {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                .projectname {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  justify-content: flex-start;
+                  width: 50%;
+                  height: 90px;
+                  .name {
+                    color: #1e1b39;
+                    font-size: 14px;
+                  }
+                  .nametype {
+                    border: 1px solid var(--stroke-color, #e2e8f0);
+                    padding: 15px 30px 15px 30px;
+                    border-radius: 6px;
+                    width: 90%;
+                    outline: none;
+                  }
+                  .yescontainer {
+                  }
+                }
+                .projectnametwo {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  justify-content: flex-start;
+                  width: 30%;
+                  height: 90px;
+                  .name {
+                    color: #1e1b39;
+                    font-size: 14px;
+                  }
+                  .wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 15px;
+                    .yescontainer {
+                      display: flex;
+                      flex-direction: row;
+                      gap: 10px;
+                      border: 1px solid var(--stroke-color, #e2e8f0);
+                      border-radius: 8px;
+                      height: 45px;
+                      align-items: center;
+                      width: 50%;
+                      justify-content: flex-start;
+                      padding-left: 20px;
+                      .circle {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        border: 1px solid #ebebeb;
+                      }
+                      .yes {
+                        color: #1e1b39;
+                        font-size: 15px;
+                      }
+                    }
+                  }
+                }
+                .projectnamethree {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  justify-content: flex-start;
+                  width: 50%;
+                  height: 90px;
+                  .name {
+                    color: #1e1b39;
+                    font-size: 14px;
+                  }
+                  .nametype {
+                    border: 1px solid var(--stroke-color, #e2e8f0);
+                    padding: 15px 30px 15px 30px;
+                    border-radius: 6px;
+                    width: 90%;
+                    outline: none;
+                  }
+                  .yescontainer {
+                  }
+                }
+                .addaddress {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-end;
+                  height: 70px;
+                }
+              }
             }
           }
           .selectors {

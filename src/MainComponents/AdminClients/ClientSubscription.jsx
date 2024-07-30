@@ -191,7 +191,7 @@ const ClientSubscription = ({ title }) => {
           {activated ? (
             <Tables subhistory data={[]} setStep={setStep} />
           ) : pend ? (
-            <FeaturesGrid dashboard row={4}>
+            <FeaturesGrid dashboardy row={4}>
               <Plans standard />
               <Plans enterprise />
               <Plans plus />
@@ -265,7 +265,7 @@ const Flex = styled.div`
       padding-bottom: 40px;
       display: flex;
       flex-direction: column;
-      gap: ${(props) => (props.activated ? '30px' : '10px')};
+      gap: ${(props) => (props.activated ? "30px" : "10px")};
       .statuses {
         display: flex;
         flex-direction: row;
