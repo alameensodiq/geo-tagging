@@ -38,7 +38,9 @@ const Navbar = ({ title }) => {
         <div className="third">
           <div className="picture"></div>
           <div className="thirdfirst">
-            <span className="thirdsecond">{getuser?.data?.firstName} {getuser?.data?.lastName}</span>
+            <span className="thirdsecond">
+              {getuser?.data?.firstName} {getuser?.data?.lastName}
+            </span>
             <span className="thirdthird">{getuser?.data?.roleName}</span>
           </div>
         </div>

@@ -132,11 +132,10 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     if (bustate && createbus?.status && !authenticatingcreatebus) {
       setStep(3);
     }
-    if (
-      bustate1 &&
-      addteam?.status &&
-      (!authenticatingaddteam || !authenticatingsuperaddteam)
-    ) {
+    if (bustate1 && addteam?.status && !authenticatingaddteam) {
+      setStep(10);
+    }
+    if (bustate1 && superaddteam?.status && !authenticatingsuperaddteam) {
       setStep(10);
     }
     if (bustate2 && addsub?.status && !authenticatingaddsub) {
@@ -825,6 +824,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     ].every((variable) => variable !== undefined && variable !== null);
     if (allVariablesPresent) {
       const names = `${name} ${lastname}`;
+      console.log(supers);
       if (!supers) {
         dispatch(
           AddTeam({
@@ -5774,10 +5774,12 @@ const FlexUser = styled.div`
             font-weight: 500;
           }
           .button-group {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+            display: grid;
+            /* flex-direction: row; */
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            justify-items: space-between;
             gap: 10px;
+            /* background: red; */
             .view {
               display: flex;
               flex-direction: row;

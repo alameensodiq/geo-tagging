@@ -163,7 +163,7 @@ const SuperAdminUserDetails = ({ title }) => {
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "DASHBOARD_VIEW"
+        (permission) => permission !== "OVERVIEW_VIEW"
       )
     }));
   };
@@ -172,7 +172,7 @@ const SuperAdminUserDetails = ({ title }) => {
     setView1(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "OVERVIEW_VIEW"]
     }));
   };
 
@@ -180,7 +180,7 @@ const SuperAdminUserDetails = ({ title }) => {
     setView1(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "OVERVIEW_VIEW"]
     }));
   };
 
@@ -189,7 +189,7 @@ const SuperAdminUserDetails = ({ title }) => {
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "DASHBOARD_VIEW"
+        (permission) => permission !== "OVERVIEW_VIEW"
       )
     }));
   };
@@ -839,14 +839,14 @@ const SuperAdminUserDetails = ({ title }) => {
                 <span className="name">1.Dashboard</span>
                 <div className="button-group">
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "DASHBOARD_VIEW"
+                    (item) => item?.right === "OVERVIEW_VIEW"
                   ) && !view1 ? (
                     <button className="view" onClick={() => Viewing()}>
                       <Eye />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "DASHBOARD_VIEW"
+                      (item) => item?.right === "OVERVIEW_VIEW"
                     ) && !view1 ? (
                     <button
                       className="darkview"
@@ -856,14 +856,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "DASHBOARD_VIEW"
+                      (item) => item?.right === "OVERVIEW_VIEW"
                     ) && view1 ? (
                     <button className="darkview" onClick={() => NotViewing1()}>
                       <Eye />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "DASHBOARD_VIEW"
+                      (item) => item?.right === "OVERVIEW_VIEW"
                     ) && view1 ? (
                     <button
                       className="view"
@@ -2260,8 +2260,9 @@ const Flex = styled.div`
               font-weight: 500;
             }
             .button-group {
-              display: flex;
-              flex-direction: row;
+              display: grid;
+              /* flex-direction: row; */
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
               gap: 15px;
               .view {
                 display: flex;

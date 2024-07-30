@@ -125,7 +125,7 @@ const SuperAdminUsermanagement = ({ title }) => {
       <SuperAdminNavbar title={title} />
       <AppUserModal
         data={adminpermission?.data}
-        super
+        supers
         setStep={setStep}
         step={step}
         setReload={setReload}

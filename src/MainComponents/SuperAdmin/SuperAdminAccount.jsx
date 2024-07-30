@@ -12,6 +12,8 @@ import SuperAdminNavbar from "./SuperAdminNavbar";
 import { DownloadCsv } from "../../bits/DownloadCsv";
 import FeaturesGrid from "../../Reusable/FeaturesGrid";
 import AccountInputText from "../../bits/AccountInputText";
+import { ChangePassword } from "../../Store/Apis/ChangePassword";
+import { GetUser } from "../../Store/Apis/GetUser";
 
 const SuperAdminAccount = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -33,19 +35,46 @@ const SuperAdminAccount = ({ title }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [log, setLog] = useState(false);
+
+  const [userdetails, setUserdetails] = useState({
+    current_password: "",
+    password: "",
+    password_confirmation: ""
+  });
+
+  const { getuser, authenticatinggetuser } = useSelector(
+    (state) => state.getuser
+  );
+  console.log(getuser?.data);
+
+  const { changepass, authenticatingchangepass } = useSelector(
+    (state) => state.changepass
+  );
+  console.log(changepass?.data);
+
+  //   current_password, password, password_confirmation
+
   useEffect(() => {
-    // dispatch(CorporateBusinessRep())
+    dispatch(GetUser());
     if (reload) {
-      // dispatch(CorporateBusinessRep())
+      dispatch(GetUser());
       setReload(false);
+      setLog(false);
     }
-  }, [reload]);
+    if (changepass?.status && !authenticatingchangepass && log) {
+      setStep(35);
+    }
+  }, [reload, changepass?.status, log]);
 
-  //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
-  //   console.log(businessrep?.data?.data)
-
-  //   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
-  //   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
+  const Change = (e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setUserdetails({
+      ...userdetails,
+      [name]: value
+    });
+  };
 
   const setActivate = () => {
     SetActivate(true);
@@ -74,6 +103,18 @@ const SuperAdminAccount = ({ title }) => {
     setTimeout(() => {
       setFirst("pending");
     }, [500]);
+  };
+
+  const UpdatePassword = () => {
+    setLog(true);
+    const { current_password, password } = userdetails;
+    dispatch(
+      ChangePassword({
+        current_password,
+        password,
+        password_confirmation: password
+      })
+    );
   };
   return (
     <Flex>
@@ -108,7 +149,7 @@ const SuperAdminAccount = ({ title }) => {
                 // onChange={(e) => Change(e)}
                 name="firstname"
                 // value={regbus?.firstname}
-                placeholder={`${`Enter Business Rep's First Name`}`}
+                placeholder={`${`${getuser?.data?.firstName} ${getuser?.data?.lastName}`}`}
               />
               <AccountInputText
                 nosign
@@ -117,7 +158,7 @@ const SuperAdminAccount = ({ title }) => {
                 // onChange={(e) => Change(e)}
                 name="firstname"
                 // value={regbus?.firstname}
-                placeholder={`${`johnmercy03@gmail.com`}`}
+                placeholder={`${`${getuser?.data?.email}`}`}
               />
             </div>
             <div className="editrole">
@@ -145,9 +186,9 @@ const SuperAdminAccount = ({ title }) => {
                 label="Current Password"
                 reduce
                 passwordlogo
-                // onChange={(e) => Change(e)}
-                name="firstname"
-                // value={regbus?.firstname}
+                onChange={(e) => Change(e)}
+                name="current_password"
+                value={userdetails?.current_password}
                 placeholder={`${`Enter New Password`}`}
               />
               <AccountInputText
@@ -155,19 +196,24 @@ const SuperAdminAccount = ({ title }) => {
                 label="New Password"
                 reduce
                 passwordlogo
-                // onChange={(e) => Change(e)}
-                name="firstname"
-                // value={regbus?.firstname}
+                onChange={(e) => Change(e)}
+                name="password"
+                value={userdetails?.password}
                 placeholder={`${`Enter New Password`}`}
               />
             </div>
             <div className="editrole">
               <ModalButton
-                onClick={() => setStep(35)}
+                // onClick={() => setStep(35)}
+                onClick={() => UpdatePassword()}
                 background
                 color
                 remove
-                title="Update Password"
+                title={
+                  authenticatingchangepass
+                    ? "Updating Password..."
+                    : "Update Password"
+                }
               />
             </div>
           </div>

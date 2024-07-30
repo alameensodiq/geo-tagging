@@ -11,6 +11,7 @@ import InputSearch from "../../bits/InputSearch";
 import DatePicker from "react-datepicker";
 import FeaturesGrid from "../../Reusable/FeaturesGrid";
 import Plans from "../../Reusable/Plans";
+import { SuperSubs } from "../../Store/Apis/SuperSub";
 
 const ClientSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -32,12 +33,17 @@ const ClientSubscription = ({ title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(CorporateBusinessRep())
+    dispatch(SuperSubs());
     if (reload) {
-      // dispatch(CorporateBusinessRep())
+      dispatch(SuperSubs());
       setReload(false);
     }
   }, [reload]);
+
+  const { supersub, authenticatingsupersub } = useSelector(
+    (state) => state.supersub
+  );
+  console.log(supersub?.data);
 
   //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
   //   console.log(businessrep?.data?.data)
@@ -192,10 +198,27 @@ const ClientSubscription = ({ title }) => {
             <Tables subhistory data={[]} setStep={setStep} />
           ) : pend ? (
             <FeaturesGrid dashboardy row={4}>
-              <Plans standard />
-              <Plans enterprise />
-              <Plans plus />
-              <Plans />
+              <Plans
+                standard
+                data={supersub?.data?.find((item) => item?.name === "standard")}
+              />
+              <Plans
+                enterprise
+                data={supersub?.data?.find(
+                  (item) => item?.name === "Enterprise"
+                )}
+              />
+              <Plans
+                plus
+                data={supersub?.data?.find(
+                  (item) => item?.name === "standard Plus"
+                )}
+              />
+              <Plans
+                data={supersub?.data?.find(
+                  (item) => item?.name === "Enterprise Plus"
+                )}
+              />
             </FeaturesGrid>
           ) : (
             ""
