@@ -57,15 +57,18 @@ const SuperAdminAccount = ({ title }) => {
 
   useEffect(() => {
     dispatch(GetUser());
-    if (reload) {
-      dispatch(GetUser());
+    setReload(false);
+    setLog(false);
+    if (reload && changepass?.status && !authenticatingchangepass && !log) {
+      setStep(0);
       setReload(false);
       setLog(false);
+      dispatch(GetUser());
     }
     if (changepass?.status && !authenticatingchangepass && log) {
       setStep(35);
     }
-  }, [reload, changepass?.status, log]);
+  }, [reload, changepass?.status, log, authenticatingchangepass]);
 
   const Change = (e) => {
     const { name, value } = e.target;
@@ -106,7 +109,6 @@ const SuperAdminAccount = ({ title }) => {
   };
 
   const UpdatePassword = () => {
-    setLog(true);
     const { current_password, password } = userdetails;
     dispatch(
       ChangePassword({
@@ -115,11 +117,18 @@ const SuperAdminAccount = ({ title }) => {
         password_confirmation: password
       })
     );
+    setLog(true);
   };
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        setUserdetails={setUserdetails}
+        setStep={setStep}
+        setLog={setLog}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">

@@ -29,7 +29,15 @@ import { SuperAddTeam } from "../Store/Apis/SuperAddteam";
 import { AddSub } from "../Store/Apis/AddSub";
 import { AddCorp } from "../Store/Apis/AddCorp";
 
-const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
+const AppUserModal = ({
+  setStep,
+  step,
+  setReload,
+  data,
+  setLog,
+  supers,
+  setUserdetails
+}) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
@@ -937,6 +945,13 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     if (setLog) {
       setLog(false);
     }
+    // if (setUserdetails) {
+    //   setUserdetails({
+    //     current_password: "",
+    //     password: "",
+    //     password_confirmation: ""
+    //   });
+    // }
     setSub({
       name: "",
       minRepCount: "",

@@ -42,7 +42,6 @@ const ClientAdminAccount = ({ title }) => {
     password_confirmation: ""
   });
 
-
   const { getuser, authenticatinggetuser } = useSelector(
     (state) => state.getuser
   );
@@ -57,15 +56,15 @@ const ClientAdminAccount = ({ title }) => {
 
   useEffect(() => {
     dispatch(GetUser());
-    if (reload) {
+    if (reload && changepass?.status && !authenticatingchangepass && !log) {
       dispatch(GetUser());
       setReload(false);
       setLog(false);
     }
-    if(changepass?.status && !authenticatingchangepass && log){
-      setStep(35)
+    if (changepass?.status && !authenticatingchangepass && log) {
+      setStep(35);
     }
-  }, [reload, changepass?.status, log]);
+  }, [reload, changepass?.status, log, authenticatingchangepass]);
 
   const Change = (e) => {
     const { name, value } = e.target;
@@ -75,7 +74,6 @@ const ClientAdminAccount = ({ title }) => {
       [name]: value
     });
   };
-
 
   const setActivate = () => {
     SetActivate(true);
@@ -106,23 +104,32 @@ const ClientAdminAccount = ({ title }) => {
     }, [500]);
   };
 
-
   const UpdatePassword = () => {
     setLog(true);
-    const { current_password, password} = userdetails
-    dispatch(ChangePassword({current_password, password, password_confirmation : password }))
-  }
+    const { current_password, password } = userdetails;
+    dispatch(
+      ChangePassword({
+        current_password,
+        password,
+        password_confirmation: password
+      })
+    );
+  };
 
-
-//   if (changepass?.status && !authenticatingchangepass && log) {
-//     setStep(35)
-//   }
-
+  //   if (changepass?.status && !authenticatingchangepass && log) {
+  //     setStep(35)
+  //   }
 
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        setUserdetails={setUserdetails}
+        setStep={setStep}
+        setLog={setLog}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
@@ -212,7 +219,11 @@ const ClientAdminAccount = ({ title }) => {
                 background
                 color
                 remove
-                title={authenticatingchangepass ? "Updating Password..." : "Update Password" }
+                title={
+                  authenticatingchangepass
+                    ? "Updating Password..."
+                    : "Update Password"
+                }
               />
             </div>
           </div>
