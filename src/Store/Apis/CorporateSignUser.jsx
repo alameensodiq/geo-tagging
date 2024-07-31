@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
+import { jwtDecode } from "jwt-decode";
 
 export const CorporateSignUser = createAsyncThunk(
   "login",
@@ -24,16 +25,19 @@ export const CorporateSignUser = createAsyncThunk(
       let data = await response.json();
       toast.success(data.message);
       console.log(data);
-      //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
-      //   sessionStorage.setItem('role', data?.data?.user?.userRole);
-        sessionStorage.setItem('token', data?.data?.token );
+      sessionStorage.setItem("token", data?.data?.token);
+
+      // Decode the token using jwt-decode
+      const token = data?.data?.token;
+      const decodedToken = jwtDecode(token);
+      sessionStorage.setItem("role", decodedToken?.role);
+      console.log(decodedToken);
+
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({
         error: "Failed! To establish connection."
       });
-      // console.log('Error', e.response.data);
-      // thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );

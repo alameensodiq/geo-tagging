@@ -25,6 +25,7 @@ import { AdminPermissionsSlice } from "./Reducers/AdminPermissions";
 import { AddSubSlice } from "./Reducers/AddSub";
 import { AddProjectSlice } from "./Reducers/AddProject";
 import { AssignedRepSlice } from "./Reducers/Assigned";
+import { AddCorpSlice } from "./Reducers/AddCorp";
 
 export default configureStore({
   reducer: {
@@ -53,6 +54,7 @@ export default configureStore({
     adminpermission: AdminPermissionsSlice?.reducer,
     addsub: AddSubSlice?.reducer,
     addproject: AddProjectSlice?.reducer,
-    assigned: AssignedRepSlice?.reducer
+    assigned: AssignedRepSlice?.reducer,
+    addcorping: AddCorpSlice?.reducer
   }
 });

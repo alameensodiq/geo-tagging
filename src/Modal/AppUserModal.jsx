@@ -27,6 +27,7 @@ import styled from "styled-components";
 import { AddTeam } from "../Store/Apis/AddTeam";
 import { SuperAddTeam } from "../Store/Apis/SuperAddteam";
 import { AddSub } from "../Store/Apis/AddSub";
+import { AddCorp } from "../Store/Apis/AddCorp";
 
 const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
   const [bustate, setBusstate] = useState(false);
   const [bustate1, setBusstate1] = useState(false);
   const [bustate2, setBusstate2] = useState(false);
+  const [bustate5, setBusstate5] = useState(false);
   const [view1, setView1] = useState(false);
   const [view2, setView2] = useState(false);
   const [view3, setView3] = useState(false);
@@ -74,6 +76,14 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     avatar: update
   });
 
+  const [corp, setCorp] = useState({
+    name: "",
+    rcNumber: "",
+    address: "",
+    phone: "",
+    email: ""
+  });
+
   const [sub, setSub] = useState({
     name: "",
     minRepCount: "",
@@ -97,6 +107,13 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
   const { addsub, authenticatingaddsub } = useSelector((state) => state.addsub);
 
   console.log(superaddteam);
+
+  const { addcorping, authenticatingaddcorping } = useSelector(
+    (state) => state.addcorping
+  );
+
+  console.log(superaddteam);
+
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
   //     setStep(3);
   //     toast.success(createbus?.message)
@@ -141,6 +158,9 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     if (bustate2 && addsub?.status && !authenticatingaddsub) {
       setStep(55);
     }
+    if (bustate5 && addcorping?.status && !authenticatingaddcorping) {
+      setStep(25);
+    }
 
     console.log(update);
   }, [
@@ -156,7 +176,12 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     addteam?.status,
     authenticatingaddsub,
     bustate2,
-    addsub?.status
+    addsub?.status,
+    addcorping?.status,
+    bustate5,
+    superaddteam?.status,
+    authenticatingaddcorping,
+    setStep
   ]);
 
   const Viewing = () => {
@@ -710,6 +735,15 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     });
   };
 
+  const ChangeCorp = (e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setCorp({
+      ...corp,
+      [name]: value
+    });
+  };
+
   const Changeteam = (e) => {
     const { name, value } = e.target;
     console.log(value);
@@ -856,6 +890,30 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
     }
   };
 
+  const SendingCorp = () => {
+    const { name, rcNumber, address, phone, email } = corp;
+    console.log(team);
+    console.log(address);
+    const allVariablesPresent = [name, rcNumber, address, phone, email].every(
+      (variable) => variable !== undefined && variable !== null
+    );
+    if (allVariablesPresent) {
+      console.log(supers);
+      dispatch(
+        AddCorp({
+          name,
+          rcNumber,
+          address,
+          phone,
+          email
+        })
+      );
+      setBusstate5(true);
+    } else {
+      toast.error("One or more required fields are missing.");
+    }
+  };
+
   const sendSub = () => {
     const { name, minRepCount, maxRepCount, maxLocationCount, amount } = sub;
     const allVariablesPresent = [
@@ -905,10 +963,19 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
       email: "",
       avatar: ""
     });
+    setCorp({
+      name: "",
+      rcNumber: "",
+      address: "",
+      phone: "",
+      email: ""
+    });
     setUpdate("");
     setStep(0);
     setBusstate(false);
     setBusstate1(false);
+    setBusstate2(false);
+    setBusstate5(false);
     setReload(true);
     setView1(false);
     setView2(false);
@@ -3123,41 +3190,41 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
           <ModalInputText
             nosign
             label="Business Name"
-            // onChange={(e) => Change(e)}
-            name="firstname"
-            // value={regbus?.firstname}
+            onChange={(e) => ChangeCorp(e)}
+            name="name"
+            value={corp?.name}
             placeholder={`${`Enter Corporate’s Business Nmae`}`}
           />
           <ModalInputText
             nosign
             label="RC Number"
-            // onChange={(e) => Change(e)}
-            name="firstname"
-            // value={regbus?.firstname}
+            onChange={(e) => ChangeCorp(e)}
+            name="rcNumber"
+            value={corp?.rcNumber}
             placeholder={`${`Enter Corporate’s RC Number`}`}
           />
           <ModalInputText
             nosign
             label="Address"
-            // onChange={(e) => Change(e)}
-            name="firstname"
-            // value={regbus?.firstname}
+            onChange={(e) => ChangeCorp(e)}
+            name="address"
+            value={corp?.address}
             placeholder={`${`Enter Corporate’s Address`}`}
           />
           <ModalInputText
             nosign
             label="Contact Phone Number"
-            // onChange={(e) => Change(e)}
-            name="firstname"
-            // value={regbus?.firstname}
+            onChange={(e) => ChangeCorp(e)}
+            name="phone"
+            value={corp?.phone}
             placeholder={`${`Enter Corporate’s Phone Number`}`}
           />
           <ModalInputText
             nosign
             label="Contact Email"
-            // onChange={(e) => Change(e)}
-            name="firstname"
-            // value={regbus?.firstname}
+            onChange={(e) => ChangeCorp(e)}
+            name="email"
+            value={corp?.email}
             placeholder={`${`Enter Corporate’s Email`}`}
           />
           <LargeSignInButton
@@ -3565,7 +3632,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
                   fontWeight: "500"
                 }}
               >
-                Abdulwaarith Abdulazeez
+                {corp?.name}
               </span>
             </div>
             <div
@@ -3594,7 +3661,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
                   fontWeight: "500"
                 }}
               >
-                090876ID
+                {corp?.rcNumber}
               </span>
             </div>
             <div
@@ -3623,7 +3690,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
                   fontWeight: "500"
                 }}
               >
-                1, Idowu Taylor Street, Victoria Island, Lagos.
+                {corp?.address}
               </span>
             </div>
           </div>
@@ -3668,7 +3735,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
                   fontWeight: "500"
                 }}
               >
-                +234 901 785 6291
+                {corp?.phone}
               </span>
             </div>
             <div
@@ -3698,7 +3765,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
                   fontWeight: "500"
                 }}
               >
-                info@jumia.com
+                {corp?.email}
               </span>
             </div>
             <div
@@ -3733,7 +3800,7 @@ const AppUserModal = ({ setStep, step, setReload, data, setLog, supers }) => {
           </div>
 
           <LargeSignInButton
-            onClick={() => setStep(25)}
+            onClick={() => SendingCorp()}
             bigger
             title={"Submit"}
             background

@@ -38,15 +38,21 @@ const Login = () => {
   const Authentication = () => {
     // navigate(`${superadmins}`)
     setLog(true);
-      const { email, password } = user;
-      dispatch(CorporateSignUser({ email, password }));
+    const { email, password } = user;
+    dispatch(CorporateSignUser({ email, password }));
   };
 
+  const { corporateuser, authenticating } = useSelector(
+    (state) => state.corporateuser
+  );
+  console.log(corporateuser);
 
-  const { corporateuser, authenticating } = useSelector((state) => state.corporateuser);
-  console.log(corporateuser)
-
-  if (corporateuser?.status && !authenticating && log && !corporateuser?.data?.hasChangeDefaultPassword) {
+  if (
+    corporateuser?.status &&
+    !authenticating &&
+    log &&
+    !corporateuser?.data?.hasChangeDefaultPassword
+  ) {
     navigate(`${superadmins}`);
   }
 
@@ -90,7 +96,7 @@ const Login = () => {
           <LargeSignInButton
             onClick={() => Authentication()}
             big
-            title={authenticating ? 'Loading...' : "Proceed"}
+            title={authenticating ? "Loading..." : "Proceed"}
             background
             color
           />
@@ -143,7 +149,7 @@ const Flex = styled.div`
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding-top:20px;
+      padding-top: 20px;
       justify-content: center;
       align-items: center;
       .welcome {
