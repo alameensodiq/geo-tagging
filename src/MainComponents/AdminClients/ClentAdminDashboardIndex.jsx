@@ -115,7 +115,7 @@ const ClientAdminDashboardIndex = () => {
   };
 
   return sessionStorage.getItem("token") &&
-    sessionStorage.getItem("role") === "ADMIN" ? (
+    sessionStorage.getItem("role") === "USER" ? (
     //  window.location.href = '/super'
     //  (supers)
 

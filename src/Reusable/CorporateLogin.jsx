@@ -51,18 +51,32 @@ const CorporateLogin = () => {
     //   console.log(user);
     //   toast.error("Invalid email format");
     // } else {
-      setLog(true);
-      const { email, password } = user;
-      dispatch(CorporateSignUser({ email, password }));
+    setLog(true);
+    const { email, password } = user;
+    dispatch(CorporateSignUser({ email, password }));
     // }
   };
 
-  const { corporateuser, authenticating } = useSelector((state) => state.corporateuser);
-  console.log(corporateuser)
-  if (corporateuser?.status && !authenticating && log && !corporateuser?.data?.hasChangeDefaultPassword) {
+  const { corporateuser, authenticating } = useSelector(
+    (state) => state.corporateuser
+  );
+  console.log(corporateuser);
+  if (
+    corporateuser?.status &&
+    !authenticating &&
+    log &&
+    corporateuser?.data?.hasChangeDefaultPassword
+  ) {
     navigate(`${clients}`);
-  } else if(corporateuser?.status && corporateuser?.data?.hasChangeDefaultPassword && !authenticating && log){
-    navigate('/corporate-reset')
+  } else if (
+    corporateuser?.status &&
+    !corporateuser?.data?.hasChangeDefaultPassword &&
+    !authenticating &&
+    log
+  ) {
+    navigate(`${clients}`);
+    // navigate("/corporate-reset"); //password-reset
+    // navigate("/corporate-changepassword"); //forgot
   }
 
   return (
@@ -105,20 +119,20 @@ const CorporateLogin = () => {
           />
         </div>
         <div className="statementer">
-            <div className="colored">
-              <Link
-                style={{ textDecoration: "none", color: "#1A87D7" }}
-                to={'/corporate-changepassword'}
-              >
-                Forgot password?
-              </Link>
-            </div>
+          <div className="colored">
+            <Link
+              style={{ textDecoration: "none", color: "#1A87D7" }}
+              to={"/corporate-changepassword"}
+            >
+              Forgot password?
+            </Link>
+          </div>
         </div>
         <div className="fourth">
           <LargeSignInButton
             onClick={() => Authentication()}
             big
-            title={authenticating ? 'Loading...' : "Proceed"}
+            title={authenticating ? "Loading..." : "Proceed"}
             background
             color
           />
