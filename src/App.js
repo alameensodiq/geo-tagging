@@ -48,12 +48,28 @@ import SuperAdminAccount from "./MainComponents/SuperAdmin/SuperAdminAccount";
 import SuperAdminSubscription from "./MainComponents/SuperAdmin/SuperAdminSubscription";
 import ClientAdminAccount from "./MainComponents/AdminClients/ClientAdminAccount";
 import ClientUsermanagementDetails from "./MainComponents/AdminClients/ClientUsermanagementDetails";
+import MainPage from "./MainComponents/LandingPage/MainPage.jsx";
+import React from "react";
+import { Loader } from "./Loader.jsx";
+
+const LazyIndexPage = React.lazy(() =>
+  import("./MainComponents/LandingPage/MainPage.jsx")
+);
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexPage />
+            </React.Suspense>
+          }
+        />
+        {/* <Route path="/" element={<MainPage />} /> */}
+        <Route path="/super-login" element={<Login />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/corporate-login" element={<CorporateLogin />} />
         <Route path="/corporate-reset" element={<CorporateResetPassword />} />

@@ -114,13 +114,14 @@ const SuperAdminDashboardIndex = () => {
     );
   };
 
-  return sessionStorage.getItem("token") ? (
+  return sessionStorage.getItem("token") &&
+    sessionStorage.getItem("role") === "ADMIN" ? (
     //  window.location.href = '/super'
     //  (supers)
 
     <Authenticated />
   ) : (
-    <Navigate to="/" replace={true} />
+    <Navigate to="/super-login" replace={true} />
     // <Navigate to="/" replace={true} />
   );
 };
