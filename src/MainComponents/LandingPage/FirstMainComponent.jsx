@@ -56,6 +56,11 @@ const FirstMainComponent = () => {
           Book a Demo <ArrowCircleRight />
         </button>
       </div>
+      <div className="bottom">
+        <span className="trusted">
+          Trusted by the fastest-growing companies
+        </span>
+      </div>
     </Flex>
   );
 };
@@ -65,6 +70,7 @@ const Flex = styled.div`
   flex-direction: column;
   padding-top: 190px;
   padding-inline: 65px;
+  gap: 170px;
   .top {
     display: flex;
     flex-direction: column;
@@ -165,6 +171,20 @@ const Flex = styled.div`
       cursor: pointer;
       box-shadow: 0px 0px 0px 1px #27375b;
       /* box-shadow: 0px 1px 1px 0px #0000001a; */
+    }
+  }
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    .trusted {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 24.2px;
+      text-align: left;
+      color: #5a6376cc;
     }
   }
 `;
