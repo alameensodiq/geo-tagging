@@ -1,18 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-const FeaturesCard = ({ children, row }) => {
-  return <Flex $row={row}>{children}</Flex>;
+const FeaturesCard = ({ children, row, reduce }) => {
+  return (
+    <Flex $row={row} reduce={reduce}>
+      {children}
+    </Flex>
+  );
 };
 
 const Flex = styled.div`
   width: 100%;
   padding-block: 0;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: ${(props) => (props.reduce ? "40px" : "0px")};
+  padding-right: ${(props) => (props.reduce ? "40px" : "0px")};
   display: grid;
   row-gap: 10px;
-  column-gap: 50px;
+  column-gap: 30px;
   max-width: 100%;
   grid-template-columns: ${(props) => `repeat(${props.$row}, 1fr)`};
 

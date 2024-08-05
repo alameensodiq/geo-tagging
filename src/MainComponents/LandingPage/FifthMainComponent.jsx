@@ -16,7 +16,7 @@ const FifthMainComponent = () => {
   return (
     <Flex>
       <div className="cover">
-        <FeaturesCard row={3}>
+        <FeaturesCard reduce row={3}>
           <img src={fifthfirst} alt="fifthfirst" style={{ width: "100%" }} />
           <img src={biometric} alt="biometric" style={{ width: "100%" }} />
           <img src={performance} alt="performance" style={{ width: "100%" }} />
@@ -24,7 +24,7 @@ const FifthMainComponent = () => {
           <Biometric />
           <Performance /> */}
         </FeaturesCard>
-        <FeaturesCard row={2}>
+        <FeaturesCard reduce row={2}>
           <img src={effective} alt="effective" style={{ width: "100%" }} />
           <img
             src={comprehensive}

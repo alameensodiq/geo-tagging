@@ -12,7 +12,7 @@ const FourthMainComponent = () => {
   return (
     <Flex>
       <div className="cover">
-        <FeaturesCard row={3}>
+        <FeaturesCard reduce row={3}>
           <FourMainCard
             number={1}
             name={"Book a Call."}
