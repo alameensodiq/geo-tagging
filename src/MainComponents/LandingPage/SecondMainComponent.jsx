@@ -27,7 +27,7 @@ const Flex = styled.div`
   /* padding-top: 60px; */
   align-items: flex-start;
   justify-content: center;
-  height: 60vh;
+  height: 50vh;
   gap: 30px;
   .ourservices {
     display: flex;

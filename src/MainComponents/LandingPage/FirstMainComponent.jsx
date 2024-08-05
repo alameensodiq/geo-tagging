@@ -84,6 +84,7 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 190px;
+  padding-bottom: 40px;
   padding-inline: 65px;
   gap: 170px;
   background-image: url(${first});
