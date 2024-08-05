@@ -5,7 +5,9 @@ import { ReactComponent as PlayStore } from "../../assets/playstore.svg";
 import { ReactComponent as AppStore } from "../../assets/appstore.svg";
 import { ReactComponent as ArrowCircleRight } from "../../assets/ArrowCircleRight.svg";
 import { ReactComponent as AvatarGroups } from "../../assets/AvatarGroups.svg";
+import { ReactComponent as Sliding } from "../../assets/Sliding.svg";
 import { TypeAnimation } from "react-type-animation";
+import Marquee from "react-fast-marquee";
 
 const FirstMainComponent = () => {
   return (
@@ -60,6 +62,17 @@ const FirstMainComponent = () => {
         <span className="trusted">
           Trusted by the fastest-growing companies
         </span>
+        <div className="sliding">
+          <Marquee
+            style={{ gap: "70px" }}
+            direction="left"
+            speed={120}
+            loop={0}
+            delay={20}
+          >
+            <Sliding />
+          </Marquee>
+        </div>
       </div>
     </Flex>
   );
@@ -185,6 +198,12 @@ const Flex = styled.div`
       line-height: 24.2px;
       text-align: left;
       color: #5a6376cc;
+    }
+    .sliding {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 60%;
     }
   }
 `;
