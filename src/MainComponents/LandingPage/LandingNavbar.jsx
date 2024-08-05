@@ -48,6 +48,8 @@ const Flex = styled.div`
   width: 100%;
   position: fixed;
   box-shadow: -2px 0px 5.3px -2px #00000040;
+  z-index: 1000;
+  background-color: #ffffff;
   .modules {
     display: flex;
     flex-direction: row;

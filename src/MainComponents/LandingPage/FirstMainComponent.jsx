@@ -8,10 +8,12 @@ import { ReactComponent as AvatarGroups } from "../../assets/AvatarGroups.svg";
 import { ReactComponent as Sliding } from "../../assets/Sliding.svg";
 import { TypeAnimation } from "react-type-animation";
 import Marquee from "react-fast-marquee";
+import first from "../../assets/first.png";
 
 const FirstMainComponent = () => {
   return (
     <Flex>
+      {/* <img src={first} alt="wow" /> */}
       <div className="top">
         <button className="button">
           <Built />
@@ -84,6 +86,10 @@ const Flex = styled.div`
   padding-top: 190px;
   padding-inline: 65px;
   gap: 170px;
+  background-image: url(${first});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   .top {
     display: flex;
     flex-direction: column;
