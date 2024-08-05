@@ -19,7 +19,7 @@ const Flex = styled.div`
   @media screen and (max-width: 1200px) {
     padding-inline: 0;
     margin-bottom: 20px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     column-gap: 20px; /* Adjust as needed */
   }
 

@@ -4,6 +4,7 @@ import { ReactComponent as Service } from "../../assets/serviceicon.svg";
 import { ReactComponent as Book } from "../../assets/book.svg";
 import { ReactComponent as CampaignRep } from "../../assets/CampaignRep.svg";
 import { ReactComponent as Campaigncreate } from "../../assets/Campaigncreate.svg";
+import { ReactComponent as ArrowRight } from "../../assets/ArrowRight.svg";
 import FeaturesCard from "../../Reusable/FeaturesCard";
 import FourMainCard from "./FourMainCard";
 
@@ -40,7 +41,9 @@ const FourthMainComponent = () => {
           />
         </FeaturesCard>
         <div className="demo">
-          <button className="book">Book a Demo</button>
+          <button className="book">
+            Book a Demo <ArrowRight />
+          </button>
         </div>
         <div className="down">
           <button className="ourservices">
