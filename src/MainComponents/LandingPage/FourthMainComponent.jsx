@@ -1,11 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Service } from "../../assets/serviceicon.svg";
+import { ReactComponent as Book } from "../../assets/book.svg";
+import { ReactComponent as CampaignRep } from "../../assets/CampaignRep.svg";
+import { ReactComponent as Campaigncreate } from "../../assets/Campaigncreate.svg";
+import FeaturesCard from "../../Reusable/FeaturesCard";
+import FourMainCard from "./FourMainCard";
 
 const FourthMainComponent = () => {
   return (
     <Flex>
       <div className="cover">
+        <FeaturesCard row={3}>
+          <FourMainCard
+            number={1}
+            name={"Book a Call."}
+            image={<Book />}
+            statement1={"Book a call with our  consultants. We’ll"}
+            statement2={"set you up with a free account ready to"}
+            statement3={"suit your team’s needs"}
+          />
+          <FourMainCard
+            number={2}
+            name={"Create a Campaign"}
+            image={<Campaigncreate />}
+            statement1={"Create a campaign with your De - Faucon"}
+            statement2={"corporate account. We’ll set you up to"}
+            statement3={"create, edit, suspend, and manage"}
+            statement4={"promotional campaigns."}
+          />
+          <FourMainCard
+            number={3}
+            name={"Add your Representatives."}
+            image={<CampaignRep />}
+            statement1={"Add your representatives with your De -"}
+            statement2={"Faucon corporate account. Onboard"}
+            statement3={"effortlessly with our self-serve"}
+            statement4={"platform."}
+          />
+        </FeaturesCard>
+        <div className="demo">
+          <button className="book">Book a Demo</button>
+        </div>
         <div className="down">
           <button className="ourservices">
             {" "}
@@ -33,6 +69,37 @@ const Flex = styled.div`
     display: flex;
     flex-direction: column;
     padding-block: 40px;
+    width: 100%;
+    gap: 80px;
+    .demo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      .book {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 143px;
+        height: 43px;
+        padding: 13px 12px 13px 12px;
+        gap: 8px;
+        border: 1px solid #1a87d7;
+        border-radius: 25px;
+        opacity: 0px;
+        background: #1a87d7;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+        color: #ffffff;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0px 0px 0px 1px #1a87d7;
+        /* box-shadow: 0px 1px 1px 0px #0000001a; */
+      }
+    }
     .down {
       display: flex;
       flex-direction: column;
@@ -40,7 +107,7 @@ const Flex = styled.div`
       /* padding-top: 60px; */
       align-items: center;
       justify-content: center;
-      height: 50vh;
+      height: 40vh;
       gap: 10px;
       .ourservices {
         display: flex;
