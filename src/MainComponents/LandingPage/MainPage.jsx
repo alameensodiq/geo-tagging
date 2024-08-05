@@ -5,6 +5,7 @@ import FirstMainComponent from "./FirstMainComponent";
 import SecondMainComponent from "./SecondMainComponent";
 import zIndex from "@mui/material/styles/zIndex";
 import ThirdMainComponent from "./ThirdMainComponent";
+import FourthMainComponent from "./FourthMainComponent";
 
 const MainPage = () => {
   return (
@@ -14,6 +15,7 @@ const MainPage = () => {
         <FirstMainComponent />
         <SecondMainComponent />
         <ThirdMainComponent />
+        <FourthMainComponent />
       </>
     </Flex>
   );
