@@ -4,6 +4,7 @@ import LandingNavbar from "./LandingNavbar";
 import FirstMainComponent from "./FirstMainComponent";
 import SecondMainComponent from "./SecondMainComponent";
 import zIndex from "@mui/material/styles/zIndex";
+import ThirdMainComponent from "./ThirdMainComponent";
 
 const MainPage = () => {
   return (
@@ -12,6 +13,7 @@ const MainPage = () => {
       <>
         <FirstMainComponent />
         <SecondMainComponent />
+        <ThirdMainComponent />
       </>
     </Flex>
   );
