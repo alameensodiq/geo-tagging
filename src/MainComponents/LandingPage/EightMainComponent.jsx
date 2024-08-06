@@ -39,10 +39,10 @@ const Flex = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 170px;
+  padding-top: 140px;
   padding-inline: 65px;
-  height: 1000px;
-  background-color: #28385c;
+  height: 1200px;
+  background: #28385c;
   background-image: url(${Map});
   background-size: cover;
   background-repeat: no-repeat;
@@ -51,7 +51,8 @@ const Flex = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding-bottom: 34px;
+    padding-bottom: 64px;
+    padding-left: 110px;
     .right {
       display: flex;
       flex-direction: column;
