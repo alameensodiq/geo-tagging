@@ -6,9 +6,13 @@ import image1 from "../../assets/image1.png";
 import image2 from "../../assets/image2.png";
 import card1 from "../../assets/card.png";
 import card2 from "../../assets/card2.png";
+import realtime from "../../assets/realtime.png";
+import analytics from "../../assets/analytics.png";
+import customized from "../../assets/customized.png";
 import SecondProductMainPage from "./SecondProductMainPage";
 import Footer from "./Footer";
 import ThirdProductMainPage from "./ThirdProductMainPage";
+import FourthProductMainPage from "./FourthProductMainPage";
 
 const ProductMainPage = () => {
   return (
@@ -42,6 +46,14 @@ const ProductMainPage = () => {
           secondstatement2="enabling businesses to gather and analyze real-time "
           secondstatement3="and historical location data of their representatives. "
           secondstatement4=""
+        />
+        <FourthProductMainPage
+          track="Track your representatives"
+          with="with"
+          clarity="clarity."
+          cardfirst={analytics}
+          cardsecond={realtime}
+          cardthird={customized}
         />
         <Footer />
       </>
