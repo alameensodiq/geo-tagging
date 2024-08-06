@@ -64,7 +64,7 @@ const Flex = styled.div`
       justify-content: center;
     }
     .name {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       line-height: 31.5px;
       letter-spacing: 0.02em;

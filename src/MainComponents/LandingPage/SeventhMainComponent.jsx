@@ -101,9 +101,7 @@ const Flex = styled.div`
   padding-inline: 65px;
   background-image: url(${curve});
   background-size: cover;
-  /* background-position: center; */
   background-repeat: no-repeat;
-  /* background: #000000; */
   .firstcontent {
     display: flex;
     flex-direction: column;

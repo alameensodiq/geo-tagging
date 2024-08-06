@@ -9,6 +9,7 @@ import FourthMainComponent from "./FourthMainComponent";
 import FifthMainComponent from "./FifthMainComponent";
 import SixthMainComponent from "./SixthMainComponent";
 import SeventhMainComponent from "./SeventhMainComponent";
+import EightMainComponent from "./EightMainComponent";
 
 const MainPage = () => {
   return (
@@ -22,6 +23,7 @@ const MainPage = () => {
         <FifthMainComponent />
         <SixthMainComponent />
         <SeventhMainComponent />
+        <EightMainComponent />
       </>
     </Flex>
   );
