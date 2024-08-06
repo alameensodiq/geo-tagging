@@ -378,7 +378,7 @@ const Flex = styled.div`
           justify-content: center;
           width: 30%;
           border-right: 1px solid #ebebeb;
-          gap: 10px;
+          gap: 30px;
           .workdiv {
             display: flex;
             flex-direction: column;

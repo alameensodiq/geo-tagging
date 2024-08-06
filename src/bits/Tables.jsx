@@ -2208,7 +2208,7 @@ const Tables = ({
                     NUMBER OF BUSINESS REPS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
-                    NUMBER OF GEO-LOCATION
+                    NUMBER OF LOCATION
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
                     SUBSCRIPTION TYPE
