@@ -301,27 +301,19 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             </div>
             <div className="last">
               <div className="radial">
-                {
-                  bright
-                  ?
-                  <Radial overview />
-                  :
-                  <Radialtime  />
-                }
+                {bright ? <Radial overview /> : <Radialtime />}
               </div>
-                {
-                  bright
-                  ?
-                  <div className="circle">
+              {bright ? (
+                <div className="circle">
                   <span className="label">Total Punctuality Rate</span>
                   <span className="name">80%</span>
-                  </div>
-                  :
-                  <div className="circler">
+                </div>
+              ) : (
+                <div className="circler">
                   <span className="label">Total Stamp Compliance</span>
                   <span className="name">60%</span>
-                  </div>
-                }
+                </div>
+              )}
               <div className="target">
                 <div className="attendance">
                   <div className="wrap">
@@ -525,7 +517,7 @@ const Flex = styled.div`
         align-items: center;
         font-size: 14px;
         font-weight: 500;
-        width: 27%;
+        width: 29%;
         height: 48px;
         border-radius: 8px;
         padding-inline: 5px;

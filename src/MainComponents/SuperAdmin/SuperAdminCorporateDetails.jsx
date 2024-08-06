@@ -165,7 +165,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
                 </spa>
               </div>
               <div className="workdiv">
-                <span className="active">Total Geo Location</span>
+                <span className="active">Total Location</span>
                 <spa className="number">40</spa>
               </div>
             </div>
@@ -331,7 +331,7 @@ const Flex = styled.div`
           align-items: flex-start;
           justify-content: center;
           padding-left: 50px;
-          gap: 25px;
+          gap: 35px;
           .contact {
             color: #1e1b39;
             font-size: 15px;

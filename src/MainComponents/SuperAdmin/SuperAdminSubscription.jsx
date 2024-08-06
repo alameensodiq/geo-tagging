@@ -139,7 +139,7 @@ const SuperAdminSubscription = ({ title }) => {
               onClick={() => setStep(53)}
               background
               color
-              title="Add Subscription"
+              title="Add Subscription Plan"
             />
           </div>
         </div>
