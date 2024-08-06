@@ -48,7 +48,6 @@ import SuperAdminAccount from "./MainComponents/SuperAdmin/SuperAdminAccount";
 import SuperAdminSubscription from "./MainComponents/SuperAdmin/SuperAdminSubscription";
 import ClientAdminAccount from "./MainComponents/AdminClients/ClientAdminAccount";
 import ClientUsermanagementDetails from "./MainComponents/AdminClients/ClientUsermanagementDetails";
-import MainPage from "./MainComponents/LandingPage/MainPage.jsx";
 import React from "react";
 import { Loader } from "./Loader.jsx";
 

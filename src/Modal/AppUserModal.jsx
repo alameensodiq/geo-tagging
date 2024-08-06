@@ -945,13 +945,13 @@ const AppUserModal = ({
     if (setLog) {
       setLog(false);
     }
-    // if (setUserdetails) {
-    //   setUserdetails({
-    //     current_password: "",
-    //     password: "",
-    //     password_confirmation: ""
-    //   });
-    // }
+    if (setUserdetails) {
+      setUserdetails({
+        current_password: "",
+        password: "",
+        password_confirmation: ""
+      });
+    }
     setSub({
       name: "",
       minRepCount: "",
@@ -5626,6 +5626,15 @@ const AppUserModal = ({
           </div>
         </div>
       </AppModal>
+      <AppModal
+        step={56}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        wide
+        heading="Key Features"
+      ></AppModal>
     </div>
   );
 };

@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as LandingLogo } from "../../assets/LandingLogo.svg";
 import { ReactComponent as CaretDownLanding } from "../../assets/CaretDownLanding.svg";
 import { ReactComponent as ArrowCircleRight } from "../../assets/ArrowCircleRight.svg";
 import { useNavigate } from "react-router-dom";
+import LandingAppUserModal from "../../Modal/LandingAppUserModal";
 
 const LandingNavbar = () => {
+  const [step, setStep] = useState(0);
+  const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   return (
     <Flex>
       <LandingLogo />
+      <LandingAppUserModal
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="modules">
-        <div className="item">
+        <div className="item" onClick={() => setStep(56)}>
           <span className="name">Product</span>
           <CaretDownLanding />
         </div>
@@ -60,6 +68,7 @@ const Flex = styled.div`
       flex-direction: row;
       gap: 5px;
       align-items: center;
+      cursor: pointer;
       .name {
         color: #28385c;
         font-size: 14px;
