@@ -1,10 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import LandingAppModal from "./LandingAppModal";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const LandingAppUserModal = ({ setStep, step, setReload }) => {
+  const navigate = useNavigate();
   const handleCloseModal4 = () => {
     setStep(0);
+  };
+
+  const LocationNavigate = () => {
+    setStep(0);
+    navigate("/main-products");
   };
 
   return (
@@ -21,7 +28,9 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
         <Flex>
           <div className="top">
             <div className="first">
-              <span className="title">Location-Based Targeting</span>
+              <span className="title" onClick={() => LocationNavigate()}>
+                Location-Based Targeting
+              </span>
               <span className="statement">
                 <span>Create boundaries around specific</span>
                 <span>locations</span>
@@ -69,15 +78,17 @@ const Flex = styled.div`
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 50%;
       .title {
         font-size: 14px;
         font-weight: 600;
         line-height: 21.78px;
         text-align: left;
         color: #000000;
+        cursor: pointer;
       }
       .statement {
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 400;
         line-height: 19.12px;
         text-align: left;

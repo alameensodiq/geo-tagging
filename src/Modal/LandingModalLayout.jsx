@@ -42,7 +42,7 @@ const ModalLayoutStyle = styled.div`
 const ModalBody = styled.div`
   background: white;
   position: absolute;
-  width: ${(props) => (props?.headings ? "60%" : props?.wide ? "38%" : "70%")};
+  width: ${(props) => (props?.headings ? "60%" : props?.wide ? "37%" : "70%")};
   max-width: ${(props) =>
     props?.headings
       ? "450px"
