@@ -16,22 +16,28 @@ const FifthMainComponent = () => {
   return (
     <Flex>
       <div className="cover">
-        <FeaturesCard reduce row={3}>
-          <img src={fifthfirst} alt="fifthfirst" style={{ width: "100%" }} />
-          <img src={biometric} alt="biometric" style={{ width: "100%" }} />
-          <img src={performance} alt="performance" style={{ width: "100%" }} />
-          {/* <FifthFirst />
+        <div className="topping">
+          <FeaturesCard reduce row={3}>
+            <img src={fifthfirst} alt="fifthfirst" style={{ width: "100%" }} />
+            <img src={biometric} alt="biometric" style={{ width: "100%" }} />
+            <img
+              src={performance}
+              alt="performance"
+              style={{ width: "100%" }}
+            />
+            {/* <FifthFirst />
           <Biometric />
           <Performance /> */}
-        </FeaturesCard>
-        <FeaturesCard reduce row={2}>
-          <img src={effective} alt="effective" style={{ width: "100%" }} />
-          <img
-            src={comprehensive}
-            alt="comprehensive"
-            style={{ width: "100%" }}
-          />
-        </FeaturesCard>
+          </FeaturesCard>
+          <FeaturesCard reduce row={2}>
+            <img src={effective} alt="effective" style={{ width: "100%" }} />
+            <img
+              src={comprehensive}
+              alt="comprehensive"
+              style={{ width: "100%" }}
+            />
+          </FeaturesCard>
+        </div>
         <div className="lastly">
           <div className="down">
             <button className="ourservices">
@@ -68,7 +74,12 @@ const Flex = styled.div`
     padding-top: 70px;
     padding-bottom: 20px;
     width: 100%;
-    gap: 10px;
+    gap: 90px;
+    .topping {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
     .lastly {
       display: flex;
       flex-direction: row;
@@ -166,7 +177,12 @@ const Flex = styled.div`
       padding-top: 70px;
       padding-bottom: 20px;
       width: 100%;
-      gap: 10px;
+      gap: 90px;
+      .topping {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
       .lastly {
         display: flex;
         flex-direction: row;
