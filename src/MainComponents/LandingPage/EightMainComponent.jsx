@@ -13,7 +13,7 @@ const Flex = styled.div`
   align-items: center;
   padding-top: 170px;
   padding-inline: 65px;
-  height: 100vh;
+  height: 1000px;
   background-color: #28385c;
   background-image: url(${Map});
   background-size: cover;

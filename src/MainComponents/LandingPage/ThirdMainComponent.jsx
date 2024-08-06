@@ -218,7 +218,7 @@ const Flex = styled.div`
               gap: 20px;
               align-items: center;
               .real {
-                font-size: 14px;
+                font-size: 13px;
                 font-weight: 600;
                 line-height: 19.36px;
                 color: #28385c;
@@ -236,7 +236,7 @@ const Flex = styled.div`
           flex-direction: column;
           gap: 2px;
           .state {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
             line-height: 24.59px;
             color: #777777;

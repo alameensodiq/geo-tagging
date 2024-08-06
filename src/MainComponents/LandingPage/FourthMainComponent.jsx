@@ -67,6 +67,7 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
   padding-inline: 65px;
+  overflow-x: hidden;
   .cover {
     border-bottom: 1px solid #ededed;
     display: flex;
