@@ -13,6 +13,7 @@ import SecondProductMainPage from "./SecondProductMainPage";
 import Footer from "./Footer";
 import ThirdProductMainPage from "./ThirdProductMainPage";
 import FourthProductMainPage from "./FourthProductMainPage";
+import FifthProductMainPage from "./FifthProductMainPage";
 
 const ProductMainPage = () => {
   return (
@@ -49,12 +50,13 @@ const ProductMainPage = () => {
         />
         <FourthProductMainPage
           track="Track your representatives"
-          with="with"
+          wit="with"
           clarity="clarity."
           cardfirst={analytics}
           cardsecond={realtime}
           cardthird={customized}
         />
+        <FifthProductMainPage />
         <Footer />
       </>
     </Flex>
