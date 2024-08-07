@@ -74,6 +74,60 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
           </div>
         </Flex>
       </LandingAppModal>
+      <LandingAppModal
+        step={57}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        wide
+        setStep={setStep}
+        heading="Industries"
+      >
+        <Flex>
+          <div className="top">
+            <div className="first">
+              <span className="title">Retail</span>
+              <span className="statement">
+                <span>Boost sales by ensuring your staff </span>
+                <span>levels meet customer demand.</span>
+              </span>
+            </div>
+            <div className="first">
+              <span className="title">Education</span>
+              <span className="statement">
+                <span>Schedule staff to adapt to changing</span>
+                <span>class times</span>
+              </span>
+            </div>
+          </div>
+          <div className="top">
+            <div className="first">
+              <span className="title">Healthcare</span>
+              <span className="statement">
+                <span>Keep your team working, no</span>
+                <span>matter where they are.</span>
+              </span>
+            </div>
+            <div className="first">
+              <span className="title">Security</span>
+              <span className="statement">
+                <span>Quickly send teams to multiple </span>
+                <span>Locations</span>
+              </span>
+            </div>
+          </div>
+          <div className="top">
+            <div className="first">
+              <span className="title">Explore all industries</span>
+              <span className="statement">
+                <span>See how our platform works with your</span>
+                <span>business, industry and goals</span>
+              </span>
+            </div>
+          </div>
+        </Flex>
+      </LandingAppModal>
     </div>
   );
 };
