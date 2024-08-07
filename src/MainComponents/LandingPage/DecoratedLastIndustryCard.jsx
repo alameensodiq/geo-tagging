@@ -23,7 +23,7 @@ const DecoratedLastIndustryCard = ({ name, content1, content2 }) => {
 
 const Flex = styled.div`
   width: auto;
-  height: 270px;
+  /* height: 270px; */
   border: 10px solid #d3def140;
   border-radius: 25px;
   .wrapper {
