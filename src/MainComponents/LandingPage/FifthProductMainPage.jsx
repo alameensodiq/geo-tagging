@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import frequent from "../../assets/frequent.png";
+import group from "../../assets/group.png";
 import { ReactComponent as Minus } from "../../assets/minus-circle.svg";
 import { ReactComponent as Plus } from "../../assets/plus-circle.svg";
 
@@ -202,7 +203,8 @@ const Flex = styled.div`
   background-color: #28385c;
   padding-bottom: 320px;
   padding-inline: 65px;
-  background-image: url(${frequent});
+  background-image: ${(props) =>
+    props.white ? `url(${group})` : `url(${frequent})`};
   background-size: cover;
   background-repeat: no-repeat;
   gap: 40px;
