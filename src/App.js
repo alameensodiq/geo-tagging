@@ -85,6 +85,10 @@ const LazyIndexSecurityMainPage = React.lazy(() =>
   import("./MainComponents/LandingPage/SecurityMainPage.jsx")
 );
 
+const LazyIndexLastIndustryMainPage = React.lazy(() =>
+  import("./MainComponents/LandingPage/LastIndustryMainPage.jsx")
+);
+
 function App() {
   return (
     <>
@@ -159,6 +163,15 @@ function App() {
           element={
             <React.Suspense fallback={<Loader />}>
               <LazyIndexSecurityMainPage />
+            </React.Suspense>
+          }
+        />
+
+        <Route
+          path="/detailindustry-industries"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexLastIndustryMainPage />
             </React.Suspense>
           }
         />

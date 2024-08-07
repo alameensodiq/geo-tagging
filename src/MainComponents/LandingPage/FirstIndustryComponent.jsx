@@ -16,10 +16,11 @@ const FirstIndustryComponent = ({
   divcover2,
   divcover3,
   statement,
-  pictures
+  pictures,
+  reduce
 }) => {
   return (
-    <Flex>
+    <Flex reduce={reduce}>
       {/* <img src={first} alt="wow" /> */}
       <div className="cover">
         <div className="top">
@@ -40,22 +41,26 @@ const FirstIndustryComponent = ({
           <img src={pictures} alt="pictures" className="pictures" />
         </div>
       </div>
-      <div className="bottom">
-        <span className="trusted">
-          Trusted by the fastest-growing companies
-        </span>
-        <div className="sliding">
-          <Marquee
-            style={{ gap: "70px" }}
-            direction="left"
-            speed={120}
-            loop={0}
-            delay={20}
-          >
-            <Sliding />
-          </Marquee>
+      {reduce ? (
+        ""
+      ) : (
+        <div className="bottom">
+          <span className="trusted">
+            Trusted by the fastest-growing companies
+          </span>
+          <div className="sliding">
+            <Marquee
+              style={{ gap: "70px" }}
+              direction="left"
+              speed={120}
+              loop={0}
+              delay={20}
+            >
+              <Sliding />
+            </Marquee>
+          </div>
         </div>
-      </div>
+      )}
     </Flex>
   );
 };
@@ -63,8 +68,8 @@ const FirstIndustryComponent = ({
 const Flex = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 190px;
-  padding-bottom: 40px;
+  padding-top: ${(props) => (props?.reduce ? "120px" : "190px")};
+  padding-bottom: ${(props) => (props?.reduce ? "0px" : "40px")};
   padding-inline: 65px;
   gap: 170px;
   background-image: url(${first});
@@ -75,6 +80,7 @@ const Flex = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     .top {
       display: flex;
       flex-direction: column;
@@ -197,7 +203,8 @@ const Flex = styled.div`
     }
     .side {
       .pictures {
-        width: 590px;
+        width: ${(props) => (props?.reduce ? "420px" : "590px")};
+        height: ${(props) => (props?.reduce ? "470px" : "auto")};
       }
     }
   }

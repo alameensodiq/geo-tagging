@@ -49,6 +49,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/security-industries");
   };
 
+  const LastIndustryNavigate = () => {
+    setStep(0);
+    navigate("/detailindustry-industries");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -138,7 +143,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
             </div>
           </div>
           <div className="top">
-            <div className="first">
+            <div className="first" onClick={() => LastIndustryNavigate()}>
               <span className="title">Explore all industries</span>
               <span className="statement">
                 <span>See how our platform works with your</span>
