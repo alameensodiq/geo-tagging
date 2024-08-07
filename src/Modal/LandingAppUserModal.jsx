@@ -29,6 +29,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/campaign-products");
   };
 
+  const IndustryNavigate = () => {
+    setStep(0);
+    navigate("/main-industries");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -86,7 +91,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
       >
         <Flex>
           <div className="top">
-            <div className="first">
+            <div className="first" onClick={() => IndustryNavigate()}>
               <span className="title">Retail</span>
               <span className="statement">
                 <span>Boost sales by ensuring your staff </span>

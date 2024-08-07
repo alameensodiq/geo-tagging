@@ -4,10 +4,10 @@ import frequent from "../../assets/frequent.png";
 import { ReactComponent as Minus } from "../../assets/minus-circle.svg";
 import { ReactComponent as Plus } from "../../assets/plus-circle.svg";
 
-const FifthProductMainPage = () => {
+const FifthProductMainPage = ({ white }) => {
   const [open, setOpen] = useState(false);
   return (
-    <Flex>
+    <Flex white={white}>
       <div className="questions">
         <span className="frequent">Frequently asked questions</span>
         <span className="answers">Answers to all possible questions</span>
