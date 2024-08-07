@@ -19,6 +19,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/realtime-products");
   };
 
+  const AdvancedNavigate = () => {
+    setStep(0);
+    navigate("/advanced-products");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -32,10 +37,8 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
       >
         <Flex>
           <div className="top">
-            <div className="first">
-              <span className="title" onClick={() => LocationNavigate()}>
-                Location-Based Targeting
-              </span>
+            <div className="first" onClick={() => LocationNavigate()}>
+              <span className="title">Location-Based Targeting</span>
               <span className="statement">
                 <span>Create boundaries around specific</span>
                 <span>locations</span>
@@ -50,15 +53,13 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
             </div>
           </div>
           <div className="top">
-            <div className="first">
-              <span className="title" onClick={() => RealTimeNavigate()}>
-                Real-Time Tracking
-              </span>
+            <div className="first" onClick={() => RealTimeNavigate()}>
+              <span className="title">Real-Time Tracking</span>
               <span className="statement">
                 <span>Monitor the real-time locations</span>
               </span>
             </div>
-            <div className="first">
+            <div className="first" onClick={() => AdvancedNavigate()}>
               <span className="title">Advanced Analytics</span>
               <span className="statement">
                 <span>Track engagement and activities</span>
@@ -76,7 +77,7 @@ const Flex = styled.div`
   flex-direction: column;
   padding-inline: 2px;
   width: 100%;
-  gap: 20px;
+  gap: 30px;
   .top {
     display: flex;
     flex-direction: row;

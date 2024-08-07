@@ -6,7 +6,8 @@ const SecondProductMainPage = ({
   button,
   statement1,
   statement2,
-  statement3
+  statement3,
+  statement4
 }) => {
   return (
     <Flex>
@@ -20,6 +21,7 @@ const SecondProductMainPage = ({
           <div className="right">
             <span>{statement1}</span>
             <span className="campaign">
+              <span className="grow">{statement4}</span>
               {statement2} <span className="grow">{statement3}</span>
             </span>
           </div>
@@ -72,6 +74,7 @@ const Flex = styled.div`
       .right {
         display: flex;
         flex-direction: column;
+        align-items: center;
         font-size: 35px;
         font-weight: 600;
         line-height: 53px;

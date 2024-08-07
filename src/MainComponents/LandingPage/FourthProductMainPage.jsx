@@ -93,7 +93,7 @@ const Flex = styled.div`
     .right {
       display: flex;
       flex-direction: column;
-      font-size: 50px;
+      font-size: 40px;
       width: 100%;
       font-weight: 600;
       line-height: 53px;

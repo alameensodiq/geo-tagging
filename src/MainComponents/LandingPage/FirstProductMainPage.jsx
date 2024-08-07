@@ -9,10 +9,11 @@ const FirstProductMainPage = ({
   third,
   fourth,
   topimage,
-  topimage2
+  topimage2,
+  wide
 }) => {
   return (
-    <Flex topimage2={topimage2}>
+    <Flex topimage2={topimage2} wide={wide}>
       <span className="first">{first}</span>
       <div className="div">
         <span className="second">{second}</span>
@@ -106,7 +107,12 @@ const Flex = styled.div`
     gap: 10px;
     .topimage {
       height: ${(props) => (props.topimage2 ? "320px" : "440px")};
-      width: ${(props) => (props.topimage2 ? `${props.topimage2}` : "680px")};
+      width: ${(props) =>
+        props.topimage2
+          ? `${props.topimage2}`
+          : props?.wide
+          ? "790px"
+          : "680px"};
     }
   }
 `;
