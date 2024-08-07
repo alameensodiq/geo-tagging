@@ -38,6 +38,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
         // updateUserListData(update);
         // window.location.reload()
         wide
+        setStep={setStep}
         heading="Key Features"
       >
         <Flex>

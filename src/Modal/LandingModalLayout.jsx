@@ -6,10 +6,15 @@ export default function LandingModalLayout({
   closeModal,
   maxWidth,
   headings,
-  wide
+  wide,
+  setStep
 }) {
   return (
-    <ModalLayoutStyle wide={wide} headings={headings}>
+    <ModalLayoutStyle
+      onClick={() => setStep(0)}
+      wide={wide}
+      headings={headings}
+    >
       <ModalBody
         style={{ maxWidth: maxWidth }}
         headings={headings}
