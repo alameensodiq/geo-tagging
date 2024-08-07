@@ -36,6 +36,26 @@ const ThirdLastIndustry = () => {
               <span className="title">Co - owner at De Great school</span>
             </div>
           </div>
+          <div className="cards">
+            <div className="card1">
+              <span className="top">₦22M</span>
+              <span className="middle">Profit Generated</span>
+              <span className="bottom">91%</span>
+            </div>
+            <div className="card2">
+              <span className="top">61%</span>
+              <div className="middle">
+                <span>Greater efficiency vs</span>
+                <span>in-house marketing</span>
+              </div>
+            </div>
+            <div className="card3">
+              <span className="top">5x</span>
+              <div className="middle">
+                <span>Generated in 60 Days</span>
+              </div>
+            </div>
+          </div>
         </div>
         <img src={guy} alt="guy" className="guy" />
       </div>
@@ -296,6 +316,132 @@ const Flex = styled.div`
             line-height: 21.86px;
             text-align: left;
             color: #ffffff;
+          }
+        }
+      }
+      .cards {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 15px;
+        .card1 {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          width: 152.57px;
+          height: 150px;
+          padding: 36px 30.61px 14.84px 28.29px;
+          border-radius: 21.43px;
+          opacity: 0px;
+          background: #dd4a5d;
+          color: #ffffff;
+          .top {
+            font-size: 30.57px;
+            font-weight: 400;
+            line-height: 21.3px;
+            text-align: left;
+          }
+          .middle {
+            font-size: 10.86px;
+            font-weight: 400;
+            line-height: 15.56px;
+            text-align: left;
+          }
+          .bottom {
+            width: 42.86px;
+            height: 14.29px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            gap: 1.43px;
+            border-radius: 3.57px;
+            opacity: 0px;
+            color: #dd4a5d;
+            background: #ffffff;
+          }
+        }
+        .card2 {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          width: 152.57px;
+          height: 150px;
+          padding: 36px 30.61px 14.84px 28.29px;
+          border-radius: 21.43px;
+          opacity: 0px;
+          background: #1a87d7;
+          color: #ffffff;
+          .top {
+            font-size: 30.57px;
+            font-weight: 400;
+            line-height: 21.3px;
+            text-align: left;
+          }
+          .middle {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 8.86px;
+            font-weight: 400;
+            line-height: 15.56px;
+            text-align: left;
+          }
+          .bottom {
+            width: 42.86px;
+            height: 14.29px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            gap: 1.43px;
+            border-radius: 3.57px;
+            opacity: 0px;
+            color: #dd4a5d;
+            background: #ffffff;
+          }
+        }
+        .card3 {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          width: 152.57px;
+          height: 150px;
+          padding: 36px 30.61px 14.84px 28.29px;
+          border-radius: 21.43px;
+          opacity: 0px;
+          background: #7c65e0;
+          color: #ffffff;
+          .top {
+            font-size: 30.57px;
+            font-weight: 400;
+            line-height: 21.3px;
+            text-align: left;
+          }
+          .middle {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 8.86px;
+            font-weight: 400;
+            line-height: 15.56px;
+            text-align: left;
+          }
+          .bottom {
+            width: 42.86px;
+            height: 14.29px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            gap: 1.43px;
+            border-radius: 3.57px;
+            opacity: 0px;
+            color: #dd4a5d;
+            background: #ffffff;
           }
         }
       }
