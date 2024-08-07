@@ -20,6 +20,7 @@ import LastIndustryCard from "./LastIndustryCard";
 import FeaturesCard from "../../Reusable/FeaturesCard";
 import DecoratedLastIndustryCard from "./DecoratedLastIndustryCard";
 import ThirdLastIndustry from "./ThirdLastIndustry";
+import LastIndustryMainLastDiv from "./LastIndustryMainLastDiv";
 
 const LastIndustryMainPage = () => {
   return (
@@ -120,6 +121,7 @@ const LastIndustryMainPage = () => {
           </FeaturesCard>
         </div>
         <ThirdLastIndustry />
+        <LastIndustryMainLastDiv />
         <Footer />
       </>
     </Flex>
