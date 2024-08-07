@@ -128,6 +128,35 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
           </div>
         </Flex>
       </LandingAppModal>
+      <LandingAppModal
+        step={58}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        wide
+        setStep={setStep}
+        heading="Resources"
+      >
+        <Flex>
+          <div className="top">
+            <div className="first">
+              <span className="title">About us</span>
+              <span className="statement">
+                <span>See how we help businesses</span>
+                <span>globally.</span>
+              </span>
+            </div>
+            <div className="first">
+              <span className="title">Customer Stories</span>
+              <span className="statement">
+                <span>Learn from our customers who are</span>
+                <span>growing their businesses.</span>
+              </span>
+            </div>
+          </div>
+        </Flex>
+      </LandingAppModal>
     </div>
   );
 };

@@ -30,7 +30,7 @@ const LandingNavbar = () => {
         <div className="item">
           <span className="name">Pricing</span>
         </div>
-        <div className="item">
+        <div className="item" onClick={() => setStep(58)}>
           <span className="name">Resources</span>
           <CaretDownLanding />
         </div>
