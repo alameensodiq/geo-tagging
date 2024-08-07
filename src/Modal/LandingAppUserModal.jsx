@@ -34,6 +34,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/main-industries");
   };
 
+  const HealthNavigate = () => {
+    setStep(0);
+    navigate("/health-industries");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -107,7 +112,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
             </div>
           </div>
           <div className="top">
-            <div className="first">
+            <div className="first" onClick={() => HealthNavigate()}>
               <span className="title">Healthcare</span>
               <span className="statement">
                 <span>Keep your team working, no</span>
