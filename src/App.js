@@ -67,6 +67,10 @@ const LazyIndexAdvancedProductPage = React.lazy(() =>
   import("./MainComponents/LandingPage/ProductAdvancedMainPage.jsx")
 );
 
+const LazyIndexCampaignProductPage = React.lazy(() =>
+  import("./MainComponents/LandingPage/CampaignProductMainPage.jsx")
+);
+
 function App() {
   return (
     <>
@@ -100,6 +104,14 @@ function App() {
           element={
             <React.Suspense fallback={<Loader />}>
               <LazyIndexAdvancedProductPage />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/campaign-products"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexCampaignProductPage />
             </React.Suspense>
           }
         />

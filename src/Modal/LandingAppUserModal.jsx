@@ -24,6 +24,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/advanced-products");
   };
 
+  const CampaignNavigate = () => {
+    setStep(0);
+    navigate("/campaign-products");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -44,7 +49,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
                 <span>locations</span>
               </span>
             </div>
-            <div className="first">
+            <div className="first" onClick={() => CampaignNavigate()}>
               <span className="title">Campaign Management</span>
               <span className="statement">
                 <span>Coordinate campaigns across </span>
