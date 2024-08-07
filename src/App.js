@@ -78,6 +78,12 @@ const LazyIndexIndustryMainPage = React.lazy(() =>
 const LazyIndexHealthCareMainPage = React.lazy(() =>
   import("./MainComponents/LandingPage/HealthCareMainPage.jsx")
 );
+const LazyIndexEducationMainPage = React.lazy(() =>
+  import("./MainComponents/LandingPage/EducationMainPage.jsx")
+);
+const LazyIndexSecurityMainPage = React.lazy(() =>
+  import("./MainComponents/LandingPage/SecurityMainPage.jsx")
+);
 
 function App() {
   return (
@@ -137,6 +143,22 @@ function App() {
           element={
             <React.Suspense fallback={<Loader />}>
               <LazyIndexHealthCareMainPage />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/education-industries"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexEducationMainPage />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/security-industries"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexSecurityMainPage />
             </React.Suspense>
           }
         />

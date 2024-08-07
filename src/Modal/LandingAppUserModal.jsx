@@ -39,6 +39,16 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/health-industries");
   };
 
+  const EducationNavigate = () => {
+    setStep(0);
+    navigate("/education-industries");
+  };
+
+  const SecurityNavigate = () => {
+    setStep(0);
+    navigate("/security-industries");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -103,7 +113,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
                 <span>levels meet customer demand.</span>
               </span>
             </div>
-            <div className="first">
+            <div className="first" onClick={() => EducationNavigate()}>
               <span className="title">Education</span>
               <span className="statement">
                 <span>Schedule staff to adapt to changing</span>
@@ -119,7 +129,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
                 <span>matter where they are.</span>
               </span>
             </div>
-            <div className="first">
+            <div className="first" onClick={() => SecurityNavigate()}>
               <span className="title">Security</span>
               <span className="statement">
                 <span>Quickly send teams to multiple </span>
