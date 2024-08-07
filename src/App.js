@@ -59,6 +59,10 @@ const LazyIndexProductPage = React.lazy(() =>
   import("./MainComponents/LandingPage/ProductMainPage.jsx")
 );
 
+const LazyIndexRealTimeProductPage = React.lazy(() =>
+  import("./MainComponents/LandingPage/ProductSecondMainPage.jsx")
+);
+
 function App() {
   return (
     <>
@@ -76,6 +80,14 @@ function App() {
           element={
             <React.Suspense fallback={<Loader />}>
               <LazyIndexProductPage />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/realtime-products"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexRealTimeProductPage />
             </React.Suspense>
           }
         />

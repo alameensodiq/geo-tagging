@@ -26,7 +26,9 @@ const FirstProductMainPage = ({
       </div>
       <div className="images">
         <img src={topimage} alt="topimage" className="topimage" />
-        <img src={topimage2} alt="topimage" className="topimage" />
+        {topimage2 && (
+          <img src={topimage2} alt="topimage" className="topimage" />
+        )}
       </div>
     </Flex>
   );
@@ -103,7 +105,8 @@ const Flex = styled.div`
     flex-direction: row;
     gap: 10px;
     .topimage {
-      height: 320px;
+      height: ${(props) => (props.topimage2 ? "320px" : "440px")};
+      width: ${(props) => (props.topimage2 ? `${props.topimage2}` : "680px")};
     }
   }
 `;

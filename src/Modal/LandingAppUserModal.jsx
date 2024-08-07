@@ -14,6 +14,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/main-products");
   };
 
+  const RealTimeNavigate = () => {
+    setStep(0);
+    navigate("/realtime-products");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -46,7 +51,9 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
           </div>
           <div className="top">
             <div className="first">
-              <span className="title">Real-Time Tracking</span>
+              <span className="title" onClick={() => RealTimeNavigate()}>
+                Real-Time Tracking
+              </span>
               <span className="statement">
                 <span>Monitor the real-time locations</span>
               </span>
