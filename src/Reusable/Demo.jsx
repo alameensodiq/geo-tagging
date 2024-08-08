@@ -139,8 +139,14 @@ const Demo = () => {
             </span>
           </span>
           <span className="state">
-            Corporate Manager? <span className="colored">Login</span> up here
-            instead
+            Corporate Manager?{" "}
+            <span
+              className="colored"
+              onClick={() => navigate("/corporate-login")}
+            >
+              Login
+            </span>{" "}
+            up here instead
           </span>
         </div>
 

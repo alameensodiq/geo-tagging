@@ -4,8 +4,10 @@ import FeaturesCard from "../../Reusable/FeaturesCard";
 import styled from "styled-components";
 import BigPricingCard from "./BigPricingCard";
 import { ReactComponent as ArrowCircleRight } from "../../assets/ArrowCircleRight.svg";
+import { useNavigate } from "react-router-dom";
 
 const SecondCardsPriceMainFeature = () => {
+  const navigate = useNavigate();
   return (
     <Flex>
       <div className="featurediv">
@@ -52,7 +54,7 @@ const SecondCardsPriceMainFeature = () => {
           />
         </FeaturesCard>
         <div className="left">
-          <button className="book">
+          <button className="book" onClick={() => navigate("/demo")}>
             Book a Demo <ArrowCircleRight />
           </button>
         </div>

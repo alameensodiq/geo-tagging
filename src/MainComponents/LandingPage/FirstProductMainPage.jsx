@@ -4,6 +4,7 @@ import Product from "../../assets/productfirst.png";
 import { ReactComponent as ArrowCircleRight } from "../../assets/ArrowCircleRight.svg";
 import FeaturesCard from "../../Reusable/FeaturesCard";
 import PricingCard from "./PricingCard";
+import { useNavigate } from "react-router-dom";
 
 const FirstProductMainPage = ({
   first,
@@ -16,6 +17,7 @@ const FirstProductMainPage = ({
   remove,
   card
 }) => {
+  const navigate = useNavigate();
   return (
     <Flex topimage2={topimage2} wide={wide}>
       <span className="first">{first}</span>
@@ -28,7 +30,7 @@ const FirstProductMainPage = ({
         ""
       ) : (
         <div className="left">
-          <button className="book">
+          <button className="book" onClick={() => navigate("/demo")}>
             Book a Demo <ArrowCircleRight />
           </button>
         </div>

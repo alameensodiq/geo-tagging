@@ -39,7 +39,7 @@ const LandingNavbar = () => {
         <button className="first" onClick={() => navigate("/corporate-login")}>
           Login
         </button>
-        <button className="book">
+        <button className="book" onClick={() => navigate("/demo")}>
           Book a Demo <ArrowCircleRight />
         </button>
       </div>

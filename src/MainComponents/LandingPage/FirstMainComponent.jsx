@@ -9,8 +9,10 @@ import { ReactComponent as Sliding } from "../../assets/Sliding.svg";
 import { TypeAnimation } from "react-type-animation";
 import Marquee from "react-fast-marquee";
 import first from "../../assets/first.png";
+import { useNavigate } from "react-router-dom";
 
 const FirstMainComponent = () => {
+  const navigate = useNavigate();
   return (
     <Flex>
       {/* <img src={first} alt="wow" /> */}
@@ -56,7 +58,7 @@ const FirstMainComponent = () => {
           <AvatarGroups />
           <span className="downloads">Over 500+ downloads already</span>
         </div>
-        <button className="book">
+        <button className="book" onClick={() => navigate("/demo")}>
           Book a Demo <ArrowCircleRight />
         </button>
       </div>

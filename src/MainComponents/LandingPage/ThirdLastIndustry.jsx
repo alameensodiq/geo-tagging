@@ -6,8 +6,10 @@ import guy from "../../assets/guy.png";
 import { ReactComponent as ArrowCircleRight } from "../../assets/darkright.svg";
 import { ReactComponent as Degreat } from "../../assets/de.svg";
 import { ReactComponent as Avatars } from "../../assets/Avatars.svg";
+import { useNavigate } from "react-router-dom";
 
 const ThirdLastIndustry = () => {
+  const navigate = useNavigate();
   return (
     <Flex>
       <div className="lastly">
@@ -69,7 +71,7 @@ const ThirdLastIndustry = () => {
             <span>Streamline your operations and experience the future</span>
             <span>tracking and management with De-Faucon</span>
           </div>
-          <button className="book">
+          <button className="book" onClick={() => navigate("/demo")}>
             Book a Demo <ArrowCircleRight />
           </button>
         </div>

@@ -7,8 +7,10 @@ import { ReactComponent as Campaigncreate } from "../../assets/Campaigncreate.sv
 import { ReactComponent as ArrowRight } from "../../assets/ArrowRight.svg";
 import FeaturesCard from "../../Reusable/FeaturesCard";
 import FourMainCard from "./FourMainCard";
+import { useNavigate } from "react-router-dom";
 
 const FourthMainComponent = () => {
+  const navigate = useNavigate();
   return (
     <Flex>
       <div className="cover">
@@ -41,7 +43,7 @@ const FourthMainComponent = () => {
           />
         </FeaturesCard>
         <div className="demo">
-          <button className="book">
+          <button className="book" onClick={() => navigate("/demo")}>
             Book a Demo <ArrowRight />
           </button>
         </div>

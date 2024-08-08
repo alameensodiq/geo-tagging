@@ -9,6 +9,7 @@ import { ReactComponent as Sliding } from "../../assets/Sliding.svg";
 import { TypeAnimation } from "react-type-animation";
 import Marquee from "react-fast-marquee";
 import first from "../../assets/productfirst.png";
+import { useNavigate } from "react-router-dom";
 
 const FirstIndustryComponent = ({
   retailer,
@@ -19,6 +20,7 @@ const FirstIndustryComponent = ({
   pictures,
   reduce
 }) => {
+  const navigate = useNavigate();
   return (
     <Flex reduce={reduce}>
       {/* <img src={first} alt="wow" /> */}
@@ -33,7 +35,7 @@ const FirstIndustryComponent = ({
           <div className="statements">
             <span className="statement">{statement}</span>
           </div>
-          <button className="book">
+          <button className="book" onClick={() => navigate("/demo")}>
             Book a Demo <ArrowCircleRight />
           </button>
         </div>
