@@ -1,36 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import lastdiv from "../../assets/lastdiv.png";
+import lastdiv from "../../assets/customerlastdiv.png";
 import lastdivwhite from "../../assets/lastdivwhite.png";
 import { ReactComponent as White } from "../../assets/whitegreat.svg";
 
-const LastIndustryMainLastDiv = ({ other }) => {
+const LastCustomerDiv = ({ other }) => {
   return (
     <Flex other={other}>
       <div className="yes">
-        <White />
         <div className="cover">
-          <span>Get access to</span>
-          <span>‘De - Faucon’</span>
-        </div>
-        <div className="details">
-          <span>
-            Signup below to get access to De - Faucon’s updates. We will notify
-          </span>
-          <span>
-            you to know about releases and industry news and insights.
-          </span>
-        </div>
-        <div className="inputdiv">
-          <input className="input" />
-          <button className="joinus">Join Us</button>
-        </div>
-        <div className="range">
-          <span>
-            By subscribing up, you agree to De - Faucon sending marketing
-            communications, as described in the
-          </span>
-          <span>Privacy and Cookies policy</span>
+          <span>Let’s get social</span>
         </div>
       </div>
     </Flex>
@@ -42,13 +21,11 @@ const Flex = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #27375b;
-  background-image: ${(props) =>
-    props?.other ? `url(${lastdivwhite})` : `url(${lastdiv})`};
-  padding-block: 140px;
+  background-image: url(${lastdiv});
+  padding-block: 240px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-block: 200px;
   .yes {
     display: flex;
     flex-direction: column;
@@ -126,10 +103,8 @@ const Flex = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: #27375b;
-    background-image: ${(props) =>
-      props?.other ? `url(${lastdivwhite})` : `url(${lastdiv})`};
-    padding-top: 140px;
-    padding-bottom: 180px;
+    background-image: url(${lastdiv});
+    padding-block: 240px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -208,4 +183,4 @@ const Flex = styled.div`
   }
 `;
 
-export default LastIndustryMainLastDiv;
+export default LastCustomerDiv;

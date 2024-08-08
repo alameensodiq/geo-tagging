@@ -10,7 +10,8 @@ const FirstProductMainPage = ({
   fourth,
   topimage,
   topimage2,
-  wide
+  wide,
+  remove
 }) => {
   return (
     <Flex topimage2={topimage2} wide={wide}>
@@ -20,11 +21,15 @@ const FirstProductMainPage = ({
         <span className="second">{third}</span>
       </div>
       <span className="fourth">{fourth}</span>
-      <div className="left">
-        <button className="book">
-          Book a Demo <ArrowCircleRight />
-        </button>
-      </div>
+      {remove ? (
+        ""
+      ) : (
+        <div className="left">
+          <button className="book">
+            Book a Demo <ArrowCircleRight />
+          </button>
+        </div>
+      )}
       <div className="images">
         <img src={topimage} alt="topimage" className="topimage" />
         {topimage2 && (

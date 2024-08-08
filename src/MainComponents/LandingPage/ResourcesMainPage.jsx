@@ -52,7 +52,7 @@ const ResourcesMainPage = () => {
             <img src={possible4} className="possible" alt="possible" />
           </div>
         </div>
-        <LastIndustryMainLastDiv />
+        <LastIndustryMainLastDiv other />
         <Footer />
       </>
     </Flex>

@@ -93,6 +93,10 @@ const LazyIndexCustomerResourceMainPage = React.lazy(() =>
   import("./MainComponents/LandingPage/ResourcesMainPage.jsx")
 );
 
+const LazyIndexAboutMainPage = React.lazy(() =>
+  import("./MainComponents/LandingPage/AboutMainPage.jsx")
+);
+
 function App() {
   return (
     <>
@@ -185,6 +189,15 @@ function App() {
           element={
             <React.Suspense fallback={<Loader />}>
               <LazyIndexCustomerResourceMainPage />
+            </React.Suspense>
+          }
+        />
+
+        <Route
+          path="/about-resources"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexAboutMainPage />
             </React.Suspense>
           }
         />

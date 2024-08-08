@@ -59,6 +59,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/customer-resources");
   };
 
+  const AboutNavigate = () => {
+    setStep(0);
+    navigate("/about-resources");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -170,7 +175,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
       >
         <Flex>
           <div className="top">
-            <div className="first">
+            <div className="first" onClick={() => AboutNavigate()}>
               <span className="title">About us</span>
               <span className="statement">
                 <span>See how we help businesses</span>
