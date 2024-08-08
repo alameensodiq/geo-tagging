@@ -89,6 +89,10 @@ const LazyIndexLastIndustryMainPage = React.lazy(() =>
   import("./MainComponents/LandingPage/LastIndustryMainPage.jsx")
 );
 
+const LazyIndexCustomerResourceMainPage = React.lazy(() =>
+  import("./MainComponents/LandingPage/ResourcesMainPage.jsx")
+);
+
 function App() {
   return (
     <>
@@ -172,6 +176,15 @@ function App() {
           element={
             <React.Suspense fallback={<Loader />}>
               <LazyIndexLastIndustryMainPage />
+            </React.Suspense>
+          }
+        />
+
+        <Route
+          path="/customer-resources"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexCustomerResourceMainPage />
             </React.Suspense>
           }
         />

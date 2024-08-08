@@ -41,7 +41,7 @@ const Flex = styled.div`
   padding-top: 140px;
   padding-bottom: 80px;
   padding-inline: 65px;
-  gap: 20px;
+  gap: 30px;
   background-image: url(${Product});
   background-size: cover;
   background-position: center;

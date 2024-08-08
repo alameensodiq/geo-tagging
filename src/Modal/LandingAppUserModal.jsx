@@ -54,6 +54,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/detailindustry-industries");
   };
 
+  const CustomerNavigate = () => {
+    setStep(0);
+    navigate("/customer-resources");
+  };
+
   return (
     <div>
       <LandingAppModal
@@ -172,7 +177,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
                 <span>globally.</span>
               </span>
             </div>
-            <div className="first">
+            <div className="first" onClick={() => CustomerNavigate()}>
               <span className="title">Customer Stories</span>
               <span className="statement">
                 <span>Learn from our customers who are</span>
