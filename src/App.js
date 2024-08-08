@@ -104,6 +104,10 @@ const LazyIndexTerms = React.lazy(() =>
   import("./MainComponents/LandingPage/TermsandCondition.jsx")
 );
 
+const LazyIndexPolicy = React.lazy(() =>
+  import("./MainComponents/LandingPage/PrivacyPolicy.jsx")
+);
+
 function App() {
   return (
     <>
@@ -223,6 +227,14 @@ function App() {
           element={
             <React.Suspense fallback={<Loader />}>
               <LazyIndexTerms />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/policy"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexPolicy />
             </React.Suspense>
           }
         />
