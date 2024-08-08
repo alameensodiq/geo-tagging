@@ -27,7 +27,7 @@ const LandingNavbar = () => {
           <span className="name">Industries</span>
           <CaretDownLanding />
         </div>
-        <div className="item">
+        <div className="item" onClick={() => navigate("/pricing")}>
           <span className="name">Pricing</span>
         </div>
         <div className="item" onClick={() => setStep(58)}>

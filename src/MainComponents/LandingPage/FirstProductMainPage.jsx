@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Product from "../../assets/productfirst.png";
 import { ReactComponent as ArrowCircleRight } from "../../assets/ArrowCircleRight.svg";
+import FeaturesCard from "../../Reusable/FeaturesCard";
+import PricingCard from "./PricingCard";
 
 const FirstProductMainPage = ({
   first,
@@ -11,7 +13,8 @@ const FirstProductMainPage = ({
   topimage,
   topimage2,
   wide,
-  remove
+  remove,
+  card
 }) => {
   return (
     <Flex topimage2={topimage2} wide={wide}>
@@ -30,8 +33,74 @@ const FirstProductMainPage = ({
           </button>
         </div>
       )}
+      {card && (
+        <div className="featurediv">
+          <FeaturesCard reduce row={3}>
+            <PricingCard
+              name="FREE PLAN"
+              amount="0"
+              per="per business rep/month"
+              head1="1-99 Business Reps"
+              submain1="You are eligible to registering a total number"
+              submain2="of 100 business reps on this plan. You can"
+              submain3="always upgrade to a higher plan to register"
+              submain4="more business reps. "
+              head2="Location"
+              twosubmain1="You are eligible to assigning any number of "
+              twosubmain2="locations to any project that is ongoing."
+              twosubmain3=""
+              twosubmain4=""
+              head3="Place holder"
+              threesubmain1="Lorem ipsium lorem ipsium lorem ipsium"
+              threesubmain2=" lorem ipsium lorem ipsium "
+              threesubmain3=""
+              threesubmain4=""
+            />
+            <PricingCard
+              name="STANDARD PLAN"
+              amount="3,000"
+              per="per business rep/month"
+              head1="1-99 Business Reps"
+              submain1="You are eligible to registering a total number"
+              submain2="of 100 business reps on this plan. You can"
+              submain3="always upgrade to a higher plan to register"
+              submain4="more business reps. "
+              head2="Location"
+              twosubmain1="You are eligible to assigning any number of "
+              twosubmain2="locations to any project that is ongoing."
+              twosubmain3=""
+              twosubmain4=""
+              head3="Place holder"
+              threesubmain1="Lorem ipsium lorem ipsium lorem ipsium"
+              threesubmain2=" lorem ipsium lorem ipsium "
+              threesubmain3=""
+              threesubmain4=""
+            />
+            <PricingCard
+              name="ENTERPRISE PLAN"
+              amount="6,000"
+              per="per business rep/month"
+              head1="1-99 Business Reps"
+              submain1="You are eligible to registering a total number"
+              submain2="of 100 business reps on this plan. You can"
+              submain3="always upgrade to a higher plan to register"
+              submain4="more business reps. "
+              head2="Location"
+              twosubmain1="You are eligible to assigning any number of "
+              twosubmain2="locations to any project that is ongoing."
+              twosubmain3=""
+              twosubmain4=""
+              head3="Place holder"
+              threesubmain1="Lorem ipsium lorem ipsium lorem ipsium"
+              threesubmain2=" lorem ipsium lorem ipsium "
+              threesubmain3=""
+              threesubmain4=""
+            />
+          </FeaturesCard>
+        </div>
+      )}
       <div className="images">
-        <img src={topimage} alt="topimage" className="topimage" />
+        {topimage && <img src={topimage} alt="topimage" className="topimage" />}
         {topimage2 && (
           <img src={topimage2} alt="topimage" className="topimage" />
         )}
@@ -119,6 +188,9 @@ const Flex = styled.div`
           ? "790px"
           : "680px"};
     }
+  }
+  .featurediv {
+    padding-inline: 180px;
   }
 `;
 
