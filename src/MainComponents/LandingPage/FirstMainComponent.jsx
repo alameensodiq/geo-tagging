@@ -10,11 +10,13 @@ import { TypeAnimation } from "react-type-animation";
 import Marquee from "react-fast-marquee";
 import first from "../../assets/first.png";
 import { useNavigate } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const FirstMainComponent = () => {
   const navigate = useNavigate();
   return (
-    <Flex>
+    <Flex data-aos="fade-left">
       {/* <img src={first} alt="wow" /> */}
       <div className="top">
         <button className="button">

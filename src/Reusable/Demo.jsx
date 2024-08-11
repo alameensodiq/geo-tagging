@@ -13,6 +13,8 @@ import { corporate, superadmins } from "../Routes";
 import { CorporateSignUser } from "../Store/Apis/CorporateSignUser";
 import DemoInputLabel from "../bits/DemoInputLabel";
 import { DemoButton } from "../bits/DemoButton";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Demo = () => {
   const navigate = useNavigate();
@@ -59,7 +61,7 @@ const Demo = () => {
   //   }
 
   return (
-    <Flex>
+    <Flex data-aos="fade-left">
       <div className="firstdiv">
         <img src={Banner} alt="auth" className="container" />
       </div>

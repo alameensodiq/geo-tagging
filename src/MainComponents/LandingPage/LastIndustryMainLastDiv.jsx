@@ -3,10 +3,12 @@ import styled from "styled-components";
 import lastdiv from "../../assets/lastdiv.png";
 import lastdivwhite from "../../assets/lastdivwhite.png";
 import { ReactComponent as White } from "../../assets/whitegreat.svg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const LastIndustryMainLastDiv = ({ other }) => {
   return (
-    <Flex other={other}>
+    <Flex other={other} data-aos="fade-left">
       <div className="yes">
         <White />
         <div className="cover">

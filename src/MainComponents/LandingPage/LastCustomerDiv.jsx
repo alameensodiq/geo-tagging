@@ -6,10 +6,12 @@ import { ReactComponent as Insta } from "../../assets/instawhite.svg";
 import { ReactComponent as Linked } from "../../assets/linkedinwhite.svg";
 import { ReactComponent as X } from "../../assets/xwhite.svg";
 import { ReactComponent as Facebbok } from "../../assets/facebookwhite.svg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const LastCustomerDiv = ({ other }) => {
   return (
-    <Flex other={other}>
+    <Flex other={other} data-aos="fade-left">
       <div className="yes">
         <div className="cover">
           <span>Let’s get social</span>

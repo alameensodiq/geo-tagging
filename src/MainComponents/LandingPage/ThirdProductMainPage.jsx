@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const ThirdProductMainPage = ({
   master1,
@@ -18,7 +20,7 @@ const ThirdProductMainPage = ({
   title2
 }) => {
   return (
-    <Flex>
+    <Flex data-aos="fade-right">
       <div className="topper">
         <div className="container">
           <span className="title">{title1}</span>

@@ -4,6 +4,8 @@ import Product from "../../assets/productfirst.png";
 import { ReactComponent as ArrowCircleRight } from "../../assets/ArrowCircleRight.svg";
 import FeaturesCard from "../../Reusable/FeaturesCard";
 import PricingCard from "./PricingCard";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Privacy = ({
   first,
@@ -17,7 +19,7 @@ const Privacy = ({
   card
 }) => {
   return (
-    <Flex topimage2={topimage2} wide={wide}>
+    <Flex topimage2={topimage2} wide={wide} data-aos="fade-right">
       <span className="first">PRIVACY POLICY</span>
       <div className="div">
         <span className="second">

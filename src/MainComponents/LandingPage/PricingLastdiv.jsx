@@ -3,10 +3,12 @@ import styled from "styled-components";
 import lastdiv from "../../assets/lastdiv.png";
 import lastdivwhite from "../../assets/lastdivwhite.png";
 import { ReactComponent as White } from "../../assets/whitegreat.svg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const PricingLastdiv = ({ other }) => {
   return (
-    <Flex other={other}>
+    <Flex other={other} data-aos="fade-right">
       <div className="yes">
         <div className="right">
           <span>De - Faucon simplifies the process of </span>

@@ -4,11 +4,13 @@ import frequent from "../../assets/frequent.png";
 import group from "../../assets/group.png";
 import { ReactComponent as Minus } from "../../assets/minus-circle.svg";
 import { ReactComponent as Plus } from "../../assets/plus-circle.svg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const FifthProductMainPage = ({ white }) => {
   const [open, setOpen] = useState(false);
   return (
-    <Flex white={white}>
+    <Flex white={white} data-aos="fade-right">
       <div className="questions">
         <span className="frequent">Frequently asked questions</span>
         <span className="answers">Answers to all possible questions</span>

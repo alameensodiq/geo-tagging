@@ -6,10 +6,12 @@ import { ReactComponent as Insta } from "../../assets/insta.svg";
 import { ReactComponent as Linkedin } from "../../assets/linkedin.svg";
 import { ReactComponent as Facebook } from "../../assets/facebook.svg";
 import { ReactComponent as X } from "../../assets/x.svg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Footer = () => {
   return (
-    <Flex>
+    <Flex data-aos="fade-right">
       <div className="foothead">
         <div className="logo">
           <Falcon />

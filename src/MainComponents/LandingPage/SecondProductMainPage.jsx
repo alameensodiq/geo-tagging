@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Service } from "../../assets/serviceicon.svg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const SecondProductMainPage = ({
   button,
@@ -11,7 +13,7 @@ const SecondProductMainPage = ({
 }) => {
   return (
     <Flex>
-      <div className="lastly">
+      <div className="lastly" data-aos="fade-left">
         <div className="down">
           {button && (
             <button className="ourservices">

@@ -5,6 +5,8 @@ import { ReactComponent as ArrowCircleRight } from "../../assets/ArrowCircleRigh
 import FeaturesCard from "../../Reusable/FeaturesCard";
 import PricingCard from "./PricingCard";
 import { useNavigate } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const FirstProductMainPage = ({
   first,
@@ -19,7 +21,7 @@ const FirstProductMainPage = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <Flex topimage2={topimage2} wide={wide}>
+    <Flex topimage2={topimage2} wide={wide} data-aos="fade-right">
       <span className="first">{first}</span>
       <div className="div">
         <span className="second">{second}</span>

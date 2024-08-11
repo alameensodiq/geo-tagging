@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const FourMainCard = ({
   number,
@@ -11,7 +13,7 @@ const FourMainCard = ({
   statement4
 }) => {
   return (
-    <Flex>
+    <Flex data-aos="fade-right">
       <div className="top">
         <span className="circle">{number}</span>
         <span className="name">{name}</span>

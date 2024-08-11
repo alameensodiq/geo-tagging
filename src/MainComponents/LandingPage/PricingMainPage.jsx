@@ -40,7 +40,7 @@ const PricingMainPage = () => {
           statement2="than 6,000+ leading global"
           statement3="companies"
         />
-        <div className="images">
+        <div className="images" data-aos="fade-right">
           <div className="image">
             <img src={smile2} className="smile" alt="smile" />
             <img src={possible2} className="possible" alt="possible" />
@@ -50,7 +50,7 @@ const PricingMainPage = () => {
             <img src={smile} className="smile" alt="smile" />
           </div>
         </div>
-        <div className="left">
+        <div className="left" data-aos="fade-left">
           <button className="book">
             Read More Success Stories
             <ArrowCircleRight />

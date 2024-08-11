@@ -8,6 +8,8 @@ import { ReactComponent as ArrowRight } from "../../assets/ArrowRight.svg";
 import FeaturesCard from "../../Reusable/FeaturesCard";
 import FourMainCard from "./FourMainCard";
 import { useNavigate } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const FourthMainComponent = () => {
   const navigate = useNavigate();
@@ -42,12 +44,12 @@ const FourthMainComponent = () => {
             statement4={"platform."}
           />
         </FeaturesCard>
-        <div className="demo">
+        <div className="demo" data-aos="fade-right">
           <button className="book" onClick={() => navigate("/demo")}>
             Book a Demo <ArrowRight />
           </button>
         </div>
-        <div className="down">
+        <div className="down" data-aos="fade-left">
           <button className="ourservices">
             {" "}
             <Service />

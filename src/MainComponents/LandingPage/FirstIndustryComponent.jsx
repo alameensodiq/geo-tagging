@@ -10,6 +10,8 @@ import { TypeAnimation } from "react-type-animation";
 import Marquee from "react-fast-marquee";
 import first from "../../assets/productfirst.png";
 import { useNavigate } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const FirstIndustryComponent = ({
   retailer,
@@ -22,7 +24,7 @@ const FirstIndustryComponent = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <Flex reduce={reduce}>
+    <Flex reduce={reduce} data-aos="fade-right">
       {/* <img src={first} alt="wow" /> */}
       <div className="cover">
         <div className="top">

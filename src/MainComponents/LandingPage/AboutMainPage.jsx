@@ -12,6 +12,8 @@ import Footer from "./Footer";
 import Marquee from "react-fast-marquee";
 import { ReactComponent as Sliding } from "../../assets/Sliding.svg";
 import LastCustomerDiv from "./LastCustomerDiv";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const AboutMainPage = () => {
   return (
@@ -34,7 +36,7 @@ const AboutMainPage = () => {
           statement2="Work with the"
           statement3="world"
         />
-        <div className="images">
+        <div className="images" data-aos="fade-right">
           <div className="possiblediv">
             <div className="image">
               <img src={possible} className="possible" alt="possible" />

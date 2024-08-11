@@ -14,6 +14,8 @@ import Footer from "./Footer";
 import ThirdProductMainPage from "./ThirdProductMainPage";
 import FourthProductMainPage from "./FourthProductMainPage";
 import FifthProductMainPage from "./FifthProductMainPage";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const CampaignProductMainPage = () => {
   return (

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Mark } from "../../assets/pricingmark.svg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const PricingCard = ({
   name,
@@ -23,7 +25,7 @@ const PricingCard = ({
   threesubmain4
 }) => {
   return (
-    <Flex>
+    <Flex data-aos="fade-right">
       <div className="top">
         <span className="name">{name}</span>
         <div className="amountdiv">

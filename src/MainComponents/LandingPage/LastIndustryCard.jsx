@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const LastIndustryCard = ({
   name,
@@ -10,7 +12,7 @@ const LastIndustryCard = ({
   Imagelogo
 }) => {
   return (
-    <Flex>
+    <Flex data-aos="fade-right">
       <div className="wrapper">
         {Imagelogo}
         <span className="name">{name}</span>

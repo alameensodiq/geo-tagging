@@ -1,6 +1,8 @@
 import React from "react";
 import curve from "../../assets/curve.png";
 import styled from "styled-components";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const FourthProductMainPage = ({
   cardfirst,
@@ -11,7 +13,7 @@ const FourthProductMainPage = ({
   clarity
 }) => {
   return (
-    <Flex>
+    <Flex data-aos="fade-left">
       <div className="right">
         <span className="track">{track}</span>
         <span className="campaign">
