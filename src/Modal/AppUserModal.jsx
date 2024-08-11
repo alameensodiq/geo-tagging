@@ -1048,7 +1048,7 @@ const AppUserModal = ({
               placeholder={`${`Enter Business Rep's Phone Number`}`}
             />
             <ModalInputText
-              label="Registeration Number"
+              label="RC Number"
               onChange={(e) => Change(e)}
               name="rcNumber"
               value={regbus?.rcNumber}
