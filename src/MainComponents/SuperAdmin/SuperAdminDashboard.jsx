@@ -12,10 +12,16 @@ import SuperAdminOverviewCards from "../../Reusable/SuperAdminOverviewCards";
 import DonutBorderRadius from "../../bits/DonutBorderRadius";
 import SuperAdminDoubleBarChart from "../../bits/SuperAdminDoubleBarChart";
 import Radialtime from "../../bits/Radialtime";
+import { Dashboard } from "../../Store/Apis/Dashboard";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SuperAdminDashboard = ({ title, overviewadmin }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [bright, setBright] = useState(true);
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [reload, setReload] = useState(false);
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
     endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 50))
@@ -25,9 +31,22 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
     new Date(Date.now() + 3600 * 1000 * 24)
   );
 
+  useEffect(() => {
+    dispatch(Dashboard());
+    if (reload) {
+      dispatch(Dashboard());
+      setReload(false);
+    }
+  }, [reload, startDate, endDate]);
+
   const toggleDatePicker = () => {
     setShowDatePicker(!showDatePicker); // Toggle date picker visibility
   };
+
+  const { dashboard, authenticatingdashboard } = useSelector(
+    (state) => state.trails
+  );
+  console.log(dashboard?.data?.data);
 
   const handleSelect = (ranges) => {
     console.log(ranges);

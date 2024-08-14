@@ -17,21 +17,19 @@ const CorporateResetPassword = () => {
   const [next, setNext] = useState(false);
   const [log, setLog] = useState(false);
 
-  const token = sessionStorage.getItem('token')
+  const token = sessionStorage.getItem("token");
   const [user, setUser] = useState({
     password: "",
     password_confirmation: "",
     token: token
   });
 
-
-
   useEffect(() => {
     setLog(false);
     setUser({
-        ...user,
-        token: token
-    })
+      ...user,
+      token: token
+    });
   }, [token]);
 
   const Change = (e) => {
@@ -43,23 +41,23 @@ const CorporateResetPassword = () => {
     });
   };
 
-
   const Authentication = () => {
     setLog(true);
     const { password, password_confirmation, token } = user;
-    dispatch(CorporateForgotPassword({ password, password_confirmation, token}));
+    dispatch(
+      CorporateForgotPassword({ password, password_confirmation, token })
+    );
   };
 
-  const { resetpassword, authenticatingresetpassword } = useSelector((state) => state.resetpassword);
+  const { resetpassword, authenticatingresetpassword } = useSelector(
+    (state) => state.resetpassword
+  );
   if (resetpassword?.status && !authenticatingresetpassword && log) {
     navigate(`/corporate-login`);
   }
 
   return (
     <Flex>
-      <div className="firstdiv">
-        <img src={Banner} alt="auth" className="container" />
-      </div>
       <div className="seconddiv">
         <div className="first">
           <CorporateLogo style={{ cursor: "pointer" }} />
@@ -103,7 +101,9 @@ const CorporateResetPassword = () => {
           <LargeSignInButton
             onClick={() => Authentication()}
             big
-            title={authenticatingresetpassword ? "Loading..."  : "Forgot Password"}
+            title={
+              authenticatingresetpassword ? "Loading..." : "Forgot Password"
+            }
             background
             color
           />
@@ -119,6 +119,9 @@ const CorporateResetPassword = () => {
             </span>
           </span> */}
         </div>
+      </div>
+      <div className="firstdiv">
+        <img src={Banner} alt="auth" className="container" />
       </div>
     </Flex>
   );

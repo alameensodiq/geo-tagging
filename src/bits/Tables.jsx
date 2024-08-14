@@ -2309,7 +2309,23 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      {item?.name}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      {item?.roleName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      {item?.time}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      {item?.actionPerformed}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "25%" }}>
                     Warith
                   </StyledTableCell>
@@ -2336,21 +2352,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "25%" }}>
                     Login
                   </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "25%" }}>
-                    Warith
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "25%" }}>
-                    Super-admin
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "25%" }}>
-                    12/04/23, 09:11:04
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "25%" }}>
-                    Login
-                  </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>

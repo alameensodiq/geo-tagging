@@ -26,6 +26,8 @@ import { AddSubSlice } from "./Reducers/AddSub";
 import { AddProjectSlice } from "./Reducers/AddProject";
 import { AssignedRepSlice } from "./Reducers/Assigned";
 import { AddCorpSlice } from "./Reducers/AddCorp";
+import { TrailsSlice } from "./Reducers/Trails";
+import { DashboardSlice } from "./Reducers/Dashboard";
 
 export default configureStore({
   reducer: {
@@ -55,6 +57,8 @@ export default configureStore({
     addsub: AddSubSlice?.reducer,
     addproject: AddProjectSlice?.reducer,
     assigned: AssignedRepSlice?.reducer,
-    addcorping: AddCorpSlice?.reducer
+    addcorping: AddCorpSlice?.reducer,
+    trails: TrailsSlice?.reducer,
+    dashboard: DashboardSlice?.reducer
   }
 });

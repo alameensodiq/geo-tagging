@@ -17,7 +17,7 @@ const CorporateChangePassword = () => {
   const [next, setNext] = useState(false);
   const [log, setLog] = useState(false);
   const [user, setUser] = useState({
-    email: "",
+    email: ""
   });
 
   useEffect(() => {
@@ -33,23 +33,21 @@ const CorporateChangePassword = () => {
     });
   };
 
-
   const Authentication = () => {
     setLog(true);
-    const { email} = user;
-    dispatch(CorporateForgotPassword({ email}));
+    const { email } = user;
+    dispatch(CorporateForgotPassword({ email }));
   };
 
-  const { forgotpassword, authenticatingforgotpassword } = useSelector((state) => state.forgotpassword);
+  const { forgotpassword, authenticatingforgotpassword } = useSelector(
+    (state) => state.forgotpassword
+  );
   if (forgotpassword?.status && !authenticatingforgotpassword && log) {
     navigate(`/corporate-login`);
   }
 
   return (
     <Flex>
-      <div className="firstdiv">
-        <img src={Banner} alt="auth" className="container" />
-      </div>
       <div className="seconddiv">
         <div className="first">
           <CorporateLogo style={{ cursor: "pointer" }} />
@@ -85,7 +83,9 @@ const CorporateChangePassword = () => {
           <LargeSignInButton
             onClick={() => Authentication()}
             big
-            title={authenticatingforgotpassword ? "Loading..."  : "Forgot Password"}
+            title={
+              authenticatingforgotpassword ? "Loading..." : "Forgot Password"
+            }
             background
             color
           />
@@ -101,6 +101,9 @@ const CorporateChangePassword = () => {
             </span>
           </span> */}
         </div>
+      </div>
+      <div className="firstdiv">
+        <img src={Banner} alt="auth" className="container" />
       </div>
     </Flex>
   );

@@ -10,6 +10,8 @@ import { businessprojects } from "../../Routes";
 import { useNavigate } from "react-router-dom";
 import SuperAdminNavbar from "./SuperAdminNavbar";
 import { DownloadCsv } from "../../bits/DownloadCsv";
+import { Trails } from "../../Store/Apis/Trails";
+import Pagination from "../../Reusable/Pagination";
 
 const SuperAdminAudit = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -29,24 +31,50 @@ const SuperAdminAudit = ({ title }) => {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // dispatch(CorporateBusinessRep())
-    if(reload){
-        // dispatch(CorporateBusinessRep())
-        setReload(false)
+    dispatch(Trails());
+    if (reload) {
+      dispatch(Trails());
+      setReload(false);
     }
   }, [reload]);
 
-//   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
-//   console.log(businessrep?.data?.data)
+  const { trails, authenticatingtrails } = useSelector((state) => state.trails);
+  console.log(trails?.data?.data);
 
+  const paginate = (number) => {
+    //  setSorted(tran)
+    setCurrentPage(number - 1);
+    setActivater(number);
+  };
 
-//   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
-//   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
+  const next = trails?.data?.meta?.next;
+  const previous = trails?.data?.meta?.prev;
+  const totalPosts = trails?.data?.meta?.totalCount;
 
+  const Download = () => {
+    console.log("bills");
+    const headers = trails?.data.map((item) => Object.keys(item).toString())[0];
+    console.log(headers);
+    const objValues = trails?.data.map((item) =>
+      Object.values(item).toString()
+    );
+    const csv = [headers, ...Object.values(objValues)].join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    console.log(a);
+    a.download = "Audits.csv";
+    a.href = url;
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(blob);
+  };
 
+  //   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
+  //   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
 
   const setActivate = () => {
     SetActivate(true);
@@ -87,16 +115,17 @@ const SuperAdminAudit = ({ title }) => {
               <span className="name">Audit trails</span>
             </div>
             <span className="about">
-            This Page Allow you to Manage Sub-Admin.
+              This Page Allow you to Manage Sub-Admin.
             </span>
           </div>
           <div>
             <DownloadCsv
-            //   onClick={() => navigate(
-            //     `../${businessprojects}/location/:location`)}
+              //   onClick={() => navigate(
+              //     `../${businessprojects}/location/:location`)}
               exportdownload
               downloadcsvnoborder
               color
+              onClick={() => Download()}
               title="Download CSV"
             />
           </div>
@@ -134,7 +163,18 @@ const SuperAdminAudit = ({ title }) => {
               placeholder="Search for UP Corporates name, email, RC Number, e.t.c"
             />
           </div>
-         <Tables audit data={[]} setStep={setStep} />
+          <Tables audit data={trails?.data} setStep={setStep} />
+          {trails?.data?.length >= 1 && (
+            <Pagination
+              set={activater}
+              currentPage={currentPage}
+              postsPerPage={postsPerPage}
+              totalPosts={totalPosts}
+              paginate={paginate}
+              previous={previous}
+              next={next}
+            />
+          )}
         </div>
       </div>
     </Flex>

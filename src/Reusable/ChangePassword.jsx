@@ -39,9 +39,6 @@ const ChangePassword = () => {
 
   return (
     <Flex>
-      <div className="firstdiv">
-        <img src={Banner} alt="auth" className="container" />
-      </div>
       <div className="seconddiv">
         <div className="first">
           <Logo style={{ cursor: "pointer" }} />
@@ -56,7 +53,7 @@ const ChangePassword = () => {
           </div>
         </div>
         <div className="third">
-        <AuthInputPassword
+          <AuthInputPassword
             onChange={(e) => Change(e)}
             name="Password"
             value={user?.password}
@@ -94,6 +91,9 @@ const ChangePassword = () => {
           </span> */}
         </div>
       </div>
+      <div className="firstdiv">
+        <img src={Banner} alt="auth" className="container" />
+      </div>
     </Flex>
   );
 };
@@ -130,7 +130,7 @@ const Flex = styled.div`
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding-top:20px;
+      padding-top: 20px;
       justify-content: center;
       align-items: center;
       .welcome {
