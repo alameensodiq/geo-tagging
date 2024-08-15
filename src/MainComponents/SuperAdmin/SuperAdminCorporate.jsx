@@ -48,10 +48,10 @@ const SuperAdminCorporate = ({ title }) => {
   console.log(supercorporate?.data?.data);
 
   const activate = supercorporate?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === true
+    (item) => item?.totalProjects > 0
   );
   const inactivate = supercorporate?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === false
+    (item) => item?.totalProjects === 0
   );
 
   const setActivate = () => {
@@ -129,7 +129,9 @@ const SuperAdminCorporate = ({ title }) => {
           <div className="start">
             <div className="numbers">
               <span className="name">Corporates</span>
-              <span className="count">{supercorporate?.data?.data?.length} members</span>
+              <span className="count">
+                {supercorporate?.data?.data?.length} members
+              </span>
             </div>
             <span className="about">
               This Page shows the comprehensive list of Active and Inactive

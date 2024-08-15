@@ -3161,6 +3161,7 @@ const AppUserModal = ({
                 top: "7px",
                 left: "8px"
               }}
+              onClick={() => setStep(23)}
             >
               2
             </span>
@@ -3281,8 +3282,10 @@ const AppUserModal = ({
                 alignItems: "center",
                 justifyContent: "center",
                 top: "7px",
-                left: "8px"
+                left: "8px",
+                cursor: "pointer"
               }}
+              onClick={() => setStep(22)}
             >
               <Markgreen />
             </div>
@@ -3499,8 +3502,10 @@ const AppUserModal = ({
                 alignItems: "center",
                 justifyContent: "center",
                 top: "7px",
-                left: "8px"
+                left: "8px",
+                cursor: "pointer"
               }}
+              onClick={() => setStep(22)}
             >
               <Markgreen />
             </div>
@@ -3522,8 +3527,10 @@ const AppUserModal = ({
                 alignItems: "center",
                 justifyContent: "center",
                 top: "7px",
-                left: "8px"
+                left: "8px",
+                cursor: "pointer"
               }}
+              onClick={() => setStep(23)}
             >
               <Markgreen />
             </div>
