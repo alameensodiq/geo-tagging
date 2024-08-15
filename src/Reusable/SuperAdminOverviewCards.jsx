@@ -21,68 +21,82 @@ const SuperAdminOverviewCards = ({
       <div className="totalclients">
         <div className="up">
           <div className="details">
-            <span className="number">150</span>
+            <span className="number">
+              {data?.CorporateStatistics?.totalCorporates}
+            </span>
             <span className="clients">Total Corporates</span>
           </div>
           <Rep />
         </div>
         <div className="down">
           <span className="activediv">
-            <span className="active">Active</span>500
+            <span className="active">Active</span>
+            {data?.CorporateStatistics?.activeCorporates}
           </span>
           <span className="deactivediv">
-            <span className="deactive">Inactive</span>500
+            <span className="deactive">Inactive</span>
+            {data?.CorporateStatistics?.inActiveCorporates}
           </span>
         </div>
       </div>
       <div className="totalclients">
         <div className="up">
           <div className="details">
-            <span className="number">100</span>
+            <span className="number">
+              {data?.BusinessRepStatistics?.totalBusinessReps}
+            </span>
             <span className="clients">Total Business Reps</span>
           </div>
           <Rep />
         </div>
         <div className="down">
           <span className="activediv">
-            <span className="active">Active</span>500
+            <span className="active">Active</span>
+            {data?.BusinessRepStatistics?.activeBusinessReps}
           </span>
           <span className="deactivediv">
-            <span className="deactive">Inactive</span>500
+            <span className="deactive">Inactive</span>
+            {data?.BusinessRepStatistics?.inActiveBusinessReps}
           </span>
         </div>
       </div>
       <div className="totalemployees">
         <div className="up">
           <div className="details">
-            <span className="number">700</span>
+            <span className="number">
+              {data?.ProjectStatistics?.totalProjects}
+            </span>
             <span className="clients">Total Projects</span>
           </div>
           <Case />
         </div>
         <div className="down">
           <span className="activediv">
-            <span className="active">Active</span>500
+            <span className="active">Active</span>
+            {data?.ProjectStatistics?.activeProjects}
           </span>
           <span className="deactivediv">
-            <span className="deactive">Inactive</span>500
+            <span className="deactive">Inactive</span>
+            {data?.ProjectStatistics?.inActiveProjects}
           </span>
         </div>
       </div>
       <div className="activeclients">
         <div className="up">
           <div className="details">
-            <span className="number">300</span>
+            <span className="number">{data?.HoursStatistics?.totalHours}</span>
             <span className="clients">Total hours worked</span>
           </div>
           <Work />
         </div>
         <div className="down">
           <span className="activediv">
-            <span className="active">Active</span>500
+            <span className="active">Active</span>
+            {data?.HoursStatistics?.activeHours}
           </span>
           <span className="deactivediv">
-            <span className="deactive">Inactive</span>500
+            <span className="deactive">Inactive</span>
+            {data?.HoursStatistics?.inActiveHours}
           </span>
         </div>
       </div>

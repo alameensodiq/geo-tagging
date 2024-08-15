@@ -34,12 +34,12 @@ const SuperAdminAudit = ({ title }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(Trails());
+    dispatch(Trails({ searcher, currentPage }));
     if (reload) {
-      dispatch(Trails());
+      dispatch(Trails({ searcher, currentPage }));
       setReload(false);
     }
-  }, [reload]);
+  }, [reload, searcher, currentPage]);
 
   const { trails, authenticatingtrails } = useSelector((state) => state.trails);
   console.log(trails?.data?.data);
@@ -56,7 +56,9 @@ const SuperAdminAudit = ({ title }) => {
 
   const Download = () => {
     console.log("bills");
-    const headers = trails?.data.map((item) => Object.keys(item).toString())[0];
+    const headers = trails?.data?.data.map((item) =>
+      Object.keys(item).toString()
+    )[0];
     console.log(headers);
     const objValues = trails?.data.map((item) =>
       Object.values(item).toString()
@@ -163,8 +165,8 @@ const SuperAdminAudit = ({ title }) => {
               placeholder="Search for UP Corporates name, email, RC Number, e.t.c"
             />
           </div>
-          <Tables audit data={trails?.data} setStep={setStep} />
-          {trails?.data?.length >= 1 && (
+          <Tables audit data={trails?.data?.data} setStep={setStep} />
+          {trails?.data?.data?.length >= 1 && (
             <Pagination
               set={activater}
               currentPage={currentPage}

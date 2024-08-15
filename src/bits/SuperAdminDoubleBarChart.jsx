@@ -1,34 +1,62 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-function SuperAdminDoubleBarChart() {
-  const series = [
-    {
-      name: "Income",
-      type: "column",
-      data: [60, 70, 25, 65, 35, 88, 38, 46]
-    },
-    {
-      name: "Cashflow",
-      type: "column",
-      data: [15, 93, 31, 40, 41, 49, 55, 85]
-    },
-    {
-      name: "Income",
-      type: "column",
-      data: [14, 70, 25, 75, 35, 28, 88, 46]
-    },
-    {
-      name: "Cashflow",
-      type: "column",
-      data: [11, 73, 31, 70, 41, 49, 95, 85]
-    },
-    {
-      name: "Cashflow",
-      type: "column",
-      data: [11, 53, 31, 90, 41, 49, 95, 85]
-    }
+function SuperAdminDoubleBarChart(data) {
+  const months = [
+    "JANUARY",
+    "FEBRUARY",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTOBER",
+    "NOVEMBER",
+    "DECEMBER"
   ];
+  const series =
+    data && data
+      ? [
+          {
+            name: "Income",
+            type: "column",
+            data: months.map((month) => data[month]?.Basic || 0)
+          },
+          {
+            name: "Cashflow",
+            type: "column",
+            data: months.map((month) => data[month]?.Premium || 0)
+          }
+        ]
+      : [
+          {
+            name: "Income",
+            type: "column",
+            data: [60, 70, 25, 65, 35, 88, 38, 46, 45, 90, 78, 99]
+          },
+          {
+            name: "Cashflow",
+            type: "column",
+            data: [100, 93, 31, 40, 41, 49, 55, 85, 45, 90, 78, 99]
+          },
+          {
+            name: "Income",
+            type: "column",
+            data: [14, 70, 25, 75, 35, 28, 88, 46, 45, 90, 78, 99]
+          },
+          {
+            name: "Cashflow",
+            type: "column",
+            data: [11, 73, 31, 70, 41, 49, 95, 85, 45, 90, 78, 99]
+          },
+          {
+            name: "Cashflow",
+            type: "column",
+            data: [11, 53, 31, 90, 41, 49, 95, 85, 45, 90, 78, 99]
+          }
+        ];
 
   const options = {
     colors: ["#1A87D7", "#28385C", "#7C65E0", "#7CC8F3", "#F3827C"],
@@ -71,7 +99,20 @@ function SuperAdminDoubleBarChart() {
       colors: ["transparent"]
     },
     xaxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ]
     },
     yaxis: {
       tickAmount: 5,

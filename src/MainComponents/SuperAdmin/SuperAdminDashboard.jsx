@@ -44,9 +44,9 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   };
 
   const { dashboard, authenticatingdashboard } = useSelector(
-    (state) => state.trails
+    (state) => state.dashboard
   );
-  console.log(dashboard?.data?.data);
+  console.log(dashboard?.data);
 
   const handleSelect = (ranges) => {
     console.log(ranges);
@@ -156,7 +156,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
         </div>
         <FeaturesGrid dashboarder superoverview row={1}>
           <SuperAdminOverviewCards
-            data={[]}
+            data={dashboard?.data}
             number1={[]}
             number2={`[]`}
             number3={`[]`}
@@ -250,15 +250,21 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
               </div>
             </div>
             <div className="donutdiv">
-              <DonutBorderRadius />
+              <DonutBorderRadius data={dashboard?.data?.SubscriptionAnalysis} />
               <div className="detailsmaindiv">
                 <div className="detailsdiv">
                   <div className="circle"></div>
-                  <span className="title">Standard (90%)</span>
+                  <span className="title">
+                    Basic (
+                    {dashboard?.data?.SubscriptionAnalysis["Basic Percent"]})
+                  </span>
                 </div>
                 <div className="detailsdiv">
                   <div className="circletwo"></div>
-                  <span className="title">Standard Plus (50%)</span>
+                  <span className="title">
+                    Premium (
+                    {dashboard?.data?.SubscriptionAnalysis["Premium Percent"]})
+                  </span>
                 </div>
                 <div className="detailsdiv">
                   <div className="circlethree"></div>
@@ -467,7 +473,9 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
               <Calendar onClick={() => PickDater()} className="calendar" />
             </div>
           </div>
-          <SuperAdminDoubleBarChart />
+          <SuperAdminDoubleBarChart
+            data={dashboard?.data?.ProjectSubscriptionCountsByMonth}
+          />
         </div>
       </div>
     </Flex>
