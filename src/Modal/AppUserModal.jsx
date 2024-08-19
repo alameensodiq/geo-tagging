@@ -243,7 +243,9 @@ const AppUserModal = ({
     bustate10,
     bustate11,
     projectstatus?.status,
-    authenticatingprojectstatus
+    authenticatingprojectstatus,
+    editadmindetails?.status,
+    authenticatingeditadmindetails
   ]);
 
   const Viewing = () => {
