@@ -29,6 +29,12 @@ import { AddCorpSlice } from "./Reducers/AddCorp";
 import { TrailsSlice } from "./Reducers/Trails";
 import { DashboardSlice } from "./Reducers/Dashboard";
 import { CorporateDashboardSlice } from "./Reducers/CorporateDashboard";
+import { EditDetailsSlice } from "./Reducers/EditUserDetails";
+import { SubHistorySlice } from "./Reducers/SubHistory";
+import { ProjectStatusSlice } from "./Reducers/ProjectStatus";
+import { ProjectDetailsSlice } from "./Reducers/ProjectDetails";
+import { ClientReportSlice } from "./Reducers/ClientReport";
+import { EditAdminDetailsSlice } from "./Reducers/EditAdminDetails";
 
 export default configureStore({
   reducer: {
@@ -61,6 +67,12 @@ export default configureStore({
     addcorping: AddCorpSlice?.reducer,
     trails: TrailsSlice?.reducer,
     dashboard: DashboardSlice?.reducer,
-    corporatedashboard: CorporateDashboardSlice?.reducer
+    corporatedashboard: CorporateDashboardSlice?.reducer,
+    editdetails: EditDetailsSlice?.reducer,
+    subhistory: SubHistorySlice?.reducer,
+    projectstatus: ProjectStatusSlice?.reducer,
+    projectdetails: ProjectDetailsSlice?.reducer,
+    clientreport: ClientReportSlice?.reducer,
+    editadmindetails: EditAdminDetailsSlice?.reducer
   }
 });

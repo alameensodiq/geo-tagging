@@ -18,10 +18,13 @@ import InputSearch from "../../bits/InputSearch";
 import CorporateReportCards from "../../Reusable/CorporateReportCards";
 import { businessreport } from "../../Routes";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { ClientReport } from "../../Store/Apis/ClientReport";
 
 const ClientAdminReports = ({ title, overviewadmin }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [searcher, setSearcher] = useState("");
+  const [reload, setReload] = useState(false);
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
     endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 50))
@@ -36,7 +39,21 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(ClientReport());
+    if (reload) {
+      dispatch(ClientReport());
+      setReload(false);
+    }
+  }, [reload]);
+
+  const { clientreport, authenticatingclientreport } = useSelector(
+    (state) => state.clientreport
+  );
+
+  console.log(clientreport?.data);
   const handleSelect = (ranges) => {
     console.log(ranges);
     if (ranges.selection) {
@@ -85,12 +102,12 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
         </div>
         <FeaturesGrid dashboard superoverview row={2}>
           <CorporateReportCards
-            amount={"15000"}
+            amount={clientreport?.data?.totalSituationReports}
             statement={"Total No of Situation Reports"}
             percent={"18"}
           />
           <CorporateReportCards
-            amount={"10000"}
+            amount={clientreport?.data?.totalWelfareReports}
             statement={"Total No of Welfare Reports"}
             percent={"16"}
           />

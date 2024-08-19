@@ -1,50 +1,43 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const AddProject = createAsyncThunk(
-  "addproject",
-  async (
-    {
-      name,
-      description,
-      startDate,
-      stopDate,
-      startTime,
-      stopTime,
-      duration,
-      dailyPay,
-      locations,
-      weekdays,
-      minutesToAdd
-    },
-    thunkAPI
-  ) => {
+export const EditDetails = createAsyncThunk(
+  "editdetails",
+  async ({ name, value, id }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
+    const queryParams = new URLSearchParams();
+    console.log(value);
+    if (id) queryParams.append("subUserId", id);
+    if (name) queryParams.append("name", name);
+    if (value !== undefined) {
+      queryParams.append("value", value.toString());
+    }
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/project`,
+        `${
+          process.env.REACT_APP_BASE_URL
+        }team/edit-user-status?${queryParams.toString()}`,
         {
-          method: "POST",
+          method: "PATCH",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
-          },
-          body: JSON.stringify({
-            name,
-            description,
-            startDate,
-            stopDate,
-            startTime,
-            stopTime,
-            duration,
-            dailyPay,
-            locations,
-            weekdays,
-            minutesToAdd
-          })
+          }
+          //   body: JSON.stringify({
+          //     name,
+          //     description,
+          //     startDate,
+          //     stopDate,
+          //     startTime,
+          //     stopTime,
+          //     duration,
+          //     dailyPay,
+          //     locations,
+          //     weekdays
+          //   })
         }
       );
       let data = await response.json();

@@ -14,6 +14,7 @@ import FeaturesGrid from "../../Reusable/FeaturesGrid";
 import AccountInputText from "../../bits/AccountInputText";
 import { ChangePassword } from "../../Store/Apis/ChangePassword";
 import { GetUser } from "../../Store/Apis/GetUser";
+import { EditAdminDetails } from "../../Store/Apis/EditAdminDetails";
 
 const SuperAdminAccount = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -32,6 +33,7 @@ const SuperAdminAccount = ({ title }) => {
   const [first, setFirst] = useState("activate");
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
+  const [id, setId] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,6 +45,8 @@ const SuperAdminAccount = ({ title }) => {
     password_confirmation: ""
   });
 
+  const [username, setUsername] = useState("");
+
   const { getuser, authenticatinggetuser } = useSelector(
     (state) => state.getuser
   );
@@ -53,22 +57,46 @@ const SuperAdminAccount = ({ title }) => {
   );
   console.log(changepass?.data);
 
+  const { editadmindetails, authenticatingeditadmindetails } = useSelector(
+    (state) => state.editadmindetails
+  );
+
+  console.log(editadmindetails?.status, authenticatingeditadmindetails);
+
   //   current_password, password, password_confirmation
 
   useEffect(() => {
     dispatch(GetUser());
-    setReload(false);
-    setLog(false);
     if (reload && changepass?.status && !authenticatingchangepass && !log) {
       setStep(0);
       setReload(false);
       setLog(false);
       dispatch(GetUser());
     }
+    if (
+      reload &&
+      editadmindetails?.status &&
+      !authenticatingeditadmindetails &&
+      !log
+    ) {
+      dispatch(GetUser());
+      setReload(false);
+      setLog(false);
+    }
     if (changepass?.status && !authenticatingchangepass && log) {
       setStep(35);
     }
-  }, [reload, changepass?.status, log, authenticatingchangepass]);
+    if (editadmindetails?.status && !authenticatingeditadmindetails && log) {
+      setStep(34);
+    }
+  }, [
+    reload,
+    changepass?.status,
+    log,
+    authenticatingchangepass,
+    editadmindetails?.status,
+    authenticatingeditadmindetails
+  ]);
 
   const Change = (e) => {
     const { name, value } = e.target;
@@ -119,9 +147,19 @@ const SuperAdminAccount = ({ title }) => {
     );
     setLog(true);
   };
+
+  const ChangeUser = (e) => {
+    const { name, value } = e.target;
+    setUsername(value);
+  };
+
+  const UpdateAdminDetails = () => {
+    setLog(true);
+    dispatch(EditAdminDetails({ id, name: username }));
+  };
   return (
     <Flex>
-      <SuperAdminNavbar title={title} />
+      <SuperAdminNavbar title={title} setId={setId} />
       <AppUserModal
         setUserdetails={setUserdetails}
         setStep={setStep}
@@ -140,7 +178,7 @@ const SuperAdminAccount = ({ title }) => {
             </span>
           </div>
         </div>
-        <FeaturesGrid dashboard unequal superoverview row={2}>
+        <FeaturesGrid dashboard unequal account superoverview row={2}>
           <div className="table">
             <div className="start">
               <div className="numbers">
@@ -155,12 +193,12 @@ const SuperAdminAccount = ({ title }) => {
                 nosign
                 label="Full Name"
                 logo
-                // onChange={(e) => Change(e)}
+                onChange={(e) => ChangeUser(e)}
                 name="firstname"
-                // value={regbus?.firstname}
+                value={username}
                 placeholder={`${`${getuser?.data?.firstName} ${getuser?.data?.lastName}`}`}
               />
-              <AccountInputText
+              {/* <AccountInputText
                 nosign
                 label="Email"
                 emailogo
@@ -168,15 +206,17 @@ const SuperAdminAccount = ({ title }) => {
                 name="firstname"
                 // value={regbus?.firstname}
                 placeholder={`${`${getuser?.data?.email}`}`}
-              />
+              /> */}
             </div>
             <div className="editrole">
               <ModalButton
-                onClick={() => setStep(34)}
+                onClick={() => UpdateAdminDetails()}
                 background
                 color
                 remove
-                title="Save Changes"
+                title={
+                  authenticatingeditadmindetails ? "Saving..." : "Save Changes"
+                }
               />
             </div>
           </div>

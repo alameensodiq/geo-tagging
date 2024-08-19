@@ -33,14 +33,15 @@ const ClientUsermanagement = ({ title }) => {
   const [first, setFirst] = useState("activate");
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
+  const [id, setId] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(CorporateUser({ searcher, currentPage }));
-    dispatch(Allpermission())
+    dispatch(Allpermission());
     if (reload) {
       dispatch(CorporateUser({ searcher, currentPage }));
-      dispatch(Allpermission())
+      dispatch(Allpermission());
       setReload(false);
     }
   }, [reload, searcher, currentPage]);
@@ -127,13 +128,21 @@ const ClientUsermanagement = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal data={allpermission?.data} setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        id={id}
+        data={allpermission?.data}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
             <div className="numbers">
               <span className="name">User Management</span>
-              <span className="count">{userteam?.data?.data?.length} members</span>
+              <span className="count">
+                {userteam?.data?.data?.length} members
+              </span>
             </div>
             <span className="about">
               This overview provides a comprehensive snapshot of User management
@@ -207,7 +216,12 @@ const ClientUsermanagement = ({ title }) => {
             />
           </div>
           <div className="wrapper">
-            <Tables manageuser data={userteam?.data?.data} setStep={setStep} />
+            <Tables
+              setId={setId}
+              manageuser
+              data={userteam?.data?.data}
+              setStep={setStep}
+            />
             {userteam?.data?.data?.length >= 1 && (
               <Pagination
                 set={activater}

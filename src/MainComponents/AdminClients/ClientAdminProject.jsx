@@ -16,6 +16,7 @@ const ClientAdminProject = ({ title }) => {
   const [step, setStep] = useState(0);
   const [activated, SetActivate] = useState(true);
   const [pend, SetPend] = useState(false);
+  const [id, setId] = useState("");
   const [status, setStatus] = useState("ACTIVE");
   const [searcher, setSearcher] = useState("");
   const [locker, SetLocker] = useState(false);
@@ -96,7 +97,12 @@ const ClientAdminProject = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        id={id}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
@@ -176,13 +182,18 @@ const ClientAdminProject = ({ title }) => {
           {activated ? (
             <>
               <div className="wrapper">
-                <Tables activeproject data={activate} setStep={setStep} />
+                <Tables
+                  setId={setId}
+                  activeproject
+                  data={activate}
+                  setStep={setStep}
+                />
                 {activate?.length >= 1 && (
                   <Pagination
                     set={activater}
                     currentPage={currentPage}
                     postsPerPage={postsPerPage}
-                    totalPosts={totalPosts}
+                    totalPosts={activate?.length}
                     paginate={paginate}
                     previous={previous}
                     next={next}
@@ -193,13 +204,18 @@ const ClientAdminProject = ({ title }) => {
           ) : pend ? (
             <>
               <div className="wrapper">
-                <Tables inactiveproject data={inactivate} setStep={setStep} />
+                <Tables
+                  setId={setId}
+                  inactiveproject
+                  data={inactivate}
+                  setStep={setStep}
+                />
                 {inactivate?.length >= 1 && (
                   <Pagination
                     set={activater}
                     currentPage={currentPage}
                     postsPerPage={postsPerPage}
-                    totalPosts={totalPosts}
+                    totalPosts={inactivate?.length}
                     paginate={paginate}
                     previous={previous}
                     next={next}

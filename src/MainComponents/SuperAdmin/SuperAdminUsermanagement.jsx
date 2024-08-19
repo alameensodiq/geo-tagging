@@ -32,6 +32,7 @@ const SuperAdminUsermanagement = ({ title }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [first, setFirst] = useState("activate");
   const [postsPerPage, setPostsPerPage] = useState(10);
+  const [id, setId] = useState("");
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
 
@@ -124,6 +125,7 @@ const SuperAdminUsermanagement = ({ title }) => {
     <Flex>
       <SuperAdminNavbar title={title} />
       <AppUserModal
+        id={id}
         data={adminpermission?.data}
         supers
         setStep={setStep}
@@ -188,6 +190,7 @@ const SuperAdminUsermanagement = ({ title }) => {
           </div>
           <div className="wrapper">
             <Tables
+              setId={setId}
               superuser
               data={adminuserteam?.data?.data}
               setStep={setStep}

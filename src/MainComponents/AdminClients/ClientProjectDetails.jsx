@@ -10,6 +10,8 @@ import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
 import { useNavigate } from "react-router-dom";
 import { businessprojects } from "../../Routes";
+import { ProjectDetails } from "../../Store/Apis/ProjectDetails";
+import Pagination from "../../Reusable/Pagination";
 
 const ClientProjectDetails = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -30,26 +32,38 @@ const ClientProjectDetails = ({ title }) => {
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log(window?.location?.pathname.split("/")[3]);
+  let id = window?.location?.pathname.split("/")[3];
 
   useEffect(() => {
-    // dispatch(CorporateBusinessRep())
+    dispatch(ProjectDetails({ id }));
     if (reload) {
-      // dispatch(CorporateBusinessRep())
+      dispatch(ProjectDetails({ id }));
       setReload(false);
     }
-  }, [reload]);
+  }, [reload, id]);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector(
-    (state) => state.businessrep
+  const { projectdetails, authenticatingprojectdetails } = useSelector(
+    (state) => state.projectdetails
   );
-  console.log(businessrep?.data?.data);
+  console.log(projectdetails?.data);
 
-  const activate = businessrep?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === true
-  );
-  const inactivate = businessrep?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === false
-  );
+  // const activate = businessrep?.data?.data?.filter(
+  //   (item) => item?.hasChangeDefaultPassword === true
+  // );
+  // const inactivate = businessrep?.data?.data?.filter(
+  //   (item) => item?.hasChangeDefaultPassword === false
+  // );
+
+  const next = projectdetails?.data?.meta?.next;
+  const previous = projectdetails?.data?.meta?.prev;
+  const totalPosts = projectdetails?.data?.meta?.totalCount;
+
+  const paginate = (number) => {
+    //  setSorted(tran)
+    setCurrentPage(number - 1);
+    setActivater(number);
+  };
 
   const setActivate = () => {
     SetActivate(true);
@@ -82,7 +96,12 @@ const ClientProjectDetails = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        id={id}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="firstdiv">
           <div className="backbutton">
@@ -90,7 +109,9 @@ const ClientProjectDetails = ({ title }) => {
               style={{ cursor: "pointer" }}
               onClick={() => navigate(-1)}
             />
-            <span className="name">Project Name: Building Homes</span>
+            <span className="name">
+              Project Name: {projectdetails?.data?.name}
+            </span>
           </div>
           <div className="modal-div">
             <ModalButton
@@ -144,7 +165,24 @@ const ClientProjectDetails = ({ title }) => {
               placeholder="Search for Sub Corporate Admin name, email, e.t.c"
             />
           </div>
-          <Tables detailsproject data={activate} setStep={setStep} />
+          <div className="wrapper">
+            <Tables
+              detailsproject
+              data={projectdetails?.data}
+              setStep={setStep}
+            />
+            {projectdetails?.data?.length >= 1 && (
+              <Pagination
+                set={activater}
+                currentPage={currentPage}
+                postsPerPage={postsPerPage}
+                totalPosts={projectdetails?.data?.data?.length}
+                paginate={paginate}
+                previous={previous}
+                next={next}
+              />
+            )}
+          </div>
         </div>
       </div>
     </Flex>
@@ -277,6 +315,11 @@ const Flex = styled.div`
             top: 10px;
           }
         }
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
       }
     }
   }

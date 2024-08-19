@@ -66,6 +66,7 @@ const ClientLocationDetails = ({ title }) => {
       stopDate: formatDate(stopDate),
       startTime: "09:00:00",
       stopTime: "17:00:00",
+      minutesToAdd: 5,
       duration: 60,
       dailyPay: 0,
       locations: [
@@ -113,6 +114,12 @@ const ClientLocationDetails = ({ title }) => {
     }
   }, [addproject?.data?.locations]);
 
+  const { businessrep, authenticatingbusinessrep } = useSelector(
+    (state) => state.businessrep
+  );
+
+  console.log(businessrep);
+
   useEffect(() => {
     dispatch(CorporateBusinessRep({ searcher, currentPage }));
   }, []);
@@ -131,9 +138,23 @@ const ClientLocationDetails = ({ title }) => {
     }
   }, [reload, addproject?.status, authenticatingaddproject, bustate]);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector(
-    (state) => state.businessrep
-  );
+  useEffect(() => {
+    // Extract businessrep data
+    const businessRep = businessrep?.data?.data;
+
+    // Check if there's exactly one item
+    if (businessRep?.length === 1) {
+      const firstItemId = businessRep[0]?.id;
+
+      // Update the user_id of the first item in rep state
+      setRep((prevRep) =>
+        prevRep.map((item, index) =>
+          index === 0 ? { ...item, user_id: firstItemId } : item
+        )
+      );
+    }
+  }, [businessrep]);
+
   console.log(businessrep?.data?.data);
 
   const activate = businessrep?.data?.data?.filter(
@@ -175,8 +196,16 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const setPendingRole1 = () => {
-    const { name, description, startTime, stopTime, dailyPay, locations } =
-      assign;
+    console.log(assign?.minutesToAdd);
+    const {
+      name,
+      description,
+      startTime,
+      stopTime,
+      dailyPay,
+      locations,
+      minutesToAdd
+    } = assign;
     const areAllVariablesPresent =
       name &&
       description &&
@@ -184,19 +213,22 @@ const ClientLocationDetails = ({ title }) => {
       stopTime &&
       dailyPay != null &&
       locations &&
-      locations.length > 0;
+      locations.length > 0 &&
+      minutesToAdd !== undefined &&
+      minutesToAdd !== null;
 
     if (areAllVariablesPresent) {
       dispatch(
         AddProject({
           name,
           description,
+          minutesToAdd: JSON.parse(assign.minutesToAdd),
           startDate: assign.startDate,
           stopDate: assign.stopDate,
           startTime,
           stopTime,
           duration: assign.duration,
-          dailyPay,
+          dailyPay: JSON.parse(assign.dailyPay),
           locations,
           weekdays: assign.weekdays
         })
@@ -291,6 +323,11 @@ const ClientLocationDetails = ({ title }) => {
     (state) => state.assigned
   );
   console.log(assigned);
+
+  const defaultUser =
+    businessrep?.data?.data && businessrep?.data?.data.length > 0
+      ? businessrep?.data?.data[0]
+      : null;
   return (
     <Flex>
       <Navbar title={title} />
@@ -612,6 +649,24 @@ const ClientLocationDetails = ({ title }) => {
                     </select>
                   </div>
                 </div>
+                <div className="filling">
+                  <div className="projectname">
+                    <span className="name">TimeLine to Resume</span>
+                    <select
+                      name="minutesToAdd"
+                      value={assign.minutesToAdd}
+                      onChange={(e) => ChangeProject(e)}
+                      className="nametype"
+                    >
+                      <option value="5">5 mins</option>
+                      <option value="10">10 mins</option>
+                      <option value="15">15 mins</option>
+                      <option value="20">20 mins</option>
+                      <option value="25">25 mins</option>
+                      <option value="30">30 mins</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               <div className="lastdiv">
                 <LocationModalButton
@@ -762,7 +817,7 @@ const ClientLocationDetails = ({ title }) => {
                         <select
                           onChange={(e) => AssignChange(e, index)}
                           name="user_id"
-                          value={item?.user_id || ""}
+                          value={item?.user_id || defaultUser?.id || ""}
                           className="nametype"
                         >
                           {businessrep?.data?.data?.map((repItem) => (

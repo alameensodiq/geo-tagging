@@ -12,6 +12,7 @@ import Pagination from "../../Reusable/Pagination";
 const ClientAdminBusinessReps = ({ title }) => {
   const [step, setStep] = useState(0);
   const [activated, SetActivate] = useState(true);
+  const [id, setId] = useState("");
   const [pend, SetPend] = useState(false);
   const [status, setStatus] = useState("ACTIVE");
   const [searcher, setSearcher] = useState("");
@@ -89,7 +90,12 @@ const ClientAdminBusinessReps = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal  setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        id={id}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
@@ -170,13 +176,13 @@ const ClientAdminBusinessReps = ({ title }) => {
           </div>
           {activated ? (
             <div className="wrapper">
-              <Tables active data={activate} />
+              <Tables setStep={setStep} setId={setId} active data={activate} />
               {activate?.length >= 1 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={totalPosts}
+                  totalPosts={activate?.length}
                   paginate={paginate}
                   previous={previous}
                   next={next}
@@ -185,13 +191,18 @@ const ClientAdminBusinessReps = ({ title }) => {
             </div>
           ) : pend ? (
             <div className="wrapper">
-              <Tables inactive data={inactivate} />
+              <Tables
+                setStep={setStep}
+                setId={setId}
+                inactive
+                data={inactivate}
+              />
               {inactivate?.length >= 1 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={totalPosts}
+                  totalPosts={inactivate?.length}
                   paginate={paginate}
                   previous={previous}
                   next={next}

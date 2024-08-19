@@ -12,6 +12,8 @@ import DatePicker from "react-datepicker";
 import FeaturesGrid from "../../Reusable/FeaturesGrid";
 import Plans from "../../Reusable/Plans";
 import { SuperSubs } from "../../Store/Apis/SuperSub";
+import { SubHistory } from "../../Store/Apis/SubHistory";
+import Pagination from "../../Reusable/Pagination";
 
 const ClientSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -34,8 +36,10 @@ const ClientSubscription = ({ title }) => {
 
   useEffect(() => {
     dispatch(SuperSubs());
+    dispatch(SubHistory());
     if (reload) {
       dispatch(SuperSubs());
+      dispatch(SubHistory());
       setReload(false);
     }
   }, [reload]);
@@ -43,13 +47,29 @@ const ClientSubscription = ({ title }) => {
   const { supersub, authenticatingsupersub } = useSelector(
     (state) => state.supersub
   );
+
   console.log(supersub?.data);
+
+  const { subhistory, authenticatingsubhistory } = useSelector(
+    (state) => state.subhistory
+  );
+  console.log(subhistory?.data?.data);
 
   //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
   //   console.log(businessrep?.data?.data)
 
   //   const activate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === true)
   //   const inactivate = businessrep?.data?.data?.filter((item) => item?.hasChangeDefaultPassword === false)
+
+  const next = subhistory?.data?.meta?.next;
+  const previous = subhistory?.data?.meta?.prev;
+  const totalPosts = subhistory?.data?.meta?.totalCount;
+
+  const paginate = (number) => {
+    //  setSorted(tran)
+    setCurrentPage(number - 1);
+    setActivater(number);
+  };
 
   const setActivate = () => {
     SetActivate(true);
@@ -195,28 +215,55 @@ const ClientSubscription = ({ title }) => {
             )}
           </div>
           {activated ? (
-            <Tables subhistory data={[]} setStep={setStep} />
+            <div className="wrapper">
+              <Tables subhistory data={[]} setStep={setStep} />
+              {subhistory?.data?.data?.length >= 1 && (
+                <Pagination
+                  set={activater}
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={totalPosts}
+                  paginate={paginate}
+                  previous={previous}
+                  next={next}
+                />
+              )}
+            </div>
           ) : pend ? (
             <FeaturesGrid dashboardy row={4}>
               <Plans
                 standard
-                data={supersub?.data?.find((item) => item?.name === "standard")}
+                data={supersub?.data?.find((item) => item?.name === "STANDARD")}
+              />
+              <Plans
+                basic
+                data={supersub?.data?.find((item) => item?.name === "Basic")}
+              />
+              <Plans
+                basic
+                data={supersub?.data?.find((item) => item?.name === "Premium")}
+              />
+              <Plans
+                basic
+                data={supersub?.data?.find(
+                  (item) => item?.name === "FREE_TRIAL"
+                )}
               />
               <Plans
                 enterprise
                 data={supersub?.data?.find(
-                  (item) => item?.name === "Enterprise"
+                  (item) => item?.name === "ENTERPRISE"
                 )}
               />
               <Plans
                 plus
                 data={supersub?.data?.find(
-                  (item) => item?.name === "standard Plus"
+                  (item) => item?.name === "STANDARD_PLUS"
                 )}
               />
               <Plans
                 data={supersub?.data?.find(
-                  (item) => item?.name === "Enterprise Plus"
+                  (item) => item?.name === "ENTERPRISE_PLUS"
                 )}
               />
             </FeaturesGrid>
@@ -382,6 +429,11 @@ const Flex = styled.div`
             }
           }
         }
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
       }
     }
   }

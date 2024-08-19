@@ -53,13 +53,15 @@ const Tables = ({
   superuser,
   superuserdetail,
   currentsubscriber,
-  customplan
+  customplan,
+  setId
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
   const [identify, setIdentify] = useState(0);
+  const [projectitemactive, setprojectitemactive] = useState(0);
   const [identifyinactive, setIdentifyinactive] = useState(0);
   const [projectactive, setProject] = useState(false);
   const [openprodetails, setopenprodetails] = useState(false);
@@ -132,8 +134,9 @@ const Tables = ({
     setIdentifyinactive(item);
   };
 
-  const ProjectActive = () => {
+  const ProjectActive = (item) => {
     setProject(!projectactive);
+    setprojectitemactive(item);
   };
 
   const DeactivateProdetails = () => {
@@ -146,6 +149,12 @@ const Tables = ({
 
   const SuperserActiveMethod = (item) => {
     setSuperuseractivity(item);
+  };
+
+  const updateManager = (item) => {
+    setStep(11);
+    setId(item);
+    setuseractive("");
   };
 
   return (
@@ -247,7 +256,14 @@ const Tables = ({
                       <Action onClick={() => Details(item?.id)} />
                       {open && identify === item?.id && (
                         <div className="active">
-                          <div className="row">
+                          <div
+                            className="row"
+                            onClick={() => {
+                              setStep(59);
+                              setId(item?.id);
+                              setIdentifyinactive("");
+                            }}
+                          >
                             <Deactivate />
                             <span>Deactivate</span>
                           </div>
@@ -364,7 +380,14 @@ const Tables = ({
                       <Action onClick={() => Detailsinactive(item?.id)} />
                       {open2 && identifyinactive === item?.id && (
                         <div className="active">
-                          <div className="row">
+                          <div
+                            className="row"
+                            onClick={() => {
+                              setStep(57);
+                              setId(item?.id);
+                              setIdentifyinactive("");
+                            }}
+                          >
                             <Activate />
                             <span>Activate</span>
                           </div>
@@ -605,19 +628,26 @@ const Tables = ({
                       </button>
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "5%" }}>
-                      <Action onClick={() => ProjectActive()} />
-                      {projectactive && (
+                      <Action onClick={() => ProjectActive(item?.id)} />
+                      {projectactive && projectitemactive === item?.id && (
                         <div className="activeprojectmodal">
                           <div
                             className="row"
                             onClick={() =>
-                              navigate(`../${businessprojects}/:id`)
+                              navigate(`../${businessprojects}/${item?.id}`)
                             }
                           >
                             <View />
                             <span>View more</span>
                           </div>
-                          <div className="row" onClick={() => setStep(4)}>
+                          <div
+                            className="row"
+                            onClick={() => {
+                              setStep(4);
+                              setId(item?.id);
+                              setProject(!projectactive);
+                            }}
+                          >
                             <Deactivate />
                             <span>Deactivate</span>
                           </div>
@@ -768,7 +798,10 @@ const Tables = ({
                     <StyledTableCell style={{ width: "5%" }}>
                       <span
                         className="projectactivate"
-                        onClick={() => setStep(6)}
+                        onClick={() => {
+                          setStep(6);
+                          setId(item?.id);
+                        }}
                       >
                         Activate
                       </span>
@@ -901,15 +934,15 @@ const Tables = ({
                         }}
                       ></div>
                       {/* <img
-                          src={item?.avatar}
-                          style={{
-                            borderRadius: "50%",
-                            width: "30px",
-                            height: "30px",
-                            backgroundColor: "black"
-                          }}
-                          alt="pictures"
-                        /> */}
+                        src={item?.avatar}
+                        style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }}
+                        alt="pictures"
+                      /> */}
                     </div>
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "14%" }}>
@@ -925,7 +958,7 @@ const Tables = ({
                     4 hours
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "12%" }}>
-                    1900
+                    {data?.dailyPay?.NGN}
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "12%" }}>
                     <Moment format="DD-MM-YYYY">12-4-2024</Moment>
@@ -950,7 +983,13 @@ const Tables = ({
                           <Location />
                           <span>Change Location</span>
                         </div>
-                        <div className="row" onClick={() => setStep(4)}>
+                        <div
+                          className="row"
+                          onClick={() => {
+                            setStep(4);
+                            setopenprodetails(!openprodetails);
+                          }}
+                        >
                           <Deactivate />
                           <span>Deactivate</span>
                         </div>
@@ -1020,7 +1059,10 @@ const Tables = ({
                       <Action onClick={() => UserActive(item?.id)} />
                       {useractive === item?.id && (
                         <div className="activeusermodal">
-                          <div className="row" onClick={() => setStep(11)}>
+                          <div
+                            className="row"
+                            onClick={() => updateManager(item?.id)}
+                          >
                             <Deactivate />
                             <span>Deactivate</span>
                           </div>
@@ -2420,6 +2462,8 @@ const Tables = ({
                             onClick={() => {
                               // setSuperuseractivity(false);
                               setStep(32);
+                              setId(item?.id);
+                              setSuperuseractivity("");
                             }}
                           >
                             <Deactivate />

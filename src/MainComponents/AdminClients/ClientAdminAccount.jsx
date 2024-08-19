@@ -14,6 +14,7 @@ import AccountInputText from "../../bits/AccountInputText";
 import Navbar from "./Navbar";
 import { GetUser } from "../../Store/Apis/GetUser";
 import { ChangePassword } from "../../Store/Apis/ChangePassword";
+import { EditDetails } from "../../Store/Apis/EditDetails";
 
 const ClientAdminAccount = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -24,6 +25,7 @@ const ClientAdminAccount = ({ title }) => {
   const [locker, SetLocker] = useState(false);
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
+  const [id, setId] = useState("");
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
@@ -42,6 +44,8 @@ const ClientAdminAccount = ({ title }) => {
     password_confirmation: ""
   });
 
+  const [username, setUsername] = useState("");
+
   const { getuser, authenticatinggetuser } = useSelector(
     (state) => state.getuser
   );
@@ -52,6 +56,11 @@ const ClientAdminAccount = ({ title }) => {
   );
   console.log(changepass?.data);
 
+  const { editdetails, authenticatingeditdetails } = useSelector(
+    (state) => state.editdetails
+  );
+  console.log(editdetails?.status, authenticatingeditdetails);
+
   //   current_password, password, password_confirmation
 
   useEffect(() => {
@@ -61,10 +70,25 @@ const ClientAdminAccount = ({ title }) => {
       setReload(false);
       setLog(false);
     }
+    if (reload && editdetails?.status && !authenticatingeditdetails && !log) {
+      dispatch(GetUser());
+      setReload(false);
+      setLog(false);
+    }
     if (changepass?.status && !authenticatingchangepass && log) {
       setStep(35);
     }
-  }, [reload, changepass?.status, log, authenticatingchangepass]);
+    if (editdetails?.status && !authenticatingeditdetails && log) {
+      setStep(34);
+    }
+  }, [
+    reload,
+    changepass?.status,
+    log,
+    authenticatingchangepass,
+    editdetails?.status,
+    authenticatingeditdetails
+  ]);
 
   const Change = (e) => {
     const { name, value } = e.target;
@@ -73,6 +97,11 @@ const ClientAdminAccount = ({ title }) => {
       ...userdetails,
       [name]: value
     });
+  };
+
+  const ChangeUser = (e) => {
+    const { name, value } = e.target;
+    setUsername(value);
   };
 
   const setActivate = () => {
@@ -116,13 +145,20 @@ const ClientAdminAccount = ({ title }) => {
     );
   };
 
+  const UpdateDetails = () => {
+    setLog(true);
+    dispatch(EditDetails({ id, name: username }));
+  };
+
+  // editdetails,authenticatingeditdetails
+
   //   if (changepass?.status && !authenticatingchangepass && log) {
   //     setStep(35)
   //   }
 
   return (
     <Flex>
-      <Navbar title={title} />
+      <Navbar title={title} setId={setId} />
       <AppUserModal
         setUserdetails={setUserdetails}
         setStep={setStep}
@@ -156,12 +192,12 @@ const ClientAdminAccount = ({ title }) => {
                 nosign
                 label="Full Name"
                 logo
-                // onChange={(e) => Change(e)}
+                onChange={(e) => ChangeUser(e)}
                 name="firstname"
-                // value={regbus?.firstname}
+                value={username}
                 placeholder={`${`${getuser?.data?.firstName} ${getuser?.data?.lastName}`}`}
               />
-              <AccountInputText
+              {/* <AccountInputText
                 nosign
                 label="Email"
                 emailogo
@@ -169,15 +205,15 @@ const ClientAdminAccount = ({ title }) => {
                 name="firstname"
                 // value={regbus?.firstname}
                 placeholder={`${`${getuser?.data?.email}`}`}
-              />
+              /> */}
             </div>
             <div className="editrole">
               <ModalButton
-                onClick={() => setStep(34)}
+                onClick={() => UpdateDetails()}
                 background
                 color
                 remove
-                title="Save Changes"
+                title={authenticatingeditdetails ? "Saving..." : "Save Changes"}
               />
             </div>
           </div>

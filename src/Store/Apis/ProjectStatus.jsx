@@ -1,50 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const AddProject = createAsyncThunk(
-  "addproject",
-  async (
-    {
-      name,
-      description,
-      startDate,
-      stopDate,
-      startTime,
-      stopTime,
-      duration,
-      dailyPay,
-      locations,
-      weekdays,
-      minutesToAdd
-    },
-    thunkAPI
-  ) => {
+export const ProjectStatus = createAsyncThunk(
+  "projectstatus",
+  async ({ id, value }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/project`,
+        `${process.env.REACT_APP_BASE_URL}user/edit-project-status?projectId=${id}&status=${value}`,
         {
-          method: "POST",
+          method: "PATCH",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
-          },
-          body: JSON.stringify({
-            name,
-            description,
-            startDate,
-            stopDate,
-            startTime,
-            stopTime,
-            duration,
-            dailyPay,
-            locations,
-            weekdays,
-            minutesToAdd
-          })
+          }
         }
       );
       let data = await response.json();

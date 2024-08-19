@@ -28,6 +28,9 @@ import { AddTeam } from "../Store/Apis/AddTeam";
 import { SuperAddTeam } from "../Store/Apis/SuperAddteam";
 import { AddSub } from "../Store/Apis/AddSub";
 import { AddCorp } from "../Store/Apis/AddCorp";
+import { EditDetails } from "../Store/Apis/EditDetails";
+import { ProjectStatus } from "../Store/Apis/ProjectStatus";
+import { EditAdminDetails } from "../Store/Apis/EditAdminDetails";
 
 const AppUserModal = ({
   setStep,
@@ -36,16 +39,23 @@ const AppUserModal = ({
   data,
   setLog,
   supers,
-  setUserdetails
+  setUserdetails,
+  id
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
+  const [values, setValues] = useState(false);
   const [update, setUpdate] = useState("");
   const [bustate, setBusstate] = useState(false);
   const [bustate1, setBusstate1] = useState(false);
   const [bustate2, setBusstate2] = useState(false);
   const [bustate5, setBusstate5] = useState(false);
+  const [bustate6, setBusstate6] = useState(false);
+  const [bustate7, setBusstate7] = useState(false);
+  const [bustate8, setBusstate8] = useState(false);
+  const [bustate9, setBusstate9] = useState(false);
+  const [bustate10, setBusstate10] = useState(false);
   const [view1, setView1] = useState(false);
   const [view2, setView2] = useState(false);
   const [view3, setView3] = useState(false);
@@ -122,6 +132,14 @@ const AppUserModal = ({
 
   console.log(superaddteam);
 
+  const { editdetails, authenticatingeditdetails } = useSelector(
+    (state) => state.editdetails
+  );
+
+  const { projectstatus, authenticatingprojectstatus } = useSelector(
+    (state) => state.projectstatus
+  );
+
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
   //     setStep(3);
   //     toast.success(createbus?.message)
@@ -169,6 +187,21 @@ const AppUserModal = ({
     if (bustate5 && addcorping?.status && !authenticatingaddcorping) {
       setStep(25);
     }
+    if (bustate6 && editdetails?.status && !authenticatingeditdetails) {
+      setStep(12);
+    }
+    if (bustate7 && editdetails?.status && !authenticatingeditdetails) {
+      setStep(58);
+    }
+    if (bustate8 && editdetails?.status && !authenticatingeditdetails) {
+      setStep(60);
+    }
+    if (bustate9 && projectstatus?.status && !authenticatingprojectstatus) {
+      setStep(7);
+    }
+    if (bustate10 && projectstatus?.status && !authenticatingprojectstatus) {
+      setStep(5);
+    }
 
     console.log(update);
   }, [
@@ -189,7 +222,15 @@ const AppUserModal = ({
     bustate5,
     superaddteam?.status,
     authenticatingaddcorping,
-    setStep
+    setStep,
+    editdetails?.status,
+    authenticatingeditdetails,
+    bustate7,
+    bustate8,
+    bustate9,
+    bustate10,
+    projectstatus?.status,
+    authenticatingprojectstatus
   ]);
 
   const Viewing = () => {
@@ -991,6 +1032,11 @@ const AppUserModal = ({
     setBusstate1(false);
     setBusstate2(false);
     setBusstate5(false);
+    setBusstate6(false);
+    setBusstate7(false);
+    setBusstate8(false);
+    setBusstate9(false);
+    setBusstate10(false);
     setReload(true);
     setView1(false);
     setView2(false);
@@ -1284,7 +1330,10 @@ const AppUserModal = ({
             <LargeSignInButton title="No" large onClick={() => setStep(0)} />
             <LargeSignInButton
               title="Yes"
-              onClick={() => setStep(5)}
+              onClick={() => {
+                dispatch(ProjectStatus({ id, value: values }));
+                setBusstate10(true);
+              }}
               large
               background
               color
@@ -1411,7 +1460,10 @@ const AppUserModal = ({
             <LargeSignInButton title="No" large onClick={() => setStep(0)} />
             <LargeSignInButton
               title="Yes"
-              onClick={() => setStep(7)}
+              onClick={() => {
+                dispatch(ProjectStatus({ id, value: !values }));
+                setBusstate9(true);
+              }}
               large
               background
               color
@@ -2417,7 +2469,10 @@ const AppUserModal = ({
             <LargeSignInButton title="No" large onClick={() => setStep(0)} />
             <LargeSignInButton
               title="Yes"
-              onClick={() => setStep(12)}
+              onClick={() => {
+                dispatch(EditDetails({ id, value: values }));
+                setBusstate6(true);
+              }}
               large
               background
               color
@@ -4248,7 +4303,7 @@ const AppUserModal = ({
             />
             <LargeSignInButton
               title="Confirm"
-              onClick={() => setStep(33)}
+              onClick={() => dispatch(EditAdminDetails({ id, value: values }))}
               large
               background
               color
@@ -5642,6 +5697,268 @@ const AppUserModal = ({
         wide
         heading="Key Features"
       ></AppModal>
+      <AppModal
+        step={57}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          {/* <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            <Success />
+          </div> */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                fontWeight: "bold"
+              }}
+            >
+              Activate
+            </div>
+            <span>Are you sure you want to activate Business Rep, Are</span>
+            <span>you sure?</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton title="No" large onClick={() => setStep(0)} />
+            <LargeSignInButton
+              title="Yes"
+              onClick={() => {
+                dispatch(EditDetails({ id, value: !values }));
+                setBusstate7(true);
+              }}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={58}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              fontWeight: "bold"
+            }}
+          >
+            Activated Successfully
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully activated this Business Rep.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={59}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          {/* <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            <Success />
+          </div> */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                fontWeight: "bold"
+              }}
+            >
+              Deactivate
+            </div>
+            <span>Are you sure you want to activate Business Rep, Are</span>
+            <span>you sure?</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton title="No" large onClick={() => setStep(0)} />
+            <LargeSignInButton
+              title="Yes"
+              onClick={() => {
+                dispatch(EditDetails({ id, value: values }));
+                setBusstate8(true);
+              }}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={60}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              fontWeight: "bold"
+            }}
+          >
+            Deactivated Successfully
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully activated this Business Rep.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
     </div>
   );
 };

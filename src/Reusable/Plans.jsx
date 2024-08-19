@@ -5,50 +5,60 @@ import { ReactComponent as Enterprise } from "../assets/enterprise.svg";
 import { ReactComponent as Plus } from "../assets/standardplus.svg";
 import { ReactComponent as Mark } from "../assets/colormark.svg";
 
-const Plans = ({ standard, enterprise, plus }) => {
+const Plans = ({ standard, enterprise, plus, data, basic }) => {
   return (
     <Flex>
       <div className="header">
         {standard ? (
           <>
             <Standard />
-            <span className="title">Standard Plan</span>
+            <span className="title">{data?.name} Plan</span>
           </>
         ) : enterprise ? (
           <>
             <Enterprise />
-            <span className="title">Enterprise Plan</span>
+            <span className="title">{data?.name} Plan</span>
           </>
         ) : plus ? (
           <>
             <Plus />
-            <span className="title">Standard Plus Plan</span>
+            <span className="title">{data?.name} Plan</span>
+          </>
+        ) : basic ? (
+          <>
+            <Plus />
+            <span className="title">{data?.name} Plan</span>
           </>
         ) : (
           <>
             <Enterprise />
-            <span className="title">Enterprise Plus Plan</span>
+            <span className="title">{data?.name} Plan</span>
           </>
         )}
       </div>
       {standard ? (
         <div className="amountdiv">
-          <span className="amount">3,000</span>
+          <span className="amount">{data?.amount?.NGN}</span>
           <span className="name">Per Business Rep</span>
         </div>
       ) : enterprise ? (
         <div className="amountdiv">
-          <span className="amount">2,000</span>
+          <span className="amount">{data?.amount?.NGN}</span>
           <span className="name">Per Business Rep</span>
         </div>
       ) : plus ? (
         <div className="amountdiv">
-          <span className="amount">6,000</span>
+          <span className="amount">{data?.amount?.NGN}</span>
+          <span className="name">Per Business Rep</span>
+        </div>
+      ) : basic ? (
+        <div className="amountdiv">
+          <span className="amount">{data?.amount?.NGN}</span>
           <span className="name">Per Business Rep</span>
         </div>
       ) : (
         <div className="amountdiv">
-          <span className="amount">4,000</span>
+          <span className="amount">{data?.amount?.NGN}</span>
           <span className="name">Per Business Rep</span>
         </div>
       )}
@@ -56,40 +66,70 @@ const Plans = ({ standard, enterprise, plus }) => {
         <Mark />
         {standard ? (
           <div className="categorydiv">
-            <span className="category">1-99 BusinessReps</span>
+            <span className="category">
+              {data?.minRepCount}-{data?.maxRepCount} BusinessReps
+            </span>
             <div className="statement">
               <span>You are eligible to registering a total number</span>
-              <span>of 100 business reps on this plan. You can</span>
+              <span>
+                of {data?.maxRepCount} business reps on this plan. You can
+              </span>
               <span>always upgrade to a higher plan to register</span>
               <span>more business reps.</span>
             </div>
           </div>
         ) : enterprise ? (
           <div className="categorydiv">
-            <span className="category">100+ Business Reps</span>
+            <span className="category">
+              {data?.minRepCount}-{data?.maxRepCount} Business Reps
+            </span>
             <div className="statement">
               <span>You are eligible to registering a total number </span>
-              <span>of 100+ business reps on this plan. You can</span>
+              <span>
+                of {data?.maxRepCount} business reps on this plan. You can
+              </span>
               <span>always create custom plan plan to access</span>
               <span>more features.</span>
             </div>
           </div>
         ) : plus ? (
           <div className="categorydiv">
-            <span className="category">1-99 BusinessReps</span>
+            <span className="category">
+              {data?.minRepCount}-{data?.maxRepCount} BusinessReps
+            </span>
             <div className="statement">
               <span>You are eligible to registering a total number</span>
-              <span>of 100 business reps on this plan. You can</span>
+              <span>
+                of {data?.maxRepCount} business reps on this plan. You can
+              </span>
+              <span>always upgrade to a higher plan to register</span>
+              <span>more business reps.</span>
+            </div>
+          </div>
+        ) : basic ? (
+          <div className="categorydiv">
+            <span className="category">
+              {data?.minRepCount}-{data?.maxRepCount} BusinessReps
+            </span>
+            <div className="statement">
+              <span>You are eligible to registering a total number</span>
+              <span>
+                of {data?.maxRepCount} business reps on this plan. You can
+              </span>
               <span>always upgrade to a higher plan to register</span>
               <span>more business reps.</span>
             </div>
           </div>
         ) : (
           <div className="categorydiv">
-            <span className="category">100+ Business Reps</span>
+            <span className="category">
+              {data?.minRepCount}-{data?.maxRepCount} Business Reps
+            </span>
             <div className="statement">
               <span>You are eligible to registering a total number </span>
-              <span>of 100+ business reps on this plan. You can</span>
+              <span>
+                of {data?.maxRepCount} business reps on this plan. You can
+              </span>
               <span>always create custom plan plan to access</span>
               <span>more features.</span>
             </div>

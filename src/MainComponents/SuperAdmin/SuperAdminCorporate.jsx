@@ -210,7 +210,7 @@ const SuperAdminCorporate = ({ title }) => {
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={totalPosts}
+                  totalPosts={activate?.length}
                   paginate={paginate}
                   previous={previous}
                   next={next}
@@ -229,7 +229,7 @@ const SuperAdminCorporate = ({ title }) => {
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={totalPosts}
+                  totalPosts={inactivate?.length}
                   paginate={paginate}
                   previous={previous}
                   next={next}
