@@ -56,6 +56,7 @@ const AppUserModal = ({
   const [bustate8, setBusstate8] = useState(false);
   const [bustate9, setBusstate9] = useState(false);
   const [bustate10, setBusstate10] = useState(false);
+  const [bustate11, setBusstate11] = useState(false);
   const [view1, setView1] = useState(false);
   const [view2, setView2] = useState(false);
   const [view3, setView3] = useState(false);
@@ -140,6 +141,10 @@ const AppUserModal = ({
     (state) => state.projectstatus
   );
 
+  const { editadmindetails, authenticatingeditadmindetails } = useSelector(
+    (state) => state.editadmindetails
+  );
+
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
   //     setStep(3);
   //     toast.success(createbus?.message)
@@ -202,6 +207,13 @@ const AppUserModal = ({
     if (bustate10 && projectstatus?.status && !authenticatingprojectstatus) {
       setStep(5);
     }
+    if (
+      bustate11 &&
+      editadmindetails?.status &&
+      !authenticatingeditadmindetails
+    ) {
+      setStep(33);
+    }
 
     console.log(update);
   }, [
@@ -229,6 +241,7 @@ const AppUserModal = ({
     bustate8,
     bustate9,
     bustate10,
+    bustate11,
     projectstatus?.status,
     authenticatingprojectstatus
   ]);
@@ -1037,6 +1050,7 @@ const AppUserModal = ({
     setBusstate8(false);
     setBusstate9(false);
     setBusstate10(false);
+    setBusstate11(false);
     setReload(true);
     setView1(false);
     setView2(false);
@@ -4303,7 +4317,10 @@ const AppUserModal = ({
             />
             <LargeSignInButton
               title="Confirm"
-              onClick={() => dispatch(EditAdminDetails({ id, value: values }))}
+              onClick={() => {
+                dispatch(EditAdminDetails({ id, value: values }));
+                setBusstate11(true);
+              }}
               large
               background
               color
