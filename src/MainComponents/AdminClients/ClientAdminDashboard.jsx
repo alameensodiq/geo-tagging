@@ -12,9 +12,14 @@ import DoubleBarChart from "../../bits/DoubleBarChart";
 import Tables from "../../bits/Tables";
 import Radial from "../../bits/Radial";
 import Donuts from "../../bits/Donuts";
+import { useDispatch, useSelector } from "react-redux";
+import { CorporateDashboard } from "../../Store/Apis/CorporateDashboard";
 
 const ClientAdminDashboard = ({ title, overviewadmin }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const dispatch = useDispatch();
+
+  const [id, setId] = useState(null);
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
     endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 50))
@@ -28,6 +33,16 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
     setShowDatePicker(!showDatePicker); // Toggle date picker visibility
   };
 
+  useEffect(() => {
+    // if (id !== null) {
+    dispatch(CorporateDashboard());
+    // }
+  }, []);
+
+  const { corporatedashboard, authenticatingcorporatedashboard } = useSelector(
+    (state) => state.corporatedashboard
+  );
+  console.log(corporatedashboard?.data);
   const handleSelect = (ranges) => {
     console.log(ranges);
     if (ranges.selection) {
@@ -61,8 +76,11 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
 
   console.log(dateRange);
   return (
-    <Flex>
-      <Navbar title={title} />
+    <Flex
+      comp={corporatedashboard?.data?.TimestampCompliance?.totalCompliant}
+      noncomp={corporatedashboard?.data?.TimestampCompliance?.totalNonCompliant}
+    >
+      <Navbar title={title} setId={setId} />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
@@ -91,7 +109,16 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             </div>
           )}
           {showDatePicker && (
-            <div style={{ display: "flex", flexDirection: "column",position:'absolute', justifyContent:'flex-end',right:'0%',zIndex:'1000'}}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                position: "absolute",
+                justifyContent: "flex-end",
+                right: "0%",
+                zIndex: "1000"
+              }}
+            >
               <DateRangePicker
                 ranges={[
                   {
@@ -127,7 +154,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
         </div>
         <FeaturesGrid dashboard superoverview row={1}>
           <OverviewTotalCards
-            data={[]}
+            data={corporatedashboard?.data}
             number1={[]}
             number2={`[]`}
             number3={`[]`}
@@ -138,7 +165,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             percent4={2.5}
           />
         </FeaturesGrid>
-        <FeaturesGrid dashboard  superoverview row={2}>
+        <FeaturesGrid dashboard superoverview row={2}>
           <div className="table">
             <div className="punctuality">
               <div className="start">
@@ -160,7 +187,15 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                 <Calendar onClick={() => PickDater()} className="calendar" />
               </div>
             </div>
-            <Donuts overview data1={[]} data2={[]}/>
+            <Donuts
+              overview
+              data1={
+                corporatedashboard?.data?.TimestampCompliance?.totalCompliant
+              }
+              data2={
+                corporatedashboard?.data?.TimestampCompliance?.totalNonCompliant
+              }
+            />
             <div className="detailscompliance">
               <div className="firstcompliance">
                 <span className="comp">Compliance</span>
@@ -168,7 +203,12 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                   <div className="backgrounddiv">
                     <div className="bar"></div>
                   </div>
-                  <span className="percent">65%</span>
+                  <span className="percent">
+                    {
+                      corporatedashboard?.data?.TimestampCompliance
+                        ?.compliancePercentage
+                    }
+                  </span>
                 </div>
               </div>
               <div className="firstcompliance">
@@ -177,7 +217,12 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                   <div className="backgrounddiv">
                     <div className="nonbar"></div>
                   </div>
-                  <span className="percent">35%</span>
+                  <span className="percent">
+                    {
+                      corporatedashboard?.data?.TimestampCompliance
+                        ?.nonCompliancePercentage
+                    }
+                  </span>
                 </div>
               </div>
             </div>
@@ -205,11 +250,22 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             </div>
             <div className="last">
               <div className="radial">
-                <Radial overview />
+                <Radial
+                  overview
+                  datacorp={corporatedashboard?.data?.Punctuality?.punctualDays}
+                  datacorp2={
+                    corporatedashboard?.data?.Punctuality?.nonpunctualDays
+                  }
+                />
               </div>
               <div className="circle">
-                <span className="label">Total Punctuality Rate</span>
-                <span className="name">80%</span>
+                {/* <span className="label">Total Punctuality Rate</span> */}
+                <span className="label">Total Eligible Days</span>
+                <span className="name">
+                  {corporatedashboard?.data?.Punctuality?.totalEligibleDays >= 0
+                    ? "0"
+                    : corporatedashboard?.data?.Punctuality?.totalEligibleDays}
+                </span>
               </div>
               <div className="target">
                 <div className="attendance">
@@ -217,14 +273,26 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                     <span className="first"></span>
                     <span className="targeted">Punctual</span>
                   </div>
-                  <span className="percent">60%</span>
+                  <span className="percent">
+                    {corporatedashboard?.data?.Punctuality
+                      ?.punctualPercentage >= 0
+                      ? "0"
+                      : corporatedashboard?.data?.Punctuality
+                          ?.punctualPercentage}
+                  </span>
                 </div>
                 <div className="attendant">
                   <div className="wrap">
                     <span className="second"></span>
                     <span className="targeted">Not Punctual</span>
                   </div>
-                  <span className="percent">20%</span>
+                  <span className="percent">
+                    {corporatedashboard?.data?.Punctuality
+                      ?.notPunctualPercentage >= 0
+                      ? "0"
+                      : corporatedashboard?.data?.Punctuality
+                          ?.notPunctualPercentage}
+                  </span>
                 </div>
               </div>
             </div>
@@ -433,47 +501,53 @@ const Flex = styled.div`
           }
         }
       }
-      .detailscompliance{
+      .detailscompliance {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         padding-left: 60px;
         width: 100%;
         /* gap: 30px; */
-        .firstcompliance{
+        .firstcompliance {
           display: flex;
           flex-direction: column;
           gap: 10px;
           width: 50%;
-          .comp{
+          .comp {
             color: #1e1b39;
             font-weight: 400;
             font-size: 14px;
           }
-          .bardiv{
+          .bardiv {
             display: flex;
             flex-direction: row;
             gap: 20px;
             align-items: center;
-            .backgrounddiv{
-              background: #EAECF0;
+            .backgrounddiv {
+              background: #eaecf0;
               border-radius: 6px;
               width: 50%;
               height: 10px;
-              .bar{
-                width: 70%;
+              .bar {
+                width: ${({ comp, noncomp }) =>
+                  comp + noncomp === 0
+                    ? "0%"
+                    : `${(comp / (comp + noncomp)) * 100}%`};
                 height: 10px;
-                background: #1A87D7;
+                background: #1a87d7;
                 border-radius: 6px;
               }
-              .nonbar{
-                width: 70%;
+              .nonbar {
+                width: ${({ comp, noncomp }) =>
+                  comp + noncomp === 0
+                    ? "0%"
+                    : `${(noncomp / (comp + noncomp)) * 100}%`};
                 height: 10px;
-                background: #28385C;
+                background: #28385c;
                 border-radius: 6px;
               }
             }
-            .percent{
+            .percent {
               color: #141414;
               font-size: 14px;
             }
@@ -508,7 +582,7 @@ const Flex = styled.div`
             font-size: 25px;
             font-weight: 600;
           }
-          .label{
+          .label {
             font-size: 10px;
           }
         }
@@ -539,7 +613,7 @@ const Flex = styled.div`
                 font-weight: 400;
               }
             }
-            .percent{
+            .percent {
               padding-left: 29px;
             }
           }
@@ -563,7 +637,7 @@ const Flex = styled.div`
                 font-weight: 400;
               }
             }
-            .percent{
+            .percent {
               padding-left: 29px;
             }
           }

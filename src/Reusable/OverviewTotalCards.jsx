@@ -20,17 +20,21 @@ const OverviewTotalCards = ({
       <div className="totalclients">
         <div className="up">
           <div className="details">
-            <span className="number">15000</span>
+            <span className="number">
+              {data?.TotalBusinessReps?.totalBusinessReps}
+            </span>
             <span className="clients">Total Business Reps</span>
           </div>
           <Rep />
         </div>
         <div className="down">
           <span className="activediv">
-            <span className="active">Active</span>500
+            <span className="active">Active</span>
+            {data?.TotalBusinessReps?.activeBusinessReps}
           </span>
           <span className="deactivediv">
-            <span className="deactive">Inactive</span>500
+            <span className="deactive">Inactive</span>
+            {data?.TotalBusinessReps?.inactiveBusinessReps}
           </span>
         </div>
       </div>
@@ -54,27 +58,31 @@ const OverviewTotalCards = ({
       <div className="activeclients">
         <div className="up">
           <div className="details">
-            <span className="number">300</span>
+            <span className="number">
+              {data?.StatisticsForHours?.cumulativeHours}
+            </span>
             <span className="clients">Total Work Hours</span>
           </div>
           <Work />
         </div>
         <div className="down">
           <span className="activediv">
-            <span className="active">Active</span>500
+            <span className="active">Active</span>
+            {data?.StatisticsForHours?.activeHours}
           </span>
           <span className="deactivediv">
-            <span className="deactive">Inactive</span>500
+            <span className="deactive">Inactive</span>
+            {data?.StatisticsForHours?.inactiveHours}
           </span>
         </div>
       </div>
       <div className="deactivated">
         <div className="up">
           <div className="details">
-            <span className="number">500,000</span>
+            <span className="number">{data?.TotalEarningsByReps}</span>
             <span className="clients">Total Earned Pay</span>
           </div>
-          <Work/>
+          <Work />
         </div>
       </div>
     </Flex>

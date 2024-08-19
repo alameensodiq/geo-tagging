@@ -22,6 +22,7 @@ import { ModalButton } from "../../bits/ModalButton";
 import AppUserModal from "../../Modal/AppUserModal";
 import { SuperCorporatedetails } from "../../Store/Apis/SuperCorporateDetail";
 import { SuperCorporateDetailProject } from "../../Store/Apis/SuperCorporateDetailProject";
+import toast from "react-hot-toast";
 
 const SuperAdminCorporateDetails = ({ title }) => {
   const navigate = useNavigate();
@@ -33,6 +34,9 @@ const SuperAdminCorporateDetails = ({ title }) => {
   const [searcher, setSearcher] = useState("");
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [reload, setReload] = useState(false);
+  const inputRef = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
 
   const datePickerRef = useRef(null);
   const dispatch = useDispatch();
@@ -86,6 +90,45 @@ const SuperAdminCorporateDetails = ({ title }) => {
     SetPend(false);
     SetActivate2(false);
     SetPend2(true);
+  };
+
+  const handleCopy = () => {
+    const addressElement = inputRef.current;
+    if (addressElement) {
+      navigator.clipboard.writeText(addressElement.textContent).then(() => {
+        toast.success("copied");
+        // You can also provide user feedback here, like showing a toast
+      });
+      // .catch((err) => {
+      //   console.error("Failed to copy address: ", err);
+      // });
+    }
+  };
+
+  const handleCopy2 = () => {
+    const addressElement = inputRef2.current;
+    if (addressElement) {
+      navigator.clipboard.writeText(addressElement.textContent).then(() => {
+        toast.success("copied");
+        // You can also provide user feedback here, like showing a toast
+      });
+      // .catch((err) => {
+      //   console.error("Failed to copy address: ", err);
+      // });
+    }
+  };
+
+  const handleCopy3 = () => {
+    const addressElement = inputRef3.current;
+    if (addressElement) {
+      navigator.clipboard.writeText(addressElement.textContent).then(() => {
+        toast.success("copied");
+        // You can also provide user feedback here, like showing a toast
+      });
+      // .catch((err) => {
+      //   console.error("Failed to copy address: ", err);
+      // });
+    }
   };
 
   return (
@@ -174,42 +217,42 @@ const SuperAdminCorporateDetails = ({ title }) => {
                 <div className="first">
                   <div className="phone">
                     <span className="mobile">Mobile Number</span>
-                    <span className="number">
+                    <span className="number" ref={inputRef}>
                       {supercorporatedetails?.data?.phoneNumber}
                     </span>
                   </div>
                 </div>
                 <div className="copy">
                   <Contact />
-                  <Copy />
+                  <Copy onClick={handleCopy} />
                 </div>
               </div>
               <div className="info">
                 <div className="first">
                   <div className="phone">
                     <span className="mobile">Email Address</span>
-                    <span className="number">
+                    <span className="number" ref={inputRef2}>
                       {supercorporatedetails?.data?.email}
                     </span>
                   </div>
                 </div>
                 <div className="copy">
                   <Contact />
-                  <Copy />
+                  <Copy onClick={handleCopy2} />
                 </div>
               </div>
               <div className="info">
                 <div className="first">
                   <div className="phone">
                     <span className="mobile">Address</span>
-                    <span className="number">
+                    <span className="number" ref={inputRef3}>
                       {supercorporatedetails?.data?.address}
                     </span>
                   </div>
                 </div>
                 <div className="copy">
                   <Contact />
-                  <Copy />
+                  <Copy onClick={handleCopy3} />
                 </div>
               </div>
             </div>

@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function Radial({overview, data}) {
-  const series = [data ? data : '0'];
+function Radial({ overview, data, datacorp, datacorp2 }) {
+  const series = datacorp ? [datacorp, datacorp2] : [data ? data : "0"];
 
   // [data?.targetAttendance, data?.attendanceCaptured]
 
@@ -52,14 +52,14 @@ function Radial({overview, data}) {
         startAngle: -90,
         endAngle: 90,
         track: {
-          background: ['#28385C','#65ACE0'],
-          strokeWidth: '97%',
+          background: ["#28385C", "#65ACE0"],
+          strokeWidth: "97%",
           margin: 5, // margin is in pixels
           dropShadow: {
             enabled: true,
             top: 2,
             left: 0,
-            color: '#999',
+            color: "#999",
             opacity: 1,
             blur: 2
           }
@@ -70,7 +70,7 @@ function Radial({overview, data}) {
           },
           value: {
             offsetY: -2,
-            fontSize: '22px'
+            fontSize: "22px"
           }
         }
       }
@@ -85,14 +85,14 @@ function Radial({overview, data}) {
         show: true,
         zIndex: 10000,
         // color: "#888",
-        fontSize: overview ?  "10px" :  "14px",
+        fontSize: overview ? "10px" : "14px"
       },
       value: {
         formatter: function (val) {
           return parseInt(val);
         },
         color: "#111",
-        fontSize: overview ?  "10px" :  "12px",
+        fontSize: overview ? "10px" : "12px",
         show: true
       }
     },
@@ -116,25 +116,30 @@ function Radial({overview, data}) {
     //   }
     // },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
-        shade: 'light',
+        shade: "light",
         shadeIntensity: 0.4,
         inverseColors: false,
         opacityFrom: 1,
         opacityTo: 1,
         stops: [0, 50, 53, 91]
-      },
+      }
     },
     stroke: {
-        lineCap: 'round'
+      lineCap: "round"
     },
-    labels: [overview ? 'Total Punctuality Rate' : 'Total Attendance']
+    labels: [overview ? "Total Punctuality Rate" : "Total Attendance"]
   };
 
   return (
     <Flex>
-      <Chart options={options} series={series} type="radialBar" height={overview ? 290 : 220} />
+      <Chart
+        options={options}
+        series={series}
+        type="radialBar"
+        height={overview ? 290 : 220}
+      />
     </Flex>
   );
 }

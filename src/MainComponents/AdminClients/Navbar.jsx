@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { GetUser } from "../../Store/Apis/GetUser";
 // import roundlogo from '../assets/icons/roundlogo.png'
 
-const Navbar = ({ title }) => {
+const Navbar = ({ title, setId }) => {
   console.log(title);
   const [reload, setReload] = useState(false);
   const dispatch = useDispatch();
@@ -24,6 +24,12 @@ const Navbar = ({ title }) => {
     (state) => state.getuser
   );
   console.log(getuser?.data);
+
+  useEffect(() => {
+    if (setId) {
+      setId(getuser?.data?.id);
+    }
+  }, [getuser?.data?.id]);
 
   return (
     <Flex>
