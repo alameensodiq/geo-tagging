@@ -17,6 +17,7 @@ import Pagination from "../../Reusable/Pagination";
 
 const ClientSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
+  const [detailing, setDetail] = useState("");
   const [activated, SetActivate] = useState(true);
   const [pend, SetPend] = useState(false);
   const [status, setStatus] = useState("ACTIVE");
@@ -41,6 +42,7 @@ const ClientSubscription = ({ title }) => {
       dispatch(SuperSubs());
       dispatch(SubHistory());
       setReload(false);
+      setDetail("");
     }
   }, [reload]);
 
@@ -111,10 +113,75 @@ const ClientSubscription = ({ title }) => {
     datePickerRefs.current.setOpen(true);
   };
 
+  const Download = () => {
+    console.log("Starting download function");
+
+    // Check if subhistory data is available
+    if (!subhistory?.data?.data || subhistory.data.data.length === 0) {
+      console.error("No data available for download");
+      return;
+    }
+
+    // Extract headers from the first item
+    const headers = Object.keys(subhistory.data.data[0]);
+
+    // Identify headers related to 'amount'
+    const amountHeaders = headers.filter((header) =>
+      header.toLowerCase().includes("amount")
+    );
+    console.log("Filtered Headers:", amountHeaders);
+
+    // Prepare the header row
+    const headerRow = headers.join(",");
+    console.log("Header Row:", headerRow);
+
+    // Prepare values for each row, replacing 'amount' values with the 'NGN' value
+    const rows = subhistory.data.data
+      .map((item) => {
+        return headers
+          .map((header) => {
+            // If header is an 'amount' header, replace with NGN value
+            if (amountHeaders.includes(header) && item[header]) {
+              // Return the NGN value if available
+              return item[header].NGN || ""; // Replace with NGN value if it exists
+            }
+            return item[header];
+          })
+          .join(",");
+      })
+      .join("\n");
+
+    console.log("Filtered Values:", rows);
+
+    // Combine header row and values into CSV format
+    const csv = [headerRow, rows].join("\n");
+    console.log("CSV Content:", csv);
+
+    // Create Blob and URL for download
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.download = "SubscriptionHistory.csv";
+    a.href = url;
+    a.click();
+
+    // Cleanup
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    console.log("Download triggered");
+  };
+
   return (
     <Flex activated={activated}>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        setStep={setStep}
+        detailing={detailing}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
@@ -199,7 +266,8 @@ const ClientSubscription = ({ title }) => {
                     />
                   </div>
                   <ModalButton
-                    onClick={() => setStep(21)}
+                    // onClick={() => setStep(21)}
+                    onClick={() => Download()}
                     background
                     color
                     exportdownload
@@ -216,7 +284,12 @@ const ClientSubscription = ({ title }) => {
           </div>
           {activated ? (
             <div className="wrapper">
-              <Tables subhistory data={[]} setStep={setStep} />
+              <Tables
+                setDetail={setDetail}
+                subhistory
+                data={subhistory?.data?.data}
+                setStep={setStep}
+              />
               {subhistory?.data?.data?.length >= 1 && (
                 <Pagination
                   set={activater}

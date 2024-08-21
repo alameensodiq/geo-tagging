@@ -42,7 +42,8 @@ const AppUserModal = ({
   setLog,
   supers,
   setUserdetails,
-  id
+  id,
+  detailing
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
@@ -3199,15 +3200,18 @@ const AppUserModal = ({
             </span>
             <div style={{ fontSize: "14px", color: "#5A6376" }}>
               <span>
-                You have successfully made a payment of 10,000 naira to add a
+                You have successfully made a payment of {detailing?.amount?.NGN}{" "}
+                naira to add a
               </span>
-              <span>total of 5 business reps</span>
+              <span>total of {detailing?.businessRepCount} business reps</span>
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-            <span style={{ color: "#1A87D7", fontSize: "18px" }}>10,000</span>
+            <span style={{ color: "#1A87D7", fontSize: "18px" }}>
+              {detailing?.amount?.NGN}
+            </span>
             <span style={{ color: "#5A6376", fontSize: "14px" }}>
-              Paid June 1st, 2023
+              Paid {detailing?.paymentDateTime}
             </span>
           </div>
           <div
@@ -3227,7 +3231,9 @@ const AppUserModal = ({
               }}
             >
               <span style={{ color: "#5A6376", fontSize: "14px" }}>Time</span>
-              <span style={{ color: "#1E1B39", fontSize: "14px" }}>2:23pm</span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
+                {detailing?.paymentDateTime}
+              </span>
             </div>
             <div
               style={{
@@ -3238,7 +3244,7 @@ const AppUserModal = ({
             >
               <span style={{ color: "#5A6376", fontSize: "14px" }}>Date</span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                10-12-2023
+                {detailing?.paymentDateTime}
               </span>
             </div>
             <div
@@ -3252,7 +3258,7 @@ const AppUserModal = ({
                 Payment method
               </span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                Bank Transfer
+                {detailing?.method}
               </span>
             </div>
             <div
@@ -3294,7 +3300,7 @@ const AppUserModal = ({
                 Subscription Plan
               </span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                Enterprise
+                {detailing?.subscriptionName}
               </span>
             </div>
             <div
@@ -3308,7 +3314,7 @@ const AppUserModal = ({
                 Transaction ID
               </span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                009474647489959595
+                {detailing?.id}
               </span>
             </div>
             <div
@@ -3322,7 +3328,7 @@ const AppUserModal = ({
                 Transaction Status
               </span>
               <span style={{ color: "#2A9341", fontSize: "14px" }}>
-                Successful
+                {detailing?.status}
               </span>
             </div>
             <div
@@ -3336,7 +3342,7 @@ const AppUserModal = ({
                 No of Business Reps
               </span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                Five(5)
+                {detailing?.businessRepCount}
               </span>
             </div>
           </div>

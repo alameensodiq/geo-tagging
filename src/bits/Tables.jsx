@@ -54,7 +54,8 @@ const Tables = ({
   superuserdetail,
   currentsubscriber,
   customplan,
-  setId
+  setId,
+  setDetail
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -1219,30 +1220,40 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow>
-                  <StyledTableCell style={{ width: "10%" }}>1</StyledTableCell>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    Cowbell Fest
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>10</StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    Standard
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    Bank Transfer
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    <Moment format="DD-MM-YYYY">12-07-2024</Moment>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    <span
-                      className="projectactivate"
-                      onClick={() => setStep(21)}
-                    >
-                      View Receipt
-                    </span>
-                  </StyledTableCell>
-                </StyledTableRow>
+                {data?.map((item, index) => (
+                  <StyledTableRow>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {index + 1}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.projectName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.businessRepCount}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.subscriptionName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.method}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.paymentDateTime}
+                      {/* <Moment format="DD-MM-YYYY">12-07-2024</Moment> */}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <span
+                        className="projectactivate"
+                        onClick={() => {
+                          setStep(21);
+                          setDetail(item);
+                        }}
+                      >
+                        View Receipt
+                      </span>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>

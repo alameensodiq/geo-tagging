@@ -340,6 +340,10 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
               corporatedashboard?.data
                 ?.getPunctualityAndComplianceForAllProjectsByMonth
                 ?.monthlyPuncAndCompliance
+                ? corporatedashboard?.data
+                    ?.getPunctualityAndComplianceForAllProjectsByMonth
+                    ?.monthlyPuncAndCompliance
+                : []
             }
           />
         </div>
