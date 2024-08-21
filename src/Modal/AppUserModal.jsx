@@ -31,6 +31,8 @@ import { AddCorp } from "../Store/Apis/AddCorp";
 import { EditDetails } from "../Store/Apis/EditDetails";
 import { ProjectStatus } from "../Store/Apis/ProjectStatus";
 import { EditAdminDetails } from "../Store/Apis/EditAdminDetails";
+import { EditSubing } from "../Store/Apis/EditSub";
+import { EditFreeTrial } from "../Store/Apis/EditFreeTrial";
 
 const AppUserModal = ({
   setStep,
@@ -47,6 +49,7 @@ const AppUserModal = ({
   const [uploadfile, setupload] = useState("");
   const [values, setValues] = useState(false);
   const [update, setUpdate] = useState("");
+  const [busplan, setBusplan] = useState(false);
   const [bustate, setBusstate] = useState(false);
   const [bustate1, setBusstate1] = useState(false);
   const [bustate2, setBusstate2] = useState(false);
@@ -57,6 +60,12 @@ const AppUserModal = ({
   const [bustate9, setBusstate9] = useState(false);
   const [bustate10, setBusstate10] = useState(false);
   const [bustate11, setBusstate11] = useState(false);
+  const [bustate12, setBusstate12] = useState(false);
+  const [bustate13, setBusstate13] = useState(false);
+  const [bustate14, setBusstate14] = useState(false);
+  const [bustate15, setBusstate15] = useState(false);
+  const [bustate16, setBusstate16] = useState(false);
+  const [bustate17, setBusstate17] = useState(false);
   const [view1, setView1] = useState(false);
   const [view2, setView2] = useState(false);
   const [view3, setView3] = useState(false);
@@ -100,11 +109,26 @@ const AppUserModal = ({
     rcNumber: "",
     address: "",
     phone: "",
-    email: ""
+    email: "",
+    isBusinessPlan: ""
   });
 
   const [sub, setSub] = useState({
     name: "",
+    minRepCount: "",
+    maxRepCount: "",
+    maxLocationCount: "",
+    amount: 0
+  });
+
+  const [free, setFree] = useState({
+    minCountOfBusinessReps: "",
+    numberOfBusinessReps: "",
+    numberOfLocations: "",
+    daysEligible: ""
+  });
+
+  const [editingsub, setEditingSub] = useState({
     minRepCount: "",
     maxRepCount: "",
     maxLocationCount: "",
@@ -145,6 +169,14 @@ const AppUserModal = ({
     (state) => state.editadmindetails
   );
 
+  const { editsub, authenticatingeditsub } = useSelector(
+    (state) => state.editsub
+  );
+
+  const { editfreetrial, authenticatingeditfreetrial } = useSelector(
+    (state) => state.editfreetrial
+  );
+
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
   //     setStep(3);
   //     toast.success(createbus?.message)
@@ -165,6 +197,7 @@ const AppUserModal = ({
         avatar: update
       };
     });
+
     setTeam((currData) => {
       return {
         ...currData,
@@ -175,6 +208,12 @@ const AppUserModal = ({
       return {
         ...currData,
         permissions: data
+      };
+    });
+    setCorp((prev) => {
+      return {
+        ...prev,
+        isBusinessPlan: busplan
       };
     });
     if (bustate && createbus?.status && !authenticatingcreatebus) {
@@ -214,6 +253,24 @@ const AppUserModal = ({
     ) {
       setStep(33);
     }
+    if (bustate12 && editsub?.status && !authenticatingeditsub) {
+      setStep(41);
+    }
+    if (bustate13 && editsub?.status && !authenticatingeditsub) {
+      setStep(39);
+    }
+    if (bustate14 && editfreetrial?.status && !authenticatingeditfreetrial) {
+      setStep(37);
+    }
+    if (bustate15 && editfreetrial?.status && !authenticatingeditfreetrial) {
+      setStep(62);
+    }
+    if (bustate16 && editfreetrial?.status && !authenticatingeditfreetrial) {
+      setStep(64);
+    }
+    if (bustate17 && editfreetrial?.status && !authenticatingeditfreetrial) {
+      setStep(66);
+    }
 
     console.log(update);
   }, [
@@ -232,6 +289,7 @@ const AppUserModal = ({
     addsub?.status,
     addcorping?.status,
     bustate5,
+    bustate6,
     superaddteam?.status,
     authenticatingaddcorping,
     setStep,
@@ -242,10 +300,21 @@ const AppUserModal = ({
     bustate9,
     bustate10,
     bustate11,
+    bustate12,
+    bustate13,
+    bustate14,
+    bustate15,
+    bustate16,
+    bustate17,
     projectstatus?.status,
     authenticatingprojectstatus,
     editadmindetails?.status,
-    authenticatingeditadmindetails
+    authenticatingeditadmindetails,
+    busplan,
+    editsub?.status,
+    authenticatingeditsub,
+    editfreetrial?.status,
+    authenticatingeditfreetrial
   ]);
 
   const Viewing = () => {
@@ -799,6 +868,15 @@ const AppUserModal = ({
     });
   };
 
+  const ChangeFree = (e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setFree({
+      ...free,
+      [name]: value
+    });
+  };
+
   const ChangeCorp = (e) => {
     const { name, value } = e.target;
     console.log(value);
@@ -822,6 +900,15 @@ const AppUserModal = ({
     console.log(value);
     setSub({
       ...sub,
+      [name]: value
+    });
+  };
+
+  const EditSubscription = (e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setEditingSub({
+      ...editingsub,
       [name]: value
     });
   };
@@ -955,12 +1042,17 @@ const AppUserModal = ({
   };
 
   const SendingCorp = () => {
-    const { name, rcNumber, address, phone, email } = corp;
+    const { name, rcNumber, address, phone, email, isBusinessPlan } = corp;
     console.log(team);
     console.log(address);
-    const allVariablesPresent = [name, rcNumber, address, phone, email].every(
-      (variable) => variable !== undefined && variable !== null
-    );
+    const allVariablesPresent = [
+      name,
+      rcNumber,
+      address,
+      phone,
+      email,
+      isBusinessPlan
+    ].every((variable) => variable !== undefined && variable !== null);
     if (allVariablesPresent) {
       console.log(supers);
       dispatch(
@@ -969,7 +1061,8 @@ const AppUserModal = ({
           rcNumber,
           address,
           phone,
-          email
+          email,
+          isBusinessPlan
         })
       );
       setBusstate5(true);
@@ -997,6 +1090,94 @@ const AppUserModal = ({
     setBusstate2(true);
   };
 
+  const EditSub = () => {
+    const { minRepCount, maxRepCount, maxLocationCount, amount } = editingsub;
+    dispatch(
+      EditSubing({ minRepCount, maxRepCount, maxLocationCount, amount, id })
+    );
+    setBusstate12(true);
+  };
+
+  const EditSubReal = () => {
+    const { minRepCount, maxRepCount, maxLocationCount, amount } = editingsub;
+    dispatch(
+      EditSubing({ minRepCount, maxRepCount, maxLocationCount, amount, id })
+    );
+    setBusstate13(true);
+  };
+
+  const EditFree = () => {
+    const {
+      minCountOfBusinessReps,
+      numberOfBusinessReps,
+      numberOfLocations,
+      daysEligible
+    } = free;
+    dispatch(
+      EditFreeTrial({
+        minCountOfBusinessReps,
+        numberOfBusinessReps,
+        numberOfLocations,
+        daysEligible
+      })
+    );
+    setBusstate14(true);
+  };
+
+  const EditFreeTwo = () => {
+    const {
+      minCountOfBusinessReps,
+      numberOfBusinessReps,
+      numberOfLocations,
+      daysEligible
+    } = free;
+    dispatch(
+      EditFreeTrial({
+        minCountOfBusinessReps,
+        numberOfBusinessReps,
+        numberOfLocations,
+        daysEligible
+      })
+    );
+    setBusstate15(true);
+  };
+
+  const EditFreeThree = () => {
+    const {
+      minCountOfBusinessReps,
+      numberOfBusinessReps,
+      numberOfLocations,
+      daysEligible
+    } = free;
+    dispatch(
+      EditFreeTrial({
+        minCountOfBusinessReps,
+        numberOfBusinessReps,
+        numberOfLocations,
+        daysEligible
+      })
+    );
+    setBusstate16(true);
+  };
+
+  const EditFreeFour = () => {
+    const {
+      minCountOfBusinessReps,
+      numberOfBusinessReps,
+      numberOfLocations,
+      daysEligible
+    } = free;
+    dispatch(
+      EditFreeTrial({
+        minCountOfBusinessReps,
+        numberOfBusinessReps,
+        numberOfLocations,
+        daysEligible
+      })
+    );
+    setBusstate17(true);
+  };
+
   const handleCloseModal4 = () => {
     if (setLog) {
       setLog(false);
@@ -1010,6 +1191,12 @@ const AppUserModal = ({
     }
     setSub({
       name: "",
+      minRepCount: "",
+      maxRepCount: "",
+      maxLocationCount: "",
+      amount: 0
+    });
+    setEditingSub({
       minRepCount: "",
       maxRepCount: "",
       maxLocationCount: "",
@@ -1039,7 +1226,14 @@ const AppUserModal = ({
       rcNumber: "",
       address: "",
       phone: "",
-      email: ""
+      email: "",
+      isBusinessPlan: ""
+    });
+    setFree({
+      minCountOfBusinessReps: "",
+      numberOfBusinessReps: "",
+      numberOfLocations: "",
+      daysEligible: ""
     });
     setUpdate("");
     setStep(0);
@@ -1053,6 +1247,12 @@ const AppUserModal = ({
     setBusstate9(false);
     setBusstate10(false);
     setBusstate11(false);
+    setBusstate12(false);
+    setBusstate13(false);
+    setBusstate14(false);
+    setBusstate15(false);
+    setBusstate16(false);
+    setBusstate17(false);
     setReload(true);
     setView1(false);
     setView2(false);
@@ -3448,21 +3648,44 @@ const AppUserModal = ({
               paddingTop: "10px"
             }}
           >
-            <span
-              style={{
-                width: "20px",
-                height: "20px",
-                borderRadius: "50%",
-                border: "1px solid #E0E0E0"
-              }}
-            ></span>
+            {busplan ? (
+              <div
+                style={{
+                  width: "22px",
+                  height: "22px",
+                  color: "white",
+                  borderRadius: "50%",
+                  background: "#12B76A",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  top: "7px",
+                  left: "8px",
+                  cursor: "pointer"
+                }}
+                onClick={() => setBusplan(false)}
+              >
+                <Markgreen style={{ cursor: "pointer" }} />
+              </div>
+            ) : (
+              <span
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  border: "1px solid #E0E0E0",
+                  cursor: "pointer"
+                }}
+                onClick={() => setBusplan(true)}
+              ></span>
+            )}
             <span
               style={{ color: "#1E1B39", fontSize: "15px", fontWeight: "500" }}
             >
               Business Plan
             </span>
           </div>
-          <Flex>
+          {/* <Flex>
             <div className="addresswrapper">
               <div className="heading">
                 <span className="title">Plan Types</span>
@@ -3482,8 +3705,8 @@ const AppUserModal = ({
                 </div>
               </div>
             </div>
-          </Flex>
-          <div
+          </Flex> */}
+          {/* <div
             style={{
               display: "flex",
               flexDirection: "row",
@@ -3505,8 +3728,8 @@ const AppUserModal = ({
             >
               Custom Plan
             </span>
-          </div>
-          <Flex>
+          </div> */}
+          {/* <Flex>
             <div className="addresswrapper">
               <div className="heading">
                 <span className="title">Plan Types</span>
@@ -3525,7 +3748,7 @@ const AppUserModal = ({
                 </div>
               </div>
             </div>
-          </Flex>
+          </Flex> */}
 
           <LargeSignInButton
             onClick={() => setStep(24)}
@@ -4517,14 +4740,14 @@ const AppUserModal = ({
       >
         <ModalInputText
           label="Edit free trial days"
-          // onChange={(e) => Change(e)}
-          name="firstname"
+          onChange={(e) => ChangeFree(e)}
+          name="daysEligible"
+          value={free?.daysEligible}
           nosign
-          // value={regbus?.firstname}
           placeholder={`${`30`}`}
         />
         <LargeSignInButton
-          onClick={() => setStep(37)}
+          onClick={() => EditFree()}
           bigger
           title={"Save Changes"}
           background
@@ -4602,14 +4825,14 @@ const AppUserModal = ({
       >
         <ModalInputText
           label="Edit Maximum Number of Business Reps"
-          // onChange={(e) => Change(e)}
-          name="firstname"
+          onChange={(e) => EditSubscription(e)}
+          name="maxRepCount"
           nosign
-          // value={regbus?.firstname}
+          value={editingsub?.maxRepCount}
           placeholder={`${`99`}`}
         />
         <LargeSignInButton
-          onClick={() => setStep(39)}
+          onClick={() => EditSubReal()}
           bigger
           title={"Save Changes"}
           background
@@ -4687,14 +4910,14 @@ const AppUserModal = ({
       >
         <ModalInputText
           label="Monthly Price"
-          // onChange={(e) => Change(e)}
-          name="firstname"
+          onChange={(e) => EditSubscription(e)}
+          name="amount"
           nosign
-          // value={regbus?.firstname}
+          value={editingsub?.amount}
           placeholder={`${`NGN 10000`}`}
         />
         <LargeSignInButton
-          onClick={() => setStep(41)}
+          onClick={() => EditSub()}
           bigger
           title={"Save Changes"}
           background
@@ -5958,6 +6181,265 @@ const AppUserModal = ({
             }}
           >
             <span>You have successfully activated this Business Rep.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={61}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        heading="Max. Rep"
+        noheadborder
+        subscribe
+      >
+        <ModalInputText
+          label="Edit Maximum Number of Business Reps"
+          onChange={(e) => ChangeFree(e)}
+          name="numberOfBusinessReps"
+          value={free?.numberOfBusinessReps}
+          nosign
+          placeholder={`${`30`}`}
+        />
+        <LargeSignInButton
+          onClick={() => EditFreeTwo()}
+          bigger
+          title={"Save Changes"}
+          background
+          color
+        />
+      </AppModal>
+      <AppModal
+        step={62}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>
+              You have successfully Updated Maximum Number of Business Reps.
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={63}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        heading="Edit Location"
+        noheadborder
+        subscribe
+      >
+        <ModalInputText
+          label="Edit Maximum Number of Geo-Location "
+          onChange={(e) => ChangeFree(e)}
+          name="numberOfLocations"
+          value={free?.numberOfLocations}
+          nosign
+          // value={regbus?.firstname}
+          placeholder={`${`30`}`}
+        />
+        <LargeSignInButton
+          onClick={() => EditFreeThree()}
+          bigger
+          title={"Save Changes"}
+          background
+          color
+        />
+      </AppModal>
+      <AppModal
+        step={64}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Updated Location.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={65}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+
+        heading="Edit Min. Rep."
+        noheadborder
+        subscribe
+      >
+        <ModalInputText
+          label="Edit Minimum Number of Business Reps per Corporates"
+          onChange={(e) => ChangeFree(e)}
+          name="minCountOfBusinessReps"
+          value={free?.minCountOfBusinessReps}
+          nosign
+          // value={regbus?.firstname}
+          placeholder={`${`30`}`}
+        />
+        <LargeSignInButton
+          onClick={() => EditFreeFour()}
+          bigger
+          title={"Save Changes"}
+          background
+          color
+        />
+      </AppModal>
+      <AppModal
+        step={66}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Updated Minimum Reps.</span>
           </div>
           <div
             style={{

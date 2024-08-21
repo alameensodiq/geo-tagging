@@ -4,9 +4,18 @@ import styled from "styled-components";
 
 function DonutBorderRadius({ overview, report, data }) {
   //  const series = data?.subscriptionPlan((item) => item.value)
-  const series = data
-    ? [data["Basic Count"], data["Premium Count"], 0, 0]
-    : [60, 40, 30, 20, 30];
+  const series =
+    data && data
+      ? [
+          // data["Basic Count"] ? data["Basic Count"] : 0,
+          // data["Premium Count"] ? data["Premium Count"] : 0,
+          data["ENTERPRISE Count"] ? data["ENTERPRISE Count"] : 0,
+          data["ENTERPRISE_PLUS Count"] ? data["ENTERPRISE_PLUS Count"] : 0,
+          // data["FREE_TRIAL Count"] ? data["FREE_TRIAL Count"] : 0,
+          data["STANDARD Count"] ? data["STANDARD Count"] : 0,
+          data["STANDARD_PLUS Count"] ? data["STANDARD_PLUS Count"] : 0
+        ]
+      : [60, 40, 30, 20, 30];
 
   const options = {
     chart: {
@@ -39,7 +48,26 @@ function DonutBorderRadius({ overview, report, data }) {
       lineCap: "round"
     },
     fill: {
-      colors: ["#1A87D7", "#7C65E0", "#F3827C", "#274079", "#7CC8F3"]
+      colors:
+        data && data
+          ? [
+              // "#1A87D7",
+              "#7C65E0",
+              // "#F3827C",
+              // "#274079",
+              "#7CC8F3",
+              "#277927",
+              "#f37cbf"
+            ]
+          : [
+              "#1A87D7",
+              "#7C65E0",
+              "#F3827C",
+              "#274079",
+              "#7CC8F3",
+              "#277927",
+              "#f37cbf"
+            ]
       //   colors: backgroundColors?.map((item) => item),
     },
     responsive: [

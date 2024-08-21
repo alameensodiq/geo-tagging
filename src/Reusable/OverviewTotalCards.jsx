@@ -41,17 +41,19 @@ const OverviewTotalCards = ({
       <div className="totalemployees">
         <div className="up">
           <div className="details">
-            <span className="number">700</span>
+            <span className="number">{data?.ProjectsCount?.totalProjects}</span>
             <span className="clients">Total Projects</span>
           </div>
           <Case />
         </div>
         <div className="down">
           <span className="activediv">
-            <span className="active">Active</span>500
+            <span className="active">Active</span>
+            {data?.ProjectsCount?.activeProjects}
           </span>
           <span className="deactivediv">
-            <span className="deactive">Inactive</span>500
+            <span className="deactive">Inactive</span>
+            {data?.ProjectsCount?.inactiveProjects}
           </span>
         </div>
       </div>
@@ -94,7 +96,7 @@ const Flex = styled.div`
   flex-direction: row;
   border: 1px solid #e2e8f0;
   width: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: 144px;
   padding: 20px;
   border-radius: 5px;
@@ -323,11 +325,11 @@ const Flex = styled.div`
     height: 100%;
     padding: 20px;
     border-radius: 5px;
-    gap: 54px;
+    /* gap: 89px; */
     .totalclients {
       display: flex;
       flex-direction: column;
-      width: 100%;
+      width: 25%;
       padding-bottom: 20px;
       gap: 15px;
       padding-right: 20px;
@@ -341,7 +343,7 @@ const Flex = styled.div`
           flex-direction: column;
           gap: 5px;
           .number {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 600;
             line-height: 42px;
             letter-spacing: 0em;
@@ -349,7 +351,7 @@ const Flex = styled.div`
             color: #1e1b39;
           }
           .clients {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: 400;
             line-height: 21px;
             letter-spacing: 0em;
@@ -374,7 +376,7 @@ const Flex = styled.div`
     .totalemployees {
       display: flex;
       flex-direction: column;
-      width: 100%;
+      width: 25%;
       padding-bottom: 20px;
       gap: 15px;
       padding-right: 20px;
@@ -421,7 +423,7 @@ const Flex = styled.div`
     .activeclients {
       display: flex;
       flex-direction: column;
-      width: 100%;
+      width: 25%;
       padding-bottom: 20px;
       gap: 15px;
       padding-right: 20px;
@@ -435,7 +437,7 @@ const Flex = styled.div`
           flex-direction: column;
           gap: 5px;
           .number {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 600;
             line-height: 42px;
             letter-spacing: 0em;
@@ -443,7 +445,7 @@ const Flex = styled.div`
             color: #1e1b39;
           }
           .clients {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: 400;
             line-height: 21px;
             letter-spacing: 0em;
@@ -468,7 +470,7 @@ const Flex = styled.div`
     .deactivated {
       display: flex;
       flex-direction: column;
-      width: 100%;
+      width: 25%;
       padding-bottom: 20px;
       gap: 15px;
       padding-right: 20px;
@@ -482,7 +484,7 @@ const Flex = styled.div`
           flex-direction: column;
           gap: 5px;
           .number {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 600;
             line-height: 42px;
             letter-spacing: 0em;
@@ -490,7 +492,7 @@ const Flex = styled.div`
             color: #1e1b39;
           }
           .clients {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: 400;
             line-height: 21px;
             letter-spacing: 0em;

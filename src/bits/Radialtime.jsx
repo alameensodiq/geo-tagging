@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function Radialtime() {
-  const series = [50];
+function Radialtime({ data }) {
+  const series = data && data ? [data?.compliancePercentage] : [];
 
   const options = {
     chart: {
-      width: 420 ,
+      width: 420,
       type: "radialBar"
     },
     // plotOptions: {
@@ -50,14 +50,14 @@ function Radialtime() {
         startAngle: -90,
         endAngle: 90,
         track: {
-          background: ['#F3827C','#274079'],
-          strokeWidth: '97%',
+          background: ["#F3827C", "#274079"],
+          strokeWidth: "97%",
           margin: 5, // margin is in pixels
           dropShadow: {
             enabled: true,
             top: 2,
             left: 0,
-            color: '#999',
+            color: "#999",
             opacity: 1,
             blur: 2
           }
@@ -68,7 +68,7 @@ function Radialtime() {
           },
           value: {
             offsetY: -2,
-            fontSize: '22px'
+            fontSize: "22px"
           }
         }
       }
@@ -83,14 +83,14 @@ function Radialtime() {
         show: true,
         zIndex: 10000,
         // color: "#888",
-        fontSize: "10px" ,
+        fontSize: "10px"
       },
       value: {
         formatter: function (val) {
           return parseInt(val);
         },
         color: "#111",
-        fontSize:  "10px" ,
+        fontSize: "10px",
         show: true
       }
     },
@@ -114,20 +114,20 @@ function Radialtime() {
     //   }
     // },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
-        shade: 'light',
+        shade: "light",
         shadeIntensity: 0.4,
         inverseColors: false,
         opacityFrom: 1,
         opacityTo: 1,
         stops: [0, 50, 53, 91]
-      },
+      }
     },
     stroke: {
-        lineCap: 'round'
+      lineCap: "round"
     },
-    labels: ['Total Stamp compliance']
+    labels: ["Total Stamp compliance"]
   };
 
   return (

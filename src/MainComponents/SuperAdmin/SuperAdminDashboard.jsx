@@ -252,33 +252,78 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             <div className="donutdiv">
               <DonutBorderRadius data={dashboard?.data?.SubscriptionAnalysis} />
               <div className="detailsmaindiv">
-                <div className="detailsdiv">
+                {/* <div className="detailsdiv">
                   <div className="circle"></div>
                   <span className="title">
                     Basic (
                     {dashboard?.data?.SubscriptionAnalysis["Basic Percent"]})
                   </span>
-                </div>
-                <div className="detailsdiv">
+                </div> */}
+                {/* <div className="detailsdiv">
                   <div className="circletwo"></div>
                   <span className="title">
                     Premium (
                     {dashboard?.data?.SubscriptionAnalysis["Premium Percent"]})
                   </span>
-                </div>
+                </div> */}
                 <div className="detailsdiv">
                   <div className="circlethree"></div>
-                  <span className="title">Enterprise (30%)</span>
+                  <span className="title">
+                    Enterprise (
+                    {
+                      dashboard?.data?.SubscriptionAnalysis[
+                        "ENTERPRISE Percent"
+                      ]
+                    }
+                    )
+                  </span>
                 </div>
               </div>
               <div className="detailsmaindiv">
                 <div className="detailsdiv">
                   <div className="circlefour"></div>
-                  <span className="title">Enterprise Plus (20%)</span>
+                  <span className="title">
+                    Enterprise Plus (
+                    {
+                      dashboard?.data?.SubscriptionAnalysis[
+                        "ENTERPRISE_PLUS Percent"
+                      ]
+                    }
+                    )
+                  </span>
+                </div>
+                {/* <div className="detailsdiv">
+                  <div className="circlefive"></div>
+                  <span className="title">
+                    Free Trial (
+                    {
+                      dashboard?.data?.SubscriptionAnalysis[
+                        "FREE_TRIAL Percent"
+                      ]
+                    }
+                    )
+                  </span>
+                </div> */}
+              </div>
+              <div className="detailsmaindiv">
+                <div className="detailsdiv">
+                  <div className="circlesix"></div>
+                  <span className="title">
+                    Standard (
+                    {dashboard?.data?.SubscriptionAnalysis["STANDARD Percent"]})
+                  </span>
                 </div>
                 <div className="detailsdiv">
-                  <div className="circlefive"></div>
-                  <span className="title">Custom (50%)</span>
+                  <div className="circleseven"></div>
+                  <span className="title">
+                    Standard Plus (
+                    {
+                      dashboard?.data?.SubscriptionAnalysis[
+                        "STANDARD_PLUS Percent"
+                      ]
+                    }
+                    )
+                  </span>
                 </div>
               </div>
             </div>
@@ -326,35 +371,129 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             </div>
             <div className="last">
               <div className="radial">
-                {bright ? <Radial overview /> : <Radialtime />}
+                {bright ? (
+                  <Radial overview />
+                ) : (
+                  <Radialtime
+                    data={
+                      dashboard?.data?.TimestampComplianceForPlatformCumulative
+                    }
+                  />
+                )}
               </div>
               {bright ? (
                 <div className="circle">
                   <span className="label">Total Punctuality Rate</span>
-                  <span className="name">80%</span>
+                  <span className="name">
+                    {
+                      dashboard?.data?.PunctualityStatsForAllProjectsCumulative
+                        ?.punctualPercentage
+                    }
+                  </span>
                 </div>
               ) : (
                 <div className="circler">
                   <span className="label">Total Stamp Compliance</span>
-                  <span className="name">60%</span>
+                  <span className="name">
+                    {" "}
+                    {
+                      dashboard?.data?.TimestampComplianceForPlatformCumulative
+                        ?.compliancePercentage
+                    }
+                  </span>
                 </div>
               )}
-              <div className="target">
-                <div className="attendance">
-                  <div className="wrap">
-                    <span className="first"></span>
-                    <span className="targeted">Total Compliance</span>
+              {bright ? (
+                <div className="target">
+                  <div className="attendance">
+                    <div className="wrap">
+                      <span className="first"></span>
+                      <span className="targeted">Total Compliance</span>
+                    </div>
+                    <span className="percent">
+                      Total Number:
+                      {
+                        dashboard?.data
+                          ?.PunctualityStatsForAllProjectsCumulative
+                          ?.punctualDays
+                      }
+                      (
+                      {
+                        dashboard?.data
+                          ?.PunctualityStatsForAllProjectsCumulative
+                          ?.punctualPercentage
+                      }
+                      )
+                    </span>
                   </div>
-                  <span className="percent">Total Number:200(40%)</span>
-                </div>
-                <div className="attendant">
-                  <div className="wrap">
-                    <span className="second"></span>
-                    <span className="targeted">Total Non-Compliance</span>
+                  <div className="attendant">
+                    <div className="wrap">
+                      <span className="second"></span>
+                      <span className="targeted">Total Non-Compliance</span>
+                    </div>
+                    <span className="percent">
+                      Total Number:{" "}
+                      {
+                        dashboard?.data
+                          ?.PunctualityStatsForAllProjectsCumulative
+                          ?.notPunctualDays
+                      }
+                      (
+                      {
+                        dashboard?.data
+                          ?.PunctualityStatsForAllProjectsCumulative
+                          ?.notPunctualPercentage
+                      }
+                      )
+                    </span>
                   </div>
-                  <span className="percent">Total Number:200(40%)</span>
                 </div>
-              </div>
+              ) : (
+                <div className="target">
+                  <div className="attendance">
+                    <div className="wrap">
+                      <span className="first"></span>
+                      <span className="targeted">Total Compliance</span>
+                    </div>
+                    <span className="percent">
+                      Total Number:
+                      {
+                        dashboard?.data
+                          ?.TimestampComplianceForPlatformCumulative
+                          ?.totalCompliant
+                      }
+                      (
+                      {
+                        dashboard?.data
+                          ?.TimestampComplianceForPlatformCumulative
+                          ?.compliancePercentage
+                      }
+                      )
+                    </span>
+                  </div>
+                  <div className="attendant">
+                    <div className="wrap">
+                      <span className="second"></span>
+                      <span className="targeted">Total Non-Compliance</span>
+                    </div>
+                    <span className="percent">
+                      Total Number:{" "}
+                      {
+                        dashboard?.data
+                          ?.TimestampComplianceForPlatformCumulative
+                          ?.totalNonCompliant
+                      }
+                      (
+                      {
+                        dashboard?.data
+                          ?.TimestampComplianceForPlatformCumulative
+                          ?.nonCompliancePercentage
+                      }
+                      )
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="table">
@@ -378,7 +517,19 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 <Calendar onClick={() => PickDater()} className="calendar" />
               </div>
             </div>
-            <div className="totalhours">
+            {dashboard?.data?.AllProjectsWithTotalHours?.map((item) => (
+              <div className="totalhours">
+                <div className="lefthours">
+                  <span className="project">Project Name</span>
+                  <span className="campaign">{item?.projectName}</span>
+                </div>
+                <div className="righthours">
+                  <div className="rightcircle"></div>
+                  <span>{item?.totalHours}hours</span>
+                </div>
+              </div>
+            ))}
+            {/* <div className="totalhours">
               <div className="lefthours">
                 <span className="project">Project Name</span>
                 <span className="campaign">Campaign Management</span>
@@ -427,10 +578,10 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 <div className="rightcircle"></div>
                 <span>12hours</span>
               </div>
-            </div>
-            <div className="lasthours">
+            </div> */}
+            {/* <div className="lasthours">
               <span>Show more</span>
-            </div>
+            </div> */}
           </div>
         </FeaturesGrid>
         <div className="table">
@@ -454,9 +605,9 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 <span className="row">
                   <span className="squarefour"></span>Enterprise Plus
                 </span>
-                <span className="row">
-                  <span className="squarefive"></span>Custom
-                </span>
+                {/* <span className="row">
+                  <span className="squarefive"></span>Free Trial
+                </span> */}
               </div>
             </div>
             <div className="main">
@@ -815,6 +966,18 @@ const Flex = styled.div`
               height: 10px;
               border-radius: 50%;
               background: #f3827c;
+            }
+            .circlesix {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #277927;
+            }
+            .circleseven {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #f37cbf;
             }
             .title {
               font-size: 14px;

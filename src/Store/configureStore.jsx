@@ -35,6 +35,9 @@ import { ProjectStatusSlice } from "./Reducers/ProjectStatus";
 import { ProjectDetailsSlice } from "./Reducers/ProjectDetails";
 import { ClientReportSlice } from "./Reducers/ClientReport";
 import { EditAdminDetailsSlice } from "./Reducers/EditAdminDetails";
+import { EditSubSlice } from "./Reducers/EditSub";
+import { EditFreeTrialSlice } from "./Reducers/EditFreeTrial";
+import { SubscribersSlice } from "./Reducers/Subscribers";
 
 export default configureStore({
   reducer: {
@@ -73,6 +76,9 @@ export default configureStore({
     projectstatus: ProjectStatusSlice?.reducer,
     projectdetails: ProjectDetailsSlice?.reducer,
     clientreport: ClientReportSlice?.reducer,
-    editadmindetails: EditAdminDetailsSlice?.reducer
+    editadmindetails: EditAdminDetailsSlice?.reducer,
+    editsub: EditSubSlice?.reducer,
+    editfreetrial: EditFreeTrialSlice?.reducer,
+    subscribers: SubscribersSlice?.reducer
   }
 });

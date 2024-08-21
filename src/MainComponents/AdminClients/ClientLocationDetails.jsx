@@ -66,6 +66,7 @@ const ClientLocationDetails = ({ title }) => {
       stopDate: formatDate(stopDate),
       startTime: "09:00:00",
       stopTime: "17:00:00",
+      isHourlyStamp: false,
       minutesToAdd: 5,
       duration: 60,
       dailyPay: 0,
@@ -204,7 +205,8 @@ const ClientLocationDetails = ({ title }) => {
       stopTime,
       dailyPay,
       locations,
-      minutesToAdd
+      minutesToAdd,
+      isHourlyStamp
     } = assign;
     const areAllVariablesPresent =
       name &&
@@ -227,6 +229,7 @@ const ClientLocationDetails = ({ title }) => {
           stopDate: assign.stopDate,
           startTime,
           stopTime,
+          isHourlyStamp,
           duration: assign.duration,
           dailyPay: JSON.parse(assign.dailyPay),
           locations,
@@ -383,11 +386,50 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="name">Hourly Time stamp?</span>
                     <div className="wrapper">
                       <div className="yescontainer">
-                        <span className="circle"></span>
+                        {assign?.isHourlyStamp ? (
+                          <Color
+                            onClick={() =>
+                              setAssign((prevState) => ({
+                                ...prevState,
+                                isHourlyStamp: !prevState.isHourlyStamp
+                              }))
+                            }
+                          />
+                        ) : (
+                          <span
+                            className="circle"
+                            onClick={() =>
+                              setAssign((prevState) => ({
+                                ...prevState,
+                                isHourlyStamp: !prevState.isHourlyStamp
+                              }))
+                            }
+                          ></span>
+                        )}
+
                         <span className="yes">Yes</span>
                       </div>
                       <div className="yescontainer">
-                        <span className="circle"></span>
+                        {assign?.isHourlyStamp ? (
+                          <span
+                            className="circle"
+                            onClick={() =>
+                              setAssign((prevState) => ({
+                                ...prevState,
+                                isHourlyStamp: !prevState.isHourlyStamp
+                              }))
+                            }
+                          ></span>
+                        ) : (
+                          <Color
+                            onClick={() =>
+                              setAssign((prevState) => ({
+                                ...prevState,
+                                isHourlyStamp: !prevState.isHourlyStamp
+                              }))
+                            }
+                          />
+                        )}
                         <span className="yes">No</span>
                       </div>
                     </div>

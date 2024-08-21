@@ -165,7 +165,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             percent4={2.5}
           />
         </FeaturesGrid>
-        <FeaturesGrid dashboard superoverview row={2}>
+        <FeaturesGrid dashboardmin superoverview row={2}>
           <div className="table">
             <div className="punctuality">
               <div className="start">
@@ -335,13 +335,22 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
               </span>
             </div>
           </div>
-          <DoubleBarChart />
+          <DoubleBarChart
+            data={
+              corporatedashboard?.data
+                ?.getPunctualityAndComplianceForAllProjectsByMonth
+                ?.monthlyPuncAndCompliance
+            }
+          />
         </div>
         <div className="table">
           <div className="projects">
             <span>Projects</span>
           </div>
-          <Tables overviewproject />
+          <Tables
+            data={corporatedashboard?.data?.DisplayProjectsDetails}
+            overviewproject
+          />
         </div>
       </div>
     </Flex>

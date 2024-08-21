@@ -103,19 +103,19 @@ const SuperAdminOverviewCards = ({
       <div className="deactivated">
         <div className="up">
           <div className="details">
-            <span className="number">300</span>
+            <span className="number">{data?.TotalLocationsCount}</span>
             <span className="clients">Total Location</span>
           </div>
           <Location />
         </div>
-        <div className="down">
+        {/* <div className="down">
           <span className="activediv">
             <span className="active">Active</span>500
           </span>
           <span className="deactivediv">
             <span className="deactive">Inactive</span>500
           </span>
-        </div>
+        </div> */}
       </div>
     </Flex>
   );

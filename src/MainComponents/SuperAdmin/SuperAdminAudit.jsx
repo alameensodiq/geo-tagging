@@ -56,11 +56,11 @@ const SuperAdminAudit = ({ title }) => {
 
   const Download = () => {
     console.log("bills");
-    const headers = trails?.data?.data.map((item) =>
+    const headers = trails?.data?.data?.map((item) =>
       Object.keys(item).toString()
     )[0];
     console.log(headers);
-    const objValues = trails?.data.map((item) =>
+    const objValues = trails?.data?.data?.map((item) =>
       Object.values(item).toString()
     );
     const csv = [headers, ...Object.values(objValues)].join("\n");

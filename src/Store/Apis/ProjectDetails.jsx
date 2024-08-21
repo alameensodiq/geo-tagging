@@ -9,7 +9,8 @@ export const ProjectDetails = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/project/${id}`,
+        `${process.env.REACT_APP_BASE_URL}corporate/project-reps-details?projectId=${id}`,
+        // `${process.env.REACT_APP_BASE_URL}user/project/${id}`,
         {
           method: "GET",
           headers: {

@@ -11,10 +11,13 @@ import InputSearch from "../../bits/InputSearch";
 import { DownloadCsv } from "../../bits/DownloadCsv";
 import { SubscribeEditButton } from "../../bits/SubscribeEditButton";
 import { SuperSubs } from "../../Store/Apis/SuperSub";
+import { Subscribers } from "../../Store/Apis/Subscribers";
 
 const SuperAdminSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
   const [activating1, SetActivating1] = useState(false);
+  const [name, setName] = useState("");
+  const [id, setId] = useState("");
   const [activating2, SetActivating2] = useState(false);
   const [activating3, SetActivating3] = useState(false);
   const [activating4, SetActivating4] = useState(false);
@@ -35,18 +38,35 @@ const SuperAdminSubscription = ({ title }) => {
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(SuperSubs());
-    if (reload) {
-      dispatch(SuperSubs());
-      setReload(false);
-    }
-  }, [reload]);
-
   const { supersub, authenticatingsupersub } = useSelector(
     (state) => state.supersub
   );
+
+  const { subscribers, authenticatingsubscribers } = useSelector(
+    (state) => state.subscribers
+  );
+
   console.log(supersub?.data);
+  console.log(subscribers?.data?.[name]);
+
+  useEffect(() => {
+    dispatch(SuperSubs());
+    dispatch(Subscribers());
+    if (reload) {
+      dispatch(SuperSubs());
+      setReload(false);
+      dispatch(Subscribers());
+    }
+  }, [reload]);
+
+  useEffect(() => {
+    setName(supersub?.data[0]?.name);
+    setId(supersub?.data[0]?.id);
+  }, [supersub?.data, reload]);
+
+  console.log(
+    supersub?.data?.find((item) => item?.name === "ENTERPRISE")?.amount?.["NGN"]
+  );
 
   const setActivate = () => {
     SetActivate(true);
@@ -123,7 +143,12 @@ const SuperAdminSubscription = ({ title }) => {
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        id={id}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">
@@ -146,43 +171,61 @@ const SuperAdminSubscription = ({ title }) => {
         <div className="table">
           <div className="statuses">
             <div
-              onClick={() => setActivate()}
+              onClick={() => {
+                setActivate();
+                setName(supersub?.data[0]?.name);
+              }}
               className={`${activated ? "active" : "status"}`}
             >
               <span>{supersub?.data[0]?.name}</span>
             </div>
             <div
-              onClick={() => setPending()}
+              onClick={() => {
+                setPending();
+                setName(supersub?.data[1]?.name);
+              }}
               className={`${pend ? "active" : "status"}`}
             >
               <span>{supersub?.data[1]?.name}</span>
             </div>
             <div
-              onClick={() => setPendingRole1()}
+              onClick={() => {
+                setPendingRole1();
+                setName(supersub?.data[2]?.name);
+              }}
               className={`${activating1 ? "active" : "status"}`}
             >
               <span>{supersub?.data[2]?.name}</span>
             </div>
             <div
-              onClick={() => setPendingRole2()}
+              onClick={() => {
+                setPendingRole2();
+                setName(supersub?.data[3]?.name);
+              }}
               className={`${activating2 ? "active" : "status"}`}
             >
               <span>{supersub?.data[3]?.name}</span>
             </div>
             <div
-              onClick={() => setPendingRole3()}
+              onClick={() => {
+                setPendingRole3();
+                setName(supersub?.data[4]?.name);
+              }}
               className={`${activating3 ? "active" : "status"}`}
             >
               <span>{supersub?.data[4]?.name}</span>
             </div>
             <div
-              onClick={() => setPendingRole4()}
+              onClick={() => {
+                setPendingRole4();
+                setName(supersub?.data[5]?.name);
+              }}
               className={`${activating4 ? "active" : "status"}`}
             >
               <span>{supersub?.data[5]?.name}</span>
             </div>
           </div>
-          {activated ? (
+          {name === "FREE_TRIAL" ? (
             <div className="trialmaindiv">
               <div className="trialdiv">
                 <div className="trialdivtop">
@@ -213,11 +256,15 @@ const SuperAdminSubscription = ({ title }) => {
                       Maximun number of Business Reps -{" "}
                     </span>
                     <span className="days">
-                      {supersub?.data[0]?.maxRepCount}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "FREE_TRIAL"
+                        )?.maxRepCount
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(38)}
+                    onClick={() => setStep(61)}
                     background
                     color
                     title="Edit number"
@@ -236,11 +283,15 @@ const SuperAdminSubscription = ({ title }) => {
                       Maximum Number of Geo-Location -
                     </span>
                     <span className="days">
-                      {supersub?.data[0]?.maxLocationCount}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "FREE_TRIAL"
+                        )?.maxLocationCount
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(38)}
+                    onClick={() => setStep(63)}
                     background
                     color
                     title="Edit number"
@@ -249,15 +300,25 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>Edit Maximum Number of projects per Corporates</span>
+                  <span>
+                    Edit Minimum Number of Business Reps per Corporates
+                  </span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">Maximum Number of Project -</span>
-                    <span className="days">2</span>
+                    <span className="free">
+                      Minimum Number of Business Reps -
+                    </span>
+                    <span className="days">
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "FREE_TRIAL"
+                        )?.minRepCount
+                      }
+                    </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(38)}
+                    onClick={() => setStep(65)}
                     background
                     color
                     title="Edit number"
@@ -265,7 +326,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
               </div>
             </div>
-          ) : pend ? (
+          ) : name === "STANDARD" ? (
             <div className="trialmaindiv">
               <div className="trialdiv">
                 <div className="trialdivtop">
@@ -286,11 +347,22 @@ const SuperAdminSubscription = ({ title }) => {
                     <span className="free">1.Monthly Price:</span>
                     <span className="days">
                       {" "}
-                      {supersub?.data[1]?.amount?.["NGN"]}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "STANDARD"
+                        )?.amount?.["NGN"]
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(40)}
+                    onClick={() => {
+                      setStep(40);
+                      setId(
+                        supersub?.data?.find(
+                          (item) => item?.name === "STANDARD"
+                        )?.id
+                      );
+                    }}
                     background
                     color
                     title="Edit pricing"
@@ -307,11 +379,22 @@ const SuperAdminSubscription = ({ title }) => {
                   <div className="freedays">
                     <span className="free">Number of Business Reps -</span>
                     <span className="days">
-                      {supersub?.data[1]?.maxRepCount}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "STANDARD"
+                        )?.maxRepCount
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(38)}
+                    onClick={() => {
+                      setStep(38);
+                      setId(
+                        supersub?.data?.find(
+                          (item) => item?.name === "STANDARD"
+                        )?.id
+                      );
+                    }}
                     background
                     color
                     title="Edit number"
@@ -319,7 +402,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
               </div>
             </div>
-          ) : activating1 ? (
+          ) : name === "STANDARD_PLUS" ? (
             <div className="trialmaindiv">
               <div className="trialdiv">
                 <div className="trialdivtop">
@@ -339,11 +422,22 @@ const SuperAdminSubscription = ({ title }) => {
                   <div className="freedays">
                     <span className="free">1.Monthly Price: </span>
                     <span className="days">
-                      {supersub?.data[2]?.amount?.["NGN"]}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "STANDARD_PLUS"
+                        )?.amount?.["NGN"]
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(40)}
+                    onClick={() => {
+                      setStep(40);
+                      setId(
+                        supersub?.data?.find(
+                          (item) => item?.name === "STANDARD_PLUS"
+                        )?.id
+                      );
+                    }}
                     background
                     color
                     title="Edit pricing"
@@ -362,11 +456,22 @@ const SuperAdminSubscription = ({ title }) => {
                       Maximum Number of Business Reps -
                     </span>
                     <span className="days">
-                      {supersub?.data[2]?.maxRepCount}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "STANDARD_PLUS"
+                        )?.maxRepCount
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(38)}
+                    onClick={() => {
+                      setStep(38);
+                      setId(
+                        supersub?.data?.find(
+                          (item) => item?.name === "STANDARD_PLUS"
+                        )?.id
+                      );
+                    }}
                     background
                     color
                     title="Edit number"
@@ -374,7 +479,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
               </div>
             </div>
-          ) : activating2 ? (
+          ) : name === "ENTERPRISE" ? (
             <div className="trialmaindiv">
               <div className="trialdiv">
                 <div className="trialdivtop">
@@ -394,11 +499,22 @@ const SuperAdminSubscription = ({ title }) => {
                   <div className="freedays">
                     <span className="free">1.Monthly Price: </span>
                     <span className="days">
-                      {supersub?.data[3]?.amount?.["NGN"]}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "ENTERPRISE"
+                        )?.amount?.["NGN"]
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(40)}
+                    onClick={() => {
+                      setStep(40);
+                      setId(
+                        supersub?.data?.find(
+                          (item) => item?.name === "ENTERPRISE"
+                        )?.id
+                      );
+                    }}
                     background
                     color
                     title="Edit pricing"
@@ -417,11 +533,22 @@ const SuperAdminSubscription = ({ title }) => {
                       Maximum Number of Business Reps -
                     </span>
                     <span className="days">
-                      {supersub?.data[3]?.maxRepCount}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "ENTERPRISE"
+                        )?.maxRepCount
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(38)}
+                    onClick={() => {
+                      setStep(38);
+                      setId(
+                        supersub?.data?.find(
+                          (item) => item?.name === "ENTERPRISE"
+                        )?.id
+                      );
+                    }}
                     background
                     color
                     title="Edit number"
@@ -429,7 +556,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
               </div>
             </div>
-          ) : activating3 ? (
+          ) : name === "ENTERPRISE_PLUS" ? (
             <div className="trialmaindiv">
               <div className="trialdiv">
                 <div className="trialdivtop">
@@ -449,12 +576,22 @@ const SuperAdminSubscription = ({ title }) => {
                   <div className="freedays">
                     <span className="free">1.Monthly Price: </span>
                     <span className="days">
-                      {" "}
-                      {supersub?.data[4]?.amount?.["NGN"]}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "ENTERPRISE_PLUS"
+                        )?.amount?.["NGN"]
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(40)}
+                    onClick={() => {
+                      setStep(40);
+                      setId(
+                        supersub?.data?.find(
+                          (item) => item?.name === "ENTERPRISE_PLUS"
+                        )?.id
+                      );
+                    }}
                     background
                     color
                     title="Edit pricing"
@@ -473,11 +610,22 @@ const SuperAdminSubscription = ({ title }) => {
                       Maximum Number of Business Reps -
                     </span>
                     <span className="days">
-                      {supersub?.data[4]?.maxRepCount}
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "ENTERPRISE_PLUS"
+                        )?.maxRepCount
+                      }
                     </span>
                   </div>
                   <SubscribeEditButton
-                    onClick={() => setStep(38)}
+                    onClick={() => {
+                      setStep(38);
+                      setId(
+                        supersub?.data?.find(
+                          (item) => item?.name === "ENTERPRISE_PLUS"
+                        )?.id
+                      );
+                    }}
                     background
                     color
                     title="Edit number"
@@ -561,7 +709,11 @@ const SuperAdminSubscription = ({ title }) => {
                       placeholder="Search for Corporates name, email, RC Number, e.t.c"
                     />
                   </div>
-                  <Tables currentsubscriber data={[]} setStep={setStep} />
+                  <Tables
+                    currentsubscriber
+                    data={subscribers?.data?.[name]}
+                    setStep={setStep}
+                  />
                 </>
               ) : (
                 <>

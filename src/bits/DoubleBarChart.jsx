@@ -1,19 +1,36 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-function DoubleBarChart() {
-  const series = [
-    {
-      name: "Income",
-      type: "column",
-      data: [14, 20, 25, 15, 35, 28, 38, 46]
-    },
-    {
-      name: "Cashflow",
-      type: "column",
-      data: [11, 33, 31, 40, 41, 49, 65, 85]
-    }
+function DoubleBarChart({ data }) {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
   ];
+  const series = data &&
+    data && [
+      {
+        name: "Income",
+        type: "column",
+        data: months.map((month) => data[month]?.punctualityPercent || 0)
+      },
+      {
+        name: "Cashflow",
+        type: "column",
+        data: months.map(
+          (month) => data[month]?.timeStampCompliancePercent || 0
+        )
+      }
+    ];
 
   const options = {
     colors: ["#1A87D7", "#28385C"],
@@ -25,7 +42,7 @@ function DoubleBarChart() {
       }
     },
     grid: {
-    //   show: false,
+      //   show: false,
       xaxis: {
         lines: {
           show: false // Show grid lines along x-axis
@@ -56,7 +73,20 @@ function DoubleBarChart() {
       colors: ["transparent"]
     },
     xaxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ]
     },
     yaxis: {
       tickAmount: 5,

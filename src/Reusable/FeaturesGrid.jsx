@@ -8,6 +8,7 @@ const FeaturesGrid = ({
   state,
   top,
   dashboard,
+  dashboardmin,
   dashboarder,
   unequal,
   reportunequal,
@@ -36,6 +37,7 @@ const FeaturesGrid = ({
       top={top}
       dashboardy={dashboardy}
       dashboard={dashboard}
+      dashboardmin={dashboardmin}
       unequal={unequal}
       account={account}
     >
@@ -51,6 +53,8 @@ const Flex = styled.div`
   padding-left: ${(props) =>
     props.dashboard
       ? "0px"
+      : props.dashboardmin
+      ? "0px"
       : props.info
       ? "0px"
       : props?.sub
@@ -62,6 +66,8 @@ const Flex = styled.div`
       : "70px"};
   padding-right: ${(props) =>
     props.dashboard
+      ? "0px"
+      : props.dashboardmin
       ? "0px"
       : props.info
       ? "0px"
@@ -105,6 +111,10 @@ const Flex = styled.div`
         ? "1fr"
         : props?.account
         ? "1fr"
+        : props?.dashboard
+        ? "1fr"
+        : props?.dashboardmin
+        ? "1fr 1fr"
         : "1fr 1fr"};
   }
   @media screen and (max-width: 900px) {

@@ -15,7 +15,8 @@ export const AddProject = createAsyncThunk(
       dailyPay,
       locations,
       weekdays,
-      minutesToAdd
+      minutesToAdd,
+      isHourlyStamp
     },
     thunkAPI
   ) => {
@@ -43,7 +44,8 @@ export const AddProject = createAsyncThunk(
             dailyPay,
             locations,
             weekdays,
-            minutesToAdd
+            minutesToAdd,
+            isHourlyStamp
           })
         }
       );

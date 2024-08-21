@@ -8,8 +8,10 @@ import { ReactComponent as Facebook } from "../../assets/facebook.svg";
 import { ReactComponent as X } from "../../assets/x.svg";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <Flex data-aos="fade-right">
       <div className="foothead">
@@ -60,8 +62,8 @@ const Footer = () => {
           Copyright 2024. All rights reserved
         </span>
         <span className="privacy">
-          <span>Privacy Policy</span>
-          <span>Terms of Service</span>
+          <span onClick={() => navigate("/policy")}>Privacy Policy</span>
+          <span onClick={() => navigate("/terms")}>Terms of Service</span>
         </span>
       </div>
     </Flex>
@@ -153,6 +155,7 @@ const Flex = styled.div`
       font-weight: 400;
       line-height: 16.94px;
       text-align: left;
+      cursor: pointer;
     }
   }
   /* padding-top: 40px; */

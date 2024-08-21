@@ -3,7 +3,10 @@ import toast from "react-hot-toast";
 
 export const AddCorp = createAsyncThunk(
   "addcorp",
-  async ({ name, rcNumber, address, phone, email }, thunkAPI) => {
+  async (
+    { name, rcNumber, address, phone, email, isBusinessPlan },
+    thunkAPI
+  ) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
 
@@ -22,7 +25,8 @@ export const AddCorp = createAsyncThunk(
             rcNumber,
             address,
             phone,
-            email
+            email,
+            isBusinessPlan
           })
         }
       );

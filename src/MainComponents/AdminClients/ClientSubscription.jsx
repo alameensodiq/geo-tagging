@@ -235,14 +235,14 @@ const ClientSubscription = ({ title }) => {
                 standard
                 data={supersub?.data?.find((item) => item?.name === "STANDARD")}
               />
-              <Plans
+              {/* <Plans
                 basic
                 data={supersub?.data?.find((item) => item?.name === "Basic")}
-              />
-              <Plans
+              /> */}
+              {/* <Plans
                 basic
                 data={supersub?.data?.find((item) => item?.name === "Premium")}
-              />
+              /> */}
               <Plans
                 basic
                 data={supersub?.data?.find(

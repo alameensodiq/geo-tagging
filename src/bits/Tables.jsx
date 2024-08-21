@@ -916,24 +916,25 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "8%" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "10px"
-                      }}
-                    >
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "8%" }}>
                       <div
                         style={{
-                          borderRadius: "50%",
-                          width: "30px",
-                          height: "30px",
-                          backgroundColor: "black"
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "10px"
                         }}
-                      ></div>
-                      {/* <img
+                      >
+                        <div
+                          style={{
+                            borderRadius: "50%",
+                            width: "30px",
+                            height: "30px",
+                            backgroundColor: "black"
+                          }}
+                        ></div>
+                        {/* <img
                         src={item?.avatar}
                         style={{
                           borderRadius: "50%",
@@ -943,60 +944,57 @@ const Tables = ({
                         }}
                         alt="pictures"
                       /> */}
-                    </div>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "14%" }}>
-                    Sheidu Susan
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    07057007046
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    NO 52,Berkely street
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    4 hours
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    {data?.dailyPay?.NGN}
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    <Moment format="DD-MM-YYYY">12-4-2024</Moment>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    19 DAYS
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "8%" }}>
-                    <Action onClick={() => DeactivateProdetails()} />
-                    {openprodetails && (
-                      <div className="activeprojectdetailsmodal">
-                        <div
-                          className="row"
-                          onClick={() => {
-                            "";
-                            // navigate(
-                            //   `../${businessprojects}/location/:location`
-                            // );
-                            // setopenprodetails(!openprodetails);
-                          }}
-                        >
-                          <Location />
-                          <span>Change Location</span>
-                        </div>
-                        <div
-                          className="row"
-                          onClick={() => {
-                            setStep(4);
-                            setopenprodetails(!openprodetails);
-                          }}
-                        >
-                          <Deactivate />
-                          <span>Deactivate</span>
-                        </div>
                       </div>
-                    )}
-                  </StyledTableCell>
-                </StyledTableRow>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "14%" }}></StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.phone}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.projectLocation}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}></StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.earnedPay}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {/* <Moment format="DD-MM-YYYY">12-4-2024</Moment> */}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.noOfHoursWorked}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "8%" }}>
+                      <Action onClick={() => DeactivateProdetails()} />
+                      {openprodetails && (
+                        <div className="activeprojectdetailsmodal">
+                          <div
+                            className="row"
+                            onClick={() => {
+                              "";
+                              // navigate(
+                              //   `../${businessprojects}/location/:location`
+                              // );
+                              // setopenprodetails(!openprodetails);
+                            }}
+                          >
+                            <Location />
+                            <span>Change Location</span>
+                          </div>
+                          <div
+                            className="row"
+                            onClick={() => {
+                              setStep(4);
+                              setopenprodetails(!openprodetails);
+                            }}
+                          >
+                            <Deactivate />
+                            <span>Deactivate</span>
+                          </div>
+                        </div>
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -1286,7 +1284,47 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.projectName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.createdAt}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.businessReps}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.subscriptionType}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.totalEarnedPay}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "13%" }}>
+                      {item?.complianceRate}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.punctualityRate}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "5%" }}>
+                      {item?.active ? (
+                        <button className="activer-button">
+                          <div className="activer">
+                            <span className="round"></span>Active
+                          </div>
+                        </button>
+                      ) : (
+                        <button className="inactive-button">
+                          <div className="inactive">
+                            <span className="round"></span>Active
+                          </div>
+                        </button>
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "10%" }}>
                     Cowbell Outreach
                   </StyledTableCell>
@@ -1341,35 +1379,7 @@ const Tables = ({
                       </div>
                     </button>
                   </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    Cowbell Outreach
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    20-09-2023
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>10</StyledTableCell>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    Enterprise
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    80,000
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "13%" }}>
-                    20%
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "12%" }}>
-                    20%
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "5%" }}>
-                    <button className="activer-button">
-                      <div className="activer">
-                        <span className="round"></span>Active
-                      </div>
-                    </button>
-                  </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>

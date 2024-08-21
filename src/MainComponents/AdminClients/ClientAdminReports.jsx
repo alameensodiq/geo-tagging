@@ -148,7 +148,10 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   onClick={() => navigate(`../${businessreport}/normal`)}
                 >
                   <span className="comp">
-                    With Incident <span className="percent">65%</span>
+                    With Incident{" "}
+                    <span className="percent">
+                      {clientreport?.data?.incidentReports}
+                    </span>
                   </span>
                   <div className="bardiv">
                     <div className="backgrounddiv">
@@ -166,7 +169,10 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   onClick={() => navigate(`../${businessreport}/abnormal`)}
                 >
                   <span className="comp">
-                    Without Incident <span className="percent">35%</span>
+                    Without Incident{" "}
+                    <span className="percent">
+                      {clientreport?.data?.incidentFreeReports}
+                    </span>
                   </span>
                   <div className="bardiv">
                     <div className="backgrounddiv">
