@@ -2629,7 +2629,20 @@ const Tables = ({
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <StyledTableRow style={{ position: "relative" }}>
+                  {data?.map((item) => (
+                    <StyledTableRow style={{ position: "relative" }}>
+                      <StyledTableCell style={{ width: "40%" }}>
+                        {item?.corporateName}
+                      </StyledTableCell>
+                      <StyledTableCell style={{ width: "30%" }}>
+                        {item?.startDate}
+                      </StyledTableCell>
+                      <StyledTableCell style={{ width: "30%" }}>
+                        {item?.nextRenewalDate}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                  {/* <StyledTableRow style={{ position: "relative" }}>
                     <StyledTableCell style={{ width: "40%" }}>
                       Abdulazeez Abdulwaarith
                     </StyledTableCell>
@@ -2672,18 +2685,7 @@ const Tables = ({
                     <StyledTableCell style={{ width: "30%" }}>
                       12/04/23
                     </StyledTableCell>
-                  </StyledTableRow>
-                  <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "40%" }}>
-                      Abdulazeez Abdulwaarith
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "30%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "30%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                  </StyledTableRow>
+                  </StyledTableRow> */}
                 </TableBody>
               </Table>
             </TableContainer>
