@@ -37,6 +37,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
   const inputRef = useRef(null);
   const inputRef2 = useRef(null);
   const inputRef3 = useRef(null);
+  const [ids, setId] = useState("");
 
   const datePickerRef = useRef(null);
   const dispatch = useDispatch();
@@ -47,7 +48,13 @@ const SuperAdminCorporateDetails = ({ title }) => {
   useEffect(() => {
     dispatch(SuperCorporatedetails({ id }));
     dispatch(SuperCorporateDetailProject({ id, searcher }));
-  }, [id, searcher]);
+    if (reload) {
+      dispatch(SuperCorporatedetails({ id }));
+      dispatch(SuperCorporateDetailProject({ id, searcher }));
+      setId("");
+      setReload(false);
+    }
+  }, [id, searcher, reload]);
 
   const { supercorporatedetails, authenticatingsupercorporatedetails } =
     useSelector((state) => state.supercorporatedetails);
@@ -134,7 +141,12 @@ const SuperAdminCorporateDetails = ({ title }) => {
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        id={ids}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="firstdiv">
           <div className="backbutton">
@@ -185,13 +197,29 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   </Moment>
                 </span>
               </div>
-              <ModalButton
-                onClick={() => setStep(26)}
-                remove
-                background
-                color
-                title={"Deactivate"}
-              />
+              {supercorporatedetails?.data?.isAccountBlocked ? (
+                <ModalButton
+                  onClick={() => {
+                    setStep(26);
+                    setId(supercorporatedetails?.data?.id);
+                  }}
+                  remove
+                  background
+                  color
+                  title={"Activate"}
+                />
+              ) : (
+                <ModalButton
+                  onClick={() => {
+                    setStep(67);
+                    setId(supercorporatedetails?.data?.id);
+                  }}
+                  remove
+                  background
+                  color
+                  title={"Deactivate"}
+                />
+              )}
             </div>
             <div className="last">
               <div className="workdiv">

@@ -947,7 +947,9 @@ const Tables = ({
                       /> */}
                       </div>
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "14%" }}></StyledTableCell>
+                    <StyledTableCell style={{ width: "14%" }}>
+                      {item?.businessRepName}
+                    </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
                       {item?.phone}
                     </StyledTableCell>
@@ -1229,16 +1231,18 @@ const Tables = ({
                       {item?.projectName}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
-                      {item?.businessRepCount}
+                      {item?.noOfBusinessReps}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
-                      {item?.subscriptionName}
+                      {item?.subscriptionType}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      {item?.method}
+                      {item?.paymentMethod}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
-                      {item?.paymentDateTime}
+                      <Moment format="DD-MM-YYYY">
+                        {item?.dateSubscribed}
+                      </Moment>
                       {/* <Moment format="DD-MM-YYYY">12-07-2024</Moment> */}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>

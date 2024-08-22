@@ -234,7 +234,14 @@ const SuperAdminSubscription = ({ title }) => {
                 <div className="trialdivbottom">
                   <div className="freedays">
                     <span className="free">Free Trial Days - </span>
-                    <span className="days">30 Days</span>
+                    <span className="days">
+                      {
+                        supersub?.data?.find(
+                          (item) => item?.name === "FREE_TRIAL"
+                        )?.daysEligibleDays
+                      }{" "}
+                      Days
+                    </span>
                   </div>
                   <SubscribeEditButton
                     onClick={() => setStep(36)}

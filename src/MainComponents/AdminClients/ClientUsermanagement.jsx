@@ -141,7 +141,12 @@ const ClientUsermanagement = ({ title }) => {
             <div className="numbers">
               <span className="name">User Management</span>
               <span className="count">
-                {userteam?.data?.data?.length} members
+                {
+                  userteam?.data?.data?.filter(
+                    (item) => item?.isAccountBlocked === false
+                  )?.length
+                }{" "}
+                members
               </span>
             </div>
             <span className="about">
@@ -219,10 +224,14 @@ const ClientUsermanagement = ({ title }) => {
             <Tables
               setId={setId}
               manageuser
-              data={userteam?.data?.data}
+              data={userteam?.data?.data?.filter(
+                (item) => item?.isAccountBlocked === false
+              )}
               setStep={setStep}
             />
-            {userteam?.data?.data?.length >= 1 && (
+            {userteam?.data?.data?.filter(
+              (item) => item?.isAccountBlocked === false
+            )?.length >= 1 && (
               <Pagination
                 set={activater}
                 currentPage={currentPage}

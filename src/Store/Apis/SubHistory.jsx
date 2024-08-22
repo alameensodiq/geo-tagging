@@ -7,7 +7,8 @@ export const SubHistory = createAsyncThunk("subhistory", async (thunkAPI) => {
 
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}user/subscription`,
+      //   `${process.env.REACT_APP_BASE_URL}user/subscription`,
+      `${process.env.REACT_APP_BASE_URL}corporate/subscription-history`,
       {
         method: "GET",
         headers: {

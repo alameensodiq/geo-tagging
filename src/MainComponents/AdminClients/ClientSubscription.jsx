@@ -55,7 +55,7 @@ const ClientSubscription = ({ title }) => {
   const { subhistory, authenticatingsubhistory } = useSelector(
     (state) => state.subhistory
   );
-  console.log(subhistory?.data?.data);
+  console.log(subhistory?.data);
 
   //   const { businessrep, authenticatingbusinessrep } = useSelector((state) => state.businessrep);
   //   console.log(businessrep?.data?.data)
@@ -287,10 +287,10 @@ const ClientSubscription = ({ title }) => {
               <Tables
                 setDetail={setDetail}
                 subhistory
-                data={subhistory?.data?.data}
+                data={subhistory?.data}
                 setStep={setStep}
               />
-              {subhistory?.data?.data?.length >= 1 && (
+              {/* {subhistory?.data?.length >= 1 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
@@ -300,7 +300,7 @@ const ClientSubscription = ({ title }) => {
                   previous={previous}
                   next={next}
                 />
-              )}
+              )} */}
             </div>
           ) : pend ? (
             <FeaturesGrid dashboardy row={4}>

@@ -48,10 +48,10 @@ const SuperAdminCorporate = ({ title }) => {
   console.log(supercorporate?.data?.data);
 
   const activate = supercorporate?.data?.data?.filter(
-    (item) => item?.totalProjects > 0
+    (item) => item?.isAccountBlocked === false
   );
   const inactivate = supercorporate?.data?.data?.filter(
-    (item) => item?.totalProjects === 0
+    (item) => item?.isAccountBlocked === true
   );
 
   const setActivate = () => {

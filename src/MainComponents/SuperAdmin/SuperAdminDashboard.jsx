@@ -81,7 +81,13 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
 
   console.log(dateRange);
   return (
-    <Flex>
+    <Flex
+      progress={
+        dashboard?.data?.freeTrialConversion?.freeTrialOngoingPercentage
+      }
+      completed={dashboard?.data?.freeTrialConversion?.freeTrialEndedPercentage}
+      converted={dashboard?.data?.freeTrialConversion?.trialConvertedPercentage}
+    >
       <SuperAdminNavbar title={title} />
       <div className="maincontainer">
         <div className="top">
@@ -192,7 +198,13 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             <div className="superadminconversion">
               <div className="freeconvert">
                 <span className="title">Free Trial Conversion Rate</span>
-                <span className="percent">78%</span>
+                <span className="percent">
+                  {
+                    dashboard?.data?.freeTrialConversion
+                      ?.trialConvertedPercentage
+                  }
+                  %
+                </span>
               </div>
               <div className="colortrialdiv">
                 <div className="trial">
@@ -201,7 +213,16 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     <span className="round"></span>
                     <div className="progressdiv">
                       <span className="progress">Trial in Progress</span>
-                      <span className="progresspercent">50% (90)</span>
+                      <span className="progresspercent">
+                        {" "}
+                        {
+                          dashboard?.data?.freeTrialConversion
+                            ?.freeTrialOngoingPercentage
+                        }
+                        % (
+                        {dashboard?.data?.freeTrialConversion?.freeTrialOngoing}
+                        )
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -211,7 +232,19 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     <span className="round"></span>
                     <div className="progressdiv">
                       <span className="progress">Trial Completed</span>
-                      <span className="progresspercent">50% (90)</span>
+                      <span className="progresspercent">
+                        {" "}
+                        {
+                          dashboard?.data?.freeTrialConversion
+                            ?.freeTrialEndedPercentage
+                        }
+                        % (
+                        {
+                          dashboard?.data?.freeTrialConversion
+                            ?.freeTrialCompleted
+                        }
+                        )
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -221,7 +254,15 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     <span className="round"></span>
                     <div className="progressdiv">
                       <span className="progress">Trial Converted</span>
-                      <span className="progresspercent">50% (90)</span>
+                      <span className="progresspercent">
+                        {" "}
+                        {
+                          dashboard?.data?.freeTrialConversion
+                            ?.trialConvertedPercentage
+                        }
+                        % (
+                        {dashboard?.data?.freeTrialConversion?.trialConverted})
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1021,7 +1062,8 @@ const Flex = styled.div`
             justify-content: flex-start;
             width: 30%;
             .color {
-              width: 100%;
+              width: ${({ progress }) =>
+                progress === 0 ? "70%" : `${progress}%`};
               height: 6px;
               background: #1a87d7;
             }
@@ -1059,7 +1101,8 @@ const Flex = styled.div`
             justify-content: flex-start;
             width: 30%;
             .color {
-              width: 100%;
+              width: ${({ completed }) =>
+                completed === 0 ? "70%" : `${completed}%`};
               height: 6px;
               background: #7c65e0;
             }
@@ -1097,7 +1140,8 @@ const Flex = styled.div`
             justify-content: flex-start;
             width: 30%;
             .color {
-              width: 100%;
+              width: ${({ converted }) =>
+                converted === 0 ? "70%" : `${converted}%`};
               height: 6px;
               background: #f3827c;
             }

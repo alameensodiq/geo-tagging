@@ -67,6 +67,8 @@ const AppUserModal = ({
   const [bustate15, setBusstate15] = useState(false);
   const [bustate16, setBusstate16] = useState(false);
   const [bustate17, setBusstate17] = useState(false);
+  const [bustate18, setBusstate18] = useState(false);
+  const [bustate19, setBusstate19] = useState(false);
   const [view1, setView1] = useState(false);
   const [view2, setView2] = useState(false);
   const [view3, setView3] = useState(false);
@@ -272,6 +274,20 @@ const AppUserModal = ({
     if (bustate17 && editfreetrial?.status && !authenticatingeditfreetrial) {
       setStep(66);
     }
+    if (
+      bustate18 &&
+      editadmindetails?.status &&
+      !authenticatingeditadmindetails
+    ) {
+      setStep(27);
+    }
+    if (
+      bustate19 &&
+      editadmindetails?.status &&
+      !authenticatingeditadmindetails
+    ) {
+      setStep(68);
+    }
 
     console.log(update);
   }, [
@@ -315,7 +331,9 @@ const AppUserModal = ({
     editsub?.status,
     authenticatingeditsub,
     editfreetrial?.status,
-    authenticatingeditfreetrial
+    authenticatingeditfreetrial,
+    bustate18,
+    bustate19
   ]);
 
   const Viewing = () => {
@@ -1254,6 +1272,8 @@ const AppUserModal = ({
     setBusstate15(false);
     setBusstate16(false);
     setBusstate17(false);
+    setBusstate18(false);
+    setBusstate19(false);
     setReload(true);
     setView1(false);
     setView2(false);
@@ -1270,6 +1290,7 @@ const AppUserModal = ({
     setView13(false);
     setView14(false);
     setView15(false);
+    setValues(false);
   };
 
   const CreatUsermanagement = () => {
@@ -2687,7 +2708,7 @@ const AppUserModal = ({
             <LargeSignInButton
               title="Yes"
               onClick={() => {
-                dispatch(EditDetails({ id, value: values }));
+                dispatch(EditDetails({ id, value: !values }));
                 setBusstate6(true);
               }}
               large
@@ -3196,14 +3217,14 @@ const AppUserModal = ({
             }}
           >
             <span style={{ fontSize: "15px", color: "#1E1B39" }}>
-              Hello, Sheidu Susan
+              Hello, {detailing?.projectName}
             </span>
             <div style={{ fontSize: "14px", color: "#5A6376" }}>
               <span>
                 You have successfully made a payment of {detailing?.amount?.NGN}{" "}
                 naira to add a
               </span>
-              <span>total of {detailing?.businessRepCount} business reps</span>
+              <span>total of {detailing?.noOfBusinessReps} business reps</span>
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
@@ -3211,7 +3232,7 @@ const AppUserModal = ({
               {detailing?.amount?.NGN}
             </span>
             <span style={{ color: "#5A6376", fontSize: "14px" }}>
-              Paid {detailing?.paymentDateTime}
+              Paid {detailing?.amount?.NGN}
             </span>
           </div>
           <div
@@ -3232,7 +3253,7 @@ const AppUserModal = ({
             >
               <span style={{ color: "#5A6376", fontSize: "14px" }}>Time</span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                {detailing?.paymentDateTime}
+                {detailing?.dateSubscribed}
               </span>
             </div>
             <div
@@ -3244,7 +3265,7 @@ const AppUserModal = ({
             >
               <span style={{ color: "#5A6376", fontSize: "14px" }}>Date</span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                {detailing?.paymentDateTime}
+                {detailing?.dateSubscribed}
               </span>
             </div>
             <div
@@ -3258,7 +3279,7 @@ const AppUserModal = ({
                 Payment method
               </span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                {detailing?.method}
+                {detailing?.paymentMethod}
               </span>
             </div>
             <div
@@ -3300,7 +3321,7 @@ const AppUserModal = ({
                 Subscription Plan
               </span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                {detailing?.subscriptionName}
+                {detailing?.subscriptionType}
               </span>
             </div>
             <div
@@ -3342,7 +3363,7 @@ const AppUserModal = ({
                 No of Business Reps
               </span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                {detailing?.businessRepCount}
+                {detailing?.noOfBusinessReps}
               </span>
             </div>
           </div>
@@ -4229,7 +4250,10 @@ const AppUserModal = ({
             />
             <LargeSignInButton
               title="Confirm"
-              onClick={() => setStep(27)}
+              onClick={() => {
+                dispatch(EditAdminDetails({ id, value: values }));
+                setBusstate18(true);
+              }}
               large
               background
               color
@@ -4261,7 +4285,7 @@ const AppUserModal = ({
               justifyContent: "center"
             }}
           >
-            Account Created
+            Account Activated
           </div>
           <div
             style={{
@@ -6007,7 +6031,7 @@ const AppUserModal = ({
             <LargeSignInButton
               title="Yes"
               onClick={() => {
-                dispatch(EditDetails({ id, value: !values }));
+                dispatch(EditDetails({ id, value: values }));
                 setBusstate7(true);
               }}
               large
@@ -6138,7 +6162,7 @@ const AppUserModal = ({
             <LargeSignInButton
               title="Yes"
               onClick={() => {
-                dispatch(EditDetails({ id, value: values }));
+                dispatch(EditDetails({ id, value: !values }));
                 setBusstate8(true);
               }}
               large
@@ -6446,6 +6470,116 @@ const AppUserModal = ({
             }}
           >
             <span>You have successfully Updated Minimum Reps.</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={67}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        heading="Deactivate Corporate"
+        noheadborder
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "100px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              justifyContent: "flex-start",
+              alignItems: "flex-start"
+            }}
+          >
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              Are you sure you want to deactivate this Corporate
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => {
+                dispatch(EditAdminDetails({ id, value: !values }));
+                setBusstate19(true);
+              }}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={68}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Account Deactivated
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Deactivated this Corporate.</span>
           </div>
           <div
             style={{

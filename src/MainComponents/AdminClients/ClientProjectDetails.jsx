@@ -110,7 +110,7 @@ const ClientProjectDetails = ({ title }) => {
               onClick={() => navigate(-1)}
             />
             <span className="name">
-              Project Name: {projectdetails?.data?.name}
+              Project Name: {projectdetails?.data[0]?.projectName}
             </span>
           </div>
           <div className="modal-div">
