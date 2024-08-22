@@ -6,6 +6,7 @@ import { ReactComponent as Success } from "../assets/successful.svg";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
 import { ReactComponent as Dot } from "../assets/dotcircle.svg";
 import { ReactComponent as Markgreen } from "../assets/markgreen.svg";
+import { ReactComponent as Flutterwave } from "../assets/flutterwave.svg";
 import { ReactComponent as Call } from "../assets/call.svg";
 import { ReactComponent as Contact } from "../assets/contactedit.svg";
 import { ReactComponent as Busemail } from "../assets/busemail.svg";
@@ -43,7 +44,9 @@ const AppUserModal = ({
   supers,
   setUserdetails,
   id,
-  detailing
+  detailing,
+  assigned,
+  SendAssignRepBolu
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
@@ -95,6 +98,17 @@ const AppUserModal = ({
   });
 
   console.log(data);
+
+  console.log(assigned);
+
+  const timestamp = `${detailing?.dateSubscribed}`;
+  const formattedDate = timestamp.split("T")[0];
+  const formattedTime = timestamp.split("T")[1];
+  // console.log(datePart);
+  // const formattedDate = date.toISOString().split("T")[0];
+  // console.log(formattedDate);
+  // const formattedTime = date.toISOString().split("T")[1];
+  // console.log(formattedTime);
 
   const [team, setTeam] = useState({
     name: "",
@@ -3218,7 +3232,7 @@ const AppUserModal = ({
             }}
           >
             <span style={{ fontSize: "15px", color: "#1E1B39" }}>
-              Hello, {detailing?.projectName}
+              Hello, {detailing?.nameOfSubscriber}
             </span>
             <div style={{ fontSize: "14px", color: "#5A6376" }}>
               <span>
@@ -3254,7 +3268,7 @@ const AppUserModal = ({
             >
               <span style={{ color: "#5A6376", fontSize: "14px" }}>Time</span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                {detailing?.dateSubscribed}
+                {formattedTime}
               </span>
             </div>
             <div
@@ -3266,7 +3280,7 @@ const AppUserModal = ({
             >
               <span style={{ color: "#5A6376", fontSize: "14px" }}>Date</span>
               <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                {detailing?.dateSubscribed}
+                {formattedDate}
               </span>
             </div>
             <div
@@ -6599,6 +6613,566 @@ const AppUserModal = ({
               color
             />
           </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={69}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        noheadborder
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            alignItems: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingTop: "10px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "19px",
+                  fontWeight: "500"
+                }}
+              >
+                Review & Submit
+              </span>
+              <span
+                style={{
+                  color: "#788194",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                Confirm Changes before you submit
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              // paddingInline: '30px',
+              // gap:'50px',
+              // alignItems: "center",
+              justifyContent: "flex-start",
+              paddingTop: "20px",
+              width: "100%",
+              height: "100px",
+              gap: "50px",
+              paddingLeft: "30px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                width: "35%",
+                height: "100%"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                Name of project
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                {assigned?.projectName}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                width: "25%",
+                height: "100%"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                No of Business Reps.
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                {assigned?.numberOfReps}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                width: "40%",
+                height: "100%"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                No of Locations
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                {assigned?.numberOfLocations}
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              // paddingInline: '30px',
+              // gap:'50px',
+              // alignItems: "center",
+              justifyContent: "flex-start",
+              paddingTop: "10px",
+              width: "100%",
+              gap: "20px",
+              height: "100px",
+              paddingLeft: "30px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                // width:'35%',
+                height: "100%",
+                marginRight: "70px"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                Resumption time
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                {assigned?.resumptionTime}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                // width:'25%',
+                height: "100%",
+                marginRight: "40px"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                Closing time
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                {assigned?.closingTime}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                // width:'40%',
+                height: "100%"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                Hourly time stamp?
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                {assigned?.hourlyStamp ? "True" : "False"}
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              // paddingInline: '30px',
+              // gap:'50px',
+              // alignItems: "center",
+              justifyContent: "flex-start",
+              paddingTop: "10px",
+              width: "100%",
+              height: "100px",
+              paddingLeft: "30px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "flex-start",
+                // width:'35%',
+                height: "100%",
+                marginRight: "70px"
+              }}
+            >
+              <span
+                style={{
+                  color: "#5A6376",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                Daily payout
+              </span>
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "12px",
+                  fontWeight: "500"
+                }}
+              >
+                {assigned?.dailyPayout}
+              </span>
+            </div>
+          </div>
+
+          <LargeSignInButton
+            onClick={() => setStep(70)}
+            bigger
+            title={"Activate"}
+            background
+            color
+          />
+        </div>
+      </AppModal>
+      <AppModal
+        step={70}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        noheadborder
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            alignItems: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingTop: "10px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "19px",
+                  fontWeight: "500"
+                }}
+              >
+                Subscription Type
+              </span>
+              <span
+                style={{
+                  color: "#788194",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                You are to use the standard plan to continue payment for your
+                selected
+              </span>
+              <span
+                style={{
+                  color: "#788194",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                business reps
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              border: "1px solid #1A87D7",
+              borderRadius: "10px",
+              padding: "15px",
+              display: "flex",
+              height: "80px",
+              flexDirection: "row",
+              justifyContent: "space-between"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+                color: "#1A87D7",
+                fontSize: "14px",
+                fontWeight: "500",
+                alignItems: "center"
+              }}
+            >
+              <span>{assigned?.subscriptionName}</span>
+              <span>{assigned?.numberOfReps}</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                color: "#1A87D7",
+                fontSize: "14px",
+                marginTop: "10px",
+                fontWeight: "500",
+                alignItems: "center"
+              }}
+            >
+              <span>{assigned?.calculatedAmount}</span>
+              <span>Each Business Rep</span>
+            </div>
+          </div>
+          <div
+            style={{
+              marginTop: "50px",
+              display: "flex",
+              flexDirection: "row",
+              gap: "20px",
+              justifyContent: "center",
+              color: "#1A87D7",
+              fontSize: "15px",
+              fontWeight: "500"
+            }}
+          >
+            <span>Total Amount</span>
+            <span>
+              {(() => {
+                let numericAmount = parseFloat(
+                  (assigned?.calculatedAmount || "").replace(/^N/, "")
+                );
+                if (isNaN(numericAmount)) {
+                  numericAmount = 0;
+                }
+                const result = numericAmount * (assigned?.numberOfReps || 1);
+                return result.toFixed(2);
+              })()}
+            </span>
+          </div>
+
+          <LargeSignInButton
+            onClick={() => SendAssignRepBolu()}
+            bigger
+            title={"Proceed"}
+            background
+            color
+          />
+        </div>
+      </AppModal>
+      <AppModal
+        step={71}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        noheadborder
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            alignItems: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingTop: "10px"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "center"
+              }}
+            >
+              <span
+                style={{
+                  color: "#1E1B39",
+                  fontSize: "19px",
+                  fontWeight: "500"
+                }}
+              >
+                Payment Method
+              </span>
+              <span
+                style={{
+                  color: "#788194",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                You are about to pay a total of 10,000 naira for five selected
+                business
+              </span>
+              <span
+                style={{
+                  color: "#788194",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                reps. Kindly select your preffered payment method below to
+                continue
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              border: "1px solid #1A87D7",
+              borderRadius: "10px",
+              padding: "15px",
+              display: "flex",
+              height: "80px",
+              flexDirection: "row",
+              justifyContent: "flex-start"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "20px",
+                color: "#1A87D7",
+                fontSize: "14px",
+                fontWeight: "500",
+                alignItems: "center"
+              }}
+            >
+              <span>
+                <Flutterwave />
+              </span>
+              <span>Flutterwave</span>
+            </div>
+          </div>
+
+          <LargeSignInButton
+            onClick={() => handleCloseModal4()}
+            bigger
+            title={"Proceed"}
+            background
+            color
+          />
         </div>
       </AppModal>
     </div>

@@ -1,15 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const AssignedRep = createAsyncThunk(
-  "assigned",
-  async ({ rep, projectId }, thunkAPI) => {
+export const Payment = createAsyncThunk(
+  "payment",
+  async ({ rep, projectId, amount }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/project-summary/${projectId}`,
+        `${process.env.REACT_APP_BASE_URL}user/project/${projectId}?amount=${amount}`,
         {
           method: "POST",
           headers: {

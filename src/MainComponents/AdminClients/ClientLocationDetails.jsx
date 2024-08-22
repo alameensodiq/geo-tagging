@@ -16,8 +16,11 @@ import { LocationModalButton } from "../../bits/LocationModalButton";
 import { AddProject } from "../../Store/Apis/AddProject";
 import toast from "react-hot-toast";
 import { AssignedRep } from "../../Store/Apis/AssignedRep";
+import { Payment } from "../../Store/Apis/Payment";
 
 const ClientLocationDetails = ({ title }) => {
+  const [amounts, setAmounts] = useState("");
+  const [numbers, setNumbers] = useState("");
   const [step, setStep] = useState(0);
   const [activated, SetActivate] = useState(true);
   const [pend, SetPend] = useState(false);
@@ -29,6 +32,8 @@ const ClientLocationDetails = ({ title }) => {
   const [onload, setOnload] = useState(false);
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [bustate, setbustate] = useState(false);
+  const [bustate11, setbustate11] = useState(false);
+  const [bustate12, setbustate12] = useState(false);
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
@@ -103,6 +108,16 @@ const ClientLocationDetails = ({ title }) => {
   );
   console.log(addproject?.data);
 
+  const { assigned, authenticatingassigned } = useSelector(
+    (state) => state.assigned
+  );
+
+  console.log(assigned);
+
+  const { payment, authenticatingpayment } = useSelector(
+    (state) => state.payment
+  );
+
   useEffect(() => {
     if (addproject?.data?.locations?.length > 0) {
       const defaultLocationId = addproject.data.locations[0].id;
@@ -130,6 +145,57 @@ const ClientLocationDetails = ({ title }) => {
     if (reload) {
       // dispatch(CorporateBusinessRep())
       setReload(false);
+      SetActivating1(false);
+      SetPend(false);
+      SetActivate(true);
+      setbustate11(false);
+      setbustate12(false);
+      setRep([
+        {
+          user_id: "",
+          location_id: ""
+        }
+      ]);
+      setAssign(() => {
+        const today = new Date();
+        const startDate = formatDate(today);
+        const stopDate = new Date(today);
+        stopDate.setMonth(stopDate.getMonth() + 1);
+        if (stopDate.getDate() < today.getDate()) {
+          stopDate.setDate(0);
+        }
+
+        return {
+          name: "",
+          description: "",
+          startDate: startDate,
+          stopDate: formatDate(stopDate),
+          startTime: "09:00:00",
+          stopTime: "17:00:00",
+          isHourlyStamp: false,
+          minutesToAdd: 5,
+          duration: 60,
+          dailyPay: 0,
+          locations: [
+            {
+              address: "",
+              longitude: "-122.084",
+              latitude: "37.4219999",
+              type: "Office",
+              place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+            }
+          ],
+          weekdays: {
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false,
+            sunday: false
+          }
+        };
+      });
     }
     if (addproject?.status && !authenticatingaddproject && bustate) {
       SetActivating1(true);
@@ -137,7 +203,42 @@ const ClientLocationDetails = ({ title }) => {
       SetPend(false);
       setbustate(false);
     }
-  }, [reload, addproject?.status, authenticatingaddproject, bustate]);
+    if (
+      assigned?.data?.numberOfReps &&
+      assigned?.data?.calculatedAmount &&
+      assigned?.status &&
+      !authenticatingassigned &&
+      bustate11
+    ) {
+      SetActivating1(true);
+      SetActivate(false);
+      SetPend(false);
+      setStep(69);
+      setbustate11(false);
+      setAmounts(assigned?.data?.calculatedAmount);
+      setNumbers(assigned?.data?.numberOfReps);
+    }
+    if (payment?.status && !authenticatingpayment && bustate12) {
+      SetActivating1(false);
+      SetActivate(true);
+      setStep(71);
+      SetPend(false);
+      setbustate11(false);
+    }
+  }, [
+    reload,
+    addproject?.status,
+    authenticatingaddproject,
+    bustate,
+    bustate11,
+    bustate12,
+    assigned?.status,
+    authenticatingassigned,
+    payment?.status,
+    authenticatingpayment,
+    assigned?.data?.calculatedAmount,
+    assigned?.data?.numberOfReps
+  ]);
 
   useEffect(() => {
     // Extract businessrep data
@@ -318,13 +419,37 @@ const ClientLocationDetails = ({ title }) => {
     }));
   };
 
+  // useEffect(() => {
+  //   if (assigned?.numberOfReps && assigned?.calculatedAmount) {
+  //     setAmounts(assigned?.calculatedAmount);
+  //     setNumbers(assigned?.numberOfReps);
+  //   }
+  // }, [assigned?.numberOfReps, assigned?.calculatedAmount]);
+
+  console.log(amounts);
+
+  let numericAmount = parseFloat((amounts || "").replace(/^N/, ""));
+  if (isNaN(numericAmount)) {
+    numericAmount = 0;
+  }
+  const result = numericAmount * (numbers || 1);
+
   const SendAssignRep = () => {
     dispatch(AssignedRep({ rep, projectId: addproject?.data?.id }));
+    setbustate11(true);
   };
 
-  const { assigned, authenticatingassigned } = useSelector(
-    (state) => state.assigned
-  );
+  const SendAssignRepBolu = () => {
+    dispatch(
+      Payment({
+        rep,
+        projectId: addproject?.data?.id,
+        amount: result
+      })
+    );
+    setbustate12(true);
+  };
+
   console.log(assigned);
 
   const defaultUser =
@@ -334,13 +459,20 @@ const ClientLocationDetails = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        assigned={assigned?.data ? assigned?.data : []}
+        setStep={setStep}
+        step={step}
+        SendAssignRepBolu={SendAssignRepBolu}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="firstdiv">
           <div className="backbutton">
             <Goback
               style={{ cursor: "pointer" }}
-              onClick={() => navigate(-1)}
+              // onClick={() => navigate(-1)}
+              onClick={() => setStep(70)}
             />
             <span className="name">Assign Project</span>
           </div>

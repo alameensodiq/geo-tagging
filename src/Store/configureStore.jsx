@@ -38,6 +38,7 @@ import { EditAdminDetailsSlice } from "./Reducers/EditAdminDetails";
 import { EditSubSlice } from "./Reducers/EditSub";
 import { EditFreeTrialSlice } from "./Reducers/EditFreeTrial";
 import { SubscribersSlice } from "./Reducers/Subscribers";
+import { PaymentSlice } from "./Reducers/Payment";
 
 export default configureStore({
   reducer: {
@@ -79,6 +80,7 @@ export default configureStore({
     editadmindetails: EditAdminDetailsSlice?.reducer,
     editsub: EditSubSlice?.reducer,
     editfreetrial: EditFreeTrialSlice?.reducer,
-    subscribers: SubscribersSlice?.reducer
+    subscribers: SubscribersSlice?.reducer,
+    payment: PaymentSlice?.reducer
   }
 });
