@@ -2,16 +2,30 @@ import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function StackedBarchart() {
+function StackedBarchart({ data }) {
+  const months = [
+    "JAUNARY",
+    "FEBRUAR",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTOBER",
+    "NOVEMBER",
+    "DECEMBER"
+  ];
   const series = [
     {
       //   name: 'Net Profit',
-      data: [200, 300, 500, 450, 670, 400, 450, 350, 790, 300, 200, 380]
+      data: months.map((month) => data[month]?.expectedNumberOfCheckins || 0)
     },
     {
       //   name: 'Net Profit',
-      data: [220, 70, 50, 120, 100, 40, 50, 330, 120, 180, 200, 308]
-    },
+      data: months.map((month) => data[month]?.actualNumberOfCheckins || 0)
+    }
   ];
 
   const options = {
@@ -27,23 +41,25 @@ function StackedBarchart() {
     grid: {
       show: false
     },
-    responsive: [{
+    responsive: [
+      {
         breakpoint: 480,
         options: {
           legend: {
-            position: 'bottom',
+            position: "bottom",
             offsetX: -10,
             offsetY: 0
           }
         }
-      }],
+      }
+    ],
     plotOptions: {
       bar: {
         horizontal: false,
         columnWidth: "45%",
         states: {
           hover: {
-            color:" #EAECF0"
+            color: " #EAECF0"
           }
         }
       }
@@ -98,7 +114,7 @@ function StackedBarchart() {
     //   },
     fill: {
       opacity: 1,
-      colors: ["#28385C","#EAECF0"],
+      colors: ["#28385C", "#EAECF0"]
     },
 
     tooltip: {

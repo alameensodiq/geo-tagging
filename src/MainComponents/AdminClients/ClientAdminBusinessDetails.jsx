@@ -20,6 +20,7 @@ import Radial from "../../bits/Radial";
 import { useDispatch, useSelector } from "react-redux";
 import { CorporateBusinessRepDetails } from "../../Store/Apis/CorporateBusinessRepDetails";
 import Moment from "react-moment";
+import { Complaince } from "../../Store/Apis/Complaince";
 
 const ClientAdminBusinessDetails = ({ title }) => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
 
   useEffect(() => {
     dispatch(CorporateBusinessRepDetails({ id }));
+    dispatch(Complaince({ id }));
   }, [id]);
 
   const PickDate = () => {
@@ -78,6 +80,11 @@ const ClientAdminBusinessDetails = ({ title }) => {
   );
   console.log(businessrepdetails?.data);
 
+  const { compliance, authenticatingcompliance } = useSelector(
+    (state) => state.compliance
+  );
+  console.log(compliance?.data);
+
   return (
     <Flex>
       <Navbar title={title} />
@@ -101,7 +108,11 @@ const ClientAdminBusinessDetails = ({ title }) => {
             </div>
             <div className="activedetails">
               {/* <span className="image"></span> */}
-              <img src={businessrepdetails?.data?.user?.avatar} className="image" alt="pics"/>
+              <img
+                src={businessrepdetails?.data?.user?.avatar}
+                className="image"
+                alt="pics"
+              />
               <span className="name">
                 {businessrepdetails?.data?.user?.lastName}{" "}
                 {businessrepdetails?.data?.user?.firstName}
@@ -162,7 +173,13 @@ const ClientAdminBusinessDetails = ({ title }) => {
           <div className="last">
             <div className="cover">
               <div className="radial">
-                <Radial data={businessrepdetails?.data?.targetAttendance ? businessrepdetails?.data?.targetAttendance : []}/>
+                <Radial
+                  data={
+                    businessrepdetails?.data?.targetAttendance
+                      ? businessrepdetails?.data?.targetAttendance
+                      : []
+                  }
+                />
               </div>
               <div className="circle">
                 <span className="label">Total Attendance</span>
@@ -236,15 +253,42 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 </div>
               </div>
               <div className="donuts">
-                <Donuts data1={businessrepdetails?.data?.totalPunctual  ? businessrepdetails?.data?.totalPunctual: []} data2={businessrepdetails?.data?.totalNonPunctual ? businessrepdetails?.data?.totalNonPunctual : []}/>
+                <Donuts
+                  data1={
+                    businessrepdetails?.data?.totalPunctual
+                      ? businessrepdetails?.data?.totalPunctual
+                      : []
+                  }
+                  data2={
+                    businessrepdetails?.data?.totalNonPunctual
+                      ? businessrepdetails?.data?.totalNonPunctual
+                      : []
+                  }
+                />
                 <div className="label">
                   <div className="punctual-div">
                     <span className="punctual"></span>
-                    <span className="rate">Punctual-{ businessrepdetails?.data?.totalPunctual ? (businessrepdetails?.data?.totalPunctual/(businessrepdetails?.data?.totalPunctual + businessrepdetails?.data?.totalNonPunctual)) * 100  : "0"}</span>
+                    <span className="rate">
+                      Punctual-
+                      {businessrepdetails?.data?.totalPunctual
+                        ? (businessrepdetails?.data?.totalPunctual /
+                            (businessrepdetails?.data?.totalPunctual +
+                              businessrepdetails?.data?.totalNonPunctual)) *
+                          100
+                        : "0"}
+                    </span>
                   </div>
                   <div className="late-div">
                     <span className="late"></span>
-                    <span className="rate">Late-{ businessrepdetails?.data?.totalNonPunctual ? (businessrepdetails?.data?.totalNonPunctual/(businessrepdetails?.data?.totalPunctual + businessrepdetails?.data?.totalNonPunctual)) * 100  : "0"}</span>
+                    <span className="rate">
+                      Late-
+                      {businessrepdetails?.data?.totalNonPunctual
+                        ? (businessrepdetails?.data?.totalNonPunctual /
+                            (businessrepdetails?.data?.totalPunctual +
+                              businessrepdetails?.data?.totalNonPunctual)) *
+                          100
+                        : "0"}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -286,7 +330,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   <span className="rate">Attendance captured-(0%)</span>
                 </div>
               </div>
-              <StackedBarchart />
+              <StackedBarchart data={compliance?.data} />
             </>
           ) : activated2 ? (
             <>
@@ -296,17 +340,32 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   placeholder="Search for Project name, geo location, e.t.c"
                 />
               </div>
-              <Tables projects data={businessrepdetails?.data?.projects ? businessrepdetails?.data?.projects : []}/>
+              <Tables
+                projects
+                data={
+                  businessrepdetails?.data?.projects
+                    ? businessrepdetails?.data?.projects
+                    : []
+                }
+              />
             </>
           ) : pend2 ? (
             <>
               <div className="searchContainer">
                 <span className="rating">
                   Earned wages from Jan - Dec:{" "}
-                  <span className="amount">{businessrepdetails?.data?.totalEarned?.AMOUNT}</span>
+                  <span className="amount">
+                    {businessrepdetails?.data?.totalEarned?.AMOUNT}
+                  </span>
                 </span>
               </div>
-              <BarChart data={businessrepdetails?.data?.monthlyWages ? businessrepdetails?.data?.monthlyWages : []} />
+              <BarChart
+                data={
+                  businessrepdetails?.data?.monthlyWages
+                    ? businessrepdetails?.data?.monthlyWages
+                    : []
+                }
+              />
             </>
           ) : (
             ""
