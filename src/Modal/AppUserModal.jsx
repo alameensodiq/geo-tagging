@@ -1254,6 +1254,7 @@ const AppUserModal = ({
       numberOfLocations: "",
       daysEligible: ""
     });
+    setBusplan(false);
     setUpdate("");
     setStep(0);
     setBusstate(false);
