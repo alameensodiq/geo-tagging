@@ -1430,7 +1430,9 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
+                {
+                  data?.map((item) =>
+                    <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "15%" }}>
                     <div
                       style={{
@@ -1468,8 +1470,10 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     20-10-2024
                   </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow style={{ position: "relative" }}>
+                    </StyledTableRow>
+                  )
+                }
+                {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "15%" }}>
                     <div
                       style={{
@@ -1546,7 +1550,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "15%" }}>
                     20-10-2024
                   </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>

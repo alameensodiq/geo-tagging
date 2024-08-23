@@ -102,12 +102,12 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
         </div>
         <FeaturesGrid dashboard superoverview row={2}>
           <CorporateReportCards
-            amount={clientreport?.data?.totalSituationReports}
+            amount={clientreport?.data?.SituationReports?.totalSituationReports}
             statement={"Total No of Situation Reports"}
             percent={"18"}
           />
           <CorporateReportCards
-            amount={clientreport?.data?.totalWelfareReports}
+            amount={clientreport?.data?.SituationReports?.totalWelfareReports}
             statement={"Total No of Welfare Reports"}
             percent={"16"}
           />
@@ -150,7 +150,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   <span className="comp">
                     With Incident{" "}
                     <span className="percent">
-                      {clientreport?.data?.incidentReports}
+                      {clientreport?.data?.SituationReports?.incidentReports}
                     </span>
                   </span>
                   <div className="bardiv">
@@ -171,7 +171,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   <span className="comp">
                     Without Incident{" "}
                     <span className="percent">
-                      {clientreport?.data?.incidentFreeReports}
+                      {clientreport?.data?.SituationReports?.incidentFreeReports}
                     </span>
                   </span>
                   <div className="bardiv">
@@ -332,7 +332,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
               placeholder="Search for name, project name e.t.c"
             />
           </div>
-          <Tables reporttable />
+          <Tables reporttable data={clientreport?.data?.IncidentsCheck?.userRemarksStats} />
         </div>
       </div>
     </Flex>
