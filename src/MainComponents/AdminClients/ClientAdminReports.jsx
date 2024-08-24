@@ -141,7 +141,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
               </div>
             </div>
             <div className="reportdonut">
-              <Donuts report data1={[]} data2={[]} />
+              <Donuts report data1={clientreport?.data?.SituationReports?.incidentReports} data2={clientreport?.data?.SituationReports?.incidentFreeReports} />
               <div className="detailscompliancy">
                 <div
                   className="firstcompliance"
@@ -217,21 +217,42 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
             </div> */}
             <div className="welfare">
               <div className="detailscompliancy">
-                <div className="firstcompliance">
+                {
+                  clientreport?.data?.WelfareReports 
+                  &&
+                  <div className="firstcompliance">
                   <span className="emoji">😃</span>
                   <div className="main">
                     <span className="comp">Great</span>
                     <div className="bardiv">
                       <div className="backgrounddiv">
-                        <div className="bar"></div>
+                        <div className="bar" style={{width: clientreport?.data?.WelfareReports?.onePercent}}></div>
                       </div>
-                      <span className="percent">65%</span>
+                      <span className="percent">{clientreport?.data?.WelfareReports?.onePercent}%</span>
                       <LeftCarat className="carat" />
                     </div>
                   </div>
                 </div>
+                }
+                {
+                  clientreport?.data?.WelfareReports 
+                  &&
+                  <div className="firstcompliance">
+                  <span className="emoji">😊</span>
+                  <div className="main">
+                    <span className="comp">Happy</span>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                      <div className="nonbar" style={{width: clientreport?.data?.WelfareReports?.twoPercent}}></div>
+                      </div>
+                      <span className="percent">{clientreport?.data?.WelfareReports?.twoPercent}%</span>
+                      <LeftCarat className="carat" />
+                    </div>
+                  </div>
+                </div>
+                }
                 {/* <span className="emoji">😃</span> */}
-                <div className="firstcompliance">
+                {/* <div className="firstcompliance">
                   <span className="emoji">😊</span>
                   <div className="main">
                     <span className="comp">Happy</span>
@@ -243,8 +264,28 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                       <LeftCarat className="carat" />
                     </div>
                   </div>
+                </div> */}
+                {
+                  clientreport?.data?.WelfareReports 
+                  &&
+                  <div className="firstcompliance">
+                  <span className="emoji">😌</span>
+                  <div className="main">
+                  <span className="comp">Okay</span>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                      <div
+                          className="nonbar"
+                          style={{ background: "#7C65E0",width: clientreport?.data?.WelfareReports?.threePercent }}
+                        ></div>
+                      </div>
+                      <span className="percent">{clientreport?.data?.WelfareReports?.threePercent}%</span>
+                      <LeftCarat className="carat" />
+                    </div>
+                  </div>
                 </div>
-                <div className="firstcompliance">
+                }
+                {/* <div className="firstcompliance">
                   <span className="emoji">😌</span>
                   <div className="main">
                     <span className="comp">Okay</span>
@@ -259,8 +300,28 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                       <LeftCarat className="carat" />
                     </div>
                   </div>
+                </div> */}
+                {
+                  clientreport?.data?.WelfareReports 
+                  &&
+                  <div className="firstcompliance">
+                  <span className="emoji">😏</span>
+                  <div className="main">
+                  <span className="comp">Frustrated</span>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                      <div
+                          className="nonbar"
+                          style={{ background: "#F3827C",width: clientreport?.data?.WelfareReports?.fourPercent }}
+                        ></div>
+                      </div>
+                      <span className="percent">{clientreport?.data?.WelfareReports?.fourPercent}%</span>
+                      <LeftCarat className="carat" />
+                    </div>
+                  </div>
                 </div>
-                <div className="firstcompliance">
+                }
+                {/* <div className="firstcompliance">
                   <span className="emoji">😏</span>
                   <div className="main">
                     <span className="comp">Frustrated</span>
@@ -275,10 +336,30 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                       <LeftCarat className="carat" />
                     </div>
                   </div>
+                </div> */}
+                 {
+                  clientreport?.data?.WelfareReports 
+                  &&
+                  <div className="firstcompliance">
+                  <span className="emoji">😡</span>
+                  <div className="main">
+                  <span className="comp">Angry</span>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                      <div
+                          className="nonbar"
+                          style={{ background: "#FE6510",width: clientreport?.data?.WelfareReports?.fivePercent }}
+                        ></div>
+                      </div>
+                      <span className="percent">{clientreport?.data?.WelfareReports?.fivePercent}%</span>
+                      <LeftCarat className="carat" />
+                    </div>
+                  </div>
                 </div>
-                <div
+                }
+                {/* <div
                   className="firstcompliance"
-                  onClick={() => navigate(`../${businessreport}/emoji`)}
+                  // onClick={() => navigate(`../${businessreport}/emoji`)}
                 >
                   <span className="emoji">😡</span>
                   <div className="main">
@@ -294,7 +375,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                       <LeftCarat className="carat" />
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -575,13 +656,13 @@ const Flex = styled.div`
                   width: 80%;
                   height: 10px;
                   .bar {
-                    width: 70%;
+                    /* width: 70%; */
                     height: 10px;
                     background: #1a87d7;
                     border-radius: 6px;
                   }
                   .nonbar {
-                    width: 70%;
+                    /* width: 70%; */
                     height: 10px;
                     background: #28385c;
                     border-radius: 6px;

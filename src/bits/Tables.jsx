@@ -1419,13 +1419,20 @@ const Tables = ({
                     INCIDENT REPORT(%)
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
-                    Reports
+                  INCIDENT FREE REPORT(%)
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    STAUS
+                  REMARKS
                   </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                  NO-REMARKS
+                  </StyledTableCell>
+                  {/* <StyledTableCell style={{ width: "10%" }}>
+                    STAUS
+                  </StyledTableCell> */}
                   <StyledTableCell style={{ width: "15%" }}>
-                    DATE SUBMITTED
+                    {/* DATE SUBMITTED */}
+                    SHIFTS
                   </StyledTableCell>
                 </TableRow>
               </TableHead>
@@ -1441,34 +1448,47 @@ const Tables = ({
                         gap: "10px"
                       }}
                     >
-                      <div
+                      <img src={item?.avatar} style={{
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          backgroundColor: "black"
+                        }} alt="avatar"/>
+                      {/* <div
                         style={{
                           borderRadius: "50%",
                           width: "30px",
                           height: "30px",
                           backgroundColor: "black"
                         }}
-                      ></div>
+                      ></div> */}
                     </div>
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
-                    Sheidu Susan
+                    {item?.businessRepName}
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
-                    20%
+                    {item?.incidentsPercentage}
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
-                    Hello please I want to...
+                  {item?.incidentFreePercentage}
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
+                  {item?.remarksGivenCount}
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "10%" }}>
+                  {item?.remarksNotGivenCount}
+                  </StyledTableCell>
+                  {/* <StyledTableCell style={{ width: "10%" }}>
                     <button className="activer-button">
                       <div className="activer">
                         <span className="round"></span>Read
                       </div>
                     </button>
-                  </StyledTableCell>
+                  </StyledTableCell> */}
                   <StyledTableCell style={{ width: "15%" }}>
-                    20-10-2024
+                    {/* 20-10-2024 */}
+                    {item?.totalCompletedShifts}
                   </StyledTableCell>
                     </StyledTableRow>
                   )
