@@ -558,7 +558,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 <Calendar onClick={() => PickDater()} className="calendar" />
               </div>
             </div>
-            {dashboard?.data?.AllProjectsWithTotalHours?.map((item) => (
+            {dashboard?.data?.AllProjectsWithTotalHours?.slice(0,6)?.map((item) => (
               <div className="totalhours">
                 <div className="lefthours">
                   <span className="project">Project Name</span>
