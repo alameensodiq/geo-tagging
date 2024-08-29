@@ -17,8 +17,25 @@ import { AddProject } from "../../Store/Apis/AddProject";
 import toast from "react-hot-toast";
 import { AssignedRep } from "../../Store/Apis/AssignedRep";
 import { Payment } from "../../Store/Apis/Payment";
+import {
+  setKey,
+  setDefaults,
+  setLanguage,
+  setRegion,
+  fromAddress,
+  fromLatLng,
+  fromPlaceId,
+  setLocationType,
+  geocode,
+  RequestType
+} from "react-geocode";
 
 const ClientLocationDetails = ({ title }) => {
+  setDefaults({
+    key: "AIzaSyCDpzicBtmV63ASQ-dbFDts4VGjX8VjiNM", // Your API key here.
+    language: "en", // Default language for responses.
+    region: "es" // Default region for responses.
+  });
   const [amounts, setAmounts] = useState("");
   const [numbers, setNumbers] = useState("");
   const [step, setStep] = useState(0);
@@ -76,12 +93,19 @@ const ClientLocationDetails = ({ title }) => {
       duration: 60,
       dailyPay: 0,
       locations: [
+        // {
+        //   address: "",
+        //   longitude: "-122.084",
+        //   latitude: "37.4219999",
+        //   type: "Office",
+        //   place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+        // }
         {
           address: "",
-          longitude: "-122.084",
-          latitude: "37.4219999",
+          longitude: "",
+          latitude: "",
           type: "Office",
-          place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+          place_id: ""
         }
       ],
       weekdays: {
@@ -875,6 +899,42 @@ const ClientLocationDetails = ({ title }) => {
                                     : location
                                 )
                               }));
+                              fromAddress(e.target.value)
+                                .then(({ results }) => {
+                                  if (results.length > 0) {
+                                    const { lat, lng } =
+                                      results[0].geometry.location;
+                                    const placeId = results[0].place_id;
+
+                                    console.log("Latitude:", lat);
+                                    console.log("Longitude:", lng);
+                                    console.log("Place ID:", placeId);
+
+                                    // Update the location with new latitude, longitude, and place_id
+                                    setAssign((prev) => ({
+                                      ...prev,
+                                      locations: prev.locations.map(
+                                        (location, i) =>
+                                          i === index
+                                            ? {
+                                                ...location,
+                                                latitude: lat.toString(),
+                                                longitude: lng.toString(),
+                                                place_id: placeId
+                                              }
+                                            : location
+                                      )
+                                    }));
+                                  } else {
+                                    console.log("No results found");
+                                  }
+                                })
+                                .catch((error) => {
+                                  console.error(
+                                    "Error fetching geocode data:",
+                                    error
+                                  );
+                                });
                             }}
                             value={assign.locations[index]?.address || ""}
                             className="nametype"
