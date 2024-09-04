@@ -190,10 +190,10 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             <Donuts
               overview
               data1={
-                corporatedashboard?.data?.TimestampCompliance?.totalCompliant
+                corporatedashboard?.data?.TimestampCompliance?.totalCompliant ? corporatedashboard?.data?.TimestampCompliance?.totalCompliant : 0
               }
               data2={
-                corporatedashboard?.data?.TimestampCompliance?.totalNonCompliant
+                corporatedashboard?.data?.TimestampCompliance?.totalNonCompliant ? corporatedashboard?.data?.TimestampCompliance?.totalNonCompliant : 0
               }
             />
             <div className="detailscompliance">
