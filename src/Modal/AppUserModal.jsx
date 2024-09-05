@@ -904,9 +904,10 @@ const AppUserModal = ({
   const ChangeFree = (e) => {
     const { name, value } = e.target;
     console.log(value);
+    const numericValue = value.replace(/[^0-9]/g, '');
     setFree({
       ...free,
-      [name]: value
+      [name]: numericValue
     });
   };
 
@@ -928,6 +929,17 @@ const AppUserModal = ({
     });
   };
 
+  const ChangeteamPhone = (e) => {
+    const { name, value } = e.target;
+    const numericValue = value.replace(/[^0-9]/g, '');
+    console.log(value);
+    setTeam({
+      ...team,
+      [name]: numericValue
+    });
+  };
+
+
   const createSub = (e) => {
     const { name, value } = e.target;
     console.log(value);
@@ -940,9 +952,10 @@ const AppUserModal = ({
   const EditSubscription = (e) => {
     const { name, value } = e.target;
     console.log(value);
+    const numericValue = value.replace(/[^0-9]/g, '');
     setEditingSub({
       ...editingsub,
-      [name]: value
+      [name]: numericValue
     });
   };
 
@@ -1122,6 +1135,28 @@ const AppUserModal = ({
     }
     setBusstate2(true);
   };
+
+  const Nexting = () => {
+    const { name, rcNumber, address, phone, email, isBusinessPlan } = corp || {};
+    const allVariablesPresent = [
+      name,
+      rcNumber,
+      address,
+      phone,
+      email
+    ].every(variable => variable !== undefined && variable !== null && variable.trim() !== '');
+  
+    const isBusinessPlanValid = isBusinessPlan === true || isBusinessPlan === false;
+  
+    if (allVariablesPresent && isBusinessPlanValid) {
+      setStep(24);
+    } else {
+      toast.error("One or more required fields are missing or invalid.");
+    }
+  };
+  
+  
+  
 
   const EditSub = () => {
     const { minRepCount, maxRepCount, maxLocationCount, amount } = editingsub;
@@ -1812,7 +1847,8 @@ const AppUserModal = ({
             />
             <ModalInputText
               label="Phone Number"
-              onChange={(e) => Changeteam(e)}
+              // onChange={(e) => Changeteam(e)}
+              onChange={(e) => ChangeteamPhone(e)}
               name="phone"
               increase
               value={team?.phone}
@@ -3792,13 +3828,29 @@ const AppUserModal = ({
             </div>
           </Flex> */}
 
-          <LargeSignInButton
-            onClick={() => setStep(24)}
-            bigger
-            title={"Next"}
-            background
-            color
-          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "20px",
+              justifyContent: "space-between"
+            }}
+          >
+            <LargeSignInButton
+              onClick={() => setStep(22)}
+              large
+              title={"Back"}
+              background
+              color
+            />
+            <LargeSignInButton
+              onClick={() => Nexting()}
+              large
+              title={"Next"}
+              background
+              color
+            />
+          </div>
         </div>
       </AppModal>
       <AppModal
@@ -4789,7 +4841,7 @@ const AppUserModal = ({
           name="daysEligible"
           value={free?.daysEligible}
           nosign
-          placeholder={`${`30`}`}
+          // placeholder={`${`30`}`}
         />
         <LargeSignInButton
           onClick={() => EditFree()}
@@ -4874,7 +4926,7 @@ const AppUserModal = ({
           name="maxRepCount"
           nosign
           value={editingsub?.maxRepCount}
-          placeholder={`${`99`}`}
+          // placeholder={`${`99`}`}
         />
         <LargeSignInButton
           onClick={() => EditSubReal()}
@@ -4959,7 +5011,7 @@ const AppUserModal = ({
           name="amount"
           nosign
           value={editingsub?.amount}
-          placeholder={`${`NGN 10000`}`}
+          // placeholder={`${`NGN 10000`}`}
         />
         <LargeSignInButton
           onClick={() => EditSub()}
@@ -6263,7 +6315,7 @@ const AppUserModal = ({
           name="numberOfBusinessReps"
           value={free?.numberOfBusinessReps}
           nosign
-          placeholder={`${`30`}`}
+          // placeholder={`${`30`}`}
         />
         <LargeSignInButton
           onClick={() => EditFreeTwo()}
@@ -6351,7 +6403,7 @@ const AppUserModal = ({
           value={free?.numberOfLocations}
           nosign
           // value={regbus?.firstname}
-          placeholder={`${`30`}`}
+          // placeholder={`${`30`}`}
         />
         <LargeSignInButton
           onClick={() => EditFreeThree()}
@@ -6437,7 +6489,7 @@ const AppUserModal = ({
           value={free?.minCountOfBusinessReps}
           nosign
           // value={regbus?.firstname}
-          placeholder={`${`30`}`}
+          // placeholder={`${`30`}`}
         />
         <LargeSignInButton
           onClick={() => EditFreeFour()}

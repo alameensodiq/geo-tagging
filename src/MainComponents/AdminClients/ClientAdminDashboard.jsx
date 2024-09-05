@@ -77,8 +77,12 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
   console.log(dateRange);
   return (
     <Flex
-      comp={corporatedashboard?.data?.TimestampCompliance?.totalCompliant}
-      noncomp={corporatedashboard?.data?.TimestampCompliance?.totalNonCompliant}
+      // comp={corporatedashboard?.data?.TimestampCompliance?.totalCompliant}
+      // noncomp={corporatedashboard?.data?.TimestampCompliance?.totalNonCompliant}
+      comp={corporatedashboard?.data?.Punctuality
+        ?.punctualPercentage}
+      noncomp={corporatedashboard?.data?.Punctuality
+        ?.notPunctualPercentage}
     >
       <Navbar title={title} setId={setId} />
       <div className="maincontainer">
@@ -543,18 +547,18 @@ const Flex = styled.div`
               height: 10px;
               .bar {
                 width: ${({ comp, noncomp }) =>
-                  comp + noncomp === 0
-                    ? "0%"
-                    : `${(comp / (comp + noncomp)) * 100}%`};
+                  comp + noncomp === 100
+                    ? `${(comp / (comp + noncomp)) * 100}%`
+                    :  "0%"};
                 height: 10px;
                 background: #1a87d7;
                 border-radius: 6px;
               }
               .nonbar {
                 width: ${({ comp, noncomp }) =>
-                  comp + noncomp === 0
-                    ? "0%"
-                    : `${(noncomp / (comp + noncomp)) * 100}%`};
+                  comp + noncomp === 100
+                    ? `${(noncomp / (comp + noncomp)) * 100}%`
+                    :  "0%"};
                 height: 10px;
                 background: #28385c;
                 border-radius: 6px;

@@ -15,6 +15,8 @@ import Radialtime from "../../bits/Radialtime";
 import { Dashboard } from "../../Store/Apis/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Radialy from "../../bits/Radialy";
+import { Loader } from "../../Loader";
 
 const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const dispatch = useDispatch();
@@ -89,7 +91,11 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
       converted={dashboard?.data?.freeTrialConversion?.trialConvertedPercentage}
     >
       <SuperAdminNavbar title={title} />
-      <div className="maincontainer">
+      {
+        dashboard?.data
+        ?
+        <>
+        <div className="maincontainer">
         <div className="top">
           <div className="start">
             <div className="numbers">
@@ -413,11 +419,21 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             <div className="last">
               <div className="radial">
                 {bright ? (
-                  <Radial overview />
+                  <Radialy
+                    data={
+                      dashboard?.data?.PunctualityStatsForAllProjectsCumulative
+                        ? dashboard?.data
+                            ?.PunctualityStatsForAllProjectsCumulative
+                        : []
+                    }
+                  />
                 ) : (
                   <Radialtime
                     data={
                       dashboard?.data?.TimestampComplianceForPlatformCumulative
+                        ? dashboard?.data
+                            ?.TimestampComplianceForPlatformCumulative
+                        : []
                     }
                   />
                 )}
@@ -496,7 +512,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       <span className="first"></span>
                       <span className="targeted">Total Compliance</span>
                     </div>
-                    <span className="percent">
+                    {/* <span className="percent">
                       Total Number:
                       {
                         dashboard?.data
@@ -510,7 +526,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                           ?.compliancePercentage
                       }
                       )
-                    </span>
+                    </span> */}
                   </div>
                   <div className="attendant">
                     <div className="wrap">
@@ -519,17 +535,19 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     </div>
                     <span className="percent">
                       Total Number:{" "}
-                      {
-                        dashboard?.data
-                          ?.TimestampComplianceForPlatformCumulative
-                          ?.totalNonCompliant
-                      }
+                      {dashboard?.data?.TimestampComplianceForPlatformCumulative
+                        ?.totalNonCompliant
+                        ? dashboard?.data
+                            ?.TimestampComplianceForPlatformCumulative
+                            ?.totalNonCompliant
+                        : 0}
                       (
-                      {
-                        dashboard?.data
-                          ?.TimestampComplianceForPlatformCumulative
-                          ?.nonCompliancePercentage
-                      }
+                      {dashboard?.data?.TimestampComplianceForPlatformCumulative
+                        ?.nonCompliancePercentage
+                        ? dashboard?.data
+                            ?.TimestampComplianceForPlatformCumulative
+                            ?.nonCompliancePercentage
+                        : 0}
                       )
                     </span>
                   </div>
@@ -558,18 +576,20 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 <Calendar onClick={() => PickDater()} className="calendar" />
               </div>
             </div>
-            {dashboard?.data?.AllProjectsWithTotalHours?.slice(0,6)?.map((item) => (
-              <div className="totalhours">
-                <div className="lefthours">
-                  <span className="project">Project Name</span>
-                  <span className="campaign">{item?.projectName}</span>
+            {dashboard?.data?.AllProjectsWithTotalHours?.slice(0, 6)?.map(
+              (item) => (
+                <div className="totalhours">
+                  <div className="lefthours">
+                    <span className="project">Project Name</span>
+                    <span className="campaign">{item?.projectName}</span>
+                  </div>
+                  <div className="righthours">
+                    <div className="rightcircle"></div>
+                    <span>{item?.totalHours}hours</span>
+                  </div>
                 </div>
-                <div className="righthours">
-                  <div className="rightcircle"></div>
-                  <span>{item?.totalHours}hours</span>
-                </div>
-              </div>
-            ))}
+              )
+            )}
             {/* <div className="totalhours">
               <div className="lefthours">
                 <span className="project">Project Name</span>
@@ -670,6 +690,10 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
           />
         </div>
       </div>
+        </>
+        :
+        <Loader />
+      }
     </Flex>
   );
 };
@@ -900,8 +924,9 @@ const Flex = styled.div`
           padding-block: 3px;
           gap: 10px;
           .swap {
-            font-size: 12px;
+            font-size: 10px;
             cursor: pointer;
+            padding-inline: 10px;
           }
           .itemize {
             background: #1a87d7;

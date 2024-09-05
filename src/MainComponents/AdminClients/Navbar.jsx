@@ -38,9 +38,9 @@ const Navbar = ({ title, setId }) => {
         <span>{title}</span>
       </div>
       <div className="row">
-        <div className="first">
+        {/* <div className="first">
           <Notify />
-        </div>
+        </div> */}
         <div className="third">
           <div className="picture"></div>
           <div className="thirdfirst">

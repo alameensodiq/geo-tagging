@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function Radial({ overview, data, datacorp, datacorp2, time }) {
-  const series = datacorp ? [datacorp, datacorp2] : time ? [data?.punctualPercentage, data?.notPunctualPercentage] : [data ? data : "0"];
+function Radialy({ data}) {
+  const series =  data && data ? [data?.punctualPercentage] : [];
 
   // [data?.targetAttendance, data?.attendanceCaptured]
 
   const options = {
     chart: {
-      width: overview ? 420 : 380,
+      width: 420,
       type: "radialBar"
     },
     // plotOptions: {
@@ -85,14 +85,14 @@ function Radial({ overview, data, datacorp, datacorp2, time }) {
         show: true,
         zIndex: 10000,
         // color: "#888",
-        fontSize: overview ? "10px" : "14px"
+        fontSize:"10px"
       },
       value: {
         formatter: function (val) {
           return parseInt(val);
         },
         color: "#111",
-        fontSize: overview ? "10px" : "12px",
+        fontSize: "10px",
         show: true
       }
     },
@@ -129,7 +129,7 @@ function Radial({ overview, data, datacorp, datacorp2, time }) {
     stroke: {
       lineCap: "round"
     },
-    labels: [overview ? "Total Punctuality Rate" : "Total Attendance"]
+    labels: ["Total Punctuality Rate"]
   };
 
   return (
@@ -138,7 +138,7 @@ function Radial({ overview, data, datacorp, datacorp2, time }) {
         options={options}
         series={series}
         type="radialBar"
-        height={overview ? 290 : 220}
+        height={290}
       />
     </Flex>
   );
@@ -212,4 +212,4 @@ const Flex = styled.div`
   }
 `;
 
-export default Radial;
+export default Radialy;

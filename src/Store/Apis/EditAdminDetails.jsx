@@ -41,7 +41,11 @@ export const EditAdminDetails = createAsyncThunk(
         }
       );
       let data = await response.json();
-      toast.success(data.message);
+      if(data?.status){
+        toast.success(data.message);
+      } else if(!data?.status){
+        toast.error(data.message);
+      }
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);

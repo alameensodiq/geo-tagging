@@ -56,6 +56,12 @@ const SuperAdminSubscription = ({ title }) => {
       dispatch(SuperSubs());
       setReload(false);
       dispatch(Subscribers());
+      SetActivating1(true);
+    SetActivating2(false);
+    SetActivating3(false);
+    SetActivating4(false);
+    SetActivate(false);
+    SetPend(false);
     }
   }, [reload]);
 
@@ -140,6 +146,28 @@ const SuperAdminSubscription = ({ title }) => {
     SetActivate(false);
     SetPend(false);
   };
+
+  const Download = () => {
+    console.log("bills");
+    const headers = subscribers?.data?.[name]?.map((item) =>
+      Object.keys(item).toString()
+    )[0];
+    console.log(headers);
+    const objValues = subscribers?.data?.[name]?.map((item) =>
+      Object.values(item).toString()
+    );
+    const csv = [headers, ...Object.values(objValues)].join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    console.log(a);
+    a.download = "Audits.csv";
+    a.href = url;
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(blob);
+  };
+
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
@@ -233,7 +261,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">Free Trial Days - </span>
+                    {/* <span className="free">Free Trial Days - </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -259,9 +287,9 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">
+                    {/* <span className="free">
                       Maximun number of Business Reps -{" "}
-                    </span>
+                    </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -286,9 +314,9 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">
+                    {/* <span className="free">
                       Maximum Number of Geo-Location -
-                    </span>
+                    </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -313,9 +341,9 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">
+                    {/* <span className="free">
                       Minimum Number of Business Reps -
-                    </span>
+                    </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -351,7 +379,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">1.Monthly Price:</span>
+                    {/* <span className="free">1.Monthly Price:</span> */}
                     <span className="days">
                       {" "}
                       {
@@ -384,7 +412,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">Number of Business Reps -</span>
+                    {/* <span className="free">Number of Business Reps -</span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -427,7 +455,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">1.Monthly Price: </span>
+                    {/* <span className="free">1.Monthly Price: </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -459,9 +487,9 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">
+                    {/* <span className="free">
                       Maximum Number of Business Reps -
-                    </span>
+                    </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -504,7 +532,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">1.Monthly Price: </span>
+                    {/* <span className="free">1.Monthly Price: </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -536,9 +564,9 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">
+                    {/* <span className="free">
                       Maximum Number of Business Reps -
-                    </span>
+                    </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -581,7 +609,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">1.Monthly Price: </span>
+                    {/* <span className="free">1.Monthly Price: </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -613,9 +641,9 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
-                    <span className="free">
+                    {/* <span className="free">
                       Maximum Number of Business Reps -
-                    </span>
+                    </span> */}
                     <span className="days">
                       {
                         supersub?.data?.find(
@@ -671,7 +699,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div>
                   <DownloadCsv
-                    onClick={() => ""}
+                    onClick={() =>  Download()}
                     //   onClick={() => navigate(
                     //     `../${businessprojects}/location/:location`)}
                     exportdownload
