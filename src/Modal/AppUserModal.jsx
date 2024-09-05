@@ -12,12 +12,18 @@ import { ReactComponent as Contact } from "../assets/contactedit.svg";
 import { ReactComponent as Busemail } from "../assets/busemail.svg";
 import { ReactComponent as Buslocate } from "../assets/buslocation.svg";
 import { ReactComponent as Eye } from "../assets/eye.svg";
+import { ReactComponent as EyeNot } from "../assets/eyenot.svg";
 import { ReactComponent as Editeye } from "../assets/editeye.svg";
+import { ReactComponent as EditeyeNot } from "../assets/editeyenot.svg";
 import { ReactComponent as List } from "../assets/list.svg";
+import { ReactComponent as ListNot } from "../assets/listnot.svg";
 import { ReactComponent as Create } from "../assets/create.svg";
+import { ReactComponent as CreateNot } from "../assets/createnot.svg";
 import { ReactComponent as DarkCreate } from "../assets/darkcreate.svg";
 import { ReactComponent as ActivateDark } from "../assets/activatedark.svg";
 import { ReactComponent as DeactivateDark } from "../assets/deactivatedark.svg";
+import { ReactComponent as Activate } from "../assets/activate.svg";
+import { ReactComponent as Deactivate } from "../assets/deactivate.svg";
 import toast from "react-hot-toast";
 import { CreateBusinessRepCorporate } from "../Store/Apis/CreateBusinessRepCorporate";
 import { useDispatch, useSelector } from "react-redux";
@@ -1925,7 +1931,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing1not()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : data?.some((item) => item === "OVERVIEW_VIEW") &&
@@ -1934,7 +1940,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing1()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : !data?.some((item) => item === "OVERVIEW_VIEW") &&
@@ -1973,7 +1979,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing2not()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : data?.some((item) => item === "CORPORATE_VIEW") &&
@@ -1982,7 +1988,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing2()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : !data?.some((item) => item === "CORPORATE_VIEW") &&
@@ -2012,7 +2018,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing4not()}
                       >
-                        <Editeye />
+                        <EditeyeNot />
                         Edit
                       </button>
                     ) : data?.some((item) => item === "CORPORATE_EDIT") &&
@@ -2021,7 +2027,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing4()}
                       >
-                        <Editeye />
+                        <EditeyeNot />
                         Edit
                       </button>
                     ) : !data?.some((item) => item === "CORPORATE_EDIT") &&
@@ -2051,7 +2057,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing3not()}
                       >
-                        <List />
+                        <ListNot />
                         List
                       </button>
                     ) : data?.some((item) => item === "CORPORATE_LIST") &&
@@ -2060,7 +2066,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing3()}
                       >
-                        <List />
+                        <ListNot />
                         List
                       </button>
                     ) : !data?.some((item) => item === "CORPORATE_LIST") &&
@@ -2090,7 +2096,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing5not()}
                       >
-                        <Create />
+                        <CreateNot />
                         Create
                       </button>
                     ) : data?.some((item) => item === "CORPORATE_CREATE") &&
@@ -2099,7 +2105,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing5()}
                       >
-                        <Create />
+                        <CreateNot />
                         Create
                       </button>
                     ) : !data?.some((item) => item === "CORPORATE_CREATE") &&
@@ -2120,7 +2126,7 @@ const AppUserModal = ({
                     {data?.some((item) => item === "CORPORATE_ACTIVATE") &&
                     !view6 ? (
                       <button className="view" onClick={() => Viewing6()}>
-                        <ActivateDark />
+                        <Activate />
                         Activate
                       </button>
                     ) : !data?.some((item) => item === "CORPORATE_ACTIVATE") &&
@@ -2147,19 +2153,19 @@ const AppUserModal = ({
                         className="view"
                         onClick={() => NotViewing66not()}
                       >
-                        <ActivateDark />
+                        <Activate />
                         Activate
                       </button>
                     ) : (
                       <button className="view" onClick={() => NotViewing6()}>
-                        <ActivateDark />
+                        <Activate />
                         Activate
                       </button>
                     )}
                     {data?.some((item) => item === "CORPORATE_DEACTIVATE") &&
                     !view7 ? (
                       <button className="view" onClick={() => Viewing7()}>
-                        <DeactivateDark />
+                        <Deactivate />
                         Deactivate
                       </button>
                     ) : !data?.some(
@@ -2188,12 +2194,12 @@ const AppUserModal = ({
                         className="view"
                         onClick={() => NotViewing77not()}
                       >
-                        <DeactivateDark />
+                        <Deactivate />
                         Deactivate
                       </button>
                     ) : (
                       <button className="view" onClick={() => NotViewing7()}>
-                        <DeactivateDark />
+                        <Deactivate />
                         Deactivate
                       </button>
                     )}
@@ -2231,7 +2237,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing8not()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : data?.some((item) => item === "SUBSCRIPTION_VIEW") &&
@@ -2240,7 +2246,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing8()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : !data?.some((item) => item === "SUBSCRIPTION_VIEW") &&
@@ -2270,7 +2276,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing9not()}
                       >
-                        <List />
+                        <ListNot />
                         List
                       </button>
                     ) : data?.some((item) => item === "SUBSCRIPTION_LIST") &&
@@ -2279,7 +2285,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing9()}
                       >
-                        <List />
+                        <ListNot />
                         List
                       </button>
                     ) : !data?.some((item) => item === "SUBSCRIPTION_LIST") &&
@@ -2308,7 +2314,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing10not()}
                       >
-                        <Eye />
+                        <EyeNot />
                         Plan view
                       </button>
                     ) : data?.some((item) => item === "PLAN_VIEW") && view10 ? (
@@ -2316,7 +2322,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing10()}
                       >
-                        <Eye />
+                        <EyeNot />
                         Plan view
                       </button>
                     ) : !data?.some((item) => item === "PLAN_VIEW") &&
@@ -2351,7 +2357,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing11not()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : data?.some((item) => item === "PROJECT_VIEW") &&
@@ -2360,7 +2366,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing11()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : !data?.some((item) => item === "PROJECT_VIEW") &&
@@ -2390,7 +2396,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing12not()}
                       >
-                        <Editeye />
+                        <EditeyeNot />
                         Edit
                       </button>
                     ) : data?.some((item) => item === "PROJECT_EDIT") &&
@@ -2399,7 +2405,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing12()}
                       >
-                        <Editeye />
+                        <EditeyeNot />
                         Edit
                       </button>
                     ) : !data?.some((item) => item === "PROJECT_EDIT") &&
@@ -2429,7 +2435,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing13not()}
                       >
-                        <List />
+                        <ListNot />
                         List
                       </button>
                     ) : data?.some((item) => item === "PROJECT_LIST") &&
@@ -2438,7 +2444,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing13()}
                       >
-                        <List />
+                        <ListNot />
                         List
                       </button>
                     ) : !data?.some((item) => item === "PROJECT_LIST") &&
@@ -2468,7 +2474,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing14not()}
                       >
-                        <Create />
+                        <CreateNot />
                         Create
                       </button>
                     ) : data?.some((item) => item === "PROJECT_CREATE") &&
@@ -2477,7 +2483,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing14()}
                       >
-                        <Create />
+                        <CreateNot />
                         Create
                       </button>
                     ) : !data?.some((item) => item === "PROJECT_CREATE") &&
@@ -2511,7 +2517,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing15not()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : data?.some((item) => item === "REPORT_VIEW") &&
@@ -2520,7 +2526,7 @@ const AppUserModal = ({
                         className="darkview"
                         onClick={() => NotViewing15()}
                       >
-                        <Eye />
+                        <EyeNot />
                         View
                       </button>
                     ) : !data?.some((item) => item === "REPORT_VIEW") &&
@@ -7392,7 +7398,8 @@ const Flex = styled.div`
           width: 60px;
           font-size: 8px;
           align-items: center;
-          background: #5a63761a;
+          background: #ffffff;
+          /* background: #5a63761a; */
         }
       }
     }
@@ -7491,7 +7498,8 @@ const FlexUser = styled.div`
               width: 60px;
               font-size: 8px;
               align-items: center;
-              background: #5a63761a;
+              background: #ffffff;
+              /* background: #5a63761a; */
             }
           }
         }

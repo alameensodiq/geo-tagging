@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -41,8 +41,10 @@ import { SuperCorporate } from "../../Store/Apis/SuperCorporate";
 function SuperAdminSidebar({ name, role, open, setOpen }) {
   const router = useLocation();
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [searcher, setSearcher] = useState("");
   useEffect(() => {
-    dispatch(SuperCorporate());
+    dispatch(SuperCorporate({ searcher, currentPage }));
   }, []);
 
   const { supercorporate, authenticatingsupercorporate } = useSelector(

@@ -15,11 +15,17 @@ import BarChart from "../../bits/BarChart";
 import StackedBarchart from "../../bits/StarckedBarchart";
 import Radial from "../../bits/Radial";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
+import { ReactComponent as EyeNot } from "../../assets/eyenot.svg";
 import { ReactComponent as Editeye } from "../../assets/editeye.svg";
+import { ReactComponent as EditeyeNot } from "../../assets/editeyenot.svg";
 import { ReactComponent as List } from "../../assets/list.svg";
+import { ReactComponent as ListNot } from "../../assets/listnot.svg";
 import { ReactComponent as Create } from "../../assets/create.svg";
+import { ReactComponent as CreateNot } from "../../assets/createnot.svg";
 import { ReactComponent as ActivateDark } from "../../assets/activatedark.svg";
 import { ReactComponent as DeactivateDark } from "../../assets/deactivatedark.svg";
+import { ReactComponent as Activate } from "../../assets/activate.svg";
+import { ReactComponent as Deactivate } from "../../assets/deactivate.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { CorporateBusinessRepDetails } from "../../Store/Apis/CorporateBusinessRepDetails";
 import Moment from "react-moment";
@@ -852,14 +858,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing1not()}
                     >
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "OVERVIEW_VIEW"
                     ) && view1 ? (
                     <button className="darkview" onClick={() => NotViewing1()}>
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -901,14 +907,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing2not()}
                     >
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "BUSINESS_REP_VIEW"
                     ) && view2 ? (
                     <button className="darkview" onClick={() => NotViewing2()}>
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -938,14 +944,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing4not()}
                     >
-                      <Editeye />
+                      <EditeyeNot />
                       Edit
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "BUSINESS_REP_EDIT"
                     ) && view4 ? (
                     <button className="darkview" onClick={() => NotViewing4()}>
-                      <Editeye />
+                      <EditeyeNot />
                       Edit
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -975,14 +981,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing3not()}
                     >
-                      <List />
+                      <ListNot />
                       List
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "BUSINESS_REP_LIST"
                     ) && view3 ? (
                     <button className="darkview" onClick={() => NotViewing3()}>
-                      <List />
+                      <ListNot />
                       List
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1012,14 +1018,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing5not()}
                     >
-                      <Create />
+                      <CreateNot />
                       Create
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "BUSINESS_REP_CREATE"
                     ) && view5 ? (
                     <button className="darkview" onClick={() => NotViewing5()}>
-                      <Create />
+                      <CreateNot />
                       Create
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1039,7 +1045,7 @@ const SuperAdminUserDetails = ({ title }) => {
                     (item) => item?.right === "BUSINESS_REP_ACTIVATE"
                   ) && !view6 ? (
                     <button className="view" onClick={() => Viewing6()}>
-                      <ActivateDark />
+                      <Activate />
                       Activate
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1063,12 +1069,12 @@ const SuperAdminUserDetails = ({ title }) => {
                       (item) => item?.right === "BUSINESS_REP_ACTIVATE"
                     ) && view6 ? (
                     <button className="view" onClick={() => NotViewing66not()}>
-                      <ActivateDark />
+                      <Activate />
                       Activate
                     </button>
                   ) : (
                     <button className="view" onClick={() => NotViewing6()}>
-                      <ActivateDark />
+                      <Activate />
                       Activate
                     </button>
                   )}
@@ -1076,7 +1082,7 @@ const SuperAdminUserDetails = ({ title }) => {
                     (item) => item?.right === "BUSINESS_REP_DEACTIVATE"
                   ) && !view7 ? (
                     <button className="view" onClick={() => Viewing7()}>
-                      <DeactivateDark />
+                      <Deactivate />
                       Deactivate
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1100,12 +1106,12 @@ const SuperAdminUserDetails = ({ title }) => {
                       (item) => item?.right === "BUSINESS_REP_DEACTIVATE"
                     ) && view7 ? (
                     <button className="view" onClick={() => NotViewing77not()}>
-                      <DeactivateDark />
+                      <Deactivate />
                       Deactivate
                     </button>
                   ) : (
                     <button className="view" onClick={() => NotViewing7()}>
-                      <DeactivateDark />
+                      <Deactivate />
                       Deactivate
                     </button>
                   )}
@@ -1145,14 +1151,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing8not()}
                     >
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "SUBSCRIPTION_VIEW"
                     ) && view8 ? (
                     <button className="darkview" onClick={() => NotViewing8()}>
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1182,14 +1188,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing9not()}
                     >
-                      <List />
+                      <ListNot />
                       List
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "SUBSCRIPTION_LIST"
                     ) && view9 ? (
                     <button className="darkview" onClick={() => NotViewing9()}>
-                      <List />
+                      <ListNot />
                       List
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1219,14 +1225,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing10not()}
                     >
-                      <Eye />
+                      <EyeNot />
                       Plan view
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "PLAN_VIEW"
                     ) && view10 ? (
                     <button className="darkview" onClick={() => NotViewing10()}>
-                      <Eye />
+                      <EyeNot />
                       Plan view
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1264,14 +1270,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing11not()}
                     >
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "PROJECT_VIEW"
                     ) && view11 ? (
                     <button className="darkview" onClick={() => NotViewing11()}>
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1304,14 +1310,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing12not()}
                     >
-                      <Editeye />
+                      <EditeyeNot />
                       Edit
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "PROJECT_EDIT"
                     ) && view12 ? (
                     <button className="darkview" onClick={() => NotViewing12()}>
-                      <Editeye />
+                      <EditeyeNot />
                       Edit
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1344,14 +1350,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing13not()}
                     >
-                      <List />
+                      <ListNot />
                       List
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "PROJECT_LIST"
                     ) && view13 ? (
                     <button className="darkview" onClick={() => NotViewing13()}>
-                      <List />
+                      <ListNot />
                       List
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1384,14 +1390,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing14not()}
                     >
-                      <Create />
+                      <CreateNot />
                       Create
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
                       (item) => item?.right === "PROJECT_CREATE"
                     ) && view14 ? (
                     <button className="darkview" onClick={() => NotViewing14()}>
-                      <Create />
+                      <CreateNot />
                       Create
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
@@ -1429,7 +1435,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       className="darkview"
                       onClick={() => NotViewing15not()}
                     >
-                      <Eye />
+                      <EyeNot />
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
@@ -2249,7 +2255,8 @@ const Flex = styled.div`
                   width: 80px;
                   font-size: 10px;
                   align-items: center;
-                  background: #5a63761a;
+                  background: #ffffff;
+                  /* background: #5a63761a; */
                 }
               }
             }
@@ -2292,7 +2299,8 @@ const Flex = styled.div`
                 width: 80px;
                 font-size: 10px;
                 align-items: center;
-                background: #5a63761a;
+                background: #ffffff;
+                /* background: #5a63761a; */
               }
             }
           }
