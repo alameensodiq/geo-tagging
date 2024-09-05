@@ -146,28 +146,6 @@ const SuperAdminSubscription = ({ title }) => {
     SetActivate(false);
     SetPend(false);
   };
-
-  const Download = () => {
-    console.log("bills");
-    const headers = subscribers?.data?.[name]?.map((item) =>
-      Object.keys(item).toString()
-    )[0];
-    console.log(headers);
-    const objValues = subscribers?.data?.[name]?.map((item) =>
-      Object.values(item).toString()
-    );
-    const csv = [headers, ...Object.values(objValues)].join("\n");
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    console.log(a);
-    a.download = "Audits.csv";
-    a.href = url;
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(blob);
-  };
-
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
@@ -699,7 +677,7 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
                 <div>
                   <DownloadCsv
-                    onClick={() =>  Download()}
+                    onClick={() => ""}
                     //   onClick={() => navigate(
                     //     `../${businessprojects}/location/:location`)}
                     exportdownload
@@ -739,10 +717,10 @@ const SuperAdminSubscription = ({ title }) => {
               activating3 ? (
                 <>
                   <div className="date-search">
-                    <InputSearch
+                    {/* <InputSearch
                       onChange={(e) => setSearcher(e.target.value)}
                       placeholder="Search for Corporates name, email, RC Number, e.t.c"
-                    />
+                    /> */}
                   </div>
                   <Tables
                     currentsubscriber
@@ -753,10 +731,10 @@ const SuperAdminSubscription = ({ title }) => {
               ) : (
                 <>
                   <div className="date-search">
-                    <InputSearch
+                    {/* <InputSearch
                       onChange={(e) => setSearcher(e.target.value)}
                       placeholder="Search for Corporates name, email, RC Number, e.t.c"
-                    />
+                    /> */}
                   </div>
                   <Tables customplan data={[]} setStep={setStep} />
                 </>
