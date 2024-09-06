@@ -4,7 +4,7 @@ import Chart from "react-apexcharts";
 import styled from "styled-components";
 
 function Radial({ overview, data, datacorp, datacorp2, time }) {
-  const series = datacorp ? [datacorp, datacorp2] : time ? [data?.punctualPercentage, data?.notPunctualPercentage] : [data ? data : "0"];
+  const series = datacorp ? [datacorp] : time ? [data?.punctualPercentage, data?.notPunctualPercentage] : [data ? data : "0"];
 
   // [data?.targetAttendance, data?.attendanceCaptured]
 

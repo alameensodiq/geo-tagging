@@ -10,6 +10,7 @@ import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
 import { useNavigate } from "react-router-dom";
 import { businessprojects } from "../../Routes";
+import { ClientReport } from "../../Store/Apis/ClientReport";
 
 const ClientAdminNormalReport = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -33,23 +34,18 @@ const ClientAdminNormalReport = ({ title }) => {
 
   useEffect(() => {
     // dispatch(CorporateBusinessRep())
-    if (reload) {
-      // dispatch(CorporateBusinessRep())
-      setReload(false);
-    }
-  }, [reload]);
+    dispatch(ClientReport());
+    // if (reload) {
+    //   // dispatch(CorporateBusinessRep())
+    //   setReload(false);
+    // }
+  }, []);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector(
-    (state) => state.businessrep
+  const { clientreport, authenticatingclientreport } = useSelector(
+    (state) => state.clientreport
   );
-  console.log(businessrep?.data?.data);
+  console.log(clientreport?.data?.IncidentsCheck?.incidents);
 
-  const activate = businessrep?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === true
-  );
-  const inactivate = businessrep?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === false
-  );
 
   const setActivate = () => {
     SetActivate(true);
@@ -126,7 +122,7 @@ const ClientAdminNormalReport = ({ title }) => {
               placeholder="Search for name, project name e.t.c"
             />
           </div>
-          <Tables reportnormal data={activate} setStep={setStep} />
+          <Tables reportnormal data={clientreport?.data?.IncidentsCheck?.incidents} setStep={setStep} />
         </div>
       </div>
     </Flex>

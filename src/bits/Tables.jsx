@@ -1419,13 +1419,13 @@ const Tables = ({
                     INCIDENT REPORT(%)
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
-                  INCIDENT FREE REPORT(%)
+                    INCIDENT FREE REPORT(%)
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                  REMARKS
+                    REMARKS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                  NO-REMARKS
+                    NO-REMARKS
                   </StyledTableCell>
                   {/* <StyledTableCell style={{ width: "10%" }}>
                     STAUS
@@ -1437,24 +1437,27 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {
-                  data?.map((item) =>
-                    <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "15%" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "10px"
-                      }}
-                    >
-                      <img src={item?.avatar} style={{
-                          borderRadius: "50%",
-                          width: "30px",
-                          height: "30px",
-                          backgroundColor: "black"
-                        }} alt="avatar"/>
-                      {/* <div
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "10px"
+                        }}
+                      >
+                        <img
+                          src={item?.avatar}
+                          style={{
+                            borderRadius: "50%",
+                            width: "30px",
+                            height: "30px",
+                            backgroundColor: "black"
+                          }}
+                          alt="avatar"
+                        />
+                        {/* <div
                         style={{
                           borderRadius: "50%",
                           width: "30px",
@@ -1462,37 +1465,36 @@ const Tables = ({
                           backgroundColor: "black"
                         }}
                       ></div> */}
-                    </div>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    {item?.businessRepName}
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    {item?.incidentsPercentage}
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                  {item?.incidentFreePercentage}
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                  {item?.remarksGivenCount}
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                  {item?.remarksNotGivenCount}
-                  </StyledTableCell>
-                  {/* <StyledTableCell style={{ width: "10%" }}>
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.businessRepName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.incidentsPercentage}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.incidentFreePercentage}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.remarksGivenCount}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.remarksNotGivenCount}
+                    </StyledTableCell>
+                    {/* <StyledTableCell style={{ width: "10%" }}>
                     <button className="activer-button">
                       <div className="activer">
                         <span className="round"></span>Read
                       </div>
                     </button>
                   </StyledTableCell> */}
-                  <StyledTableCell style={{ width: "15%" }}>
-                    {/* 20-10-2024 */}
-                    {item?.totalCompletedShifts}
-                  </StyledTableCell>
-                    </StyledTableRow>
-                  )
-                }
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {/* 20-10-2024 */}
+                      {item?.totalCompletedShifts}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
                 {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "15%" }}>
                     <div
@@ -1603,7 +1605,51 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "10px"
+                        }}
+                      >
+                        {/* <div
+                      style={{
+                        borderRadius: "50%",
+                        width: "30px",
+                        height: "30px",
+                        backgroundColor: "black"
+                      }}
+                    ></div> */}
+                        <img
+                          src={item?.avatar}
+                          alt="pics"
+                          style={{
+                            borderRadius: "50%",
+                            width: "30px",
+                            height: "30px"
+                            // backgroundColor: "black"
+                          }}
+                        />
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.businessRepName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.projectName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.report}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.dateSubmitted}</Moment>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "20%" }}>
                     <div
                       style={{
@@ -1666,39 +1712,7 @@ const Tables = ({
                   <StyledTableCell style={{ width: "20%" }}>
                     20-10-2024
                   </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "10px"
-                      }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: "50%",
-                          width: "30px",
-                          height: "30px",
-                          backgroundColor: "black"
-                        }}
-                      ></div>
-                    </div>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Sheidu Susan
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Building Homes
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Hello please I want to...
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    20-10-2024
-                  </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>

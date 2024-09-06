@@ -4,7 +4,22 @@ import styled from "styled-components";
 
 function Donuts({ overview, report, data1, data2 }) {
   //  const series = data?.subscriptionPlan((item) => item.value)
-  const series = data1 && data2 ? [data1, data2] : [];
+  // Function to convert percentage strings to numbers
+  const parsePercentage = (value) => {
+    if (typeof value === "string") {
+      // Remove '%' and convert to number
+      return parseFloat(value.replace("%", ""));
+    }
+    return Number(value);
+  };
+
+  // Parse and validate data1 and data2
+  const data1Number = parsePercentage(data1);
+  const data2Number = parsePercentage(data2);
+
+  // Create series if both data1 and data2 are valid percentages
+  const series =
+    data1Number >= 0 && data2Number >= 0 ? [data1Number, data2Number] : [];
 
   const options = {
     chart: {
