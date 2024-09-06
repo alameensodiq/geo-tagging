@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 export const SuperAddTeam = createAsyncThunk(
   "superaddteam",
   async (
-    { name, rcNumber, address, phone, email, avatar, permissions },
+    { name,  address, phone, email, avatar, permissions },
     thunkAPI
   ) => {
     console.log(process.env.REACT_APP_BASE_URL);
@@ -22,7 +22,7 @@ export const SuperAddTeam = createAsyncThunk(
           },
           body: JSON.stringify({
             name,
-            rcNumber,
+            // rcNumber,
             address,
             phone,
             email,

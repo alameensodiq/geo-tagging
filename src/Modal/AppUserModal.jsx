@@ -1078,7 +1078,7 @@ const AppUserModal = ({
         dispatch(
           SuperAddTeam({
             name: names,
-            rcNumber,
+            // rcNumber,
             address,
             phone,
             email,
