@@ -119,7 +119,7 @@ const AppUserModal = ({
   const [team, setTeam] = useState({
     name: "",
     lastname: "",
-    rcNumber: "",
+    // rcNumber: "",
     address: "",
     permissions: [],
     phone: "",
@@ -1039,7 +1039,7 @@ const AppUserModal = ({
     const {
       lastname,
       name,
-      rcNumber,
+      // rcNumber,
       address,
       phone,
       email,
@@ -1052,7 +1052,7 @@ const AppUserModal = ({
     const allVariablesPresent = [
       lastname,
       name,
-      rcNumber,
+      // rcNumber,
       address,
       phone,
       email,
@@ -1066,7 +1066,7 @@ const AppUserModal = ({
         dispatch(
           AddTeam({
             name: names,
-            rcNumber,
+            // rcNumber,
             address,
             phone,
             email,
@@ -1860,14 +1860,14 @@ const AppUserModal = ({
               value={team?.phone}
               placeholder={`${`Enter User management Phone Number`}`}
             />
-            <ModalInputText
+            {/* <ModalInputText
               label="RC Number"
               onChange={(e) => Changeteam(e)}
               name="rcNumber"
               increase
               value={team?.rcNumber}
               placeholder={`${`Enter User management RCNumber`}`}
-            />
+            /> */}
             <ModalInputText
               label="Email"
               onChange={(e) => Changeteam(e)}

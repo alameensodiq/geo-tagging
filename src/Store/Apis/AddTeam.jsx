@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 export const AddTeam = createAsyncThunk(
   "addteam",
   async ({ name,
-    rcNumber,
+    // rcNumber,
     address,
     phone,
     email,
@@ -23,7 +23,7 @@ export const AddTeam = createAsyncThunk(
         },
         body: JSON.stringify({
           name,
-          rcNumber,
+          // rcNumber,
           address,
           phone,
           email,
