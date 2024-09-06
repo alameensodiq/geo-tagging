@@ -47,11 +47,17 @@ const SuperAdminCorporate = ({ title }) => {
   );
   console.log(supercorporate?.data?.data);
 
+  // const activate = supercorporate?.data?.data?.filter(
+  //   (item) => item?.isAccountBlocked === false
+  // );
   const activate = supercorporate?.data?.data?.filter(
-    (item) => item?.isAccountBlocked === false
+    (item) => item?.activeProject >= 1
   );
+  // const inactivate = supercorporate?.data?.data?.filter(
+  //   (item) => item?.isAccountBlocked === true
+  // );
   const inactivate = supercorporate?.data?.data?.filter(
-    (item) => item?.isAccountBlocked === true
+    (item) => item?.activeProject < 1
   );
 
   const setActivate = () => {
