@@ -7090,7 +7090,7 @@ const AppUserModal = ({
                 alignItems: "center"
               }}
             >
-              <span>{assigned?.calculatedAmount}</span>
+              <span>N{assigned?.subscriptionAmountPerBusinessRep}</span>
               <span>Each Business Rep</span>
             </div>
           </div>
@@ -7108,7 +7108,10 @@ const AppUserModal = ({
           >
             <span>Total Amount</span>
             <span>
-              {(() => {
+              {
+                assigned?.calculatedAmount
+              }
+              {/* {(() => {
                 let numericAmount = parseFloat(
                   (assigned?.calculatedAmount || "").replace(/^N/, "")
                 );
@@ -7117,7 +7120,7 @@ const AppUserModal = ({
                 }
                 const result = numericAmount * (assigned?.numberOfReps || 1);
                 return result.toFixed(2);
-              })()}
+              })()} */}
             </span>
           </div>
 

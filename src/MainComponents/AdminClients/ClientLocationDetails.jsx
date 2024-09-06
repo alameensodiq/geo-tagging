@@ -72,6 +72,15 @@ const ClientLocationDetails = ({ title }) => {
       location_id: ""
     }
   ]);
+
+  const [choosingaddress, setchoosingaddress] = useState([
+    {
+      user_id: "",
+      location_id: "",
+      address: ""
+    }
+  ]);
+
   const [assign, setAssign] = useState(() => {
     const today = new Date();
     const startDate = formatDate(today);
@@ -388,21 +397,59 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const AddittionRep = () => {
-    const reps = {
+    const newRep = {
       user_id: "",
       location_id: null
     };
+    const newAddress = {
+      user_id: "",
+      location_id: null,
+      address: ""
+    };
 
-    setRep((prev) => ({
-      ...prev,
-      rep: [...prev.rep, reps]
-    }));
+    setRep((prev) => [...prev, newRep]);
+    setchoosingaddress((prev) => [...prev, newAddress]);
   };
 
   const AssignChange = (e, index) => {
     const { name, value } = e.target;
 
     setRep((prev) =>
+      prev.map((item, i) =>
+        i === index
+          ? {
+              ...item,
+              [name]: value
+            }
+          : item
+      )
+    );
+    setchoosingaddress((prev) =>
+      prev.map((item, i) =>
+        i === index
+          ? {
+              ...item,
+              [name]: value
+            }
+          : item
+      )
+    );
+  };
+
+  const AssignChanger = (e, index) => {
+    const { name, value } = e.target;
+
+    setRep((prev) =>
+      prev.map((item, i) =>
+        i === index
+          ? {
+              ...item,
+              [name]: value
+            }
+          : item
+      )
+    );
+    setchoosingaddress((prev) =>
       prev.map((item, i) =>
         i === index
           ? {
@@ -926,7 +973,7 @@ const ClientLocationDetails = ({ title }) => {
                                       )
                                     }));
                                   } else {
-                                    console.log("No results found");
+                                    toast.error("No results found");
                                   }
                                 })
                                 .catch((error) => {
@@ -941,12 +988,12 @@ const ClientLocationDetails = ({ title }) => {
                             placeholder="Enter Address"
                           />
                         </div>
-                        <div className="projectnamethree">
+                        {/* <div className="projectnamethree">
                           <span className="name">State</span>
                           <select className="nametype">
                             <option>Select State</option>
                           </select>
-                        </div>
+                        </div> */}
                       </div>
                     ))}
                   </div>
@@ -963,8 +1010,8 @@ const ClientLocationDetails = ({ title }) => {
                 <div className="addresswrapper">
                   <div className="heading">
                     <span className="title">Address</span>
-                    <span className="title">State</span>
-                    <span className="title">Landmark</span>
+                    {/* <span className="title">State</span>
+                    <span className="title">Landmark</span> */}
                     <span className="title">Action</span>
                   </div>
                   <div className="arrange">
@@ -974,8 +1021,8 @@ const ClientLocationDetails = ({ title }) => {
                           {item?.address !== "" ? <Color /> : ""}
                           {item?.address}
                         </div>
-                        <div className="second">Lagos</div>
-                        <div className="third">Third mainland bridge</div>
+                        {/* <div className="second">Lagos</div>
+                        <div className="third">Third mainland bridge</div> */}
                         <div className="four">
                           Remove{" "}
                           <Danger
@@ -1044,43 +1091,53 @@ const ClientLocationDetails = ({ title }) => {
                   Please fill in the details needed...
                 </span>
                 <div className="filling">
-                  {rep?.map((item, index) => (
-                    <React.Fragment key={index}>
-                      <div className="projectname">
-                        <span className="name">Business Reps</span>
-                        <select
-                          onChange={(e) => AssignChange(e, index)}
-                          name="user_id"
-                          value={item?.user_id || defaultUser?.id || ""}
-                          className="nametype"
-                        >
-                          {businessrep?.data?.data?.map((repItem) => (
-                            <option key={repItem?.id} value={repItem?.id}>
-                              {repItem?.firstName} {repItem?.lastName}
-                            </option>
-                          ))}
-                        </select>
+                  <div className="wrap">
+                    {rep?.map((item, index) => (
+                      <div className="filling" key={index}>
+                        <div className="projectname">
+                          <span className="name">Business Reps</span>
+                          <select
+                            onChange={(e) => AssignChange(e, index)}
+                            name="user_id"
+                            value={item?.user_id || defaultUser?.id || ""}
+                            className="nametype"
+                          >
+                            {businessrep?.data?.data?.map((repItem) => (
+                              <option key={repItem?.id} value={repItem?.id}>
+                                {repItem?.firstName} {repItem?.lastName}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="projectnamethree">
+                          <span className="name">Location</span>
+                          <select
+                            onChange={(e) => {
+                              AssignChanger(e, index);
+                              console.log(e.target.value)
+                            }}
+                            className="nametype"
+                            value={item?.location_id || ""}
+                            name="location_id"
+                          >
+                            <option value="" disabled>Select a location</option>
+                            {addproject?.data?.locations?.map(
+                              (locationItem) => (
+                                <>
+                                <option
+                                  key={locationItem?.id}
+                                  value={String(locationItem?.id)}
+                                >
+                                  {locationItem?.address}
+                                </option>
+                                </>
+                              )
+                            )}
+                          </select>
+                        </div>
                       </div>
-                      <div className="projectnamethree">
-                        <span className="name">Location</span>
-                        <select
-                          onChange={(e) => AssignChange(e, index)}
-                          className="nametype"
-                          value={item?.location_id || ""}
-                          name="location_id"
-                        >
-                          {addproject?.data?.locations?.map((locationItem) => (
-                            <option
-                              key={locationItem?.id}
-                              value={locationItem?.id}
-                            >
-                              {locationItem?.address}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </React.Fragment>
-                  ))}
+                    ))}
+                  </div>
 
                   <div className="addaddress">
                     <ModalButton
@@ -1098,17 +1155,42 @@ const ClientLocationDetails = ({ title }) => {
                       Business Reps Selected <Color />
                     </span>
                     <span className="title">Address</span>
-                    <span className="title">State</span>
-                    <span className="title">Landmark</span>
+                    {/* <span className="title">State</span>
+                    <span className="title">Landmark</span> */}
                     <span className="title">Action</span>
                   </div>
                   <div className="arrange">
                     {Array.isArray(rep) &&
                       rep.map((item) => {
-                        // Find the matching business rep data based on user_id
                         const businessRep = businessrep?.data?.data?.find(
                           (list) => list.id === item?.user_id
                         );
+  
+                  
+                        // Find the addressy object based on user_id
+                        const addressy = choosingaddress.find(
+                          (list) => list.user_id === item?.user_id
+                        );
+                  
+                        console.log(addressy);
+                  
+                        const locations = addproject?.data?.locations || [];
+
+                        console.log(locations)
+                  
+                        let realaddress = null; // Initialize realaddress as null
+                  
+                        if (addressy) {
+                          // Find the real address based on location_id
+                          realaddress = locations.find(
+                            (location) => location.id === Number(addressy.location_id)
+                          )
+                  
+                          // Log the found real address for debugging
+                          console.log(realaddress);
+                        } else {
+                          console.log('Addressy not found.');
+                        }
 
                         return (
                           <div className="details" key={item?.user_id}>
@@ -1123,17 +1205,17 @@ const ClientLocationDetails = ({ title }) => {
                               )}
                             </div>
                             <div className="first">
-                              {businessRep ? (
+                              {realaddress ? (
                                 <>
                                   <Color />
-                                  {`${businessRep?.address}`}
+                                  {`${realaddress?.address}`}
                                 </>
                               ) : (
                                 <>No address available</>
                               )}
                             </div>
-                            <div className="second">Lagos</div>
-                            <div className="third">Third mainland bridge</div>
+                            {/* <div className="second">Lagos</div>
+                            <div className="third">Third mainland bridge</div> */}
                             <div className="four">
                               Remove{" "}
                               <Danger
@@ -1472,6 +1554,202 @@ const Flex = styled.div`
               }
             }
           }
+          .filling {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            .projectname {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 40%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .nametype {
+                border: 1px solid var(--stroke-color, #e2e8f0);
+                padding: 15px 30px 15px 30px;
+                border-radius: 6px;
+                width: 90%;
+                outline: none;
+              }
+              .yescontainer {
+              }
+            }
+            .projectnametwo {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 30%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .wrapper {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                .yescontainer {
+                  display: flex;
+                  flex-direction: row;
+                  gap: 10px;
+                  border: 1px solid var(--stroke-color, #e2e8f0);
+                  border-radius: 8px;
+                  height: 45px;
+                  align-items: center;
+                  width: 50%;
+                  justify-content: flex-start;
+                  padding-left: 20px;
+                  .circle {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 1px solid #ebebeb;
+                  }
+                  .yes {
+                    color: #1e1b39;
+                    font-size: 15px;
+                  }
+                }
+              }
+            }
+            .projectnamethree {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 30%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .nametype {
+                border: 1px solid var(--stroke-color, #e2e8f0);
+                padding: 15px 30px 15px 30px;
+                border-radius: 6px;
+                width: 90%;
+                outline: none;
+              }
+              .yescontainer {
+              }
+            }
+            .addaddress {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              align-items: flex-start;
+              height: 70px;
+              width: 35%;
+            }
+            .wrap {
+              display: flex;
+              flex-direction: column;
+              width: 65%;
+              .filling {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                .col {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  .projectname {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    justify-content: flex-start;
+                    width: 50%;
+                    height: 90px;
+                    .name {
+                      color: #1e1b39;
+                      font-size: 14px;
+                    }
+                    .nametype {
+                      border: 1px solid var(--stroke-color, #e2e8f0);
+                      padding: 15px 30px 15px 30px;
+                      border-radius: 6px;
+                      width: 90%;
+                      outline: none;
+                    }
+                    .yescontainer {
+                    }
+                  }
+                  .projectnametwo {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    justify-content: flex-start;
+                    width: 30%;
+                    height: 90px;
+                    .name {
+                      color: #1e1b39;
+                      font-size: 14px;
+                    }
+                    .wrapper {
+                      display: flex;
+                      flex-direction: row;
+                      gap: 15px;
+                      .yescontainer {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                        border: 1px solid var(--stroke-color, #e2e8f0);
+                        border-radius: 8px;
+                        height: 45px;
+                        align-items: center;
+                        width: 50%;
+                        justify-content: flex-start;
+                        padding-left: 20px;
+                        .circle {
+                          width: 20px;
+                          height: 20px;
+                          border-radius: 50%;
+                          border: 1px solid #ebebeb;
+                        }
+                        .yes {
+                          color: #1e1b39;
+                          font-size: 15px;
+                        }
+                      }
+                    }
+                  }
+                  .projectnamethree {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    justify-content: flex-start;
+                    width: 50%;
+                    height: 90px;
+                    .name {
+                      color: #1e1b39;
+                      font-size: 14px;
+                    }
+                    .nametype {
+                      border: 1px solid var(--stroke-color, #e2e8f0);
+                      padding: 15px 30px 15px 30px;
+                      border-radius: 6px;
+                      width: 90%;
+                      outline: none;
+                    }
+                    .yescontainer {
+                    }
+                  }
+                  .addaddress {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    height: 70px;
+                  }
+                }
+              }
+            }
+          }
           .selectors {
             display: flex;
             flex-direction: column;
@@ -1505,7 +1783,7 @@ const Flex = styled.div`
               padding-inline: 20px;
               /* border-bottom: 1px solid #ebebeb; */
               .title {
-                width: 25%;
+                width: 50%;
                 color: #667085;
                 font-size: 14px;
                 display: flex;
@@ -1526,14 +1804,14 @@ const Flex = styled.div`
                   flex-direction: row;
                   align-items: center;
                   justify-content: center;
-                  width: 25%;
+                  width: 50%;
                   gap: 2px;
                   height: 50px;
                   font-size: 12px;
                   border-right: 1px solid #ebebeb;
                   color: #141414;
                 }
-                .second {
+                /* .second {
                   display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1556,13 +1834,13 @@ const Flex = styled.div`
                   height: 50px;
                   border-right: 1px solid #ebebeb;
                   color: #141414;
-                }
+                } */
                 .four {
                   display: flex;
                   flex-direction: row;
                   align-items: center;
                   justify-content: center;
-                  width: 25%;
+                  width: 50%;
                   gap: 2px;
                   font-size: 12px;
                   color: #141414;
