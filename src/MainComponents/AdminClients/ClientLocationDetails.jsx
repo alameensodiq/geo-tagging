@@ -977,7 +977,7 @@ const ClientLocationDetails = ({ title }) => {
                                   }
                                 })
                                 .catch((error) => {
-                                  console.error(
+                                  toast.error(
                                     "Error fetching geocode data:",
                                     error
                                   );
@@ -1079,7 +1079,7 @@ const ClientLocationDetails = ({ title }) => {
                   background
                   remove
                   color
-                  title="Next"
+                  title= {!authenticatingaddproject ? "Next" : 'Loading' }
                 />
               </div>
             </div>
@@ -1239,7 +1239,7 @@ const ClientLocationDetails = ({ title }) => {
                   onClick={() => SendAssignRep()}
                   background
                   color
-                  title="Complete project"
+                  title= {!authenticatingpayment ? "Complete project" : 'Loading' }
                 />
               </div>
             </div>

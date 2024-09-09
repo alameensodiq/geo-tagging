@@ -3,8 +3,6 @@ import Chart from "react-apexcharts";
 import styled from "styled-components";
 
 function Donuts({ overview, report, data1, data2 }) {
-  //  const series = data?.subscriptionPlan((item) => item.value)
-  // Function to convert percentage strings to numbers
   const parsePercentage = (value) => {
     if (typeof value === "string") {
       // Remove '%' and convert to number

@@ -40,6 +40,7 @@ import { ProjectStatus } from "../Store/Apis/ProjectStatus";
 import { EditAdminDetails } from "../Store/Apis/EditAdminDetails";
 import { EditSubing } from "../Store/Apis/EditSub";
 import { EditFreeTrial } from "../Store/Apis/EditFreeTrial";
+import CameraComponent from "../MainComponents/Camera";
 
 const AppUserModal = ({
   setStep,
@@ -910,7 +911,7 @@ const AppUserModal = ({
   const ChangeFree = (e) => {
     const { name, value } = e.target;
     console.log(value);
-    const numericValue = value.replace(/[^0-9]/g, '');
+    const numericValue = value.replace(/[^0-9]/g, "");
     setFree({
       ...free,
       [name]: numericValue
@@ -937,14 +938,13 @@ const AppUserModal = ({
 
   const ChangeteamPhone = (e) => {
     const { name, value } = e.target;
-    const numericValue = value.replace(/[^0-9]/g, '');
+    const numericValue = value.replace(/[^0-9]/g, "");
     console.log(value);
     setTeam({
       ...team,
       [name]: numericValue
     });
   };
-
 
   const createSub = (e) => {
     const { name, value } = e.target;
@@ -958,62 +958,112 @@ const AppUserModal = ({
   const EditSubscription = (e) => {
     const { name, value } = e.target;
     console.log(value);
-    const numericValue = value.replace(/[^0-9]/g, '');
+    const numericValue = value.replace(/[^0-9]/g, "");
     setEditingSub({
       ...editingsub,
       [name]: numericValue
     });
   };
 
-  const sendingsImage = (e) => {
-    const accessToken = sessionStorage.getItem("token");
-    const folder = e.target.files[0];
+  // const sendingsImage = (e) => {
+  //   const accessToken = sessionStorage.getItem("token");
+  //   const folder = e.target.files[0];
 
+  //   var myHeaders = new Headers();
+  //   myHeaders.append(
+  //     "X-Api-Key",
+  //     "24cuy5iL1f2nKTx_VmNQd_yDPND8THGm_cQho1REsfDehveIjYea64caZUJRyqEDhHI"
+  //   );
+  //   myHeaders.append("Authorization", `Bearer ${accessToken}`);
+
+  //   var formdata = new FormData();
+  //   formdata.append("files", folder, `${folder?.name}`);
+
+  //   var requestOptions = {
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: formdata,
+  //     redirect: "follow"
+  //   };
+
+  //   fetch(`${process.env.REACT_APP_BASE_URL}file/upload`, requestOptions)
+  //     .then((response) => response.text())
+  //     .then((result) => {
+  //       console.log(JSON.parse(result));
+  //       setUpdate(JSON.parse(result)?.data[0]?.name);
+  //       toast.success("File uploaded");
+  //     })
+  //     .catch((error) => {
+  //       console.log("error", error);
+  //       try {
+  //         error.json().then((body) => {
+  //           //Here is already the payload from API
+  //           console.log(body);
+  //           // console.log("message = " + body.error);
+  //           toast.error(body);
+  //         });
+  //       } catch (e) {
+  //         // console.log("Error parsing promise");
+  //         console.log(error);
+  //       }
+  //     });
+  // };
+
+
+  const sendingsImage = (fileBlob, fileName) => {
+    const accessToken = sessionStorage.getItem("token");
+  
     var myHeaders = new Headers();
     myHeaders.append(
       "X-Api-Key",
       "24cuy5iL1f2nKTx_VmNQd_yDPND8THGm_cQho1REsfDehveIjYea64caZUJRyqEDhHI"
     );
     myHeaders.append("Authorization", `Bearer ${accessToken}`);
-
+  
     var formdata = new FormData();
-    formdata.append("files", folder, `${folder?.name}`);
-
+    formdata.append("files", fileBlob, fileName);
+  
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: formdata,
       redirect: "follow"
     };
-
+  
     fetch(`${process.env.REACT_APP_BASE_URL}file/upload`, requestOptions)
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => {
-        console.log(JSON.parse(result));
-        setUpdate(JSON.parse(result)?.data[0]?.name);
+        console.log(result);
+        const uploadedFileName = result?.data?.[0]?.name;
+        setUpdate(uploadedFileName); // Assuming this is the file name returned by the server
         toast.success("File uploaded");
       })
       .catch((error) => {
         console.log("error", error);
         try {
           error.json().then((body) => {
-            //Here is already the payload from API
             console.log(body);
-            // console.log("message = " + body.error);
             toast.error(body);
           });
         } catch (e) {
-          // console.log("Error parsing promise");
           console.log(error);
         }
       });
   };
-
+  
   const datePickerRef = useRef(null);
 
+  // const PickDater = () => {
+  //   console.log("sodiq");
+  //   datePickerRef.current.click();
+  // };
+
   const PickDater = () => {
-    console.log("sodiq");
-    datePickerRef.current.click();
+    // You can integrate with date picker if needed
+    console.log("Triggering date picker");
+    if (datePickerRef.current) {
+      datePickerRef.current.click(); // If needed
+    }
   };
 
   console.log(regbus.avatar);
@@ -1034,6 +1084,60 @@ const AppUserModal = ({
     );
     setBusstate(true);
   };
+
+  // const blobToFile = (blob, filename) => {
+  //   return new File([blob], filename, { type: blob.type });
+  // };
+
+  // const SendDetails = () => {
+  //   const { lastname, firstname, rcNumber, address, phone, email, avatar } =
+  //     regbus;
+  //   const name = `${firstname} ${lastname}`;
+
+  //   // Helper function to convert base64 to Blob
+  //   const base64ToBlob = (base64, mime) => {
+  //     console.log("Base64 string:", base64); // Log to verify the format
+  //     const base64String = base64.split(",")[1] || base64; // Remove prefix if present
+  //     try {
+  //       const byteChars = atob(base64String);
+  //       const byteArrays = [];
+  //       for (let offset = 0; offset < byteChars.length; offset += 512) {
+  //         const slice = byteChars.slice(offset, offset + 512);
+  //         const byteNumbers = new Array(slice.length);
+  //         for (let i = 0; i < slice.length; i++) {
+  //           byteNumbers[i] = slice.charCodeAt(i);
+  //         }
+  //         const byteArray = new Uint8Array(byteNumbers);
+  //         byteArrays.push(byteArray);
+  //       }
+  //       return new Blob(byteArrays, { type: mime });
+  //     } catch (e) {
+  //       console.error("Error decoding base64:", e);
+  //       throw e;
+  //     }
+  //   };
+
+  //   // Convert base64 avatar to Blob
+  //   try {
+  //     const avatarBlob = base64ToBlob(avatar, "image/jpeg"); // Adjust MIME type as needed
+  //     const avatarFile = blobToFile(avatarBlob, "avatar.jpg");
+
+  //     // Prepare the FormData object
+  //     const formData = new FormData();
+  //     formData.append("name", name);
+  //     formData.append("rcNumber", rcNumber);
+  //     formData.append("address", address);
+  //     formData.append("phone", phone);
+  //     formData.append("email", email);
+  //     formData.append("avatar", avatarFile);
+
+  //     // Dispatch your action with FormData
+  //     dispatch(CreateBusinessRepCorporate(formData));
+  //     setBusstate(true);
+  //   } catch (error) {
+  //     toast.error("Error in SendDetails:", error);
+  //   }
+  // };
 
   const SendTeam = () => {
     const {
@@ -1143,26 +1247,22 @@ const AppUserModal = ({
   };
 
   const Nexting = () => {
-    const { name, rcNumber, address, phone, email, isBusinessPlan } = corp || {};
-    const allVariablesPresent = [
-      name,
-      rcNumber,
-      address,
-      phone,
-      email
-    ].every(variable => variable !== undefined && variable !== null && variable.trim() !== '');
-  
-    const isBusinessPlanValid = isBusinessPlan === true || isBusinessPlan === false;
-  
+    const { name, rcNumber, address, phone, email, isBusinessPlan } =
+      corp || {};
+    const allVariablesPresent = [name, rcNumber, address, phone, email].every(
+      (variable) =>
+        variable !== undefined && variable !== null && variable.trim() !== ""
+    );
+
+    const isBusinessPlanValid =
+      isBusinessPlan === true || isBusinessPlan === false;
+
     if (allVariablesPresent && isBusinessPlanValid) {
       setStep(24);
     } else {
       toast.error("One or more required fields are missing or invalid.");
     }
   };
-  
-  
-  
 
   const EditSub = () => {
     const { minRepCount, maxRepCount, maxLocationCount, amount } = editingsub;
@@ -1353,6 +1453,40 @@ const AppUserModal = ({
     setStep(10);
   };
 
+  const base64ToBlob = (base64, mime) => {
+    const byteChars = atob(base64);
+    const byteArrays = [];
+    for (let offset = 0; offset < byteChars.length; offset += 512) {
+      const slice = byteChars.slice(offset, offset + 512);
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+    return new Blob(byteArrays, { type: mime });
+  };
+  
+
+  const handleCapture = (imageSrc) => {
+    console.log("Captured image:", imageSrc);
+  
+    // Extract the base64 part from the data URL
+    const base64String = imageSrc.split(',')[1];
+    
+    // Convert base64 to Blob
+    const avatarBlob = base64ToBlob(base64String, 'image/jpeg');
+    const fileName = 'avatar.jpg'; // You can dynamically generate this if needed
+  
+    // Upload the file
+    sendingsImage(avatarBlob, fileName);
+    
+    // Optionally update state directly after successful upload
+    // setRegbus((prev) => ({ ...prev, avatar: update }));
+  };
+  
+
   return (
     <div>
       <AppModal
@@ -1408,7 +1542,19 @@ const AppUserModal = ({
               value={regbus?.address}
               placeholder={`${`Enter Business Rep's Address`}`}
             />
-            {regbus?.avatar !== "" ? (
+            {regbus?.avatar ? (
+              <img
+                src={regbus?.avatar}
+                alt="takephoto"
+                style={{ width: "492px", height: "105px" }}
+              />
+            ) : (
+              <>
+                <CameraComponent onCapture={handleCapture} />
+                {/* <ModalInputText onClick={PickDater} label="Take photo" photo /> */}
+              </>
+            )}
+            {/* {regbus?.avatar !== "" ? (
               <img
                 src={regbus?.avatar}
                 alt="takephoto"
@@ -1432,7 +1578,7 @@ const AppUserModal = ({
                   photo
                 />
               </>
-            )}
+            )} */}
           </div>
           <LargeSignInButton
             onClick={() => setStep(2)}
@@ -1884,7 +2030,7 @@ const AppUserModal = ({
               value={team?.address}
               placeholder={`${`Enter User management Address`}`}
             />
-            {team?.avatar !== "" ? (
+            {/* {team?.avatar !== "" ? (
               <img
                 src={team?.avatar}
                 alt="takephoto"
@@ -1908,6 +2054,18 @@ const AppUserModal = ({
                   photo
                   increaser
                 />
+              </>
+            )} */}
+            {team?.avatar ? (
+              <img
+              src={team?.avatar}
+                alt="takephoto"
+                style={{ width: "492px", height: "105px" }}
+              />
+            ) : (
+              <>
+                <CameraComponent onCapture={handleCapture} />
+                {/* <ModalInputText onClick={PickDater} label="Take photo" photo /> */}
               </>
             )}
             <div className="flex">
@@ -7108,9 +7266,7 @@ const AppUserModal = ({
           >
             <span>Total Amount</span>
             <span>
-              {
-                assigned?.calculatedAmount
-              }
+              {assigned?.calculatedAmount}
               {/* {(() => {
                 let numericAmount = parseFloat(
                   (assigned?.calculatedAmount || "").replace(/^N/, "")

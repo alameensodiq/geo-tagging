@@ -158,6 +158,8 @@ const Tables = ({
     setuseractive("");
   };
 
+  console.log(data)
+
   return (
     <ThemeProvider theme={theme}>
       <Flex report={report}>
