@@ -459,7 +459,7 @@ const Sidecontent = styled.div`
     .settingsdiv {
       display: flex;
       flex-direction: column;
-      padding-top: 40px;
+      padding-top: 15%;
       padding-bottom: 10px;
       gap: 10px;
       .settings {
