@@ -260,7 +260,7 @@ const Sidecontent = styled.div`
     align-items: center;
     margin-bottom: 30px;
     gap: 15px;
-    margin-top: 10px;
+    margin-top: 5%;
     /* border-bottom: 0.5px solid; */
     /* border-bottom-color: rgb(135, 145, 163, 0.08) ; */
     padding-bottom: 10px;
@@ -460,7 +460,7 @@ const Sidecontent = styled.div`
       display: flex;
       flex-direction: column;
       padding-top: 15%;
-      padding-bottom: 10px;
+      padding-bottom: 5%;
       gap: 10px;
       .settings {
         color: #5a6376;
