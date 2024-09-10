@@ -107,7 +107,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             </span>
           </div>
           {/* <div className="cover"> */}
-          {!showDatePicker && (
+          {/* {!showDatePicker && (
             <div className="date" onClick={() => toggleDatePicker()}>
               <span>Showing for:</span>
               <Calendar />
@@ -143,27 +143,8 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 ]}
                 onChange={handleSelect}
               />
-              {/* <button
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  width: "100px",
-                  height: "40px",
-                  backgroundColor: "red",
-                  fontSize: "12px",
-                  border: "none",
-                  borderRadius: "8px",
-                  marginLeft: "20px",
-                  color: "white",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-                onClick={() => toggleDatePicker()}
-              >
-                Close
-              </button> */}
             </div>
-          )}
+          )} */}
           {/* </div> */}
         </div>
         <FeaturesGrid dashboarder superoverview row={1}>
