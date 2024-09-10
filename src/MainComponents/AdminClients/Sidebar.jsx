@@ -283,7 +283,7 @@ const Sidecontent = styled.div`
     margin-top: 5%;
     /* border-bottom: 0.5px solid; */
     /* border-bottom-color: rgb(135, 145, 163, 0.08) ; */
-    padding-bottom: 10px;
+    padding-bottom: 5%;
 
     .first {
       // margin-top; 30px;
