@@ -128,6 +128,24 @@ const AppUserModal = ({
     avatar: update
   });
 
+  const handleClick = () => {
+    const isAllFieldsEmpty =
+      !team.name &&
+      !team.lastname &&
+      !team.address &&
+      !team.phone &&
+      !team.email &&
+      team.permissions.length === 0 &&
+      !team.avatar;
+
+    if (isAllFieldsEmpty) {
+      setStep(9);
+    } else {
+      // Optionally handle the case where fields are not empty
+      toast.error("Some fields are not empty");
+    }
+  };
+
   const [corp, setCorp] = useState({
     name: "",
     rcNumber: "",
@@ -1009,27 +1027,26 @@ const AppUserModal = ({
   //     });
   // };
 
-
   const sendingsImage = (fileBlob, fileName) => {
     const accessToken = sessionStorage.getItem("token");
-  
+
     var myHeaders = new Headers();
     myHeaders.append(
       "X-Api-Key",
       "24cuy5iL1f2nKTx_VmNQd_yDPND8THGm_cQho1REsfDehveIjYea64caZUJRyqEDhHI"
     );
     myHeaders.append("Authorization", `Bearer ${accessToken}`);
-  
+
     var formdata = new FormData();
     formdata.append("files", fileBlob, fileName);
-  
+
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: formdata,
       redirect: "follow"
     };
-  
+
     fetch(`${process.env.REACT_APP_BASE_URL}file/upload`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
@@ -1050,7 +1067,7 @@ const AppUserModal = ({
         }
       });
   };
-  
+
   const datePickerRef = useRef(null);
 
   // const PickDater = () => {
@@ -1467,25 +1484,23 @@ const AppUserModal = ({
     }
     return new Blob(byteArrays, { type: mime });
   };
-  
 
   const handleCapture = (imageSrc) => {
     console.log("Captured image:", imageSrc);
-  
+
     // Extract the base64 part from the data URL
-    const base64String = imageSrc.split(',')[1];
-    
+    const base64String = imageSrc.split(",")[1];
+
     // Convert base64 to Blob
-    const avatarBlob = base64ToBlob(base64String, 'image/jpeg');
-    const fileName = 'avatar.jpg'; // You can dynamically generate this if needed
-  
+    const avatarBlob = base64ToBlob(base64String, "image/jpeg");
+    const fileName = "avatar.jpg"; // You can dynamically generate this if needed
+
     // Upload the file
     sendingsImage(avatarBlob, fileName);
-    
+
     // Optionally update state directly after successful upload
     // setRegbus((prev) => ({ ...prev, avatar: update }));
   };
-  
 
   return (
     <div>
@@ -2058,7 +2073,7 @@ const AppUserModal = ({
             )} */}
             {team?.avatar ? (
               <img
-              src={team?.avatar}
+                src={team?.avatar}
                 alt="takephoto"
                 style={{ width: "492px", height: "105px" }}
               />
@@ -2728,7 +2743,7 @@ const AppUserModal = ({
             }}
           >
             <LargeSignInButton
-              onClick={() => setStep(9)}
+              onClick={() => handleClick()}
               bigger
               // increase
               title={"Submit"}

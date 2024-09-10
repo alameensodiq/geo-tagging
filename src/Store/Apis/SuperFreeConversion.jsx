@@ -1,10 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const SuperAddTeam = createAsyncThunk(
-  "superaddteam",
+export const AddProject = createAsyncThunk(
+  "addproject",
   async (
-    { name,  address, phone, email, avatar, permissions },
+    {
+      month
+    },
     thunkAPI
   ) => {
     console.log(process.env.REACT_APP_BASE_URL);
@@ -12,31 +14,18 @@ export const SuperAddTeam = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}admin/team`,
+        `${process.env.REACT_APP_BASE_URL}admin/dashboard/freeTrial-conversion-filter?month=${month}`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
           },
-          body: JSON.stringify({
-            name,
-            // rcNumber,
-            address,
-            phone,
-            email,
-            avatar,
-            permissions
-          })
         }
       );
       let data = await response.json();
-      if(data?.status){
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
-      }
+      toast.success(data.message);
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);
