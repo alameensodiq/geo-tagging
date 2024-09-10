@@ -1,15 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const AssignedRep = createAsyncThunk(
-  "assigned",
-  async ({ rep, projectId }, thunkAPI) => {
-    console.log(process.env.REACT_APP_BASE_URL);
+export const SubCompliance = createAsyncThunk(
+  "subcompliance",
+  async ({ monthNumber, year }, thunkAPI) => {
+    console.log("monthNumber:", monthNumber); // Debugging
+    console.log("year:", year); // Debugging
+
     const accessToken = sessionStorage.getItem("token");
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/project-summary/${projectId}`,
+        `${process.env.REACT_APP_BASE_URL}admin/dashboard/compliance-stats-filter`,
         {
           method: "POST",
           headers: {
@@ -18,12 +20,12 @@ export const AssignedRep = createAsyncThunk(
             Authorization: `Bearer ${accessToken}`
           },
           body: JSON.stringify({
-            data: rep
+            month: monthNumber,
+            year: year
           })
         }
       );
-
-      let data = await response.json();
+      const data = await response.json();
       if(data?.status){
         toast.success(data.message);
       }
@@ -31,20 +33,11 @@ export const AssignedRep = createAsyncThunk(
         toast.error(data.message);
       }
       console.log(data);
-
-      // Store user info in sessionStorage if needed
-      // sessionStorage.setItem('firstName', data?.data?.user?.firstName);
-      // sessionStorage.setItem('role', data?.data?.user?.userRole);
-      // sessionStorage.setItem('token', data?.data?.token);
-
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({
         error: "Failed! To establish connection."
       });
-      // Handle error logging if necessary
-      // console.log('Error', e.response.data);
-      // thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );

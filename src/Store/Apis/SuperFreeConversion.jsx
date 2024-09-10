@@ -1,20 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const AddProject = createAsyncThunk(
-  "addproject",
+export const SuperFreeConversion = createAsyncThunk(
+  "freeconversion",
   async (
-    {
-      month
-    },
+    {endDateOne, startDateOne},
     thunkAPI
   ) => {
-    console.log(process.env.REACT_APP_BASE_URL);
+
+    const dateObj = new Date(startDateOne);
+
+    const formattedDate = dateObj.toISOString().slice(0, 10);
+
+    const dateObjs = new Date(endDateOne);
+
+    const formattedDated = dateObjs.toISOString().slice(0, 10);
+    console.log(process.env.REACT_APP_BASE_URL);;
     const accessToken = sessionStorage.getItem("token");
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}admin/dashboard/freeTrial-conversion-filter?month=${month}`,
+        `${process.env.REACT_APP_BASE_URL}admin/dashboard/freeTrial-conversion-filter?startDate=${formattedDate}&endDate=${formattedDated}`,
         {
           method: "GET",
           headers: {
@@ -25,7 +31,12 @@ export const AddProject = createAsyncThunk(
         }
       );
       let data = await response.json();
-      toast.success(data.message);
+      if(data?.status){
+        toast.success(data.message);
+      }
+      if(!data?.status){
+        toast.error(data.message);
+      }
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);

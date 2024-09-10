@@ -158,7 +158,7 @@ const Tables = ({
     setuseractive("");
   };
 
-  console.log(data)
+  console.log(data);
 
   return (
     <ThemeProvider theme={theme}>
@@ -2742,75 +2742,37 @@ const Tables = ({
               >
                 <TableHead>
                   <TableRow style={{ paddingRight: "0px" }}>
-                    <StyledTableCell style={{ width: "20%" }}>
+                    <StyledTableCell style={{ width: "25%" }}>
                       CORPORATES NAME
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      MONTHLY FEE PER USER
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "25%" }}>
                       START DATE
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      END DATE
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      MONTHS LEFT
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      RENEWAL DATE
+                    <StyledTableCell style={{ width: "25%" }}>
+                      NEXT RENEWAL DATE
                     </StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      Abdulazeez Abdulwaarith
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      6 Months Left
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      Abdulazeez Abdulwaarith
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      6 Months Left
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      Abdulazeez Abdulwaarith
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      6 Months Left
-                    </StyledTableCell>
-                    <StyledTableCell style={{ width: "20%" }}>
-                      12/04/23
-                    </StyledTableCell>
-                  </StyledTableRow>
+                  {data?.map((item) => (
+                    <StyledTableRow style={{ position: "relative" }}>
+                      <StyledTableCell style={{ width: "25%" }}>
+                        Abdulazeez Abdulwaarith
+                      </StyledTableCell>
+                      <StyledTableCell style={{ width: "25%" }}>
+                        N10,000
+                      </StyledTableCell>
+                      <StyledTableCell style={{ width: "25%" }}>
+                        12/04/23
+                      </StyledTableCell>
+                      <StyledTableCell style={{ width: "25%" }}>
+                        12/04/23
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
                 </TableBody>
               </Table>
             </TableContainer>

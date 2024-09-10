@@ -152,7 +152,11 @@ const AppUserModal = ({
     address: "",
     phone: "",
     email: "",
-    isBusinessPlan: ""
+    isBusinessPlan: "",
+    minRepCount: 0,
+    maxRepCount: 0,
+    maxLocationCount: 0,
+    amount: 0.0
   });
 
   const [sub, setSub] = useState({
@@ -945,6 +949,15 @@ const AppUserModal = ({
     });
   };
 
+  const ChangeCorpNumber = (e) => {
+    const { name, value } = e.target;
+    const numericValue = Number(value);
+    setCorp({
+      ...corp,
+      [name]: numericValue
+    });
+  };
+
   const Changeteam = (e) => {
     const { name, value } = e.target;
     console.log(value);
@@ -1215,7 +1228,18 @@ const AppUserModal = ({
   };
 
   const SendingCorp = () => {
-    const { name, rcNumber, address, phone, email, isBusinessPlan } = corp;
+    const {
+      name,
+      rcNumber,
+      address,
+      phone,
+      email,
+      isBusinessPlan,
+      minRepCount,
+      maxRepCount,
+      amount,
+      maxLocationCount
+    } = corp;
     console.log(team);
     console.log(address);
     const allVariablesPresent = [
@@ -1224,7 +1248,11 @@ const AppUserModal = ({
       address,
       phone,
       email,
-      isBusinessPlan
+      isBusinessPlan,
+      minRepCount,
+      maxRepCount,
+      amount,
+      maxLocationCount
     ].every((variable) => variable !== undefined && variable !== null);
     if (allVariablesPresent) {
       console.log(supers);
@@ -1235,7 +1263,11 @@ const AppUserModal = ({
           address,
           phone,
           email,
-          isBusinessPlan
+          isBusinessPlan,
+          minRepCount,
+          maxRepCount,
+          amount,
+          maxLocationCount
         })
       );
       setBusstate5(true);
@@ -1418,7 +1450,11 @@ const AppUserModal = ({
       address: "",
       phone: "",
       email: "",
-      isBusinessPlan: ""
+      isBusinessPlan: "",
+      minRepCount: 0,
+      maxRepCount: 0,
+      maxLocationCount: 0,
+      amount: 0.0
     });
     setFree({
       minCountOfBusinessReps: "",
@@ -3986,26 +4022,112 @@ const AppUserModal = ({
               Custom Plan
             </span>
           </div> */}
-          {/* <Flex>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              gap: "10px",
+              paddingTop: "10px"
+            }}
+          >
+            {!busplan ? (
+              <div
+                style={{
+                  width: "22px",
+                  height: "22px",
+                  color: "white",
+                  borderRadius: "50%",
+                  background: "#12B76A",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  top: "7px",
+                  left: "8px",
+                  cursor: "pointer"
+                }}
+                onClick={() => setBusplan(true)}
+              >
+                <Markgreen style={{ cursor: "pointer" }} />
+              </div>
+            ) : (
+              <span
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  border: "1px solid #E0E0E0",
+                  cursor: "pointer"
+                }}
+                onClick={() => setBusplan(false)}
+              ></span>
+            )}
+            <span
+              style={{ color: "#1E1B39", fontSize: "15px", fontWeight: "500" }}
+            >
+              Custom Plan
+            </span>
+          </div>
+          <Flex>
             <div className="addresswrapper">
               <div className="heading">
                 <span className="title">Plan Types</span>
                 <span className="title">Minimum Users</span>
-                <span className="titlelast">Monthly fee per user</span>
+                <span className="titlelast">Number of Location</span>
               </div>
               <div className="arrange">
                 <div className="details">
                   <div className="first">Custom Plan</div>
                   <div className="second">
-                    <input className="text" placeholder="Enter user amount" />
+                    <input
+                      className="text"
+                      onChange={(e) => ChangeCorpNumber(e)}
+                      value={corp?.minRepCount}
+                      name="minRepCount"
+                      placeholder="Enter minimum user"
+                    />
                   </div>
                   <div className="third">
-                    <input className="text" placeholder="Enter monthly fees" />
+                    <input
+                      className="text"
+                      onChange={(e) => ChangeCorpNumber(e)}
+                      value={corp?.maxLocationCount}
+                      name="maxLocationCount"
+                      placeholder="Enter number of location"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="heading">
+                <span className="title"></span>
+                <span className="title">Maximum Users</span>
+                <span className="titlelast">Monthly fee per user</span>
+              </div>
+              <div className="arrange">
+                <div className="details">
+                  <div className="first"></div>
+                  <div className="second">
+                    <input
+                      className="text"
+                      value={corp?.maxRepCount}
+                      onChange={(e) => ChangeCorpNumber(e)}
+                      name="maxRepCount"
+                      placeholder="Enter maximum user"
+                    />
+                  </div>
+                  <div className="third">
+                    <input
+                      className="text"
+                      onChange={(e) => ChangeCorpNumber(e)}
+                      value={corp?.amount}
+                      name="amount"
+                      placeholder="Enter monthly fees"
+                    />
                   </div>
                 </div>
               </div>
             </div>
-          </Flex> */}
+          </Flex>
 
           <div
             style={{

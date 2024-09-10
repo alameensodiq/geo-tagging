@@ -12,10 +12,12 @@ import { DownloadCsv } from "../../bits/DownloadCsv";
 import { SubscribeEditButton } from "../../bits/SubscribeEditButton";
 import { SuperSubs } from "../../Store/Apis/SuperSub";
 import { Subscribers } from "../../Store/Apis/Subscribers";
+import { CustomSub } from "../../Store/Apis/CustomSub";
 
 const SuperAdminSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
   const [activating1, SetActivating1] = useState(false);
+  const [activating5, SetActivating5] = useState(false);
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [activating2, SetActivating2] = useState(false);
@@ -46,22 +48,29 @@ const SuperAdminSubscription = ({ title }) => {
     (state) => state.subscribers
   );
 
+  const { customsub, authenticatingcustomsub } = useSelector(
+    (state) => state.customsub
+  );
+  
+  console.log(customsub?.data);
   console.log(supersub?.data);
   console.log(subscribers?.data?.[name]);
 
   useEffect(() => {
     dispatch(SuperSubs());
     dispatch(Subscribers());
+    dispatch(CustomSub())
     if (reload) {
       dispatch(SuperSubs());
       setReload(false);
       dispatch(Subscribers());
       SetActivating1(true);
-    SetActivating2(false);
-    SetActivating3(false);
-    SetActivating4(false);
-    SetActivate(false);
-    SetPend(false);
+      SetActivating2(false);
+      SetActivating3(false);
+      SetActivating4(false);
+      SetActivating5(false);
+      SetActivate(false);
+      SetPend(false);
     }
   }, [reload]);
 
@@ -82,6 +91,7 @@ const SuperAdminSubscription = ({ title }) => {
     SetActivating2(false);
     SetActivating3(false);
     SetActivating4(false);
+    SetActivating5(false);
     setStatus("ACTIVE");
     setSearcher("");
     setStartDate(new Date("2022-01-01"));
@@ -99,6 +109,7 @@ const SuperAdminSubscription = ({ title }) => {
     SetActivating2(false);
     SetActivating3(false);
     SetActivating4(false);
+    SetActivating5(false);
     SetLocker(false);
     setStatus("PENDING");
     setSearcher("");
@@ -118,6 +129,7 @@ const SuperAdminSubscription = ({ title }) => {
     SetActivating4(false);
     SetActivate(false);
     SetPend(false);
+    SetActivating5(false);
   };
 
   const setPendingRole2 = () => {
@@ -127,6 +139,7 @@ const SuperAdminSubscription = ({ title }) => {
     SetActivating4(false);
     SetActivate(false);
     SetPend(false);
+    SetActivating5(false);
   };
 
   const setPendingRole3 = () => {
@@ -136,10 +149,22 @@ const SuperAdminSubscription = ({ title }) => {
     SetActivating4(false);
     SetActivate(false);
     SetPend(false);
+    SetActivating5(false);
   };
 
   const setPendingRole4 = () => {
     SetActivating4(true);
+    SetActivating1(false);
+    SetActivating2(false);
+    SetActivating3(false);
+    SetActivate(false);
+    SetPend(false);
+    SetActivating5(false);
+  };
+
+  const setPendingRole5 = () => {
+    SetActivating5(true);
+    SetActivating4(false);
     SetActivating1(false);
     SetActivating2(false);
     SetActivating3(false);
@@ -224,12 +249,21 @@ const SuperAdminSubscription = ({ title }) => {
             <div
               onClick={() => {
                 setPendingRole4();
-                setName(supersub?.data[5]?.name);
+                setName('');
               }}
               className={`${activating4 ? "active" : "status"}`}
             >
-              <span>{supersub?.data[5]?.name}</span>
+              <span>Custom</span>
             </div>
+            {/* <div
+              onClick={() => {
+                setPendingRole5();
+                // setName(supersub?.data[5]?.name);
+              }}
+              className={`${activating5 ? "active" : "status"}`}
+            >
+              <span>{supersub?.data[5]?.name}</span>
+            </div> */}
           </div>
           {name === "FREE_TRIAL" ? (
             <div className="trialmaindiv">
@@ -646,27 +680,9 @@ const SuperAdminSubscription = ({ title }) => {
                 </div>
               </div>
             </div>
-          ) : (
-            <div className="trialmaindiv">
-              <div className="trialdiv">
-                <div className="trialdivtop">
-                  <span>Plan Type</span>
-                </div>
-                <div className="trialdivbottom">
-                  <div className="freedays">
-                    <span className="free">Custom Plan</span>
-                  </div>
-                  <SubscribeEditButton
-                    onClick={() => setStep(40)}
-                    background
-                    plus
-                    color
-                    title="Add new Custom"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
+          ) : name === "" ? (
+            ""
+          ) : ""}
           <div className="innertable">
             {activated || pend || activating1 || activating2 || activating3 ? (
               <div className="top">
@@ -736,7 +752,7 @@ const SuperAdminSubscription = ({ title }) => {
                       placeholder="Search for Corporates name, email, RC Number, e.t.c"
                     /> */}
                   </div>
-                  <Tables customplan data={[]} setStep={setStep} />
+                  <Tables customplan data={customsub?.data} setStep={setStep} />
                 </>
               )}
             </div>

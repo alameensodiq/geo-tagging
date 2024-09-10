@@ -17,6 +17,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Radialy from "../../bits/Radialy";
 import { Loader } from "../../Loader";
+import { SuperFreeConversion } from "../../Store/Apis/SuperFreeConversion";
+import { Container, Skeleton } from "@mui/material";
+import { SuperSubCounts } from "../../Store/Apis/SuperSubCount";
+import { SubAnalysis } from "../../Store/Apis/SubAnalysis";
+import { SubCompliance } from "../../Store/Apis/SubCompliance";
+import { SubPunctual } from "../../Store/Apis/SubPunctual";
+import { SubProject } from "../../Store/Apis/SubProject";
 
 const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const dispatch = useDispatch();
@@ -33,13 +40,127 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
     new Date(Date.now() + 3600 * 1000 * 24)
   );
 
+  const initialStartDate = new Date("2022-01-01");
+  const initialEndDate = new Date(Date.now() + 3600 * 1000 * 24);
+
+  // State variables
+  const [startDateOne, setStartDateOne] = useState(initialStartDate);
+  const [endDateOne, setEndDateOne] = useState(initialEndDate);
+  const [endDateThree, setEndDateThree] = useState(
+    new Date(Date.now() + 3600 * 1000 * 24)
+  );
+  const [endDateFour, setEndDateFour] = useState(
+    new Date(Date.now() + 3600 * 1000 * 24)
+  );
+  const [endDateFive, setEndDateFive] = useState(
+    new Date(Date.now() + 3600 * 1000 * 24)
+  );
+  const [endDateSix, setEndDateSix] = useState(
+    new Date(Date.now() + 3600 * 1000 * 24)
+  );
+
   useEffect(() => {
+    const date = new Date(endDate);
+    const monthNumber = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    const dateThree = new Date(endDateThree);
+    const monthNumberThree = dateThree.getMonth() + 1;
+    const yearThree = dateThree.getFullYear();
+
+    const dateFour = new Date(endDateFour);
+    const monthNumberFour = dateFour.getMonth() + 1;
+    const yearFour = dateFour.getFullYear();
+
+    const dateFive = new Date(endDateFive);
+    const monthNumberFive = dateFive.getMonth() + 1;
+    const yearFive = dateFive.getFullYear();
+
+    const dateSix = new Date(endDateSix);
+    const monthNumberSix = dateSix.getMonth() + 1;
+    const yearSix = dateSix.getFullYear();
+
     dispatch(Dashboard());
+    dispatch(SuperFreeConversion({ endDateOne, startDateOne }));
+    console.log(monthNumber, year);
+    // if(monthNumber && year){
+    //   dispatch(SuperSubCounts({ monthNumber, year }))
+    // }
+    if (monthNumber && year) {
+      dispatch(SubAnalysis({ monthNumber, year }));
+    }
+    if (monthNumberThree && yearThree) {
+      dispatch(
+        SuperSubCounts({ monthNumber: monthNumberThree, year: yearThree })
+      );
+    }
+    if (monthNumberFour && yearFour) {
+      dispatch(SubCompliance({ monthNumber: monthNumberFour, year: yearFour }));
+    }
+    if (monthNumberFive && yearFive) {
+      dispatch(SubPunctual({ monthNumber: monthNumberFive, year: yearFive }));
+    }
+    if (monthNumberSix && yearSix) {
+      dispatch(SubProject({ monthNumber: monthNumberSix, year: yearSix }));
+    }
+
     if (reload) {
       dispatch(Dashboard());
       setReload(false);
     }
-  }, [reload, startDate, endDate]);
+  }, [reload]);
+
+  useEffect(() => {
+    const isStartDateChanged =
+      startDateOne.getTime() !== initialStartDate.getTime();
+    const isEndDateChanged = endDateOne.getTime() !== initialEndDate.getTime();
+
+    if (isStartDateChanged && isEndDateChanged) {
+      dispatch(SuperFreeConversion({ endDateOne, startDateOne }));
+    }
+    if (endDate) {
+      console.log(endDate);
+      const date = new Date(endDate);
+      const monthNumber = date.getMonth() + 1;
+      const year = date.getFullYear();
+      dispatch(SubAnalysis({ month: monthNumber, year: year }));
+    }
+    if (endDateThree) {
+      console.log(endDateThree);
+      const date = new Date(endDateThree);
+      const monthNumber = date.getMonth() + 1;
+      const year = date.getFullYear();
+      dispatch(SuperSubCounts({ month: monthNumber, year: year }));
+    }
+    if (endDateFour) {
+      console.log(endDateFour);
+      const date = new Date(endDateFour);
+      const monthNumber = date.getMonth() + 1;
+      const year = date.getFullYear();
+      dispatch(SubCompliance({ month: monthNumber, year: year }));
+    }
+    if (endDateFive) {
+      console.log(endDateFive);
+      const date = new Date(endDateFive);
+      const monthNumber = date.getMonth() + 1;
+      const year = date.getFullYear();
+      dispatch(SubPunctual({ month: monthNumber, year: year }));
+    }
+    if (endDateSix) {
+      console.log(endDateSix);
+      const date = new Date(endDateSix);
+      const monthNumber = date.getMonth() + 1;
+      const year = date.getFullYear();
+      dispatch(SubProject({ month: monthNumber, year: year }));
+    }
+  }, [
+    startDateOne,
+    endDateOne,
+    endDateThree,
+    endDateFour,
+    endDateFive,
+    endDateSix
+  ]);
 
   const toggleDatePicker = () => {
     setShowDatePicker(!showDatePicker); // Toggle date picker visibility
@@ -48,7 +169,33 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const { dashboard, authenticatingdashboard } = useSelector(
     (state) => state.dashboard
   );
+
+  const { supersubscount, authenticatingsupersubscount } = useSelector(
+    (state) => state.supersubscount
+  );
+
+  const { superanalysis, authenticatingsuperanalysis } = useSelector(
+    (state) => state.superanalysis
+  );
+
+  const { subproject, authenticatingsubproject } = useSelector(
+    (state) => state.subproject
+  );
+
+  const { subcompliance, authenticatingsubcompliance } = useSelector(
+    (state) => state.subcompliance
+  );
+
+  const { subpunctual, authenticatingsubpunctual } = useSelector(
+    (state) => state.subpunctual
+  );
+
+  const { freeconversion, authenticatingfreeconversion } = useSelector(
+    (state) => state.freeconversion
+  );
   console.log(dashboard?.data);
+  console.log(freeconversion?.data);
+  console.log(supersubscount?.data);
 
   const handleSelect = (ranges) => {
     console.log(ranges);
@@ -71,24 +218,82 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   };
 
   const datePickerRefs = useRef(null);
+  const datePickerRefsOne = useRef(null);
+  const datePickerRefsTwo = useRef(null);
+  const datePickerRefsThree = useRef(null);
+  const datePickerRefsFour = useRef(null);
+  const datePickerRefsFive = useRef(null);
+  const datePickerRefsSix = useRef(null);
+
+  const dateChangersOne = (date) => {
+    console.log(date);
+    setStartDateOne(date);
+  };
+
+  const dateChangersTwo = (date) => {
+    console.log(date);
+    setEndDateOne(date);
+  };
 
   const dateChangers = (date) => {
     console.log(date);
     setEndDate(date);
   };
 
+  const dateChangersThree = (date) => {
+    console.log(date);
+    setEndDateThree(date);
+  };
+
+  const dateChangersFour = (date) => {
+    console.log(date);
+    setEndDateFour(date);
+  };
+
+  const dateChangersFive = (date) => {
+    console.log(date);
+    setEndDateFive(date);
+  };
+
+  const dateChangersSix = (date) => {
+    console.log(date);
+    setEndDateSix(date);
+  };
+
   const PickDater = () => {
     datePickerRefs.current.setOpen(true);
+  };
+
+  const PickDaterOne = () => {
+    datePickerRefsOne.current.setOpen(true);
+  };
+
+  const PickDaterTwo = () => {
+    datePickerRefsTwo.current.setOpen(true);
+  };
+
+  const PickDaterThree = () => {
+    datePickerRefsThree.current.setOpen(true);
+  };
+
+  const PickDaterFour = () => {
+    datePickerRefsFour.current.setOpen(true);
+  };
+
+  const PickDaterFive = () => {
+    datePickerRefsFive.current.setOpen(true);
+  };
+
+  const PickDaterSix = () => {
+    datePickerRefsSix.current.setOpen(true);
   };
 
   console.log(dateRange);
   return (
     <Flex
-      progress={
-        dashboard?.data?.freeTrialConversion?.freeTrialOngoingPercentage
-      }
-      completed={dashboard?.data?.freeTrialConversion?.freeTrialEndedPercentage}
-      converted={dashboard?.data?.freeTrialConversion?.trialConvertedPercentage}
+      progress={freeconversion?.data?.freeTrialOngoingPercentage}
+      completed={freeconversion?.data?.freeTrialEndedPercentage}
+      converted={freeconversion?.data?.trialConvertedPercentage}
     >
       <SuperAdminNavbar title={title} />
       {dashboard?.data ? (
@@ -159,368 +364,406 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
               />
             </FeaturesGrid>
             <FeaturesGrid dashboarder bigger superoverview row={2}>
-              <div className="table">
-                <div className="punctuality">
-                  <div className="start">
-                    <div className="numbers">
-                      <span className="name">Free Trial Conversion Rate</span>
+              {authenticatingfreeconversion ? (
+                <div className="table">
+                  <Skeleton width="100%" height="100%" />
+                </div>
+              ) : (
+                <div className="table">
+                  <div className="punctuality">
+                    <div className="start">
+                      <div className="numbers">
+                        <span className="name">Free Trial Conversion Rate</span>
+                      </div>
+                    </div>
+                    <div className="main">
+                      <DatePicker
+                        className="input"
+                        selected={startDateOne}
+                        ref={datePickerRefsOne}
+                        onChange={(date) => dateChangersOne(date)}
+                        showTimeSelect={false}
+                        // showMonthYearPicker
+                        // showFullMonthYearPicker
+                        dateFormat="MMM d yyyy"
+                        placeholderText="13 Oct 2023"
+                        popperPlacement="bottom-start"
+                      />
+
+                      <Calendar
+                        onClick={() => PickDaterOne()}
+                        className="calendar"
+                      />
+                    </div>
+                    <div className="main">
+                      <DatePicker
+                        className="input"
+                        selected={endDateOne}
+                        ref={datePickerRefsTwo}
+                        onChange={(date) => dateChangersTwo(date)}
+                        showTimeSelect={false}
+                        // showMonthYearPicker
+                        // showFullMonthYearPicker
+                        dateFormat="MMM d yyyy"
+                        placeholderText="13 Oct 2023"
+                        popperPlacement="bottom-start"
+                      />
+
+                      <Calendar
+                        onClick={() => PickDaterTwo()}
+                        className="calendar"
+                      />
                     </div>
                   </div>
-                  <div className="main">
-                    <DatePicker
-                      className="input"
-                      selected={endDate}
-                      ref={datePickerRefs}
-                      onChange={(date) => dateChangers(date)}
-                      // showTimeSelect={false}
-                      showMonthYearPicker
-                      showFullMonthYearPicker
-                      dateFormat="MMM yyyy"
-                      // placeholderText="13 Oct 2023"
-                      popperPlacement="bottom-start"
-                    />
-                    <Calendar
-                      onClick={() => PickDater()}
-                      className="calendar"
-                    />
-                  </div>
-                </div>
-                <div className="superadminconversion">
-                  <div className="freeconvert">
-                    <span className="title">Free Trial Conversion Rate</span>
-                    <span className="percent">
-                      {
-                        dashboard?.data?.freeTrialConversion
-                          ?.trialConvertedPercentage
-                      }
-                      %
-                    </span>
-                  </div>
-                  <div className="colortrialdiv">
-                    <div className="trial">
-                      <div className="color"></div>
-                      <div className="colortitle">
-                        <span className="round"></span>
-                        <div className="progressdiv">
-                          <span className="progress">Trial in Progress</span>
-                          <span className="progresspercent">
-                            {" "}
-                            {
-                              dashboard?.data?.freeTrialConversion
-                                ?.freeTrialOngoingPercentage
-                            }
-                            % (
-                            {
-                              dashboard?.data?.freeTrialConversion
-                                ?.freeTrialOngoing
-                            }
-                            )
-                          </span>
+                  <div className="superadminconversion">
+                    <div className="freeconvert">
+                      <span className="title">Free Trial Conversion Rate</span>
+                      <span className="percent">
+                        {freeconversion?.data?.trialConvertedPercentage}%
+                      </span>
+                    </div>
+                    <div className="colortrialdiv">
+                      <div className="trial">
+                        <div className="color"></div>
+                        <div className="colortitle">
+                          <span className="round"></span>
+                          <div className="progressdiv">
+                            <span className="progress">Trial in Progress</span>
+                            <span className="progresspercent">
+                              {" "}
+                              {freeconversion?.data?.freeTrialOngoingPercentage}
+                              % ({freeconversion?.data?.freeTrialOngoing})
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="trialone">
+                        <div className="color"></div>
+                        <div className="colortitle">
+                          <span className="round"></span>
+                          <div className="progressdiv">
+                            <span className="progress">Trial Completed</span>
+                            <span className="progresspercent">
+                              {" "}
+                              {freeconversion?.data?.freeTrialEndedPercentage}%
+                              ({freeconversion?.data?.freeTrialCompleted})
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="trialtwo">
+                        <div className="color"></div>
+                        <div className="colortitle">
+                          <span className="round"></span>
+                          <div className="progressdiv">
+                            <span className="progress">Trial Converted</span>
+                            <span className="progresspercent">
+                              {" "}
+                              {freeconversion?.data?.trialConvertedPercentage}%
+                              ({freeconversion?.data?.trialConverted})
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="trialone">
-                      <div className="color"></div>
-                      <div className="colortitle">
-                        <span className="round"></span>
-                        <div className="progressdiv">
-                          <span className="progress">Trial Completed</span>
-                          <span className="progresspercent">
-                            {" "}
-                            {
-                              dashboard?.data?.freeTrialConversion
-                                ?.freeTrialEndedPercentage
-                            }
-                            % (
-                            {
-                              dashboard?.data?.freeTrialConversion
-                                ?.freeTrialCompleted
-                            }
-                            )
-                          </span>
-                        </div>
+                  </div>
+                </div>
+              )}
+              {authenticatingsuperanalysis ? (
+                <div className="table">
+                  <Skeleton width="100%" height="100%" />
+                </div>
+              ) : (
+                <div className="table">
+                  <div className="punctuality">
+                    <div className="start">
+                      <div className="numbers">
+                        <span className="name">Subscription Analysis</span>
                       </div>
                     </div>
-                    <div className="trialtwo">
-                      <div className="color"></div>
-                      <div className="colortitle">
-                        <span className="round"></span>
-                        <div className="progressdiv">
-                          <span className="progress">Trial Converted</span>
-                          <span className="progresspercent">
-                            {" "}
-                            {
-                              dashboard?.data?.freeTrialConversion
-                                ?.trialConvertedPercentage
-                            }
-                            % (
-                            {
-                              dashboard?.data?.freeTrialConversion
-                                ?.trialConverted
-                            }
-                            )
-                          </span>
-                        </div>
+                    <div className="main">
+                      <DatePicker
+                        className="input"
+                        selected={endDate}
+                        ref={datePickerRefs}
+                        showMonthYearPicker
+                        showFullMonthYearPicker
+                        onChange={(date) => dateChangers(date)}
+                        showTimeSelect={false}
+                        dateFormat="MMM  yyyy"
+                        placeholderText="13 Oct 2023"
+                        popperPlacement="bottom-start"
+                      />
+                      <Calendar
+                        onClick={() => PickDater()}
+                        className="calendar"
+                      />
+                    </div>
+                  </div>
+                  <div className="donutdiv">
+                    <DonutBorderRadius
+                      data={superanalysis?.data?.SubscriptionAnalysis}
+                    />
+                    <div className="detailsmaindiv">
+                      {/* <div className="detailsdiv">
+                <div className="circle"></div>
+                <span className="title">
+                  Basic (
+                  {dashboard?.data?.SubscriptionAnalysis["Basic Percent"]})
+                </span>
+              </div> */}
+                      {/* <div className="detailsdiv">
+                <div className="circletwo"></div>
+                <span className="title">
+                  Premium (
+                  {dashboard?.data?.SubscriptionAnalysis["Premium Percent"]})
+                </span>
+              </div> */}
+                      <div className="detailsdiv">
+                        <div className="circlethree"></div>
+                        <span className="title">
+                          Enterprise (
+                          {
+                            superanalysis?.data?.SubscriptionAnalysis[
+                              "ENTERPRISE Percent"
+                            ]
+                          }
+                          )
+                        </span>
+                      </div>
+                    </div>
+                    <div className="detailsmaindiv">
+                      <div className="detailsdiv">
+                        <div className="circlefour"></div>
+                        <span className="title">
+                          Enterprise Plus (
+                          {
+                            superanalysis?.data?.SubscriptionAnalysis[
+                              "ENTERPRISE_PLUS Percent"
+                            ]
+                          }
+                          )
+                        </span>
+                      </div>
+                      {/* <div className="detailsdiv">
+                <div className="circlefive"></div>
+                <span className="title">
+                  Free Trial (
+                  {
+                    dashboard?.data?.SubscriptionAnalysis[
+                      "FREE_TRIAL Percent"
+                    ]
+                  }
+                  )
+                </span>
+              </div> */}
+                    </div>
+                    <div className="detailsmaindiv">
+                      <div className="detailsdiv">
+                        <div className="circlesix"></div>
+                        <span className="title">
+                          Standard (
+                          {
+                            superanalysis?.data?.SubscriptionAnalysis[
+                              "STANDARD Percent"
+                            ]
+                          }
+                          )
+                        </span>
+                      </div>
+                      <div className="detailsdiv">
+                        <div className="circleseven"></div>
+                        <span className="title">
+                          Standard Plus (
+                          {
+                            superanalysis?.data?.SubscriptionAnalysis[
+                              "STANDARD_PLUS Percent"
+                            ]
+                          }
+                          )
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="table">
-                <div className="punctuality">
-                  <div className="start">
-                    <div className="numbers">
-                      <span className="name">Subscription Analysis</span>
-                    </div>
-                  </div>
-                  <div className="main">
-                    <DatePicker
-                      className="input"
-                      selected={endDate}
-                      ref={datePickerRefs}
-                      onChange={(date) => dateChangers(date)}
-                      showTimeSelect={false}
-                      dateFormat="MMM d yyyy"
-                      placeholderText="13 Oct 2023"
-                      popperPlacement="bottom-start"
-                    />
-                    <Calendar
-                      onClick={() => PickDater()}
-                      className="calendar"
-                    />
-                  </div>
-                </div>
-                <div className="donutdiv">
-                  <DonutBorderRadius
-                    data={dashboard?.data?.SubscriptionAnalysis}
-                  />
-                  <div className="detailsmaindiv">
-                    {/* <div className="detailsdiv">
-                  <div className="circle"></div>
-                  <span className="title">
-                    Basic (
-                    {dashboard?.data?.SubscriptionAnalysis["Basic Percent"]})
-                  </span>
-                </div> */}
-                    {/* <div className="detailsdiv">
-                  <div className="circletwo"></div>
-                  <span className="title">
-                    Premium (
-                    {dashboard?.data?.SubscriptionAnalysis["Premium Percent"]})
-                  </span>
-                </div> */}
-                    <div className="detailsdiv">
-                      <div className="circlethree"></div>
-                      <span className="title">
-                        Enterprise (
-                        {
-                          dashboard?.data?.SubscriptionAnalysis[
-                            "ENTERPRISE Percent"
-                          ]
-                        }
-                        )
-                      </span>
-                    </div>
-                  </div>
-                  <div className="detailsmaindiv">
-                    <div className="detailsdiv">
-                      <div className="circlefour"></div>
-                      <span className="title">
-                        Enterprise Plus (
-                        {
-                          dashboard?.data?.SubscriptionAnalysis[
-                            "ENTERPRISE_PLUS Percent"
-                          ]
-                        }
-                        )
-                      </span>
-                    </div>
-                    {/* <div className="detailsdiv">
-                  <div className="circlefive"></div>
-                  <span className="title">
-                    Free Trial (
-                    {
-                      dashboard?.data?.SubscriptionAnalysis[
-                        "FREE_TRIAL Percent"
-                      ]
-                    }
-                    )
-                  </span>
-                </div> */}
-                  </div>
-                  <div className="detailsmaindiv">
-                    <div className="detailsdiv">
-                      <div className="circlesix"></div>
-                      <span className="title">
-                        Standard (
-                        {
-                          dashboard?.data?.SubscriptionAnalysis[
-                            "STANDARD Percent"
-                          ]
-                        }
-                        )
-                      </span>
-                    </div>
-                    <div className="detailsdiv">
-                      <div className="circleseven"></div>
-                      <span className="title">
-                        Standard Plus (
-                        {
-                          dashboard?.data?.SubscriptionAnalysis[
-                            "STANDARD_PLUS Percent"
-                          ]
-                        }
-                        )
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              )}
             </FeaturesGrid>
             <FeaturesGrid dashboarder bigger superoverview row={2}>
-              <div className="table">
-                <div className="buttongroups">
-                  <div className="groupdiv">
-                    <button
-                      className={`swap ${bright ? "itemize" : "notitemize"}`}
-                      onClick={() => setBright(true)}
-                    >
-                      Punctuality Rate
-                    </button>
-                    <button
-                      className={`swap ${bright ? "notitemize" : "itemize"}`}
-                      onClick={() => setBright(false)}
-                    >
-                      Time Stamp Compliance
-                    </button>
-                  </div>
+              {authenticatingsubpunctual || authenticatingsubcompliance ? (
+                <div className="table">
+                  <Skeleton width="100%" height="100%" />
                 </div>
-                <div className="punctuality">
-                  <div className="start">
-                    <div className="numbers">
-                      <span className="name">
-                        {bright ? "Punctuality Rate" : "Time Stamp Compliance"}
-                      </span>
+              ) : (
+                <div className="table">
+                  <div className="buttongroups">
+                    <div className="groupdiv">
+                      <button
+                        className={`swap ${bright ? "itemize" : "notitemize"}`}
+                        onClick={() => setBright(true)}
+                      >
+                        Punctuality Rate
+                      </button>
+                      <button
+                        className={`swap ${bright ? "notitemize" : "itemize"}`}
+                        onClick={() => setBright(false)}
+                      >
+                        Time Stamp Compliance
+                      </button>
                     </div>
                   </div>
-                  <div className="main">
-                    <DatePicker
-                      className="input"
-                      selected={endDate}
-                      ref={datePickerRefs}
-                      onChange={(date) => dateChangers(date)}
-                      showTimeSelect={false}
-                      dateFormat="MMM d yyyy"
-                      placeholderText="13 Oct 2023"
-                      popperPlacement="bottom-start"
-                    />
-                    <Calendar
-                      onClick={() => PickDater()}
-                      className="calendar"
-                    />
-                  </div>
-                </div>
-                <div className="last">
-                  <div className="radial">
+                  <div className="punctuality">
+                    <div className="start">
+                      <div className="numbers">
+                        <span className="name">
+                          {bright
+                            ? "Punctuality Rate"
+                            : "Time Stamp Compliance"}
+                        </span>
+                      </div>
+                    </div>
                     {bright ? (
-                      <Radialy
-                        data={
-                          dashboard?.data
-                            ?.PunctualityStatsForAllProjectsCumulative
-                            ? dashboard?.data
-                                ?.PunctualityStatsForAllProjectsCumulative
-                            : []
-                        }
-                      />
+                      <div className="main">
+                        <DatePicker
+                          className="input"
+                          selected={endDateFive}
+                          ref={datePickerRefsFive}
+                          onChange={(date) => dateChangersFive(date)}
+                          showMonthYearPicker
+                          showFullMonthYearPicker
+                          showTimeSelect={false}
+                          dateFormat="MMM d yyyy"
+                          placeholderText="13 Oct 2023"
+                          popperPlacement="bottom-start"
+                        />
+                        <Calendar
+                          onClick={() => PickDaterFive()}
+                          className="calendar"
+                        />
+                      </div>
                     ) : (
-                      <Radialtime
-                        data={
-                          dashboard?.data
-                            ?.TimestampComplianceForPlatformCumulative
-                            ? dashboard?.data
-                                ?.TimestampComplianceForPlatformCumulative
-                            : []
-                        }
-                      />
+                      <div className="main">
+                        <DatePicker
+                          className="input"
+                          selected={endDateFour}
+                          ref={datePickerRefsFour}
+                          onChange={(date) => dateChangersFour(date)}
+                          showMonthYearPicker
+                          showFullMonthYearPicker
+                          showTimeSelect={false}
+                          dateFormat="MMM d yyyy"
+                          placeholderText="13 Oct 2023"
+                          popperPlacement="bottom-start"
+                        />
+                        <Calendar
+                          onClick={() => PickDaterFour()}
+                          className="calendar"
+                        />
+                      </div>
                     )}
                   </div>
-                  {bright ? (
-                    <div className="circle">
-                      <span className="label">Total Punctuality Rate</span>
-                      <span className="name">
-                        {
-                          dashboard?.data
-                            ?.PunctualityStatsForAllProjectsCumulative
-                            ?.punctualPercentage
-                        }
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="circler">
-                      <span className="label">Total Stamp Compliance</span>
-                      <span className="name">
-                        {" "}
-                        {
-                          dashboard?.data
-                            ?.TimestampComplianceForPlatformCumulative
-                            ?.compliancePercentage
-                        }
-                      </span>
-                    </div>
-                  )}
-                  {bright ? (
-                    <div className="target">
-                      <div className="attendance">
-                        <div className="wrap">
-                          <span className="first"></span>
-                          <span className="targeted">Total Compliance</span>
-                        </div>
-                        <span className="percent">
-                          Total Number:
-                          {
-                            dashboard?.data
+                  <div className="last">
+                    <div className="radial">
+                      {bright ? (
+                        <Radialy
+                          data={
+                            subpunctual?.data
                               ?.PunctualityStatsForAllProjectsCumulative
-                              ?.punctualDays
+                              ? subpunctual?.data
+                                  ?.PunctualityStatsForAllProjectsCumulative
+                              : []
                           }
-                          (
+                        />
+                      ) : (
+                        <Radialtime
+                          data={
+                            subcompliance?.data
+                              ?.TimestampComplianceForPlatformCumulative
+                              ? dashboard?.data
+                                  ?.TimestampComplianceForPlatformCumulative
+                              : []
+                          }
+                        />
+                      )}
+                    </div>
+                    {bright ? (
+                      <div className="circle">
+                        <span className="label">Total Punctuality Rate</span>
+                        <span className="name">
                           {
-                            dashboard?.data
+                            subpunctual?.data
                               ?.PunctualityStatsForAllProjectsCumulative
                               ?.punctualPercentage
                           }
-                          )
                         </span>
                       </div>
-                      <div className="attendant">
-                        <div className="wrap">
-                          <span className="second"></span>
-                          <span className="targeted">Total Non-Compliance</span>
-                        </div>
-                        <span className="percent">
-                          Total Number:{" "}
+                    ) : (
+                      <div className="circler">
+                        <span className="label">Total Stamp Compliance</span>
+                        <span className="name">
+                          {" "}
                           {
-                            dashboard?.data
-                              ?.PunctualityStatsForAllProjectsCumulative
-                              ?.notPunctualDays
+                            subcompliance?.data
+                              ?.TimestampComplianceForPlatformCumulative
+                              ?.compliancePercentage
                           }
-                          (
-                          {
-                            dashboard?.data
-                              ?.PunctualityStatsForAllProjectsCumulative
-                              ?.notPunctualPercentage
-                          }
-                          )
                         </span>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="target">
-                      <div className="attendance">
-                        <div className="wrap">
-                          <span className="first"></span>
-                          <span className="targeted">Total Compliance</span>
+                    )}
+                    {bright ? (
+                      <div className="target">
+                        <div className="attendance">
+                          <div className="wrap">
+                            <span className="first"></span>
+                            <span className="targeted">Total Compliance</span>
+                          </div>
+                          <span className="percent">
+                            Total Number:
+                            {
+                              subpunctual?.data
+                                ?.PunctualityStatsForAllProjectsCumulative
+                                ?.punctualDays
+                            }
+                            (
+                            {
+                              subpunctual?.data
+                                ?.PunctualityStatsForAllProjectsCumulative
+                                ?.punctualPercentage
+                            }
+                            )
+                          </span>
                         </div>
-                        {/* <span className="percent">
+                        <div className="attendant">
+                          <div className="wrap">
+                            <span className="second"></span>
+                            <span className="targeted">
+                              Total Non-Compliance
+                            </span>
+                          </div>
+                          <span className="percent">
+                            Total Number:{" "}
+                            {
+                              subpunctual?.data
+                                ?.PunctualityStatsForAllProjectsCumulative
+                                ?.notPunctualDays
+                            }
+                            (
+                            {
+                              subpunctual?.data
+                                ?.PunctualityStatsForAllProjectsCumulative
+                                ?.notPunctualPercentage
+                            }
+                            )
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="target">
+                        <div className="attendance">
+                          <div className="wrap">
+                            <span className="first"></span>
+                            <span className="targeted">Total Compliance</span>
+                          </div>
+                          {/* <span className="percent">
                       Total Number:
                       {
                         dashboard?.data
@@ -535,64 +778,76 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       }
                       )
                     </span> */}
-                      </div>
-                      <div className="attendant">
-                        <div className="wrap">
-                          <span className="second"></span>
-                          <span className="targeted">Total Non-Compliance</span>
                         </div>
-                        <span className="percent">
-                          Total Number:{" "}
-                          {dashboard?.data
-                            ?.TimestampComplianceForPlatformCumulative
-                            ?.totalNonCompliant
-                            ? dashboard?.data
-                                ?.TimestampComplianceForPlatformCumulative
-                                ?.totalNonCompliant
-                            : 0}
-                          (
-                          {dashboard?.data
-                            ?.TimestampComplianceForPlatformCumulative
-                            ?.nonCompliancePercentage
-                            ? dashboard?.data
-                                ?.TimestampComplianceForPlatformCumulative
-                                ?.nonCompliancePercentage
-                            : 0}
-                          )
+                        <div className="attendant">
+                          <div className="wrap">
+                            <span className="second"></span>
+                            <span className="targeted">
+                              Total Non-Compliance
+                            </span>
+                          </div>
+                          <span className="percent">
+                            Total Number:{" "}
+                            {subcompliance?.data
+                              ?.TimestampComplianceForPlatformCumulative
+                              ?.totalNonCompliant
+                              ? subcompliance?.data
+                                  ?.TimestampComplianceForPlatformCumulative
+                                  ?.totalNonCompliant
+                              : 0}
+                            (
+                            {subcompliance?.data
+                              ?.TimestampComplianceForPlatformCumulative
+                              ?.nonCompliancePercentage
+                              ? subcompliance?.data
+                                  ?.TimestampComplianceForPlatformCumulative
+                                  ?.nonCompliancePercentage
+                              : 0}
+                            )
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              {authenticatingsubproject ? (
+                <div className="table">
+                  <Skeleton width="100%" height="100%" />
+                </div>
+              ) : (
+                <div className="table">
+                  <div className="punctuality">
+                    <div className="start">
+                      <div className="numbers">
+                        <span className="name">
+                          Total hours put in by project
                         </span>
                       </div>
                     </div>
-                  )}
-                </div>
-              </div>
-              <div className="table">
-                <div className="punctuality">
-                  <div className="start">
-                    <div className="numbers">
-                      <span className="name">
-                        Total hours put in by project
-                      </span>
+                    <div className="main">
+                      <DatePicker
+                        className="input"
+                        selected={endDateSix}
+                        ref={datePickerRefsSix}
+                        showMonthYearPicker
+                        showFullMonthYearPicker
+                        onChange={(date) => dateChangersSix(date)}
+                        showTimeSelect={false}
+                        dateFormat="MMM d yyyy"
+                        placeholderText="13 Oct 2023"
+                        popperPlacement="bottom-start"
+                      />
+                      <Calendar
+                        onClick={() => PickDaterSix()}
+                        className="calendar"
+                      />
                     </div>
                   </div>
-                  <div className="main">
-                    <DatePicker
-                      className="input"
-                      selected={endDate}
-                      ref={datePickerRefs}
-                      onChange={(date) => dateChangers(date)}
-                      showTimeSelect={false}
-                      dateFormat="MMM d yyyy"
-                      placeholderText="13 Oct 2023"
-                      popperPlacement="bottom-start"
-                    />
-                    <Calendar
-                      onClick={() => PickDater()}
-                      className="calendar"
-                    />
-                  </div>
-                </div>
-                {dashboard?.data?.AllProjectsWithTotalHours?.slice(0, 6)?.map(
-                  (item) => (
+                  {subproject?.data?.AllProjectsWithTotalHours?.slice(
+                    0,
+                    6
+                  )?.map((item) => (
                     <div className="totalhours">
                       <div className="lefthours">
                         <span className="project">Project Name</span>
@@ -603,9 +858,8 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span>{item?.totalHours}hours</span>
                       </div>
                     </div>
-                  )
-                )}
-                {/* <div className="totalhours">
+                  ))}
+                  {/* <div className="totalhours">
               <div className="lefthours">
                 <span className="project">Project Name</span>
                 <span className="campaign">Campaign Management</span>
@@ -655,55 +909,69 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 <span>12hours</span>
               </div>
             </div> */}
-                {/* <div className="lasthours">
+                  {/* <div className="lasthours">
               <span>Show more</span>
             </div> */}
-              </div>
-            </FeaturesGrid>
-            <div className="table">
-              <div className="punctuality">
-                <div className="start">
-                  <div className="numbers">
-                    <span className="name">Revenue Analysis for each Plan</span>
-                  </div>
                 </div>
-                <div className="doublebar">
-                  <div className="high">
-                    <span className="row">
-                      <span className="square"></span>Standard
-                    </span>
-                    <span className="row">
-                      <span className="squaretwo"></span>Standard Plus
-                    </span>
-                    <span className="row">
-                      <span className="squarethree"></span>Enterprise
-                    </span>
-                    <span className="row">
-                      <span className="squarefour"></span>Enterprise Plus
-                    </span>
-                    {/* <span className="row">
+              )}
+            </FeaturesGrid>
+            {authenticatingsupersubscount ? (
+              <div className="table">
+                <Skeleton width="100%" height="100%" />
+              </div>
+            ) : (
+              <div className="table">
+                <div className="punctuality">
+                  <div className="start">
+                    <div className="numbers">
+                      <span className="name">
+                        Revenue Analysis for each Plan
+                      </span>
+                    </div>
+                  </div>
+                  <div className="doublebar">
+                    <div className="high">
+                      <span className="row">
+                        <span className="square"></span>Standard
+                      </span>
+                      <span className="row">
+                        <span className="squaretwo"></span>Standard Plus
+                      </span>
+                      <span className="row">
+                        <span className="squarethree"></span>Enterprise
+                      </span>
+                      <span className="row">
+                        <span className="squarefour"></span>Enterprise Plus
+                      </span>
+                      {/* <span className="row">
                   <span className="squarefive"></span>Free Trial
                 </span> */}
+                    </div>
+                  </div>
+                  <div className="main">
+                    <DatePicker
+                      className="input"
+                      selected={endDateThree}
+                      ref={datePickerRefs}
+                      onChange={(date) => dateChangersThree(date)}
+                      showMonthYearPicker
+                      showFullMonthYearPicker
+                      showTimeSelect={false}
+                      dateFormat="MMM d yyyy"
+                      placeholderText="13 Oct 2023"
+                      popperPlacement="bottom-start"
+                    />
+                    <Calendar
+                      onClick={() => PickDaterThree()}
+                      className="calendar"
+                    />
                   </div>
                 </div>
-                <div className="main">
-                  <DatePicker
-                    className="input"
-                    selected={endDate}
-                    ref={datePickerRefs}
-                    onChange={(date) => dateChangers(date)}
-                    showTimeSelect={false}
-                    dateFormat="MMM d yyyy"
-                    placeholderText="13 Oct 2023"
-                    popperPlacement="bottom-start"
-                  />
-                  <Calendar onClick={() => PickDater()} className="calendar" />
-                </div>
+                <SuperAdminDoubleBarChart
+                  data={supersubscount?.data?.ProjectSubscriptionCountsByMonth}
+                />
               </div>
-              <SuperAdminDoubleBarChart
-                data={dashboard?.data?.ProjectSubscriptionCountsByMonth}
-              />
-            </div>
+            )}
           </div>
         </>
       ) : (

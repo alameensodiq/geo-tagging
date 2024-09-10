@@ -34,7 +34,8 @@ export const SuperAddTeam = createAsyncThunk(
       let data = await response.json();
       if(data?.status){
         toast.success(data.message);
-      } else {
+      }
+      if(!data?.status){
         toast.error(data.message);
       }
       console.log(data);

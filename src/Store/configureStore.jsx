@@ -40,6 +40,12 @@ import { EditFreeTrialSlice } from "./Reducers/EditFreeTrial";
 import { SubscribersSlice } from "./Reducers/Subscribers";
 import { PaymentSlice } from "./Reducers/Payment";
 import { ComplianceSlice } from "./Reducers/Compliance";
+import { SuperFreeConversionSlice } from "./Reducers/SuperFreeConversion";
+import { SubPunctualSlice } from "./Reducers/SubPunctual";
+import { SubComplianceSlice } from "./Reducers/SubCompliance";
+import { SubProjectSlice } from "./Reducers/SubProject";
+import { SuperAnalysisSlice } from "./Reducers/SuperAnalysis";
+import { CustomSubSlice } from "./Reducers/CustomSub";
 
 export default configureStore({
   reducer: {
@@ -83,6 +89,13 @@ export default configureStore({
     editfreetrial: EditFreeTrialSlice?.reducer,
     subscribers: SubscribersSlice?.reducer,
     payment: PaymentSlice?.reducer,
-    compliance: ComplianceSlice?.reducer
+    compliance: ComplianceSlice?.reducer,
+    freeconversion: SuperFreeConversionSlice?.reducer,
+    supersubscount: SuperSubsSlice?.reducer,
+    subpunctual: SubPunctualSlice?.reducer,
+    subcompliance: SubComplianceSlice?.reducer,
+    subproject: SubProjectSlice?.reducer,
+    superanalysis: SuperAnalysisSlice?.reducer,
+    customsub: CustomSubSlice?.reducer
   }
 });

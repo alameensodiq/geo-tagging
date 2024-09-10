@@ -4,7 +4,18 @@ import toast from "react-hot-toast";
 export const AddCorp = createAsyncThunk(
   "addcorp",
   async (
-    { name, rcNumber, address, phone, email, isBusinessPlan },
+    {
+      name,
+      rcNumber,
+      address,
+      phone,
+      email,
+      isBusinessPlan,
+      minRepCount,
+      maxRepCount,
+      amount,
+      maxLocationCount
+    },
     thunkAPI
   ) => {
     console.log(process.env.REACT_APP_BASE_URL);
@@ -26,12 +37,21 @@ export const AddCorp = createAsyncThunk(
             address,
             phone,
             email,
-            isBusinessPlan
+            isBusinessPlan,
+            minRepCount,
+            maxRepCount,
+            amount,
+            maxLocationCount
           })
         }
       );
       let data = await response.json();
-      toast.success(data.message);
+      if(data?.status){
+        toast.success(data.message);
+      }
+      if(!data?.status){
+        toast.error(data.message);
+      }
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);
