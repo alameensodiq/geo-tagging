@@ -2760,16 +2760,16 @@ const Tables = ({
                   {data?.map((item) => (
                     <StyledTableRow style={{ position: "relative" }}>
                       <StyledTableCell style={{ width: "25%" }}>
-                        Abdulazeez Abdulwaarith
+                        {item?.corporate}
                       </StyledTableCell>
                       <StyledTableCell style={{ width: "25%" }}>
-                        N10,000
+                        {item?.amount?.NGN}
                       </StyledTableCell>
                       <StyledTableCell style={{ width: "25%" }}>
-                        12/04/23
+                        {item?.createdAt}
                       </StyledTableCell>
                       <StyledTableCell style={{ width: "25%" }}>
-                        12/04/23
+                        {item?.nextRenewalDate}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

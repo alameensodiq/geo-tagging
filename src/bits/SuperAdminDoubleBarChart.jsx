@@ -38,12 +38,12 @@ function SuperAdminDoubleBarChart(data) {
             name: "Cashflow",
             type: "column",
             data: months.map((month) => data[month]?.ENTERPRISE_PLUS || 0)
+          },
+          {
+            name: "Cashflow",
+            type: "column",
+            data: months.map((month) => data[month]?.FREE_TRIAL || 0)
           }
-          // {
-          //   name: "Cashflow",
-          //   type: "column",
-          //   data: months.map((month) => data[month]?.FREE_TRIAL || 0)
-          // }
         ]
       : [
           {
@@ -70,13 +70,14 @@ function SuperAdminDoubleBarChart(data) {
             name: "Cashflow",
             type: "column",
             data: [11, 53, 31, 90, 41, 49, 95, 85, 45, 90, 78, 99]
-          }
+          },
+          
         ];
 
   const options = {
     colors:
       data && data
-        ? ["#1A87D7", "#28385C", "#7C65E0", "#7CC8F3"]
+        ? ["#1A87D7", "#28385C", "#7C65E0", "#7CC8F3", "#F3827C"]
         : ["#1A87D7", "#28385C", "#7C65E0", "#7CC8F3", "#F3827C"],
     chart: {
       height: 220,

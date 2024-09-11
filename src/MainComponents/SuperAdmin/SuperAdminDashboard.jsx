@@ -31,6 +31,12 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const [bright, setBright] = useState(true);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [reload, setReload] = useState(false);
+  const [reload1, setReload1] = useState(false);
+  const [reload2, setReload2] = useState(false);
+  const [reload3, setReload3] = useState(false);
+  const [reload4, setReload4] = useState(false);
+  const [reload5, setReload5] = useState(false);
+  const [reloadfree, setReloadFree] = useState(false);
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
     endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 50))
@@ -86,21 +92,21 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
     // if(monthNumber && year){
     //   dispatch(SuperSubCounts({ monthNumber, year }))
     // }
-    if (monthNumber && year) {
+    if (endDate) {
       dispatch(SubAnalysis({ monthNumber, year }));
     }
-    if (monthNumberThree && yearThree) {
+    if (endDateThree) {
       dispatch(
         SuperSubCounts({ monthNumber: monthNumberThree, year: yearThree })
       );
     }
-    if (monthNumberFour && yearFour) {
+    if (endDateFour) {
       dispatch(SubCompliance({ monthNumber: monthNumberFour, year: yearFour }));
     }
-    if (monthNumberFive && yearFive) {
+    if (endDateFive) {
       dispatch(SubPunctual({ monthNumber: monthNumberFive, year: yearFive }));
     }
-    if (monthNumberSix && yearSix) {
+    if (endDateSix) {
       dispatch(SubProject({ monthNumber: monthNumberSix, year: yearSix }));
     }
 
@@ -108,59 +114,67 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
       dispatch(Dashboard());
       setReload(false);
     }
-  }, [reload]);
+  }, [
+    reload
+  ]);
 
   useEffect(() => {
-    const isStartDateChanged =
-      startDateOne.getTime() !== initialStartDate.getTime();
-    const isEndDateChanged = endDateOne.getTime() !== initialEndDate.getTime();
-
-    if (isStartDateChanged && isEndDateChanged) {
+    if (reloadfree && endDateOne && startDateOne) {
       dispatch(SuperFreeConversion({ endDateOne, startDateOne }));
+      setReloadFree(false)
     }
-    if (endDate) {
-      console.log(endDate);
-      const date = new Date(endDate);
-      const monthNumber = date.getMonth() + 1;
-      const year = date.getFullYear();
-      dispatch(SubAnalysis({ month: monthNumber, year: year }));
+  }, [reloadfree, endDateOne, startDateOne]);
+
+  useEffect(() => {
+    const date = new Date(endDate);
+    const monthNumber = date.getMonth() + 1;
+    const year = date.getFullYear();
+    if (reload1 && endDate) {
+      dispatch(SubAnalysis({ monthNumber, year }));
+      setReload1(false);
     }
-    if (endDateThree) {
-      console.log(endDateThree);
-      const date = new Date(endDateThree);
-      const monthNumber = date.getMonth() + 1;
-      const year = date.getFullYear();
-      dispatch(SuperSubCounts({ month: monthNumber, year: year }));
+  }, [reload1, endDate]);
+
+
+  useEffect(() => {
+    const dateThree = new Date(endDateThree);
+    // const monthNumberFour = dateThree.getMonth() + 1;
+    const yearThree = dateThree.getFullYear();
+    if (reload2 && endDateThree) {
+      dispatch(SuperSubCounts({  year: yearThree }));
+      setReload3(false);
     }
-    if (endDateFour) {
-      console.log(endDateFour);
-      const date = new Date(endDateFour);
-      const monthNumber = date.getMonth() + 1;
-      const year = date.getFullYear();
-      dispatch(SubCompliance({ month: monthNumber, year: year }));
+  }, [reload2, endDateThree]);
+
+  useEffect(() => {
+    const dateFour = new Date(endDateFour);
+    const monthNumberFour = dateFour.getMonth() + 1;
+    const yearFour = dateFour.getFullYear();
+    if (reload3 && endDateFour) {
+      dispatch(SubCompliance({ monthNumber: monthNumberFour, year: yearFour }));
+      setReload3(false);
     }
-    if (endDateFive) {
-      console.log(endDateFive);
-      const date = new Date(endDateFive);
-      const monthNumber = date.getMonth() + 1;
-      const year = date.getFullYear();
-      dispatch(SubPunctual({ month: monthNumber, year: year }));
+  }, [reload3, endDateFour]);
+
+  useEffect(() => {
+    const dateFive = new Date(endDateFive);
+    const monthNumberFive = dateFive.getMonth() + 1;
+    const yearFive = dateFive.getFullYear();
+    if (reload4 && endDateFive) {
+      dispatch(SubPunctual({ monthNumber: monthNumberFive, year: yearFive }));
+      setReload4(false);
     }
-    if (endDateSix) {
-      console.log(endDateSix);
-      const date = new Date(endDateSix);
-      const monthNumber = date.getMonth() + 1;
-      const year = date.getFullYear();
-      dispatch(SubProject({ month: monthNumber, year: year }));
+  }, [reload4, endDateFive]);
+
+  useEffect(() => {
+    const dateSix = new Date(endDateSix);
+    const monthNumberSix = dateSix.getMonth() + 1;
+    const yearSix = dateSix.getFullYear();
+    if (reload5 && endDateSix) {
+      dispatch(SubProject({ monthNumber: monthNumberSix, year: yearSix }));
+      setReload5(false);
     }
-  }, [
-    startDateOne,
-    endDateOne,
-    endDateThree,
-    endDateFour,
-    endDateFive,
-    endDateSix
-  ]);
+  }, [reload5, endDateSix]);
 
   const toggleDatePicker = () => {
     setShowDatePicker(!showDatePicker); // Toggle date picker visibility
@@ -196,6 +210,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   console.log(dashboard?.data);
   console.log(freeconversion?.data);
   console.log(supersubscount?.data);
+  console.log(superanalysis?.data);
 
   const handleSelect = (ranges) => {
     console.log(ranges);
@@ -228,36 +243,43 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const dateChangersOne = (date) => {
     console.log(date);
     setStartDateOne(date);
+    setReloadFree(true)
   };
 
   const dateChangersTwo = (date) => {
     console.log(date);
     setEndDateOne(date);
+    setReloadFree(true)
   };
 
   const dateChangers = (date) => {
     console.log(date);
     setEndDate(date);
+    setReload1(true);
   };
 
   const dateChangersThree = (date) => {
     console.log(date);
     setEndDateThree(date);
+    setReload2(true);
   };
 
   const dateChangersFour = (date) => {
     console.log(date);
     setEndDateFour(date);
+    setReload3(true);
   };
 
   const dateChangersFive = (date) => {
     console.log(date);
     setEndDateFive(date);
+    setReload4(true);
   };
 
   const dateChangersSix = (date) => {
     console.log(date);
     setEndDateSix(date);
+    setReload5(true);
   };
 
   const PickDater = () => {
@@ -502,7 +524,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                   </div>
                   <div className="donutdiv">
                     <DonutBorderRadius
-                      data={superanalysis?.data?.SubscriptionAnalysis}
+                      data={superanalysis?.data}
                     />
                     <div className="detailsmaindiv">
                       {/* <div className="detailsdiv">
@@ -524,7 +546,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span className="title">
                           Enterprise (
                           {
-                            superanalysis?.data?.SubscriptionAnalysis[
+                            superanalysis?.data[
                               "ENTERPRISE Percent"
                             ]
                           }
@@ -538,7 +560,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span className="title">
                           Enterprise Plus (
                           {
-                            superanalysis?.data?.SubscriptionAnalysis[
+                            superanalysis?.data[
                               "ENTERPRISE_PLUS Percent"
                             ]
                           }
@@ -564,7 +586,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span className="title">
                           Standard (
                           {
-                            superanalysis?.data?.SubscriptionAnalysis[
+                            superanalysis?.data[
                               "STANDARD Percent"
                             ]
                           }
@@ -576,7 +598,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span className="title">
                           Standard Plus (
                           {
-                            superanalysis?.data?.SubscriptionAnalysis[
+                            superanalysis?.data[
                               "STANDARD_PLUS Percent"
                             ]
                           }
@@ -667,9 +689,9 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <Radialy
                           data={
                             subpunctual?.data
-                              ?.PunctualityStatsForAllProjectsCumulative
+
                               ? subpunctual?.data
-                                  ?.PunctualityStatsForAllProjectsCumulative
+
                               : []
                           }
                         />
@@ -677,9 +699,9 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <Radialtime
                           data={
                             subcompliance?.data
-                              ?.TimestampComplianceForPlatformCumulative
-                              ? dashboard?.data
-                                  ?.TimestampComplianceForPlatformCumulative
+
+                              ? subcompliance?.data
+
                               : []
                           }
                         />
@@ -690,9 +712,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span className="label">Total Punctuality Rate</span>
                         <span className="name">
                           {
-                            subpunctual?.data
-                              ?.PunctualityStatsForAllProjectsCumulative
-                              ?.punctualPercentage
+                            subpunctual?.data?.punctualPercentage
                           }
                         </span>
                       </div>
@@ -702,9 +722,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span className="name">
                           {" "}
                           {
-                            subcompliance?.data
-                              ?.TimestampComplianceForPlatformCumulative
-                              ?.compliancePercentage
+                            subcompliance?.data?.compliancePercentage
                           }
                         </span>
                       </div>
@@ -718,15 +736,14 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                           </div>
                           <span className="percent">
                             Total Number:
-                            {
+                            {/* {
                               subpunctual?.data
                                 ?.PunctualityStatsForAllProjectsCumulative
                                 ?.punctualDays
-                            }
+                            } */}
                             (
                             {
                               subpunctual?.data
-                                ?.PunctualityStatsForAllProjectsCumulative
                                 ?.punctualPercentage
                             }
                             )
@@ -741,15 +758,14 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                           </div>
                           <span className="percent">
                             Total Number:{" "}
-                            {
+                            {/* {
                               subpunctual?.data
                                 ?.PunctualityStatsForAllProjectsCumulative
                                 ?.notPunctualDays
-                            }
+                            } */}
                             (
                             {
                               subpunctual?.data
-                                ?.PunctualityStatsForAllProjectsCumulative
                                 ?.notPunctualPercentage
                             }
                             )
@@ -763,21 +779,20 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                             <span className="first"></span>
                             <span className="targeted">Total Compliance</span>
                           </div>
-                          {/* <span className="percent">
+                          <span className="percent">
                       Total Number:
-                      {
+                      {/* {
                         dashboard?.data
                           ?.TimestampComplianceForPlatformCumulative
                           ?.totalCompliant
-                      }
+                      } */}
                       (
                       {
-                        dashboard?.data
-                          ?.TimestampComplianceForPlatformCumulative
+                        subcompliance?.data
                           ?.compliancePercentage
                       }
                       )
-                    </span> */}
+                    </span>
                         </div>
                         <div className="attendant">
                           <div className="wrap">
@@ -788,19 +803,16 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                           </div>
                           <span className="percent">
                             Total Number:{" "}
-                            {subcompliance?.data
-                              ?.TimestampComplianceForPlatformCumulative
-                              ?.totalNonCompliant
+                            {/* {subcompliance?.data
+                              ?.expectedCompliance
+
                               ? subcompliance?.data
-                                  ?.TimestampComplianceForPlatformCumulative
-                                  ?.totalNonCompliant
-                              : 0}
+                                  ?.expectedCompliance
+
+                              : 0} */}
                             (
-                            {subcompliance?.data
-                              ?.TimestampComplianceForPlatformCumulative
-                              ?.nonCompliancePercentage
+                            {subcompliance?.data?.nonCompliancePercentage
                               ? subcompliance?.data
-                                  ?.TimestampComplianceForPlatformCumulative
                                   ?.nonCompliancePercentage
                               : 0}
                             )
@@ -844,7 +856,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       />
                     </div>
                   </div>
-                  {subproject?.data?.AllProjectsWithTotalHours?.slice(
+                  {subproject?.data?.slice(
                     0,
                     6
                   )?.map((item) => (
@@ -943,6 +955,10 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       <span className="row">
                         <span className="squarefour"></span>Enterprise Plus
                       </span>
+                      <span className="row">
+                        <span className="squarefive"></span>FREE TRIAL
+                      </span>
+                      
                       {/* <span className="row">
                   <span className="squarefive"></span>Free Trial
                 </span> */}
@@ -952,7 +968,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     <DatePicker
                       className="input"
                       selected={endDateThree}
-                      ref={datePickerRefs}
+                      ref={datePickerRefsThree}
                       onChange={(date) => dateChangersThree(date)}
                       showMonthYearPicker
                       showFullMonthYearPicker
@@ -968,7 +984,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                   </div>
                 </div>
                 <SuperAdminDoubleBarChart
-                  data={supersubscount?.data?.ProjectSubscriptionCountsByMonth}
+                  data={supersubscount?.data}
                 />
               </div>
             )}
