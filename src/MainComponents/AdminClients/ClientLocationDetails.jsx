@@ -32,7 +32,7 @@ import {
 
 const ClientLocationDetails = ({ title }) => {
   setDefaults({
-    key: "AIzaSyCDpzicBtmV63ASQ-dbFDts4VGjX8VjiNM", // Your API key here.
+    key: "AIzaSyDJUt3ze4mJlNLb-4pDHRG0rWSo5bp-Bzs", // Your API key here.
     language: "en", // Default language for responses.
     region: "es" // Default region for responses.
   });
