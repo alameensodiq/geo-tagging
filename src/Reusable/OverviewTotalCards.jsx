@@ -109,6 +109,7 @@ const Flex = styled.div`
     padding-bottom: 20px;
     gap: 15px;
     padding-right: 20px;
+    padding-left: 20px;
     .up {
       display: flex;
       flex-direction: row;
@@ -333,6 +334,7 @@ const Flex = styled.div`
       padding-bottom: 20px;
       gap: 15px;
       padding-right: 20px;
+      padding-left: 20px;
       border-right: none !important;
       .up {
         display: flex;
@@ -533,6 +535,7 @@ const Flex = styled.div`
       padding-bottom: 20px;
       gap: 15px;
       padding-right: 20px;
+      padding-left: 20px;
       border-right: none !important;
       .up {
         display: flex;

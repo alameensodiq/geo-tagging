@@ -114,14 +114,12 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
       dispatch(Dashboard());
       setReload(false);
     }
-  }, [
-    reload
-  ]);
+  }, [reload]);
 
   useEffect(() => {
     if (reloadfree && endDateOne && startDateOne) {
       dispatch(SuperFreeConversion({ endDateOne, startDateOne }));
-      setReloadFree(false)
+      setReloadFree(false);
     }
   }, [reloadfree, endDateOne, startDateOne]);
 
@@ -135,13 +133,12 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
     }
   }, [reload1, endDate]);
 
-
   useEffect(() => {
     const dateThree = new Date(endDateThree);
     // const monthNumberFour = dateThree.getMonth() + 1;
     const yearThree = dateThree.getFullYear();
     if (reload2 && endDateThree) {
-      dispatch(SuperSubCounts({  year: yearThree }));
+      dispatch(SuperSubCounts({ year: yearThree }));
       setReload3(false);
     }
   }, [reload2, endDateThree]);
@@ -187,6 +184,8 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const { supersubscount, authenticatingsupersubscount } = useSelector(
     (state) => state.supersubscount
   );
+
+  console.log(authenticatingsupersubscount)
 
   const { superanalysis, authenticatingsuperanalysis } = useSelector(
     (state) => state.superanalysis
@@ -243,13 +242,13 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const dateChangersOne = (date) => {
     console.log(date);
     setStartDateOne(date);
-    setReloadFree(true)
+    setReloadFree(true);
   };
 
   const dateChangersTwo = (date) => {
     console.log(date);
     setEndDateOne(date);
-    setReloadFree(true)
+    setReloadFree(true);
   };
 
   const dateChangers = (date) => {
@@ -372,7 +371,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
           )} */}
               {/* </div> */}
             </div>
-            <FeaturesGrid dashboarder superoverview row={1}>
+            <FeaturesGrid dashboarderer superoverview row={1}>
               <SuperAdminOverviewCards
                 data={dashboard?.data}
                 number1={[]}
@@ -387,9 +386,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             </FeaturesGrid>
             <FeaturesGrid dashboarder bigger superoverview row={2}>
               {authenticatingfreeconversion ? (
-                <div className="table">
-                  <Skeleton width="100%" height="100%" />
-                </div>
+                <Skeleton width="100%" height="480px" />
               ) : (
                 <div className="table">
                   <div className="punctuality">
@@ -492,9 +489,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 </div>
               )}
               {authenticatingsuperanalysis ? (
-                <div className="table">
-                  <Skeleton width="100%" height="100%" />
-                </div>
+                <Skeleton width="100%" height="480px" />
               ) : (
                 <div className="table">
                   <div className="punctuality">
@@ -523,9 +518,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     </div>
                   </div>
                   <div className="donutdiv">
-                    <DonutBorderRadius
-                      data={superanalysis?.data}
-                    />
+                    <DonutBorderRadius data={superanalysis?.data} />
                     <div className="detailsmaindiv">
                       {/* <div className="detailsdiv">
                 <div className="circle"></div>
@@ -545,12 +538,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <div className="circlethree"></div>
                         <span className="title">
                           Enterprise (
-                          {
-                            superanalysis?.data[
-                              "ENTERPRISE Percent"
-                            ]
-                          }
-                          )
+                          {superanalysis?.data["ENTERPRISE Percent"]})
                         </span>
                       </div>
                     </div>
@@ -559,12 +547,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <div className="circlefour"></div>
                         <span className="title">
                           Enterprise Plus (
-                          {
-                            superanalysis?.data[
-                              "ENTERPRISE_PLUS Percent"
-                            ]
-                          }
-                          )
+                          {superanalysis?.data["ENTERPRISE_PLUS Percent"]})
                         </span>
                       </div>
                       {/* <div className="detailsdiv">
@@ -584,25 +567,14 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       <div className="detailsdiv">
                         <div className="circlesix"></div>
                         <span className="title">
-                          Standard (
-                          {
-                            superanalysis?.data[
-                              "STANDARD Percent"
-                            ]
-                          }
-                          )
+                          Standard ({superanalysis?.data["STANDARD Percent"]})
                         </span>
                       </div>
                       <div className="detailsdiv">
                         <div className="circleseven"></div>
                         <span className="title">
                           Standard Plus (
-                          {
-                            superanalysis?.data[
-                              "STANDARD_PLUS Percent"
-                            ]
-                          }
-                          )
+                          {superanalysis?.data["STANDARD_PLUS Percent"]})
                         </span>
                       </div>
                     </div>
@@ -612,9 +584,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
             </FeaturesGrid>
             <FeaturesGrid dashboarder bigger superoverview row={2}>
               {authenticatingsubpunctual || authenticatingsubcompliance ? (
-                <div className="table">
-                  <Skeleton width="100%" height="100%" />
-                </div>
+                <Skeleton width="100%" height="500px" />
               ) : (
                 <div className="table">
                   <div className="buttongroups">
@@ -687,23 +657,11 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     <div className="radial">
                       {bright ? (
                         <Radialy
-                          data={
-                            subpunctual?.data
-
-                              ? subpunctual?.data
-
-                              : []
-                          }
+                          data={subpunctual?.data ? subpunctual?.data : []}
                         />
                       ) : (
                         <Radialtime
-                          data={
-                            subcompliance?.data
-
-                              ? subcompliance?.data
-
-                              : []
-                          }
+                          data={subcompliance?.data ? subcompliance?.data : []}
                         />
                       )}
                     </div>
@@ -711,9 +669,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       <div className="circle">
                         <span className="label">Total Punctuality Rate</span>
                         <span className="name">
-                          {
-                            subpunctual?.data?.punctualPercentage
-                          }
+                          {subpunctual?.data?.punctualPercentage}
                         </span>
                       </div>
                     ) : (
@@ -721,9 +677,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span className="label">Total Stamp Compliance</span>
                         <span className="name">
                           {" "}
-                          {
-                            subcompliance?.data?.compliancePercentage
-                          }
+                          {subcompliance?.data?.compliancePercentage}
                         </span>
                       </div>
                     )}
@@ -741,12 +695,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                                 ?.PunctualityStatsForAllProjectsCumulative
                                 ?.punctualDays
                             } */}
-                            (
-                            {
-                              subpunctual?.data
-                                ?.punctualPercentage
-                            }
-                            )
+                            ({subpunctual?.data?.punctualPercentage})
                           </span>
                         </div>
                         <div className="attendant">
@@ -763,12 +712,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                                 ?.PunctualityStatsForAllProjectsCumulative
                                 ?.notPunctualDays
                             } */}
-                            (
-                            {
-                              subpunctual?.data
-                                ?.notPunctualPercentage
-                            }
-                            )
+                            ({subpunctual?.data?.notPunctualPercentage})
                           </span>
                         </div>
                       </div>
@@ -780,19 +724,14 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                             <span className="targeted">Total Compliance</span>
                           </div>
                           <span className="percent">
-                      Total Number:
-                      {/* {
+                            Total Number:
+                            {/* {
                         dashboard?.data
                           ?.TimestampComplianceForPlatformCumulative
                           ?.totalCompliant
                       } */}
-                      (
-                      {
-                        subcompliance?.data
-                          ?.compliancePercentage
-                      }
-                      )
-                    </span>
+                            ({subcompliance?.data?.compliancePercentage})
+                          </span>
                         </div>
                         <div className="attendant">
                           <div className="wrap">
@@ -812,8 +751,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                               : 0} */}
                             (
                             {subcompliance?.data?.nonCompliancePercentage
-                              ? subcompliance?.data
-                                  ?.nonCompliancePercentage
+                              ? subcompliance?.data?.nonCompliancePercentage
                               : 0}
                             )
                           </span>
@@ -824,9 +762,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 </div>
               )}
               {authenticatingsubproject ? (
-                <div className="table">
-                  <Skeleton width="100%" height="100%" />
-                </div>
+                <Skeleton width="100%" height="500px" />
               ) : (
                 <div className="table">
                   <div className="punctuality">
@@ -856,10 +792,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       />
                     </div>
                   </div>
-                  {subproject?.data?.slice(
-                    0,
-                    6
-                  )?.map((item) => (
+                  {subproject?.data?.slice(0, 6)?.map((item) => (
                     <div className="totalhours">
                       <div className="lefthours">
                         <span className="project">Project Name</span>
@@ -927,67 +860,63 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                 </div>
               )}
             </FeaturesGrid>
-            {authenticatingsupersubscount ? (
-              <div className="table">
-                <Skeleton width="100%" height="100%" />
-              </div>
-            ) : (
-              <div className="table">
-                <div className="punctuality">
-                  <div className="start">
-                    <div className="numbers">
-                      <span className="name">
-                        Revenue Analysis for each Plan
-                      </span>
-                    </div>
-                  </div>
-                  <div className="doublebar">
-                    <div className="high">
-                      <span className="row">
-                        <span className="square"></span>Standard
-                      </span>
-                      <span className="row">
-                        <span className="squaretwo"></span>Standard Plus
-                      </span>
-                      <span className="row">
-                        <span className="squarethree"></span>Enterprise
-                      </span>
-                      <span className="row">
-                        <span className="squarefour"></span>Enterprise Plus
-                      </span>
-                      <span className="row">
-                        <span className="squarefive"></span>FREE TRIAL
-                      </span>
-                      
-                      {/* <span className="row">
-                  <span className="squarefive"></span>Free Trial
-                </span> */}
-                    </div>
-                  </div>
-                  <div className="main">
-                    <DatePicker
-                      className="input"
-                      selected={endDateThree}
-                      ref={datePickerRefsThree}
-                      onChange={(date) => dateChangersThree(date)}
-                      showMonthYearPicker
-                      showFullMonthYearPicker
-                      showTimeSelect={false}
-                      dateFormat="MMM d yyyy"
-                      placeholderText="13 Oct 2023"
-                      popperPlacement="bottom-start"
-                    />
-                    <Calendar
-                      onClick={() => PickDaterThree()}
-                      className="calendar"
-                    />
+            <div className="table">
+              <div className="punctuality">
+                <div className="start">
+                  <div className="numbers">
+                    <span className="name">Revenue Analysis for each Plan</span>
                   </div>
                 </div>
-                <SuperAdminDoubleBarChart
-                  data={supersubscount?.data}
-                />
+                <div className="doublebar">
+                  <div className="high">
+                    <span className="row">
+                      <span className="square"></span>Standard
+                    </span>
+                    <span className="row">
+                      <span className="squaretwo"></span>Standard Plus
+                    </span>
+                    <span className="row">
+                      <span className="squarethree"></span>Enterprise
+                    </span>
+                    <span className="row">
+                      <span className="squarefour"></span>Enterprise Plus
+                    </span>
+                    <span className="row">
+                      <span className="squarefive"></span>FREE TRIAL
+                    </span>
+
+                    {/* <span className="row">
+                  <span className="squarefive"></span>Free Trial
+                </span> */}
+                  </div>
+                </div>
+                <div className="main">
+                  <DatePicker
+                    className="input"
+                    selected={endDateThree}
+                    ref={datePickerRefsThree}
+                    onChange={(date) => dateChangersThree(date)}
+                    showMonthYearPicker
+                    showFullMonthYearPicker
+                    showTimeSelect={false}
+                    dateFormat="MMM d yyyy"
+                    placeholderText="13 Oct 2023"
+                    popperPlacement="bottom-start"
+                  />
+                  <Calendar
+                    onClick={() => PickDaterThree()}
+                    className="calendar"
+                  />
+                </div>
               </div>
-            )}
+              {authenticatingsupersubscount ? (
+                <Skeleton width="100%" height="500px" />
+              ) : (
+                <SuperAdminDoubleBarChart
+                  data={supersubscount?.data ? supersubscount?.data : []}
+                />
+              )}
+            </div>
           </div>
         </>
       ) : (

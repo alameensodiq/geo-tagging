@@ -131,7 +131,9 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
     const monthNumberThree = dateThree.getMonth() + 1;
     const yearThree = dateThree.getFullYear();
     if (reload2 && endDateThree) {
-      dispatch(CorporatePunctual({ monthNumber: monthNumberThree, year: yearThree }));
+      dispatch(
+        CorporatePunctual({ monthNumber: monthNumberThree, year: yearThree })
+      );
       setReload2(false);
     }
   }, [reload2, endDateThree]);
@@ -260,9 +262,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
           </FeaturesGrid>
           <FeaturesGrid dashboardmin superoverview row={2}>
             {authenticatingcorporatecompliance ? (
-              <div className="table">
-                <Skeleton width="100%" height="100%" />
-              </div>
+              <Skeleton width="100%" height="500px" />
             ) : (
               <div className="table">
                 <div className="punctuality">
@@ -330,9 +330,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
               </div>
             )}
             {authenticatingcorporatepunctual ? (
-              <div className="table">
-                <Skeleton width="100%" height="100%" />
-              </div>
+                <Skeleton width="100%" height="500px" />
             ) : (
               <div className="table">
                 <div className="punctuality">
@@ -407,54 +405,53 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
               </div>
             )}
           </FeaturesGrid>
-          {authenticatingyearly ? (
-            <div className="table">
-              <Skeleton width="100%" height="100%" />
+
+          <div className="table">
+            <div className="punctuality">
+              <div className="start">
+                <div className="numbers">
+                  <span className="name">
+                    Punctuality Rate VS Time Stamp Compliance Rate(%)
+                  </span>
+                </div>
+                <span className="about">
+                  Overview of punctuality rate and time stamp compliance rate in
+                  the past months
+                </span>
+              </div>
+              <div className="main">
+                <DatePicker
+                  className="input"
+                  selected={endDateFour}
+                  ref={datePickerRefsFour}
+                  showMonthYearPicker
+                  showFullMonthYearPicker
+                  onChange={(date) => dateChangersFour(date)}
+                  showTimeSelect={false}
+                  dateFormat="MMM  yyyy"
+                  placeholderText="13 Oct 2023"
+                  popperPlacement="bottom-start"
+                />
+                <Calendar
+                  onClick={() => PickDaterFour()}
+                  className="calendar"
+                />
+              </div>
             </div>
-          ) : (
-            <div className="table">
-              <div className="punctuality">
-                <div className="start">
-                  <div className="numbers">
-                    <span className="name">
-                      Punctuality Rate VS Time Stamp Compliance Rate(%)
-                    </span>
-                  </div>
-                  <span className="about">
-                    Overview of punctuality rate and time stamp compliance rate
-                    in the past months
-                  </span>
-                </div>
-                <div className="main">
-                  <DatePicker
-                    className="input"
-                    selected={endDateFour}
-                    ref={datePickerRefsFour}
-                    showMonthYearPicker
-                    showFullMonthYearPicker
-                    onChange={(date) => dateChangersFour(date)}
-                    showTimeSelect={false}
-                    dateFormat="MMM  yyyy"
-                    placeholderText="13 Oct 2023"
-                    popperPlacement="bottom-start"
-                  />
-                  <Calendar
-                    onClick={() => PickDaterFour()}
-                    className="calendar"
-                  />
-                </div>
+            <div className="doublebar">
+              <div className="high">
+                <span className="row">
+                  <span className="square"></span>Punctuality Rate(%)
+                </span>
+                <span className="row">
+                  <span className="squaretwo"></span>Time Stamp Compliance
+                  Rate(%)
+                </span>
               </div>
-              <div className="doublebar">
-                <div className="high">
-                  <span className="row">
-                    <span className="square"></span>Punctuality Rate(%)
-                  </span>
-                  <span className="row">
-                    <span className="squaretwo"></span>Time Stamp Compliance
-                    Rate(%)
-                  </span>
-                </div>
-              </div>
+            </div>
+            {authenticatingyearly ? (
+                <Skeleton width="100%" height="350px" />
+            ) : (
               <DoubleBarChart
                 data={
                   yearly?.data?.monthlyPuncAndCompliance
@@ -462,8 +459,8 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                     : []
                 }
               />
-            </div>
-          )}
+            )}
+          </div>
           <div className="table">
             <div className="projects">
               <span>Projects</span>

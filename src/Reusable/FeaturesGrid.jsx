@@ -10,6 +10,7 @@ const FeaturesGrid = ({
   dashboard,
   dashboardmin,
   dashboarder,
+  dashboarderer,
   unequal,
   reportunequal,
   nopad,
@@ -37,6 +38,7 @@ const FeaturesGrid = ({
       top={top}
       dashboardy={dashboardy}
       dashboard={dashboard}
+      dashboarderer={dashboarderer}
       dashboardmin={dashboardmin}
       unequal={unequal}
       account={account}
@@ -53,6 +55,8 @@ const Flex = styled.div`
   padding-left: ${(props) =>
     props.dashboard
       ? "0px"
+      : props?.dashboarderer
+      ? "0px"
       : props.dashboardmin
       ? "0px"
       : props.info
@@ -66,6 +70,8 @@ const Flex = styled.div`
       : "70px"};
   padding-right: ${(props) =>
     props.dashboard
+      ? "0px"
+      : props?.dashboarderer
       ? "0px"
       : props.dashboardmin
       ? "0px"
@@ -112,6 +118,8 @@ const Flex = styled.div`
         : props?.account
         ? "1fr"
         : props?.dashboard
+        ? "1fr"
+        : props?.dashboarderer
         ? "1fr"
         : props?.dashboardmin
         ? "1fr 1fr"

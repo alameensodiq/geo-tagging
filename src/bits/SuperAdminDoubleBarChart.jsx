@@ -16,6 +16,8 @@ function SuperAdminDoubleBarChart(data) {
     "NOVEMBER",
     "DECEMBER"
   ];
+
+  console.log(data)
   const series =
     data && data
       ? [

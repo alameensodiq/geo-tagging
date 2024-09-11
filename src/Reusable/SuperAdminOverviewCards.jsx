@@ -18,7 +18,7 @@ const SuperAdminOverviewCards = ({
 }) => {
   return (
     <Flex>
-      <div className="totalclients">
+      <div className="totalclientsfirst">
         <div className="up">
           <div className="details">
             <span className="number">
@@ -130,6 +130,68 @@ const Flex = styled.div`
   height: 144px;
   padding: 19px;
   border-radius: 5px;
+  .totalclientsfirst {
+    display: flex;
+    flex-direction: column;
+    width: 17%;
+    border-right: 1px solid #e2e8f0;
+    padding-bottom: 20px;
+    gap: 15px;
+    padding-right: 20px;
+    padding-left: 10px;
+    /* background: red; */
+    .up {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .details {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        .number {
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 42px;
+          letter-spacing: 0em;
+          text-align: left;
+          color: #1e1b39;
+        }
+        .clients {
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 21px;
+          letter-spacing: 0em;
+          text-align: left;
+          color: #5a6376;
+        }
+      }
+    }
+    .down {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 5px;
+      font-size: 11px;
+      .activediv {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        color: #474b50;
+        .active {
+          color: #34c759;
+        }
+      }
+      .deactivediv {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        color: #474b50;
+        .deactive {
+          color: #ff0007;
+        }
+      }
+    }
+  }
   .totalclients {
     display: flex;
     flex-direction: column;
@@ -316,7 +378,7 @@ const Flex = styled.div`
   .deactivated {
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 14%;
     padding-bottom: 20px;
     gap: 10px;
     padding-right: 0px;
@@ -383,7 +445,54 @@ const Flex = styled.div`
     height: 100%;
     padding: 20px;
     border-radius: 5px;
-    gap: 54px;
+    gap: 40px;
+    .totalclientsfirst {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding-bottom: 20px;
+      gap: 15px;
+      padding-right: 20px;
+      border-right: none !important;
+      .up {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .details {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          .number {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 42px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #1e1b39;
+          }
+          .clients {
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 21px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #1e1b39;
+          }
+        }
+      }
+      .down {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 10px;
+        color: #8d9196;
+        font-size: 14px;
+        .percent {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+    }
     .totalclients {
       display: flex;
       flex-direction: column;
@@ -401,7 +510,7 @@ const Flex = styled.div`
           flex-direction: column;
           gap: 5px;
           .number {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 600;
             line-height: 42px;
             letter-spacing: 0em;
@@ -409,7 +518,7 @@ const Flex = styled.div`
             color: #1e1b39;
           }
           .clients {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: 400;
             line-height: 21px;
             letter-spacing: 0em;
@@ -448,7 +557,7 @@ const Flex = styled.div`
           flex-direction: column;
           gap: 5px;
           .number {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 600;
             line-height: 42px;
             letter-spacing: 0em;
@@ -456,7 +565,7 @@ const Flex = styled.div`
             color: #1e1b39;
           }
           .clients {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: 400;
             line-height: 21px;
             letter-spacing: 0em;
@@ -495,7 +604,7 @@ const Flex = styled.div`
           flex-direction: column;
           gap: 5px;
           .number {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 600;
             line-height: 42px;
             letter-spacing: 0em;
@@ -503,7 +612,7 @@ const Flex = styled.div`
             color: #1e1b39;
           }
           .clients {
-            font-size: 14px;
+            font-size: 6px;
             font-weight: 400;
             line-height: 21px;
             letter-spacing: 0em;
@@ -526,6 +635,67 @@ const Flex = styled.div`
       }
     }
     .deactivated {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding-bottom: 20px;
+      gap: 15px;
+      padding-right: 20px;
+      border-right: none !important;
+      .up {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .details {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          .number {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 42px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #1e1b39;
+          }
+          .clients {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 6px;
+            font-weight: 400;
+            line-height: 21px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #1e1b39;
+          }
+        }
+      }
+      .down {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 10px;
+        color: #8d9196;
+        font-size: 14px;
+        .percent {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    width: 100%;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    gap: 54px;
+    .totalclientsfirst {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -572,18 +742,6 @@ const Flex = styled.div`
         }
       }
     }
-  }
-
-  @media screen and (max-width: 900px) {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #e2e8f0;
-    width: 100%;
-    justify-content: space-between;
-    height: 100%;
-    padding: 20px;
-    border-radius: 5px;
-    gap: 54px;
     .totalclients {
       display: flex;
       flex-direction: column;
