@@ -15,10 +15,18 @@ import Donuts from "../../bits/Donuts";
 import { useDispatch, useSelector } from "react-redux";
 import { CorporateDashboard } from "../../Store/Apis/CorporateDashboard";
 import { Loader } from "../../Loader";
+import { CorporateCompliance } from "../../Store/Apis/CorporateCompliance";
+import { CorporatePunctual } from "../../Store/Apis/CorporatePunctual";
+import { YearlyComp } from "../../Store/Apis/YearlyComp";
+import { Skeleton } from "@mui/material";
 
 const ClientAdminDashboard = ({ title, overviewadmin }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const dispatch = useDispatch();
+  const [reload, setReload] = useState(false);
+  const [reload1, setReload1] = useState(false);
+  const [reload2, setReload2] = useState(false);
+  const [reload3, setReload3] = useState(false);
 
   const [id, setId] = useState(null);
   const [dateRange, setDateRange] = useState({
@@ -29,20 +37,64 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
+  const [endDateThree, setEndDateThree] = useState(
+    new Date(Date.now() + 3600 * 1000 * 24)
+  );
+  const [endDateFour, setEndDateFour] = useState(
+    new Date(Date.now() + 3600 * 1000 * 24)
+  );
 
   const toggleDatePicker = () => {
     setShowDatePicker(!showDatePicker); // Toggle date picker visibility
   };
 
   useEffect(() => {
+    const date = new Date(endDate);
+    const monthNumber = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    const dateThree = new Date(endDateThree);
+    const monthNumberThree = dateThree.getMonth() + 1;
+    const yearThree = dateThree.getFullYear();
+
+    const dateFour = new Date(endDateFour);
+    const monthNumberFour = dateFour.getMonth() + 1;
+    const yearFour = dateFour.getFullYear();
     // if (id !== null) {
     dispatch(CorporateDashboard());
+    if (endDate) {
+      dispatch(CorporateCompliance({ monthNumber, year }));
+    }
+    if (endDateThree) {
+      dispatch(
+        CorporatePunctual({ monthNumber: monthNumberThree, year: yearThree })
+      );
+    }
+    if (endDateFour) {
+      dispatch(YearlyComp({ monthNumber: monthNumberFour, year: yearFour }));
+    }
     // }
   }, []);
 
   const { corporatedashboard, authenticatingcorporatedashboard } = useSelector(
     (state) => state.corporatedashboard
   );
+
+  const { corporatepunctual, authenticatingcorporatepunctual } = useSelector(
+    (state) => state.corporatepunctual
+  );
+
+  console.log(corporatepunctual);
+
+  const { corporatecompliance, authenticatingcorporatecompliance } =
+    useSelector((state) => state.corporatecompliance);
+
+  console.log(corporatecompliance);
+
+  const { yearly, authenticatingyearly } = useSelector((state) => state.yearly);
+
+  console.log(yearly);
+
   console.log(corporatedashboard?.data);
   const handleSelect = (ranges) => {
     console.log(ranges);
@@ -64,24 +116,76 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
     });
   };
 
+  useEffect(() => {
+    const date = new Date(endDate);
+    const monthNumber = date.getMonth() + 1;
+    const year = date.getFullYear();
+    if (reload1 && endDate) {
+      dispatch(CorporateCompliance({ monthNumber, year }));
+      setReload1(false);
+    }
+  }, [reload1, endDate]);
+
+  useEffect(() => {
+    const dateThree = new Date(endDateThree);
+    const monthNumberThree = dateThree.getMonth() + 1;
+    const yearThree = dateThree.getFullYear();
+    if (reload2 && endDateThree) {
+      dispatch(CorporatePunctual({ monthNumber: monthNumberThree, year: yearThree }));
+      setReload2(false);
+    }
+  }, [reload2, endDateThree]);
+
+  useEffect(() => {
+    const dateFour = new Date(endDateFour);
+    const monthNumberFour = dateFour.getMonth() + 1;
+    const yearFour = dateFour.getFullYear();
+    if (reload3 && endDateFour) {
+      dispatch(YearlyComp({ monthNumber: monthNumberFour, year: yearFour }));
+      setReload3(false);
+    }
+  }, [reload3, endDateFour]);
+
   const datePickerRefs = useRef(null);
+  const datePickerRefsOne = useRef(null);
+  const datePickerRefsFour = useRef(null);
+  const datePickerRefsThree = useRef(null);
 
   const dateChangers = (date) => {
     console.log(date);
     setEndDate(date);
+    setReload1(true);
+  };
+
+  const dateChangersThree = (date) => {
+    console.log(date);
+    setEndDateThree(date);
+    setReload2(true);
+  };
+
+  const dateChangersFour = (date) => {
+    console.log(date);
+    setEndDateFour(date);
+    setReload3(true);
   };
 
   const PickDater = () => {
     datePickerRefs.current.setOpen(true);
   };
 
+  const PickDaterThree = () => {
+    datePickerRefsThree.current.setOpen(true);
+  };
+
+  const PickDaterFour = () => {
+    datePickerRefsFour.current.setOpen(true);
+  };
+
   console.log(dateRange);
   return (
     <Flex
-      comp={corporatedashboard?.data?.TimestampCompliance?.compliancePercentage}
-      noncomp={
-        corporatedashboard?.data?.TimestampCompliance?.nonCompliancePercentage
-      }
+      comp={corporatecompliance?.data?.compliancePercentage}
+      noncomp={corporatecompliance?.data?.nonCompliancePercentage}
       // comp={corporatedashboard?.data?.Punctuality?.punctualPercentage}
       // noncomp={corporatedashboard?.data?.Punctuality?.notPunctualPercentage}
     >
@@ -155,200 +259,211 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
             />
           </FeaturesGrid>
           <FeaturesGrid dashboardmin superoverview row={2}>
+            {authenticatingcorporatecompliance ? (
+              <div className="table">
+                <Skeleton width="100%" height="100%" />
+              </div>
+            ) : (
+              <div className="table">
+                <div className="punctuality">
+                  <div className="start">
+                    <div className="numbers">
+                      <span className="name">Time Stamp Compliance Rate</span>
+                    </div>
+                  </div>
+                  <div className="main">
+                    <DatePicker
+                      className="input"
+                      selected={endDate}
+                      ref={datePickerRefs}
+                      showMonthYearPicker
+                      showFullMonthYearPicker
+                      onChange={(date) => dateChangers(date)}
+                      showTimeSelect={false}
+                      dateFormat="MMM  yyyy"
+                      placeholderText="13 Oct 2023"
+                      popperPlacement="bottom-start"
+                    />
+                    <Calendar
+                      onClick={() => PickDater()}
+                      className="calendar"
+                    />
+                  </div>
+                </div>
+                <Donuts
+                  overview
+                  data1={
+                    corporatecompliance?.data?.punctualPercentage
+                      ? corporatecompliance?.data?.punctualPercentage
+                      : 0
+                  }
+                  data2={
+                    corporatecompliance?.data?.nonCompliancePercentage
+                      ? corporatecompliance?.data?.nonCompliancePercentage
+                      : 0
+                  }
+                />
+                <div className="detailscompliance">
+                  <div className="firstcompliance">
+                    <span className="comp">Compliance</span>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                        <div className="bar"></div>
+                      </div>
+                      <span className="percent">
+                        {corporatecompliance?.data?.compliancePercentage}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="firstcompliance">
+                    <span className="comp">Non Compliance</span>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                        <div className="nonbar"></div>
+                      </div>
+                      <span className="percent">
+                        {corporatecompliance?.data?.nonCompliancePercentage}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {authenticatingcorporatepunctual ? (
+              <div className="table">
+                <Skeleton width="100%" height="100%" />
+              </div>
+            ) : (
+              <div className="table">
+                <div className="punctuality">
+                  <div className="start">
+                    <div className="numbers">
+                      <span className="name">Punctuality Rate</span>
+                    </div>
+                  </div>
+                  <div className="main">
+                    <DatePicker
+                      className="input"
+                      selected={endDateThree}
+                      ref={datePickerRefsThree}
+                      onChange={(date) => dateChangersThree(date)}
+                      showTimeSelect={false}
+                      showMonthYearPicker
+                      showFullMonthYearPicker
+                      dateFormat="MMM  yyyy"
+                      placeholderText="13 Oct 2023"
+                      popperPlacement="bottom-start"
+                    />
+                    <Calendar
+                      onClick={() => PickDaterThree()}
+                      className="calendar"
+                    />
+                  </div>
+                </div>
+                <div className="last">
+                  <div className="radial">
+                    <Radial
+                      overview
+                      datacorp={corporatepunctual?.data?.punctualPercentage}
+                      // datacorp2={
+                      //   corporatedashboard?.data?.Punctuality?.punctualPercentage
+                      // }
+                    />
+                  </div>
+                  <div className="circle">
+                    {/* <span className="label">Total Punctuality Rate</span> */}
+                    <span className="label">Total Eligible Days</span>
+                    <span className="name">
+                      {corporatepunctual?.data?.punctualPercentage <= 0
+                        ? "0"
+                        : corporatepunctual?.data?.punctualPercentage}
+                    </span>
+                  </div>
+                  <div className="target">
+                    <div className="attendance">
+                      <div className="wrap">
+                        <span className="first"></span>
+                        <span className="targeted">Punctual</span>
+                      </div>
+                      <span className="percent">
+                        {corporatepunctual?.data?.punctualPercentage <= 0
+                          ? "0"
+                          : corporatepunctual?.data?.punctualPercentage}
+                      </span>
+                    </div>
+                    <div className="attendant">
+                      <div className="wrap">
+                        <span className="second"></span>
+                        <span className="targeted">Not Punctual</span>
+                      </div>
+                      <span className="percent">
+                        {corporatepunctual?.data?.notPunctualPercentage <= 0
+                          ? "0"
+                          : corporatepunctual?.data?.notPunctualPercentage}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </FeaturesGrid>
+          {authenticatingyearly ? (
+            <div className="table">
+              <Skeleton width="100%" height="100%" />
+            </div>
+          ) : (
             <div className="table">
               <div className="punctuality">
                 <div className="start">
                   <div className="numbers">
-                    <span className="name">Time Stamp Compliance Rate</span>
+                    <span className="name">
+                      Punctuality Rate VS Time Stamp Compliance Rate(%)
+                    </span>
                   </div>
+                  <span className="about">
+                    Overview of punctuality rate and time stamp compliance rate
+                    in the past months
+                  </span>
                 </div>
                 <div className="main">
                   <DatePicker
                     className="input"
-                    selected={endDate}
-                    ref={datePickerRefs}
-                    onChange={(date) => dateChangers(date)}
+                    selected={endDateFour}
+                    ref={datePickerRefsFour}
+                    showMonthYearPicker
+                    showFullMonthYearPicker
+                    onChange={(date) => dateChangersFour(date)}
                     showTimeSelect={false}
-                    dateFormat="MMM d yyyy"
+                    dateFormat="MMM  yyyy"
                     placeholderText="13 Oct 2023"
                     popperPlacement="bottom-start"
                   />
-                  <Calendar onClick={() => PickDater()} className="calendar" />
+                  <Calendar
+                    onClick={() => PickDaterFour()}
+                    className="calendar"
+                  />
                 </div>
               </div>
-              <Donuts
-                overview
-                data1={
-                  corporatedashboard?.data?.TimestampCompliance
-                    ?.compliancePercentage
-                    ? corporatedashboard?.data?.TimestampCompliance
-                        ?.compliancePercentage
-                    : 0
-                }
-                data2={
-                  corporatedashboard?.data?.TimestampCompliance
-                    ?.nonCompliancePercentage
-                    ? corporatedashboard?.data?.TimestampCompliance
-                        ?.nonCompliancePercentage
-                    : 0
+              <div className="doublebar">
+                <div className="high">
+                  <span className="row">
+                    <span className="square"></span>Punctuality Rate(%)
+                  </span>
+                  <span className="row">
+                    <span className="squaretwo"></span>Time Stamp Compliance
+                    Rate(%)
+                  </span>
+                </div>
+              </div>
+              <DoubleBarChart
+                data={
+                  yearly?.data?.monthlyPuncAndCompliance
+                    ? yearly?.data?.monthlyPuncAndCompliance
+                    : []
                 }
               />
-              <div className="detailscompliance">
-                <div className="firstcompliance">
-                  <span className="comp">Compliance</span>
-                  <div className="bardiv">
-                    <div className="backgrounddiv">
-                      <div className="bar"></div>
-                    </div>
-                    <span className="percent">
-                      {
-                        corporatedashboard?.data?.TimestampCompliance
-                          ?.compliancePercentage
-                      }
-                    </span>
-                  </div>
-                </div>
-                <div className="firstcompliance">
-                  <span className="comp">Non Compliance</span>
-                  <div className="bardiv">
-                    <div className="backgrounddiv">
-                      <div className="nonbar"></div>
-                    </div>
-                    <span className="percent">
-                      {
-                        corporatedashboard?.data?.TimestampCompliance
-                          ?.nonCompliancePercentage
-                      }
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
-            <div className="table">
-              <div className="punctuality">
-                <div className="start">
-                  <div className="numbers">
-                    <span className="name">Punctuality Rate</span>
-                  </div>
-                </div>
-                <div className="main">
-                  <DatePicker
-                    className="input"
-                    selected={endDate}
-                    ref={datePickerRefs}
-                    onChange={(date) => dateChangers(date)}
-                    showTimeSelect={false}
-                    dateFormat="MMM d yyyy"
-                    placeholderText="13 Oct 2023"
-                    popperPlacement="bottom-start"
-                  />
-                  <Calendar onClick={() => PickDater()} className="calendar" />
-                </div>
-              </div>
-              <div className="last">
-                <div className="radial">
-                  <Radial
-                    overview
-                    datacorp={
-                      corporatedashboard?.data?.Punctuality?.punctualPercentage
-                    }
-                    // datacorp2={
-                    //   corporatedashboard?.data?.Punctuality?.punctualPercentage
-                    // }
-                  />
-                </div>
-                <div className="circle">
-                  {/* <span className="label">Total Punctuality Rate</span> */}
-                  <span className="label">Total Eligible Days</span>
-                  <span className="name">
-                    {corporatedashboard?.data?.Punctuality?.punctualPercentage <=
-                    0
-                      ? "0"
-                      : corporatedashboard?.data?.Punctuality
-                          ?.punctualPercentage}
-                  </span>
-                </div>
-                <div className="target">
-                  <div className="attendance">
-                    <div className="wrap">
-                      <span className="first"></span>
-                      <span className="targeted">Punctual</span>
-                    </div>
-                    <span className="percent">
-                      {corporatedashboard?.data?.Punctuality
-                        ?.punctualPercentage <= 0
-                        ? "0"
-                        : corporatedashboard?.data?.Punctuality
-                            ?.punctualPercentage}
-                    </span>
-                  </div>
-                  <div className="attendant">
-                    <div className="wrap">
-                      <span className="second"></span>
-                      <span className="targeted">Not Punctual</span>
-                    </div>
-                    <span className="percent">
-                      {corporatedashboard?.data?.Punctuality
-                        ?.notPunctualPercentage <= 0
-                        ? "0"
-                        : corporatedashboard?.data?.Punctuality
-                            ?.notPunctualPercentage}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </FeaturesGrid>
-          <div className="table">
-            <div className="punctuality">
-              <div className="start">
-                <div className="numbers">
-                  <span className="name">
-                    Punctuality Rate VS Time Stamp Compliance Rate(%)
-                  </span>
-                </div>
-                <span className="about">
-                  Overview of punctuality rate and time stamp compliance rate in
-                  the past months
-                </span>
-              </div>
-              <div className="main">
-                <DatePicker
-                  className="input"
-                  selected={endDate}
-                  ref={datePickerRefs}
-                  onChange={(date) => dateChangers(date)}
-                  showTimeSelect={false}
-                  dateFormat="MMM d yyyy"
-                  placeholderText="13 Oct 2023"
-                  popperPlacement="bottom-start"
-                />
-                <Calendar onClick={() => PickDater()} className="calendar" />
-              </div>
-            </div>
-            <div className="doublebar">
-              <div className="high">
-                <span className="row">
-                  <span className="square"></span>Punctuality Rate(%)
-                </span>
-                <span className="row">
-                  <span className="squaretwo"></span>Time Stamp Compliance
-                  Rate(%)
-                </span>
-              </div>
-            </div>
-            <DoubleBarChart
-              data={
-                corporatedashboard?.data
-                  ?.getPunctualityAndComplianceForAllProjectsByMonth
-                  ?.monthlyPuncAndCompliance
-                  ? corporatedashboard?.data
-                      ?.getPunctualityAndComplianceForAllProjectsByMonth
-                      ?.monthlyPuncAndCompliance
-                  : []
-              }
-            />
-          </div>
+          )}
           <div className="table">
             <div className="projects">
               <span>Projects</span>

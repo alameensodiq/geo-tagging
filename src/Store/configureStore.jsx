@@ -46,6 +46,9 @@ import { SubComplianceSlice } from "./Reducers/SubCompliance";
 import { SubProjectSlice } from "./Reducers/SubProject";
 import { SuperAnalysisSlice } from "./Reducers/SuperAnalysis";
 import { CustomSubSlice } from "./Reducers/CustomSub";
+import { CorporatePunctualSlice } from "./Reducers/CorporatePunctual";
+import { CorporateComplianceSlice } from "./Reducers/CorporateCompliance";
+import { YearlyCompSlice } from "./Reducers/Yearly";
 
 export default configureStore({
   reducer: {
@@ -96,6 +99,9 @@ export default configureStore({
     subcompliance: SubComplianceSlice?.reducer,
     subproject: SubProjectSlice?.reducer,
     superanalysis: SuperAnalysisSlice?.reducer,
-    customsub: CustomSubSlice?.reducer
+    customsub: CustomSubSlice?.reducer,
+    corporatepunctual: CorporatePunctualSlice?.reducer,
+    corporatecompliance: CorporateComplianceSlice?.reducer,
+    yearly: YearlyCompSlice?.reducer
   }
 });
