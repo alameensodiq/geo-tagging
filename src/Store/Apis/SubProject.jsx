@@ -26,9 +26,9 @@ export const SubProject = createAsyncThunk(
         }
       );
       const data = await response.json();
-      if(data?.status){
-        toast.success(data.message);
-      }
+    //   if(data?.status){
+    //     toast.success(data.message);
+    //   }
       if(!data?.status){
         toast.error(data.message);
       }
