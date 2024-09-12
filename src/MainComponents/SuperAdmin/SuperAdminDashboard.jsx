@@ -635,7 +635,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                           showMonthYearPicker
                           showFullMonthYearPicker
                           showTimeSelect={false}
-                          dateFormat="MMM d yyyy"
+                          dateFormat="MMM  yyyy"
                           placeholderText="13 Oct 2023"
                           popperPlacement="bottom-start"
                         />
@@ -654,7 +654,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                           showMonthYearPicker
                           showFullMonthYearPicker
                           showTimeSelect={false}
-                          dateFormat="MMM d yyyy"
+                          dateFormat="MMM  yyyy"
                           placeholderText="13 Oct 2023"
                           popperPlacement="bottom-start"
                         />
@@ -794,7 +794,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         showFullMonthYearPicker
                         onChange={(date) => dateChangersSix(date)}
                         showTimeSelect={false}
-                        dateFormat="MMM d yyyy"
+                        dateFormat="MMM yyyy"
                         placeholderText="13 Oct 2023"
                         popperPlacement="bottom-start"
                       />

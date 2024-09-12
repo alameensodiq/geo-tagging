@@ -293,8 +293,8 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                 <Donuts
                   overview
                   data1={
-                    corporatecompliance?.data?.punctualPercentage
-                      ? corporatecompliance?.data?.punctualPercentage
+                    corporatecompliance?.data?.compliancePercentage
+                      ? corporatecompliance?.data?.compliancePercentage
                       : 0
                   }
                   data2={
