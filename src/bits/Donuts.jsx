@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
 function Donuts({ overview, report, data1, data2 }) {
   const parsePercentage = (value) => {
     if (typeof value === "string") {
-      // Remove '%' and convert to number
       return parseFloat(value.replace("%", ""));
     }
     return Number(value);
@@ -14,6 +13,9 @@ function Donuts({ overview, report, data1, data2 }) {
   // Parse and validate data1 and data2
   const data1Number = parsePercentage(data1);
   const data2Number = parsePercentage(data2);
+
+  console.log('Parsed data1Number:', data1Number);
+  console.log('Parsed data2Number:', data2Number);
 
   // Create series if both data1 and data2 are valid percentages
   const series =
@@ -29,13 +31,29 @@ function Donuts({ overview, report, data1, data2 }) {
         startAngle: -90,
         endAngle: 270,
         donut: {
+          size: '70%',
           labels: {
-            show: true
-            // total: {
-            //   show: true,
-            //   label: 'Total Devices',
-            //   formatter: () => `${data?.totalRevenue ? data?.totalRevenue : 1700}`
-            //   }
+            show: true,
+            total: {
+              show: true,
+              label: "",
+              formatter: () => {
+                if (data1Number >= 0 && data2Number >= 0) {
+                  if (!report) {
+                    // Case when report is falsy
+                    return `${(data1Number + data2Number)}%`;
+                  } else {
+                    // Case when report is truthy
+                    return `${(data1Number + data2Number)}`;
+                  }
+                }
+                return '1700'; // Default value
+              }
+            },
+            value: {
+              offsetY: -8,
+              color: "#28385C"
+            }
           }
         }
       }
@@ -55,7 +73,6 @@ function Donuts({ overview, report, data1, data2 }) {
         : report
         ? ["#1A87D7", "#28385C"]
         : ["#28385C", "#F3827C"]
-      //   colors: backgroundColors?.map((item) => item),
     },
     responsive: [
       {
@@ -83,6 +100,12 @@ const Flex = styled.div`
   background: #ffffff;
   border-radius: 10px;
   padding-bottom: 10px;
+
+  .apexcharts-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   .first {
     display: flex;
@@ -121,7 +144,6 @@ const Flex = styled.div`
       .sametopOne {
         display: flex;
         flex-direction: row;
-        // width: 150px;
         justify-content: center;
         align-items: center;
         padding-inline: 10px;
@@ -139,7 +161,6 @@ const Flex = styled.div`
         .shim {
           width: 12px;
           height: 12px;
-          /* background: #46AA3B; */
           border-radius: 2px;
         }
       }
