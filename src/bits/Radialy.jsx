@@ -53,7 +53,7 @@ function Radialy({ data}) {
         endAngle: 90,
         track: {
           background: ["#28385C", "#65ACE0"],
-          strokeWidth: "97%",
+          strokeWidth: "57%",
           margin: 5, // margin is in pixels
           dropShadow: {
             enabled: true,
