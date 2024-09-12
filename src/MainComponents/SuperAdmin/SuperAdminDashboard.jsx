@@ -24,6 +24,7 @@ import { SubAnalysis } from "../../Store/Apis/SubAnalysis";
 import { SubCompliance } from "../../Store/Apis/SubCompliance";
 import { SubPunctual } from "../../Store/Apis/SubPunctual";
 import { SubProject } from "../../Store/Apis/SubProject";
+import DonutBorder from "../../bits/ChartJsDonut";
 
 const SuperAdminDashboard = ({ title, overviewadmin }) => {
   const dispatch = useDispatch();
@@ -530,7 +531,8 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     </div>
                   </div>
                   <div className="donutdiv">
-                    <DonutBorderRadius data={superanalysis?.data} />
+                    <DonutBorder  datas={superanalysis?.data}/>
+                    {/* <DonutBorderRadius data={superanalysis?.data} /> */}
                     <div className="detailsmaindiv">
                       {/* <div className="detailsdiv">
                 <div className="circle"></div>
