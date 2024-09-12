@@ -52,6 +52,8 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   // State variables
   const [startDateOne, setStartDateOne] = useState(initialStartDate);
   const [endDateOne, setEndDateOne] = useState(initialEndDate);
+  const initialStartDateRef = useRef(initialStartDate);
+  const initialEndDateRef = useRef(initialEndDate);
   const [endDateThree, setEndDateThree] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
@@ -117,9 +119,17 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
   }, [reload]);
 
   useEffect(() => {
-    if (reloadfree && endDateOne && startDateOne) {
-      dispatch(SuperFreeConversion({ endDateOne, startDateOne }));
-      setReloadFree(false);
+    if (reloadfree) {
+      // Check if both current dates have changed from their initial values
+      const startDateChanged =
+        startDateOne.getTime() !== initialStartDateRef.current.getTime();
+      const endDateChanged =
+        endDateOne.getTime() !== initialEndDateRef.current.getTime();
+
+      if (startDateChanged && endDateChanged) {
+        dispatch(SuperFreeConversion({ endDateOne, startDateOne }));
+        setReloadFree(false); // Reset reloadFree after dispatch
+      }
     }
   }, [reloadfree, endDateOne, startDateOne]);
 
@@ -185,7 +195,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
     (state) => state.supersubscount
   );
 
-  console.log(authenticatingsupersubscount)
+  console.log(authenticatingsupersubscount);
 
   const { superanalysis, authenticatingsuperanalysis } = useSelector(
     (state) => state.superanalysis
@@ -396,6 +406,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       </div>
                     </div>
                     <div className="main">
+                      <span>StartDate:</span>
                       <DatePicker
                         className="input"
                         selected={startDateOne}
@@ -415,6 +426,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       />
                     </div>
                     <div className="main">
+                      <span>EndDate:</span>
                       <DatePicker
                         className="input"
                         selected={endDateOne}
@@ -1059,6 +1071,9 @@ const Flex = styled.div`
         }
         .main {
           position: relative;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
           .input {
             width: 113px;
             height: 40px;
