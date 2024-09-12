@@ -47,8 +47,8 @@ function Radialtime({ data }) {
     // },
     plotOptions: {
       radialBar: {
-        startAngle: -90,
-        endAngle: 90,
+        startAngle: -140,
+        endAngle: 140,
         track: {
           background: ["#F3827C", "#274079"],
           strokeWidth: "57%",
