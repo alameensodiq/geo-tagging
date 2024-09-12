@@ -368,7 +368,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                       // }
                     />
                   </div>
-                  <div className="circle">
+                  <div className="circlereal">
                     {/* <span className="label">Total Punctuality Rate</span> */}
                     <span className="label">Total Eligible Days</span>
                     <span className="name">
@@ -700,6 +700,28 @@ const Flex = styled.div`
           display: flex;
           flex-direction: row;
           justify-content: center;
+        }
+        .circlereal {
+          width: 170px;
+          height: 175px;
+          position: absolute;
+          border-radius: 50%;
+          background: #f2f4f7;
+          z-index: 1000;
+          margin-top: 34px;
+          margin-left: 2px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: #101828;
+          .name {
+            font-size: 25px;
+            font-weight: 600;
+          }
+          .label {
+            font-size: 10px;
+          }
         }
         .circle {
           width: 125px;

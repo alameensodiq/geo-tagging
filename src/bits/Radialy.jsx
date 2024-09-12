@@ -51,10 +51,18 @@ function Radialy({ data}) {
       radialBar: {
         startAngle: -90,
         endAngle: 90,
+        hollow: {
+                size: "82%",
+                background: "#fff",
+                image: undefined,
+                imageOffsetX: 0,
+                imageOffsetY: 0,
+                position: "front",
+              },
         track: {
           background: ["#28385C", "#65ACE0"],
           strokeWidth: "57%",
-          margin: 5, // margin is in pixels
+          margin: 1, // margin is in pixels
           dropShadow: {
             enabled: true,
             top: 2,
