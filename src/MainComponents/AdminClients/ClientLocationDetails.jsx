@@ -95,10 +95,10 @@ const ClientLocationDetails = ({ title }) => {
       description: "",
       startDate: startDate,
       stopDate: formatDate(stopDate),
-      startTime: "09:00:00",
-      stopTime: "17:00:00",
+      startTime: "",
+      stopTime: "",
       isHourlyStamp: false,
-      minutesToAdd: 5,
+      minutesToAdd: "",
       duration: 60,
       dailyPay: 0,
       locations: [
@@ -151,17 +151,17 @@ const ClientLocationDetails = ({ title }) => {
     (state) => state.payment
   );
 
-  useEffect(() => {
-    if (addproject?.data?.locations?.length > 0) {
-      const defaultLocationId = addproject.data.locations[0].id;
-      setRep((prev) => [
-        {
-          ...prev[0],
-          location_id: defaultLocationId
-        }
-      ]);
-    }
-  }, [addproject?.data?.locations]);
+  // useEffect(() => {
+  //   if (addproject?.data?.locations?.length > 0) {
+  //     const defaultLocationId = addproject.data.locations[0].id;
+  //     setRep((prev) => [
+  //       {
+  //         ...prev[0],
+  //         location_id: defaultLocationId
+  //       }
+  //     ]);
+  //   }
+  // }, [addproject?.data?.locations]);
 
   const { businessrep, authenticatingbusinessrep } = useSelector(
     (state) => state.businessrep
@@ -203,12 +203,12 @@ const ClientLocationDetails = ({ title }) => {
           description: "",
           startDate: startDate,
           stopDate: formatDate(stopDate),
-          startTime: "09:00:00",
-          stopTime: "17:00:00",
+          startTime: "",
+          stopTime: "",
           isHourlyStamp: false,
-          minutesToAdd: 5,
+          minutesToAdd: "",
           duration: 60,
-          dailyPay: 0,
+          dailyPay: null,
           locations: [
             {
               address: "",
@@ -871,10 +871,13 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="name">Resumption time</span>
                     <select
                       name="startTime"
-                      value={assign.startTime}
+                      value={assign.startTime || ""}
                       onChange={(e) => ChangeProject(e)}
                       className="nametype"
                     >
+                      <option value="" disabled>
+                        Select Resumption Time
+                      </option>
                       <option value="09:00:00">9:00 A.M</option>
                       <option value="10:00:00">10:00 A.M</option>
                       <option value="11:00:00">11:00 A.M</option>
@@ -884,10 +887,13 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="name">Closing time</span>
                     <select
                       name="stopTime"
-                      value={assign.stopTime}
+                      value={assign.stopTime || ""}
                       onChange={(e) => ChangeProject(e)}
                       className="nametype"
                     >
+                      <option value="" disabled>
+                        Select Closing Time
+                      </option>
                       <option value="15:00:00">03:00 P.M</option>
                       <option value="16:00:00">04:00 P.M</option>
                       <option value="17:00:00">05:00 P.M</option>
@@ -899,10 +905,13 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="name">TimeLine to Resume</span>
                     <select
                       name="minutesToAdd"
-                      value={assign.minutesToAdd}
+                      value={assign.minutesToAdd || ""}
                       onChange={(e) => ChangeProject(e)}
                       className="nametype"
                     >
+                      <option value="" disabled>
+                        Select a Timeline
+                      </option>
                       <option value="5">5 mins</option>
                       <option value="10">10 mins</option>
                       <option value="15">15 mins</option>
@@ -1099,9 +1108,12 @@ const ClientLocationDetails = ({ title }) => {
                           <select
                             onChange={(e) => AssignChange(e, index)}
                             name="user_id"
-                            value={item?.user_id || defaultUser?.id || ""}
+                            value={item?.user_id || ""}
                             className="nametype"
                           >
+                            <option value="" disabled>
+                              Select a Rep
+                            </option>
                             {businessrep?.data?.data?.map((repItem) => (
                               <option key={repItem?.id} value={repItem?.id}>
                                 {repItem?.firstName} {repItem?.lastName}
@@ -1120,7 +1132,7 @@ const ClientLocationDetails = ({ title }) => {
                             value={item?.location_id || ""}
                             name="location_id"
                           >
-                            <option value="" disabled>
+                            <option value="" disabled={!!item?.location_id}>
                               Select a location
                             </option>
                             {addproject?.data?.locations?.map(
