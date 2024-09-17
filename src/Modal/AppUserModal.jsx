@@ -58,6 +58,7 @@ const AppUserModal = ({
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
+  const [webcamActive, setWebcamActive] = useState(true);
   const [values, setValues] = useState(false);
   const [update, setUpdate] = useState("");
   const [busplan, setBusplan] = useState(false);
@@ -331,6 +332,10 @@ const AppUserModal = ({
     ) {
       setStep(68);
     }
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+      const hasWebcam = devices.some((device) => device.kind === "videoinput");
+      setWebcamActive(hasWebcam);
+    });
 
     console.log(update);
   }, [
@@ -1105,7 +1110,7 @@ const AppUserModal = ({
     dispatch(
       CreateBusinessRepCorporate({
         name,
-        rcNumber,
+        // rcNumber,
         address,
         phone,
         email,
@@ -1572,13 +1577,13 @@ const AppUserModal = ({
               value={regbus?.phone}
               placeholder={`${`Enter Business Rep's Phone Number`}`}
             />
-            <ModalInputText
+            {/* <ModalInputText
               label="RC Number"
               onChange={(e) => Change(e)}
               name="rcNumber"
               value={regbus?.rcNumber}
               placeholder={`${`Enter Business Rep's Reg.Number`}`}
-            />
+            /> */}
             <ModalInputText
               label="Email"
               onChange={(e) => Change(e)}
@@ -1601,8 +1606,13 @@ const AppUserModal = ({
               />
             ) : (
               <>
-                <CameraComponent onCapture={handleCapture} />
-                {/* <ModalInputText onClick={PickDater} label="Take photo" photo /> */}
+                {webcamActive ? (
+                  <CameraComponent onCapture={handleCapture} />
+                ) : (
+                  <span style={{ color: "red" }}>
+                    Please activate your web Camera
+                  </span>
+                )}
               </>
             )}
             {/* {regbus?.avatar !== "" ? (

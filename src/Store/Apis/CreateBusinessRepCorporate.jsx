@@ -3,9 +3,9 @@ import toast from "react-hot-toast";
 
 export const CreateBusinessRepCorporate = createAsyncThunk(
   "createbus",
-  async ({ name, rcNumber, address, phone, email, avatar}, thunkAPI) => {
+  async ({ name, address, phone, email, avatar }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
-    const accessToken = sessionStorage.getItem('token')
+    const accessToken = sessionStorage.getItem("token");
 
     try {
       const response = await fetch(
@@ -15,10 +15,14 @@ export const CreateBusinessRepCorporate = createAsyncThunk(
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${accessToken}`
           },
           body: JSON.stringify({
-            name, rcNumber, address, phone, email, avatar
+            name,
+            address,
+            phone,
+            email,
+            avatar
           })
         }
       );
@@ -27,7 +31,7 @@ export const CreateBusinessRepCorporate = createAsyncThunk(
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);
-        // sessionStorage.setItem('token', data?.data?.token );
+      // sessionStorage.setItem('token', data?.data?.token );
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({
