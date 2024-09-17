@@ -1079,7 +1079,7 @@ const ClientLocationDetails = ({ title }) => {
                   background
                   remove
                   color
-                  title= {!authenticatingaddproject ? "Next" : 'Loading' }
+                  title={!authenticatingaddproject ? "Next" : "Loading"}
                 />
               </div>
             </div>
@@ -1114,22 +1114,24 @@ const ClientLocationDetails = ({ title }) => {
                           <select
                             onChange={(e) => {
                               AssignChanger(e, index);
-                              console.log(e.target.value)
+                              console.log(e.target.value);
                             }}
                             className="nametype"
                             value={item?.location_id || ""}
                             name="location_id"
                           >
-                            <option value="" disabled>Select a location</option>
+                            <option value="" disabled>
+                              Select a location
+                            </option>
                             {addproject?.data?.locations?.map(
                               (locationItem) => (
                                 <>
-                                <option
-                                  key={locationItem?.id}
-                                  value={String(locationItem?.id)}
-                                >
-                                  {locationItem?.address}
-                                </option>
+                                  <option
+                                    key={locationItem?.id}
+                                    value={String(locationItem?.id)}
+                                  >
+                                    {locationItem?.address}
+                                  </option>
                                 </>
                               )
                             )}
@@ -1165,31 +1167,31 @@ const ClientLocationDetails = ({ title }) => {
                         const businessRep = businessrep?.data?.data?.find(
                           (list) => list.id === item?.user_id
                         );
-  
-                  
+
                         // Find the addressy object based on user_id
                         const addressy = choosingaddress.find(
                           (list) => list.user_id === item?.user_id
                         );
-                  
+
                         console.log(addressy);
-                  
+
                         const locations = addproject?.data?.locations || [];
 
-                        console.log(locations)
-                  
+                        console.log(locations);
+
                         let realaddress = null; // Initialize realaddress as null
-                  
+
                         if (addressy) {
                           // Find the real address based on location_id
                           realaddress = locations.find(
-                            (location) => location.id === Number(addressy.location_id)
-                          )
-                  
+                            (location) =>
+                              location.id === Number(addressy.location_id)
+                          );
+
                           // Log the found real address for debugging
                           console.log(realaddress);
                         } else {
-                          console.log('Addressy not found.');
+                          console.log("Addressy not found.");
                         }
 
                         return (
@@ -1239,7 +1241,9 @@ const ClientLocationDetails = ({ title }) => {
                   onClick={() => SendAssignRep()}
                   background
                   color
-                  title= {!authenticatingpayment ? "Complete project" : 'Loading' }
+                  title={
+                    !authenticatingpayment ? "Complete project" : "Loading"
+                  }
                 />
               </div>
             </div>
