@@ -23,10 +23,10 @@ export const CorporateSignUser = createAsyncThunk(
         }
       );
       let data = await response.json();
-      if(!data?.status){
+      if (!data?.status) {
         toast.error(data.message);
       }
-      if(data?.status){
+      if (data?.status) {
         toast.success(data.message);
       }
       console.log(data);

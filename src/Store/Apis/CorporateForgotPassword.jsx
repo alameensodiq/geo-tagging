@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export const CorporateForgotPassword = createAsyncThunk(
   "forgotpassword",
-  async ({ email}, thunkAPI) => {
+  async ({ email }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
 
     try {
@@ -16,16 +16,21 @@ export const CorporateForgotPassword = createAsyncThunk(
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            email,
+            email
           })
         }
       );
       let data = await response.json();
-      toast.success(data.message);
+      if (data?.status) {
+        toast.success(data.message);
+      }
+      if (!data?.status) {
+        toast.error(data.message);
+      }
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);
-        // sessionStorage.setItem('token', data?.data?.token );
+      // sessionStorage.setItem('token', data?.data?.token );
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({

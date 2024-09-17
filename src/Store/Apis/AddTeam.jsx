@@ -3,13 +3,18 @@ import toast from "react-hot-toast";
 
 export const AddTeam = createAsyncThunk(
   "addteam",
-  async ({ name,
-    // rcNumber,
-    address,
-    phone,
-    email,
-    avatar,
-    permissions }, thunkAPI) => {
+  async (
+    {
+      name,
+      // rcNumber,
+      address,
+      phone,
+      email,
+      avatar,
+      permissions
+    },
+    thunkAPI
+  ) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
 
@@ -32,7 +37,7 @@ export const AddTeam = createAsyncThunk(
         })
       });
       let data = await response.json();
-      if(data?.status){
+      if (data?.status) {
         toast.success(data.message);
       } else {
         toast.erro(data.message);

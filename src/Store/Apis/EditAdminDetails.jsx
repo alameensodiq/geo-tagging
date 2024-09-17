@@ -41,9 +41,9 @@ export const EditAdminDetails = createAsyncThunk(
         }
       );
       let data = await response.json();
-      if(data?.status){
+      if (data?.status) {
         toast.success(data.message);
-      } else if(!data?.status){
+      } else if (!data?.status) {
         toast.error(data.message);
       }
       console.log(data);

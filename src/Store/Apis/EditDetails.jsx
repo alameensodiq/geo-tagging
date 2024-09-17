@@ -41,10 +41,10 @@ export const EditDetails = createAsyncThunk(
         }
       );
       let data = await response.json();
-      if(data?.status){
+      if (data?.status) {
         toast.success(data.message);
       }
-      if(!data?.status){
+      if (!data?.status) {
         toast.error(data.message);
       }
       console.log(data);

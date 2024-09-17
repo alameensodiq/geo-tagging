@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export const YearlyComp = createAsyncThunk(
   "yearlycomp",
-  async ({  year }, thunkAPI) => {
+  async ({ year }, thunkAPI) => {
     console.log("year:", year); // Debugging
 
     const accessToken = sessionStorage.getItem("token");
@@ -17,14 +17,14 @@ export const YearlyComp = createAsyncThunk(
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
-          },
+          }
         }
       );
       const data = await response.json();
-    //   if(data?.status){
-    //     toast.success(data.message);
-    //   }
-      if(!data?.status){
+      //   if(data?.status){
+      //     toast.success(data.message);
+      //   }
+      if (!data?.status) {
         toast.error(data.message);
       }
       console.log(data);

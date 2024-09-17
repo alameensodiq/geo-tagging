@@ -3,9 +3,9 @@ import toast from "react-hot-toast";
 
 export const SuperUserDetails = createAsyncThunk(
   "superuserdetails",
-  async ({id},thunkAPI) => {
+  async ({ id }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
-    const accessToken = sessionStorage.getItem('token')
+    const accessToken = sessionStorage.getItem("token");
 
     try {
       const response = await fetch(
@@ -15,8 +15,8 @@ export const SuperUserDetails = createAsyncThunk(
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
+            Authorization: `Bearer ${accessToken}`
+          }
         }
       );
       let data = await response.json();
@@ -24,7 +24,7 @@ export const SuperUserDetails = createAsyncThunk(
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
       //   sessionStorage.setItem('role', data?.data?.user?.userRole);
-        // sessionStorage.setItem('token', data?.data?.token );
+      // sessionStorage.setItem('token', data?.data?.token );
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({

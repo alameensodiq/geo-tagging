@@ -3,11 +3,7 @@ import toast from "react-hot-toast";
 
 export const SuperFreeConversion = createAsyncThunk(
   "freeconversion",
-  async (
-    {endDateOne, startDateOne},
-    thunkAPI
-  ) => {
-
+  async ({ endDateOne, startDateOne }, thunkAPI) => {
     const dateObj = new Date(startDateOne);
 
     const formattedDate = dateObj.toISOString().slice(0, 10);
@@ -15,7 +11,7 @@ export const SuperFreeConversion = createAsyncThunk(
     const dateObjs = new Date(endDateOne);
 
     const formattedDated = dateObjs.toISOString().slice(0, 10);
-    console.log(process.env.REACT_APP_BASE_URL);;
+    console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
 
     try {
@@ -27,14 +23,14 @@ export const SuperFreeConversion = createAsyncThunk(
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
-          },
+          }
         }
       );
       let data = await response.json();
-    //   if(data?.status){
-    //     toast.success(data.message);
-    //   }
-      if(!data?.status){
+      //   if(data?.status){
+      //     toast.success(data.message);
+      //   }
+      if (!data?.status) {
         toast.error(data.message);
       }
       console.log(data);
