@@ -2125,8 +2125,13 @@ const AppUserModal = ({
               />
             ) : (
               <>
-                <CameraComponent onCapture={handleCapture} />
-                {/* <ModalInputText onClick={PickDater} label="Take photo" photo /> */}
+                {webcamActive ? (
+                  <CameraComponent onCapture={handleCapture} />
+                ) : (
+                  <span style={{ color: "red" }}>
+                    Please activate your web Camera
+                  </span>
+                )}
               </>
             )}
             <div className="flex">

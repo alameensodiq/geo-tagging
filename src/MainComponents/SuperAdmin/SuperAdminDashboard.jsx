@@ -531,7 +531,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     </div>
                   </div>
                   <div className="donutdiv">
-                    <DonutBorder  datas={superanalysis?.data}/>
+                    <DonutBorder datas={superanalysis?.data} />
                     {/* <DonutBorderRadius data={superanalysis?.data} /> */}
                     <div className="detailsmaindiv">
                       {/* <div className="detailsdiv">
@@ -809,7 +809,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                   {subproject?.data?.slice(0, 6)?.map((item) => (
                     <div className="totalhours">
                       <div className="lefthours">
-                        <span className="project">Project Name</span>
+                        <span className="project">{item?.corporate}</span>
                         <span className="campaign">{item?.projectName}</span>
                       </div>
                       <div className="righthours">
