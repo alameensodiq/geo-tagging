@@ -10,6 +10,7 @@ import SuperAdminNavbar from "./SuperAdminNavbar";
 import InputSearch from "../../bits/InputSearch";
 import { SuperCorporate } from "../../Store/Apis/SuperCorporate";
 import Pagination from "../../Reusable/Pagination";
+import { SuperSubs } from "../../Store/Apis/SuperSub";
 
 const SuperAdminCorporate = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -36,8 +37,10 @@ const SuperAdminCorporate = ({ title }) => {
 
   useEffect(() => {
     dispatch(SuperCorporate({ searcher, currentPage }));
+    dispatch(SuperSubs());
     if (reload) {
       dispatch(SuperCorporate({ searcher, currentPage }));
+      dispatch(SuperSubs());
       setReload(false);
     }
   }, [reload, searcher, currentPage]);
@@ -46,6 +49,12 @@ const SuperAdminCorporate = ({ title }) => {
     (state) => state.supercorporate
   );
   console.log(supercorporate?.data?.data);
+
+  const { supersub, authenticatingsupersub } = useSelector(
+    (state) => state.supersub
+  );
+
+  console.log(supersub?.data);
 
   // const activate = supercorporate?.data?.data?.filter(
   //   (item) => item?.isAccountBlocked === false
@@ -129,7 +138,12 @@ const SuperAdminCorporate = ({ title }) => {
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        supersubs={supersub?.data ? supersub?.data : []}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="top">
           <div className="start">

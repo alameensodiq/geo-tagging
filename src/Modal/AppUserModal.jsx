@@ -54,7 +54,8 @@ const AppUserModal = ({
   detailing,
   assigned,
   SendAssignRepBolu,
-  payment
+  payment,
+  supersubs
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
@@ -4001,6 +4002,172 @@ const AppUserModal = ({
               Business Plan
             </span>
           </div>
+          <Flex>
+            <div className="addresswrapper">
+              <div className="heading">
+                <span className="title">PlAN TYPES</span>
+                <span className="title">MINIMUM USERS</span>
+                <span className="titlelast">MONTHLY FEE</span>
+              </div>
+              <div className="arrange">
+                <div className="details">
+                  <div className="first">FREE_TRIAL</div>
+                  <div className="second">
+                    {
+                      supersubs?.find((item) => item?.name === "FREE_TRIAL")
+                        ?.minRepCount
+                    }
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.minRepCount}
+                        name="minRepCount"
+                        placeholder="Enter minimum user"
+                      /> */}
+                  </div>
+                  <div className="third">
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.maxLocationCount}
+                        name="maxLocationCount"
+                        placeholder="Enter number of location"
+                      /> */}
+                    {
+                      supersubs?.find((item) => item?.name === "FREE_TRIAL")
+                        ?.amount?.NGN
+                    }
+                  </div>
+                </div>
+              </div>
+              <div className="arrange">
+                <div className="details">
+                  <div className="first">ENTERPRISE</div>
+                  <div className="second">
+                    {
+                      supersubs?.find((item) => item?.name === "ENTERPRISE")
+                        ?.minRepCount
+                    }
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.minRepCount}
+                        name="minRepCount"
+                        placeholder="Enter minimum user"
+                      /> */}
+                  </div>
+                  <div className="third">
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.maxLocationCount}
+                        name="maxLocationCount"
+                        placeholder="Enter number of location"
+                      /> */}
+                    {
+                      supersubs?.find((item) => item?.name === "ENTERPRISE")
+                        ?.amount?.NGN
+                    }
+                  </div>
+                </div>
+              </div>
+              <div className="arrange">
+                <div className="details">
+                  <div className="first">ENTERPRISE_PLUS</div>
+                  <div className="second">
+                    {
+                      supersubs?.find(
+                        (item) => item?.name === "ENTERPRISE_PLUS"
+                      )?.minRepCount
+                    }
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.minRepCount}
+                        name="minRepCount"
+                        placeholder="Enter minimum user"
+                      /> */}
+                  </div>
+                  <div className="third">
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.maxLocationCount}
+                        name="maxLocationCount"
+                        placeholder="Enter number of location"
+                      /> */}
+                    {
+                      supersubs?.find(
+                        (item) => item?.name === "ENTERPRISE_PLUS"
+                      )?.amount?.NGN
+                    }
+                  </div>
+                </div>
+              </div>
+              <div className="arrange">
+                <div className="details">
+                  <div className="first">STANDARD_PLUS</div>
+                  <div className="second">
+                    {
+                      supersubs?.find((item) => item?.name === "STANDARD_PLUS")
+                        ?.minRepCount
+                    }
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.minRepCount}
+                        name="minRepCount"
+                        placeholder="Enter minimum user"
+                      /> */}
+                  </div>
+                  <div className="third">
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.maxLocationCount}
+                        name="maxLocationCount"
+                        placeholder="Enter number of location"
+                      /> */}
+                    {
+                      supersubs?.find((item) => item?.name === "STANDARD_PLUS")
+                        ?.amount?.NGN
+                    }
+                  </div>
+                </div>
+              </div>
+              <div className="arrange">
+                <div className="details">
+                  <div className="first">STANDARD</div>
+                  <div className="second">
+                    {
+                      supersubs?.find((item) => item?.name === "STANDARD")
+                        ?.minRepCount
+                    }
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.minRepCount}
+                        name="minRepCount"
+                        placeholder="Enter minimum user"
+                      /> */}
+                  </div>
+                  <div className="third">
+                    {/* <input
+                        className="text"
+                        onChange={(e) => ChangeCorpNumber(e)}
+                        value={corp?.maxLocationCount}
+                        name="maxLocationCount"
+                        placeholder="Enter number of location"
+                      /> */}
+                    {
+                      supersubs?.find((item) => item?.name === "STANDARD")
+                        ?.amount?.NGN
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Flex>
           {/* <Flex>
             <div className="addresswrapper">
               <div className="heading">
@@ -4532,14 +4699,37 @@ const AppUserModal = ({
               </span>
             </div>
           </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "20px",
+              justifyContent: "space-between"
+            }}
+          >
+            <LargeSignInButton
+              onClick={() => setStep(23)}
+              large
+              title={"Back"}
+              background
+              color
+            />
+            <LargeSignInButton
+              onClick={() => SendingCorp()}
+              large
+              title={"Submit"}
+              background
+              color
+            />
+          </div>
 
-          <LargeSignInButton
+          {/* <LargeSignInButton
             onClick={() => SendingCorp()}
             bigger
             title={"Submit"}
             background
             color
-          />
+          /> */}
         </div>
       </AppModal>
       <AppModal
