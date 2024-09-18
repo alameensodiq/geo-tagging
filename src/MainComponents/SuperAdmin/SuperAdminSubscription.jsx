@@ -280,7 +280,7 @@ const SuperAdminSubscription = ({ title }) => {
             >
               <span>{supersub?.data[3]?.name}</span>
             </div>
-            <div
+            {/* <div
               onClick={() => {
                 setPendingRole3();
                 setName(supersub?.data[4]?.name);
@@ -288,7 +288,7 @@ const SuperAdminSubscription = ({ title }) => {
               className={`${activating3 ? "active" : "status"}`}
             >
               <span>{supersub?.data[4]?.name}</span>
-            </div>
+            </div> */}
             <div
               onClick={() => {
                 setPendingRole4();
@@ -336,9 +336,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>
-                    Edit Maximum Number of Business Reps per Corporates
-                  </span>
+                  <span>Maximum Number of Business Reps</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -363,9 +361,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>
-                    Edit Maximum Number of Geo-Location per Corporates
-                  </span>
+                  <span>Maximum Number of Location</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -390,9 +386,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>
-                    Edit Minimum Number of Business Reps per Corporates
-                  </span>
+                  <span>Minimum Number of Business Reps</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -430,7 +424,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>Edit Pricing For Standard plan</span>
+                  <span>Monthly Fee For Standard plan</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -461,9 +455,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>
-                    Edit Maximum Number of Business Reps per Corporates
-                  </span>
+                  <span>Maximum Number of Business Reps</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -506,7 +498,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>Edit Pricing For enterprise plan</span>
+                  <span>Monthly Fee For Enterprise plan</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -536,9 +528,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>
-                    Edit Maximum Number of Business Reps per Corporates
-                  </span>
+                  <span>Maximum Number of Business Reps</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -583,7 +573,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>Edit Pricing For enterprise plan</span>
+                  <span>Monthly Fee For Enterprise plan</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -613,9 +603,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>
-                    Edit Maximum Number of Business Reps per Corporates
-                  </span>
+                  <span>Maximum Number of Business Reps</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -660,7 +648,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>Edit Pricing For enterprise plan</span>
+                  <span>Monthly Fee For Enterprise plan</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -690,9 +678,7 @@ const SuperAdminSubscription = ({ title }) => {
               </div>
               <div className="trialdiv">
                 <div className="trialdivtop">
-                  <span>
-                    Edit Maximum Number of Business Reps per Corporates
-                  </span>
+                  <span>Maximum Number of Business Reps</span>
                 </div>
                 <div className="trialdivbottom">
                   <div className="freedays">
@@ -921,7 +907,7 @@ const Flex = styled.div`
         flex-direction: row;
         align-items: flex-start;
         padding-left: 20px;
-        gap: 10px;
+        gap: 30px;
         border-bottom: 1.02px solid #dbdade;
         .status {
           display: flex;

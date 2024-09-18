@@ -238,20 +238,18 @@ const Tables = ({
                       {item?.lastName} {item?.firstName}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      10 hours
+                      {item?.totalActiveHours} hours
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
-                      50%
+                      {item?.totalPunctuality}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
                       {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      5000
+                      {item?.walletBalance?.AMOUNT}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
-                      Building Homes
-                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}></StyledTableCell>
                     {/* <StyledTableCell style={{ width: "12%" }}>
                       <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
                     </StyledTableCell> */}
@@ -362,20 +360,18 @@ const Tables = ({
                       {item?.lastName} {item?.firstName}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      10 hours
+                      {item?.totalActiveHours} hours
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
-                      50%
+                      {item?.totalPunctuality}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
                       {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      5000
+                      {item?.walletBalance?.AMOUNT}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}>
-                      Building Hospital
-                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}></StyledTableCell>
                     {/* <StyledTableCell style={{ width: "12%" }}>
                       <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
                     </StyledTableCell> */}

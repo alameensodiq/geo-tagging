@@ -1611,7 +1611,7 @@ const AppUserModal = ({
               <img
                 src={regbus?.avatar}
                 alt="takephoto"
-                style={{ width: "492px", height: "105px" }}
+                style={{ width: "492px", height: "275px" }}
               />
             ) : (
               <>
@@ -2130,7 +2130,7 @@ const AppUserModal = ({
               <img
                 src={team?.avatar}
                 alt="takephoto"
-                style={{ width: "492px", height: "105px" }}
+                style={{ width: "492px", height: "275px" }}
               />
             ) : (
               <>
