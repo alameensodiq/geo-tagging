@@ -169,6 +169,10 @@ const ClientLocationDetails = ({ title }) => {
 
   console.log(businessrep);
 
+  const activate = businessrep?.data?.data?.filter(
+    (item) => item?.isOnActiveProject === false
+  );
+
   useEffect(() => {
     dispatch(CorporateBusinessRep({ searcher, currentPage }));
   }, []);
@@ -275,7 +279,7 @@ const ClientLocationDetails = ({ title }) => {
 
   useEffect(() => {
     // Extract businessrep data
-    const businessRep = businessrep?.data?.data;
+    const businessRep = activate;
 
     // Check if there's exactly one item
     if (businessRep?.length === 1) {
@@ -288,16 +292,16 @@ const ClientLocationDetails = ({ title }) => {
         )
       );
     }
-  }, [businessrep]);
+  }, [activate]);
 
   console.log(businessrep?.data?.data);
 
-  const activate = businessrep?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === true
-  );
-  const inactivate = businessrep?.data?.data?.filter(
-    (item) => item?.hasChangeDefaultPassword === false
-  );
+  // const activate = businessrep?.data?.data?.filter(
+  //   (item) => item?.hasChangeDefaultPassword === true
+  // );
+  // const inactivate = businessrep?.data?.data?.filter(
+  //   (item) => item?.hasChangeDefaultPassword === false
+  // );
 
   const setActivate = () => {
     SetActivate(true);
@@ -1115,7 +1119,7 @@ const ClientLocationDetails = ({ title }) => {
                             <option value="" disabled>
                               Select a Rep
                             </option>
-                            {businessrep?.data?.data?.map((repItem) => (
+                            {activate?.map((repItem) => (
                               <option key={repItem?.id} value={repItem?.id}>
                                 {repItem?.firstName} {repItem?.lastName}
                               </option>
@@ -1177,7 +1181,7 @@ const ClientLocationDetails = ({ title }) => {
                   <div className="arrange">
                     {Array.isArray(rep) &&
                       rep.map((item) => {
-                        const businessRep = businessrep?.data?.data?.find(
+                        const businessRep = activate?.find(
                           (list) => list.id === item?.user_id
                         );
 

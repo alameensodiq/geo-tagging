@@ -249,7 +249,9 @@ const Tables = ({
                     <StyledTableCell style={{ width: "12%" }}>
                       {item?.walletBalance?.AMOUNT}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}></StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.project}
+                    </StyledTableCell>
                     {/* <StyledTableCell style={{ width: "12%" }}>
                       <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
                     </StyledTableCell> */}
@@ -371,7 +373,9 @@ const Tables = ({
                     <StyledTableCell style={{ width: "12%" }}>
                       {item?.walletBalance?.AMOUNT}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "12%" }}></StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.project}
+                    </StyledTableCell>
                     {/* <StyledTableCell style={{ width: "12%" }}>
                       <Moment format="DD-MM-YYYY">{item?.dateJoined}</Moment>
                     </StyledTableCell> */}
@@ -602,7 +606,9 @@ const Tables = ({
                     <StyledTableCell style={{ width: "15%" }}>
                       {item?.name}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "15%" }}></StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.totalBm}
+                    </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
                       {item?.punctualPercentage}
                     </StyledTableCell>
@@ -770,7 +776,9 @@ const Tables = ({
                     <StyledTableCell style={{ width: "15%" }}>
                       {item?.name}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "15%" }}></StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.totalBm}
+                    </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
                       {item?.punctualPercentage}
                     </StyledTableCell>
