@@ -43,10 +43,10 @@ const ClientAdminBusinessReps = ({ title }) => {
   console.log(businessrep?.data?.data);
 
   const activate = businessrep?.data?.data?.filter(
-    (item) => item?.isAccountBlocked === false
+    (item) => item?.isOnActiveProject === true
   );
   const inactivate = businessrep?.data?.data?.filter(
-    (item) => item?.isAccountBlocked === true
+    (item) => item?.isOnActiveProject === false
   );
 
   const next = businessrep?.data?.meta?.next;
