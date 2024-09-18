@@ -51,7 +51,7 @@ const SuperAdminSubscription = ({ title }) => {
   const { customsub, authenticatingcustomsub } = useSelector(
     (state) => state.customsub
   );
-  
+
   console.log(customsub?.data);
   console.log(supersub?.data);
   console.log(subscribers?.data);
@@ -59,7 +59,7 @@ const SuperAdminSubscription = ({ title }) => {
   useEffect(() => {
     dispatch(SuperSubs());
     dispatch(Subscribers());
-    dispatch(CustomSub())
+    dispatch(CustomSub());
     if (reload) {
       dispatch(SuperSubs());
       setReload(false);
@@ -233,14 +233,14 @@ const SuperAdminSubscription = ({ title }) => {
               This page allows you to manage subscription.
             </span>
           </div>
-          <div>
+          {/* <div>
             <ModalButton
               onClick={() => setStep(53)}
               background
               color
               title="Add Subscription Plan"
             />
-          </div>
+          </div> */}
         </div>
         <div className="table">
           <div className="statuses">
@@ -292,7 +292,7 @@ const SuperAdminSubscription = ({ title }) => {
             <div
               onClick={() => {
                 setPendingRole4();
-                setName('');
+                setName("");
               }}
               className={`${activating4 ? "active" : "status"}`}
             >
@@ -725,7 +725,9 @@ const SuperAdminSubscription = ({ title }) => {
             </div>
           ) : name === "" ? (
             ""
-          ) : ""}
+          ) : (
+            ""
+          )}
           <div className="innertable">
             {activated || pend || activating1 || activating2 || activating3 ? (
               <div className="top">

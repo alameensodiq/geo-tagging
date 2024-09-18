@@ -53,7 +53,8 @@ const AppUserModal = ({
   id,
   detailing,
   assigned,
-  SendAssignRepBolu
+  SendAssignRepBolu,
+  payment
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
@@ -104,6 +105,13 @@ const AppUserModal = ({
     email: "",
     avatar: update
   });
+
+  const handlePaymentRedirect = () => {
+    if (payment?.data?.paymentLink) {
+      window.location.href = payment?.data?.paymentLink;
+    }
+    console.log(payment);
+  };
 
   console.log(data);
 
@@ -7506,6 +7514,7 @@ const AppUserModal = ({
             </div>
           </div>
           <div
+            onClick={handlePaymentRedirect}
             style={{
               width: "100%",
               border: "1px solid #1A87D7",
@@ -7514,7 +7523,8 @@ const AppUserModal = ({
               display: "flex",
               height: "80px",
               flexDirection: "row",
-              justifyContent: "flex-start"
+              justifyContent: "flex-start",
+              cursor: "pointer"
             }}
           >
             <div
@@ -7536,7 +7546,8 @@ const AppUserModal = ({
           </div>
 
           <LargeSignInButton
-            onClick={() => handleCloseModal4()}
+            // onClick={() => handleCloseModal4()}
+            onClick={handlePaymentRedirect}
             bigger
             title={"Proceed"}
             background

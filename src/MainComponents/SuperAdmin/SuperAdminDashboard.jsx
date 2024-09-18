@@ -809,8 +809,8 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                   {subproject?.data?.slice(0, 6)?.map((item) => (
                     <div className="totalhours">
                       <div className="lefthours">
-                        <span className="project">{item?.corporate}</span>
                         <span className="campaign">{item?.projectName}</span>
+                        <span className="project">{item?.corporate}</span>
                       </div>
                       <div className="righthours">
                         <div className="rightcircle"></div>

@@ -536,14 +536,15 @@ const ClientLocationDetails = ({ title }) => {
         step={step}
         SendAssignRepBolu={SendAssignRepBolu}
         setReload={setReload}
+        payment={payment ? payment : {}}
       />
       <div className="maincontainer">
         <div className="firstdiv">
           <div className="backbutton">
             <Goback
               style={{ cursor: "pointer" }}
-              // onClick={() => navigate(-1)}
-              onClick={() => setStep(70)}
+              onClick={() => navigate(-1)}
+              // onClick={() => setStep(70)}
             />
             <span className="name">Assign Project</span>
           </div>
@@ -987,7 +988,7 @@ const ClientLocationDetails = ({ title }) => {
                                 })
                                 .catch((error) => {
                                   toast.error(
-                                    "Error fetching geocode data:",
+                                    "Error fetching geocode data: or wrong address",
                                     error
                                   );
                                 });
