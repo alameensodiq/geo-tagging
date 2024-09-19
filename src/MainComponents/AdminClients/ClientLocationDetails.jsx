@@ -1086,7 +1086,7 @@ const ClientLocationDetails = ({ title }) => {
               </div>
             </div>
           ) : pend ? (
-            <div className="head">
+            <div className="headtwo">
               <div className="projectassign">
                 <span className="project">3.Assign locations</span>
                 <span className="fill">
@@ -1739,6 +1739,623 @@ const Flex = styled.div`
             display: flex;
             flex-direction: row;
             gap: 10px;
+            .projectname {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 40%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .nametype {
+                border: 1px solid var(--stroke-color, #e2e8f0);
+                padding: 15px 30px 15px 30px;
+                border-radius: 6px;
+                width: 90%;
+                outline: none;
+              }
+              .yescontainer {
+              }
+            }
+            .projectnametwo {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 30%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .wrapper {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                .yescontainer {
+                  display: flex;
+                  flex-direction: row;
+                  gap: 10px;
+                  border: 1px solid var(--stroke-color, #e2e8f0);
+                  border-radius: 8px;
+                  height: 45px;
+                  align-items: center;
+                  width: 50%;
+                  justify-content: flex-start;
+                  padding-left: 20px;
+                  .circle {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 1px solid #ebebeb;
+                  }
+                  .yes {
+                    color: #1e1b39;
+                    font-size: 15px;
+                  }
+                }
+              }
+            }
+            .projectnamethree {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 30%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .nametype {
+                border: 1px solid var(--stroke-color, #e2e8f0);
+                padding: 15px 30px 15px 30px;
+                border-radius: 6px;
+                width: 90%;
+                outline: none;
+              }
+              .yescontainer {
+              }
+            }
+            .addaddress {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              align-items: flex-start;
+              height: 70px;
+              width: 35%;
+            }
+            .wrap {
+              display: flex;
+              flex-direction: column;
+              width: 65%;
+              .filling {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                .col {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  .projectname {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    justify-content: flex-start;
+                    width: 50%;
+                    height: 90px;
+                    .name {
+                      color: #1e1b39;
+                      font-size: 14px;
+                    }
+                    .nametype {
+                      border: 1px solid var(--stroke-color, #e2e8f0);
+                      padding: 15px 30px 15px 30px;
+                      border-radius: 6px;
+                      width: 90%;
+                      outline: none;
+                    }
+                    .yescontainer {
+                    }
+                  }
+                  .projectnametwo {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    justify-content: flex-start;
+                    width: 30%;
+                    height: 90px;
+                    .name {
+                      color: #1e1b39;
+                      font-size: 14px;
+                    }
+                    .wrapper {
+                      display: flex;
+                      flex-direction: row;
+                      gap: 15px;
+                      .yescontainer {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                        border: 1px solid var(--stroke-color, #e2e8f0);
+                        border-radius: 8px;
+                        height: 45px;
+                        align-items: center;
+                        width: 50%;
+                        justify-content: flex-start;
+                        padding-left: 20px;
+                        .circle {
+                          width: 20px;
+                          height: 20px;
+                          border-radius: 50%;
+                          border: 1px solid #ebebeb;
+                        }
+                        .yes {
+                          color: #1e1b39;
+                          font-size: 15px;
+                        }
+                      }
+                    }
+                  }
+                  .projectnamethree {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    justify-content: flex-start;
+                    width: 50%;
+                    height: 90px;
+                    .name {
+                      color: #1e1b39;
+                      font-size: 14px;
+                    }
+                    .nametype {
+                      border: 1px solid var(--stroke-color, #e2e8f0);
+                      padding: 15px 30px 15px 30px;
+                      border-radius: 6px;
+                      width: 90%;
+                      outline: none;
+                    }
+                    .yescontainer {
+                    }
+                  }
+                  .addaddress {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    height: 70px;
+                  }
+                }
+              }
+            }
+          }
+          .selectors {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            .top {
+              display: flex;
+              flex-direction: row;
+              gap: 50px;
+              .days {
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                width: 10%;
+                .round {
+                  color: #141414;
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+          .addresswrapper {
+            border: 1px solid #ebebeb;
+            border-radius: 6px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            .heading {
+              display: flex;
+              flex-direction: row;
+              padding-block: 10px;
+              padding-inline: 20px;
+              /* border-bottom: 1px solid #ebebeb; */
+              .title {
+                width: 50%;
+                color: #667085;
+                font-size: 14px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+              }
+            }
+            .arrange {
+              display: flex;
+              flex-direction: column;
+              border-top: 1px solid #ebebeb;
+              .details {
+                display: flex;
+                flex-direction: row;
+                padding-inline: 20px;
+                .first {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 50%;
+                  gap: 2px;
+                  height: 50px;
+                  font-size: 12px;
+                  border-right: 1px solid #ebebeb;
+                  color: #141414;
+                }
+                /* .second {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 25%;
+                  gap: 2px;
+                  height: 50px;
+                  font-size: 12px;
+                  border-right: 1px solid #ebebeb;
+                  color: #141414;
+                }
+                .third {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 25%;
+                  gap: 2px;
+                  font-size: 12px;
+                  height: 50px;
+                  border-right: 1px solid #ebebeb;
+                  color: #141414;
+                } */
+                .four {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 50%;
+                  gap: 2px;
+                  font-size: 12px;
+                  color: #141414;
+                }
+              }
+            }
+          }
+          .addresswrappertwo {
+            border: 1px solid #ebebeb;
+            border-radius: 6px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            .heading {
+              display: flex;
+              flex-direction: row;
+              padding-inline: 20px;
+              /* border-bottom: 1px solid #ebebeb; */
+              .title {
+                width: 20%;
+                color: #667085;
+                font-size: 13px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                padding-block: 10px;
+                padding-inline: 10px;
+              }
+              .titlereps {
+                width: 20%;
+                color: #667085;
+                font-size: 13px;
+                display: flex;
+                padding-block: 10px;
+                flex-direction: row;
+                padding-inline: 10px;
+                justify-content: center;
+                border-right: 1px solid #ebebeb;
+              }
+            }
+            .arrange {
+              display: flex;
+              flex-direction: column;
+              border-top: 1px solid #ebebeb;
+              .details {
+                display: flex;
+                flex-direction: row;
+                padding-inline: 20px;
+                .front {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 20%;
+                  gap: 2px;
+                  height: 50px;
+                  font-size: 12px;
+                  border-right: 1px solid #ebebeb;
+                  color: #141414;
+                  padding-inline: 10px;
+                }
+                .first {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 20%;
+                  gap: 2px;
+                  height: 50px;
+                  font-size: 12px;
+                  border-right: 1px solid #ebebeb;
+                  color: #141414;
+                  padding-inline: 10px;
+                }
+                .second {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 20%;
+                  gap: 2px;
+                  height: 50px;
+                  font-size: 12px;
+                  border-right: 1px solid #ebebeb;
+                  color: #141414;
+                  padding-inline: 10px;
+                }
+                .third {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 20%;
+                  gap: 2px;
+                  font-size: 12px;
+                  height: 50px;
+                  border-right: 1px solid #ebebeb;
+                  color: #141414;
+                  padding-inline: 10px;
+                }
+                .four {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 20%;
+                  gap: 2px;
+                  font-size: 12px;
+                  color: #141414;
+                  padding-inline: 10px;
+                }
+              }
+            }
+          }
+        }
+        .lastdiv {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          gap: 20px;
+        }
+      }
+      .headtwo {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 40px;
+        .projectassign {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          .project {
+            color: #667085;
+            font-size: 15px;
+          }
+          .fill {
+            color: #667085;
+            font-size: 13px;
+          }
+          .filling {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            .projectname {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 40%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .nametype {
+                border: 1px solid var(--stroke-color, #e2e8f0);
+                padding: 15px 30px 15px 30px;
+                border-radius: 6px;
+                width: 90%;
+                outline: none;
+              }
+              .yescontainer {
+              }
+            }
+            .projectnametwo {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 30%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .wrapper {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                .yescontainer {
+                  display: flex;
+                  flex-direction: row;
+                  gap: 10px;
+                  border: 1px solid var(--stroke-color, #e2e8f0);
+                  border-radius: 8px;
+                  height: 45px;
+                  align-items: center;
+                  width: 50%;
+                  justify-content: flex-start;
+                  padding-left: 20px;
+                  .circle {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 1px solid #ebebeb;
+                  }
+                  .yes {
+                    color: #1e1b39;
+                    font-size: 15px;
+                  }
+                }
+              }
+            }
+            .projectnamethree {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              justify-content: flex-start;
+              width: 30%;
+              height: 90px;
+              .name {
+                color: #1e1b39;
+                font-size: 14px;
+              }
+              .nametype {
+                border: 1px solid var(--stroke-color, #e2e8f0);
+                padding: 15px 30px 15px 30px;
+                border-radius: 6px;
+                width: 90%;
+                outline: none;
+              }
+              .yescontainer {
+              }
+            }
+            .addaddress {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              align-items: flex-start;
+              height: 70px;
+              width: 35%;
+            }
+            .wrap {
+              display: flex;
+              flex-direction: column;
+              width: 65%;
+              .filling {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                .projectname {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  justify-content: flex-start;
+                  width: 70%;
+                  height: 90px;
+                  .name {
+                    color: #1e1b39;
+                    font-size: 14px;
+                  }
+                  .nametype {
+                    border: 1px solid var(--stroke-color, #e2e8f0);
+                    padding: 15px 30px 15px 30px;
+                    border-radius: 6px;
+                    width: 90%;
+                    outline: none;
+                  }
+                  .yescontainer {
+                  }
+                }
+                .projectnametwo {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  justify-content: flex-start;
+                  width: 30%;
+                  height: 90px;
+                  .name {
+                    color: #1e1b39;
+                    font-size: 14px;
+                  }
+                  .wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 15px;
+                    .yescontainer {
+                      display: flex;
+                      flex-direction: row;
+                      gap: 10px;
+                      border: 1px solid var(--stroke-color, #e2e8f0);
+                      border-radius: 8px;
+                      height: 45px;
+                      align-items: center;
+                      width: 50%;
+                      justify-content: flex-start;
+                      padding-left: 20px;
+                      .circle {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        border: 1px solid #ebebeb;
+                      }
+                      .yes {
+                        color: #1e1b39;
+                        font-size: 15px;
+                      }
+                    }
+                  }
+                }
+                .projectnamethree {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  justify-content: flex-start;
+                  width: 50%;
+                  height: 90px;
+                  .name {
+                    color: #1e1b39;
+                    font-size: 14px;
+                  }
+                  .nametype {
+                    border: 1px solid var(--stroke-color, #e2e8f0);
+                    padding: 15px 30px 15px 30px;
+                    border-radius: 6px;
+                    width: 90%;
+                    outline: none;
+                  }
+                  .yescontainer {
+                  }
+                }
+                .addaddress {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-end;
+                  height: 70px;
+                }
+              }
+            }
+          }
+          .filling {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
             .projectname {
               display: flex;
               flex-direction: column;
