@@ -3797,7 +3797,7 @@ const AppUserModal = ({
             onChange={(e) => ChangeCorp(e)}
             name="name"
             value={corp?.name}
-            placeholder={`${`Enter Corporate’s Business Nmae`}`}
+            placeholder={`${`Enter Corporate’s Business Name`}`}
           />
           <ModalInputText
             nosign

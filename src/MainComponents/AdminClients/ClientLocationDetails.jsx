@@ -907,7 +907,7 @@ const ClientLocationDetails = ({ title }) => {
                 </div>
                 <div className="filling">
                   <div className="projectname">
-                    <span className="name">TimeLine to Resume</span>
+                    <span className="name">Resumption Grace Period</span>
                     <select
                       name="minutesToAdd"
                       value={assign.minutesToAdd || ""}
