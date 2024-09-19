@@ -14,6 +14,7 @@ import Plans from "../../Reusable/Plans";
 import { SuperSubs } from "../../Store/Apis/SuperSub";
 import { SubHistory } from "../../Store/Apis/SubHistory";
 import Pagination from "../../Reusable/Pagination";
+import toast from "react-hot-toast";
 
 const ClientSubscription = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -117,13 +118,13 @@ const ClientSubscription = ({ title }) => {
     console.log("Starting download function");
 
     // Check if subhistory data is available
-    if (!subhistory?.data?.data || subhistory.data.data.length === 0) {
-      console.error("No data available for download");
+    if (!subhistory?.data || subhistory.data.length === 0) {
+      toast.error("No data available for download");
       return;
     }
 
     // Extract headers from the first item
-    const headers = Object.keys(subhistory.data.data[0]);
+    const headers = Object.keys(subhistory.data[0]);
 
     // Identify headers related to 'amount'
     const amountHeaders = headers.filter((header) =>
@@ -136,7 +137,7 @@ const ClientSubscription = ({ title }) => {
     console.log("Header Row:", headerRow);
 
     // Prepare values for each row, replacing 'amount' values with the 'NGN' value
-    const rows = subhistory.data.data
+    const rows = subhistory.data
       .map((item) => {
         return headers
           .map((header) => {

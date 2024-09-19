@@ -38,6 +38,8 @@ const ClientLocationDetails = ({ title }) => {
   });
   const [amounts, setAmounts] = useState("");
   const [numbers, setNumbers] = useState("");
+  const [updateIndex, setUpdateIndex] = useState("");
+  const [addition, setAddition] = useState(false);
   const [step, setStep] = useState(0);
   const [activated, SetActivate] = useState(true);
   const [pend, SetPend] = useState(false);
@@ -82,6 +84,54 @@ const ClientLocationDetails = ({ title }) => {
   ]);
 
   const [assign, setAssign] = useState(() => {
+    const today = new Date();
+    const startDate = formatDate(today);
+    const stopDate = new Date(today);
+    stopDate.setMonth(stopDate.getMonth() + 1);
+    if (stopDate.getDate() < today.getDate()) {
+      stopDate.setDate(0);
+    }
+
+    return {
+      name: "",
+      description: "",
+      startDate: startDate,
+      stopDate: formatDate(stopDate),
+      startTime: "",
+      stopTime: "",
+      isHourlyStamp: false,
+      minutesToAdd: "",
+      duration: 60,
+      dailyPay: 0,
+      locations: [
+        // {
+        //   address: "",
+        //   longitude: "-122.084",
+        //   latitude: "37.4219999",
+        //   type: "Office",
+        //   place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+        // }
+        {
+          address: "",
+          longitude: "",
+          latitude: "",
+          type: "Office",
+          place_id: ""
+        }
+      ],
+      weekdays: {
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        saturday: false,
+        sunday: false
+      }
+    };
+  });
+
+  const [assigncopy, setAssigncopy] = useState(() => {
     const today = new Date();
     const startDate = formatDate(today);
     const stopDate = new Date(today);
@@ -466,32 +516,47 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const addLocation = () => {
-    const newLocation = {
-      address: "",
-      longitude: "-122.084",
-      latitude: "37.4219999",
-      type: "Office",
-      place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
-    };
+    if (addition) {
+      const newLocation = {
+        address: "",
+        longitude: "",
+        latitude: "",
+        type: "Office",
+        place_id: ""
+      };
 
-    setAssign((prevState) => ({
-      ...prevState,
-      locations: [...prevState.locations, newLocation]
-    }));
+      setAssign((prevState) => ({
+        ...prevState,
+        locations: [...prevState.locations, newLocation]
+      }));
+      setAddition(false);
+      // setUpdateIndex((prev) => prev + 1);
+    }
+    if (!addition) {
+      toast.error("Verify one the Previous Address");
+    }
   };
 
   const Remover = (userId) => {
-    setRep((prev) => ({
-      ...prev,
-      rep: prev.rep.filter((item) => item.user_id !== userId)
-    }));
+    if (rep?.length > 1) {
+      setRep((prev) => ({
+        ...prev,
+        rep: prev.rep.filter((item) => item.user_id !== userId)
+      }));
+    } else {
+      toast.error("The rep and address can't be less than One");
+    }
   };
 
   const Removing = (index) => {
-    setAssign((prev) => ({
-      ...prev,
-      locations: prev.locations.filter((_, i) => i !== index)
-    }));
+    if (assign?.locations?.length > 1) {
+      setAssign((prev) => ({
+        ...prev,
+        locations: prev.locations.filter((_, i) => i !== index)
+      }));
+    } else {
+      toast.error("The address can't be less than One");
+    }
   };
 
   // useEffect(() => {
@@ -523,6 +588,57 @@ const ClientLocationDetails = ({ title }) => {
       })
     );
     setbustate12(true);
+  };
+
+  const verify = (e, index) => {
+    fromAddress(e)
+      .then(({ results }) => {
+        if (results.length > 0) {
+          const { lat, lng } = results[0].geometry.location;
+          const placeId = results[0].place_id;
+
+          console.log("Latitude:", lat);
+          console.log("Longitude:", lng);
+          console.log("Place ID:", placeId);
+
+          // Update the location with new latitude, longitude, and place_id
+          setAssign((prev) => {
+            const updatedLocations = prev.locations.map((location, i) =>
+              i === index
+                ? {
+                    ...location,
+                    address: e,
+                    latitude: lat.toString(),
+                    longitude: lng.toString(),
+                    place_id: placeId
+                  }
+                : location
+            );
+
+            // Update assigncopy based on the new locations
+            const updatedAssignCopy = {
+              ...assigncopy,
+              locations: updatedLocations
+            };
+
+            // Update assigncopy state
+            setAssigncopy(updatedAssignCopy);
+
+            return {
+              ...prev,
+              locations: updatedLocations
+            };
+          });
+
+          toast.success("Correct Address");
+          setAddition(true);
+        } else {
+          toast.error("No results found");
+        }
+      })
+      .catch((error) => {
+        toast.error("Error fetching geocode data: or wrong address", error);
+      });
   };
 
   console.log(assigned);
@@ -984,6 +1100,7 @@ const ClientLocationDetails = ({ title }) => {
                           <span className="name">Address</span>
                           <input
                             onChange={(e) => {
+                              setUpdateIndex(e.target.value);
                               setAssign((prev) => ({
                                 ...prev,
                                 locations: prev.locations.map((location, i) =>
@@ -992,46 +1109,57 @@ const ClientLocationDetails = ({ title }) => {
                                     : location
                                 )
                               }));
-                              fromAddress(e.target.value)
-                                .then(({ results }) => {
-                                  if (results.length > 0) {
-                                    const { lat, lng } =
-                                      results[0].geometry.location;
-                                    const placeId = results[0].place_id;
+                              // fromAddress(e.target.value)
+                              //   .then(({ results }) => {
+                              //     if (results.length > 0) {
+                              //       const { lat, lng } =
+                              //         results[0].geometry.location;
+                              //       const placeId = results[0].place_id;
 
-                                    console.log("Latitude:", lat);
-                                    console.log("Longitude:", lng);
-                                    console.log("Place ID:", placeId);
+                              //       console.log("Latitude:", lat);
+                              //       console.log("Longitude:", lng);
+                              //       console.log("Place ID:", placeId);
 
-                                    // Update the location with new latitude, longitude, and place_id
-                                    setAssign((prev) => ({
-                                      ...prev,
-                                      locations: prev.locations.map(
-                                        (location, i) =>
-                                          i === index
-                                            ? {
-                                                ...location,
-                                                latitude: lat.toString(),
-                                                longitude: lng.toString(),
-                                                place_id: placeId
-                                              }
-                                            : location
-                                      )
-                                    }));
-                                  } else {
-                                    toast.error("No results found");
-                                  }
-                                })
-                                .catch((error) => {
-                                  toast.error(
-                                    "Error fetching geocode data: or wrong address",
-                                    error
-                                  );
-                                });
+                              //       // Update the location with new latitude, longitude, and place_id
+                              //       setAssign((prev) => ({
+                              //         ...prev,
+                              //         locations: prev.locations.map(
+                              //           (location, i) =>
+                              //             i === index
+                              //               ? {
+                              //                   ...location,
+                              //                   latitude: lat.toString(),
+                              //                   longitude: lng.toString(),
+                              //                   place_id: placeId
+                              //                 }
+                              //               : location
+                              //         )
+                              //       }));
+                              //     } else {
+                              //       toast.error("No results found");
+                              //     }
+                              //   })
+                              //   .catch((error) => {
+                              //     toast.error(
+                              //       "Error fetching geocode data: or wrong address",
+                              //       error
+                              //     );
+                              //   });
                             }}
+                            // value={updateIndex}
                             value={assign.locations[index]?.address || ""}
                             className="nametype"
                             placeholder="Enter Address"
+                          />
+                        </div>
+                        <div className="addaddress">
+                          <ModalButton
+                            onClick={() => verify(updateIndex, index)}
+                            background
+                            color
+                            short
+                            title="Verify Address"
+                            whitey
                           />
                         </div>
                         {/* <div className="projectnamethree">
@@ -1061,7 +1189,7 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="title">Action</span>
                   </div>
                   <div className="arrange">
-                    {assign?.locations?.map((item, index) => (
+                    {assigncopy?.locations?.map((item, index) => (
                       <div className="details">
                         <div className="first">
                           {item?.address !== "" ? <Color /> : ""}
