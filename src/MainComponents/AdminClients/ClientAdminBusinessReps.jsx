@@ -119,7 +119,8 @@ const ClientAdminBusinessReps = ({ title }) => {
             <div className="numbers">
               <span className="name">Business Reps</span>
               <span className="count">
-                {corporatedashboard?.data?.TotalBusinessReps?.totalBusinessReps}{" "}
+                {/* {corporatedashboard?.data?.TotalBusinessReps?.totalBusinessReps}{" "} */}
+                {businessrep?.data?.meta?.totalCount}
                 members
               </span>
             </div>
@@ -147,10 +148,11 @@ const ClientAdminBusinessReps = ({ title }) => {
               <span
                 className={`${activated ? "active-number" : "status-number"}`}
               >
-                {
+                {/* {
                   corporatedashboard?.data?.TotalBusinessReps
                     ?.activeBusinessReps
-                }
+                } */}
+                {businessrep?.data?.meta?.totalCount}
               </span>
             </div>
             <div
