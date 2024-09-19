@@ -575,7 +575,7 @@ const Tables = ({
                     PROJECT NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
-                    NAME OF BUSINESS REPS
+                    N0 OF BUSINESS REPS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     PUNCTUALITY
@@ -745,7 +745,7 @@ const Tables = ({
                     PROJECT NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
-                    NAME OF BUSINESS REPS
+                    No OF BUSINESS REPS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     PUNCTAUALITY
