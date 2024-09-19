@@ -8,6 +8,7 @@ import Tables from "../../bits/Tables";
 import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
 import Pagination from "../../Reusable/Pagination";
+import { CorporateDashboard } from "../../Store/Apis/CorporateDashboard";
 
 const ClientAdminBusinessReps = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -27,15 +28,29 @@ const ClientAdminBusinessReps = ({ title }) => {
   const [first, setFirst] = useState("activate");
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
+  const [statuses, setStatuses] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(CorporateBusinessRep({ searcher, currentPage }));
+    dispatch(CorporateDashboard());
     if (reload) {
-      dispatch(CorporateBusinessRep({ searcher, currentPage }));
+      dispatch(CorporateDashboard());
+    }
+  }, [reload]);
+
+  const { corporatedashboard, authenticatingcorporatedashboard } = useSelector(
+    (state) => state.corporatedashboard
+  );
+
+  useEffect(() => {
+    // if (statuses) {
+    dispatch(CorporateBusinessRep({ searcher, currentPage, statuses }));
+    // }
+    if (reload) {
+      dispatch(CorporateBusinessRep({ searcher, currentPage, statuses }));
       setReload(false);
     }
-  }, [reload, searcher, currentPage]);
+  }, [corporatedashboard?.data, reload, searcher, currentPage, statuses]);
 
   const { businessrep, authenticatingbusinessrep } = useSelector(
     (state) => state.businessrep
@@ -64,6 +79,7 @@ const ClientAdminBusinessReps = ({ title }) => {
     SetPend(false);
     SetLocker(false);
     setStatus("ACTIVE");
+    setStatuses(true);
     setSearcher("");
     setStartDate(new Date("2022-01-01"));
     setEndDate(new Date(Date.now() + 3600 * 1000 * 24));
@@ -77,6 +93,7 @@ const ClientAdminBusinessReps = ({ title }) => {
     SetActivate(false);
     SetPend(true);
     SetLocker(false);
+    setStatuses(false);
     setStatus("PENDING");
     setSearcher("");
     setStartDate(new Date("2022-01-01"));
@@ -102,7 +119,8 @@ const ClientAdminBusinessReps = ({ title }) => {
             <div className="numbers">
               <span className="name">Business Reps</span>
               <span className="count">
-                {businessrep?.data?.data?.length} members
+                {corporatedashboard?.data?.TotalBusinessReps?.totalBusinessReps}{" "}
+                members
               </span>
             </div>
             <span className="about">
@@ -129,7 +147,10 @@ const ClientAdminBusinessReps = ({ title }) => {
               <span
                 className={`${activated ? "active-number" : "status-number"}`}
               >
-                {activate?.length}
+                {
+                  corporatedashboard?.data?.TotalBusinessReps
+                    ?.activeBusinessReps
+                }
               </span>
             </div>
             <div
@@ -138,7 +159,10 @@ const ClientAdminBusinessReps = ({ title }) => {
             >
               <span>Inactive Business Reps</span>
               <span className={`${pend ? "active-number" : "status-number"}`}>
-                {inactivate?.length}
+                {
+                  corporatedashboard?.data?.TotalBusinessReps
+                    ?.inactiveBusinessReps
+                }
               </span>
             </div>
           </div>
@@ -176,13 +200,18 @@ const ClientAdminBusinessReps = ({ title }) => {
           </div>
           {activated ? (
             <div className="wrapper">
-              <Tables setStep={setStep} setId={setId} active data={activate} />
+              <Tables
+                setStep={setStep}
+                setId={setId}
+                active
+                data={businessrep?.data?.data}
+              />
               {activate?.length >= 1 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={activate?.length}
+                  totalPosts={businessrep?.data?.meta?.totalCount}
                   paginate={paginate}
                   previous={previous}
                   next={next}
@@ -195,14 +224,14 @@ const ClientAdminBusinessReps = ({ title }) => {
                 setStep={setStep}
                 setId={setId}
                 inactive
-                data={inactivate}
+                data={businessrep?.data?.data}
               />
               {inactivate?.length >= 1 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={inactivate?.length}
+                  totalPosts={businessrep?.data?.meta?.totalCount}
                   paginate={paginate}
                   previous={previous}
                   next={next}

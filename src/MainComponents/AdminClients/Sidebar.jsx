@@ -30,6 +30,7 @@ import { LogOutAuthentication } from "../../bits/LogOutAuthentication";
 import { businessreps } from "../../Routes";
 import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import { useDispatch, useSelector } from "react-redux";
+import { CorporateDashboard } from "../../Store/Apis/CorporateDashboard";
 
 function Sidebar({ name, role, open, setOpen }) {
   const router = useLocation();
@@ -37,13 +38,13 @@ function Sidebar({ name, role, open, setOpen }) {
   const [searcher, setSearcher] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   useEffect(() => {
-    dispatch(CorporateBusinessRep({ searcher, currentPage }));
+    // dispatch(CorporateBusinessRep({ searcher, currentPage }));
+    dispatch(CorporateDashboard());
   }, []);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector(
-    (state) => state.businessrep
+  const { corporatedashboard, authenticatingcorporatedashboard } = useSelector(
+    (state) => state.corporatedashboard
   );
-  console.log(businessrep);
 
   // background: ${({open})  => ( open ? '#333481' : 'transparent')};
   return (
@@ -116,7 +117,7 @@ function Sidebar({ name, role, open, setOpen }) {
               alignItems: "center"
             }}
           >
-            {businessrep?.data?.data?.length}
+            {corporatedashboard?.data?.TotalBusinessReps?.totalBusinessReps}
           </span>
         </Link>
         <Link
