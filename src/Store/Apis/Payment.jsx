@@ -9,7 +9,7 @@ export const Payment = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/project/${projectId}?amount=${amount}`,
+        `${process.env.REACT_APP_BASE_URL}user/project/${projectId}?sum=${amount}`,
         {
           method: "POST",
           headers: {
