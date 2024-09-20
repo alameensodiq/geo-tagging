@@ -10,6 +10,11 @@ export const CompletePayment = createAsyncThunk(
     const repdetails = sessionStorage.getItem("repdetails");
     const repdetailsReal = JSON.parse(repdetails);
 
+    // Wrap the details in the expected format
+    const requestBody = {
+      data: repdetailsReal // Assuming repdetailsReal is an array of user/location objects
+    };
+
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BASE_URL}user/project/verify?transactionId=${ref}&projectId=${projectId}`,
@@ -20,27 +25,23 @@ export const CompletePayment = createAsyncThunk(
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
           },
-          body: repdetailsReal
+          // Convert the requestBody to JSON string
+          body: JSON.stringify(requestBody)
         }
       );
+
       let data = await response.json();
       if (data?.status) {
         toast.success(data.message);
-      }
-      if (!data?.status) {
+      } else {
         toast.error(data.message);
       }
       console.log(data);
-      //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
-      //   sessionStorage.setItem('role', data?.data?.user?.userRole);
-      // sessionStorage.setItem('token', data?.data?.token );
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({
         error: "Failed! To establish connection."
       });
-      // console.log('Error', e.response.data);
-      // thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );

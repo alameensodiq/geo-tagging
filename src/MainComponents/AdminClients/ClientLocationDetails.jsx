@@ -247,8 +247,10 @@ const ClientLocationDetails = ({ title }) => {
     (state) => state.completepayment
   );
 
+  console.log(complete);
+
   useEffect(() => {
-    if (complete?.staus && !authenticatingcomplete) {
+    if (complete?.status && !authenticatingcomplete) {
       setStep(72);
     }
   }, [complete?.status, authenticatingcomplete]);
@@ -601,9 +603,10 @@ const ClientLocationDetails = ({ title }) => {
   const result = numericAmount * (numbers || 1);
 
   const SendAssignRep = () => {
-    // dispatch(AssignedRep({ rep, projectId: addproject?.data?.id }));
+    dispatch(AssignedRep({ rep, projectId: addproject?.data?.id }));
+    console.log(rep);
     sessionStorage.setItem("projectId", JSON.stringify(addproject?.data?.id));
-    sessionStorage.setItem("repdetails", rep);
+    sessionStorage.setItem("repdetails", JSON.stringify(rep));
     setbustate11(true);
   };
 
@@ -693,7 +696,7 @@ const ClientLocationDetails = ({ title }) => {
               style={{ cursor: "pointer" }}
               onClick={
                 tx_ref
-                  ? () => navigate(`${businessprojects}`)
+                  ? () => navigate(`../${businessprojects}`)
                   : () => navigate(-1)
               }
               // onClick={() => setStep(70)}
