@@ -7,10 +7,10 @@ export const AddTeam = createAsyncThunk(
     {
       name,
       // rcNumber,
-      address,
+      // address,
       phone,
       email,
-      avatar,
+      // avatar,
       permissions
     },
     thunkAPI
@@ -29,10 +29,10 @@ export const AddTeam = createAsyncThunk(
         body: JSON.stringify({
           name,
           // rcNumber,
-          address,
+          // address,
           phone,
           email,
-          avatar,
+          // avatar,
           permissions
         })
       });

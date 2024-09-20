@@ -131,11 +131,11 @@ const AppUserModal = ({
     name: "",
     lastname: "",
     // rcNumber: "",
-    address: "",
+    // address: "",
     permissions: [],
     phone: "",
-    email: "",
-    avatar: update
+    email: ""
+    // avatar: update
   });
 
   const handleClick = () => {
@@ -255,12 +255,12 @@ const AppUserModal = ({
       };
     });
 
-    setTeam((currData) => {
-      return {
-        ...currData,
-        avatar: update
-      };
-    });
+    // setTeam((currData) => {
+    //   return {
+    //     ...currData,
+    //     avatar: update
+    //   };
+    // });
     setTeam((currData) => {
       return {
         ...currData,
@@ -1205,23 +1205,23 @@ const AppUserModal = ({
       lastname,
       name,
       // rcNumber,
-      address,
+      // address,
       phone,
       email,
-      avatar,
+      // avatar,
       permissions
     } = team;
     console.log(team);
     const names = `${name} ${lastname}`;
-    console.log(address);
+    // console.log(address);
     const allVariablesPresent = [
       lastname,
       name,
       // rcNumber,
-      address,
+      // address,
       phone,
       email,
-      avatar,
+      // avatar,
       permissions
     ].every((variable) => variable !== undefined && variable !== null);
     if (allVariablesPresent) {
@@ -1232,10 +1232,10 @@ const AppUserModal = ({
           AddTeam({
             name: names,
             // rcNumber,
-            address,
+            // address,
             phone,
             email,
-            avatar,
+            // avatar,
             permissions
           })
         );
@@ -1244,10 +1244,10 @@ const AppUserModal = ({
           SuperAddTeam({
             name: names,
             // rcNumber,
-            address,
+            // address,
             phone,
             email,
-            avatar,
+            // avatar,
             permissions
           })
         );
@@ -1478,13 +1478,13 @@ const AppUserModal = ({
     });
     setTeam({
       name: "",
-      rcNumber: "",
+      // rcNumber: "",
       lastname: "",
-      address: "",
+      // address: "",
       permissions: [],
       phone: "",
-      email: "",
-      avatar: ""
+      email: ""
+      // avatar: ""
     });
     setCorp({
       name: "",
@@ -2120,14 +2120,14 @@ const AppUserModal = ({
               value={team?.email}
               placeholder={`${`Enter User management Email`}`}
             />
-            <ModalInputText
+            {/* <ModalInputText
               label="Address"
               onChange={(e) => Changeteam(e)}
               name="address"
               increase
               value={team?.address}
               placeholder={`${`Enter User management Address`}`}
-            />
+            /> */}
             {/* {team?.avatar !== "" ? (
               <img
                 src={team?.avatar}
@@ -2154,7 +2154,7 @@ const AppUserModal = ({
                 />
               </>
             )} */}
-            {team?.avatar ? (
+            {/* {team?.avatar ? (
               <img
                 src={team?.avatar}
                 alt="takephoto"
@@ -2170,7 +2170,7 @@ const AppUserModal = ({
                   </span>
                 )}
               </>
-            )}
+            )} */}
             <div className="flex">
               <div className="activities">
                 <div className="activity-permission">

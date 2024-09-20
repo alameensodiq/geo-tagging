@@ -20,10 +20,10 @@ export const SuperAddTeam = createAsyncThunk(
           body: JSON.stringify({
             name,
             // rcNumber,
-            address,
+            // address,
             phone,
             email,
-            avatar,
+            // avatar,
             permissions
           })
         }
