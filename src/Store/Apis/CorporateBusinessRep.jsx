@@ -12,9 +12,9 @@ export const CorporateBusinessRep = createAsyncThunk(
       let url = `${process.env.REACT_APP_BASE_URL}user/business-reps?search=${searcher}&page=${currentPage}`;
 
       // Conditionally add the isActive parameter
-      // if (statuses !== undefined) {
-      //   url += `&isActive=${statuses}`;
-      // }
+      if (statuses !== undefined) {
+        url += `&isActive=${statuses}`;
+      }
 
       const response = await fetch(url, {
         method: "GET",

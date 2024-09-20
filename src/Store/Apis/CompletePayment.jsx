@@ -1,22 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const CorporateProject = createAsyncThunk(
-  "project",
-  async ({ searcher, currentPage, statuses }, thunkAPI) => {
+export const CompletePayment = createAsyncThunk(
+  "completepayment",
+  async ({ ref }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
+    const projectId = sessionStorage.getItem("projectId");
+    const repdetails = sessionStorage.getItem("repdetails");
+    const repdetailsReal = JSON.parse(repdetails);
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/project?search=${searcher}&page=${currentPage}&isActive=${statuses}`,
+        `${process.env.REACT_APP_BASE_URL}user/project/verify?transactionId=${ref}&projectId=${projectId}`,
         {
-          method: "GET",
+          method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
-          }
+          },
+          body: repdetailsReal
         }
       );
       let data = await response.json();

@@ -29,6 +29,8 @@ import {
   geocode,
   RequestType
 } from "react-geocode";
+import { useLocation, useParams } from "react-router-dom";
+import { CompletePayment } from "../../Store/Apis/CompletePayment";
 
 const ClientLocationDetails = ({ title }) => {
   setDefaults({
@@ -68,6 +70,11 @@ const ClientLocationDetails = ({ title }) => {
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
+  const search = useLocation().search; // Get the search string
+  const params = new URLSearchParams(search);
+  const ref = params.get("ref");
+  console.log("Ref:", ref);
+
   const [rep, setRep] = useState([
     {
       user_id: "",
@@ -226,6 +233,22 @@ const ClientLocationDetails = ({ title }) => {
   useEffect(() => {
     dispatch(CorporateBusinessRep({ searcher, currentPage }));
   }, []);
+
+  useEffect(() => {
+    if (ref) {
+      dispatch(CompletePayment({ ref }));
+    }
+  }, [ref]);
+
+  const { complete, authenticatingcomplete } = useSelector(
+    (state) => state.completepayment
+  );
+
+  useEffect(() => {
+    if (complete?.staus && !authenticatingcomplete) {
+      setStep(72);
+    }
+  }, [complete?.status, authenticatingcomplete]);
 
   useEffect(() => {
     // dispatch(CorporateBusinessRep())
@@ -576,6 +599,8 @@ const ClientLocationDetails = ({ title }) => {
 
   const SendAssignRep = () => {
     dispatch(AssignedRep({ rep, projectId: addproject?.data?.id }));
+    sessionStorage.setItem("projectId", addproject?.data?.id);
+    sessionStorage.setItem("repdetails", rep);
     setbustate11(true);
   };
 

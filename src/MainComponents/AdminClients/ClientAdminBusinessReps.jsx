@@ -119,8 +119,8 @@ const ClientAdminBusinessReps = ({ title }) => {
             <div className="numbers">
               <span className="name">Business Reps</span>
               <span className="count">
-                {/* {corporatedashboard?.data?.TotalBusinessReps?.totalBusinessReps}{" "} */}
-                {businessrep?.data?.meta?.totalCount}
+                {corporatedashboard?.data?.TotalBusinessReps?.totalBusinessReps}{" "}
+                {/* {businessrep?.data?.meta?.totalCount} */}
                 members
               </span>
             </div>
@@ -148,11 +148,11 @@ const ClientAdminBusinessReps = ({ title }) => {
               <span
                 className={`${activated ? "active-number" : "status-number"}`}
               >
-                {/* {
+                {
                   corporatedashboard?.data?.TotalBusinessReps
                     ?.activeBusinessReps
-                } */}
-                {businessrep?.data?.meta?.totalCount}
+                }
+                {/* {businessrep?.data?.meta?.totalCount} */}
               </span>
             </div>
             <div
@@ -208,12 +208,12 @@ const ClientAdminBusinessReps = ({ title }) => {
                 active
                 data={businessrep?.data?.data}
               />
-              {activate?.length >= 1 && (
+              {businessrep?.data?.meta?.totalCount >= 10 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={businessrep?.data?.meta?.totalCount}
+                  totalPosts={totalPosts}
                   paginate={paginate}
                   previous={previous}
                   next={next}
@@ -228,12 +228,12 @@ const ClientAdminBusinessReps = ({ title }) => {
                 inactive
                 data={businessrep?.data?.data}
               />
-              {inactivate?.length >= 1 && (
+              {businessrep?.data?.meta?.totalCount >= 10 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={businessrep?.data?.meta?.totalCount}
+                  totalPosts={totalPosts}
                   paginate={paginate}
                   previous={previous}
                   next={next}

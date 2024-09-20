@@ -11,6 +11,7 @@ import { businessprojects } from "../../Routes";
 import { useNavigate } from "react-router-dom";
 import { CorporateProject } from "../../Store/Apis/CorporateProject";
 import Pagination from "../../Reusable/Pagination";
+import { CorporateDashboard } from "../../Store/Apis/CorporateDashboard";
 
 const ClientAdminProject = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -22,6 +23,7 @@ const ClientAdminProject = ({ title }) => {
   const [locker, SetLocker] = useState(false);
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
+  const [statuses, setStatuses] = useState(true);
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
@@ -34,12 +36,23 @@ const ClientAdminProject = ({ title }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(CorporateProject({ searcher, currentPage }));
+    dispatch(CorporateDashboard());
     if (reload) {
-      dispatch(CorporateProject({ searcher, currentPage }));
+      dispatch(CorporateDashboard());
+    }
+  }, [reload]);
+
+  const { corporatedashboard, authenticatingcorporatedashboard } = useSelector(
+    (state) => state.corporatedashboard
+  );
+
+  useEffect(() => {
+    dispatch(CorporateProject({ searcher, currentPage, statuses }));
+    if (reload) {
+      dispatch(CorporateProject({ searcher, currentPage, statuses }));
       setReload(false);
     }
-  }, [reload, searcher, currentPage]);
+  }, [reload, searcher, currentPage, statuses]);
 
   const { project, authenticatingproject } = useSelector(
     (state) => state.project
@@ -69,6 +82,7 @@ const ClientAdminProject = ({ title }) => {
   const setActivate = () => {
     SetActivate(true);
     SetPend(false);
+    setStatuses(true);
     SetLocker(false);
     setStatus("ACTIVE");
     setSearcher("");
@@ -84,6 +98,7 @@ const ClientAdminProject = ({ title }) => {
     SetActivate(false);
     SetPend(true);
     SetLocker(false);
+    setStatuses(false);
     setStatus("PENDING");
     setSearcher("");
     setStartDate(new Date("2022-01-01"));
@@ -134,7 +149,7 @@ const ClientAdminProject = ({ title }) => {
               <span
                 className={`${activated ? "active-number" : "status-number"}`}
               >
-                {activate?.length}
+                {corporatedashboard?.data?.ProjectsCount?.activeProjects}
               </span>
             </div>
             <div
@@ -143,7 +158,7 @@ const ClientAdminProject = ({ title }) => {
             >
               <span>Inactive Projects</span>
               <span className={`${pend ? "active-number" : "status-number"}`}>
-                {inactivate?.length}
+                {corporatedashboard?.data?.ProjectsCount?.inactiveProjects}
               </span>
             </div>
           </div>
@@ -188,12 +203,12 @@ const ClientAdminProject = ({ title }) => {
                   data={activate}
                   setStep={setStep}
                 />
-                {activate?.length >= 1 && (
+                {project?.data?.meta?.totalCount >= 10 && (
                   <Pagination
                     set={activater}
                     currentPage={currentPage}
                     postsPerPage={postsPerPage}
-                    totalPosts={activate?.length}
+                    totalPosts={totalPosts}
                     paginate={paginate}
                     previous={previous}
                     next={next}
@@ -210,12 +225,12 @@ const ClientAdminProject = ({ title }) => {
                   data={inactivate}
                   setStep={setStep}
                 />
-                {inactivate?.length >= 1 && (
+                {project?.data?.meta?.totalCount >= 10 && (
                   <Pagination
                     set={activater}
                     currentPage={currentPage}
                     postsPerPage={postsPerPage}
-                    totalPosts={inactivate?.length}
+                    totalPosts={totalPosts}
                     paginate={paginate}
                     previous={previous}
                     next={next}
