@@ -140,8 +140,6 @@ const AppUserModal = ({
 
   const handleClick = () => {
     console.log(team);
-
-    // Check if any required fields are empty
     const isAnyFieldEmpty =
       !team.name ||
       !team.lastname ||
@@ -975,6 +973,22 @@ const AppUserModal = ({
     });
   };
 
+  const ChangeCorpPhone = (e) => {
+    const { name, value } = e.target;
+
+    // Allow only numeric values for the phone number
+    if (name === "phone" && !/^\d*$/.test(value)) {
+      toast.error("Phone number must contain only numbers.");
+      return; // Exit if the input is invalid
+    }
+
+    // Update the state if the input is valid
+    setCorp((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const Changeteam = (e) => {
     const { name, value } = e.target;
     console.log(value);
@@ -1315,18 +1329,29 @@ const AppUserModal = ({
   const Nexting = () => {
     const { name, rcNumber, address, phone, email, isBusinessPlan } =
       corp || {};
+
+    // Check if all required fields are present and valid
     const allVariablesPresent = [name, rcNumber, address, phone, email].every(
       (variable) =>
         variable !== undefined && variable !== null && variable.trim() !== ""
     );
 
+    // Check if email contains '@'
+    const isEmailValid = email && email.includes("@");
+
     const isBusinessPlanValid =
       isBusinessPlan === true || isBusinessPlan === false;
 
-    if (allVariablesPresent && isBusinessPlanValid) {
-      setStep(24);
-    } else {
+    // Error messages for validation
+    if (!isEmailValid) {
+      toast.error("Email must contain @");
+    } else if (!allVariablesPresent) {
       toast.error("One or more required fields are missing or invalid.");
+    } else if (!isBusinessPlanValid) {
+      toast.error("Business plan must be valid.");
+    } else {
+      // If all validations pass
+      setStep(24);
     }
   };
 
@@ -3821,7 +3846,7 @@ const AppUserModal = ({
           <ModalInputText
             nosign
             label="Contact Phone Number"
-            onChange={(e) => ChangeCorp(e)}
+            onChange={(e) => ChangeCorpPhone(e)}
             name="phone"
             value={corp?.phone}
             placeholder={`${`Enter Corporate’s Phone Number`}`}
