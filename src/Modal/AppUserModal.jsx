@@ -4005,7 +4005,7 @@ const AppUserModal = ({
           <Flex>
             <div className="addresswrapper">
               <div className="heading">
-                <span className="title">PlAN TYPES</span>
+                <span className="title">PLAN TYPES</span>
                 <span className="title">MINIMUM USERS</span>
                 <span className="titlelast">MONTHLY FEE</span>
               </div>

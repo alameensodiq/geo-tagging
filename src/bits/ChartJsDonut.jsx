@@ -12,7 +12,7 @@ const DonutBorder = ({ datas }) => {
     labels: ["Mac", "Window", "Linux"],
     datasets: [
       {
-        label: "Device Installed",
+        label: "",
         //   data: [datas?.macOs ? datas?.macOs : 0, datas?.windowsOs ? datas?.windowsOs : 0, datas?.linuxOs ? datas?.linuxOs : 0],
         data:
           datas && datas
@@ -25,7 +25,8 @@ const DonutBorder = ({ datas }) => {
                   : 0,
                 // data["FREE_TRIAL Count"] ? data["FREE_TRIAL Count"] : 0,
                 datas["STANDARD Count"] ? datas["STANDARD Count"] : 0,
-                datas["STANDARD_PLUS Count"] ? datas["STANDARD_PLUS Count"] : 0
+                datas["STANDARD_PLUS Count"] ? datas["STANDARD_PLUS Count"] : 0,
+                datas["FREE_TRIAL Count"] ? datas["FREE_TRIAL Count"] : 0
               ]
             : [60, 40, 30, 20, 30],
         backgroundColor: [
@@ -35,7 +36,8 @@ const DonutBorder = ({ datas }) => {
           // "#274079",
           "#7CC8F3",
           "#277927",
-          "#f37cbf"
+          "#f37cbf",
+          "#82f37c"
         ],
         hoverOffset: 4
       }

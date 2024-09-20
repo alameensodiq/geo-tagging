@@ -555,8 +555,6 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                           {superanalysis?.data["ENTERPRISE Percent"]})
                         </span>
                       </div>
-                    </div>
-                    <div className="detailsmaindiv">
                       <div className="detailsdiv">
                         <div className="circlefour"></div>
                         <span className="title">
@@ -564,19 +562,8 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                           {superanalysis?.data["ENTERPRISE_PLUS Percent"]})
                         </span>
                       </div>
-                      {/* <div className="detailsdiv">
-                <div className="circlefive"></div>
-                <span className="title">
-                  Free Trial (
-                  {
-                    dashboard?.data?.SubscriptionAnalysis[
-                      "FREE_TRIAL Percent"
-                    ]
-                  }
-                  )
-                </span>
-              </div> */}
                     </div>
+
                     <div className="detailsmaindiv">
                       <div className="detailsdiv">
                         <div className="circlesix"></div>
@@ -589,6 +576,15 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         <span className="title">
                           Standard Plus (
                           {superanalysis?.data["STANDARD_PLUS Percent"]})
+                        </span>
+                      </div>
+                    </div>
+                    <div className="detailsmaindiv">
+                      <div className="detailsdiv">
+                        <div className="circleeight"></div>
+                        <span className="title">
+                          Free Trial (
+                          {superanalysis?.data["FREE_TRIAL Percent"]})
                         </span>
                       </div>
                     </div>
@@ -1289,6 +1285,12 @@ const Flex = styled.div`
               height: 10px;
               border-radius: 50%;
               background: #f37cbf;
+            }
+            .circleeight {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #82f37c;
             }
             .title {
               font-size: 14px;
