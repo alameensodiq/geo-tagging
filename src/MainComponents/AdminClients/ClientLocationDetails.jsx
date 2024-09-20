@@ -31,6 +31,7 @@ import {
 } from "react-geocode";
 import { useLocation, useParams } from "react-router-dom";
 import { CompletePayment } from "../../Store/Apis/CompletePayment";
+import { businessprojects } from "../../Routes";
 
 const ClientLocationDetails = ({ title }) => {
   setDefaults({
@@ -70,10 +71,12 @@ const ClientLocationDetails = ({ title }) => {
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
+  const { location } = useParams(); // Get the location from params
   const search = useLocation().search; // Get the search string
   const params = new URLSearchParams(search);
-  const ref = params.get("ref");
-  console.log("Ref:", ref);
+  //   const status = params.get("status"); // Get the status query parameter
+  const tx_ref = params.get("tx_ref"); // Get the tx_ref query parameter
+  const transaction_id = params.get("transaction_id");
 
   const [rep, setRep] = useState([
     {
@@ -231,14 +234,14 @@ const ClientLocationDetails = ({ title }) => {
   );
 
   useEffect(() => {
-    dispatch(CorporateBusinessRep({ searcher, currentPage }));
+    dispatch(CorporateBusinessRep({ searcher, statuses: false }));
   }, []);
 
   useEffect(() => {
-    if (ref) {
-      dispatch(CompletePayment({ ref }));
+    if (tx_ref) {
+      dispatch(CompletePayment({ ref: tx_ref }));
     }
-  }, [ref]);
+  }, [tx_ref]);
 
   const { complete, authenticatingcomplete } = useSelector(
     (state) => state.completepayment
@@ -598,8 +601,8 @@ const ClientLocationDetails = ({ title }) => {
   const result = numericAmount * (numbers || 1);
 
   const SendAssignRep = () => {
-    dispatch(AssignedRep({ rep, projectId: addproject?.data?.id }));
-    sessionStorage.setItem("projectId", addproject?.data?.id);
+    // dispatch(AssignedRep({ rep, projectId: addproject?.data?.id }));
+    sessionStorage.setItem("projectId", JSON.stringify(addproject?.data?.id));
     sessionStorage.setItem("repdetails", rep);
     setbustate11(true);
   };
@@ -688,7 +691,11 @@ const ClientLocationDetails = ({ title }) => {
           <div className="backbutton">
             <Goback
               style={{ cursor: "pointer" }}
-              onClick={() => navigate(-1)}
+              onClick={
+                tx_ref
+                  ? () => navigate(`${businessprojects}`)
+                  : () => navigate(-1)
+              }
               // onClick={() => setStep(70)}
             />
             <span className="name">Assign Project</span>
@@ -1366,7 +1373,7 @@ const ClientLocationDetails = ({ title }) => {
                   <div className="arrange">
                     {Array.isArray(rep) &&
                       rep.map((item) => {
-                        const businessRep = activate?.find(
+                        const businessRep = businessrep?.data?.data?.find(
                           (list) => list.id === item?.user_id
                         );
 

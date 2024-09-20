@@ -9,7 +9,12 @@ export const CorporateBusinessRep = createAsyncThunk(
 
     try {
       // Start with the base URL
-      let url = `${process.env.REACT_APP_BASE_URL}user/business-reps?search=${searcher}&page=${currentPage}`;
+      let url = `${process.env.REACT_APP_BASE_URL}user/business-reps?search=${searcher}`;
+
+      // Conditionally add currentPage
+      if (currentPage !== undefined) {
+        url += `&page=${currentPage}`;
+      }
 
       // Conditionally add the isActive parameter
       if (statuses !== undefined) {
@@ -28,16 +33,11 @@ export const CorporateBusinessRep = createAsyncThunk(
       let data = await response.json();
       // toast.success(data.message);
       console.log(data);
-      //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
-      //   sessionStorage.setItem('role', data?.data?.user?.userRole);
-      // sessionStorage.setItem('token', data?.data?.token);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({
         error: "Failed! To establish connection."
       });
-      // console.log('Error', e.response.data);
-      // thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );

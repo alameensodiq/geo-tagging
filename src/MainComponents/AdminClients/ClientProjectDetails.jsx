@@ -113,7 +113,7 @@ const ClientProjectDetails = ({ title }) => {
               Project Name: {projectdetails?.data[0]?.projectName}
             </span>
           </div>
-          <div className="modal-div">
+          {/* <div className="modal-div">
             <ModalButton
               onClick={() =>
                 navigate(`../${businessprojects}/location/:location`)
@@ -130,7 +130,7 @@ const ClientProjectDetails = ({ title }) => {
               color
               title={"New Locations"}
             />
-          </div>
+          </div> */}
         </div>
         <div className="table">
           <div className="date-search">
