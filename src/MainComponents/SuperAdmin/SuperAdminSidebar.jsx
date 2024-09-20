@@ -125,7 +125,7 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
               alignItems: "center"
             }}
           >
-            {supercorporate?.data?.data?.length}
+            {supercorporate?.data?.meta?.totalCount}
           </span>
         </Link>
         <Link
