@@ -64,12 +64,12 @@ const SuperAdminSubscription = ({ title }) => {
       dispatch(SuperSubs());
       setReload(false);
       dispatch(Subscribers());
-      SetActivating1(true);
+      SetActivating1(false);
       SetActivating2(false);
       SetActivating3(false);
       SetActivating4(false);
       SetActivating5(false);
-      SetActivate(false);
+      SetActivate(true);
       SetPend(false);
     }
   }, [reload]);
