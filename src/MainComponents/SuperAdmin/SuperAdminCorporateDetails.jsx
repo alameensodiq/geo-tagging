@@ -237,7 +237,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
               </div>
               <div className="workdiv">
                 <span className="active">Total Location</span>
-                <spa className="number">40</spa>
+                <spa className="number">--</spa>
               </div>
             </div>
             <div className="contactinfo">

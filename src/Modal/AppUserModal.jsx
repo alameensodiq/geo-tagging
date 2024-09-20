@@ -139,20 +139,23 @@ const AppUserModal = ({
   });
 
   const handleClick = () => {
-    const isAllFieldsEmpty =
-      !team.name &&
-      !team.lastname &&
-      !team.address &&
-      !team.phone &&
-      !team.email &&
-      team.permissions.length === 0 &&
+    console.log(team);
+
+    // Check if any required fields are empty
+    const isAnyFieldEmpty =
+      !team.name ||
+      !team.lastname ||
+      !team.address ||
+      !team.phone ||
+      !team.email ||
+      team.permissions.length === 0 ||
       !team.avatar;
 
-    if (isAllFieldsEmpty) {
-      setStep(9);
+    if (isAnyFieldEmpty) {
+      toast.error("Some fields are empty");
     } else {
-      // Optionally handle the case where fields are not empty
-      toast.error("Some fields are not empty");
+      // Proceed to the next step if all fields are filled
+      setStep(9);
     }
   };
 
