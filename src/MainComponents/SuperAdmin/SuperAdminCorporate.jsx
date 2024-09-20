@@ -11,6 +11,7 @@ import InputSearch from "../../bits/InputSearch";
 import { SuperCorporate } from "../../Store/Apis/SuperCorporate";
 import Pagination from "../../Reusable/Pagination";
 import { SuperSubs } from "../../Store/Apis/SuperSub";
+import { Dashboard } from "../../Store/Apis/Dashboard";
 
 const SuperAdminCorporate = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -25,6 +26,7 @@ const SuperAdminCorporate = ({ title }) => {
   const [locker, SetLocker] = useState(false);
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
+  const [statuses, setStatuses] = useState(true);
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
@@ -36,14 +38,16 @@ const SuperAdminCorporate = ({ title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(SuperCorporate({ searcher, currentPage }));
+    dispatch(Dashboard());
+    dispatch(SuperCorporate({ searcher, currentPage, statuses }));
     dispatch(SuperSubs());
     if (reload) {
-      dispatch(SuperCorporate({ searcher, currentPage }));
+      dispatch(Dashboard());
+      dispatch(SuperCorporate({ searcher, currentPage, statuses }));
       dispatch(SuperSubs());
       setReload(false);
     }
-  }, [reload, searcher, currentPage]);
+  }, [reload, searcher, currentPage, statuses]);
 
   const { supercorporate, authenticatingsupercorporate } = useSelector(
     (state) => state.supercorporate
@@ -67,6 +71,10 @@ const SuperAdminCorporate = ({ title }) => {
   // );
   const inactivate = supercorporate?.data?.data?.filter(
     (item) => item?.activeProject < 1
+  );
+
+  const { dashboard, authenticatingdashboard } = useSelector(
+    (state) => state.dashboard
   );
 
   const setActivate = () => {
@@ -150,7 +158,7 @@ const SuperAdminCorporate = ({ title }) => {
             <div className="numbers">
               <span className="name">Corporates</span>
               <span className="count">
-                {supercorporate?.data?.data?.length} members
+                {dashboard?.data?.CorporateStatistics?.totalCorporates} members
               </span>
             </div>
             <span className="about">
@@ -177,7 +185,7 @@ const SuperAdminCorporate = ({ title }) => {
               <span
                 className={`${activated ? "active-number" : "status-number"}`}
               >
-                {activate?.length}
+                {dashboard?.data?.CorporateStatistics?.activeCorporates}
               </span>
             </div>
             <div
@@ -186,7 +194,7 @@ const SuperAdminCorporate = ({ title }) => {
             >
               <span>Inactive Corporates</span>
               <span className={`${pend ? "active-number" : "status-number"}`}>
-                {inactivate?.length}
+                {dashboard?.data?.CorporateStatistics?.inActiveCorporates}
               </span>
             </div>
           </div>
@@ -225,12 +233,12 @@ const SuperAdminCorporate = ({ title }) => {
           {activated ? (
             <div className="wrapper">
               <Tables supercorporateactive data={activate} setStep={setStep} />
-              {activate?.length >= 1 && (
+              {totalPosts >= 1 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={activate?.length}
+                  totalPosts={totalPosts}
                   paginate={paginate}
                   previous={previous}
                   next={next}
@@ -244,12 +252,12 @@ const SuperAdminCorporate = ({ title }) => {
                 data={inactivate}
                 setStep={setStep}
               />
-              {inactivate?.length >= 1 && (
+              {totalPosts >= 1 && (
                 <Pagination
                   set={activater}
                   currentPage={currentPage}
                   postsPerPage={postsPerPage}
-                  totalPosts={inactivate?.length}
+                  totalPosts={totalPosts}
                   paginate={paginate}
                   previous={previous}
                   next={next}
