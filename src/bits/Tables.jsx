@@ -68,6 +68,7 @@ const Tables = ({
   const [openprodetails, setopenprodetails] = useState(false);
   const [useractive, setuseractive] = useState("");
   const [superuseractivity, setSuperuseractivity] = useState("");
+  const [proindex, setProIndex] = useState(null);
   const navigate = useNavigate();
 
   const theme = createTheme({
@@ -140,8 +141,9 @@ const Tables = ({
     setprojectitemactive(item);
   };
 
-  const DeactivateProdetails = () => {
+  const DeactivateProdetails = (index) => {
     setopenprodetails(!openprodetails);
+    setProIndex(index);
   };
 
   const UserActive = (item) => {
@@ -923,7 +925,7 @@ const Tables = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data?.map((item) => (
+                {data?.map((item, index) => (
                   <StyledTableRow style={{ position: "relative" }}>
                     <StyledTableCell style={{ width: "8%" }}>
                       <div
@@ -973,8 +975,8 @@ const Tables = ({
                       {item?.noOfHoursWorked}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "8%" }}>
-                      <Action onClick={() => DeactivateProdetails()} />
-                      {openprodetails && (
+                      <Action onClick={() => DeactivateProdetails(index)} />
+                      {openprodetails && proindex === index && (
                         <div className="activeprojectdetailsmodal">
                           <div
                             className="row"
