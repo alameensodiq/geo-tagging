@@ -20,6 +20,7 @@ import { businessreport } from "../../Routes";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ClientReport } from "../../Store/Apis/ClientReport";
+import { Loader } from "../../Loader";
 
 const ClientAdminReports = ({ title, overviewadmin }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -89,170 +90,195 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <div className="maincontainer">
-        <div className="top">
-          <div className="start">
-            <div className="numbers">
-              <span className="name">Reports</span>
+      {clientreport?.data ? (
+        <div className="maincontainer">
+          <div className="top">
+            <div className="start">
+              <div className="numbers">
+                <span className="name">Reports</span>
+              </div>
+              <span className="about">
+                This overview provides a comprehensive view of analysis of
+                reports
+              </span>
             </div>
-            <span className="about">
-              This overview provides a comprehensive view of analysis of reports
-            </span>
           </div>
-        </div>
-        <FeaturesGrid dashboard superoverview row={2}>
-          <CorporateReportCards
-            amount={clientreport?.data?.SituationReports?.totalSituationReports}
-            statement={"Total No of Situation Reports"}
-            percent={"18"}
-          />
-          <CorporateReportCards
-            amount={clientreport?.data?.SituationReports?.totalWelfareReports}
-            statement={"Total No of Welfare Reports"}
-            percent={"16"}
-          />
-        </FeaturesGrid>
-        <FeaturesGrid dashboard bigger superoverview row={2}>
-          <div className="table">
-            <div className="punctuality">
-              <div className="start">
-                <div className="numbers">
-                  <span className="name">Situation Reports</span>
-                  {/* <span className="name">
+          <FeaturesGrid dashboard superoverview row={2}>
+            <CorporateReportCards
+              amount={
+                clientreport?.data?.SituationReports?.totalSituationReports
+              }
+              statement={"Total No of Situation Reports"}
+              percent={"18"}
+            />
+            <CorporateReportCards
+              amount={clientreport?.data?.SituationReports?.totalWelfareReports}
+              statement={"Total No of Welfare Reports"}
+              percent={"16"}
+            />
+          </FeaturesGrid>
+          <FeaturesGrid dashboard bigger superoverview row={2}>
+            <div className="table">
+              <div className="punctuality">
+                <div className="start">
+                  <div className="numbers">
+                    <span className="name">Situation Reports</span>
+                    {/* <span className="name">
                     <span className="round"></span>With Incident 
                   </span>
                   <span className="name">
                     <span className="rounder"></span>Without Incident
                   </span> */}
+                  </div>
+                </div>
+                <div className="main">
+                  <DatePicker
+                    className="input"
+                    selected={endDate}
+                    ref={datePickerRefs}
+                    onChange={(date) => dateChangers(date)}
+                    showTimeSelect={false}
+                    dateFormat="MMM d yyyy"
+                    placeholderText="13 Oct 2023"
+                    popperPlacement="bottom-start"
+                  />
+                  <Calendar onClick={() => PickDater()} className="calendar" />
                 </div>
               </div>
-              <div className="main">
-                <DatePicker
-                  className="input"
-                  selected={endDate}
-                  ref={datePickerRefs}
-                  onChange={(date) => dateChangers(date)}
-                  showTimeSelect={false}
-                  dateFormat="MMM d yyyy"
-                  placeholderText="13 Oct 2023"
-                  popperPlacement="bottom-start"
+              <div className="reportdonut">
+                <Donuts
+                  report
+                  data1={clientreport?.data?.SituationReports?.incidentReports}
+                  data2={
+                    clientreport?.data?.SituationReports?.incidentFreeReports
+                  }
                 />
-                <Calendar onClick={() => PickDater()} className="calendar" />
-              </div>
-            </div>
-            <div className="reportdonut">
-              <Donuts report data1={clientreport?.data?.SituationReports?.incidentReports} data2={clientreport?.data?.SituationReports?.incidentFreeReports} />
-              <div className="detailscompliancy">
-                <div
-                  className="firstcompliance"
-                  onClick={() => navigate(`../${businessreport}/normal`)}
-                >
-                  <span className="comp">
-                    With Incident{" "}
-                    <span className="percent">
-                      {clientreport?.data?.SituationReports?.incidentReports}
+                <div className="detailscompliancy">
+                  <div
+                    className="firstcompliance"
+                    onClick={() => navigate(`../${businessreport}/normal`)}
+                  >
+                    <span className="comp">
+                      With Incident{" "}
+                      <span className="percent">
+                        {clientreport?.data?.SituationReports?.incidentReports}
+                      </span>
                     </span>
-                  </span>
-                  <div className="bardiv">
-                    <div className="backgrounddiv">
-                      <div className="bar"></div>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                        <div className="bar"></div>
+                      </div>
+                    </div>
+                    <div className="viewdiv">
+                      <span className="view">
+                        View business reps <LeftArrow />
+                      </span>
                     </div>
                   </div>
-                  <div className="viewdiv">
-                    <span className="view">
-                      View business reps <LeftArrow />
+                  <div
+                    className="firstcompliance"
+                    onClick={() => navigate(`../${businessreport}/abnormal`)}
+                  >
+                    <span className="comp">
+                      Without Incident{" "}
+                      <span className="percent">
+                        {
+                          clientreport?.data?.SituationReports
+                            ?.incidentFreeReports
+                        }
+                      </span>
                     </span>
-                  </div>
-                </div>
-                <div
-                  className="firstcompliance"
-                  onClick={() => navigate(`../${businessreport}/abnormal`)}
-                >
-                  <span className="comp">
-                    Without Incident{" "}
-                    <span className="percent">
-                      {clientreport?.data?.SituationReports?.incidentFreeReports}
-                    </span>
-                  </span>
-                  <div className="bardiv">
-                    <div className="backgrounddiv">
-                      <div className="nonbar"></div>
+                    <div className="bardiv">
+                      <div className="backgrounddiv">
+                        <div className="nonbar"></div>
+                      </div>
+                    </div>
+                    <div className="viewdiv">
+                      <span className="view">
+                        View business reps <LeftArrow />
+                      </span>
                     </div>
                   </div>
-                  <div className="viewdiv">
-                    <span className="view">
-                      View business reps <LeftArrow />
-                    </span>
+                </div>
+              </div>
+            </div>
+            <div className="tabler">
+              <div className="punctuality">
+                <div className="start">
+                  <div className="numbers">
+                    <span className="name">Welfare Report</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="tabler">
-            <div className="punctuality">
-              <div className="start">
-                <div className="numbers">
-                  <span className="name">Welfare Report</span>
+                <div className="main">
+                  <DatePicker
+                    className="input"
+                    selected={endDate}
+                    ref={datePickerRefs}
+                    onChange={(date) => dateChangers(date)}
+                    showTimeSelect={false}
+                    dateFormat="MMM d yyyy"
+                    placeholderText="13 Oct 2023"
+                    popperPlacement="bottom-start"
+                  />
+                  <Calendar onClick={() => PickDater()} className="calendar" />
                 </div>
               </div>
-              <div className="main">
-                <DatePicker
-                  className="input"
-                  selected={endDate}
-                  ref={datePickerRefs}
-                  onChange={(date) => dateChangers(date)}
-                  showTimeSelect={false}
-                  dateFormat="MMM d yyyy"
-                  placeholderText="13 Oct 2023"
-                  popperPlacement="bottom-start"
-                />
-                <Calendar onClick={() => PickDater()} className="calendar" />
-              </div>
-            </div>
-            {/* <div className="emojidiv">
+              {/* <div className="emojidiv">
               <span className="emoji">😃</span>
               <span className="emoji">😃</span>
               <span className="emoji">😡</span>
               <span className="emoji">😃</span>
             </div> */}
-            <div className="welfare">
-              <div className="detailscompliancy">
-                {
-                  clientreport?.data?.WelfareReports 
-                  &&
-                  <div className="firstcompliance">
-                  <span className="emoji">😃</span>
-                  <div className="main">
-                    <span className="comp">Great</span>
-                    <div className="bardiv">
-                      <div className="backgrounddiv">
-                        <div className="bar" style={{width: clientreport?.data?.WelfareReports?.onePercent}}></div>
+              <div className="welfare">
+                <div className="detailscompliancy">
+                  {clientreport?.data?.WelfareReports && (
+                    <div className="firstcompliance">
+                      <span className="emoji">😃</span>
+                      <div className="main">
+                        <span className="comp">Great</span>
+                        <div className="bardiv">
+                          <div className="backgrounddiv">
+                            <div
+                              className="bar"
+                              style={{
+                                width:
+                                  clientreport?.data?.WelfareReports?.onePercent
+                              }}
+                            ></div>
+                          </div>
+                          <span className="percent">
+                            {clientreport?.data?.WelfareReports?.onePercent}%
+                          </span>
+                          <LeftCarat className="carat" />
+                        </div>
                       </div>
-                      <span className="percent">{clientreport?.data?.WelfareReports?.onePercent}%</span>
-                      <LeftCarat className="carat" />
                     </div>
-                  </div>
-                </div>
-                }
-                {
-                  clientreport?.data?.WelfareReports 
-                  &&
-                  <div className="firstcompliance">
-                  <span className="emoji">😊</span>
-                  <div className="main">
-                    <span className="comp">Happy</span>
-                    <div className="bardiv">
-                      <div className="backgrounddiv">
-                      <div className="nonbar" style={{width: clientreport?.data?.WelfareReports?.twoPercent}}></div>
+                  )}
+                  {clientreport?.data?.WelfareReports && (
+                    <div className="firstcompliance">
+                      <span className="emoji">😊</span>
+                      <div className="main">
+                        <span className="comp">Happy</span>
+                        <div className="bardiv">
+                          <div className="backgrounddiv">
+                            <div
+                              className="nonbar"
+                              style={{
+                                width:
+                                  clientreport?.data?.WelfareReports?.twoPercent
+                              }}
+                            ></div>
+                          </div>
+                          <span className="percent">
+                            {clientreport?.data?.WelfareReports?.twoPercent}%
+                          </span>
+                          <LeftCarat className="carat" />
+                        </div>
                       </div>
-                      <span className="percent">{clientreport?.data?.WelfareReports?.twoPercent}%</span>
-                      <LeftCarat className="carat" />
                     </div>
-                  </div>
-                </div>
-                }
-                {/* <span className="emoji">😃</span> */}
-                {/* <div className="firstcompliance">
+                  )}
+                  {/* <span className="emoji">😃</span> */}
+                  {/* <div className="firstcompliance">
                   <span className="emoji">😊</span>
                   <div className="main">
                     <span className="comp">Happy</span>
@@ -265,27 +291,32 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     </div>
                   </div>
                 </div> */}
-                {
-                  clientreport?.data?.WelfareReports 
-                  &&
-                  <div className="firstcompliance">
-                  <span className="emoji">😌</span>
-                  <div className="main">
-                  <span className="comp">Okay</span>
-                    <div className="bardiv">
-                      <div className="backgrounddiv">
-                      <div
-                          className="nonbar"
-                          style={{ background: "#7C65E0",width: clientreport?.data?.WelfareReports?.threePercent }}
-                        ></div>
+                  {clientreport?.data?.WelfareReports && (
+                    <div className="firstcompliance">
+                      <span className="emoji">😌</span>
+                      <div className="main">
+                        <span className="comp">Okay</span>
+                        <div className="bardiv">
+                          <div className="backgrounddiv">
+                            <div
+                              className="nonbar"
+                              style={{
+                                background: "#7C65E0",
+                                width:
+                                  clientreport?.data?.WelfareReports
+                                    ?.threePercent
+                              }}
+                            ></div>
+                          </div>
+                          <span className="percent">
+                            {clientreport?.data?.WelfareReports?.threePercent}%
+                          </span>
+                          <LeftCarat className="carat" />
+                        </div>
                       </div>
-                      <span className="percent">{clientreport?.data?.WelfareReports?.threePercent}%</span>
-                      <LeftCarat className="carat" />
                     </div>
-                  </div>
-                </div>
-                }
-                {/* <div className="firstcompliance">
+                  )}
+                  {/* <div className="firstcompliance">
                   <span className="emoji">😌</span>
                   <div className="main">
                     <span className="comp">Okay</span>
@@ -301,27 +332,32 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     </div>
                   </div>
                 </div> */}
-                {
-                  clientreport?.data?.WelfareReports 
-                  &&
-                  <div className="firstcompliance">
-                  <span className="emoji">😏</span>
-                  <div className="main">
-                  <span className="comp">Frustrated</span>
-                    <div className="bardiv">
-                      <div className="backgrounddiv">
-                      <div
-                          className="nonbar"
-                          style={{ background: "#F3827C",width: clientreport?.data?.WelfareReports?.fourPercent }}
-                        ></div>
+                  {clientreport?.data?.WelfareReports && (
+                    <div className="firstcompliance">
+                      <span className="emoji">😏</span>
+                      <div className="main">
+                        <span className="comp">Frustrated</span>
+                        <div className="bardiv">
+                          <div className="backgrounddiv">
+                            <div
+                              className="nonbar"
+                              style={{
+                                background: "#F3827C",
+                                width:
+                                  clientreport?.data?.WelfareReports
+                                    ?.fourPercent
+                              }}
+                            ></div>
+                          </div>
+                          <span className="percent">
+                            {clientreport?.data?.WelfareReports?.fourPercent}%
+                          </span>
+                          <LeftCarat className="carat" />
+                        </div>
                       </div>
-                      <span className="percent">{clientreport?.data?.WelfareReports?.fourPercent}%</span>
-                      <LeftCarat className="carat" />
                     </div>
-                  </div>
-                </div>
-                }
-                {/* <div className="firstcompliance">
+                  )}
+                  {/* <div className="firstcompliance">
                   <span className="emoji">😏</span>
                   <div className="main">
                     <span className="comp">Frustrated</span>
@@ -337,27 +373,32 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     </div>
                   </div>
                 </div> */}
-                 {
-                  clientreport?.data?.WelfareReports 
-                  &&
-                  <div className="firstcompliance">
-                  <span className="emoji">😡</span>
-                  <div className="main">
-                  <span className="comp">Angry</span>
-                    <div className="bardiv">
-                      <div className="backgrounddiv">
-                      <div
-                          className="nonbar"
-                          style={{ background: "#FE6510",width: clientreport?.data?.WelfareReports?.fivePercent }}
-                        ></div>
+                  {clientreport?.data?.WelfareReports && (
+                    <div className="firstcompliance">
+                      <span className="emoji">😡</span>
+                      <div className="main">
+                        <span className="comp">Angry</span>
+                        <div className="bardiv">
+                          <div className="backgrounddiv">
+                            <div
+                              className="nonbar"
+                              style={{
+                                background: "#FE6510",
+                                width:
+                                  clientreport?.data?.WelfareReports
+                                    ?.fivePercent
+                              }}
+                            ></div>
+                          </div>
+                          <span className="percent">
+                            {clientreport?.data?.WelfareReports?.fivePercent}%
+                          </span>
+                          <LeftCarat className="carat" />
+                        </div>
                       </div>
-                      <span className="percent">{clientreport?.data?.WelfareReports?.fivePercent}%</span>
-                      <LeftCarat className="carat" />
                     </div>
-                  </div>
-                </div>
-                }
-                {/* <div
+                  )}
+                  {/* <div
                   className="firstcompliance"
                   // onClick={() => navigate(`../${businessreport}/emoji`)}
                 >
@@ -376,13 +417,13 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     </div>
                   </div>
                 </div> */}
+                </div>
               </div>
             </div>
-          </div>
-        </FeaturesGrid>
-        <div className="table">
-          <div className="date-search">
-            {/* <div className="main">
+          </FeaturesGrid>
+          <div className="table">
+            <div className="date-search">
+              {/* <div className="main">
               <DatePicker
                 className="input"
                 selected={startDate}
@@ -408,14 +449,20 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
               />
               <Calendar onClick={() => PickDater()} className="calendar" />
             </div> */}
-            <InputSearch
-              onChange={(e) => setSearcher(e.target.value)}
-              placeholder="Search for name, project name e.t.c"
+              <InputSearch
+                onChange={(e) => setSearcher(e.target.value)}
+                placeholder="Search for name, project name e.t.c"
+              />
+            </div>
+            <Tables
+              reporttable
+              data={clientreport?.data?.IncidentsCheck?.userRemarksStats}
             />
           </div>
-          <Tables reporttable data={clientreport?.data?.IncidentsCheck?.userRemarksStats} />
         </div>
-      </div>
+      ) : (
+        <Loader />
+      )}
     </Flex>
   );
 };

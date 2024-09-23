@@ -9,6 +9,7 @@ import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
 import Pagination from "../../Reusable/Pagination";
 import { CorporateDashboard } from "../../Store/Apis/CorporateDashboard";
+import { Loader } from "../../Loader";
 
 const ClientAdminBusinessReps = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -138,38 +139,39 @@ const ClientAdminBusinessReps = ({ title }) => {
             />
           </div>
         </div>
-        <div className="table">
-          <div className="statuses">
-            <div
-              onClick={() => setActivate()}
-              className={`${activated ? "active" : "status"}`}
-            >
-              <span>Active Business Reps</span>
-              <span
-                className={`${activated ? "active-number" : "status-number"}`}
+        {businessrep?.data?.data ? (
+          <div className="table">
+            <div className="statuses">
+              <div
+                onClick={() => setActivate()}
+                className={`${activated ? "active" : "status"}`}
               >
-                {
-                  corporatedashboard?.data?.TotalBusinessReps
-                    ?.activeBusinessReps
-                }
-                {/* {businessrep?.data?.meta?.totalCount} */}
-              </span>
+                <span>Active Business Reps</span>
+                <span
+                  className={`${activated ? "active-number" : "status-number"}`}
+                >
+                  {
+                    corporatedashboard?.data?.TotalBusinessReps
+                      ?.activeBusinessReps
+                  }
+                  {/* {businessrep?.data?.meta?.totalCount} */}
+                </span>
+              </div>
+              <div
+                onClick={() => setPending()}
+                className={`${pend ? "active" : "status"}`}
+              >
+                <span>Inactive Business Reps</span>
+                <span className={`${pend ? "active-number" : "status-number"}`}>
+                  {
+                    corporatedashboard?.data?.TotalBusinessReps
+                      ?.inactiveBusinessReps
+                  }
+                </span>
+              </div>
             </div>
-            <div
-              onClick={() => setPending()}
-              className={`${pend ? "active" : "status"}`}
-            >
-              <span>Inactive Business Reps</span>
-              <span className={`${pend ? "active-number" : "status-number"}`}>
-                {
-                  corporatedashboard?.data?.TotalBusinessReps
-                    ?.inactiveBusinessReps
-                }
-              </span>
-            </div>
-          </div>
-          <div className="date-search">
-            {/* <div className="main">
+            <div className="date-search">
+              {/* <div className="main">
               <DatePicker
                 className="input"
                 selected={startDate}
@@ -195,55 +197,58 @@ const ClientAdminBusinessReps = ({ title }) => {
               />
               <Calendar onClick={() => PickDater()} className="calendar" />
             </div> */}
-            <InputSearch
-              onChange={(e) => setSearcher(e.target.value)}
-              placeholder="Search for Business Rep’s name, Assigned Project, e.t.c"
-            />
+              <InputSearch
+                onChange={(e) => setSearcher(e.target.value)}
+                placeholder="Search for Business Rep’s name, Assigned Project, e.t.c"
+              />
+            </div>
+            {activated ? (
+              <div className="wrapper">
+                <Tables
+                  setStep={setStep}
+                  setId={setId}
+                  active
+                  data={businessrep?.data?.data}
+                />
+                {businessrep?.data?.meta?.totalCount >= 1 && (
+                  <Pagination
+                    set={activater}
+                    currentPage={currentPage}
+                    postsPerPage={postsPerPage}
+                    totalPosts={totalPosts}
+                    paginate={paginate}
+                    previous={previous}
+                    next={next}
+                  />
+                )}
+              </div>
+            ) : pend ? (
+              <div className="wrapper">
+                <Tables
+                  setStep={setStep}
+                  setId={setId}
+                  inactive
+                  data={businessrep?.data?.data}
+                />
+                {businessrep?.data?.meta?.totalCount >= 1 && (
+                  <Pagination
+                    set={activater}
+                    currentPage={currentPage}
+                    postsPerPage={postsPerPage}
+                    totalPosts={totalPosts}
+                    paginate={paginate}
+                    previous={previous}
+                    next={next}
+                  />
+                )}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-          {activated ? (
-            <div className="wrapper">
-              <Tables
-                setStep={setStep}
-                setId={setId}
-                active
-                data={businessrep?.data?.data}
-              />
-              {businessrep?.data?.meta?.totalCount >= 10 && (
-                <Pagination
-                  set={activater}
-                  currentPage={currentPage}
-                  postsPerPage={postsPerPage}
-                  totalPosts={totalPosts}
-                  paginate={paginate}
-                  previous={previous}
-                  next={next}
-                />
-              )}
-            </div>
-          ) : pend ? (
-            <div className="wrapper">
-              <Tables
-                setStep={setStep}
-                setId={setId}
-                inactive
-                data={businessrep?.data?.data}
-              />
-              {businessrep?.data?.meta?.totalCount >= 10 && (
-                <Pagination
-                  set={activater}
-                  currentPage={currentPage}
-                  postsPerPage={postsPerPage}
-                  totalPosts={totalPosts}
-                  paginate={paginate}
-                  previous={previous}
-                  next={next}
-                />
-              )}
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
+        ) : (
+          <Loader />
+        )}
       </div>
     </Flex>
   );
