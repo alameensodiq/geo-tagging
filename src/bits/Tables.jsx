@@ -55,7 +55,8 @@ const Tables = ({
   currentsubscriber,
   customplan,
   setId,
-  setDetail
+  setDetail,
+  setProjectbusId
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -994,8 +995,9 @@ const Tables = ({
                           <div
                             className="row"
                             onClick={() => {
-                              setStep(4);
+                              setStep(73);
                               setopenprodetails(!openprodetails);
+                              setProjectbusId(item?.businessRepId);
                             }}
                           >
                             <Deactivate />

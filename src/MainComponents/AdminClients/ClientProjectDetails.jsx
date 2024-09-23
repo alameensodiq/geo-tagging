@@ -22,6 +22,7 @@ const ClientProjectDetails = ({ title }) => {
   const [locker, SetLocker] = useState(false);
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
+  const [projectbusId, setProjectbusId] = useState(null);
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
@@ -101,6 +102,7 @@ const ClientProjectDetails = ({ title }) => {
         setStep={setStep}
         step={step}
         setReload={setReload}
+        projectbusId={projectbusId}
       />
       <div className="maincontainer">
         <div className="firstdiv">
@@ -168,10 +170,11 @@ const ClientProjectDetails = ({ title }) => {
           <div className="wrapper">
             <Tables
               detailsproject
+              setProjectbusId={setProjectbusId}
               data={projectdetails?.data}
               setStep={setStep}
             />
-            {projectdetails?.data?.length >= 1 && (
+            {/* {projectdetails?.data?.length >= 1 && (
               <Pagination
                 set={activater}
                 currentPage={currentPage}
@@ -181,7 +184,7 @@ const ClientProjectDetails = ({ title }) => {
                 previous={previous}
                 next={next}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>

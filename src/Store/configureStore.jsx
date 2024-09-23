@@ -50,6 +50,7 @@ import { CorporatePunctualSlice } from "./Reducers/CorporatePunctual";
 import { CorporateComplianceSlice } from "./Reducers/CorporateCompliance";
 import { YearlyCompSlice } from "./Reducers/Yearly";
 import { CompletePaymentSlice } from "./Reducers/CompletePayment";
+import { ProjectRemoveSlice } from "./Reducers/ProjectRemove";
 
 export default configureStore({
   reducer: {
@@ -104,6 +105,7 @@ export default configureStore({
     corporatepunctual: CorporatePunctualSlice?.reducer,
     corporatecompliance: CorporateComplianceSlice?.reducer,
     yearly: YearlyCompSlice?.reducer,
-    completepayment: CompletePaymentSlice?.reducer
+    completepayment: CompletePaymentSlice?.reducer,
+    removerepproject: ProjectRemoveSlice?.reducer
   }
 });

@@ -41,6 +41,7 @@ import { EditAdminDetails } from "../Store/Apis/EditAdminDetails";
 import { EditSubing } from "../Store/Apis/EditSub";
 import { EditFreeTrial } from "../Store/Apis/EditFreeTrial";
 import CameraComponent from "../MainComponents/Camera";
+import { ProjectRemove } from "../Store/Apis/ProjectRemove";
 
 const AppUserModal = ({
   setStep,
@@ -55,7 +56,8 @@ const AppUserModal = ({
   assigned,
   SendAssignRepBolu,
   payment,
-  supersubs
+  supersubs,
+  projectbusId
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
@@ -82,6 +84,7 @@ const AppUserModal = ({
   const [bustate17, setBusstate17] = useState(false);
   const [bustate18, setBusstate18] = useState(false);
   const [bustate19, setBusstate19] = useState(false);
+  const [bustate20, setBusstate20] = useState(false);
   const [view1, setView1] = useState(false);
   const [view2, setView2] = useState(false);
   const [view3, setView3] = useState(false);
@@ -143,11 +146,9 @@ const AppUserModal = ({
     const isAnyFieldEmpty =
       !team.name ||
       !team.lastname ||
-      !team.address ||
       !team.phone ||
       !team.email ||
-      team.permissions.length === 0 ||
-      !team.avatar;
+      team.permissions.length === 0;
 
     if (isAnyFieldEmpty) {
       toast.error("Some fields are empty");
@@ -232,6 +233,10 @@ const AppUserModal = ({
 
   const { editfreetrial, authenticatingeditfreetrial } = useSelector(
     (state) => state.editfreetrial
+  );
+
+  const { removerepproject, authenticatingremoverepproject } = useSelector(
+    (state) => state.removerepproject
   );
 
   //   if (createbus?.status && !authenticatingcreatebus && step !== 0 && bustate) {
@@ -346,6 +351,13 @@ const AppUserModal = ({
       const hasWebcam = devices.some((device) => device.kind === "videoinput");
       setWebcamActive(hasWebcam);
     });
+    if (
+      bustate20 &&
+      removerepproject?.status &&
+      !authenticatingremoverepproject
+    ) {
+      setStep(74);
+    }
 
     console.log(update);
   }, [
@@ -391,7 +403,10 @@ const AppUserModal = ({
     editfreetrial?.status,
     authenticatingeditfreetrial,
     bustate18,
-    bustate19
+    bustate19,
+    bustate20,
+    removerepproject?.status,
+    authenticatingremoverepproject
   ]);
 
   const Viewing = () => {
@@ -1525,6 +1540,7 @@ const AppUserModal = ({
     setBusstate17(false);
     setBusstate18(false);
     setBusstate19(false);
+    setBusstate20(false);
     setReload(true);
     setView1(false);
     setView2(false);
@@ -1869,6 +1885,7 @@ const AppUserModal = ({
             <LargeSignInButton
               title="Yes"
               onClick={() => {
+                console.log(values);
                 dispatch(ProjectStatus({ id, value: values }));
                 setBusstate10(true);
               }}
@@ -7811,6 +7828,137 @@ const AppUserModal = ({
             }}
           >
             <span>You have successfully make Payment</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => handleCloseModal4()}
+              big
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={73}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            <Success />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                fontWeight: "bold"
+              }}
+            >
+              Deactivate Project
+            </div>
+            <span>Are you sure you want to deactivate this Rep?</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton title="No" large onClick={() => setStep(0)} />
+            <LargeSignInButton
+              title="Yes"
+              onClick={() => {
+                console.log(projectbusId);
+                dispatch(ProjectRemove({ id, value: projectbusId }));
+                setBusstate20(true);
+              }}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={74}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              fontWeight: "bold"
+            }}
+          >
+            Deactivated Successfully
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully deactivated this rep</span>
           </div>
           <div
             style={{
