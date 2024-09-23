@@ -1187,7 +1187,7 @@ const ClientLocationDetails = ({ title }) => {
                             placeholder="Enter Address"
                           />
                         </div>
-                        <div className="addaddress">
+                        <div className="addaddressinner">
                           <ModalButton
                             onClick={() => verify(updateIndex, index)}
                             background
@@ -2199,7 +2199,7 @@ const Flex = styled.div`
           .filling {
             display: flex;
             flex-direction: row;
-            gap: 10px;
+            gap: 2px;
             .projectname {
               display: flex;
               flex-direction: column;
@@ -2287,7 +2287,15 @@ const Flex = styled.div`
               justify-content: flex-end;
               align-items: flex-start;
               height: 70px;
-              width: 35%;
+              width: 10%;
+            }
+            .addaddressinner {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              align-items: flex-end;
+              height: 70px;
+              width: 25%;
             }
             .wrap {
               display: flex;
