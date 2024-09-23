@@ -32,6 +32,7 @@ import {
 import { useLocation, useParams } from "react-router-dom";
 import { CompletePayment } from "../../Store/Apis/CompletePayment";
 import { businessprojects } from "../../Routes";
+import { EditProject } from "../../Store/Apis/EditProject";
 
 const ClientLocationDetails = ({ title }) => {
   setDefaults({
@@ -65,12 +66,36 @@ const ClientLocationDetails = ({ title }) => {
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const formatDate = (date) => {
+  const formatDate = (input) => {
+    let date;
+    if (typeof input === "string") {
+      date = new Date(input);
+    } else if (input instanceof Date) {
+      date = input;
+    } else {
+      throw new Error("Invalid date input");
+    }
+
+    // Ensure date is valid
+    if (isNaN(date)) {
+      throw new Error("Invalid date");
+    }
+
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
     const day = String(date.getDate()).padStart(2, "0");
+
     return `${year}-${month}-${day}`;
   };
+
+  // Example usage
+  try {
+    const formattedDate = formatDate("20 September, 2024");
+    console.log(formattedDate); // Output: "2024-09-20"
+  } catch (error) {
+    console.error(error.message);
+  }
+
   const { location } = useParams(); // Get the location from params
   const search = useLocation().search; // Get the search string
   const params = new URLSearchParams(search);
@@ -237,7 +262,26 @@ const ClientLocationDetails = ({ title }) => {
     dispatch(CorporateBusinessRep({ searcher, statuses: false }));
   }, []);
 
+  const editprojectId = sessionStorage.getItem("editprojectId");
+  console.log(editprojectId);
+
   useEffect(() => {
+    if (editprojectId) {
+      dispatch(EditProject({ editprojectId }));
+      SetActivate(false);
+      SetPend(true);
+      SetActivating1(false);
+      SetLocker(false);
+      setStatus("PENDING");
+      setSearcher("");
+      setStartDate(new Date("2022-01-01"));
+      setEndDate(new Date(Date.now() + 3600 * 1000 * 24));
+      setCurrentPage(0);
+      setActivater(1);
+      setTimeout(() => {
+        setFirst("pending");
+      }, [500]);
+    }
     if (tx_ref) {
       dispatch(CompletePayment({ ref: tx_ref }));
     }
@@ -247,30 +291,17 @@ const ClientLocationDetails = ({ title }) => {
     (state) => state.completepayment
   );
 
-  console.log(complete);
+  const { editproject, authenticatingeditproject } = useSelector(
+    (state) => state.editproject
+  );
+
+  console.log(editproject);
 
   useEffect(() => {
     if (complete?.status && !authenticatingcomplete) {
       setStep(72);
     }
-  }, [complete?.status, authenticatingcomplete]);
-
-  useEffect(() => {
-    // dispatch(CorporateBusinessRep())
-    if (reload) {
-      // dispatch(CorporateBusinessRep())
-      setReload(false);
-      SetActivating1(false);
-      SetPend(false);
-      SetActivate(true);
-      setbustate11(false);
-      setbustate12(false);
-      setRep([
-        {
-          user_id: "",
-          location_id: ""
-        }
-      ]);
+    if (editproject && editproject?.status) {
       setAssign(() => {
         const today = new Date();
         const startDate = formatDate(today);
@@ -281,16 +312,16 @@ const ClientLocationDetails = ({ title }) => {
         }
 
         return {
-          name: "",
-          description: "",
-          startDate: startDate,
-          stopDate: formatDate(stopDate),
-          startTime: "",
-          stopTime: "",
-          isHourlyStamp: false,
-          minutesToAdd: "",
+          name: editproject?.data?.name || "",
+          description: editproject?.data?.description || "",
+          startDate: formatDate(editproject?.data?.startDate),
+          stopDate: formatDate(editproject?.data?.stopDate),
+          startTime: editproject?.data?.startTime,
+          stopTime: editproject?.data?.stopTime,
+          isHourlyStamp: editproject?.data?.isActive || false,
+          minutesToAdd: editproject?.data?.gracePeriod || null,
           duration: 60,
-          dailyPay: null,
+          dailyPay: editproject?.data?.dailyPay?.["AMOUNT"] || null,
           locations: [
             {
               address: "",
@@ -300,7 +331,8 @@ const ClientLocationDetails = ({ title }) => {
               place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
             }
           ],
-          weekdays: {
+          weekdays: editproject?.data?.weekdays || {
+            // Update weekdays
             monday: false,
             tuesday: false,
             wednesday: false,
@@ -311,6 +343,130 @@ const ClientLocationDetails = ({ title }) => {
           }
         };
       });
+    }
+  }, [
+    complete?.status,
+    authenticatingcomplete,
+    editproject,
+    editproject?.status
+  ]);
+
+  useEffect(() => {
+    // dispatch(CorporateBusinessRep())
+    if (reload) {
+      // dispatch(CorporateBusinessRep())
+      if (editprojectId) {
+        dispatch(EditProject({ editprojectId }));
+        setReload(false);
+        SetActivating1(false);
+        SetPend(true);
+        SetActivate(false);
+        setbustate11(false);
+        setbustate12(false);
+        setRep([
+          {
+            user_id: "",
+            location_id: ""
+          }
+        ]);
+      } else {
+        setReload(false);
+        SetActivating1(false);
+        SetPend(false);
+        SetActivate(true);
+        setbustate11(false);
+        setbustate12(false);
+        setRep([
+          {
+            user_id: "",
+            location_id: ""
+          }
+        ]);
+      }
+      if (editproject && editproject?.status) {
+        setAssign(() => {
+          const today = new Date();
+          const startDate = formatDate(today);
+          const stopDate = new Date(today);
+          stopDate.setMonth(stopDate.getMonth() + 1);
+          if (stopDate.getDate() < today.getDate()) {
+            stopDate.setDate(0);
+          }
+
+          return {
+            name: editproject?.data?.name || "",
+            description: editproject?.data?.description || "",
+            startDate: editproject?.data?.startDate,
+            stopDate: editproject?.data?.stopDate,
+            startTime: editproject?.data?.startTime,
+            stopTime: editproject?.data?.stopTime,
+            isHourlyStamp: editproject?.data?.isActive || false,
+            minutesToAdd: editproject?.data?.gracePeriod || null,
+            duration: 60,
+            dailyPay: editproject?.data?.dailyPay?.["AMOUNT"] || null,
+            locations: [
+              {
+                address: "",
+                longitude: "-122.084",
+                latitude: "37.4219999",
+                type: "Office",
+                place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+              }
+            ],
+            weekdays: editproject?.data?.weekdays || {
+              // Update weekdays
+              monday: false,
+              tuesday: false,
+              wednesday: false,
+              thursday: false,
+              friday: false,
+              saturday: false,
+              sunday: false
+            }
+          };
+        });
+      } else {
+        setAssign(() => {
+          const today = new Date();
+          const startDate = formatDate(today);
+          const stopDate = new Date(today);
+          stopDate.setMonth(stopDate.getMonth() + 1);
+          if (stopDate.getDate() < today.getDate()) {
+            stopDate.setDate(0);
+          }
+
+          return {
+            name: "",
+            description: "",
+            startDate: startDate,
+            stopDate: formatDate(stopDate),
+            startTime: "",
+            stopTime: "",
+            isHourlyStamp: false,
+            minutesToAdd: "",
+            duration: 60,
+            dailyPay: null,
+            locations: [
+              {
+                address: "",
+                longitude: "-122.084",
+                latitude: "37.4219999",
+                type: "Office",
+                place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+              }
+            ],
+            weekdays: {
+              monday: false,
+              tuesday: false,
+              wednesday: false,
+              thursday: false,
+              friday: false,
+              saturday: false,
+              sunday: false
+            }
+          };
+        });
+      }
     }
     if (addproject?.status && !authenticatingaddproject && bustate) {
       SetActivating1(true);
@@ -382,6 +538,9 @@ const ClientLocationDetails = ({ title }) => {
   // );
 
   const setActivate = () => {
+    if (editprojectId) {
+      toast.error("You can't edit Project Details");
+    }
     SetActivate(true);
     SetPend(false);
     SetActivating1(false);

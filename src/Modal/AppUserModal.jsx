@@ -42,6 +42,7 @@ import { EditSubing } from "../Store/Apis/EditSub";
 import { EditFreeTrial } from "../Store/Apis/EditFreeTrial";
 import CameraComponent from "../MainComponents/Camera";
 import { ProjectRemove } from "../Store/Apis/ProjectRemove";
+import { useNavigate } from "react-router-dom";
 
 const AppUserModal = ({
   setStep,
@@ -62,6 +63,7 @@ const AppUserModal = ({
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
+  const navigate = useNavigate();
   const [webcamActive, setWebcamActive] = useState(true);
   const [values, setValues] = useState(false);
   const [update, setUpdate] = useState("");
@@ -2016,8 +2018,10 @@ const AppUserModal = ({
             <LargeSignInButton
               title="Yes"
               onClick={() => {
-                dispatch(ProjectStatus({ id, value: !values }));
-                setBusstate9(true);
+                sessionStorage.setItem("editprojectId", JSON.stringify(id));
+                navigate(`/clients/projects/location/:location`);
+                // dispatch(ProjectStatus({ id, value: !values }));
+                // setBusstate9(true);
               }}
               large
               background
