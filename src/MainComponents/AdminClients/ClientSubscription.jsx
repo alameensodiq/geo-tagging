@@ -226,7 +226,7 @@ const ClientSubscription = ({ title }) => {
               onClick={() => setPending()}
               className={`${pend ? "active" : "status"}`}
             >
-              <span>Plans Overview</span>
+              <span>Subscription Plans Overview</span>
             </div>
           </div>
           <div className="date-search">
@@ -306,8 +306,20 @@ const ClientSubscription = ({ title }) => {
           ) : pend ? (
             <FeaturesGrid dashboardy row={4}>
               <Plans
+                basic
+                data={supersub?.data?.find(
+                  (item) => item?.name === "FREE_TRIAL"
+                )}
+              />
+              <Plans
                 standard
                 data={supersub?.data?.find((item) => item?.name === "STANDARD")}
+              />
+              <Plans
+                plus
+                data={supersub?.data?.find(
+                  (item) => item?.name === "STANDARD_PLUS"
+                )}
               />
               {/* <Plans
                 basic
@@ -318,21 +330,9 @@ const ClientSubscription = ({ title }) => {
                 data={supersub?.data?.find((item) => item?.name === "Premium")}
               /> */}
               <Plans
-                basic
-                data={supersub?.data?.find(
-                  (item) => item?.name === "FREE_TRIAL"
-                )}
-              />
-              <Plans
                 enterprise
                 data={supersub?.data?.find(
                   (item) => item?.name === "ENTERPRISE"
-                )}
-              />
-              <Plans
-                plus
-                data={supersub?.data?.find(
-                  (item) => item?.name === "STANDARD_PLUS"
                 )}
               />
               <Plans
@@ -427,7 +427,7 @@ const Flex = styled.div`
           text-align: left;
           color: #8d9196;
           cursor: pointer;
-          width: 180px;
+          width: 240px;
           justify-content: center;
           align-items: center;
           /* padding-left: 20px; */
@@ -444,7 +444,7 @@ const Flex = styled.div`
           color: #1a87d7;
           border-bottom: 1.02px solid #1a87d7;
           cursor: pointer;
-          width: 180px;
+          width: 240px;
           justify-content: center;
           align-items: center;
           /* padding-left: 20px; */

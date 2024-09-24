@@ -81,6 +81,9 @@ const CorporateLogin = () => {
 
   return (
     <Flex>
+      <div className="firstdiv">
+        <img src={Banner} alt="auth" className="container" />
+      </div>
       <div className="seconddiv">
         <div className="first">
           <CorporateLogo style={{ cursor: "pointer" }} />
@@ -145,9 +148,6 @@ const CorporateLogin = () => {
             </span>
           </span> */}
         </div>
-      </div>
-      <div className="firstdiv">
-        <img src={Banner} alt="auth" className="container" />
       </div>
     </Flex>
   );

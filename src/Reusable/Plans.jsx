@@ -139,7 +139,7 @@ const Plans = ({ standard, enterprise, plus, data, basic }) => {
       <div className="details">
         <Mark />
         <div className="categorydiv">
-          <span className="category">Location</span>
+          <span className="category">Location: {data?.maxLocationCount}</span>
           <div className="statement">
             <span>You are eligible to assigning any number of </span>
             <span>locations to any project that is ongoing.</span>

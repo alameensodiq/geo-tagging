@@ -58,6 +58,9 @@ const Login = () => {
 
   return (
     <Flex>
+      <div className="firstdiv">
+        <img src={Banner} alt="auth" className="container" />
+      </div>
       <div className="seconddiv">
         <div className="first">
           <Logo style={{ cursor: "pointer" }} />
@@ -109,9 +112,6 @@ const Login = () => {
             </span>
           </span> */}
         </div>
-      </div>
-      <div className="firstdiv">
-        <img src={Banner} alt="auth" className="container" />
       </div>
     </Flex>
   );

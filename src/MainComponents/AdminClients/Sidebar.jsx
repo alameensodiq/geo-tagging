@@ -131,7 +131,7 @@ function Sidebar({ name, role, open, setOpen }) {
         >
           <div className="paint"></div>
           <Project className="nav-svg1" />
-          <p className="man">Projects</p>
+          <p className="man">Cluster Management</p>
         </Link>
         <Link
           to={businesssub}

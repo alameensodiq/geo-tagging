@@ -122,10 +122,10 @@ const ClientAdminProject = ({ title }) => {
         <div className="top">
           <div className="start">
             <div className="numbers">
-              <span className="name">Projects</span>
+              <span className="name">Clusters</span>
             </div>
             <span className="about">
-              This overview provides a comprehensive show of all projects
+              This overview provides a comprehensive show of all clusters
             </span>
           </div>
           <div>
@@ -145,7 +145,7 @@ const ClientAdminProject = ({ title }) => {
               onClick={() => setActivate()}
               className={`${activated ? "active" : "status"}`}
             >
-              <span>Active Projects</span>
+              <span>Active Clusters</span>
               <span
                 className={`${activated ? "active-number" : "status-number"}`}
               >
@@ -156,7 +156,7 @@ const ClientAdminProject = ({ title }) => {
               onClick={() => setPending()}
               className={`${pend ? "active" : "status"}`}
             >
-              <span>Inactive Projects</span>
+              <span>Inactive Clusters</span>
               <span className={`${pend ? "active-number" : "status-number"}`}>
                 {corporatedashboard?.data?.ProjectsCount?.inactiveProjects}
               </span>

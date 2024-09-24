@@ -330,7 +330,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
               </div>
             )}
             {authenticatingcorporatepunctual ? (
-                <Skeleton width="100%" height="500px" />
+              <Skeleton width="100%" height="500px" />
             ) : (
               <div className="table">
                 <div className="punctuality">
@@ -450,7 +450,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
               </div>
             </div>
             {authenticatingyearly ? (
-                <Skeleton width="100%" height="350px" />
+              <Skeleton width="100%" height="350px" />
             ) : (
               <DoubleBarChart
                 data={
@@ -463,7 +463,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
           </div>
           <div className="table">
             <div className="projects">
-              <span>Projects</span>
+              <span>Clusters</span>
             </div>
             <Tables
               data={corporatedashboard?.data?.DisplayProjectsDetails}

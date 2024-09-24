@@ -7487,7 +7487,7 @@ const AppUserModal = ({
                   fontWeight: "500"
                 }}
               >
-                {assigned?.hourlyStamp ? "True" : "False"}
+                {assigned?.hourlyStamp ? "Yes" : "No"}
               </span>
             </div>
           </div>

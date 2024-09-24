@@ -575,7 +575,7 @@ const Tables = ({
               <TableHead>
                 <TableRow style={{ paddingRight: "0px" }}>
                   <StyledTableCell style={{ width: "15%" }}>
-                    PROJECT NAME
+                    CLUSTER NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
                     N0 OF BUSINESS REPS
@@ -745,7 +745,7 @@ const Tables = ({
               <TableHead>
                 <TableRow style={{ paddingRight: "0px" }}>
                   <StyledTableCell style={{ width: "15%" }}>
-                    PROJECT NAME
+                    CLUSTER NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
                     No OF BUSINESS REPS
@@ -1212,10 +1212,10 @@ const Tables = ({
                     S/N
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
-                    PROJECT NAME
+                    CLUSTER NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
-                    NAME OF BUSINESS REPS
+                    NUMBER OF BUSINESS REPS
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "15%" }}>
                     SUBSCRIPTION TYPE
@@ -1283,7 +1283,7 @@ const Tables = ({
               <TableHead>
                 <TableRow style={{ paddingRight: "0px" }}>
                   <StyledTableCell style={{ width: "10%" }}>
-                    PROJECT NAME
+                    CLUSTER NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     DATE CREATED

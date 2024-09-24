@@ -42,7 +42,7 @@ const OverviewTotalCards = ({
         <div className="up">
           <div className="details">
             <span className="number">{data?.ProjectsCount?.totalProjects}</span>
-            <span className="clients">Total Projects</span>
+            <span className="clients">Total Clusters</span>
           </div>
           <Case />
         </div>
