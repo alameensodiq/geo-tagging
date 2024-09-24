@@ -280,7 +280,7 @@ const SuperAdminSubscription = ({ title }) => {
             >
               <span>{supersub?.data[3]?.name}</span>
             </div>
-            {/* <div
+            <div
               onClick={() => {
                 setPendingRole3();
                 setName(supersub?.data[4]?.name);
@@ -288,7 +288,7 @@ const SuperAdminSubscription = ({ title }) => {
               className={`${activating3 ? "active" : "status"}`}
             >
               <span>{supersub?.data[4]?.name}</span>
-            </div> */}
+            </div>
             <div
               onClick={() => {
                 setPendingRole4();

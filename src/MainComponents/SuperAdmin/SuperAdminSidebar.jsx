@@ -37,6 +37,7 @@ import {
 import { businessreps } from "../../Routes";
 import { useDispatch, useSelector } from "react-redux";
 import { SuperCorporate } from "../../Store/Apis/SuperCorporate";
+import { Dashboard } from "../../Store/Apis/Dashboard";
 
 function SuperAdminSidebar({ name, role, open, setOpen }) {
   const router = useLocation();
@@ -44,13 +45,18 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [searcher, setSearcher] = useState("");
   useEffect(() => {
-    dispatch(SuperCorporate({ searcher, currentPage }));
+    // dispatch(SuperCorporate({ searcher, currentPage }));
+    dispatch(Dashboard());
   }, []);
 
-  const { supercorporate, authenticatingsupercorporate } = useSelector(
-    (state) => state.supercorporate
+  // const { supercorporate, authenticatingsupercorporate } = useSelector(
+  //   (state) => state.supercorporate
+  // );
+  // console.log(supercorporate?.data?.data);
+
+  const { dashboard, authenticatingdashboard } = useSelector(
+    (state) => state.dashboard
   );
-  console.log(supercorporate?.data?.data);
 
   // background: ${({open})  => ( open ? '#333481' : 'transparent')};
   return (
@@ -125,7 +131,8 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
               alignItems: "center"
             }}
           >
-            {supercorporate?.data?.meta?.totalCount}
+            {/* {supercorporate?.data?.meta?.totalCount} */}
+            {dashboard?.data?.CorporateStatistics?.totalCorporates}
           </span>
         </Link>
         <Link
