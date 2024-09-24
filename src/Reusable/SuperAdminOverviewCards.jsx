@@ -66,7 +66,7 @@ const SuperAdminOverviewCards = ({
             <span className="number">
               {data?.ProjectStatistics?.totalProjects}
             </span>
-            <span className="clients">Total Projects</span>
+            <span className="clients">Total Clusters</span>
           </div>
           <Case />
         </div>
