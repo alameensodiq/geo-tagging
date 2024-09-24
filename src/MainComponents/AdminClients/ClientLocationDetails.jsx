@@ -51,6 +51,7 @@ const ClientLocationDetails = ({ title }) => {
   const [activating1, SetActivating1] = useState(false);
   const [searcher, setSearcher] = useState("");
   const [locker, SetLocker] = useState(false);
+  const [pay, setPay] = useState(false);
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
@@ -104,6 +105,13 @@ const ClientLocationDetails = ({ title }) => {
   const transaction_id = params.get("transaction_id");
 
   const [rep, setRep] = useState([
+    {
+      user_id: "",
+      location_id: ""
+    }
+  ]);
+
+  const [repreal, setRepreal] = useState([
     {
       user_id: "",
       location_id: ""
@@ -284,6 +292,7 @@ const ClientLocationDetails = ({ title }) => {
     }
     if (tx_ref) {
       dispatch(CompletePayment({ ref: tx_ref }));
+      setPay(true);
     }
   }, [tx_ref]);
 
@@ -298,11 +307,53 @@ const ClientLocationDetails = ({ title }) => {
   console.log(editproject);
 
   useEffect(() => {
-    if (complete?.status && !authenticatingcomplete) {
+    if (complete?.status && !authenticatingcomplete && pay) {
       setStep(72);
+      setPay(false);
     }
     if (editproject && editproject?.status) {
       setAssign(() => {
+        const today = new Date();
+        const startDate = formatDate(today);
+        const stopDate = new Date(today);
+        stopDate.setMonth(stopDate.getMonth() + 1);
+        if (stopDate.getDate() < today.getDate()) {
+          stopDate.setDate(0);
+        }
+
+        return {
+          name: editproject?.data?.name || "",
+          description: editproject?.data?.description || "",
+          startDate: formatDate(editproject?.data?.startDate),
+          stopDate: formatDate(editproject?.data?.stopDate),
+          startTime: editproject?.data?.startTime,
+          stopTime: editproject?.data?.stopTime,
+          isHourlyStamp: editproject?.data?.isActive || false,
+          minutesToAdd: editproject?.data?.gracePeriod || null,
+          duration: 60,
+          dailyPay: editproject?.data?.dailyPay?.["AMOUNT"] || null,
+          locations: [
+            {
+              address: "",
+              longitude: "-122.084",
+              latitude: "37.4219999",
+              type: "Office",
+              place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+            }
+          ],
+          weekdays: editproject?.data?.weekdays || {
+            // Update weekdays
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false,
+            sunday: false
+          }
+        };
+      });
+      setAssigncopy(() => {
         const today = new Date();
         const startDate = formatDate(today);
         const stopDate = new Date(today);
@@ -347,6 +398,7 @@ const ClientLocationDetails = ({ title }) => {
   }, [
     complete?.status,
     authenticatingcomplete,
+    pay,
     editproject,
     editproject?.status
   ]);
@@ -425,8 +477,89 @@ const ClientLocationDetails = ({ title }) => {
             }
           };
         });
+        setAssigncopy(() => {
+          const today = new Date();
+          const startDate = formatDate(today);
+          const stopDate = new Date(today);
+          stopDate.setMonth(stopDate.getMonth() + 1);
+          if (stopDate.getDate() < today.getDate()) {
+            stopDate.setDate(0);
+          }
+
+          return {
+            name: editproject?.data?.name || "",
+            description: editproject?.data?.description || "",
+            startDate: editproject?.data?.startDate,
+            stopDate: editproject?.data?.stopDate,
+            startTime: editproject?.data?.startTime,
+            stopTime: editproject?.data?.stopTime,
+            isHourlyStamp: editproject?.data?.isActive || false,
+            minutesToAdd: editproject?.data?.gracePeriod || null,
+            duration: 60,
+            dailyPay: editproject?.data?.dailyPay?.["AMOUNT"] || null,
+            locations: [
+              {
+                address: "",
+                longitude: "-122.084",
+                latitude: "37.4219999",
+                type: "Office",
+                place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+              }
+            ],
+            weekdays: editproject?.data?.weekdays || {
+              // Update weekdays
+              monday: false,
+              tuesday: false,
+              wednesday: false,
+              thursday: false,
+              friday: false,
+              saturday: false,
+              sunday: false
+            }
+          };
+        });
       } else {
         setAssign(() => {
+          const today = new Date();
+          const startDate = formatDate(today);
+          const stopDate = new Date(today);
+          stopDate.setMonth(stopDate.getMonth() + 1);
+          if (stopDate.getDate() < today.getDate()) {
+            stopDate.setDate(0);
+          }
+
+          return {
+            name: "",
+            description: "",
+            startDate: startDate,
+            stopDate: formatDate(stopDate),
+            startTime: "",
+            stopTime: "",
+            isHourlyStamp: false,
+            minutesToAdd: "",
+            duration: 60,
+            dailyPay: null,
+            locations: [
+              {
+                address: "",
+                longitude: "-122.084",
+                latitude: "37.4219999",
+                type: "Office",
+                place_id: "ChIJdd4hrwug2EcRmSrV3Vo6llI"
+              }
+            ],
+            weekdays: {
+              monday: false,
+              tuesday: false,
+              wednesday: false,
+              thursday: false,
+              friday: false,
+              saturday: false,
+              sunday: false
+            }
+          };
+        });
+        setAssigncopy(() => {
           const today = new Date();
           const startDate = formatDate(today);
           const stopDate = new Date(today);
@@ -582,7 +715,7 @@ const ClientLocationDetails = ({ title }) => {
       locations,
       minutesToAdd,
       isHourlyStamp
-    } = assign;
+    } = assigncopy;
     const areAllVariablesPresent =
       name &&
       description &&
@@ -599,21 +732,21 @@ const ClientLocationDetails = ({ title }) => {
         AddProject({
           name,
           description,
-          minutesToAdd: JSON.parse(assign.minutesToAdd),
-          startDate: assign.startDate,
-          stopDate: assign.stopDate,
+          minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
+          startDate: assigncopy.startDate,
+          stopDate: assigncopy.stopDate,
           startTime,
           stopTime,
           isHourlyStamp,
-          duration: assign.duration,
-          dailyPay: JSON.parse(assign.dailyPay),
+          duration: assigncopy.duration,
+          dailyPay: JSON.parse(assigncopy.dailyPay),
           locations,
-          weekdays: assign.weekdays
+          weekdays: assigncopy.weekdays
         })
       );
       setbustate(true);
     } else {
-      console.log(assign);
+      console.log(assigncopy);
       toast.error("Some required variables are missing.");
     }
   };
@@ -635,6 +768,10 @@ const ClientLocationDetails = ({ title }) => {
       ...prev,
       [name]: value
     }));
+    setAssigncopy((prev) => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const AddittionRep = () => {
@@ -649,57 +786,91 @@ const ClientLocationDetails = ({ title }) => {
     };
 
     setRep((prev) => [...prev, newRep]);
+    setRepreal((prev) => [...prev, newRep]);
     setchoosingaddress((prev) => [...prev, newAddress]);
   };
 
-  const AssignChange = (e, index) => {
+  const AssignChange = (e) => {
     const { name, value } = e.target;
+    setRep(rep);
 
-    setRep((prev) =>
-      prev.map((item, i) =>
-        i === index
-          ? {
-              ...item,
-              [name]: value
-            }
-          : item
-      )
-    );
-    setchoosingaddress((prev) =>
-      prev.map((item, i) =>
-        i === index
-          ? {
-              ...item,
-              [name]: value
-            }
-          : item
-      )
-    );
+    const updateState = (prev) => {
+      const lastIndex = prev.length - 1;
+      const lastItem = prev[lastIndex];
+
+      if (lastItem) {
+        const { user_id, location_id } = lastItem;
+
+        if (!user_id || !location_id) {
+          return prev.map((item, i) =>
+            i === lastIndex ? { ...item, [name]: value } : item
+          );
+        }
+
+        if (user_id && name === "location_id" && location_id === "") {
+          return prev.map((item, i) =>
+            i === lastIndex ? { ...item, location_id: value } : item
+          );
+        }
+
+        if (location_id && name === "user_id" && user_id === "") {
+          return prev.map((item, i) =>
+            i === lastIndex ? { ...item, user_id: value } : item
+          );
+        }
+        return [...prev, { user_id: "", location_id: "", [name]: value }];
+      }
+
+      return prev;
+    };
+
+    setRepreal((prev) => updateState(prev));
+    setchoosingaddress((prev) => updateState(prev));
   };
 
-  const AssignChanger = (e, index) => {
+  const AssignChanger = (e) => {
     const { name, value } = e.target;
 
-    setRep((prev) =>
-      prev.map((item, i) =>
-        i === index
-          ? {
-              ...item,
-              [name]: value
-            }
-          : item
-      )
-    );
-    setchoosingaddress((prev) =>
-      prev.map((item, i) =>
-        i === index
-          ? {
-              ...item,
-              [name]: value
-            }
-          : item
-      )
-    );
+    // Update the 'rep' state (if necessary)
+    setRep(rep);
+
+    const updateState = (prev) => {
+      const lastIndex = prev.length - 1;
+      const lastItem = prev[lastIndex];
+
+      // Check if the last item is defined
+      if (lastItem) {
+        const { user_id, location_id } = lastItem;
+
+        // Case 1: If either user_id or location_id is missing
+        if (!user_id || !location_id) {
+          return prev.map((item, i) =>
+            i === lastIndex ? { ...item, [name]: value } : item
+          );
+        }
+
+        // Case 2: If both are present, but one is an empty string
+        if (user_id && name === "location_id" && location_id === "") {
+          return prev.map((item, i) =>
+            i === lastIndex ? { ...item, location_id: value } : item
+          );
+        }
+
+        if (location_id && name === "user_id" && user_id === "") {
+          return prev.map((item, i) =>
+            i === lastIndex ? { ...item, user_id: value } : item
+          );
+        }
+
+        // Case 3: If both are present and neither is empty, create a new entry
+        return [...prev, { user_id: "", location_id: "", [name]: value }];
+      }
+
+      return prev; // Return unchanged if lastItem is not defined
+    };
+
+    setRepreal((prev) => updateState(prev));
+    setchoosingaddress((prev) => updateState(prev));
   };
 
   const addLocation = () => {
@@ -725,8 +896,10 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const Remover = (userId) => {
-    if (rep?.length > 1) {
-      setRep((prev) => ({
+    console.log(userId);
+    console.log(repreal);
+    if (repreal?.length > 1) {
+      setRepreal((prev) => ({
         ...prev,
         rep: prev.rep.filter((item) => item.user_id !== userId)
       }));
@@ -736,14 +909,14 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const Removing = (index) => {
-    if (assign?.locations?.length > 1) {
-      setAssign((prev) => ({
-        ...prev,
-        locations: prev.locations.filter((_, i) => i !== index)
-      }));
-    } else {
-      toast.error("The address can't be less than One");
-    }
+    // if (assigncopy?.locations?.length > 1) {
+    setAssigncopy((prev) => ({
+      ...prev,
+      locations: prev.locations.filter((_, i) => i !== index)
+    }));
+    // } else {
+    //   toast.error("The address can't be less than One");
+    // }
   };
 
   // useEffect(() => {
@@ -762,17 +935,17 @@ const ClientLocationDetails = ({ title }) => {
   const result = numericAmount * (numbers || 1);
 
   const SendAssignRep = () => {
-    dispatch(AssignedRep({ rep, projectId: addproject?.data?.id }));
-    console.log(rep);
+    dispatch(AssignedRep({ rep: repreal, projectId: addproject?.data?.id }));
+    console.log(repreal);
     sessionStorage.setItem("projectId", JSON.stringify(addproject?.data?.id));
-    sessionStorage.setItem("repdetails", JSON.stringify(rep));
+    sessionStorage.setItem("repdetails", JSON.stringify(repreal));
     setbustate11(true);
   };
 
   const SendAssignRepBolu = () => {
     dispatch(
       Payment({
-        rep,
+        rep: repreal,
         projectId: addproject?.data?.id,
         amount: result
       })
@@ -780,7 +953,7 @@ const ClientLocationDetails = ({ title }) => {
     setbustate12(true);
   };
 
-  const verify = (e, index) => {
+  const verify = (e) => {
     fromAddress(e)
       .then(({ results }) => {
         if (results.length > 0) {
@@ -791,34 +964,47 @@ const ClientLocationDetails = ({ title }) => {
           console.log("Longitude:", lng);
           console.log("Place ID:", placeId);
 
-          // Update the location with new latitude, longitude, and place_id
-          setAssign((prev) => {
-            const updatedLocations = prev.locations.map((location, i) =>
-              i === index
-                ? {
-                    ...location,
-                    address: e,
-                    latitude: lat.toString(),
-                    longitude: lng.toString(),
-                    place_id: placeId
-                  }
-                : location
-            );
+          setAssigncopy((prev) => {
+            // Check if the first location's address is empty
+            if (prev.locations[0].address === "") {
+              // Create the updated location with new data
+              const updatedLocation = {
+                ...prev.locations[0],
+                address: e,
+                latitude: lat.toString(),
+                longitude: lng.toString(),
+                place_id: placeId,
+                type: "Office"
+              };
 
-            // Update assigncopy based on the new locations
-            const updatedAssignCopy = {
-              ...assigncopy,
-              locations: updatedLocations
-            };
+              // Return new state with updated first location
+              return {
+                ...prev,
+                locations: [updatedLocation, ...prev.locations.slice(1)] // Retain subsequent locations
+              };
+            } else {
+              // If the first address is not empty, push the new location as an addition
+              const newLocation = {
+                address: e,
+                latitude: lat.toString(),
+                longitude: lng.toString(),
+                place_id: placeId,
+                type: "Office"
+              };
 
-            // Update assigncopy state
-            setAssigncopy(updatedAssignCopy);
-
-            return {
-              ...prev,
-              locations: updatedLocations
-            };
+              return {
+                ...prev,
+                locations: [...prev.locations, newLocation] // Add new location
+              };
+            }
           });
+
+          setAssign((prev) => ({
+            ...prev,
+            locations: prev.locations.map((location, i) =>
+              i === 0 ? { ...location, address: "" } : location
+            )
+          }));
 
           toast.success("Correct Address");
           setAddition(true);
@@ -906,22 +1092,30 @@ const ClientLocationDetails = ({ title }) => {
                       <div className="yescontainer">
                         {assign?.isHourlyStamp ? (
                           <Color
-                            onClick={() =>
+                            onClick={() => {
                               setAssign((prevState) => ({
                                 ...prevState,
                                 isHourlyStamp: !prevState.isHourlyStamp
-                              }))
-                            }
+                              }));
+                              setAssigncopy((prevState) => ({
+                                ...prevState,
+                                isHourlyStamp: !prevState.isHourlyStamp
+                              }));
+                            }}
                           />
                         ) : (
                           <span
                             className="circle"
-                            onClick={() =>
+                            onClick={() => {
                               setAssign((prevState) => ({
                                 ...prevState,
                                 isHourlyStamp: !prevState.isHourlyStamp
-                              }))
-                            }
+                              }));
+                              setAssigncopy((prevState) => ({
+                                ...prevState,
+                                isHourlyStamp: !prevState.isHourlyStamp
+                              }));
+                            }}
                           ></span>
                         )}
 
@@ -931,21 +1125,29 @@ const ClientLocationDetails = ({ title }) => {
                         {assign?.isHourlyStamp ? (
                           <span
                             className="circle"
-                            onClick={() =>
+                            onClick={() => {
                               setAssign((prevState) => ({
                                 ...prevState,
                                 isHourlyStamp: !prevState.isHourlyStamp
-                              }))
-                            }
+                              }));
+                              setAssigncopy((prevState) => ({
+                                ...prevState,
+                                isHourlyStamp: !prevState.isHourlyStamp
+                              }));
+                            }}
                           ></span>
                         ) : (
                           <Color
-                            onClick={() =>
+                            onClick={() => {
                               setAssign((prevState) => ({
                                 ...prevState,
                                 isHourlyStamp: !prevState.isHourlyStamp
-                              }))
-                            }
+                              }));
+                              setAssigncopy((prevState) => ({
+                                ...prevState,
+                                isHourlyStamp: !prevState.isHourlyStamp
+                              }));
+                            }}
                           />
                         )}
                         <span className="yes">No</span>
@@ -984,27 +1186,41 @@ const ClientLocationDetails = ({ title }) => {
                     <div className="days">
                       {assign?.weekdays?.sunday ? (
                         <Color
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 sunday: false
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                sunday: false
+                              }
+                            }));
+                          }}
                         />
                       ) : (
                         <UnColor
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 sunday: true
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                sunday: true
+                              }
+                            }));
+                          }}
                         />
                       )}
                       <span className="round">Sunday</span>
@@ -1012,27 +1228,41 @@ const ClientLocationDetails = ({ title }) => {
                     <div className="days">
                       {assign?.weekdays?.monday ? (
                         <Color
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 monday: false
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                monday: false
+                              }
+                            }));
+                          }}
                         />
                       ) : (
                         <UnColor
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 monday: true
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                monday: true
+                              }
+                            }));
+                          }}
                         />
                       )}
                       <span className="round">Monday</span>
@@ -1040,27 +1270,41 @@ const ClientLocationDetails = ({ title }) => {
                     <div className="days">
                       {assign?.weekdays?.tuesday ? (
                         <Color
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 tuesday: false
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                tuesday: false
+                              }
+                            }));
+                          }}
                         />
                       ) : (
                         <UnColor
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 tuesday: true
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                tuesday: true
+                              }
+                            }));
+                          }}
                         />
                       )}
                       <span className="round">Tuesday</span>
@@ -1068,27 +1312,41 @@ const ClientLocationDetails = ({ title }) => {
                     <div className="days">
                       {assign?.weekdays?.wednesday ? (
                         <Color
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 wednesday: false
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                wednesday: false
+                              }
+                            }));
+                          }}
                         />
                       ) : (
                         <UnColor
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 wednesday: true
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                wednesday: true
+                              }
+                            }));
+                          }}
                         />
                       )}
                       <span className="round">Wednesday</span>
@@ -1098,27 +1356,41 @@ const ClientLocationDetails = ({ title }) => {
                     <div className="days">
                       {assign?.weekdays?.thursday ? (
                         <Color
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 thursday: false
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                thursday: false
+                              }
+                            }));
+                          }}
                         />
                       ) : (
                         <UnColor
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 thursday: true
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                thursday: true
+                              }
+                            }));
+                          }}
                         />
                       )}
                       <span className="round">Thursday</span>
@@ -1126,27 +1398,41 @@ const ClientLocationDetails = ({ title }) => {
                     <div className="days">
                       {assign?.weekdays?.friday ? (
                         <Color
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 friday: false
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                friday: false
+                              }
+                            }));
+                          }}
                         />
                       ) : (
                         <UnColor
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 friday: true
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                friday: true
+                              }
+                            }));
+                          }}
                         />
                       )}
                       <span className="round">Friday</span>
@@ -1154,27 +1440,41 @@ const ClientLocationDetails = ({ title }) => {
                     <div className="days">
                       {assign?.weekdays?.saturday ? (
                         <Color
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 saturday: false
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                saturday: false
+                              }
+                            }));
+                          }}
                         />
                       ) : (
                         <UnColor
-                          onClick={() =>
+                          onClick={() => {
                             setAssign((prevState) => ({
                               ...prevState,
                               weekdays: {
                                 ...prevState.weekdays,
                                 saturday: true
                               }
-                            }))
-                          }
+                            }));
+                            setAssigncopy((prevState) => ({
+                              ...prevState,
+                              weekdays: {
+                                ...prevState.weekdays,
+                                saturday: true
+                              }
+                            }));
+                          }}
                         />
                       )}
                       <span className="round">Saturday</span>
@@ -1288,7 +1588,41 @@ const ClientLocationDetails = ({ title }) => {
                 </span>
                 <div className="filling">
                   <div className="wrap">
-                    {assign?.locations?.map((item, index) => (
+                    <div className="filling">
+                      <div className="projectname">
+                        <span className="name">Address</span>
+                        <input
+                          onChange={(e) => {
+                            const newAddress = e.target.value;
+                            setUpdateIndex(e.target.value); // Assuming this is for tracking the index
+
+                            setAssign((prev) => ({
+                              ...prev,
+                              locations: prev.locations.map(
+                                (location, i) =>
+                                  i === 0 // Update the first location's address
+                                    ? { ...location, address: newAddress }
+                                    : location // Keep other locations unchanged
+                              )
+                            }));
+                          }}
+                          value={assign.locations[0]?.address || ""}
+                          className="nametype"
+                          placeholder="Enter Address"
+                        />
+                      </div>
+                      <div className="addaddressinner">
+                        <ModalButton
+                          onClick={() => verify(updateIndex)}
+                          background
+                          color
+                          short
+                          title="Verify Address"
+                          whitey
+                        />
+                      </div>
+                    </div>
+                    {/* {assign?.locations?.map((item, index) => (
                       <div className="filling">
                         <div className="projectname">
                           <span className="name">Address</span>
@@ -1303,44 +1637,7 @@ const ClientLocationDetails = ({ title }) => {
                                     : location
                                 )
                               }));
-                              // fromAddress(e.target.value)
-                              //   .then(({ results }) => {
-                              //     if (results.length > 0) {
-                              //       const { lat, lng } =
-                              //         results[0].geometry.location;
-                              //       const placeId = results[0].place_id;
-
-                              //       console.log("Latitude:", lat);
-                              //       console.log("Longitude:", lng);
-                              //       console.log("Place ID:", placeId);
-
-                              //       // Update the location with new latitude, longitude, and place_id
-                              //       setAssign((prev) => ({
-                              //         ...prev,
-                              //         locations: prev.locations.map(
-                              //           (location, i) =>
-                              //             i === index
-                              //               ? {
-                              //                   ...location,
-                              //                   latitude: lat.toString(),
-                              //                   longitude: lng.toString(),
-                              //                   place_id: placeId
-                              //                 }
-                              //               : location
-                              //         )
-                              //       }));
-                              //     } else {
-                              //       toast.error("No results found");
-                              //     }
-                              //   })
-                              //   .catch((error) => {
-                              //     toast.error(
-                              //       "Error fetching geocode data: or wrong address",
-                              //       error
-                              //     );
-                              //   });
                             }}
-                            // value={updateIndex}
                             value={assign.locations[index]?.address || ""}
                             className="nametype"
                             placeholder="Enter Address"
@@ -1356,16 +1653,10 @@ const ClientLocationDetails = ({ title }) => {
                             whitey
                           />
                         </div>
-                        {/* <div className="projectnamethree">
-                          <span className="name">State</span>
-                          <select className="nametype">
-                            <option>Select State</option>
-                          </select>
-                        </div> */}
                       </div>
-                    ))}
+                    ))} */}
                   </div>
-                  <div className="addaddress">
+                  {/* <div className="addaddress">
                     <ModalButton
                       onClick={() => addLocation()}
                       background
@@ -1373,7 +1664,7 @@ const ClientLocationDetails = ({ title }) => {
                       short
                       title="Add Address"
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div className="addresswrapper">
                   <div className="heading">
@@ -1460,56 +1751,50 @@ const ClientLocationDetails = ({ title }) => {
                 </span>
                 <div className="filling">
                   <div className="wrap">
-                    {rep?.map((item, index) => (
-                      <div className="filling" key={index}>
-                        <div className="projectname">
-                          <span className="name">Business Reps</span>
-                          <select
-                            onChange={(e) => AssignChange(e, index)}
-                            name="user_id"
-                            value={item?.user_id || ""}
-                            className="nametype"
-                          >
-                            <option value="" disabled>
-                              Select a Rep
+                    <div className="filling">
+                      <div className="projectname">
+                        <span className="name">Business Reps</span>
+                        <select
+                          onChange={(e) => AssignChange(e)}
+                          name="user_id"
+                          value={rep[0]?.user_id || ""}
+                          className="nametype"
+                        >
+                          <option value="" disabled>
+                            Select a Rep
+                          </option>
+                          {activate?.map((repItem) => (
+                            <option key={repItem?.id} value={repItem?.id}>
+                              {repItem?.firstName} {repItem?.lastName}
                             </option>
-                            {activate?.map((repItem) => (
-                              <option key={repItem?.id} value={repItem?.id}>
-                                {repItem?.firstName} {repItem?.lastName}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="projectnamethree">
-                          <span className="name">Location</span>
-                          <select
-                            onChange={(e) => {
-                              AssignChanger(e, index);
-                              console.log(e.target.value);
-                            }}
-                            className="nametype"
-                            value={item?.location_id || ""}
-                            name="location_id"
-                          >
-                            <option value="" disabled={!!item?.location_id}>
-                              Select a location
-                            </option>
-                            {addproject?.data?.locations?.map(
-                              (locationItem) => (
-                                <>
-                                  <option
-                                    key={locationItem?.id}
-                                    value={String(locationItem?.id)}
-                                  >
-                                    {locationItem?.address}
-                                  </option>
-                                </>
-                              )
-                            )}
-                          </select>
-                        </div>
+                          ))}
+                        </select>
                       </div>
-                    ))}
+                      <div className="projectnamethree">
+                        <span className="name">Location</span>
+                        <select
+                          onChange={(e) => {
+                            AssignChanger(e);
+                            console.log(e.target.value);
+                          }}
+                          className="nametype"
+                          value={rep[0]?.location_id || ""}
+                          name="location_id"
+                        >
+                          <option value="">Select a location</option>
+                          {addproject?.data?.locations?.map((locationItem) => (
+                            <>
+                              <option
+                                key={locationItem?.id}
+                                value={String(locationItem?.id)}
+                              >
+                                {locationItem?.address}
+                              </option>
+                            </>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="addaddress">
@@ -1533,8 +1818,8 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="title">Action</span>
                   </div>
                   <div className="arrange">
-                    {Array.isArray(rep) &&
-                      rep.map((item) => {
+                    {Array.isArray(repreal) &&
+                      repreal.map((item) => {
                         const businessRep = businessrep?.data?.data?.find(
                           (list) => list.id === item?.user_id
                         );

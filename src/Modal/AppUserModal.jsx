@@ -962,6 +962,16 @@ const AppUserModal = ({
     });
   };
 
+  const Changenumber = (e) => {
+    const { name, value } = e.target;
+    const numericValue = value.replace(/[^0-9]/g, "");
+    console.log(value);
+    setRegbus({
+      ...regbus,
+      [name]: numericValue
+    });
+  };
+
   const ChangeFree = (e) => {
     const { name, value } = e.target;
     console.log(value);
@@ -1627,7 +1637,7 @@ const AppUserModal = ({
             />
             <ModalInputText
               label="Phone Number"
-              onChange={(e) => Change(e)}
+              onChange={(e) => Changenumber(e)}
               name="phone"
               value={regbus?.phone}
               placeholder={`${`Enter Business Rep's Phone Number`}`}
