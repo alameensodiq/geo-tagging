@@ -36,9 +36,16 @@ const Login = () => {
   };
 
   const Authentication = () => {
-    // navigate(`${superadmins}`)
-    setLog(true);
+    // Check if the email contains an "@"
     const { email, password } = user;
+
+    if (!email.includes("@")) {
+      // Display an error message or handle the invalid email case
+      toast.error("Email must contain right email format");
+      return;
+    }
+
+    setLog(true);
     dispatch(CorporateSignUser({ email, password }));
   };
 

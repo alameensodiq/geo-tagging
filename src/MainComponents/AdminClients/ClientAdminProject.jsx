@@ -135,7 +135,7 @@ const ClientAdminProject = ({ title }) => {
               }
               background
               color
-              title="New Project"
+              title="New Cluster"
             />
           </div>
         </div>

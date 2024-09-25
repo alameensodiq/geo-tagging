@@ -35,26 +35,40 @@ const CorporateLogin = () => {
     });
   };
 
+  // const Authentication = () => {
+  //   // const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/.test(user?.password);
+  //   // const validEmailFormat =
+  //   //   /^[\w-]+(\.[\w-]+)*@(yahoo\.com|gmail\.com|[\w-]+\.(com|net))$/.test(
+  //   //     user?.email
+  //   //   );
+  //   // setLog(true);
+  //   // if (!hasSpecialCharacter) {
+  //   //   console.log(user);
+  //   //   toast.error("Password should contain at least one special character");
+  //   // } else if (!user?.password) {
+  //   //   toast.error("Please enter a password");
+  //   // } else if (!validEmailFormat) {
+  //   //   console.log(user);
+  //   //   toast.error("Invalid email format");
+  //   // } else {
+  //   setLog(true);
+  //   const { email, password } = user;
+  //   dispatch(CorporateSignUser({ email, password }));
+  //   // }
+  // };
+
   const Authentication = () => {
-    // const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/.test(user?.password);
-    // const validEmailFormat =
-    //   /^[\w-]+(\.[\w-]+)*@(yahoo\.com|gmail\.com|[\w-]+\.(com|net))$/.test(
-    //     user?.email
-    //   );
-    // setLog(true);
-    // if (!hasSpecialCharacter) {
-    //   console.log(user);
-    //   toast.error("Password should contain at least one special character");
-    // } else if (!user?.password) {
-    //   toast.error("Please enter a password");
-    // } else if (!validEmailFormat) {
-    //   console.log(user);
-    //   toast.error("Invalid email format");
-    // } else {
-    setLog(true);
+    // Check if the email contains an "@"
     const { email, password } = user;
+
+    if (!email.includes("@")) {
+      // Display an error message or handle the invalid email case
+      toast.error("Email must contain right email format");
+      return;
+    }
+
+    setLog(true);
     dispatch(CorporateSignUser({ email, password }));
-    // }
   };
 
   const { corporateuser, authenticating } = useSelector(

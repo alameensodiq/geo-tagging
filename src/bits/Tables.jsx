@@ -2039,7 +2039,7 @@ const Tables = ({
                     CORPORATES NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "18%" }}>
-                    ACTIVE PROJECT
+                    ACTIVE CLUSTER
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "18%" }}>
                     ACTIVE BUSINESS REPS
@@ -2181,7 +2181,7 @@ const Tables = ({
                     CORPORATES NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "18%" }}>
-                    ACTIVE PROJECT
+                    ACTIVE CLUSTER
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "18%" }}>
                     ACTIVE BUSINESS REPS
@@ -2317,7 +2317,7 @@ const Tables = ({
               <TableHead>
                 <TableRow style={{ paddingRight: "0px" }}>
                   <StyledTableCell style={{ width: "18%" }}>
-                    PROJECT NAME
+                    CLUSTER NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "16%" }}>
                     NUMBER OF BUSINESS REPS

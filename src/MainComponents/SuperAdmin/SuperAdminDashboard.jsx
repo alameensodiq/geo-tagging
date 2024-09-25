@@ -779,7 +779,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                     <div className="start">
                       <div className="numbers">
                         <span className="name">
-                          Total hours put in by project
+                          Total hours put in by Clusters
                         </span>
                       </div>
                     </div>

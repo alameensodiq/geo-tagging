@@ -291,7 +291,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
             <div className="table">
               <div className="dater-search">
                 <div className="project">
-                  <span className="title">Project Details</span>
+                  <span className="title">Cluster Details</span>
                 </div>
 
                 {/* <div className="inputsearch"> */}

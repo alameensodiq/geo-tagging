@@ -82,6 +82,7 @@ const SuperAdminCorporate = ({ title }) => {
     SetPend(false);
     SetLocker(false);
     setStatus("ACTIVE");
+    setStatuses(true);
     setSearcher("");
     setStartDate(new Date("2022-01-01"));
     setEndDate(new Date(Date.now() + 3600 * 1000 * 24));
@@ -96,6 +97,7 @@ const SuperAdminCorporate = ({ title }) => {
     SetPend(true);
     SetLocker(false);
     setStatus("PENDING");
+    setStatuses(false);
     setSearcher("");
     setStartDate(new Date("2022-01-01"));
     setEndDate(new Date(Date.now() + 3600 * 1000 * 24));
