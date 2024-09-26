@@ -24,7 +24,7 @@ export const CorporateSignUser = createAsyncThunk(
       );
       let data = await response.json();
       if (!data?.status) {
-        toast.error(data.data.email);
+        toast.error(data.message);
       }
       if (data?.status) {
         toast.success(data.message);
