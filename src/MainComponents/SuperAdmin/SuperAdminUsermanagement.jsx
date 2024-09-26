@@ -138,7 +138,7 @@ const SuperAdminUsermanagement = ({ title }) => {
             <div className="numbers">
               <span className="name">User Management</span>
               <span className="count">
-                {adminuserteam?.data?.data?.length} members
+                {adminuserteam?.data?.meta?.totalCount} members
               </span>
             </div>
             <span className="about">
@@ -148,7 +148,7 @@ const SuperAdminUsermanagement = ({ title }) => {
           <div>
             <ModalButton
               // onClick={() => setStep(28)}
-              onClick={() => setStep(8)}
+              onClick={() => setStep(77)}
               background
               color
               title="New Sub-Admin"

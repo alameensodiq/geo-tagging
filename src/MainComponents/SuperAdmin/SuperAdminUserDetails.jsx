@@ -53,6 +53,13 @@ const SuperAdminUserDetails = ({ title }) => {
   const [view13, setView13] = useState(false);
   const [view14, setView14] = useState(false);
   const [view15, setView15] = useState(false);
+  const [view1super, setView1super] = useState(false);
+  const [view2super, setView2super] = useState(false);
+  const [view3super, setView3super] = useState(false);
+  const [view4super, setView4super] = useState(false);
+  const [view5super, setView5super] = useState(false);
+  const [view8super, setView8super] = useState(false);
+  const [view10super, setView10super] = useState(false);
   const [step, setStep] = useState(0);
   const [log, setLog] = useState(false);
   const [reload, setReload] = useState(false);
@@ -64,6 +71,8 @@ const SuperAdminUserDetails = ({ title }) => {
   const dispatch = useDispatch();
   const datePickerRef = useRef(null);
   const id = window?.location?.pathname.split("/")[3];
+
+  console.log(id);
 
   const { admineditteam, authenticatingadmineditteam } = useSelector(
     (state) => state?.admineditteam
@@ -106,6 +115,13 @@ const SuperAdminUserDetails = ({ title }) => {
       setView13(false);
       setView14(false);
       setView15(false);
+      setView1super(false);
+      setView2super(false);
+      setView3super(false);
+      setView4super(false);
+      setView5super(false);
+      setView8super(false);
+      setView10super(false);
     }
     if (admineditteam?.status && log && !authenticatingadmineditteam) {
       setStep(52);
@@ -164,262 +180,152 @@ const SuperAdminUserDetails = ({ title }) => {
   //   setStep(52);
   // }
 
-  const Viewing = () => {
-    setView1(true);
+  const ViewingSuper = () => {
+    setView1super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "OVERVIEW_VIEW"
+        (permission) => permission !== "DASHBOARD_VIEW"
       )
     }));
   };
 
-  const NotViewing1 = () => {
-    setView1(false);
+  const NotViewing1Super = () => {
+    setView1super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "OVERVIEW_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
     }));
   };
 
-  const NotViewing1not = () => {
-    setView1(true);
+  const NotViewing1notSuper = () => {
+    setView1super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "OVERVIEW_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
     }));
   };
 
-  const NotViewing1notnot = () => {
-    setView1(false);
+  const NotViewing1notnotSuper = () => {
+    setView1super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "OVERVIEW_VIEW"
+        (permission) => permission !== "DASHBOARD_VIEW"
       )
     }));
   };
 
-  const Viewing2 = () => {
-    setView2(true);
+  const Viewing2super = () => {
+    setView2super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_VIEW"
+        (permission) => permission !== "CORPORATE_VIEW"
       )
     }));
   };
 
-  const NotViewing2 = () => {
-    setView2(false);
+  const NotViewing2super = () => {
+    setView2super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_VIEW"]
     }));
   };
 
-  const NotViewing2not = () => {
-    setView2(true);
+  const NotViewing2notsuper = () => {
+    setView2super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_VIEW"]
     }));
   };
 
-  const NotViewing22not = () => {
-    setView2(false);
+  const NotViewing22notsuper = () => {
+    setView2super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_VIEW"
+        (permission) => permission !== "CORPORATE_VIEW"
       )
     }));
   };
 
-  console.log(view2);
-
-  const Viewing3 = () => {
-    setView3(true);
+  const Viewing3super = () => {
+    setView3super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_LIST"
+        (permission) => permission !== "CORPORATE_SINGLE"
       )
     }));
   };
 
-  const NotViewing3 = () => {
-    setView3(false);
+  const NotViewing3super = () => {
+    setView3super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_LIST"]
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_SINGLE"]
     }));
   };
 
-  const NotViewing3not = () => {
-    setView3(true);
+  const NotViewing3notsuper = () => {
+    setView3super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_LIST"]
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_SINGLE"]
     }));
   };
 
-  const NotViewing33not = () => {
-    setView3(false);
+  const NotViewing33notsuper = () => {
+    setView3super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_LIST"
+        (permission) => permission !== "CORPORATE_SINGLE"
       )
     }));
   };
 
-  const Viewing4 = () => {
-    setView4(true);
+  const Viewing5super = () => {
+    setView5super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_EDIT"
+        (permission) => permission !== "CORPORATE_CREATE"
       )
     }));
   };
 
-  const NotViewing4 = () => {
-    setView4(false);
+  const NotViewing5super = () => {
+    setView5super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_EDIT"]
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_CREATE"]
     }));
   };
 
-  const NotViewing4not = () => {
-    setView4(true);
+  const NotViewing5notsuper = () => {
+    setView5super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_EDIT"]
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_CREATE"]
     }));
   };
 
-  const NotViewing44not = () => {
-    setView4(false);
+  const NotViewing55notsuper = () => {
+    setView5super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_EDIT"
+        (permission) => permission !== "CORPORATE_CREATE"
       )
     }));
   };
 
-  const Viewing5 = () => {
-    setView5(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_CREATE"
-      )
-    }));
-  };
-
-  const NotViewing5 = () => {
-    setView5(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_CREATE"]
-    }));
-  };
-
-  const NotViewing5not = () => {
-    setView5(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_CREATE"]
-    }));
-  };
-
-  const NotViewing55not = () => {
-    setView5(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_CREATE"
-      )
-    }));
-  };
-
-  const Viewing6 = () => {
-    setView6(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_ACTIVATE"
-      )
-    }));
-  };
-
-  const NotViewing6 = () => {
-    setView6(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_ACTIVATE"]
-    }));
-  };
-
-  const NotViewing6not = () => {
-    setView6(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_ACTIVATE"]
-    }));
-  };
-
-  const NotViewing66not = () => {
-    setView6(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_ACTIVATE"
-      )
-    }));
-  };
-
-  const Viewing7 = () => {
-    setView7(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_DEACTIVATE"
-      )
-    }));
-  };
-
-  const NotViewing7 = () => {
-    setView7(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_DEACTIVATE"]
-    }));
-  };
-
-  const NotViewing7not = () => {
-    setView7(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_DEACTIVATE"]
-    }));
-  };
-
-  const NotViewing77not = () => {
-    setView7(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "BUSINESS_REP_DEACTIVATE"
-      )
-    }));
-  };
-
-  const Viewing8 = () => {
-    setView8(true);
+  const Viewing8super = () => {
+    setView8super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
@@ -428,24 +334,24 @@ const SuperAdminUserDetails = ({ title }) => {
     }));
   };
 
-  const NotViewing8 = () => {
-    setView8(false);
+  const NotViewing8super = () => {
+    setView8super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_VIEW"]
     }));
   };
 
-  const NotViewing8not = () => {
-    setView8(true);
+  const NotViewing8notsuper = () => {
+    setView8super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_VIEW"]
     }));
   };
 
-  const NotViewing88not = () => {
-    setView8(false);
+  const NotViewing88notsuper = () => {
+    setView8super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
@@ -454,254 +360,38 @@ const SuperAdminUserDetails = ({ title }) => {
     }));
   };
 
-  const Viewing9 = () => {
-    setView9(true);
+  const Viewing10super = () => {
+    setView10super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "SUBSCRIPTION_LIST"
+        (permission) => permission !== "SUBSCRIPTION_CREATE"
       )
     }));
   };
 
-  const NotViewing9 = () => {
-    setView9(false);
+  const NotViewing10super = () => {
+    setView10super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_LIST"]
+      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_CREATE"]
     }));
   };
 
-  const NotViewing9not = () => {
-    setView9(true);
+  const NotViewing10notsuper = () => {
+    setView10super(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_LIST"]
+      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_CREATE"]
     }));
   };
 
-  const NotViewing99not = () => {
-    setView9(false);
+  const NotViewing1010notsuper = () => {
+    setView10super(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "SUBSCRIPTION_LIST"
-      )
-    }));
-  };
-
-  const Viewing10 = () => {
-    setView10(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PLAN_VIEW"
-      )
-    }));
-  };
-
-  const NotViewing10 = () => {
-    setView10(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PLAN_VIEW"]
-    }));
-  };
-
-  const NotViewing10not = () => {
-    setView10(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PLAN_VIEW"]
-    }));
-  };
-
-  const NotViewing1010not = () => {
-    setView10(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PLAN_VIEW"
-      )
-    }));
-  };
-
-  const Viewing11 = () => {
-    setView11(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PROJECT_VIEW"
-      )
-    }));
-  };
-
-  const NotViewing11 = () => {
-    setView11(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PROJECT_VIEW"]
-    }));
-  };
-
-  const NotViewing11not = () => {
-    setView11(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PROJECT_VIEW"]
-    }));
-  };
-
-  const NotViewing1111not = () => {
-    setView11(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PROJECT_VIEW"
-      )
-    }));
-  };
-
-  const Viewing12 = () => {
-    setView12(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PROJECT_EDIT"
-      )
-    }));
-  };
-
-  const NotViewing12 = () => {
-    setView12(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PROJECT_EDIT"]
-    }));
-  };
-
-  const NotViewing12not = () => {
-    setView12(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PROJECT_EDIT"]
-    }));
-  };
-
-  const NotViewing1212not = () => {
-    setView12(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PROJECT_EDIT"
-      )
-    }));
-  };
-
-  const Viewing13 = () => {
-    setView13(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PROJECT_LIST"
-      )
-    }));
-  };
-
-  const NotViewing13 = () => {
-    setView13(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PROJECT_LIST"]
-    }));
-  };
-
-  const NotViewing13not = () => {
-    setView13(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PROJECT_LIST"]
-    }));
-  };
-
-  const NotViewing1313not = () => {
-    setView13(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PROJECT_LIST"
-      )
-    }));
-  };
-
-  const Viewing14 = () => {
-    setView14(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PROJECT_CREATE"
-      )
-    }));
-  };
-
-  const NotViewing14 = () => {
-    setView14(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PROJECT_CREATE"]
-    }));
-  };
-
-  const NotViewing14not = () => {
-    setView14(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "PROJECT_CREATE"]
-    }));
-  };
-
-  const NotViewing1414not = () => {
-    setView14(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "PROJECT_CREATE"
-      )
-    }));
-  };
-
-  const Viewing15 = () => {
-    setView15(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "REPORT_VIEW"
-      )
-    }));
-  };
-
-  const NotViewing15 = () => {
-    setView15(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "REPORT_VIEW"]
-    }));
-  };
-
-  const NotViewing15not = () => {
-    setView15(true);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "REPORT_VIEW"]
-    }));
-  };
-
-  const NotViewing1515not = () => {
-    setView15(false);
-    setTeam((prevTeam) => ({
-      ...prevTeam,
-      permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "REPORT_VIEW"
+        (permission) => permission !== "SUBSCRIPTION_CREATE"
       )
     }));
   };
@@ -845,41 +535,44 @@ const SuperAdminUserDetails = ({ title }) => {
                 <span className="name">1.Dashboard</span>
                 <div className="button-group">
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "OVERVIEW_VIEW"
-                  ) && !view1 ? (
-                    <button className="view" onClick={() => Viewing()}>
+                    (item) => item === "OVERVIEW_VIEW"
+                  ) && !view1super ? (
+                    <button className="view" onClick={() => ViewingSuper()}>
                       <Eye />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "OVERVIEW_VIEW"
-                    ) && !view1 ? (
+                      (item) => item === "OVERVIEW_VIEW"
+                    ) && !view1super ? (
                     <button
                       className="darkview"
-                      onClick={() => NotViewing1not()}
+                      onClick={() => NotViewing1notSuper()}
                     >
                       <EyeNot />
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "OVERVIEW_VIEW"
-                    ) && view1 ? (
-                    <button className="darkview" onClick={() => NotViewing1()}>
+                      (item) => item === "OVERVIEW_VIEW"
+                    ) && view1super ? (
+                    <button
+                      className="darkview"
+                      onClick={() => NotViewing1Super()}
+                    >
                       <EyeNot />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "OVERVIEW_VIEW"
-                    ) && view1 ? (
+                      (item) => item === "OVERVIEW_VIEW"
+                    ) && view1super ? (
                     <button
                       className="view"
-                      onClick={() => NotViewing1notnot()}
+                      onClick={() => NotViewing1notnotSuper()}
                     >
                       <Eye />
                       View
                     </button>
                   ) : (
-                    <button className="view" onClick={() => Viewing()}>
+                    <button className="view" onClick={() => ViewingSuper()}>
                       <Eye />
                       View
                     </button>
@@ -891,578 +584,392 @@ const SuperAdminUserDetails = ({ title }) => {
                 </div>
               </div>
               <div className="rolename">
-                <span className="name">2.Business Reps</span>
+                <span className="name">2.CORPORATE</span>
                 <div className="button-group">
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "BUSINESS_REP_VIEW"
-                  ) && !view2 ? (
-                    <button className="view" onClick={() => Viewing2()}>
+                    (item) => item === "CORPORATE_VIEW"
+                  ) && !view2super ? (
+                    <button className="view" onClick={() => Viewing2super()}>
                       <Eye />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_VIEW"
-                    ) && !view2 ? (
+                      (item) => item === "CORPORATE_VIEW"
+                    ) && !view2super ? (
                     <button
                       className="darkview"
-                      onClick={() => NotViewing2not()}
+                      onClick={() => NotViewing2notsuper()}
                     >
                       <EyeNot />
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_VIEW"
-                    ) && view2 ? (
-                    <button className="darkview" onClick={() => NotViewing2()}>
+                      (item) => item === "CORPORATE_VIEW"
+                    ) && view2super ? (
+                    <button
+                      className="darkview"
+                      onClick={() => NotViewing2super()}
+                    >
                       <EyeNot />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_VIEW"
-                    ) && view2 ? (
-                    <button className="view" onClick={() => NotViewing22not()}>
-                      <Eye />
-                      View
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => Viewing2()}>
-                      <Eye />
-                      View
-                    </button>
-                  )}
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "BUSINESS_REP_EDIT"
-                  ) && !view4 ? (
-                    <button className="view" onClick={() => Viewing4()}>
-                      <Editeye />
-                      Edit
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_EDIT"
-                    ) && !view4 ? (
+                      (item) => item === "CORPORATE_VIEW"
+                    ) && view2super ? (
                     <button
-                      className="darkview"
-                      onClick={() => NotViewing4not()}
+                      className="view"
+                      onClick={() => NotViewing22notsuper()}
                     >
-                      <EditeyeNot />
-                      Edit
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_EDIT"
-                    ) && view4 ? (
-                    <button className="darkview" onClick={() => NotViewing4()}>
-                      <EditeyeNot />
-                      Edit
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_EDIT"
-                    ) && view4 ? (
-                    <button className="view" onClick={() => NotViewing44not()}>
-                      <Editeye />
-                      Edit
+                      <Eye />
+                      View
                     </button>
                   ) : (
-                    <button className="view" onClick={() => NotViewing4()}>
-                      <Editeye />
-                      Edit
+                    <button className="view" onClick={() => Viewing2super()}>
+                      <Eye />
+                      View
                     </button>
                   )}
+                  {/* {data?.some((item) => item === "CORPORATE_EDIT") &&
+                    !view4 ? (
+                      <button className="view" onClick={() => Viewing4()}>
+                        <Editeye />
+                        Edit
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_EDIT") &&
+                      !view4 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing4not()}
+                      >
+                        <EditeyeNot />
+                        Edit
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_EDIT") &&
+                      view4 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing4()}
+                      >
+                        <EditeyeNot />
+                        Edit
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_EDIT") &&
+                      view4 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing44not()}
+                      >
+                        <Editeye />
+                        Edit
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing4()}>
+                        <Editeye />
+                        Edit
+                      </button>
+                    )} */}
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "BUSINESS_REP_LIST"
-                  ) && !view3 ? (
-                    <button className="view" onClick={() => Viewing3()}>
+                    (item) => item === "CORPORATE_SINGLE"
+                  ) && !view3super ? (
+                    <button className="view" onClick={() => Viewing3super()}>
                       <List />
                       List
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_LIST"
-                    ) && !view3 ? (
+                      (item) => item === "CORPORATE_SINGLE"
+                    ) && !view3super ? (
                     <button
                       className="darkview"
-                      onClick={() => NotViewing3not()}
+                      onClick={() => NotViewing3notsuper()}
                     >
                       <ListNot />
                       List
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_LIST"
-                    ) && view3 ? (
-                    <button className="darkview" onClick={() => NotViewing3()}>
+                      (item) => item === "CORPORATE_SINGLE"
+                    ) && view3super ? (
+                    <button
+                      className="darkview"
+                      onClick={() => NotViewing3super()}
+                    >
                       <ListNot />
                       List
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_LIST"
-                    ) && view4 ? (
-                    <button className="view" onClick={() => NotViewing33not()}>
+                      (item) => item === "CORPORATE_SINGLE"
+                    ) && view4super ? (
+                    <button
+                      className="view"
+                      onClick={() => NotViewing33notsuper()}
+                    >
                       <List />
                       List
                     </button>
                   ) : (
-                    <button className="view" onClick={() => NotViewing3()}>
+                    <button className="view" onClick={() => NotViewing3super()}>
                       <List />
                       List
                     </button>
                   )}
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "BUSINESS_REP_CREATE"
-                  ) && !view5 ? (
-                    <button className="view" onClick={() => Viewing5()}>
+                    (item) => item === "CORPORATE_CREATE"
+                  ) && !view5super ? (
+                    <button className="view" onClick={() => Viewing5super()}>
                       <Create />
                       Create
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_CREATE"
-                    ) && !view5 ? (
+                      (item) => item === "CORPORATE_CREATE"
+                    ) && !view5super ? (
                     <button
                       className="darkview"
-                      onClick={() => NotViewing5not()}
+                      onClick={() => NotViewing5notsuper()}
                     >
                       <CreateNot />
                       Create
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_CREATE"
-                    ) && view5 ? (
-                    <button className="darkview" onClick={() => NotViewing5()}>
+                      (item) => item === "CORPORATE_CREATE"
+                    ) && view5super ? (
+                    <button
+                      className="darkview"
+                      onClick={() => NotViewing5super()}
+                    >
                       <CreateNot />
                       Create
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_CREATE"
-                    ) && view5 ? (
-                    <button className="view" onClick={() => NotViewing55not()}>
+                      (item) => item === "CORPORATE_CREATE"
+                    ) && view5super ? (
+                    <button
+                      className="view"
+                      onClick={() => NotViewing55notsuper()}
+                    >
                       <Create />
                       Create
                     </button>
                   ) : (
-                    <button className="view" onClick={() => NotViewing5()}>
+                    <button className="view" onClick={() => NotViewing5super()}>
                       <Create />
                       Create
                     </button>
                   )}
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "BUSINESS_REP_ACTIVATE"
-                  ) && !view6 ? (
-                    <button className="view" onClick={() => Viewing6()}>
-                      <Activate />
-                      Activate
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_ACTIVATE"
-                    ) && !view6 ? (
-                    <button
-                      className="darkview"
-                      onClick={() => NotViewing6not()}
-                    >
-                      <ActivateDark />
-                      Activate
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_ACTIVATE"
-                    ) && view6 ? (
-                    <button className="darkview" onClick={() => NotViewing6()}>
-                      <ActivateDark />
-                      Activate
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_ACTIVATE"
-                    ) && view6 ? (
-                    <button className="view" onClick={() => NotViewing66not()}>
-                      <Activate />
-                      Activate
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => NotViewing6()}>
-                      <Activate />
-                      Activate
-                    </button>
-                  )}
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "BUSINESS_REP_DEACTIVATE"
-                  ) && !view7 ? (
-                    <button className="view" onClick={() => Viewing7()}>
-                      <Deactivate />
-                      Deactivate
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_DEACTIVATE"
-                    ) && !view7 ? (
-                    <button
-                      className="darkview"
-                      onClick={() => NotViewing7not()}
-                    >
-                      <DeactivateDark />
-                      Deactivate
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_DEACTIVATE"
-                    ) && view7 ? (
-                    <button className="darkview" onClick={() => NotViewing7()}>
-                      <DeactivateDark />
-                      Deactivate
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "BUSINESS_REP_DEACTIVATE"
-                    ) && view7 ? (
-                    <button className="view" onClick={() => NotViewing77not()}>
-                      <Deactivate />
-                      Deactivate
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => NotViewing7()}>
-                      <Deactivate />
-                      Deactivate
-                    </button>
-                  )}
+                  {/* {data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                    !view6 ? (
+                      <button className="view" onClick={() => Viewing6()}>
+                        <Activate />
+                        Activate
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                      !view6 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing6not()}
+                      >
+                        <ActivateDark />
+                        Activate
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                      view6 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing6()}
+                      >
+                        <ActivateDark />
+                        Activate
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                      view6 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing66not()}
+                      >
+                        <Activate />
+                        Activate
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing6()}>
+                        <Activate />
+                        Activate
+                      </button>
+                    )} */}
+                  {/* {data?.some((item) => item === "CORPORATE_DEACTIVATE") &&
+                    !view7 ? (
+                      <button className="view" onClick={() => Viewing7()}>
+                        <Deactivate />
+                        Deactivate
+                      </button>
+                    ) : !data?.some(
+                        (item) => item === "CORPORATE_DEACTIVATE"
+                      ) && !view7 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing7not()}
+                      >
+                        <DeactivateDark />
+                        Deactivate
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_DEACTIVATE") &&
+                      view7 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing7()}
+                      >
+                        <DeactivateDark />
+                        Deactivate
+                      </button>
+                    ) : !data?.some(
+                        (item) => item === "CORPORATE_DEACTIVATE"
+                      ) && view7 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing77not()}
+                      >
+                        <Deactivate />
+                        Deactivate
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing7()}>
+                        <Deactivate />
+                        Deactivate
+                      </button>
+                    )} */}
                 </div>
               </div>
               <div className="rolename">
-                <span className="name">3. User management</span>
-                <div className="button-group">
-                  {/* <button className="view" onClick={() => setStep(48)}>
-                    <Eye />
-                    View
-                  </button>
-                  <button className="view" onClick={() => setStep(46)}>
-                    <Editeye />
-                    Edit
-                  </button>
-                  <button className="darkview" onClick={() => setStep(50)}>
-                    <DarkCreate />
-                    Create
-                  </button> */}
-                </div>
-              </div>
-              <div className="rolename">
-                <span className="name">4. Subscriptions</span>
+                <span className="name">3. Subscriptions</span>
                 <div className="button-group">
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "SUBSCRIPTION_VIEW"
-                  ) && !view8 ? (
-                    <button className="view" onClick={() => Viewing8()}>
+                    (item) => item === "SUBSCRIPTION_VIEW"
+                  ) && !view8super ? (
+                    <button className="view" onClick={() => Viewing8super()}>
                       <Eye />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "SUBSCRIPTION_VIEW"
-                    ) && !view8 ? (
+                      (item) => item === "SUBSCRIPTION_VIEW"
+                    ) && !view8super ? (
                     <button
                       className="darkview"
-                      onClick={() => NotViewing8not()}
+                      onClick={() => NotViewing8notsuper()}
                     >
                       <EyeNot />
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "SUBSCRIPTION_VIEW"
-                    ) && view8 ? (
-                    <button className="darkview" onClick={() => NotViewing8()}>
-                      <EyeNot />
-                      View
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "SUBSCRIPTION_VIEW"
-                    ) && view8 ? (
-                    <button className="view" onClick={() => NotViewing88not()}>
-                      <Eye />
-                      View
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => NotViewing8()}>
-                      <Eye />
-                      View
-                    </button>
-                  )}
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "SUBSCRIPTION_LIST"
-                  ) && !view9 ? (
-                    <button className="view" onClick={() => Viewing9()}>
-                      <List />
-                      List
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "SUBSCRIPTION_LIST"
-                    ) && !view9 ? (
+                      (item) => item === "SUBSCRIPTION_VIEW"
+                    ) && view8super ? (
                     <button
                       className="darkview"
-                      onClick={() => NotViewing9not()}
-                    >
-                      <ListNot />
-                      List
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "SUBSCRIPTION_LIST"
-                    ) && view9 ? (
-                    <button className="darkview" onClick={() => NotViewing9()}>
-                      <ListNot />
-                      List
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "SUBSCRIPTION_LIST"
-                    ) && view9 ? (
-                    <button className="view" onClick={() => NotViewing99not()}>
-                      <List />
-                      List
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => NotViewing9()}>
-                      <List />
-                      List
-                    </button>
-                  )}
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "PLAN_VIEW"
-                  ) && !view10 ? (
-                    <button className="view" onClick={() => Viewing10()}>
-                      <Eye />
-                      Plan view
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PLAN_VIEW"
-                    ) && !view10 ? (
-                    <button
-                      className="darkview"
-                      onClick={() => NotViewing10not()}
+                      onClick={() => NotViewing8super()}
                     >
                       <EyeNot />
-                      Plan view
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PLAN_VIEW"
-                    ) && view10 ? (
-                    <button className="darkview" onClick={() => NotViewing10()}>
-                      <EyeNot />
-                      Plan view
+                      View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PLAN_VIEW"
-                    ) && view10 ? (
+                      (item) => item === "SUBSCRIPTION_VIEW"
+                    ) && view8super ? (
                     <button
                       className="view"
-                      onClick={() => NotViewing1010not()}
-                    >
-                      <Eye />
-                      Plan view
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => NotViewing10()}>
-                      <Eye />
-                      Plan view
-                    </button>
-                  )}
-                </div>
-              </div>
-              <div className="rolename">
-                <span className="name">5. Projects</span>
-                <div className="button-group">
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "PROJECT_VIEW"
-                  ) && !view11 ? (
-                    <button className="view" onClick={() => Viewing11()}>
-                      <Eye />
-                      View
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_VIEW"
-                    ) && !view11 ? (
-                    <button
-                      className="darkview"
-                      onClick={() => NotViewing11not()}
-                    >
-                      <EyeNot />
-                      View
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_VIEW"
-                    ) && view11 ? (
-                    <button className="darkview" onClick={() => NotViewing11()}>
-                      <EyeNot />
-                      View
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_VIEW"
-                    ) && view11 ? (
-                    <button
-                      className="view"
-                      onClick={() => NotViewing1111not()}
+                      onClick={() => NotViewing88notsuper()}
                     >
                       <Eye />
                       View
                     </button>
                   ) : (
-                    <button className="view" onClick={() => NotViewing11()}>
+                    <button className="view" onClick={() => NotViewing8super()}>
                       <Eye />
                       View
                     </button>
                   )}
+                  {/* {data?.some((item) => item === "SUBSCRIPTION_LIST") &&
+                    !view9 ? (
+                      <button className="view" onClick={() => Viewing9()}>
+                        <List />
+                        List
+                      </button>
+                    ) : !data?.some((item) => item === "SUBSCRIPTION_LIST") &&
+                      !view9 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing9not()}
+                      >
+                        <ListNot />
+                        List
+                      </button>
+                    ) : data?.some((item) => item === "SUBSCRIPTION_LIST") &&
+                      view9 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing9()}
+                      >
+                        <ListNot />
+                        List
+                      </button>
+                    ) : !data?.some((item) => item === "SUBSCRIPTION_LIST") &&
+                      view9 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing99not()}
+                      >
+                        <List />
+                        List
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing9()}>
+                        <List />
+                        List
+                      </button>
+                    )} */}
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "PROJECT_EDIT"
-                  ) && !view12 ? (
-                    <button className="view" onClick={() => Viewing12()}>
-                      <Editeye />
-                      Edit
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_EDIT"
-                    ) && !view12 ? (
-                    <button
-                      className="darkview"
-                      onClick={() => NotViewing12not()}
-                    >
-                      <EditeyeNot />
-                      Edit
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_EDIT"
-                    ) && view12 ? (
-                    <button className="darkview" onClick={() => NotViewing12()}>
-                      <EditeyeNot />
-                      Edit
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_EDIT"
-                    ) && view12 ? (
-                    <button
-                      className="view"
-                      onClick={() => NotViewing1212not()}
-                    >
-                      <Editeye />
-                      Edit
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => NotViewing12()}>
-                      <Editeye />
-                      Edit
-                    </button>
-                  )}
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "PROJECT_LIST"
-                  ) && !view13 ? (
-                    <button className="view" onClick={() => Viewing13()}>
-                      <List />
-                      List
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_LIST"
-                    ) && !view13 ? (
-                    <button
-                      className="darkview"
-                      onClick={() => NotViewing13not()}
-                    >
-                      <ListNot />
-                      List
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_LIST"
-                    ) && view13 ? (
-                    <button className="darkview" onClick={() => NotViewing13()}>
-                      <ListNot />
-                      List
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_LIST"
-                    ) && view13 ? (
-                    <button
-                      className="view"
-                      onClick={() => NotViewing1313not()}
-                    >
-                      <List />
-                      List
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => NotViewing13()}>
-                      <List />
-                      List
-                    </button>
-                  )}
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "PROJECT_CREATE"
-                  ) && !view14 ? (
-                    <button className="view" onClick={() => Viewing14()}>
+                    (item) => item === "SUBSCRIPTION_CREATE"
+                  ) && !view10super ? (
+                    <button className="view" onClick={() => Viewing10super()}>
                       <Create />
-                      Create
+                      SubCreate
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_CREATE"
-                    ) && !view14 ? (
+                      (item) => item === "SUBSCRIPTION_CREATE"
+                    ) && !view10super ? (
                     <button
                       className="darkview"
-                      onClick={() => NotViewing14not()}
+                      onClick={() => NotViewing10notsuper()}
                     >
                       <CreateNot />
-                      Create
+                      SubCreate
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_CREATE"
-                    ) && view14 ? (
-                    <button className="darkview" onClick={() => NotViewing14()}>
-                      <CreateNot />
-                      Create
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "PROJECT_CREATE"
-                    ) && view14 ? (
-                    <button
-                      className="view"
-                      onClick={() => NotViewing1414not()}
-                    >
-                      <Create />
-                      Create
-                    </button>
-                  ) : (
-                    <button className="view" onClick={() => NotViewing14()}>
-                      <Create />
-                      Create
-                    </button>
-                  )}
-                </div>
-              </div>
-              <div className="rolename">
-                <span className="name">6.Reports</span>
-                <div className="button-group">
-                  {permissiondetails?.data?.permissions?.some(
-                    (item) => item?.right === "REPORT_VIEW"
-                  ) && !view15 ? (
-                    <button className="view" onClick={() => Viewing15()}>
-                      <Eye />
-                      View
-                    </button>
-                  ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "REPORT_VIEW"
-                    ) && !view15 ? (
+                      (item) => item === "SUBSCRIPTION_CREATE"
+                    ) && view10super ? (
                     <button
                       className="darkview"
-                      onClick={() => NotViewing15not()}
+                      onClick={() => NotViewing10super()}
                     >
-                      <EyeNot />
-                      View
-                    </button>
-                  ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "REPORT_VIEW"
-                    ) && view15 ? (
-                    <button className="darkview" onClick={() => NotViewing15()}>
-                      <Eye />
-                      View
+                      <CreateNot />
+                      SubCreate
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item?.right === "REPORT_VIEW"
-                    ) && view15 ? (
+                      (item) => item === "SUBSCRIPTION_CREATE"
+                    ) && view10super ? (
                     <button
                       className="view"
-                      onClick={() => NotViewing1515not()}
+                      onClick={() => NotViewing1010notsuper()}
                     >
-                      <Eye />
-                      View
+                      <Create />
+                      SubCreate
                     </button>
                   ) : (
-                    <button className="view" onClick={() => NotViewing15()}>
-                      <Eye />
-                      View
+                    <button
+                      className="view"
+                      onClick={() => NotViewing10super()}
+                    >
+                      <Create />
+                      SubCreate
                     </button>
                   )}
                 </div>
               </div>
+
               <div className="lastdiv">
                 <LocationModalButton
                   onClick={() => EditingApi()}

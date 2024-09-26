@@ -161,6 +161,12 @@ const Tables = ({
     setuseractive("");
   };
 
+  const updateManagerReal = (item) => {
+    setStep(75);
+    setId(item);
+    setuseractive("");
+  };
+
   console.log(data);
 
   return (
@@ -1070,13 +1076,23 @@ const Tables = ({
                       <Action onClick={() => UserActive(item?.id)} />
                       {useractive === item?.id && (
                         <div className="activeusermodal">
-                          <div
-                            className="row"
-                            onClick={() => updateManager(item?.id)}
-                          >
-                            <Deactivate />
-                            <span>Deactivate</span>
-                          </div>
+                          {item?.isAccountBlocked ? (
+                            <div
+                              className="row"
+                              onClick={() => updateManagerReal(item?.id)}
+                            >
+                              <Deactivate />
+                              <span>Activate</span>
+                            </div>
+                          ) : (
+                            <div
+                              className="row"
+                              onClick={() => updateManager(item?.id)}
+                            >
+                              <Deactivate />
+                              <span>Deactivate</span>
+                            </div>
+                          )}
                           <div
                             className="row"
                             onClick={() =>
@@ -2530,18 +2546,33 @@ const Tables = ({
                       <Action onClick={() => SuperserActiveMethod(item?.id)} />
                       {superuseractivity === item?.id && (
                         <div className="superactiveusermodal">
-                          <div
-                            className="row"
-                            onClick={() => {
-                              // setSuperuseractivity(false);
-                              setStep(32);
-                              setId(item?.id);
-                              setSuperuseractivity("");
-                            }}
-                          >
-                            <Deactivate />
-                            <span>Deactivate</span>
-                          </div>
+                          {item?.isAccountBlocked ? (
+                            <div
+                              className="row"
+                              onClick={() => {
+                                // setSuperuseractivity(false);
+                                setStep(76);
+                                setId(item?.id);
+                                setSuperuseractivity("");
+                              }}
+                            >
+                              <Deactivate />
+                              <span>Activate</span>
+                            </div>
+                          ) : (
+                            <div
+                              className="row"
+                              onClick={() => {
+                                // setSuperuseractivity(false);
+                                setStep(32);
+                                setId(item?.id);
+                                setSuperuseractivity("");
+                              }}
+                            >
+                              <Deactivate />
+                              <span>Deactivate</span>
+                            </div>
+                          )}
                           <div
                             className="row"
                             onClick={() =>

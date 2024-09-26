@@ -24,7 +24,7 @@ const FirstMainComponent = () => {
           Built for Geo location Tracking
         </button>
         <div className="anime">
-          <span className="boosts">Boosts your</span>
+          <span className="boosts">Boost your</span>
           <span className="productive">
             <TypeAnimation
               sequence={[

@@ -102,6 +102,13 @@ const AppUserModal = ({
   const [view13, setView13] = useState(false);
   const [view14, setView14] = useState(false);
   const [view15, setView15] = useState(false);
+  const [view1super, setView1super] = useState(false);
+  const [view2super, setView2super] = useState(false);
+  const [view3super, setView3super] = useState(false);
+  const [view4super, setView4super] = useState(false);
+  const [view5super, setView5super] = useState(false);
+  const [view8super, setView8super] = useState(false);
+  const [view10super, setView10super] = useState(false);
   const [regbus, setRegbus] = useState({
     firstname: "",
     lastname: "",
@@ -416,7 +423,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "OVERVIEW_VIEW"
+        (permission) => permission !== "DASHBOARD_VIEW"
       )
     }));
   };
@@ -425,7 +432,7 @@ const AppUserModal = ({
     setView1(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "OVERVIEW_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
     }));
   };
 
@@ -433,7 +440,7 @@ const AppUserModal = ({
     setView1(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "OVERVIEW_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
     }));
   };
 
@@ -442,7 +449,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "OVERVIEW_VIEW"
+        (permission) => permission !== "DASHBOARD_VIEW"
       )
     }));
   };
@@ -452,7 +459,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_VIEW"
+        (permission) => permission !== "BUSINESS_REP_VIEW"
       )
     }));
   };
@@ -461,7 +468,7 @@ const AppUserModal = ({
     setView2(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_VIEW"]
     }));
   };
 
@@ -469,7 +476,7 @@ const AppUserModal = ({
     setView2(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_VIEW"]
     }));
   };
 
@@ -478,7 +485,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_VIEW"
+        (permission) => permission !== "BUSINESS_REP_VIEW"
       )
     }));
   };
@@ -490,7 +497,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_LIST"
+        (permission) => permission !== "BUSINESS_REP_LIST"
       )
     }));
   };
@@ -499,7 +506,7 @@ const AppUserModal = ({
     setView3(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_LIST"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_LIST"]
     }));
   };
 
@@ -507,7 +514,7 @@ const AppUserModal = ({
     setView3(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_LIST"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_LIST"]
     }));
   };
 
@@ -516,7 +523,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_LIST"
+        (permission) => permission !== "BUSINESS_REP_LIST"
       )
     }));
   };
@@ -526,7 +533,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_EDIT"
+        (permission) => permission !== "BUSINESS_REP_EDIT"
       )
     }));
   };
@@ -535,7 +542,7 @@ const AppUserModal = ({
     setView4(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_EDIT"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_EDIT"]
     }));
   };
 
@@ -543,7 +550,7 @@ const AppUserModal = ({
     setView4(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_EDIT"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_EDIT"]
     }));
   };
 
@@ -552,7 +559,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_EDIT"
+        (permission) => permission !== "BUSINESS_REP_EDIT"
       )
     }));
   };
@@ -562,7 +569,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_CREATE"
+        (permission) => permission !== "BUSINESS_REP_CREATE"
       )
     }));
   };
@@ -571,7 +578,7 @@ const AppUserModal = ({
     setView5(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_CREATE"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_CREATE"]
     }));
   };
 
@@ -579,7 +586,7 @@ const AppUserModal = ({
     setView5(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_CREATE"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_CREATE"]
     }));
   };
 
@@ -588,7 +595,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_CREATE"
+        (permission) => permission !== "BUSINESS_REP_CREATE"
       )
     }));
   };
@@ -598,7 +605,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_ACTIVATE"
+        (permission) => permission !== "BUSINESS_REP_ACTIVATE"
       )
     }));
   };
@@ -607,7 +614,7 @@ const AppUserModal = ({
     setView6(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_ACTIVATE"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_ACTIVATE"]
     }));
   };
 
@@ -615,7 +622,7 @@ const AppUserModal = ({
     setView6(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_ACTIVATE"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_ACTIVATE"]
     }));
   };
 
@@ -624,7 +631,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_ACTIVATE"
+        (permission) => permission !== "BUSINESS_REP_ACTIVATE"
       )
     }));
   };
@@ -634,7 +641,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_DEACTIVATE"
+        (permission) => permission !== "BUSINESS_REP_DEACTIVATE"
       )
     }));
   };
@@ -643,7 +650,7 @@ const AppUserModal = ({
     setView7(false);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_DEACTIVATE"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_DEACTIVATE"]
     }));
   };
 
@@ -651,7 +658,7 @@ const AppUserModal = ({
     setView7(true);
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "CORPORATE_DEACTIVATE"]
+      permissions: [...(prevTeam.permissions || []), "BUSINESS_REP_DEACTIVATE"]
     }));
   };
 
@@ -660,7 +667,7 @@ const AppUserModal = ({
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "CORPORATE_DEACTIVATE"
+        (permission) => permission !== "BUSINESS_REP_DEACTIVATE"
       )
     }));
   };
@@ -949,6 +956,222 @@ const AppUserModal = ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
         (permission) => permission !== "REPORT_VIEW"
+      )
+    }));
+  };
+
+  const ViewingSuper = () => {
+    setView1super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "DASHBOARD_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing1Super = () => {
+    setView1super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
+    }));
+  };
+
+  const NotViewing1notSuper = () => {
+    setView1super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
+    }));
+  };
+
+  const NotViewing1notnotSuper = () => {
+    setView1super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "DASHBOARD_VIEW"
+      )
+    }));
+  };
+
+  const Viewing2super = () => {
+    setView2super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "CORPORATE_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing2super = () => {
+    setView2super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_VIEW"]
+    }));
+  };
+
+  const NotViewing2notsuper = () => {
+    setView2super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_VIEW"]
+    }));
+  };
+
+  const NotViewing22notsuper = () => {
+    setView2super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "CORPORATE_VIEW"
+      )
+    }));
+  };
+
+  const Viewing3super = () => {
+    setView3super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "CORPORATE_SINGLE"
+      )
+    }));
+  };
+
+  const NotViewing3super = () => {
+    setView3super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_SINGLE"]
+    }));
+  };
+
+  const NotViewing3notsuper = () => {
+    setView3super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_SINGLE"]
+    }));
+  };
+
+  const NotViewing33notsuper = () => {
+    setView3super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "CORPORATE_SINGLE"
+      )
+    }));
+  };
+
+  const Viewing5super = () => {
+    setView5super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "CORPORATE_CREATE"
+      )
+    }));
+  };
+
+  const NotViewing5super = () => {
+    setView5super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_CREATE"]
+    }));
+  };
+
+  const NotViewing5notsuper = () => {
+    setView5super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "CORPORATE_CREATE"]
+    }));
+  };
+
+  const NotViewing55notsuper = () => {
+    setView5super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "CORPORATE_CREATE"
+      )
+    }));
+  };
+
+  const Viewing8super = () => {
+    setView8super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "SUBSCRIPTION_VIEW"
+      )
+    }));
+  };
+
+  const NotViewing8super = () => {
+    setView8super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_VIEW"]
+    }));
+  };
+
+  const NotViewing8notsuper = () => {
+    setView8super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_VIEW"]
+    }));
+  };
+
+  const NotViewing88notsuper = () => {
+    setView8super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "SUBSCRIPTION_VIEW"
+      )
+    }));
+  };
+
+  const Viewing10super = () => {
+    setView10super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "SUBSCRIPTION_CREATE"
+      )
+    }));
+  };
+
+  const NotViewing10super = () => {
+    setView10super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_CREATE"]
+    }));
+  };
+
+  const NotViewing10notsuper = () => {
+    setView10super(true);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: [...(prevTeam.permissions || []), "SUBSCRIPTION_CREATE"]
+    }));
+  };
+
+  const NotViewing1010notsuper = () => {
+    setView10super(false);
+    setTeam((prevTeam) => ({
+      ...prevTeam,
+      permissions: (prevTeam.permissions || []).filter(
+        (permission) => permission !== "SUBSCRIPTION_CREATE"
       )
     }));
   };
@@ -1570,6 +1793,13 @@ const AppUserModal = ({
     setView14(false);
     setView15(false);
     setValues(false);
+    setView1super(false);
+    setView2super(false);
+    setView3super(false);
+    setView4super(false);
+    setView5super(false);
+    setView8super(false);
+    setView10super(false);
   };
 
   const CreatUsermanagement = () => {
@@ -2211,13 +2441,13 @@ const AppUserModal = ({
                 <div className="rolename">
                   <span className="name">1.Dashboard</span>
                   <div className="button-group">
-                    {data?.some((item) => item === "OVERVIEW_VIEW") &&
+                    {data?.some((item) => item === "DASHBOARD_VIEW") &&
                     !view1 ? (
                       <button className="view" onClick={() => Viewing()}>
                         <Eye />
                         View
                       </button>
-                    ) : !data?.some((item) => item === "OVERVIEW_VIEW") &&
+                    ) : !data?.some((item) => item === "DASHBOARD_VIEW") &&
                       !view1 ? (
                       <button
                         className="darkview"
@@ -2226,7 +2456,7 @@ const AppUserModal = ({
                         <EyeNot />
                         View
                       </button>
-                    ) : data?.some((item) => item === "OVERVIEW_VIEW") &&
+                    ) : data?.some((item) => item === "DASHBOARD_VIEW") &&
                       view1 ? (
                       <button
                         className="darkview"
@@ -2235,7 +2465,7 @@ const AppUserModal = ({
                         <EyeNot />
                         View
                       </button>
-                    ) : !data?.some((item) => item === "OVERVIEW_VIEW") &&
+                    ) : !data?.some((item) => item === "DASHBOARD_VIEW") &&
                       view1 ? (
                       <button
                         className="view"
@@ -2259,13 +2489,13 @@ const AppUserModal = ({
                 <div className="rolename">
                   <span className="name">2.CORPORATE</span>
                   <div className="button-group">
-                    {data?.some((item) => item === "CORPORATE_VIEW") &&
+                    {data?.some((item) => item === "BUSINESS_REP_VIEW") &&
                     !view2 ? (
                       <button className="view" onClick={() => Viewing2()}>
                         <Eye />
                         View
                       </button>
-                    ) : !data?.some((item) => item === "CORPORATE_VIEW") &&
+                    ) : !data?.some((item) => item === "BUSINESS_REP_VIEW") &&
                       !view2 ? (
                       <button
                         className="darkview"
@@ -2274,7 +2504,7 @@ const AppUserModal = ({
                         <EyeNot />
                         View
                       </button>
-                    ) : data?.some((item) => item === "CORPORATE_VIEW") &&
+                    ) : data?.some((item) => item === "BUSINESS_REP_VIEW") &&
                       view2 ? (
                       <button
                         className="darkview"
@@ -2283,7 +2513,7 @@ const AppUserModal = ({
                         <EyeNot />
                         View
                       </button>
-                    ) : !data?.some((item) => item === "CORPORATE_VIEW") &&
+                    ) : !data?.some((item) => item === "BUSINESS_REP_VIEW") &&
                       view2 ? (
                       <button
                         className="view"
@@ -2298,7 +2528,7 @@ const AppUserModal = ({
                         View
                       </button>
                     )}
-                    {data?.some((item) => item === "CORPORATE_EDIT") &&
+                    {/* {data?.some((item) => item === "CORPORATE_EDIT") &&
                     !view4 ? (
                       <button className="view" onClick={() => Viewing4()}>
                         <Editeye />
@@ -2336,14 +2566,14 @@ const AppUserModal = ({
                         <Editeye />
                         Edit
                       </button>
-                    )}
-                    {data?.some((item) => item === "CORPORATE_LIST") &&
+                    )} */}
+                    {data?.some((item) => item === "BUSINESS_REP_LIST") &&
                     !view3 ? (
                       <button className="view" onClick={() => Viewing3()}>
                         <List />
                         List
                       </button>
-                    ) : !data?.some((item) => item === "CORPORATE_LIST") &&
+                    ) : !data?.some((item) => item === "BUSINESS_REP_LIST") &&
                       !view3 ? (
                       <button
                         className="darkview"
@@ -2352,7 +2582,7 @@ const AppUserModal = ({
                         <ListNot />
                         List
                       </button>
-                    ) : data?.some((item) => item === "CORPORATE_LIST") &&
+                    ) : data?.some((item) => item === "BUSINESS_REP_LIST") &&
                       view3 ? (
                       <button
                         className="darkview"
@@ -2361,7 +2591,7 @@ const AppUserModal = ({
                         <ListNot />
                         List
                       </button>
-                    ) : !data?.some((item) => item === "CORPORATE_LIST") &&
+                    ) : !data?.some((item) => item === "BUSINESS_REP_LIST") &&
                       view4 ? (
                       <button
                         className="view"
@@ -2376,13 +2606,13 @@ const AppUserModal = ({
                         List
                       </button>
                     )}
-                    {data?.some((item) => item === "CORPORATE_CREATE") &&
+                    {data?.some((item) => item === "BUSINESS_REP_CREATE") &&
                     !view5 ? (
                       <button className="view" onClick={() => Viewing5()}>
                         <Create />
                         Create
                       </button>
-                    ) : !data?.some((item) => item === "CORPORATE_CREATE") &&
+                    ) : !data?.some((item) => item === "BUSINESS_REP_CREATE") &&
                       !view5 ? (
                       <button
                         className="darkview"
@@ -2391,7 +2621,7 @@ const AppUserModal = ({
                         <CreateNot />
                         Create
                       </button>
-                    ) : data?.some((item) => item === "CORPORATE_CREATE") &&
+                    ) : data?.some((item) => item === "BUSINESS_REP_CREATE") &&
                       view5 ? (
                       <button
                         className="darkview"
@@ -2400,7 +2630,7 @@ const AppUserModal = ({
                         <CreateNot />
                         Create
                       </button>
-                    ) : !data?.some((item) => item === "CORPORATE_CREATE") &&
+                    ) : !data?.some((item) => item === "BUSINESS_REP_CREATE") &&
                       view5 ? (
                       <button
                         className="view"
@@ -2415,14 +2645,15 @@ const AppUserModal = ({
                         Create
                       </button>
                     )}
-                    {data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                    {data?.some((item) => item === "BUSINESS_REP_ACTIVATE") &&
                     !view6 ? (
                       <button className="view" onClick={() => Viewing6()}>
                         <Activate />
                         Activate
                       </button>
-                    ) : !data?.some((item) => item === "CORPORATE_ACTIVATE") &&
-                      !view6 ? (
+                    ) : !data?.some(
+                        (item) => item === "BUSINESS_REP_ACTIVATE"
+                      ) && !view6 ? (
                       <button
                         className="darkview"
                         onClick={() => NotViewing6not()}
@@ -2430,8 +2661,9 @@ const AppUserModal = ({
                         <ActivateDark />
                         Activate
                       </button>
-                    ) : data?.some((item) => item === "CORPORATE_ACTIVATE") &&
-                      view6 ? (
+                    ) : data?.some(
+                        (item) => item === "BUSINESS_REP_ACTIVATE"
+                      ) && view6 ? (
                       <button
                         className="darkview"
                         onClick={() => NotViewing6()}
@@ -2439,8 +2671,9 @@ const AppUserModal = ({
                         <ActivateDark />
                         Activate
                       </button>
-                    ) : !data?.some((item) => item === "CORPORATE_ACTIVATE") &&
-                      view6 ? (
+                    ) : !data?.some(
+                        (item) => item === "BUSINESS_REP_ACTIVATE"
+                      ) && view6 ? (
                       <button
                         className="view"
                         onClick={() => NotViewing66not()}
@@ -2454,14 +2687,14 @@ const AppUserModal = ({
                         Activate
                       </button>
                     )}
-                    {data?.some((item) => item === "CORPORATE_DEACTIVATE") &&
+                    {data?.some((item) => item === "BUSINESS_REP_DEACTIVATE") &&
                     !view7 ? (
                       <button className="view" onClick={() => Viewing7()}>
                         <Deactivate />
                         Deactivate
                       </button>
                     ) : !data?.some(
-                        (item) => item === "CORPORATE_DEACTIVATE"
+                        (item) => item === "BUSINESS_REP_DEACTIVATE"
                       ) && !view7 ? (
                       <button
                         className="darkview"
@@ -2470,8 +2703,9 @@ const AppUserModal = ({
                         <DeactivateDark />
                         Deactivate
                       </button>
-                    ) : data?.some((item) => item === "CORPORATE_DEACTIVATE") &&
-                      view7 ? (
+                    ) : data?.some(
+                        (item) => item === "BUSINESS_REP_DEACTIVATE"
+                      ) && view7 ? (
                       <button
                         className="darkview"
                         onClick={() => NotViewing7()}
@@ -2480,7 +2714,7 @@ const AppUserModal = ({
                         Deactivate
                       </button>
                     ) : !data?.some(
-                        (item) => item === "CORPORATE_DEACTIVATE"
+                        (item) => item === "BUSINESS_REP_DEACTIVATE"
                       ) && view7 ? (
                       <button
                         className="view"
@@ -5194,7 +5428,7 @@ const AppUserModal = ({
             <span
               style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
             >
-              Are you sure you want to deactivate this Sub-Admi
+              Are you sure you want to deactivate this Sub-Admin
             </span>
           </div>
           <div
@@ -5213,7 +5447,7 @@ const AppUserModal = ({
             <LargeSignInButton
               title="Confirm"
               onClick={() => {
-                dispatch(EditAdminDetails({ id, value: values }));
+                dispatch(EditAdminDetails({ id, value: !values }));
                 setBusstate11(true);
               }}
               large
@@ -7992,6 +8226,904 @@ const AppUserModal = ({
             />
           </div>
         </div>
+      </AppModal>
+      <AppModal
+        step={75}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          {/* <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            <Success />
+          </div> */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                fontWeight: "bold"
+              }}
+            >
+              Activate
+            </div>
+            <span>Are you sure you want to activate User manager, Are</span>
+            <span>you sure?</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton title="No" large onClick={() => setStep(0)} />
+            <LargeSignInButton
+              title="Yes"
+              onClick={() => {
+                dispatch(EditDetails({ id, value: values }));
+                setBusstate6(true);
+              }}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={76}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        heading="Activate"
+        noheadborder
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "40px",
+            width: "100%",
+            paddingLeft: "7%"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <span
+              style={{ fontSize: "12px", fontWeight: "400", color: "#5A6376" }}
+            >
+              Are you sure you want to Activate this Sub-Admin
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "70px"
+            }}
+          >
+            <LargeSignInButton
+              title="Cancel"
+              large
+              onClick={() => setStep(0)}
+            />
+            <LargeSignInButton
+              title="Confirm"
+              onClick={() => {
+                dispatch(EditAdminDetails({ id, value: values }));
+                setBusstate11(true);
+              }}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={77}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        wide
+        heading="Add User management"
+      >
+        <FlexUser>
+          <div className="main">
+            <ModalInputText
+              label="First Name"
+              onChange={(e) => Changeteam(e)}
+              name="name"
+              increase
+              value={team?.name}
+              placeholder={`${`Enter User management First Name`}`}
+            />
+            <ModalInputText
+              label="Last Name"
+              onChange={(e) => Changeteam(e)}
+              name="lastname"
+              increase
+              value={team?.lastname}
+              placeholder={`${`Enter User management Last Name`}`}
+            />
+            <ModalInputText
+              label="Phone Number"
+              // onChange={(e) => Changeteam(e)}
+              onChange={(e) => ChangeteamPhone(e)}
+              name="phone"
+              increase
+              value={team?.phone}
+              placeholder={`${`Enter User management Phone Number`}`}
+            />
+            {/* <ModalInputText
+              label="RC Number"
+              onChange={(e) => Changeteam(e)}
+              name="rcNumber"
+              increase
+              value={team?.rcNumber}
+              placeholder={`${`Enter User management RCNumber`}`}
+            /> */}
+            <ModalInputText
+              label="Email"
+              onChange={(e) => Changeteam(e)}
+              name="email"
+              increase
+              value={team?.email}
+              placeholder={`${`Enter User management Email`}`}
+            />
+            {/* <ModalInputText
+              label="Address"
+              onChange={(e) => Changeteam(e)}
+              name="address"
+              increase
+              value={team?.address}
+              placeholder={`${`Enter User management Address`}`}
+            /> */}
+            {/* {team?.avatar !== "" ? (
+              <img
+                src={team?.avatar}
+                alt="takephoto"
+                style={{ width: "522px", height: "105px" }}
+              />
+            ) : (
+              <>
+                <input
+                  type="file"
+                  id="uploadFile"
+                  name="avatar"
+                  onChange={(e) => sendingsImage(e)}
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  className="i-none"
+                  ref={datePickerRef}
+                />
+                <ModalInputText
+                  onClick={() => PickDater()}
+                  label="Take photo"
+                  photo
+                  increaser
+                />
+              </>
+            )} */}
+            {/* {team?.avatar ? (
+              <img
+                src={team?.avatar}
+                alt="takephoto"
+                style={{ width: "492px", height: "275px" }}
+              />
+            ) : (
+              <>
+                {webcamActive ? (
+                  <CameraComponent onCapture={handleCapture} />
+                ) : (
+                  <span style={{ color: "red" }}>
+                    Please activate your web Camera
+                  </span>
+                )}
+              </>
+            )} */}
+            <div className="flex">
+              <div className="activities">
+                <div className="activity-permission">
+                  <span className="activitynames">Activity</span>
+                  <span>Permission</span>
+                </div>
+                <div className="rolename">
+                  <span className="name">1.Dashboard</span>
+                  <div className="button-group">
+                    {data?.some((item) => item === "OVERVIEW_VIEW") &&
+                    !view1super ? (
+                      <button className="view" onClick={() => ViewingSuper()}>
+                        <Eye />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "OVERVIEW_VIEW") &&
+                      !view1super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing1notSuper()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : data?.some((item) => item === "OVERVIEW_VIEW") &&
+                      view1super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing1Super()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "OVERVIEW_VIEW") &&
+                      view1super ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing1notnotSuper()}
+                      >
+                        <Eye />
+                        View
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => ViewingSuper()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                    {/* <button className="view" onClick={() => setStep(18)}>
+                    <Editeye />
+                    Edit
+                  </button> */}
+                  </div>
+                </div>
+                <div className="rolename">
+                  <span className="name">2.CORPORATE</span>
+                  <div className="button-group">
+                    {data?.some((item) => item === "CORPORATE_VIEW") &&
+                    !view2super ? (
+                      <button className="view" onClick={() => Viewing2super()}>
+                        <Eye />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_VIEW") &&
+                      !view2super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing2notsuper()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_VIEW") &&
+                      view2super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing2super()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_VIEW") &&
+                      view2super ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing22notsuper()}
+                      >
+                        <Eye />
+                        View
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => Viewing2super()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                    {/* {data?.some((item) => item === "CORPORATE_EDIT") &&
+                    !view4 ? (
+                      <button className="view" onClick={() => Viewing4()}>
+                        <Editeye />
+                        Edit
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_EDIT") &&
+                      !view4 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing4not()}
+                      >
+                        <EditeyeNot />
+                        Edit
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_EDIT") &&
+                      view4 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing4()}
+                      >
+                        <EditeyeNot />
+                        Edit
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_EDIT") &&
+                      view4 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing44not()}
+                      >
+                        <Editeye />
+                        Edit
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing4()}>
+                        <Editeye />
+                        Edit
+                      </button>
+                    )} */}
+                    {data?.some((item) => item === "CORPORATE_SINGLE") &&
+                    !view3super ? (
+                      <button className="view" onClick={() => Viewing3super()}>
+                        <List />
+                        List
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_SINGLE") &&
+                      !view3super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing3notsuper()}
+                      >
+                        <ListNot />
+                        List
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_SINGLE") &&
+                      view3super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing3super()}
+                      >
+                        <ListNot />
+                        List
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_SINGLE") &&
+                      view4super ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing33notsuper()}
+                      >
+                        <List />
+                        List
+                      </button>
+                    ) : (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing3super()}
+                      >
+                        <List />
+                        List
+                      </button>
+                    )}
+                    {data?.some((item) => item === "CORPORATE_CREATE") &&
+                    !view5super ? (
+                      <button className="view" onClick={() => Viewing5super()}>
+                        <Create />
+                        Create
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_CREATE") &&
+                      !view5super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing5notsuper()}
+                      >
+                        <CreateNot />
+                        Create
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_CREATE") &&
+                      view5super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing5super()}
+                      >
+                        <CreateNot />
+                        Create
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_CREATE") &&
+                      view5super ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing55notsuper()}
+                      >
+                        <Create />
+                        Create
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing5()}>
+                        <Create />
+                        Create
+                      </button>
+                    )}
+                    {/* {data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                    !view6 ? (
+                      <button className="view" onClick={() => Viewing6()}>
+                        <Activate />
+                        Activate
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                      !view6 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing6not()}
+                      >
+                        <ActivateDark />
+                        Activate
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                      view6 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing6()}
+                      >
+                        <ActivateDark />
+                        Activate
+                      </button>
+                    ) : !data?.some((item) => item === "CORPORATE_ACTIVATE") &&
+                      view6 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing66not()}
+                      >
+                        <Activate />
+                        Activate
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing6()}>
+                        <Activate />
+                        Activate
+                      </button>
+                    )} */}
+                    {/* {data?.some((item) => item === "CORPORATE_DEACTIVATE") &&
+                    !view7 ? (
+                      <button className="view" onClick={() => Viewing7()}>
+                        <Deactivate />
+                        Deactivate
+                      </button>
+                    ) : !data?.some(
+                        (item) => item === "CORPORATE_DEACTIVATE"
+                      ) && !view7 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing7not()}
+                      >
+                        <DeactivateDark />
+                        Deactivate
+                      </button>
+                    ) : data?.some((item) => item === "CORPORATE_DEACTIVATE") &&
+                      view7 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing7()}
+                      >
+                        <DeactivateDark />
+                        Deactivate
+                      </button>
+                    ) : !data?.some(
+                        (item) => item === "CORPORATE_DEACTIVATE"
+                      ) && view7 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing77not()}
+                      >
+                        <Deactivate />
+                        Deactivate
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing7()}>
+                        <Deactivate />
+                        Deactivate
+                      </button>
+                    )} */}
+                  </div>
+                </div>
+                <div className="rolename">
+                  <span className="name">3. Subscriptions</span>
+                  <div className="button-group">
+                    {data?.some((item) => item === "SUBSCRIPTION_VIEW") &&
+                    !view8super ? (
+                      <button className="view" onClick={() => Viewing8super()}>
+                        <Eye />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "SUBSCRIPTION_VIEW") &&
+                      !view8super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing8notsuper()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : data?.some((item) => item === "SUBSCRIPTION_VIEW") &&
+                      view8super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing8super()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "SUBSCRIPTION_VIEW") &&
+                      view8super ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing88notsuper()}
+                      >
+                        <Eye />
+                        View
+                      </button>
+                    ) : (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing8super()}
+                      >
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                    {/* {data?.some((item) => item === "SUBSCRIPTION_LIST") &&
+                    !view9 ? (
+                      <button className="view" onClick={() => Viewing9()}>
+                        <List />
+                        List
+                      </button>
+                    ) : !data?.some((item) => item === "SUBSCRIPTION_LIST") &&
+                      !view9 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing9not()}
+                      >
+                        <ListNot />
+                        List
+                      </button>
+                    ) : data?.some((item) => item === "SUBSCRIPTION_LIST") &&
+                      view9 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing9()}
+                      >
+                        <ListNot />
+                        List
+                      </button>
+                    ) : !data?.some((item) => item === "SUBSCRIPTION_LIST") &&
+                      view9 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing99not()}
+                      >
+                        <List />
+                        List
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing9()}>
+                        <List />
+                        List
+                      </button>
+                    )} */}
+                    {data?.some((item) => item === "SUBSCRIPTION_CREATE") &&
+                    !view10super ? (
+                      <button className="view" onClick={() => Viewing10super()}>
+                        <Create />
+                        SubCreate
+                      </button>
+                    ) : !data?.some((item) => item === "SUBSCRIPTION_CREATE") &&
+                      !view10super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing10notsuper()}
+                      >
+                        <CreateNot />
+                        SubCreate
+                      </button>
+                    ) : data?.some((item) => item === "SUBSCRIPTION_CREATE") &&
+                      view10super ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing10super()}
+                      >
+                        <CreateNot />
+                        SubCreate
+                      </button>
+                    ) : !data?.some((item) => item === "SUBSCRIPTION_CREATE") &&
+                      view10super ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing1010notsuper()}
+                      >
+                        <Create />
+                        SubCreate
+                      </button>
+                    ) : (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing10super()}
+                      >
+                        <Create />
+                        SubCreate
+                      </button>
+                    )}
+                  </div>
+                </div>
+                {/* <div className="rolename">
+                  <span className="name">5. Projects</span>
+                  <div className="button-group">
+                    {data?.some((item) => item === "PROJECT_VIEW") &&
+                    !view11 ? (
+                      <button className="view" onClick={() => Viewing11()}>
+                        <Eye />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "PROJECT_VIEW") &&
+                      !view11 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing11not()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : data?.some((item) => item === "PROJECT_VIEW") &&
+                      view11 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing11()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "PROJECT_VIEW") &&
+                      view11 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing1111not()}
+                      >
+                        <Eye />
+                        View
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing11()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                    {data?.some((item) => item === "PROJECT_EDIT") &&
+                    !view12 ? (
+                      <button className="view" onClick={() => Viewing12()}>
+                        <Editeye />
+                        Edit
+                      </button>
+                    ) : !data?.some((item) => item === "PROJECT_EDIT") &&
+                      !view12 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing12not()}
+                      >
+                        <EditeyeNot />
+                        Edit
+                      </button>
+                    ) : data?.some((item) => item === "PROJECT_EDIT") &&
+                      view12 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing12()}
+                      >
+                        <EditeyeNot />
+                        Edit
+                      </button>
+                    ) : !data?.some((item) => item === "PROJECT_EDIT") &&
+                      view12 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing1212not()}
+                      >
+                        <Editeye />
+                        Edit
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing12()}>
+                        <Editeye />
+                        Edit
+                      </button>
+                    )}
+                    {data?.some((item) => item === "PROJECT_LIST") &&
+                    !view13 ? (
+                      <button className="view" onClick={() => Viewing13()}>
+                        <List />
+                        List
+                      </button>
+                    ) : !data?.some((item) => item === "PROJECT_LIST") &&
+                      !view13 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing13not()}
+                      >
+                        <ListNot />
+                        List
+                      </button>
+                    ) : data?.some((item) => item === "PROJECT_LIST") &&
+                      view13 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing13()}
+                      >
+                        <ListNot />
+                        List
+                      </button>
+                    ) : !data?.some((item) => item === "PROJECT_LIST") &&
+                      view13 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing1313not()}
+                      >
+                        <List />
+                        List
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing13()}>
+                        <List />
+                        List
+                      </button>
+                    )}
+                    {data?.some((item) => item === "PROJECT_CREATE") &&
+                    !view14 ? (
+                      <button className="view" onClick={() => Viewing14()}>
+                        <Create />
+                        Create
+                      </button>
+                    ) : !data?.some((item) => item === "PROJECT_CREATE") &&
+                      !view14 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing14not()}
+                      >
+                        <CreateNot />
+                        Create
+                      </button>
+                    ) : data?.some((item) => item === "PROJECT_CREATE") &&
+                      view14 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing14()}
+                      >
+                        <CreateNot />
+                        Create
+                      </button>
+                    ) : !data?.some((item) => item === "PROJECT_CREATE") &&
+                      view14 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing1414not()}
+                      >
+                        <Create />
+                        Create
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing14()}>
+                        <Create />
+                        Create
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div className="rolename">
+                  <span className="name">6.Reports</span>
+                  <div className="button-group">
+                    {data?.some((item) => item === "REPORT_VIEW") && !view15 ? (
+                      <button className="view" onClick={() => Viewing15()}>
+                        <Eye />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "REPORT_VIEW") &&
+                      !view15 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing15not()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : data?.some((item) => item === "REPORT_VIEW") &&
+                      view15 ? (
+                      <button
+                        className="darkview"
+                        onClick={() => NotViewing15()}
+                      >
+                        <EyeNot />
+                        View
+                      </button>
+                    ) : !data?.some((item) => item === "REPORT_VIEW") &&
+                      view15 ? (
+                      <button
+                        className="view"
+                        onClick={() => NotViewing1515not()}
+                      >
+                        <Eye />
+                        View
+                      </button>
+                    ) : (
+                      <button className="view" onClick={() => NotViewing15()}>
+                        <Eye />
+                        View
+                      </button>
+                    )}
+                  </div>
+                </div> */}
+              </div>
+            </div>
+          </div>
+          {/* <ModalInputSelect
+          label="Roles"
+          onChange={(e) => Change(e)}
+          name="roles"
+          value={regbus?.address}
+          placeholder={`${`Select User management's roles`}`}
+        /> */}
+          <div
+            style={{
+              height: "8%",
+              background: "#FFFFFF",
+              zIndex: 10000,
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center"
+              // position: "fixed"
+            }}
+          >
+            <LargeSignInButton
+              onClick={() => handleClick()}
+              bigger
+              // increase
+              title={"Submit"}
+              background
+              color
+            />
+          </div>
+        </FlexUser>
       </AppModal>
     </div>
   );
