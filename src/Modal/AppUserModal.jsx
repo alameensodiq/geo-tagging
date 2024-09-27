@@ -3326,7 +3326,7 @@ const AppUserModal = ({
               fontWeight: "bold"
             }}
           >
-            Deactivated Successfully
+            Status Change Successfully
           </div>
           <div
             style={{
@@ -3339,7 +3339,9 @@ const AppUserModal = ({
               color: "#667085"
             }}
           >
-            <span>You have successfully deactivated this User Manager</span>
+            <span>
+              You have successfully change status of this User Manager
+            </span>
           </div>
           <div
             style={{
@@ -5481,7 +5483,7 @@ const AppUserModal = ({
               justifyContent: "center"
             }}
           >
-            Account Created
+            Status Changed
           </div>
           <div
             style={{
@@ -5494,7 +5496,7 @@ const AppUserModal = ({
               color: "#667085"
             }}
           >
-            <span>You have successfully deactivated a Sub-Admin.</span>
+            <span>You have successfully change Status of a Sub-Admin.</span>
           </div>
           <div
             style={{

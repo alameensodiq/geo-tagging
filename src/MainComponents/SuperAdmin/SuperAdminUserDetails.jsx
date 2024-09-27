@@ -162,6 +162,8 @@ const SuperAdminUserDetails = ({ title }) => {
   // }, [permissiondetails?.data?.permissions]);
 
   console.log(permissiondetails?.data?.permissions);
+  console.log(team);
+  console.log(view1super);
 
   const EditingApi = () => {
     setLog(true);
@@ -182,36 +184,40 @@ const SuperAdminUserDetails = ({ title }) => {
 
   const ViewingSuper = () => {
     setView1super(true);
+    console.log("1");
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "DASHBOARD_VIEW"
+        (permission) => permission !== "OVERVIEW_VIEW"
       )
     }));
   };
 
   const NotViewing1Super = () => {
     setView1super(false);
+    console.log("2");
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "OVERVIEW_VIEW"]
     }));
   };
 
   const NotViewing1notSuper = () => {
     setView1super(true);
+    console.log("3");
     setTeam((prevTeam) => ({
       ...prevTeam,
-      permissions: [...(prevTeam.permissions || []), "DASHBOARD_VIEW"]
+      permissions: [...(prevTeam.permissions || []), "OVERVIEW_VIEW"]
     }));
   };
 
   const NotViewing1notnotSuper = () => {
     setView1super(false);
+    console.log("4");
     setTeam((prevTeam) => ({
       ...prevTeam,
       permissions: (prevTeam.permissions || []).filter(
-        (permission) => permission !== "DASHBOARD_VIEW"
+        (permission) => permission !== "OVERVIEW_VIEW"
       )
     }));
   };
@@ -396,6 +402,8 @@ const SuperAdminUserDetails = ({ title }) => {
     }));
   };
 
+  console.log(team);
+
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
@@ -535,14 +543,14 @@ const SuperAdminUserDetails = ({ title }) => {
                 <span className="name">1.Dashboard</span>
                 <div className="button-group">
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item === "OVERVIEW_VIEW"
+                    (item) => item?.right === "OVERVIEW_VIEW"
                   ) && !view1super ? (
                     <button className="view" onClick={() => ViewingSuper()}>
                       <Eye />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "OVERVIEW_VIEW"
+                      (item) => item?.right === "OVERVIEW_VIEW"
                     ) && !view1super ? (
                     <button
                       className="darkview"
@@ -552,7 +560,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item === "OVERVIEW_VIEW"
+                      (item) => item?.right === "OVERVIEW_VIEW"
                     ) && view1super ? (
                     <button
                       className="darkview"
@@ -562,7 +570,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "OVERVIEW_VIEW"
+                      (item) => item?.right === "OVERVIEW_VIEW"
                     ) && view1super ? (
                     <button
                       className="view"
@@ -587,14 +595,14 @@ const SuperAdminUserDetails = ({ title }) => {
                 <span className="name">2.CORPORATE</span>
                 <div className="button-group">
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item === "CORPORATE_VIEW"
+                    (item) => item?.right === "CORPORATE_VIEW"
                   ) && !view2super ? (
                     <button className="view" onClick={() => Viewing2super()}>
                       <Eye />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_VIEW"
+                      (item) => item?.right === "CORPORATE_VIEW"
                     ) && !view2super ? (
                     <button
                       className="darkview"
@@ -604,7 +612,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_VIEW"
+                      (item) => item?.right === "CORPORATE_VIEW"
                     ) && view2super ? (
                     <button
                       className="darkview"
@@ -614,7 +622,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_VIEW"
+                      (item) => item?.right === "CORPORATE_VIEW"
                     ) && view2super ? (
                     <button
                       className="view"
@@ -669,14 +677,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       </button>
                     )} */}
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item === "CORPORATE_SINGLE"
+                    (item) => item?.right === "CORPORATE_SINGLE"
                   ) && !view3super ? (
                     <button className="view" onClick={() => Viewing3super()}>
                       <List />
                       List
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_SINGLE"
+                      (item) => item?.right === "CORPORATE_SINGLE"
                     ) && !view3super ? (
                     <button
                       className="darkview"
@@ -686,7 +694,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       List
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_SINGLE"
+                      (item) => item?.right === "CORPORATE_SINGLE"
                     ) && view3super ? (
                     <button
                       className="darkview"
@@ -696,7 +704,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       List
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_SINGLE"
+                      (item) => item?.right === "CORPORATE_SINGLE"
                     ) && view4super ? (
                     <button
                       className="view"
@@ -712,14 +720,14 @@ const SuperAdminUserDetails = ({ title }) => {
                     </button>
                   )}
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item === "CORPORATE_CREATE"
+                    (item) => item?.right === "CORPORATE_CREATE"
                   ) && !view5super ? (
                     <button className="view" onClick={() => Viewing5super()}>
                       <Create />
                       Create
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_CREATE"
+                      (item) => item?.right === "CORPORATE_CREATE"
                     ) && !view5super ? (
                     <button
                       className="darkview"
@@ -729,7 +737,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       Create
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_CREATE"
+                      (item) => item?.right === "CORPORATE_CREATE"
                     ) && view5super ? (
                     <button
                       className="darkview"
@@ -739,7 +747,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       Create
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "CORPORATE_CREATE"
+                      (item) => item?.right === "CORPORATE_CREATE"
                     ) && view5super ? (
                     <button
                       className="view"
@@ -840,14 +848,14 @@ const SuperAdminUserDetails = ({ title }) => {
                 <span className="name">3. Subscriptions</span>
                 <div className="button-group">
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item === "SUBSCRIPTION_VIEW"
+                    (item) => item?.right === "SUBSCRIPTION_VIEW"
                   ) && !view8super ? (
                     <button className="view" onClick={() => Viewing8super()}>
                       <Eye />
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "SUBSCRIPTION_VIEW"
+                      (item) => item?.right === "SUBSCRIPTION_VIEW"
                     ) && !view8super ? (
                     <button
                       className="darkview"
@@ -857,7 +865,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       View
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item === "SUBSCRIPTION_VIEW"
+                      (item) => item?.right === "SUBSCRIPTION_VIEW"
                     ) && view8super ? (
                     <button
                       className="darkview"
@@ -867,7 +875,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       View
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "SUBSCRIPTION_VIEW"
+                      (item) => item?.right === "SUBSCRIPTION_VIEW"
                     ) && view8super ? (
                     <button
                       className="view"
@@ -922,14 +930,14 @@ const SuperAdminUserDetails = ({ title }) => {
                       </button>
                     )} */}
                   {permissiondetails?.data?.permissions?.some(
-                    (item) => item === "SUBSCRIPTION_CREATE"
+                    (item) => item?.right === "SUBSCRIPTION_CREATE"
                   ) && !view10super ? (
                     <button className="view" onClick={() => Viewing10super()}>
                       <Create />
                       SubCreate
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "SUBSCRIPTION_CREATE"
+                      (item) => item?.right === "SUBSCRIPTION_CREATE"
                     ) && !view10super ? (
                     <button
                       className="darkview"
@@ -939,7 +947,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       SubCreate
                     </button>
                   ) : permissiondetails?.data?.permissions?.some(
-                      (item) => item === "SUBSCRIPTION_CREATE"
+                      (item) => item?.right === "SUBSCRIPTION_CREATE"
                     ) && view10super ? (
                     <button
                       className="darkview"
@@ -949,7 +957,7 @@ const SuperAdminUserDetails = ({ title }) => {
                       SubCreate
                     </button>
                   ) : !permissiondetails?.data?.permissions?.some(
-                      (item) => item === "SUBSCRIPTION_CREATE"
+                      (item) => item?.right === "SUBSCRIPTION_CREATE"
                     ) && view10super ? (
                     <button
                       className="view"
