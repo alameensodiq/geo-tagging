@@ -4653,7 +4653,8 @@ const AppUserModal = ({
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            alignItems: "center"
+            alignItems: "center",
+            width: "100%"
           }}
         >
           <div
@@ -4795,8 +4796,8 @@ const AppUserModal = ({
             style={{
               display: "flex",
               flexDirection: "row",
-              paddingInline: "30px",
-              gap: "30px",
+              paddingInline: "8%",
+              justifyContent: "center",
               alignItems: "center",
               paddingTop: "20px",
               height: "100px"
@@ -4808,7 +4809,7 @@ const AppUserModal = ({
                 flexDirection: "column",
                 gap: "5px",
                 alignItems: "flex-start",
-                width: "35%",
+                width: "30%",
                 height: "100%"
               }}
             >
@@ -4825,7 +4826,11 @@ const AppUserModal = ({
                 style={{
                   color: "#1E1B39",
                   fontSize: "12px",
-                  fontWeight: "500"
+                  fontWeight: 500,
+                  overflowWrap: "break-word",
+                  wordWrap: "break-word",
+                  whiteSpace: "normal",
+                  width: "100%"
                 }}
               >
                 {corp?.name}
@@ -4837,7 +4842,7 @@ const AppUserModal = ({
                 flexDirection: "column",
                 gap: "5px",
                 alignItems: "flex-start",
-                width: "25%",
+                width: "30%",
                 height: "100%"
               }}
             >
@@ -4854,7 +4859,11 @@ const AppUserModal = ({
                 style={{
                   color: "#1E1B39",
                   fontSize: "12px",
-                  fontWeight: "500"
+                  fontWeight: "500",
+                  overflowWrap: "break-word",
+                  wordWrap: "break-word",
+                  whiteSpace: "normal",
+                  width: "100%"
                 }}
               >
                 {corp?.rcNumber}
@@ -4883,7 +4892,11 @@ const AppUserModal = ({
                 style={{
                   color: "#1E1B39",
                   fontSize: "12px",
-                  fontWeight: "500"
+                  fontWeight: "500",
+                  overflowWrap: "break-word",
+                  wordWrap: "break-word",
+                  whiteSpace: "normal",
+                  width: "100%"
                 }}
               >
                 {corp?.address}
@@ -4897,11 +4910,13 @@ const AppUserModal = ({
               // paddingInline: '30px',
               // gap:'50px',
               // alignItems: "center",
-              justifyContent: "flex-start",
+              justifyContent: "center",
+              alignContent: "center",
               paddingTop: "20px",
               width: "100%",
               height: "100px",
-              paddingLeft: "30px"
+              paddingInline: "5%"
+              // paddingLeft: "30px"
             }}
           >
             <div
@@ -4910,9 +4925,9 @@ const AppUserModal = ({
                 flexDirection: "column",
                 gap: "5px",
                 alignItems: "flex-start",
-                // width:'35%',
-                height: "100%",
-                marginRight: "70px"
+                width: "30%",
+                height: "100%"
+                // marginRight: "70px"
               }}
             >
               <span
@@ -4928,7 +4943,11 @@ const AppUserModal = ({
                 style={{
                   color: "#1E1B39",
                   fontSize: "12px",
-                  fontWeight: "500"
+                  fontWeight: "500",
+                  overflowWrap: "break-word",
+                  wordWrap: "break-word",
+                  whiteSpace: "normal",
+                  width: "100%"
                 }}
               >
                 {corp?.phone}
@@ -4940,7 +4959,7 @@ const AppUserModal = ({
                 flexDirection: "column",
                 gap: "5px",
                 alignItems: "flex-start",
-                // width:'25%',
+                width: "30%",
                 height: "100%",
                 marginRight: "40px"
               }}
@@ -4958,7 +4977,11 @@ const AppUserModal = ({
                 style={{
                   color: "#1E1B39",
                   fontSize: "12px",
-                  fontWeight: "500"
+                  fontWeight: "500",
+                  overflowWrap: "break-word",
+                  wordWrap: "break-word",
+                  whiteSpace: "normal",
+                  width: "100%"
                 }}
               >
                 {corp?.email}
@@ -4970,7 +4993,7 @@ const AppUserModal = ({
                 flexDirection: "column",
                 gap: "5px",
                 alignItems: "flex-start",
-                // width:'40%',
+                width: "40%",
                 height: "100%"
               }}
             >
@@ -4990,7 +5013,7 @@ const AppUserModal = ({
                   fontWeight: "500"
                 }}
               >
-                Business Plan
+                {corp?.isBusinessPlan ? "Business Plan" : "Custom Plan"}
               </span>
             </div>
           </div>

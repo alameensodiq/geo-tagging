@@ -253,7 +253,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   </div>
                 </div>
                 <div className="copy">
-                  <Contact />
+                  {/* <Contact /> */}
                   <Copy onClick={handleCopy} />
                 </div>
               </div>
@@ -262,12 +262,13 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   <div className="phone">
                     <span className="mobile">Email Address</span>
                     <span className="number" ref={inputRef2}>
-                      {supercorporatedetails?.data?.email}
+                      fhkgwulgiiruwg;fucbbvbbvbvbvbbvbvvbvbvbbvbvbbvbvbvbvbbvbvbbv
+                      {/* {supercorporatedetails?.data?.email} */}
                     </span>
                   </div>
                 </div>
                 <div className="copy">
-                  <Contact />
+                  {/* <Contact /> */}
                   <Copy onClick={handleCopy2} />
                 </div>
               </div>
@@ -281,7 +282,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   </div>
                 </div>
                 <div className="copy">
-                  <Contact />
+                  {/* <Contact /> */}
                   <Copy onClick={handleCopy3} />
                 </div>
               </div>
@@ -423,6 +424,7 @@ const Flex = styled.div`
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
+                width: 100%;
                 .mobile {
                   color: #5a6376;
                   font-size: 13px;
@@ -432,6 +434,10 @@ const Flex = styled.div`
                   color: #1e1b39;
                   font-size: 15px;
                   font-weight: 500;
+                  width: 100%;
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  white-space: normal;
                 }
               }
             }
