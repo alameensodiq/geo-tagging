@@ -22,26 +22,26 @@ const FourthMainComponent = () => {
             name={"Book a Call."}
             image={<Book />}
             statement1={"Book a call with our  consultants. We’ll"}
-            statement2={"set you up with a free account ready to"}
-            statement3={"suit your team’s needs"}
+            statement2={"show you how De-faucon platform"}
+            statement3={"works"}
           />
           <FourMainCard
             number={2}
-            name={"Create a Campaign"}
+            name={"Activate your Profile"}
             image={<Campaigncreate />}
-            statement1={"Create a campaign with your De - Faucon"}
-            statement2={"corporate account. We’ll set you up to"}
-            statement3={"create, edit, suspend, and manage"}
-            statement4={"promotional campaigns."}
+            statement1={"Set-up and activate your corporate profile"}
+            // statement2={"corporate account. We’ll set you up to"}
+            // statement3={"create, edit, suspend, and manage"}
+            // statement4={"promotional campaigns."}
           />
           <FourMainCard
             number={3}
-            name={"Add your Representatives."}
+            name={"Set-up project and representatives"}
             image={<CampaignRep />}
-            statement1={"Add your representatives with your De -"}
-            statement2={"Faucon corporate account. Onboard"}
-            statement3={"effortlessly with our self-serve"}
-            statement4={"platform."}
+            statement1={"Set-up project and assign employees to "}
+            statement2={"business locations"}
+            // statement3={"effortlessly with our self-serve"}
+            // statement4={"platform."}
           />
         </FeaturesCard>
         <div className="demo" data-aos="fade-right">
@@ -56,9 +56,9 @@ const FourthMainComponent = () => {
             Our Features
           </button>
           <div className="right">
-            <span>Manage your Campaigns by tracking your</span>
+            <span>Management of your remote employees, just</span>
             <span className="campaign">
-              Representatives on <span className="grow">De - Faucon.</span>
+              got easy using the <span className="grow">De - Faucon.</span>
             </span>
           </div>
         </div>

@@ -19,10 +19,10 @@ const FirstMainComponent = () => {
     <Flex data-aos="fade-left">
       {/* <img src={first} alt="wow" /> */}
       <div className="top">
-        <button className="button">
+        {/* <button className="button">
           <Built />
           Built for Geo location Tracking
-        </button>
+        </button> */}
         <div className="anime">
           <span className="boosts">Boost your</span>
           <span className="productive">
@@ -64,7 +64,7 @@ const FirstMainComponent = () => {
           Book a Demo <ArrowCircleRight />
         </button>
       </div>
-      <div className="bottom">
+      {/* <div className="bottom">
         <span className="trusted">
           Trusted by the fastest-growing companies
         </span>
@@ -79,7 +79,7 @@ const FirstMainComponent = () => {
             <Sliding />
           </Marquee>
         </div>
-      </div>
+      </div> */}
     </Flex>
   );
 };

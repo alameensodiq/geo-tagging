@@ -43,20 +43,21 @@ const FifthMainComponent = () => {
             <button className="ourservices">
               {" "}
               <Service />
-              Our Industries
+              Applicable Industries
             </button>
             <div className="right">
-              <span>Regardless of your industry, foster a</span>
+              <span>Enhance efficiency and productivity with De-Faucon's</span>
               <span className="campaign">
-                flourishing<span className="grow">Campaign Management</span>
+                versatile,
+                <span className="grow">industry-tailored platform.</span>
               </span>
             </div>
           </div>
-          <div className="left">
+          {/* <div className="left">
             <button className="book">
               Explore Industry <ArrowCircleRight />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </Flex>
@@ -98,7 +99,7 @@ const Flex = styled.div`
           align-items: center;
           justify-content: center;
           gap: 5px;
-          width: 136px;
+          width: 176px;
           height: 32px;
           padding: 6.56px 13.8px 7.44px 10.2px;
           border-radius: 29.07px;
@@ -118,6 +119,7 @@ const Flex = styled.div`
         .right {
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
           font-size: 45px;
           font-weight: 600;
           line-height: 63px;

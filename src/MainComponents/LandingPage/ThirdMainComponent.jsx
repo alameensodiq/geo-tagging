@@ -17,11 +17,11 @@ const ThirdMainComponent = () => {
             <div className="btgroups">
               <button className="book">
                 <Transparency />
-                Transparency
+                Advanced analytics
               </button>
               <button className="management">
                 <Management />
-                Management
+                Productivity
               </button>
               <button className="efficiency">
                 <Efficiency />
@@ -58,7 +58,7 @@ const ThirdMainComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="line" />
+            {/* <div className="line" />
             <div className="states">
               <span className="state">
                 "Our marketing team has significantly improved campaign
@@ -86,7 +86,7 @@ const ThirdMainComponent = () => {
                   Marketing Director at Global Enterprises
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="right">
             <img src={Thirdimage} className="thirdimage" alt="Thirdimage" />
@@ -140,7 +140,7 @@ const Flex = styled.div`
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            width: 134px;
+            width: 174px;
             height: 43px;
             padding: 13px 12px 13px 12px;
             gap: 8px;

@@ -8,12 +8,12 @@ const SecondMainComponent = () => {
       <button className="ourservices">
         {" "}
         <Service />
-        Our Services
+        Value-Add
       </button>
       <div className="right">
-        <span>The right services. The right</span>
+        <span>Leverage on De-faucon App</span>
         <span className="campaign">
-          Campaign. <span className="grow">Grow your business.</span>
+          and <span className="grow">Grow your business.</span>
         </span>
       </div>
     </Flex>
@@ -64,6 +64,7 @@ const Flex = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
+      gap: 5px;
       .grow {
         color: #dd4a5d;
       }

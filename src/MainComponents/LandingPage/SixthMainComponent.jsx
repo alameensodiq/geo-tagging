@@ -16,27 +16,31 @@ const SixthMainComponent = () => {
       <div className="btgroups">
         <button className="book">
           <Retail />
-          Retail
+          Brand Activation Organizations
+        </button>
+        <button className="management">
+          <Security />
+          Private Security Organizations
         </button>
         <button className="management">
           <Healthcare />
-          Healthcare
+          Government Agencies
         </button>
-        <button className="efficiency">
+        {/* <button className="efficiency">
           <Construct />
           Construction
         </button>
         <button className="management">
           <Education />
           Education
+        </button> */}
+        <button className="management">
+          <Hotel />
+          Telecommunications
         </button>
         <button className="management">
           <Hotel />
-          Hotel
-        </button>
-        <button className="management">
-          <Security />
-          Security
+          Outsourcing Companies
         </button>
       </div>
       <div className="seller">
@@ -97,7 +101,7 @@ const Flex = styled.div`
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      width: 134px;
+      width: 244px;
       height: 43px;
       padding: 13px 12px 13px 12px;
       gap: 8px;
