@@ -12,6 +12,7 @@ import SuperAdminNavbar from "./SuperAdminNavbar";
 import { DownloadCsv } from "../../bits/DownloadCsv";
 import { Trails } from "../../Store/Apis/Trails";
 import Pagination from "../../Reusable/Pagination";
+import { Loader } from "../../Loader";
 
 const SuperAdminAudit = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -110,31 +111,32 @@ const SuperAdminAudit = ({ title }) => {
     <Flex>
       <SuperAdminNavbar title={title} />
       <AppUserModal setStep={setStep} step={step} setReload={setReload} />
-      <div className="maincontainer">
-        <div className="top">
-          <div className="start">
-            <div className="numbers">
-              <span className="name">Audit trails</span>
+      {trails?.data?.data ? (
+        <div className="maincontainer">
+          <div className="top">
+            <div className="start">
+              <div className="numbers">
+                <span className="name">Audit trails</span>
+              </div>
+              <span className="about">
+                This Page Allow you to Manage Sub-Admin.
+              </span>
             </div>
-            <span className="about">
-              This Page Allow you to Manage Sub-Admin.
-            </span>
+            <div>
+              <DownloadCsv
+                //   onClick={() => navigate(
+                //     `../${businessprojects}/location/:location`)}
+                exportdownload
+                downloadcsvnoborder
+                color
+                onClick={() => Download()}
+                title="Download CSV"
+              />
+            </div>
           </div>
-          <div>
-            <DownloadCsv
-              //   onClick={() => navigate(
-              //     `../${businessprojects}/location/:location`)}
-              exportdownload
-              downloadcsvnoborder
-              color
-              onClick={() => Download()}
-              title="Download CSV"
-            />
-          </div>
-        </div>
-        <div className="table">
-          <div className="date-search">
-            {/* <div className="main">
+          <div className="table">
+            <div className="date-search">
+              {/* <div className="main">
               <DatePicker
                 className="input"
                 selected={startDate}
@@ -160,25 +162,28 @@ const SuperAdminAudit = ({ title }) => {
               />
               <Calendar onClick={() => PickDater()} className="calendar" />
             </div> */}
-            <InputSearch
-              onChange={(e) => setSearcher(e.target.value)}
-              placeholder="Search for UP Corporates name, email, RC Number, e.t.c"
-            />
+              <InputSearch
+                onChange={(e) => setSearcher(e.target.value)}
+                placeholder="Search for UP Corporates name, email, RC Number, e.t.c"
+              />
+            </div>
+            <Tables audit data={trails?.data?.data} setStep={setStep} />
+            {trails?.data?.data?.length >= 1 && (
+              <Pagination
+                set={activater}
+                currentPage={currentPage}
+                postsPerPage={postsPerPage}
+                totalPosts={totalPosts}
+                paginate={paginate}
+                previous={previous}
+                next={next}
+              />
+            )}
           </div>
-          <Tables audit data={trails?.data?.data} setStep={setStep} />
-          {trails?.data?.data?.length >= 1 && (
-            <Pagination
-              set={activater}
-              currentPage={currentPage}
-              postsPerPage={postsPerPage}
-              totalPosts={totalPosts}
-              paginate={paginate}
-              previous={previous}
-              next={next}
-            />
-          )}
         </div>
-      </div>
+      ) : (
+        <Loader />
+      )}
     </Flex>
   );
 };

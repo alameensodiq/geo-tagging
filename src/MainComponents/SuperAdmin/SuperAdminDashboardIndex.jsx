@@ -29,7 +29,8 @@ const SuperAdminDashboardIndex = () => {
   SuperAdminDashboardIndex.Wrapper = styled.div`
     display: flex;
     .left {
-      width: 17%;
+      /* width: 17%; */
+      width: ${({ open }) => (open ? "03%" : "17%")};
       height: 100vh;
       padding: 1rem 0rem 4rem 0rem;
       border-right: 1px solid #e2e8f0;
@@ -37,8 +38,10 @@ const SuperAdminDashboardIndex = () => {
     }
     .right {
       overflow-y: scroll;
-      width: 83%;
+      /* width: 83%; */
+      width: ${({ open }) => (open ? "97%" : "83%")};
       height: 100vh;
+      transition: margin-left 0.3s ease;
       // width: calc(100vw - 300px);
       // background-color: #fff;
     }

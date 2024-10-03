@@ -48,17 +48,38 @@ function Sidebar({ name, role, open, setOpen }) {
 
   // background: ${({open})  => ( open ? '#333481' : 'transparent')};
   return (
-    <Sidecontent>
-      <div className="header">
-        <div className="first">
-          <Logo />
+    <Sidecontent open={open}>
+      {open ? (
+        ""
+      ) : (
+        <div className="header">
+          <div className="first">
+            <Logo />
+          </div>
         </div>
-      </div>
+      )}
 
       <div className={`body ${open ? "sum" : "body"}`}>
-        <div className="menu-div">
-          <span className="menu">Menu</span>
-        </div>
+        {open ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            <span style={{ fontSize: "10px" }} onClick={() => setOpen(!open)}>
+              Menu
+            </span>
+          </div>
+        ) : (
+          <div className="menu-div" style={{ cursor: "pointer" }}>
+            <span className="menu" onClick={() => setOpen(!open)}>
+              Menu
+            </span>
+          </div>
+        )}
         <Link
           to={clients}
           className={`item ${router.pathname === `${clients}` ? "active" : ""}`}
@@ -173,7 +194,7 @@ function Sidebar({ name, role, open, setOpen }) {
           <p className="man">Reports</p>
         </Link>
         <div className="settingsdiv">
-          <span className="settings">SETTINGS</span>
+          {open ? "" : <span className="settings">SETTINGS</span>}
           <Link
             to={businessaccounting}
             className={`item ${
@@ -209,10 +230,14 @@ function Sidebar({ name, role, open, setOpen }) {
         onClick={() => LogOutAuthentication()}
         className={`log ${open ? "sum" : "log"}`}
       >
-        <div className="real">
-          <span className="logbut">Log Out</span>
-          <span className="admin">Corporate Admin</span>
-        </div>
+        {open ? (
+          ""
+        ) : (
+          <div className="real">
+            <span className="logbut">Log Out</span>
+            <span className="admin">Corporate Admin</span>
+          </div>
+        )}
         <div className="buttonlogout">
           <Logout />
         </div>
@@ -224,6 +249,9 @@ function Sidebar({ name, role, open, setOpen }) {
 const Sidecontent = styled.div`
   // padding: 30px;
   height: 100vh;
+  width: ${({ open }) =>
+    open ? "40px" : ""}; // Adjust the width based on open state
+  transition: width 0.3s ease; // Smooth transition effect
 
   a {
     text-decoration: none;
@@ -679,23 +707,35 @@ const Sidecontent = styled.div`
 
   .sum {
     // margin-block: 20px;
-    display: none;
+    display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    gap: 19px;
-    background: transparent;
-    padding-bottom: 80px;
+    /* align-items: center; */
+    padding-inline: 12%;
+    gap: 10px;
+    padding-bottom: 50px;
     border-bottom: 0.5px solid;
-    border-bottom-color: rgb(135, 145, 163, 0.08);
+    border-bottom-color: #e2e8f0;
+    .menu-div {
+      display: flex;
+      flex-direction: row;
+      padding-inline: 17px;
+      padding-block: 25px;
+      .menu {
+        display: flex;
+        flex-direction: row;
+        color: #5a6376;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
 
     .item {
       display: flex;
       justify-content: start;
       align-items: center;
       width: 210px;
-      height: 45px;
-      gap: 15px;
+      height: 40px;
+      gap: 4%;
       text-transform: capitalize;
       // padding-left: 17px;
       border-radius: 5px;
@@ -711,13 +751,6 @@ const Sidecontent = styled.div`
         line-height: 17px;
         color: #848d87;
       }
-      // .data-title {
-      //   margin-top: 17px;
-      //   padding: 0;
-      //   p {
-      //     margin-bottom: 0rem;
-      //   }
-      // }
 
       img {
         width: 20px;
@@ -741,10 +774,8 @@ const Sidecontent = styled.div`
           stroke-width: 0.1px;
         }
       }
-
       .man {
         color: #848d87 !important;
-
         font-size: 12px;
         font-weight: 500;
         line-height: 17px;
@@ -752,48 +783,33 @@ const Sidecontent = styled.div`
       }
     }
     .active {
-      background: rgb(22, 157, 7, 0.1);
-      /* background: #169D07; */
-
+      background: rgba(101, 172, 224, 0.06);
       border-radius: 6px;
-      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-      /* color: #169D07; */
-
       .paint {
-        background: #169d07 !important;
+        background: #1a87d7 !important;
         width: 4px;
-        height: 45px;
+        height: 40px;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
       }
 
       .nav-svg {
         path {
-          fill: #169d07 !important;
-          stroke: #169d07 !important;
+          fill: #1a87d7 !important;
+          stroke: #1a87d7 !important;
           stroke-width: 0.1px;
         }
       }
 
       .nav-svg1 {
         path {
-          fill: #169d07 !important;
-          stroke: #169d07 !important;
+          fill: #1a87d7 !important;
+          stroke: #1a87d7 !important;
         }
       }
 
-      // .nav-svg {
-      //   fill:  #169D07 !important;
-      //   stroke:  #169D07 !important;
-      // }
-
-      // .nav-svg1 {
-      //   // fill:   #4D47C3 !important;
-      //   stroke:  #4D47C3 !important;
-      // }
-
       .man {
-        color: #169d07 !important;
-
+        color: #1a87d7 !important;
         font-size: 12px;
         font-weight: 500;
         line-height: 17px;
@@ -803,54 +819,177 @@ const Sidecontent = styled.div`
 
     .item:hover,
     .item:focus {
-      background: rgb(22, 157, 7, 0.1);
+      background: #f3f6ff;
       border-radius: 6px;
-
-      /* color: #169D07; */
-
-      //   .paint{
-      //     background: #169D07 !important;
-      //     width: 4px;
-      //     height: 45px;
-      // }
       .paint {
-        background: #169d07 !important;
+        background: #1a87d7 !important;
         width: 4px;
-        height: 45px;
+        height: 40px;
       }
-
       .nav-svg {
         path {
-          fill: #169d07 !important;
-          stroke: #169d07 !important;
+          fill: #1a87d7 !important;
+          stroke: #1a87d7 !important;
           stroke-width: 0.1px;
         }
       }
-
       .nav-svg1 {
         path {
-          fill: #169d07 !important;
-          stroke: #169d07 !important;
+          fill: #1a87d7 !important;
+          stroke: #1a87d7 !important;
         }
       }
-
-      // .nav-svg {
-      //   fill: #169D07 !important;
-      //   stroke:#169D07 !important;
-      // }
-
-      // .nav-svg1 {
-      //   // fill: #169D07 !important;
-      //   stroke: #169D07 !important;
-      // }
-
       .man {
-        color: #169d07 !important;
-
+        color: #1a87d7 !important;
         font-size: 12px;
         font-weight: 500;
         line-height: 17px;
         letter-spacing: 0em;
+      }
+    }
+    .settingsdiv {
+      display: flex;
+      flex-direction: column;
+      padding-top: 15%;
+      padding-bottom: 4%;
+      gap: 10px;
+      .settings {
+        color: #5a6376;
+        font-size: 14px;
+        font-weight: 500;
+        padding-left: 15px;
+      }
+      .menu-div {
+        display: flex;
+        flex-direction: row;
+        padding-inline: 17px;
+        padding-block: 25px;
+        .menu {
+          display: flex;
+          flex-direction: row;
+          color: #5a6376;
+          font-size: 15px;
+          font-weight: 500;
+        }
+      }
+
+      .item {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 210px;
+        height: 40px;
+        gap: 4%;
+        text-transform: capitalize;
+        // padding-left: 17px;
+        border-radius: 5px;
+        padding: 0px 0px 0px 0px;
+        //   background :  #4D47C3;
+
+        p {
+          // margin-bottom: 0rem;
+
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+          color: #848d87;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+          margin-right: 10px;
+        }
+
+        .nav-svg {
+          path {
+            fill: #848d87;
+            stroke: #ffffff;
+            stroke-width: 0.1px;
+          }
+        }
+
+        .nav-svg1 {
+          path {
+            fill: #848d87;
+            stroke: #ffffff;
+            stroke-width: 0.1px;
+          }
+        }
+        .man {
+          color: #848d87 !important;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 17px;
+          letter-spacing: 0em;
+        }
+      }
+      .active {
+        background: rgba(101, 172, 224, 0.06);
+        border-radius: 6px;
+        .paint {
+          background: #1a87d7 !important;
+          width: 4px;
+          height: 40px;
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+        }
+
+        .nav-svg {
+          path {
+            fill: #1a87d7 !important;
+            stroke: #1a87d7 !important;
+            stroke-width: 0.1px;
+          }
+        }
+
+        .nav-svg1 {
+          path {
+            fill: #1a87d7 !important;
+            stroke: #1a87d7 !important;
+          }
+        }
+
+        .man {
+          color: #1a87d7 !important;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 17px;
+          letter-spacing: 0em;
+        }
+      }
+
+      .item:hover,
+      .item:focus {
+        background: #f3f6ff;
+        border-radius: 6px;
+        .paint {
+          background: #1a87d7 !important;
+          width: 4px;
+          height: 40px;
+        }
+        .nav-svg {
+          path {
+            fill: #1a87d7 !important;
+            stroke: #1a87d7 !important;
+            stroke-width: 0.1px;
+          }
+        }
+        .nav-svg1 {
+          path {
+            fill: #1a87d7 !important;
+            stroke: #1a87d7 !important;
+          }
+        }
+        .man {
+          color: #1a87d7 !important;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 17px;
+          letter-spacing: 0em;
+        }
       }
     }
   }
