@@ -22,7 +22,7 @@ const MainPage = () => {
         <FourthMainComponent />
         <FifthMainComponent />
         <SixthMainComponent />
-        <SeventhMainComponent />
+        {/* <SeventhMainComponent /> */}
         <EightMainComponent />
         <Footer />
       </>

@@ -46,6 +46,17 @@ const ClientAdminNormalReport = ({ title }) => {
   );
   console.log(clientreport?.data?.IncidentsCheck?.incidents);
 
+  // const { businessrep, authenticatingbusinessrep } = useSelector(
+  //   (state) => state.businessrep
+  // );
+  // console.log(businessrep?.data?.data);
+
+  // const activate = businessrep?.data?.data?.filter(
+  //   (item) => item?.hasChangeDefaultPassword === true
+  // );
+  // const inactivate = businessrep?.data?.data?.filter(
+  //   (item) => item?.hasChangeDefaultPassword === false
+  // );
 
   const setActivate = () => {
     SetActivate(true);
@@ -86,7 +97,7 @@ const ClientAdminNormalReport = ({ title }) => {
               style={{ cursor: "pointer" }}
               onClick={() => navigate(-1)}
             />
-            <span className="name">Normal Reports</span>
+            <span className="name">Abnormal Reports</span>
           </div>
         </div>
         <div className="table">
@@ -122,7 +133,11 @@ const ClientAdminNormalReport = ({ title }) => {
               placeholder="Search for name, project name e.t.c"
             />
           </div>
-          <Tables reportnormal data={clientreport?.data?.IncidentsCheck?.incidents} setStep={setStep} />
+          <Tables
+            reportabnormal
+            data={clientreport?.data?.IncidentsCheck?.incidents}
+            setStep={setStep}
+          />
         </div>
       </div>
     </Flex>

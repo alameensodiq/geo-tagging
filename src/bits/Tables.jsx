@@ -27,6 +27,7 @@ import {
   superusers
 } from "../Routes";
 import { ModalButton } from "./ModalButton";
+import { Remarks } from "../Store/Apis/Remarks";
 
 const Tables = ({
   active,
@@ -166,6 +167,11 @@ const Tables = ({
     setId(item);
     setuseractive("");
   };
+
+  const { remarks, authenticatingremarks } = useSelector(
+    (state) => state?.remarks
+  );
+  console.log(remarks);
 
   console.log(data);
 
@@ -1760,71 +1766,115 @@ const Tables = ({
                     BUSINESS REP'S NAME
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "20%" }}>
-                    PROJECT NAME
+                    CLUSTER NAME
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
+                  <StyledTableCell style={{ width: "25%" }}>
                     REPORTS
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  <StyledTableCell style={{ width: "15%" }}>
                     DATE SUBMITTED
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
                     STATUS
                   </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  {/* <StyledTableCell style={{ width: "10%" }}>
                     ACTIONS
-                  </StyledTableCell>
+                  </StyledTableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
-                <StyledTableRow style={{ position: "relative" }}>
-                  <StyledTableCell style={{ width: "10" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "10px"
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "10" }}>
+                      {item?.avatar ? (
+                        <img
+                          style={{
+                            borderRadius: "50%",
+                            width: "30px",
+                            height: "30px"
+                          }}
+                          src={item?.avatar}
+                          alt="avatar"
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            gap: "10px"
+                          }}
+                        >
+                          <div
+                            style={{
+                              borderRadius: "50%",
+                              width: "30px",
+                              height: "30px",
+                              backgroundColor: "black"
+                            }}
+                          ></div>
+                        </div>
+                      )}
+                      {/* <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "10px"
+                        }}
+                      >
+                        <div
+                          style={{
+                            borderRadius: "50%",
+                            width: "30px",
+                            height: "30px",
+                            backgroundColor: "black"
+                          }}
+                        ></div>
+                      </div> */}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.businessRepName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "20%" }}>
+                      {item?.projectName}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      style={{ width: "25%" }}
+                      onClick={() => {
+                        dispatch(Remarks({ id: item?.projectUserShiftId }));
+                        setStep(78);
                       }}
                     >
-                      <div
-                        style={{
-                          borderRadius: "50%",
-                          width: "30px",
-                          height: "30px",
-                          backgroundColor: "black"
-                        }}
-                      ></div>
-                    </div>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Sheidu Susan
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Building Homes
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "20%" }}>
-                    Hello please I want to...
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    20-10-2024
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    <button className="activer-button">
-                      <div className="activer">
-                        <span className="round"></span>Read
-                      </div>
-                    </button>
-                  </StyledTableCell>
-                  <StyledTableCell style={{ width: "10%" }}>
-                    <span
-                      className="projectactivate"
-                      // onClick={() => setStep(6)}
-                    >
-                      Activate
-                    </span>
-                  </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow style={{ position: "relative" }}>
+                      {item?.report?.substring(0, 15)}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.dateSubmitted}</Moment>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      {item?.isRemarkHasBeenRead ? (
+                        <button className="activer-button">
+                          <div className="activer">
+                            <span className="round"></span>Read
+                          </div>
+                        </button>
+                      ) : (
+                        <button className="inactive-button">
+                          <div className="inactive">
+                            <span className="round"></span>Unread
+                          </div>
+                        </button>
+                      )}
+                    </StyledTableCell>
+                    {/* <StyledTableCell style={{ width: "10%" }}>
+                      <span
+                        className="projectactivate"
+                        // onClick={() => setStep(6)}
+                      >
+                        Activate
+                      </span>
+                    </StyledTableCell> */}
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow style={{ position: "relative" }}>
                   <StyledTableCell style={{ width: "10%" }}>
                     <div
                       style={{
@@ -1917,7 +1967,7 @@ const Tables = ({
                       Activate
                     </span>
                   </StyledTableCell>
-                </StyledTableRow>
+                </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>

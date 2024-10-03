@@ -9150,6 +9150,27 @@ const AppUserModal = ({
           </div>
         </FlexUser>
       </AppModal>
+      <AppModal
+        step={78}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+        wide
+        heading="Report"
+      >
+        <FlexUser>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "90px"
+            }}
+          ></div>
+        </FlexUser>
+      </AppModal>
     </div>
   );
 };

@@ -52,6 +52,7 @@ import { YearlyCompSlice } from "./Reducers/Yearly";
 import { CompletePaymentSlice } from "./Reducers/CompletePayment";
 import { ProjectRemoveSlice } from "./Reducers/ProjectRemove";
 import { EditProjectSlice } from "./Reducers/EditProject";
+import { RemarksSlice } from "./Reducers/Remarks";
 
 export default configureStore({
   reducer: {
@@ -108,6 +109,7 @@ export default configureStore({
     yearly: YearlyCompSlice?.reducer,
     completepayment: CompletePaymentSlice?.reducer,
     removerepproject: ProjectRemoveSlice?.reducer,
-    editproject: EditProjectSlice?.reducer
+    editproject: EditProjectSlice?.reducer,
+    remarks: RemarksSlice?.reducer
   }
 });
