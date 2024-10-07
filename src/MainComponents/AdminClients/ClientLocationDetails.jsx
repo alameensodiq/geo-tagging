@@ -896,24 +896,66 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const Remover = (userId) => {
-    console.log(userId);
-    console.log(repreal);
+    console.log("User ID to remove:", userId);
+    console.log("Current repres:", repreal);
+
+    // Check if repreal has more than one entry
     if (repreal?.length > 1) {
-      setRepreal((prev) => ({
-        ...prev,
-        rep: prev.rep.filter((item) => item.user_id !== userId)
-      }));
+      // Filter out the rep items with the matching userId
+      setRepreal((prev) => {
+        const filteredRep = prev.filter((item) => item.user_id !== userId);
+        console.log("Filtered Rep for setRepreal:", filteredRep);
+        return filteredRep; // Update the rep state
+      });
+
+      // Filter for setRep
+      setRep((prev) => {
+        const filteredRep = prev.filter((item) => item.user_id !== userId);
+        console.log("Filtered Rep for setRep:", filteredRep);
+        return filteredRep; // Return filtered rep
+      });
+
+      // Filter for setChoosingaddress
+      setchoosingaddress((prev) => {
+        const filteredAddresses = prev.filter(
+          (item) => item.user_id !== userId
+        );
+        console.log(
+          "Filtered Addresses for setChoosingaddress:",
+          filteredAddresses
+        );
+        return filteredAddresses; // Return filtered addresses
+      });
+
+      // Optionally add new entries
+      const newRep = {
+        user_id: "",
+        location_id: ""
+      };
+      const newAddress = {
+        user_id: "",
+        location_id: "",
+        address: ""
+      };
+
+      setRep((prev) => [...prev, newRep]); // Add newRep after filtering
+      setchoosingaddress((prev) => [...prev, newAddress]); // Add newAddress after filtering
     } else {
       toast.error("The rep and address can't be less than One");
     }
   };
 
   const Removing = (index) => {
+    console.log(assigncopy);
     // if (assigncopy?.locations?.length > 1) {
-    setAssigncopy((prev) => ({
-      ...prev,
-      locations: prev.locations.filter((_, i) => i !== index)
-    }));
+    if (assigncopy?.locations?.length > 1) {
+      setAssigncopy((prev) => ({
+        ...prev,
+        locations: prev.locations.filter((_, i) => i !== index)
+      }));
+    } else {
+      toast.error("The address can't be less than One");
+    }
     // } else {
     //   toast.error("The address can't be less than One");
     // }
