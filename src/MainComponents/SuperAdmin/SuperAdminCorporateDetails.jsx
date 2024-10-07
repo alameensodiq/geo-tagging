@@ -197,7 +197,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   </Moment>
                 </span>
               </div>
-              {supercorporatedetails?.data?.isAccountBlocked ? (
+              {/* {supercorporatedetails?.data?.isAccountBlocked ? (
                 <ModalButton
                   onClick={() => {
                     setStep(26);
@@ -219,7 +219,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   color
                   title={"Deactivate"}
                 />
-              )}
+              )} */}
             </div>
             <div className="last">
               <div className="workdiv">

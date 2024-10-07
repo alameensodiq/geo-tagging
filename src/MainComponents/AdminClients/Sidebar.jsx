@@ -65,9 +65,9 @@ function Sidebar({ name, role, open, setOpen }) {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "center"
+              justifyContent: "center",
+              cursor: "pointer"
             }}
-            style={{ cursor: "pointer" }}
           >
             <span style={{ fontSize: "10px" }} onClick={() => setOpen(!open)}>
               Menu

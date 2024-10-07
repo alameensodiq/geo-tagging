@@ -1341,7 +1341,10 @@ const AppUserModal = ({
       redirect: "follow"
     };
 
-    fetch(`${process.env.REACT_APP_BASE_URL}file/upload`, requestOptions)
+    fetch(
+      `${process.env.REACT_APP_BASE_URL}file/upload/${regbus?.email}`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
@@ -1832,7 +1835,11 @@ const AppUserModal = ({
     const fileName = "avatar.jpg"; // You can dynamically generate this if needed
 
     // Upload the file
-    sendingsImage(avatarBlob, fileName);
+    if (regbus?.email) {
+      sendingsImage(avatarBlob, fileName);
+    } else {
+      toast.error("Input Email Address first");
+    }
 
     // Optionally update state directly after successful upload
     // setRegbus((prev) => ({ ...prev, avatar: update }));
@@ -1851,6 +1858,9 @@ const AppUserModal = ({
       >
         <FlexUser>
           <div className="main">
+            <span style={{ color: "red" }}>
+              NOTE: Input email before uploading picture
+            </span>
             <ModalInputText
               label="First Name"
               onChange={(e) => Change(e)}

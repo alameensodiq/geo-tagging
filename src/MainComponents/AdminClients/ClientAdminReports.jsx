@@ -156,7 +156,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                 <div className="detailscompliancy">
                   <div
                     className="firstcompliance"
-                    onClick={() => navigate(`../${businessreport}/normal`)}
+                    onClick={() => navigate(`../${businessreport}/abnormal`)}
                   >
                     <span className="comp">
                       With Incident{" "}
@@ -177,7 +177,7 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   </div>
                   <div
                     className="firstcompliance"
-                    onClick={() => navigate(`../${businessreport}/abnormal`)}
+                    onClick={() => navigate(`../${businessreport}/normal`)}
                   >
                     <span className="comp">
                       Without Incident{" "}
