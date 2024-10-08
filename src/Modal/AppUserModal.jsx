@@ -1858,9 +1858,9 @@ const AppUserModal = ({
       >
         <FlexUser>
           <div className="main">
-            <span style={{ color: "red" }}>
+            {/* <span style={{ color: "red" }}>
               NOTE: Input email before uploading picture
-            </span>
+            </span> */}
             <ModalInputText
               label="First Name"
               onChange={(e) => Change(e)}
@@ -2006,7 +2006,7 @@ const AppUserModal = ({
             <LargeSignInButton
               title="Cancel"
               large
-              onClick={() => setStep(0)}
+              onClick={() => setStep(1)}
             />
             <LargeSignInButton
               title="Confirm"

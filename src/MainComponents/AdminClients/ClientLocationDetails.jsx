@@ -1854,10 +1854,10 @@ const ClientLocationDetails = ({ title }) => {
                     <span className="titlereps">
                       Business Reps Selected <Color />
                     </span>
-                    <span className="title">Address</span>
+                    <span className="titley">Address</span>
                     {/* <span className="title">State</span>
                     <span className="title">Landmark</span> */}
-                    <span className="title">Action</span>
+                    <span className="titley">Action</span>
                   </div>
                   <div className="arrange">
                     {Array.isArray(repreal) &&
@@ -1904,7 +1904,7 @@ const ClientLocationDetails = ({ title }) => {
                                 <>Not found</>
                               )}
                             </div>
-                            <div className="first">
+                            <div className="firsty">
                               {realaddress ? (
                                 <>
                                   <Color />
@@ -1916,7 +1916,7 @@ const ClientLocationDetails = ({ title }) => {
                             </div>
                             {/* <div className="second">Lagos</div>
                             <div className="third">Third mainland bridge</div> */}
-                            <div className="four">
+                            <div className="foury">
                               Remove{" "}
                               <Danger
                                 style={{ cursor: "pointer" }}
@@ -2571,6 +2571,16 @@ const Flex = styled.div`
                 padding-block: 10px;
                 padding-inline: 10px;
               }
+              .titley {
+                width: 40%;
+                color: #667085;
+                font-size: 13px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                padding-block: 10px;
+                padding-inline: 10px;
+              }
               .titlereps {
                 width: 20%;
                 color: #667085;
@@ -2617,6 +2627,19 @@ const Flex = styled.div`
                   color: #141414;
                   padding-inline: 10px;
                 }
+                .firsty {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 40%;
+                  gap: 2px;
+                  height: 50px;
+                  font-size: 12px;
+                  border-right: 1px solid #ebebeb;
+                  color: #141414;
+                  padding-inline: 10px;
+                }
                 .second {
                   display: flex;
                   flex-direction: row;
@@ -2649,6 +2672,17 @@ const Flex = styled.div`
                   align-items: center;
                   justify-content: center;
                   width: 20%;
+                  gap: 2px;
+                  font-size: 12px;
+                  color: #141414;
+                  padding-inline: 10px;
+                }
+                .foury {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  width: 40%;
                   gap: 2px;
                   font-size: 12px;
                   color: #141414;
@@ -3188,6 +3222,16 @@ const Flex = styled.div`
               /* border-bottom: 1px solid #ebebeb; */
               .title {
                 width: 20%;
+                color: #667085;
+                font-size: 13px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                padding-block: 10px;
+                padding-inline: 10px;
+              }
+              .titley {
+                width: 40%;
                 color: #667085;
                 font-size: 13px;
                 display: flex;
