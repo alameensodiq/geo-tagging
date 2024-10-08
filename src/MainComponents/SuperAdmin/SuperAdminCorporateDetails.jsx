@@ -262,8 +262,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
                   <div className="phone">
                     <span className="mobile">Email Address</span>
                     <span className="number" ref={inputRef2}>
-                      fhkgwulgiiruwg;fucbbvbbvbvbvbbvbvvbvbvbbvbvbbvbvbvbvbbvbvbbv
-                      {/* {supercorporatedetails?.data?.email} */}
+                      {supercorporatedetails?.data?.email}
                     </span>
                   </div>
                 </div>
