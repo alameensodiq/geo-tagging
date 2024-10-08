@@ -26,33 +26,34 @@ const Footer = () => {
         </div>
         <div className="prodindustry">
           <div className="titles">
-            <span className="head">PRODUCT</span>
+            <span className="head">FEATURES</span>
             <div className="prices">
-              <span className="item">Pricing</span>
-              <span className="item">Location-Based Targeting</span>
-              <span className="item">Real-Time Tracking</span>
+              <span className="item">Geo-Location Tagging</span>
+              <span className="item">Multiple Project Management</span>
+              <span className="item">Punctuality Rate tracking</span>
               <span className="item">Advanced Analytics</span>
-              <span className="item">Campaign Managemen</span>
+              <span className="item">Bio-Metrics Verification</span>
             </div>
           </div>
           <div className="titles">
-            <span className="head">INDUSTRIES</span>
+            <span className="head">APPLICABLE INDUSTRIES</span>
             <div className="prices">
-              <span className="item">Retail</span>
-              <span className="item">Healthcare</span>
-              <span className="item">Education</span>
-              <span className="item">Security</span>
+              <span className="item">Brand Activation Organizations</span>
+              <span className="item">Private Security Organizations</span>
+              <span className="item">Government Agencies</span>
+              <span className="item">Telecommunications</span>
+              <span className="item">Outsourcing Companies</span>
               <span className="item">Explore all</span>
             </div>
           </div>
-          <div className="titles">
+          {/* <div className="titles">
             <span className="head">RESOURCES</span>
             <div className="prices">
               <span className="item">About us</span>
               <span className="item">Contact us</span>
               <span className="item">Privacy & Terms</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="line" />
@@ -156,6 +157,89 @@ const Flex = styled.div`
       line-height: 16.94px;
       text-align: left;
       cursor: pointer;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .foothead {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: 20px;
+      color: #ffffff;
+      gap: 20px;
+      .logo {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        .socials {
+          display: flex;
+          flex-direction: row;
+          gap: 30px;
+        }
+      }
+      .prodindustry {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 130px;
+        .titles {
+          display: flex;
+          flex-direction: column;
+          gap: 50px;
+          .head {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 22.5px;
+            text-align: left;
+          }
+          .prices {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            .item {
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 19.36px;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+    .line {
+      width: 100%;
+      height: 1px;
+      background: #ffffff33;
+    }
+    .foremost {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      color: #ffffff;
+      align-items: flex-start;
+      height: 30px;
+      .copy {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16.94px;
+        text-align: left;
+      }
+      .privacy {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16.94px;
+        text-align: left;
+        cursor: pointer;
+      }
     }
   }
   /* padding-top: 40px; */

@@ -27,10 +27,26 @@ const Flex = styled.div`
     column-gap: 10px;
   }
 
+  @media screen and (max-width: 1180px) {
+    padding-inline: 0;
+    margin-bottom: 20px;
+    grid-template-columns: repeat(2, 1fr); // Two cards per row
+    column-gap: 10px;
+  }
+
   @media screen and (max-width: 900px) {
     grid-gap: 16px; /* Adjust as needed */
     margin-bottom: 20px;
     grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 350px) {
+    grid-gap: 16px; /* Adjust as needed */
+    margin-bottom: 20px;
+    padding-left: 0;
+    padding-right: ${(props) => (props.reduce ? "340px" : "150px")};
+    grid-template-columns: 1fr; // One card per row
+    justify-items: center; // Center the items
   }
 `;
 

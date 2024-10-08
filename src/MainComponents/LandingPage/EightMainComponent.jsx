@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Map from "../../assets/map.png";
+import Map from "../../assets/Map.png";
 
 const EightMainComponent = () => {
   return (
@@ -41,18 +41,20 @@ const Flex = styled.div`
   align-items: center;
   padding-top: 140px;
   padding-inline: 65px;
-  height: 1200px;
-  background: #28385c;
+  width: 100%;
+  height: 828px;
+  /* background: #28385c; */
   background-image: url(${Map});
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 
   .block {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding-bottom: 64px;
-    padding-left: 110px;
+    padding-bottom: 94px;
+    padding-left: 10px;
     .right {
       display: flex;
       flex-direction: column;
