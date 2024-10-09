@@ -20,7 +20,7 @@ const ProductSecondMainPage = () => {
       <LandingNavbar />
       <>
         <FirstProductMainPage
-          first="HOME / FEATURES / REAL-TIME TRACKING"
+          first="HOME / FEATURES / Bio-Metrics Verification"
           second="Experience the Power of Real-Time Tracking"
           third=""
           fourth="Identify the precise location of your representative"
@@ -28,7 +28,7 @@ const ProductSecondMainPage = () => {
           topimage2={""}
         />
         <SecondProductMainPage
-          button="Real-Time Tracking"
+          button="Bio-Metrics Verification"
           statement1="Make prompt, location-specific decisions to"
           statement2="increase the efficacy of your"
           statement3="campaign."

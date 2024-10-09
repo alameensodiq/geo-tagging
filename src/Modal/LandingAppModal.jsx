@@ -21,7 +21,8 @@ export default function LandingAppModal({
   noheadborder,
   subscribe,
   wide,
-  setStep
+  setStep,
+  setActive
 }) {
   console.log(subscribe);
   return (
@@ -40,6 +41,7 @@ export default function LandingAppModal({
         maxWidth={maxWidth}
         closeModal={closeModal}
         setStep={setStep}
+        setActive={setActive}
       >
         <AppModalStyle noheadborder={noheadborder} subscribe={subscribe}>
           <div

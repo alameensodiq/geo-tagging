@@ -7,11 +7,17 @@ export default function LandingModalLayout({
   maxWidth,
   headings,
   wide,
-  setStep
+  setStep,
+  setActive
 }) {
   return (
     <ModalLayoutStyle
-      onClick={() => setStep(0)}
+      onClick={() => {
+        setStep(0);
+        if (setActive) {
+          setActive(false);
+        }
+      }}
       wide={wide}
       headings={headings}
     >

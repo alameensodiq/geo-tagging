@@ -13,75 +13,92 @@ import { ReactComponent as Agricsymbol } from "../../assets/agricsymbol.svg";
 import { ReactComponent as Edusymbol } from "../../assets/edusymbol.svg";
 import { ReactComponent as Securitysymbol } from "../../assets/securitysymbol.svg";
 import { ReactComponent as Callsymbol } from "../../assets/callsymbol.svg";
+import { ReactComponent as Bio } from "../../assets/bio.svg";
+import { ReactComponent as Notepad } from "../../assets/notepad.svg";
+import { ReactComponent as Standclock } from "../../assets/standclock.svg";
+import { ReactComponent as Alarm } from "../../assets/alarm.svg";
 
 import pics2 from "../../assets/schedules.png";
+import Groupcard from "../../assets/Groupcard.png";
 import SecondProductMainPage from "./SecondProductMainPage";
 import LastIndustryCard from "./LastIndustryCard";
 import FeaturesCard from "../../Reusable/FeaturesCard";
 import DecoratedLastIndustryCard from "./DecoratedLastIndustryCard";
 import ThirdLastIndustry from "./ThirdLastIndustry";
 import LastIndustryMainLastDiv from "./LastIndustryMainLastDiv";
+import FirstProductMainPage from "./FirstProductMainPage";
+import FakeThirdLastIndustry from "./FakeThirdLastIndustry";
 
 const LastIndustryMainPage = () => {
   return (
     <Flex>
       <LandingNavbar />
       <>
-        <FirstIndustryComponent
+        {/* <FirstIndustryComponent
           retailer="HOME / INDUSTRY"
-          divcover="Create a flourishing"
+          divcover1="Create a flourishing"
           divcover2="workplace and lower costs,"
           divcover3="regardless of your industry."
           statement="See how our platform works with your business, industry and goals"
           reduce
           pictures={pics}
+        /> */}
+        <FirstProductMainPage
+          first="HOME / PRODUCT OVERVIEW"
+          second="Product Overview"
+          third=""
+          fourth="De-faucon is a digital application, poised to track resumption time, punctuality rate, availability at duty post and end of day report of employees"
+          fifth="assigned to remote locations or 3rd party sites.The application is positioned to cater to some of the peculiarities of blue-collar business sector,"
+          sixth="creating visibility and awareness to whereabouts of employees in remote locations or duty post"
+          topimage={Groupcard}
+          topimage2={""}
         />
         <SecondProductMainPage
-          button="Industry"
-          statement1="Discover how De - Faucon can keep you"
-          statement2="ahead of the competition in your"
-          statement3="industry"
+          button="Key Feature"
+          statement1="Improve Efficiency and Accountability"
+          statement2="with"
+          statement3="De - Faucon."
         />
         <div className="wrap">
-          <FeaturesCard reduce row={4}>
+          <FeaturesCard reduce row={3}>
             <LastIndustryCard
-              name="Retail"
-              content1="Focus on growing sales instead of"
-              content2="struggling with complex schedules"
-              content3="and timesheets"
-              Imagelogo={<Pics1 />}
+              name="Geo-location tagging"
+              content1="Create boundaries around specific"
+              content2="locations"
+              content3=""
+              Imagelogo={<Alarm />}
             />
             <LastIndustryCard
-              name="Healthcare"
-              content1="Prioritize patient care by giving"
-              content2="your staff 24/7 access to shifts and"
-              content3="schedules on any device."
-              Imagelogo={<Healthsymbol />}
+              name="Multiple Project Management"
+              content1="Coordinate campaigns across"
+              content2="various channels"
+              content3=""
+              Imagelogo={<Notepad />}
             />
             <LastIndustryCard
-              name="Education"
-              content1="Easily manage staff and"
-              content2="substitutions to ensure smooth"
-              content3="school days without any"
-              content4="interruptions"
-              Imagelogo={<Edusymbol />}
+              name="Punctuality Rate tracking"
+              content1="Track progress and measure"
+              content2="success with accurate"
+              content3="punctuality data"
+              content4=""
+              Imagelogo={<Standclock />}
             />
             <LastIndustryCard
-              name="Security"
-              content1="Streamline scheduling and time"
-              content2="tracking to ensure every job is"
-              content3="covered and accounted for"
-              content4="efficiently."
-              Imagelogo={<Securitysymbol />}
+              name="Bio-Metrics Verification"
+              content1="Ensure that representatives can"
+              content2="access platform on mobile devices"
+              content3=""
+              content4=""
+              Imagelogo={<Bio />}
             />
             <LastIndustryCard
-              name="Agriculture"
-              content1="Effortlessly scale your team to"
-              content2="meet the fluctuating demands of "
-              content3="seasonal peaks."
-              Imagelogo={<Agricsymbol />}
+              name="Advanced Analytics"
+              content1="Discover hidden patterns and"
+              content2="trends with advanced analytics"
+              content3=""
+              Imagelogo={<Notepad />}
             />
-            <LastIndustryCard
+            {/* <LastIndustryCard
               name="Construction"
               content1="Efficiently manage staff and billing"
               content2="across multiple sites and projects,"
@@ -117,10 +134,10 @@ const LastIndustryMainPage = () => {
               name="Regardless of your industry"
               content1="Our platform works with your "
               content2="business, industry and goals."
-            />
+            /> */}
           </FeaturesCard>
         </div>
-        <ThirdLastIndustry />
+        <FakeThirdLastIndustry />
         <LastIndustryMainLastDiv />
         <Footer />
       </>

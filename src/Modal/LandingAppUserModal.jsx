@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import LandingAppModal from "./LandingAppModal";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as Tick } from "../assets/tick.svg";
 
-const LandingAppUserModal = ({ setStep, step, setReload }) => {
+const LandingAppUserModal = ({ setStep, step, setReload, setActive }) => {
   const navigate = useNavigate();
   const handleCloseModal4 = () => {
     setStep(0);
@@ -54,6 +55,11 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/detailindustry-industries");
   };
 
+  const Punctuality = () => {
+    setStep(0);
+    navigate("/punctuality");
+  };
+
   const CustomerNavigate = () => {
     setStep(0);
     navigate("/customer-resources");
@@ -64,20 +70,26 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
     navigate("/about-resources");
   };
 
+  const Outsourcing = () => {
+    setStep(0);
+    navigate("/outsourcing");
+  };
+
   return (
     <div>
       <LandingAppModal
         step={56}
+        setActive={setActive}
         currentStep={step}
         closeModal={handleCloseModal4}
         // updateUserListData(update);
         // window.location.reload()
         wide
         setStep={setStep}
-        heading="Key Features"
+        heading="Features"
       >
         <Flex>
-          <div className="top">
+          {/* <div className="top">
             <div className="first" onClick={() => LocationNavigate()}>
               <span className="title">Location-Based Targeting</span>
               <span className="statement">
@@ -106,6 +118,32 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
                 <span>Track engagement and activities</span>
               </span>
             </div>
+          </div> */}
+          <div className="top">
+            <div className="first" onClick={() => LocationNavigate()}>
+              <Tick />
+              <span className="title">Geo-Location Tagging</span>
+            </div>
+            <div className="first" onClick={() => CampaignNavigate()}>
+              <Tick />
+              <span className="title">Multiple Project Management</span>
+            </div>
+          </div>
+          <div className="top">
+            <div className="first" onClick={() => Punctuality()}>
+              <Tick />
+              <span className="title">Punctuality Rate tracking</span>
+            </div>
+            <div className="first" onClick={() => AdvancedNavigate()}>
+              <Tick />
+              <span className="title">Advanced Analytics</span>
+            </div>
+          </div>
+          <div className="top">
+            <div className="first" onClick={() => RealTimeNavigate()}>
+              <Tick />
+              <span className="title">Bio-Metrics Verification</span>
+            </div>
           </div>
         </Flex>
       </LandingAppModal>
@@ -117,10 +155,10 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
         // window.location.reload()
         wide
         setStep={setStep}
-        heading="Industries"
+        heading="Applicable Industries"
       >
         <Flex>
-          <div className="top">
+          {/* <div className="top">
             <div className="first" onClick={() => IndustryNavigate()}>
               <span className="title">Retail</span>
               <span className="statement">
@@ -160,10 +198,36 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
                 <span>business, industry and goals</span>
               </span>
             </div>
+          </div> */}
+          <div className="top">
+            <div className="first" onClick={() => IndustryNavigate()}>
+              <Tick />
+              <span className="title">Brand Activation Organizations</span>
+            </div>
+            <div className="first" onClick={() => SecurityNavigate()}>
+              <Tick />
+              <span className="title">Private Security Organizations</span>
+            </div>
+          </div>
+          <div className="top">
+            <div className="first" onClick={() => EducationNavigate()}>
+              <Tick />
+              <span className="title">Government Agencies</span>
+            </div>
+            <div className="first" onClick={() => HealthNavigate()}>
+              <Tick />
+              <span className="title">Telecommunications</span>
+            </div>
+          </div>
+          <div className="top">
+            <div className="first" onClick={() => Outsourcing()}>
+              <Tick />
+              <span className="title">Outsourcing Companies</span>
+            </div>
           </div>
         </Flex>
       </LandingAppModal>
-      <LandingAppModal
+      {/* <LandingAppModal
         step={58}
         currentStep={step}
         closeModal={handleCloseModal4}
@@ -191,7 +255,7 @@ const LandingAppUserModal = ({ setStep, step, setReload }) => {
             </div>
           </div>
         </Flex>
-      </LandingAppModal>
+      </LandingAppModal> */}
     </div>
   );
 };
@@ -201,14 +265,14 @@ const Flex = styled.div`
   flex-direction: column;
   padding-inline: 2px;
   width: 100%;
-  gap: 30px;
+  gap: 50px;
   .top {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     .first {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 10px;
       width: 50%;
       .title {

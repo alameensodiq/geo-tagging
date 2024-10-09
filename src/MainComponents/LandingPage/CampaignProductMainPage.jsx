@@ -23,15 +23,15 @@ const CampaignProductMainPage = () => {
       <LandingNavbar />
       <>
         <FirstProductMainPage
-          first="HOME / FEATURES / CAMPAIGN MANAGEMENT"
+          first="HOME / FEATURES / MULTIPLE PROJECT MANAGEMENT"
           second="Tracking error risk?Not with De-Faucon’s"
-          third="Campaign Management"
+          third="Geo tagging Project"
           fourth="Our campaign management ensures well-coordinated marketing efforts"
           topimage={image1}
           topimage2={""}
         />
         <SecondProductMainPage
-          button="Campaign Management"
+          button="Multiple project management"
           statement1="Consider your tracking error risk"
           statement2=""
           statement3="covered"

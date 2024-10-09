@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { ReactComponent as RightCarat } from "../../assets/RightCarat.svg";
 
 const LastIndustryCard = ({
   name,
@@ -22,6 +23,21 @@ const LastIndustryCard = ({
           <span className="content">{content3}</span>
           <span className="content">{content4}</span>
         </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            fontSize: "14px",
+            gap: "5px",
+            width: "100%"
+          }}
+        >
+          <span>Learn </span>
+          <span>more </span>
+          <RightCarat />
+        </div>
       </div>
     </Flex>
   );
@@ -37,10 +53,11 @@ const Flex = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 25px;
-    padding: 17px 15px 16px 15px;
+    padding: 27px 25px 26px 25px;
     opacity: 0px;
     border-radius: 25px;
     background: #ffffff;
+    /* width: 100%; */
     .contents {
       display: flex;
       flex-direction: column;

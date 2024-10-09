@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import lastdiv from "../../assets/lastdiv.png";
 import lastdivwhite from "../../assets/lastdivwhite.png";
+import whity from "../../assets/whity.png";
 import { ReactComponent as White } from "../../assets/whitegreat.svg";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -27,13 +28,13 @@ const LastIndustryMainLastDiv = ({ other }) => {
           <input className="input" />
           <button className="joinus">Join Us</button>
         </div>
-        <div className="range">
+        {/* <div className="range">
           <span>
             By subscribing up, you agree to De - Faucon sending marketing
             communications, as described in the
           </span>
           <span>Privacy and Cookies policy</span>
-        </div>
+        </div> */}
       </div>
     </Flex>
   );
@@ -43,9 +44,10 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #27375b;
+  /* background-color: #27375b; */
+  background-color: #ffffff;
   background-image: ${(props) =>
-    props?.other ? `url(${lastdivwhite})` : `url(${lastdiv})`};
+    props?.other ? `url(${whity})` : `url(${whity})`};
   padding-block: 140px;
   background-size: cover;
   background-position: center;
@@ -67,7 +69,7 @@ const Flex = styled.div`
       line-height: 34.61px;
       letter-spacing: -0.02em;
       text-align: center;
-      color: #ffffff;
+      color: #27375b;
     }
     .details {
       display: flex;
@@ -77,7 +79,7 @@ const Flex = styled.div`
       line-height: 25px;
       text-align: center;
       align-items: center;
-      color: #ffffff;
+      color: #27375b;
     }
     .range {
       display: flex;
@@ -87,7 +89,7 @@ const Flex = styled.div`
       font-weight: 400;
       line-height: 25px;
       text-align: center;
-      color: #ffffff;
+      color: #27375b;
     }
     .inputdiv {
       display: flex;
@@ -100,7 +102,7 @@ const Flex = styled.div`
         padding: 16.08px 18.76px 16.08px 21.44px;
         gap: 10.72px;
         border-radius: 10.72px;
-        border: 1.34px solid #ffffff;
+        border: 1.34px solid #d0d5dd;
         outline: none;
         opacity: 0px;
         background: #ffffff;

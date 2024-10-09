@@ -17,7 +17,9 @@ const FirstProductMainPage = ({
   topimage2,
   wide,
   remove,
-  card
+  card,
+  fifth,
+  sixth
 }) => {
   const navigate = useNavigate();
   return (
@@ -27,7 +29,11 @@ const FirstProductMainPage = ({
         <span className="second">{second}</span>
         <span className="second">{third}</span>
       </div>
-      <span className="fourth">{fourth}</span>
+      <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <span className="fourth">{fourth}</span>
+        <span className="fourth">{fifth}</span>
+        <span className="fourth">{sixth}</span>
+      </div>
       {remove ? (
         ""
       ) : (

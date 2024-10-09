@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as LandingLogo } from "../../assets/LandingLogo.svg";
+import { ReactComponent as ColoredCaratDown } from "../../assets/ColoredCaratDown.svg";
 import { ReactComponent as CaretDownLanding } from "../../assets/CaretDownLanding.svg";
 import { ReactComponent as ArrowCircleRight } from "../../assets/ArrowCircleRight.svg";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +9,8 @@ import LandingAppUserModal from "../../Modal/LandingAppUserModal";
 
 const LandingNavbar = () => {
   const [step, setStep] = useState(0);
+  const [active, setActive] = useState(false);
+  const [product, setProduct] = useState(null);
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   return (
@@ -17,23 +20,72 @@ const LandingNavbar = () => {
         setStep={setStep}
         step={step}
         setReload={setReload}
+        setActive={setActive}
       />
       <div className="modules">
-        <div className="item" onClick={() => setStep(56)}>
+        {/* <div className="item" onClick={() => setStep(56)}>
           <span className="name">Product</span>
           <CaretDownLanding />
+        </div> */}
+        <div
+          // className="item"
+          className={`item ${product === 3 ? "line" : ""}`}
+          onClick={() => {
+            setProduct(3);
+            navigate("/detailindustry-industries");
+          }}
+        >
+          <span className="name">Product Overview</span>
+          {product === 3 && (
+            <span
+              style={{ width: "120px", height: "1px", background: "#504e4e" }}
+            ></span>
+          )}
         </div>
-        <div className="item" onClick={() => setStep(57)}>
+        <div
+          className={`item ${active && product === 1 ? "colored" : ""}`}
+          onClick={() => {
+            setStep(56);
+            setActive(true);
+            setProduct(1);
+          }}
+        >
+          <span className="name">Features</span>
+          {active && product === 1 ? (
+            <ColoredCaratDown />
+          ) : (
+            <CaretDownLanding />
+          )}
+        </div>
+        <div
+          className={`item ${active && product === 2 ? "colored" : ""}`}
+          onClick={() => {
+            setStep(57);
+            setActive(true);
+            setProduct(2);
+          }}
+        >
+          <span className="name">Applicable industries</span>
+          {active && product === 2 ? (
+            <ColoredCaratDown />
+          ) : (
+            <CaretDownLanding />
+          )}
+        </div>
+        <div className="item">
+          <span className="name">How it works</span>
+        </div>
+        {/* <div className="item" onClick={() => setStep(57)}>
           <span className="name">Industries</span>
           <CaretDownLanding />
-        </div>
-        <div className="item" onClick={() => navigate("/pricing")}>
+        </div> */}
+        {/* <div className="item" onClick={() => navigate("/pricing")}>
           <span className="name">Pricing</span>
-        </div>
-        <div className="item" onClick={() => setStep(58)}>
+        </div> */}
+        {/* <div className="item" onClick={() => setStep(58)}>
           <span className="name">Resources</span>
           <CaretDownLanding />
-        </div>
+        </div> */}
       </div>
       <div className="buttoncollection">
         <button className="first" onClick={() => navigate("/corporate-login")}>
@@ -71,6 +123,36 @@ const Flex = styled.div`
       cursor: pointer;
       .name {
         color: #28385c;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+    .line {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .name {
+        color: #28385c;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+    .colored {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      background: #1a87d74d;
+      border: 0.8px solid var(--NEUTRAL-Grey-Transparent, #d3def152);
+      border-radius: 25px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      cursor: pointer;
+      .name {
+        color: #1a87d7;
         font-size: 14px;
         font-weight: 500;
       }

@@ -4,31 +4,32 @@ import FifthProductMainPage from "./FifthProductMainPage";
 import Footer from "./Footer";
 import LandingNavbar from "./LandingNavbar";
 import FirstIndustryComponent from "./FirstIndustryComponent";
-import pics from "../../assets/ladyelement.png";
-import pics1 from "../../assets/master.png";
-import pics2 from "../../assets/payroll.png";
+import pics from "../../assets/caller.png";
+import pics1 from "../../assets/scalable.png";
+import pics2 from "../../assets/team.png";
 import SecondProductMainPage from "./SecondProductMainPage";
 import ThirdIndustryMainPage from "./ThirdIndustryMainPage";
+import FakeFirstIndustryComponent from "./FakeFirstIndustryComponent";
 
-const HealthCareMainPage = () => {
+const Outsourcing = () => {
   return (
     <Flex>
       <LandingNavbar />
       <>
-        <FirstIndustryComponent
-          retailer="HOME / FEATURES / Telecommunications"
-          divcover1="Streamline operations and"
-          divcover2="boost productivity with our"
-          divcover3="campaign solutions."
-          statement="Tailor your task and campaign to perfection"
+        <FakeFirstIndustryComponent
+          retailer="HOME / FEATURES / Outsourcing Companies"
+          divcover1="Never miss a beat of task with "
+          divcover2="De - Faucon"
+          divcover3=""
+          statement="Ensure on-time appointments and efficiency"
           pictures={pics}
           reduce
         />
         <SecondProductMainPage
-          button="Telecommunication"
-          statement1="Fast, reliable campaign software for"
+          button="Outsourcing Companies"
+          statement1="Efficient campaign software for"
           statement2=""
-          statement3="telecommunications"
+          statement3="outsourcing businesses"
         />
         <ThirdIndustryMainPage card1={pics1} card2={pics2} />
         <FifthProductMainPage white />
@@ -42,4 +43,4 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export default HealthCareMainPage;
+export default Outsourcing;

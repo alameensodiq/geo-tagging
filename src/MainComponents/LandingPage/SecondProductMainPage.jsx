@@ -58,7 +58,8 @@ const Flex = styled.div`
         align-items: center;
         justify-content: center;
         gap: 5px;
-        width: 226px;
+        width: auto;
+        /* width: 226px; */
         height: 32px;
         padding: 6.56px 13.8px 7.44px 10.2px;
         border-radius: 29.07px;

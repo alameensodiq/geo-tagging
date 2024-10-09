@@ -21,7 +21,7 @@ const ProductMainPage = () => {
       <LandingNavbar />
       <>
         <FirstProductMainPage
-          first="HOME / FEATURES / LOCATION-BASED TARGETING"
+          first="HOME / FEATURES / GEO-LOCATION TAGGING"
           second="Utilizes geographic data to deliver personalized"
           third="marketing messages"
           fourth="Keep track of representative location and attendance with us"

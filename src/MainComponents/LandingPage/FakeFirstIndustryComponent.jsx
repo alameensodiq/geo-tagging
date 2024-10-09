@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-const FirstIndustryComponent = ({
+const FakeFirstIndustryComponent = ({
   retailer,
   divcover1,
   divcover2,
@@ -235,4 +235,4 @@ const Flex = styled.div`
   }
 `;
 
-export default FirstIndustryComponent;
+export default FakeFirstIndustryComponent;

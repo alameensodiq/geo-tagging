@@ -109,6 +109,14 @@ const LazyIndexPolicy = React.lazy(() =>
   import("./MainComponents/LandingPage/PrivacyPolicy.jsx")
 );
 
+const LazyIndexPunctualityRate = React.lazy(() =>
+  import("./MainComponents/LandingPage/PunctualityRate.jsx")
+);
+
+const LazyIndexOutsourcing = React.lazy(() =>
+  import("./MainComponents/LandingPage/Outsourcing.jsx")
+);
+
 function App() {
   return (
     <>
@@ -236,6 +244,22 @@ function App() {
           element={
             <React.Suspense fallback={<Loader />}>
               <LazyIndexPolicy />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/punctuality"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexPunctualityRate />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/outsourcing"
+          element={
+            <React.Suspense fallback={<Loader />}>
+              <LazyIndexOutsourcing />
             </React.Suspense>
           }
         />

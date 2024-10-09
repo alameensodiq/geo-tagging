@@ -16,15 +16,16 @@ const IndustryMainPage = () => {
       <LandingNavbar />
       <>
         <FirstIndustryComponent
-          retailer="HOME / FEATURES / RETAIL"
-          divcover="Make more sales with retail"
-          divcover2="staffing campaign software that"
-          divcover3="matches demand"
+          retailer="HOME / FEATURES / Brand Activation Organizations"
+          divcover1="Make more sales with De - Faucon"
+          divcover2="campaign software that matches"
+          divcover3="demand"
           statement="Take your stores to a new level of efficiency"
           pictures={pics}
+          reduce
         />
         <SecondProductMainPage
-          button="Retail"
+          button="FMCG"
           statement1="Build the best staff schedule and track"
           statement2="time in one powerful "
           statement3="platform"

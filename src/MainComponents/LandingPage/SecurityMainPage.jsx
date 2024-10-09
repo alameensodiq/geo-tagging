@@ -16,15 +16,16 @@ const SecurityMainPage = () => {
       <LandingNavbar />
       <>
         <FirstIndustryComponent
-          retailer="HOME / FEATURES / SECURITY"
-          divcover="Manage  scheduling &"
+          retailer="HOME / FEATURES / Private Security Organizations"
+          divcover1="Manage  scheduling &"
           divcover2="management for security staff"
           divcover3="accurately & efficiently"
           statement="24/7 visibility on schedules, location & attendance"
           pictures={pics}
+          reduce
         />
         <SecondProductMainPage
-          button="Security"
+          button="Private Security Organizations"
           statement1="Deploy security teams to multiple"
           statement2=""
           statement3="location"
