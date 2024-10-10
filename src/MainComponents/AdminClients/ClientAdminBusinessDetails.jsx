@@ -139,9 +139,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   </span>
                 </div>
               </div>
-              <div className="copy">
-                <Contact />
-              </div>
+              <div className="copy">{/* <Contact /> */}</div>
             </div>
             <div className="info">
               <div className="first">
@@ -165,9 +163,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   </span>
                 </div>
               </div>
-              <div className="copy">
-                <Contact />
-              </div>
+              <div className="copy">{/* <Contact /> */}</div>
             </div>
           </div>
           <div className="last">
