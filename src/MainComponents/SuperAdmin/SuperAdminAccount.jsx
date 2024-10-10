@@ -86,9 +86,11 @@ const SuperAdminAccount = ({ title }) => {
     }
     if (changepass?.status && !authenticatingchangepass && log) {
       setStep(35);
+      setLog(false);
     }
     if (editadmindetails?.status && !authenticatingeditadmindetails && log) {
       setStep(34);
+      setLog(false);
     }
   }, [
     reload,

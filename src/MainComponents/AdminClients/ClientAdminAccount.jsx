@@ -78,9 +78,11 @@ const ClientAdminAccount = ({ title }) => {
     }
     if (changepass?.status && !authenticatingchangepass && log) {
       setStep(35);
+      setLog(false);
     }
     if (editdetails?.status && !authenticatingeditdetails && log) {
       setStep(34);
+      setLog(false);
     }
   }, [
     reload,
