@@ -410,7 +410,7 @@ const Flex = styled.div`
         .divcover {
           display: flex;
           flex-direction: column;
-          font-size: 22px;
+          font-size: 14px;
           font-weight: 600;
           line-height: 50.4px;
           text-align: left;
