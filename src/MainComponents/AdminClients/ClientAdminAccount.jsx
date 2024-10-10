@@ -139,8 +139,12 @@ const ClientAdminAccount = ({ title }) => {
   const UpdatePassword = () => {
     setLog(true);
     const { current_password, password, password_confirmation } = userdetails;
+    if (!current_password || !password || !password_confirmation) {
+      toast.error("All fields are required.");
+      return;
+    }
     if (password !== password_confirmation) {
-      toast.error("Confirm Password not the same as New Password");
+      toast.error("Confirm Password must be the same as New Password.");
       return;
     }
     dispatch(
