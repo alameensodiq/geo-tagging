@@ -52,12 +52,12 @@ const ClientAdminDashboardIndex = () => {
       .left {
         position: fixed;
         top: 0;
-        width: 35vw;
+        width: ${({ open }) => (open ? "05%" : "15%")};
         justify-content: center;
         // border: 1px solid #f2f2f2;
-        z-index: 20;
+        z-index: 1000;
         /* background: rgba(0, 0, 0, 0.75); */
-        background: ${open ? "transparent" : "#FFFFFF"};
+        background: ${open ? "#FFFFFF" : "#FFFFFF"};
         /* background: #FFFFFF; */
         min-height: 100vh;
         height: -webkit-fill-available;
@@ -65,7 +65,7 @@ const ClientAdminDashboardIndex = () => {
         transition: all 0.3s linear;
         display: block;
         /* left: ${({ show }) => (show ? "0" : "-100vw")}; */
-        border: none;
+        border-right: 1px solid #e2e8f0;
         overflow-y: none;
         .l-nav {
           /* width: 35vw; */
@@ -73,7 +73,7 @@ const ClientAdminDashboardIndex = () => {
         }
       }
       .right {
-        width: 100vw;
+        width: ${({ open }) => (open ? "95%" : "85%")};
         min-height: 100vh;
       }
     }
