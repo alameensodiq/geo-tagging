@@ -15,6 +15,7 @@ import Navbar from "./Navbar";
 import { GetUser } from "../../Store/Apis/GetUser";
 import { ChangePassword } from "../../Store/Apis/ChangePassword";
 import { EditDetails } from "../../Store/Apis/EditDetails";
+import toast from "react-hot-toast";
 
 const ClientAdminAccount = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -135,12 +136,16 @@ const ClientAdminAccount = ({ title }) => {
 
   const UpdatePassword = () => {
     setLog(true);
-    const { current_password, password } = userdetails;
+    const { current_password, password, password_confirmation } = userdetails;
+    if (password !== password_confirmation) {
+      toast.error("Confirm Password not the same as New Password");
+      return;
+    }
     dispatch(
       ChangePassword({
         current_password,
         password,
-        password_confirmation: password
+        password_confirmation
       })
     );
   };
@@ -246,6 +251,16 @@ const ClientAdminAccount = ({ title }) => {
                 name="password"
                 value={userdetails?.password}
                 placeholder={`${`Enter New Password`}`}
+              />
+              <AccountInputText
+                nosign
+                label="Confirm New Password"
+                reduce
+                passwordlogo
+                onChange={(e) => Change(e)}
+                name="password_confirmation"
+                value={userdetails?.password_confirmation}
+                placeholder={`${`Confirm New Password`}`}
               />
             </div>
             <div className="editrole">

@@ -15,6 +15,7 @@ import AccountInputText from "../../bits/AccountInputText";
 import { ChangePassword } from "../../Store/Apis/ChangePassword";
 import { GetUser } from "../../Store/Apis/GetUser";
 import { EditAdminDetails } from "../../Store/Apis/EditAdminDetails";
+import toast from "react-hot-toast";
 
 const SuperAdminAccount = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -137,15 +138,19 @@ const SuperAdminAccount = ({ title }) => {
   };
 
   const UpdatePassword = () => {
-    const { current_password, password } = userdetails;
+    setLog(true);
+    const { current_password, password, password_confirmation } = userdetails;
+    if (password !== password_confirmation) {
+      toast.error("Confirm Password not the same as New Password");
+      return;
+    }
     dispatch(
       ChangePassword({
         current_password,
         password,
-        password_confirmation: password
+        password_confirmation
       })
     );
-    setLog(true);
   };
 
   const ChangeUser = (e) => {
@@ -249,6 +254,16 @@ const SuperAdminAccount = ({ title }) => {
                 name="password"
                 value={userdetails?.password}
                 placeholder={`${`Enter New Password`}`}
+              />
+              <AccountInputText
+                nosign
+                label="Confirm New Password"
+                reduce
+                passwordlogo
+                onChange={(e) => Change(e)}
+                name="password_confirmation"
+                value={userdetails?.password_confirmation}
+                placeholder={`${`Confirm New Password`}`}
               />
             </div>
             <div className="editrole">
