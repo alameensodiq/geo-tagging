@@ -1799,12 +1799,10 @@ const ClientLocationDetails = ({ title }) => {
                         <select
                           onChange={(e) => AssignChange(e)}
                           name="user_id"
-                          value={rep[0]?.user_id || ""}
+                          value={""}
                           className="nametype"
                         >
-                          <option value="" disabled>
-                            Select a Rep
-                          </option>
+                          <option value="">Select a Rep</option>
                           {activate?.map((repItem) => (
                             <option key={repItem?.id} value={repItem?.id}>
                               {repItem?.firstName} {repItem?.lastName}

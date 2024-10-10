@@ -353,7 +353,7 @@ const Sidecontent = styled.div`
     /* align-items: center; */
     padding-inline: 12%;
     gap: 10px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     border-bottom: 0.5px solid;
     border-bottom-color: #e2e8f0;
     .menu-div {
