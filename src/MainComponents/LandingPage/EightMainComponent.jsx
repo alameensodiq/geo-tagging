@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Map from "../../assets/Map.png";
+import Map from "../../assets/map.png";
 
 const EightMainComponent = () => {
   return (
