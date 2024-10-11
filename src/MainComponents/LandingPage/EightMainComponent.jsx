@@ -6,7 +6,7 @@ const EightMainComponent = () => {
   return (
     <Flex>
       <div className="block">
-        <div className="right">
+        {/* <div className="right">
           <span className="campaign">
             Choose <span className="grow">De - Faucon.</span>for an
           </span>
@@ -28,7 +28,7 @@ const EightMainComponent = () => {
             <span className="number">427,292</span>
             <span className="work">Campaign</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </Flex>
   );
