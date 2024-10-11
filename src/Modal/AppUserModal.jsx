@@ -2003,11 +2003,7 @@ const AppUserModal = ({
               gap: "10px"
             }}
           >
-            <LargeSignInButton
-              title="Cancel"
-              large
-              onClick={() => setStep(1)}
-            />
+            <LargeSignInButton title="Back" large onClick={() => setStep(1)} />
             <LargeSignInButton
               title="Confirm"
               onClick={() => SendDetails()}
