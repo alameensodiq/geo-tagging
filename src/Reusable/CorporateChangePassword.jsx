@@ -42,8 +42,11 @@ const CorporateChangePassword = () => {
   const { forgotpassword, authenticatingforgotpassword } = useSelector(
     (state) => state.forgotpassword
   );
+  // if (forgotpassword?.status && !authenticatingforgotpassword && log) {
+  //   navigate(`/corporate-login`);
+  // }
   if (forgotpassword?.status && !authenticatingforgotpassword && log) {
-    navigate(`/corporate-login`);
+    navigate(`/corporate-reset`);
   }
 
   return (
