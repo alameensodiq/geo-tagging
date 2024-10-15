@@ -47,12 +47,12 @@ const ClientAdminDashboardIndex = () => {
       // width: calc(100vw - 300px);
       // background-color: #fff;
     }
-    @media screen and (max-width: 960px) {
+    @media screen and (max-width: 1100px) {
       /* flex-direction: column-reverse; */
       .left {
         position: fixed;
         top: 0;
-        width: ${({ open }) => (open ? "05%" : "15%")};
+        width: ${({ open }) => (open ? "05%" : "4%")};
         justify-content: center;
         // border: 1px solid #f2f2f2;
         z-index: 1000;
@@ -73,7 +73,37 @@ const ClientAdminDashboardIndex = () => {
         }
       }
       .right {
-        width: ${({ open }) => (open ? "95%" : "85%")};
+        width: ${({ open }) => (open ? "95%" : "96%")};
+        min-height: 100vh;
+      }
+    }
+    @media screen and (max-width: 960px) {
+      /* flex-direction: column-reverse; */
+      .left {
+        position: fixed;
+        top: 0;
+        width: ${({ open }) => (open ? "05%" : "4%")};
+        justify-content: center;
+        // border: 1px solid #f2f2f2;
+        z-index: 1000;
+        /* background: rgba(0, 0, 0, 0.75); */
+        background: ${open ? "#FFFFFF" : "#FFFFFF"};
+        /* background: #FFFFFF; */
+        min-height: 100vh;
+        height: -webkit-fill-available;
+        height: -moz-available;
+        transition: all 0.3s linear;
+        display: block;
+        /* left: ${({ show }) => (show ? "0" : "-100vw")}; */
+        border-right: 1px solid #e2e8f0;
+        overflow-y: none;
+        .l-nav {
+          /* width: 35vw; */
+          border-radius: 20px;
+        }
+      }
+      .right {
+        width: ${({ open }) => (open ? "95%" : "96%")};
         min-height: 100vh;
       }
     }

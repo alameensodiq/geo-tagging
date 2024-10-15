@@ -58,6 +58,23 @@ function SuperAdminSidebar({ name, role, open, setOpen }) {
     (state) => state.dashboard
   );
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1100) {
+        setOpen(true);
+      } else {
+        // setOpen(false);
+      }
+    };
+
+    handleResize(); // Check on initial render
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [setOpen]);
+
   // background: ${({open})  => ( open ? '#333481' : 'transparent')};
   return (
     <Sidecontent>
@@ -353,14 +370,15 @@ const Sidecontent = styled.div`
     /* align-items: center; */
     padding-inline: 12%;
     gap: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     border-bottom: 0.5px solid;
     border-bottom-color: #e2e8f0;
     .menu-div {
       display: flex;
       flex-direction: row;
       padding-inline: 17px;
-      padding-block: 25px;
+      padding-bottom: 25px;
+      padding-top: 5px;
       .menu {
         display: flex;
         flex-direction: row;
