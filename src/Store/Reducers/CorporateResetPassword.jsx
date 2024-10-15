@@ -1,14 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { CorporateResetPassword } from '../Apis/CorporateResetPassword';
+import { createSlice } from "@reduxjs/toolkit";
+import { CorporateResetPasswords } from "../Apis/CorporateResetPassword";
 
 export const CorporateResetPasswordSlice = createSlice({
-  name: 'resetpassword',
+  name: "resetpassword",
   initialState: {
     resetpassword: null,
     authenticatingresetpassword: false,
     authenticated: false,
     isError: false,
-    errors: null,
+    errors: null
   },
   reducers: {
     clearState: (state) => {
@@ -17,27 +17,27 @@ export const CorporateResetPasswordSlice = createSlice({
       state.authenticated = false;
       state.authenticatingresetpassword = false;
       return state;
-    },
+    }
   },
   extraReducers: (builder) => {
-    builder.addCase(CorporateResetPassword.fulfilled, (state, action) => {
+    builder.addCase(CorporateResetPasswords.fulfilled, (state, action) => {
       state.resetpassword = action.payload;
       state.authenticated = false;
       state.authenticatingresetpassword = false;
       return state;
     });
-    builder.addCase(CorporateResetPassword.pending, (state, action) => {
-        state.authenticatingresetpassword = true;
-        state.authenticated = true;
+    builder.addCase(CorporateResetPasswords.pending, (state, action) => {
+      state.authenticatingresetpassword = true;
+      state.authenticated = true;
     });
-    builder.addCase(CorporateResetPassword.rejected, (state, action) => {
-        state.errors = action.errors || action.payload;
-        state.authenticated = false;
-        state.authenticatingresetpassword = false;
-        state.isError = true;
-        return state;
+    builder.addCase(CorporateResetPasswords.rejected, (state, action) => {
+      state.errors = action.errors || action.payload;
+      state.authenticated = false;
+      state.authenticatingresetpassword = false;
+      state.isError = true;
+      return state;
     });
-  },
+  }
 });
 
 export const { clearState } = CorporateResetPasswordSlice.actions;

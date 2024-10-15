@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const CorporateResetPassword = createAsyncThunk(
+export const CorporateResetPasswords = createAsyncThunk(
   "resetpassword",
   async ({ password, password_confirmation, token }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);

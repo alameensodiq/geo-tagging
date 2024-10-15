@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { CorporateForgotPassword } from "../Store/Apis/CorporateForgotPassword";
+import { CorporateResetPasswords } from "../Store/Apis/CorporateResetPassword";
 
 const CorporateResetPassword = () => {
   const navigate = useNavigate();
@@ -21,16 +22,16 @@ const CorporateResetPassword = () => {
   const [user, setUser] = useState({
     password: "",
     password_confirmation: "",
-    token: token
+    token: ""
   });
 
   useEffect(() => {
     setLog(false);
-    setUser({
-      ...user,
-      token: token
-    });
-  }, [token]);
+    // setUser({
+    //   ...user,
+    //   token: token
+    // });
+  }, []);
 
   const Change = (e) => {
     const { name, value } = e.target;
@@ -44,9 +45,23 @@ const CorporateResetPassword = () => {
   const Authentication = () => {
     setLog(true);
     const { password, password_confirmation, token } = user;
+
+    // Check if all fields are present and passwords match
+    if (!password || !password_confirmation || !token) {
+      toast.error("All fields are required.");
+      return;
+    }
+
+    if (password !== password_confirmation) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+
     console.log({ password, password_confirmation, token });
+
+    // Dispatch the action only if validations pass
     dispatch(
-      CorporateForgotPassword({ password, password_confirmation, token })
+      CorporateResetPasswords({ password, password_confirmation, token })
     );
   };
 
