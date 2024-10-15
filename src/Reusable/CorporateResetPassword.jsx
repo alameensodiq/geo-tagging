@@ -44,6 +44,7 @@ const CorporateResetPassword = () => {
   const Authentication = () => {
     setLog(true);
     const { password, password_confirmation, token } = user;
+    console.log({ password, password_confirmation, token });
     dispatch(
       CorporateForgotPassword({ password, password_confirmation, token })
     );
@@ -80,6 +81,14 @@ const CorporateResetPassword = () => {
             placeholder="Enter your email"
             label="Email"
           /> */}
+          <AuthInputPassword
+            onChange={(e) => Change(e)}
+            name="token"
+            value={user?.token}
+            auth
+            placeholder="Enter your token"
+            label="Token"
+          />
           <AuthInputPassword
             onChange={(e) => Change(e)}
             name="password"
