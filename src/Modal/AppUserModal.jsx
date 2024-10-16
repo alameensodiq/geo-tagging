@@ -8106,7 +8106,7 @@ const AppUserModal = ({
               color: "#667085"
             }}
           >
-            <span>You have successfully make Payment</span>
+            <span>You have successfully made Payment</span>
           </div>
           <div
             style={{
