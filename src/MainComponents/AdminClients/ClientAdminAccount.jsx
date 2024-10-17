@@ -75,6 +75,7 @@ const ClientAdminAccount = ({ title }) => {
       dispatch(GetUser());
       setReload(false);
       setLog(false);
+      setStep(0);
     }
     if (changepass?.status && !authenticatingchangepass && log) {
       setStep(35);
@@ -141,10 +142,12 @@ const ClientAdminAccount = ({ title }) => {
     const { current_password, password, password_confirmation } = userdetails;
     if (!current_password || !password || !password_confirmation) {
       toast.error("All fields are required.");
+      setLog(false);
       return;
     }
     if (password !== password_confirmation) {
       toast.error("Confirm Password must be the same as New Password.");
+      setLog(false);
       return;
     }
     dispatch(

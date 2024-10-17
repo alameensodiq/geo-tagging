@@ -671,10 +671,10 @@ const Tables = ({
                             <Deactivate />
                             <span>Deactivate</span>
                           </div>
-                          <div className="row" onClick={() => ""}>
+                          {/* <div className="row" onClick={() => ""}>
                             <View />
                             <span>Renew Subscription</span>
-                          </div>
+                          </div> */}
                         </div>
                       )}
                     </StyledTableCell>
@@ -991,7 +991,7 @@ const Tables = ({
                       <Action onClick={() => DeactivateProdetails(index)} />
                       {openprodetails && proindex === index && (
                         <div className="activeprojectdetailsmodal">
-                          <div
+                          {/* <div
                             className="row"
                             onClick={() => {
                               "";
@@ -1003,7 +1003,7 @@ const Tables = ({
                           >
                             <Location />
                             <span>Change Location</span>
-                          </div>
+                          </div> */}
                           <div
                             className="row"
                             onClick={() => {
@@ -2902,7 +2902,7 @@ const Flex = styled.div`
   }
   .activeprojectmodal {
     width: 150px;
-    height: 90px;
+    height: 70px;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 15px;
@@ -2951,6 +2951,7 @@ const Flex = styled.div`
     border-radius: 8px;
     padding: 15px;
     display: flex;
+    justify-content: center;
     right: 90px;
     bottom: 10px;
     flex-direction: column;

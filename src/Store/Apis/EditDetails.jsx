@@ -42,7 +42,7 @@ export const EditDetails = createAsyncThunk(
       );
       let data = await response.json();
       if (data?.status) {
-        toast.success(data.message);
+        // toast.success(data.message);
       }
       if (!data?.status) {
         toast.error(data.message);
