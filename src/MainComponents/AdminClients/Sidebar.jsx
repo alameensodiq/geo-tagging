@@ -266,9 +266,6 @@ function Sidebar({ name, role, open, setOpen }) {
 const Sidecontent = styled.div`
   // padding: 30px;
   height: 100vh;
-  width: ${({ open }) =>
-    open ? "40px" : ""}; // Adjust the width based on open state
-  transition: width 0.3s ease; // Smooth transition effect
 
   a {
     text-decoration: none;
