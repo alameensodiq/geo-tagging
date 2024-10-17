@@ -58,6 +58,7 @@ const ClientLocationDetails = ({ title }) => {
   const [bustate, setbustate] = useState(false);
   const [bustate11, setbustate11] = useState(false);
   const [bustate12, setbustate12] = useState(false);
+  const [bustate79, setbustate79] = useState(false);
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
@@ -142,8 +143,10 @@ const ClientLocationDetails = ({ title }) => {
       stopDate: formatDate(stopDate),
       startTime: "",
       stopTime: "",
+      forceCreate: false,
       isHourlyStamp: false,
       minutesToAdd: "",
+      existingProjectId: null,
       duration: 60,
       dailyPay: 0,
       locations: [
@@ -192,7 +195,9 @@ const ClientLocationDetails = ({ title }) => {
       stopTime: "",
       isHourlyStamp: false,
       minutesToAdd: "",
+      existingProjectId: null,
       duration: 60,
+      forceCreate: false,
       dailyPay: 0,
       locations: [
         // {
@@ -232,7 +237,7 @@ const ClientLocationDetails = ({ title }) => {
   const { addproject, authenticatingaddproject } = useSelector(
     (state) => state.addproject
   );
-  console.log(addproject?.data);
+  console.log(addproject);
 
   const { assigned, authenticatingassigned } = useSelector(
     (state) => state.assigned
@@ -328,6 +333,8 @@ const ClientLocationDetails = ({ title }) => {
           stopDate: formatDate(editproject?.data?.stopDate),
           startTime: editproject?.data?.startTime,
           stopTime: editproject?.data?.stopTime,
+          forceCreate: false,
+          existingProjectId: null,
           isHourlyStamp: editproject?.data?.isActive || false,
           minutesToAdd: editproject?.data?.gracePeriod || null,
           duration: 60,
@@ -369,6 +376,8 @@ const ClientLocationDetails = ({ title }) => {
           stopDate: formatDate(editproject?.data?.stopDate),
           startTime: editproject?.data?.startTime,
           stopTime: editproject?.data?.stopTime,
+          forceCreate: false,
+          existingProjectId: null,
           isHourlyStamp: editproject?.data?.isActive || false,
           minutesToAdd: editproject?.data?.gracePeriod || null,
           duration: 60,
@@ -451,6 +460,8 @@ const ClientLocationDetails = ({ title }) => {
             startDate: editproject?.data?.startDate,
             stopDate: editproject?.data?.stopDate,
             startTime: editproject?.data?.startTime,
+            forceCreate: false,
+            existingProjectId: null,
             stopTime: editproject?.data?.stopTime,
             isHourlyStamp: editproject?.data?.isActive || false,
             minutesToAdd: editproject?.data?.gracePeriod || null,
@@ -493,6 +504,8 @@ const ClientLocationDetails = ({ title }) => {
             stopDate: editproject?.data?.stopDate,
             startTime: editproject?.data?.startTime,
             stopTime: editproject?.data?.stopTime,
+            forceCreate: false,
+            existingProjectId: null,
             isHourlyStamp: editproject?.data?.isActive || false,
             minutesToAdd: editproject?.data?.gracePeriod || null,
             duration: 60,
@@ -535,6 +548,7 @@ const ClientLocationDetails = ({ title }) => {
             stopDate: formatDate(stopDate),
             startTime: "",
             stopTime: "",
+            existingProjectId: null,
             isHourlyStamp: false,
             minutesToAdd: "",
             duration: 60,
@@ -575,6 +589,7 @@ const ClientLocationDetails = ({ title }) => {
             stopDate: formatDate(stopDate),
             startTime: "",
             stopTime: "",
+            existingProjectId: null,
             isHourlyStamp: false,
             minutesToAdd: "",
             duration: 60,
@@ -605,6 +620,28 @@ const ClientLocationDetails = ({ title }) => {
       SetActivating1(true);
       SetActivate(false);
       SetPend(false);
+      setbustate(false);
+      setbustate79(false);
+      setStep(0);
+    }
+    if (addproject?.status && !authenticatingaddproject && bustate79) {
+      SetActivating1(true);
+      SetActivate(false);
+      SetPend(false);
+      setbustate(false);
+      setbustate79(false);
+      setStep(0);
+    }
+    if (
+      !addproject?.status &&
+      bustate &&
+      addproject?.message ===
+        "A project with the name  already exists for Test user. Do you wish to proceed?"
+    ) {
+      // SetActivating1(true);
+      // SetActivate(false);
+      // SetPend(false);
+      setStep(79);
       setbustate(false);
     }
     if (
@@ -641,7 +678,10 @@ const ClientLocationDetails = ({ title }) => {
     payment?.status,
     authenticatingpayment,
     assigned?.data?.calculatedAmount,
-    assigned?.data?.numberOfReps
+    assigned?.data?.numberOfReps,
+    editprojectId,
+    addproject?.message,
+    bustate79
   ]);
 
   useEffect(() => {
@@ -673,6 +713,7 @@ const ClientLocationDetails = ({ title }) => {
   const setActivate = () => {
     if (editprojectId) {
       toast.error("You can't edit Project Details");
+      return;
     }
     SetActivate(true);
     SetPend(false);
@@ -712,6 +753,79 @@ const ClientLocationDetails = ({ title }) => {
       startTime,
       stopTime,
       dailyPay,
+      forceCreate,
+      locations,
+      minutesToAdd,
+      existingProjectId,
+      isHourlyStamp
+    } = assigncopy;
+    const areAllVariablesPresent =
+      name &&
+      description &&
+      startTime &&
+      stopTime &&
+      dailyPay != null &&
+      locations &&
+      locations.length > 0 &&
+      minutesToAdd !== undefined &&
+      minutesToAdd !== null;
+
+    if (areAllVariablesPresent) {
+      if (editprojectId) {
+        console.log("Id available");
+        dispatch(
+          AddProject({
+            name,
+            description,
+            minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
+            startDate: assigncopy.startDate,
+            stopDate: assigncopy.stopDate,
+            startTime,
+            existingProjectId: editprojectId,
+            stopTime,
+            forceCreate,
+            isHourlyStamp,
+            duration: assigncopy.duration,
+            dailyPay: JSON.parse(assigncopy.dailyPay),
+            locations,
+            weekdays: assigncopy.weekdays
+          })
+        );
+      }
+      dispatch(
+        AddProject({
+          name,
+          description,
+          minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
+          startDate: assigncopy.startDate,
+          stopDate: assigncopy.stopDate,
+          startTime,
+          existingProjectId: null,
+          stopTime,
+          forceCreate,
+          isHourlyStamp,
+          duration: assigncopy.duration,
+          dailyPay: JSON.parse(assigncopy.dailyPay),
+          locations,
+          weekdays: assigncopy.weekdays
+        })
+      );
+      setbustate(true);
+    } else {
+      console.log(assigncopy);
+      toast.error("Some required variables are missing.");
+    }
+  };
+
+  const setPendingRoleExist1 = () => {
+    console.log(assign?.minutesToAdd);
+    const {
+      name,
+      description,
+      startTime,
+      stopTime,
+      dailyPay,
+      forceCreate,
       locations,
       minutesToAdd,
       isHourlyStamp
@@ -728,6 +842,26 @@ const ClientLocationDetails = ({ title }) => {
       minutesToAdd !== null;
 
     if (areAllVariablesPresent) {
+      if (editprojectId) {
+        dispatch(
+          AddProject({
+            name,
+            description,
+            minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
+            startDate: assigncopy.startDate,
+            stopDate: assigncopy.stopDate,
+            startTime,
+            stopTime,
+            existingProjectId: editprojectId,
+            forceCreate: !forceCreate,
+            isHourlyStamp,
+            duration: assigncopy.duration,
+            dailyPay: JSON.parse(assigncopy.dailyPay),
+            locations,
+            weekdays: assigncopy.weekdays
+          })
+        );
+      }
       dispatch(
         AddProject({
           name,
@@ -737,6 +871,8 @@ const ClientLocationDetails = ({ title }) => {
           stopDate: assigncopy.stopDate,
           startTime,
           stopTime,
+          existingProjectId: null,
+          forceCreate: !forceCreate,
           isHourlyStamp,
           duration: assigncopy.duration,
           dailyPay: JSON.parse(assigncopy.dailyPay),
@@ -744,7 +880,7 @@ const ClientLocationDetails = ({ title }) => {
           weekdays: assigncopy.weekdays
         })
       );
-      setbustate(true);
+      setbustate79(true);
     } else {
       console.log(assigncopy);
       toast.error("Some required variables are missing.");
@@ -1069,8 +1205,10 @@ const ClientLocationDetails = ({ title }) => {
     <Flex>
       <Navbar title={title} />
       <AppUserModal
+        setPendingRoleExist1={setPendingRoleExist1}
         assigned={assigned?.data ? assigned?.data : []}
         setStep={setStep}
+        setbustate={setbustate}
         step={step}
         SendAssignRepBolu={SendAssignRepBolu}
         setReload={setReload}

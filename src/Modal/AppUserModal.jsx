@@ -58,7 +58,8 @@ const AppUserModal = ({
   SendAssignRepBolu,
   payment,
   supersubs,
-  projectbusId
+  projectbusId,
+  setPendingRoleExist1
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
@@ -9176,6 +9177,80 @@ const AppUserModal = ({
             }}
           ></div>
         </FlexUser>
+      </AppModal>
+      <AppModal
+        step={79}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          {/* <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            <Success />
+          </div> */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                fontWeight: "bold"
+              }}
+            >
+              Project Name Existed
+            </div>
+            <span>
+              Are you sure you want to continue with the project name, Are
+            </span>
+            <span>you sure?</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton title="No" large onClick={() => setStep(0)} />
+            <LargeSignInButton
+              title="Yes"
+              onClick={() => {
+                setPendingRoleExist1();
+                // setStep(0)
+              }}
+              large
+              background
+              color
+            />
+          </div>
+        </div>
       </AppModal>
     </div>
   );
