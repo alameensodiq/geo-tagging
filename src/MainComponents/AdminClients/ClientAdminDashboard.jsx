@@ -370,7 +370,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                   </div>
                   <div className="circlereal">
                     {/* <span className="label">Total Punctuality Rate</span> */}
-                    <span className="label">Total Eligible Days</span>
+                    {/* <span className="label">Total Eligible Days</span> */}
                     <span className="name">
                       {corporatepunctual?.data?.punctualPercentage <= 0
                         ? "0"

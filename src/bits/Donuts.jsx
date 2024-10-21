@@ -14,8 +14,8 @@ function Donuts({ overview, report, data1, data2 }) {
   const data1Number = parsePercentage(data1);
   const data2Number = parsePercentage(data2);
 
-  console.log('Parsed data1Number:', data1Number);
-  console.log('Parsed data2Number:', data2Number);
+  console.log("Parsed data1Number:", data1Number);
+  console.log("Parsed data2Number:", data2Number);
 
   // Create series if both data1 and data2 are valid percentages
   const series =
@@ -31,7 +31,7 @@ function Donuts({ overview, report, data1, data2 }) {
         startAngle: -90,
         endAngle: 270,
         donut: {
-          size: '70%',
+          size: "70%",
           labels: {
             show: true,
             total: {
@@ -41,13 +41,13 @@ function Donuts({ overview, report, data1, data2 }) {
                 if (data1Number >= 0 && data2Number >= 0) {
                   if (!report) {
                     // Case when report is falsy
-                    return `${(data1Number + data2Number)}%`;
+                    return `${data1Number}%`;
                   } else {
                     // Case when report is truthy
-                    return `${(data1Number + data2Number)}`;
+                    return `${data1Number + data2Number}`;
                   }
                 }
-                return '1700'; // Default value
+                return "1700"; // Default value
               }
             },
             value: {

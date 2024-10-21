@@ -79,7 +79,7 @@ const CorporateResetPassword = () => {
           <CorporateLogo style={{ cursor: "pointer" }} />
         </div>
         <div className="second">
-          <span className="unique">Forgot Password</span>
+          <span className="unique">Reset Password</span>
           <div className="welcome">
             <span className="statement">
               Change your auto generated password to your personal
