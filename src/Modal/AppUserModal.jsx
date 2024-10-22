@@ -43,6 +43,7 @@ import { EditFreeTrial } from "../Store/Apis/EditFreeTrial";
 import CameraComponent from "../MainComponents/Camera";
 import { ProjectRemove } from "../Store/Apis/ProjectRemove";
 import { useNavigate } from "react-router-dom";
+import { businessprojects, clients } from "../Routes";
 
 const AppUserModal = ({
   setStep,
@@ -7972,41 +7973,98 @@ const AppUserModal = ({
         // updateUserListData(update);
         // window.location.reload()
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
-            alignItems: "center"
-          }}
-        >
+        {payment?.data?.subscriptionName === "FREE_TRIAL" ? (
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
+              gap: "15px",
               justifyContent: "center",
-              alignItems: "center",
-              paddingTop: "10px"
+              alignItems: "center"
+            }}
+          >
+            <Success />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center"
+              }}
+            >
+              Successful
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "5px",
+                fontSize: "12px",
+                color: "#667085"
+              }}
+            >
+              <span>
+                You have successfully Created a Project with Free Trial
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px"
+              }}
+            >
+              <LargeSignInButton
+                title="Close"
+                onClick={() => {
+                  handleCloseModal4();
+                  navigate(`${clients}/${businessprojects}`);
+                }}
+                big
+                background
+                color
+              />
+            </div>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              alignItems: "center"
             }}
           >
             <div
               style={{
                 display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-                alignItems: "center"
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: "10px"
               }}
             >
-              <span
+              <div
                 style={{
-                  color: "#1E1B39",
-                  fontSize: "19px",
-                  fontWeight: "500"
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  alignItems: "center"
                 }}
               >
-                Payment Method
-              </span>
-              <span
+                <span
+                  style={{
+                    color: "#1E1B39",
+                    fontSize: "19px",
+                    fontWeight: "500"
+                  }}
+                >
+                  Payment Method
+                </span>
+                {/* <span
                 style={{
                   color: "#788194",
                   fontSize: "12px",
@@ -8015,60 +8073,60 @@ const AppUserModal = ({
               >
                 You are about to pay a total of 10,000 naira for five selected
                 business
-              </span>
-              <span
-                style={{
-                  color: "#788194",
-                  fontSize: "12px",
-                  fontWeight: "400"
-                }}
-              >
-                reps. Kindly select your preffered payment method below to
-                continue
-              </span>
+              </span> */}
+                <span
+                  style={{
+                    color: "#788194",
+                    fontSize: "12px",
+                    fontWeight: "400"
+                  }}
+                >
+                  Kindly select your preffered payment method below to continue
+                </span>
+              </div>
             </div>
-          </div>
-          <div
-            onClick={handlePaymentRedirect}
-            style={{
-              width: "100%",
-              border: "1px solid #1A87D7",
-              borderRadius: "10px",
-              padding: "15px",
-              display: "flex",
-              height: "80px",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              cursor: "pointer"
-            }}
-          >
             <div
+              onClick={handlePaymentRedirect}
               style={{
+                width: "100%",
+                border: "1px solid #1A87D7",
+                borderRadius: "10px",
+                padding: "15px",
                 display: "flex",
+                height: "80px",
                 flexDirection: "row",
-                gap: "20px",
-                color: "#1A87D7",
-                fontSize: "14px",
-                fontWeight: "500",
-                alignItems: "center"
+                justifyContent: "flex-start",
+                cursor: "pointer"
               }}
             >
-              <span>
-                <Flutterwave />
-              </span>
-              <span>Flutterwave</span>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "20px",
+                  color: "#1A87D7",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  alignItems: "center"
+                }}
+              >
+                <span>
+                  <Flutterwave />
+                </span>
+                <span>Flutterwave</span>
+              </div>
             </div>
-          </div>
 
-          <LargeSignInButton
-            // onClick={() => handleCloseModal4()}
-            onClick={handlePaymentRedirect}
-            bigger
-            title={"Proceed"}
-            background
-            color
-          />
-        </div>
+            <LargeSignInButton
+              // onClick={() => handleCloseModal4()}
+              onClick={handlePaymentRedirect}
+              bigger
+              title={"Proceed"}
+              background
+              color
+            />
+          </div>
+        )}
       </AppModal>
       <AppModal
         step={72}

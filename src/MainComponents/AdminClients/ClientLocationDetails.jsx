@@ -249,6 +249,8 @@ const ClientLocationDetails = ({ title }) => {
     (state) => state.payment
   );
 
+  console.log(payment?.status);
+
   // useEffect(() => {
   //   if (addproject?.data?.locations?.length > 0) {
   //     const defaultLocationId = addproject.data.locations[0].id;
@@ -630,13 +632,14 @@ const ClientLocationDetails = ({ title }) => {
       SetPend(false);
       setbustate(false);
       setbustate79(false);
+      // setStep(79);
       setStep(0);
     }
     if (
       !addproject?.status &&
       bustate &&
       addproject?.message ===
-        "A project with the name  already exists for Test user. Do you wish to proceed?"
+        "A project with the name already exists for Test user. Do you wish to proceed?"
     ) {
       // SetActivating1(true);
       // SetActivate(false);
@@ -699,7 +702,7 @@ const ClientLocationDetails = ({ title }) => {
         )
       );
     }
-  }, [activate]);
+  }, []);
 
   console.log(businessrep?.data?.data);
 
