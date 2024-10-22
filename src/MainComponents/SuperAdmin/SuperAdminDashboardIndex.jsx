@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SuperAdminSidebar from "./SuperAdminSidebar";
+import { LogOutAuthenticationSuperAdmin } from "../../bits/LogOutAuthentication";
 // import { LogoutUser } from '../helper/LogoutUser';
 
 export function useShow() {
@@ -117,12 +118,13 @@ const SuperAdminDashboardIndex = () => {
     const dispatch = useDispatch();
 
     const onIdle = () => {
+      LogOutAuthenticationSuperAdmin();
       // dispatch(LogoutUser())
     };
     return (
       <IdleTimerProvider
         ref={idleTimerRef}
-        timeout={1800 * 1000}
+        timeout={5 * 60 * 1000}
         onIdle={onIdle}
       >
         <SuperAdminDashboardIndex.Wrapper show={show}>
