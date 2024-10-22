@@ -15,7 +15,8 @@ export const ModalButton = ({
   remove,
   whitey,
   short,
-  exportdownload
+  exportdownload,
+  small
 }) => {
   return (
     <Flex
@@ -26,6 +27,7 @@ export const ModalButton = ({
       color={color}
       reduce={reduce}
       noborder={noborder}
+      small={small}
     >
       <button onClick={() => onClick()} className="authenticationbutton">
         {whitey ? (
@@ -66,6 +68,7 @@ const Flex = styled.div`
     text-align: left;
     min-height: 40px;
     cursor: pointer;
+    padding-right: ${(props) => (props?.small ? "10px" : "")};
     border: ${(props) => (props.reduce ? `1px solid #1A87D7` : "none")};
     width: ${(props) =>
       props.remove
@@ -74,6 +77,8 @@ const Flex = styled.div`
         ? "115px"
         : props.exportdownload
         ? "180px"
+        : props?.small
+        ? "145px"
         : "180px"};
     /* border: ${(props) =>
       props.noborder

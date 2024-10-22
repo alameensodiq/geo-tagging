@@ -1796,7 +1796,8 @@ const ClientLocationDetails = ({ title }) => {
                           onClick={() => verify(updateIndex)}
                           background
                           color
-                          short
+                          // short
+                          small
                           title="Verify Address"
                           whitey
                         />
