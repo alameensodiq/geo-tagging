@@ -143,7 +143,7 @@ const ClientLocationDetails = ({ title }) => {
       stopDate: formatDate(stopDate),
       startTime: "",
       stopTime: "",
-      forceCreate: false,
+      // forceCreate: false,
       isHourlyStamp: false,
       minutesToAdd: "",
       existingProjectId: null,
@@ -197,7 +197,7 @@ const ClientLocationDetails = ({ title }) => {
       minutesToAdd: "",
       existingProjectId: null,
       duration: 60,
-      forceCreate: false,
+      // forceCreate: false,
       dailyPay: 0,
       locations: [
         // {
@@ -335,7 +335,7 @@ const ClientLocationDetails = ({ title }) => {
           stopDate: formatDate(editproject?.data?.stopDate),
           startTime: editproject?.data?.startTime,
           stopTime: editproject?.data?.stopTime,
-          forceCreate: false,
+          // forceCreate: false,
           existingProjectId: null,
           isHourlyStamp: editproject?.data?.isActive || false,
           minutesToAdd: editproject?.data?.gracePeriod || null,
@@ -462,7 +462,7 @@ const ClientLocationDetails = ({ title }) => {
             startDate: editproject?.data?.startDate,
             stopDate: editproject?.data?.stopDate,
             startTime: editproject?.data?.startTime,
-            forceCreate: false,
+            // forceCreate: false,
             existingProjectId: null,
             stopTime: editproject?.data?.stopTime,
             isHourlyStamp: editproject?.data?.isActive || false,
@@ -506,7 +506,7 @@ const ClientLocationDetails = ({ title }) => {
             stopDate: editproject?.data?.stopDate,
             startTime: editproject?.data?.startTime,
             stopTime: editproject?.data?.stopTime,
-            forceCreate: false,
+            // forceCreate: false,
             existingProjectId: null,
             isHourlyStamp: editproject?.data?.isActive || false,
             minutesToAdd: editproject?.data?.gracePeriod || null,
@@ -635,18 +635,18 @@ const ClientLocationDetails = ({ title }) => {
       // setStep(79);
       setStep(0);
     }
-    if (
-      !addproject?.status &&
-      bustate &&
-      addproject?.message ===
-        "A project with the name already exists for Test user. Do you wish to proceed?"
-    ) {
-      // SetActivating1(true);
-      // SetActivate(false);
-      // SetPend(false);
-      setStep(79);
-      setbustate(false);
-    }
+    // if (
+    //   !addproject?.status &&
+    //   bustate &&
+    //   addproject?.message ===
+    //     "A project with the name already exists for Test user. Do you wish to proceed?"
+    // ) {
+    //   // SetActivating1(true);
+    //   // SetActivate(false);
+    //   // SetPend(false);
+    //   setStep(79);
+    //   setbustate(false);
+    // }
     if (
       assigned?.data?.numberOfReps &&
       assigned?.data?.calculatedAmount &&
@@ -756,7 +756,7 @@ const ClientLocationDetails = ({ title }) => {
       startTime,
       stopTime,
       dailyPay,
-      forceCreate,
+      // forceCreate,
       locations,
       minutesToAdd,
       existingProjectId,
@@ -786,7 +786,7 @@ const ClientLocationDetails = ({ title }) => {
             startTime,
             existingProjectId: editprojectId,
             stopTime,
-            forceCreate,
+            // forceCreate,
             isHourlyStamp,
             duration: assigncopy.duration,
             dailyPay: JSON.parse(assigncopy.dailyPay),
@@ -805,7 +805,7 @@ const ClientLocationDetails = ({ title }) => {
           startTime,
           existingProjectId: null,
           stopTime,
-          forceCreate,
+          // forceCreate,
           isHourlyStamp,
           duration: assigncopy.duration,
           dailyPay: JSON.parse(assigncopy.dailyPay),
@@ -856,7 +856,7 @@ const ClientLocationDetails = ({ title }) => {
             startTime,
             stopTime,
             existingProjectId: editprojectId,
-            forceCreate: !forceCreate,
+            // forceCreate: !forceCreate,
             isHourlyStamp,
             duration: assigncopy.duration,
             dailyPay: JSON.parse(assigncopy.dailyPay),
@@ -875,7 +875,7 @@ const ClientLocationDetails = ({ title }) => {
           startTime,
           stopTime,
           existingProjectId: null,
-          forceCreate: !forceCreate,
+          // forceCreate: !forceCreate,
           isHourlyStamp,
           duration: assigncopy.duration,
           dailyPay: JSON.parse(assigncopy.dailyPay),
