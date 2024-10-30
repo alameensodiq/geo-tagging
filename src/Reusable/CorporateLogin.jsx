@@ -89,8 +89,8 @@ const CorporateLogin = () => {
     log
   ) {
     // navigate(`${clients}`);
-    navigate("/corporate-reset"); //password-reset
-    // navigate("/corporate-changepassword"); //forgot
+    // navigate("/corporate-reset"); //password-reset
+    navigate("/corporate-changepassword"); //forgot
   }
 
   return (
