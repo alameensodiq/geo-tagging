@@ -51,6 +51,7 @@ import ClientUsermanagementDetails from "./MainComponents/AdminClients/ClientUse
 import React from "react";
 import { Loader } from "./Loader.jsx";
 import Demo from "./Reusable/Demo.jsx";
+import ChangePasswords from "./Reusable/ChangePassword";
 
 const LazyIndexPage = React.lazy(() =>
   import("./MainComponents/LandingPage/MainPage.jsx")
@@ -267,7 +268,7 @@ function App() {
         {/* <Route path="/" element={<MainPage />} /> */}
         <Route path="/super-login" element={<Login />} />
         <Route path="/demo" element={<Demo />} />
-        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/change-password" element={<ChangePasswords />} />
         <Route path="/corporate-login" element={<CorporateLogin />} />
         <Route path="/corporate-reset" element={<CorporateResetPassword />} />
         <Route

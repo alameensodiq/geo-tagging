@@ -138,7 +138,7 @@ const CorporateLogin = () => {
               style={{ textDecoration: "none", color: "#1A87D7" }}
               to={"/corporate-changepassword"}
             >
-              Forgot password?
+              Reset password?
             </Link>
           </div>
         </div>

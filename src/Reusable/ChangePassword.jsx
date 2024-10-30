@@ -9,14 +9,16 @@ import AuthInputPassword from "../bits/AuthInputPassword";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
+import { ChangePassword } from "../Store/Apis/ChangePassword";
 
-const ChangePassword = () => {
+const ChangePasswords = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [next, setNext] = useState(false);
   const [log, setLog] = useState(false);
   const [user, setUser] = useState({
-    email: "",
+    current_password: "",
+    password_confirmation: "",
     password: ""
   });
 
@@ -34,8 +36,35 @@ const ChangePassword = () => {
   };
 
   const Authentication = () => {
-    // navigate(`${superadmin}`)
+    setLog(true);
+    const { current_password, password, password_confirmation } = user;
+    if (!current_password || !password || !password_confirmation) {
+      toast.error("All fields are required.");
+      setLog(false);
+      return;
+    }
+    if (password !== password_confirmation) {
+      toast.error("Confirm Password must be the same as New Password.");
+      setLog(false);
+      return;
+    }
+    dispatch(
+      ChangePassword({
+        current_password,
+        password,
+        password_confirmation
+      })
+    );
   };
+
+  const { changepass, authenticatingchangepass } = useSelector(
+    (state) => state.changepass
+  );
+  console.log(changepass?.data);
+
+  if (changepass?.status && !authenticatingchangepass && log) {
+    navigate(`/corporate-login`);
+  }
 
   return (
     <Flex>
@@ -55,7 +84,15 @@ const ChangePassword = () => {
         <div className="third">
           <AuthInputPassword
             onChange={(e) => Change(e)}
-            name="Password"
+            name="current_password"
+            value={user?.current_password}
+            auth
+            placeholder="Enter new password"
+            label="Current Password"
+          />
+          <AuthInputPassword
+            onChange={(e) => Change(e)}
+            name="password"
             value={user?.password}
             auth
             placeholder="Enter new password"
@@ -63,8 +100,8 @@ const ChangePassword = () => {
           />
           <AuthInputPassword
             onChange={(e) => Change(e)}
-            name="Password"
-            value={user?.password}
+            name="password_confirmation"
+            value={user?.password_confirmation}
             auth
             placeholder="Confirm new password"
             label="Confirm New Password"
@@ -74,7 +111,7 @@ const ChangePassword = () => {
           <LargeSignInButton
             onClick={() => Authentication()}
             big
-            title={"Proceed"}
+            title={authenticatingchangepass ? "Loading..." : "Proceed"}
             background
             color
           />
@@ -205,4 +242,4 @@ const Flex = styled.div`
   }
 `;
 
-export default ChangePassword;
+export default ChangePasswords;
