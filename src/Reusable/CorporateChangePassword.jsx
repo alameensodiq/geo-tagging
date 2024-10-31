@@ -56,7 +56,7 @@ const CorporateChangePassword = () => {
           <CorporateLogo style={{ cursor: "pointer" }} />
         </div>
         <div className="second">
-          <span className="unique">Forgot Password</span>
+          <span className="unique">Reset Password</span>
           <div className="welcome">
             <span className="statement">
               Get/Recover your auto generated password to your personal
@@ -87,7 +87,7 @@ const CorporateChangePassword = () => {
             onClick={() => Authentication()}
             big
             title={
-              authenticatingforgotpassword ? "Loading..." : "Forgot Password"
+              authenticatingforgotpassword ? "Loading..." : "Reset Password"
             }
             background
             color

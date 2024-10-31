@@ -90,7 +90,7 @@ const CorporateLogin = () => {
   ) {
     // navigate(`${clients}`);
     // navigate("/corporate-reset"); //password-reset
-    navigate("/corporate-changepassword"); //forgot
+    navigate("/change-password"); //forgot
   }
 
   return (
