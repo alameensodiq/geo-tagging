@@ -57,8 +57,8 @@ const Login = () => {
   if (
     corporateuser?.status &&
     !authenticating &&
-    log &&
-    !corporateuser?.data?.hasChangeDefaultPassword
+    log
+    // && !corporateuser?.data?.hasChangeDefaultPassword
   ) {
     navigate(`${superadmins}`);
   }
