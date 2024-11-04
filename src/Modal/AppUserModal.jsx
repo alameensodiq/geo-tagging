@@ -1350,9 +1350,14 @@ const AppUserModal = ({
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        const uploadedFileName = result?.data?.[0]?.name;
-        setUpdate(uploadedFileName); // Assuming this is the file name returned by the server
-        toast.success("File uploaded");
+        const uploadedFileName = result?.data?.[0]?.name; // Assuming this is the file name returned by the server
+        if (!result?.status) {
+          toast.error(result?.message);
+        }
+        if (result?.status) {
+          setUpdate(uploadedFileName);
+          toast.success("File uploaded");
+        }
       })
       .catch((error) => {
         console.log("error", error);
