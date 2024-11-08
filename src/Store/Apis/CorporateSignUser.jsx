@@ -27,7 +27,7 @@ export const CorporateSignUser = createAsyncThunk(
         toast.error(data.message);
       }
       if (data?.status) {
-        toast.success(data.message);
+        // toast.success(data.message);
       }
       console.log(data);
       sessionStorage.setItem("token", data?.data?.token);

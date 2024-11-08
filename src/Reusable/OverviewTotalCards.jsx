@@ -192,7 +192,7 @@ const Flex = styled.div`
           line-height: 21px;
           letter-spacing: 0em;
           text-align: left;
-          color: #1e1b39;
+          color: #5a6376;
         }
       }
     }
@@ -252,7 +252,7 @@ const Flex = styled.div`
           line-height: 21px;
           letter-spacing: 0em;
           text-align: left;
-          color: #1e1b39;
+          color: #5a6376;
         }
       }
     }
@@ -311,7 +311,7 @@ const Flex = styled.div`
           line-height: 21px;
           letter-spacing: 0em;
           text-align: left;
-          color: #1e1b39;
+          color: #5a6376;
         }
       }
     }
@@ -358,7 +358,7 @@ const Flex = styled.div`
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
-            color: #1e1b39;
+            color: #5a6376;
           }
         }
       }
@@ -400,12 +400,12 @@ const Flex = styled.div`
             color: #1e1b39;
           }
           .clients {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: 400;
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
-            color: #1e1b39;
+            color: #5a6376;
           }
         }
       }
@@ -452,7 +452,7 @@ const Flex = styled.div`
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
-            color: #1e1b39;
+            color: #5a6376;
           }
         }
       }
@@ -499,7 +499,7 @@ const Flex = styled.div`
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
-            color: #1e1b39;
+            color: #5a6376;
           }
         }
       }
@@ -559,7 +559,7 @@ const Flex = styled.div`
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
-            color: #1e1b39;
+            color: #5a6376;
           }
         }
       }
@@ -606,7 +606,7 @@ const Flex = styled.div`
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
-            color: #1e1b39;
+            color: #5a6376;
           }
         }
       }
@@ -653,7 +653,7 @@ const Flex = styled.div`
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
-            color: #1e1b39;
+            color: #5a6376;
           }
         }
       }
@@ -700,7 +700,7 @@ const Flex = styled.div`
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
-            color: #1e1b39;
+            color: #5a6376;
           }
         }
       }

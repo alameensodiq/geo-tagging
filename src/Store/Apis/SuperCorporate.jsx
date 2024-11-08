@@ -27,7 +27,7 @@ export const SuperCorporate = createAsyncThunk(
 
       let data = await response.json();
       if (data?.status) {
-        toast.success(data.message);
+        // toast.success(data.message);
       } else {
         toast.error(data.message);
       }

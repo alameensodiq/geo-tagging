@@ -1187,7 +1187,7 @@ const ClientLocationDetails = ({ title }) => {
             )
           }));
 
-          toast.success("Correct Address");
+          // toast.success("Correct Address");
           setAddition(true);
         } else {
           toast.error("No results found");

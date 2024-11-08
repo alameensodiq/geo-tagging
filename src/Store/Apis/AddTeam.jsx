@@ -38,7 +38,7 @@ export const AddTeam = createAsyncThunk(
       });
       let data = await response.json();
       if (data?.status) {
-        toast.success(data.message);
+        // toast.success(data.message);
       } else {
         toast.erro(data.message);
       }

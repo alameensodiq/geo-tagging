@@ -407,7 +407,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       </div>
                     </div>
                     <div className="main">
-                      <span>StartDate:</span>
+                      <span style={{ fontSize: "14px" }}>Start Date:</span>
                       <DatePicker
                         className="input"
                         selected={startDateOne}
@@ -427,7 +427,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                       />
                     </div>
                     <div className="main">
-                      <span>EndDate:</span>
+                      <span style={{ fontSize: "14px" }}>End Date:</span>
                       <DatePicker
                         className="input"
                         selected={endDateOne}
