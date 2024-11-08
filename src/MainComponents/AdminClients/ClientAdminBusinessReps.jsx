@@ -21,6 +21,7 @@ const ClientAdminBusinessReps = ({ title }) => {
   const [locker, SetLocker] = useState(false);
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
+  const [activatedcam, setactivatedcam] = useState(true);
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
@@ -109,6 +110,8 @@ const ClientAdminBusinessReps = ({ title }) => {
     <Flex>
       <Navbar title={title} />
       <AppUserModal
+        activatedcam={activatedcam}
+        setactivatedcam={setactivatedcam}
         id={id}
         setStep={setStep}
         step={step}

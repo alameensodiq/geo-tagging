@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
-import Webcam from 'react-webcam';
+import React, { useEffect, useRef, useState } from "react";
+import Webcam from "react-webcam";
 
 const videoConstraints = {
   width: 540,
   facingMode: "environment"
 };
 
-const CameraComponent = ({ onCapture }) => {
+const CameraComponent = ({ onCapture, stopWebcam, activatedcam }) => {
   const webcamRef = useRef(null);
   const [url, setUrl] = useState(null);
 
@@ -18,19 +18,32 @@ const CameraComponent = ({ onCapture }) => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      // Call stopWebcam to handle cleanup
+      if (stopWebcam) stopWebcam();
+    };
+  }, [stopWebcam]);
+
   return (
     <div>
-      <Webcam
-        ref={webcamRef}
-        audio={false}
-        screenshotFormat="image/jpeg"
-        videoConstraints={videoConstraints}
-        mirrored={true}
-      />
+      {activatedcam && (
+        <Webcam
+          ref={webcamRef}
+          audio={false}
+          screenshotFormat="image/jpeg"
+          videoConstraints={videoConstraints}
+          mirrored={true}
+        />
+      )}
       <button onClick={capturePhoto}>Capture</button>
       {url && (
         <div>
-          <img src={url} alt="Screenshot" style={{ width: '100%', height: 'auto' }} />
+          <img
+            src={url}
+            alt="Screenshot"
+            style={{ width: "100%", height: "auto" }}
+          />
         </div>
       )}
     </div>

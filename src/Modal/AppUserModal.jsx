@@ -60,13 +60,15 @@ const AppUserModal = ({
   payment,
   supersubs,
   projectbusId,
-  setPendingRoleExist1
+  setPendingRoleExist1,
+  setactivatedcam,
+  activatedcam
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
   const [uploadfile, setupload] = useState("");
   const navigate = useNavigate();
-  const [webcamActive, setWebcamActive] = useState(true);
+  const [webcamActive, setWebcamActive] = useState(false);
   const [values, setValues] = useState(false);
   const [update, setUpdate] = useState("");
   const [busplan, setBusplan] = useState(false);
@@ -111,6 +113,19 @@ const AppUserModal = ({
   const [view5super, setView5super] = useState(false);
   const [view8super, setView8super] = useState(false);
   const [view10super, setView10super] = useState(false);
+  const webcamRef = useRef(null);
+
+  // Function to stop webcam feed
+  const stopWebcam = () => {
+    if (webcamRef.current) {
+      const stream = webcamRef.current.stream;
+      if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => track.stop()); // Stop each track
+      }
+    }
+  };
+
   const [regbus, setRegbus] = useState({
     firstname: "",
     lastname: "",
@@ -369,6 +384,14 @@ const AppUserModal = ({
     ) {
       setStep(74);
     }
+    if (activatedcam) {
+      setWebcamActive(true);
+    }
+    return () => {
+      // Call stopWebcam to handle cleanup
+      stopWebcam();
+      setWebcamActive(false);
+    };
 
     console.log(update);
   }, [
@@ -417,7 +440,8 @@ const AppUserModal = ({
     bustate19,
     bustate20,
     removerepproject?.status,
-    authenticatingremoverepproject
+    authenticatingremoverepproject,
+    activatedcam
   ]);
 
   const Viewing = () => {
@@ -1707,6 +1731,10 @@ const AppUserModal = ({
     if (setLog) {
       setLog(false);
     }
+    if (activatedcam) {
+      setactivatedcam(false);
+      setWebcamActive(false);
+    }
     if (setUserdetails) {
       setUserdetails({
         current_password: "",
@@ -1919,7 +1947,11 @@ const AppUserModal = ({
             ) : (
               <>
                 {webcamActive ? (
-                  <CameraComponent onCapture={handleCapture} />
+                  <CameraComponent
+                    activatedcam={activatedcam}
+                    onCapture={handleCapture}
+                    stopWebcam={stopWebcam}
+                  />
                 ) : (
                   <span style={{ color: "red" }}>
                     Please activate your web Camera
@@ -1954,7 +1986,10 @@ const AppUserModal = ({
             )} */}
           </div>
           <LargeSignInButton
-            onClick={() => setStep(2)}
+            onClick={() => {
+              setStep(2);
+              // setWebcamActive(false);
+            }}
             bigger
             title={"Submit"}
             background
