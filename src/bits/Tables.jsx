@@ -2132,7 +2132,8 @@ const Tables = ({
                         }}
                       >
                         <span>
-                          {item?.lastName} {""} {item?.firstName}
+                          {item?.firstName}
+                          {""} {item?.lastName}
                         </span>
                         <span>{item?.email}</span>
                       </div>
@@ -2274,7 +2275,8 @@ const Tables = ({
                         }}
                       >
                         <span>
-                          {item?.lastName} {""} {item?.firstName}
+                          {item?.firstName}
+                          {""} {item?.lastName}
                         </span>
                         <span>{item?.email}</span>
                       </div>
