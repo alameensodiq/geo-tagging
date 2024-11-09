@@ -250,7 +250,7 @@ const Tables = ({
                       </div>
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
-                      {item?.lastName} {item?.firstName}
+                      {item?.firstName} {item?.lastName}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
                       {item?.totalActiveHours} hours
@@ -374,7 +374,7 @@ const Tables = ({
                       </div>
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
-                      {item?.lastName} {item?.firstName}
+                      {item?.firstName} {item?.lastName}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
                       {item?.totalActiveHours} hours
