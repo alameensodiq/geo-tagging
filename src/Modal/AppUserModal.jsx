@@ -1380,6 +1380,10 @@ const AppUserModal = ({
         }
         if (result?.status) {
           setUpdate(uploadedFileName);
+          setRegbus({
+            ...regbus,
+            avatar: uploadedFileName
+          });
           toast.success("File uploaded");
         }
       })
@@ -1395,6 +1399,8 @@ const AppUserModal = ({
         }
       });
   };
+
+  console.log(regbus);
 
   const datePickerRef = useRef(null);
 
@@ -1878,6 +1884,11 @@ const AppUserModal = ({
 
     // Optionally update state directly after successful upload
     // setRegbus((prev) => ({ ...prev, avatar: update }));
+  };
+
+  const formatNumberWithCommas = (number) => {
+    if (number == null) return "0"; // Handle null or undefined
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
@@ -7849,7 +7860,7 @@ const AppUserModal = ({
                   fontWeight: "500"
                 }}
               >
-                {assigned?.dailyPayout}
+                {formatNumberWithCommas(assigned?.dailyPayout)}
               </span>
             </div>
           </div>
