@@ -8008,7 +8008,15 @@ const AppUserModal = ({
           </div>
 
           <LargeSignInButton
-            onClick={() => SendAssignRepBolu()}
+            onClick={() => {
+              if (assigned?.subscriptionName === "FREE_TRIAL") {
+                // if (assigned?.subscriptionName === "STANDARD_PLUS") {
+                setStep(80);
+              } else {
+                SendAssignRepBolu();
+              }
+            }}
+            // onClick={() => SendAssignRepBolu()}
             bigger
             title={"Proceed"}
             background
@@ -9355,6 +9363,68 @@ const AppUserModal = ({
                 // setStep(0)
               }}
               large
+              background
+              color
+            />
+          </div>
+        </div>
+      </AppModal>
+      <AppModal
+        step={80}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        noheadborder
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Success />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center"
+            }}
+          >
+            Successful
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              fontSize: "12px",
+              color: "#667085"
+            }}
+          >
+            <span>You have successfully Created a Project with Free Trial</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <LargeSignInButton
+              title="Close"
+              onClick={() => {
+                handleCloseModal4();
+                navigate(`${clients}/${businessprojects}`);
+              }}
+              big
               background
               color
             />

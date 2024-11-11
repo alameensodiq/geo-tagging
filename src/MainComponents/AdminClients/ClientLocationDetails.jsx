@@ -1135,6 +1135,10 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const verify = (e) => {
+    // if (!e || !e.target || !e.target.value) {
+    //   toast.error("Address can't be empty");
+    //   return; // Exit early if the event or its target is undefined
+    // } else {
     fromAddress(e)
       .then(({ results }) => {
         if (results.length > 0) {
@@ -1196,6 +1200,7 @@ const ClientLocationDetails = ({ title }) => {
       .catch((error) => {
         toast.error("Error fetching geocode data: or wrong address", error);
       });
+    // }
   };
 
   console.log(assigned);
