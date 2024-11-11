@@ -175,6 +175,11 @@ const Tables = ({
 
   console.log(data);
 
+  const formatNumberWithCommas = (number) => {
+    if (number == null) return "0"; // Handle null or undefined
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Flex report={report}>
@@ -262,7 +267,7 @@ const Tables = ({
                       {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      {item?.walletBalance?.AMOUNT}
+                      {formatNumberWithCommas(item?.walletBalance?.AMOUNT)}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
                       {item?.project}
@@ -386,7 +391,7 @@ const Tables = ({
                       {item?.phoneNumber}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      {item?.walletBalance?.AMOUNT}
+                      {formatNumberWithCommas(item?.walletBalance?.AMOUNT)}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
                       {item?.project}
@@ -488,11 +493,9 @@ const Tables = ({
                       {item?.duration}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
-                      {item?.dailyPay?.NGN}
+                      {formatNumberWithCommas(item?.dailyPay?.NGN)}
                     </StyledTableCell>
-                    <StyledTableCell style={{ width: "10%" }}>
-                      70%
-                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "10%" }}></StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
                       {item?.isActive ? (
                         <button className="activer-button">
@@ -638,7 +641,7 @@ const Tables = ({
                       {item?.compliancePercentage}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
-                      {item?.dailyPay?.NGN}
+                      {formatNumberWithCommas(item?.dailyPay?.NGN)}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "5%" }}>
                       <button className="activer-button">
@@ -808,7 +811,7 @@ const Tables = ({
                       {item?.compliancePercentage}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "10%" }}>
-                      {item?.dailyPay?.NGN}
+                      {formatNumberWithCommas(item?.dailyPay?.NGN)}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "5%" }}>
                       <button className="inactive-button">
@@ -979,7 +982,7 @@ const Tables = ({
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}></StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      {item?.earnedPay}
+                      {formatNumberWithCommas(item?.earnedPay)}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
                       {/* <Moment format="DD-MM-YYYY">12-4-2024</Moment> */}
@@ -1346,7 +1349,7 @@ const Tables = ({
                       {item?.subscriptionType}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      {item?.totalEarnedPay}
+                      {formatNumberWithCommas(item?.totalEarnedPay)}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
                       {item?.complianceRate}
