@@ -21,7 +21,7 @@ const ClientAdminBusinessReps = ({ title }) => {
   const [locker, SetLocker] = useState(false);
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
-  const [activatedcam, setactivatedcam] = useState(true);
+  const [activatedcam, setactivatedcam] = useState(false);
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
@@ -135,7 +135,10 @@ const ClientAdminBusinessReps = ({ title }) => {
           </div>
           <div>
             <ModalButton
-              onClick={() => setStep(1)}
+              onClick={() => {
+                setStep(1);
+                setactivatedcam(true);
+              }}
               background
               color
               title="New Business Reps"
