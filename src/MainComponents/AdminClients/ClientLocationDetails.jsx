@@ -931,8 +931,14 @@ const ClientLocationDetails = ({ title }) => {
 
   const AssignChange = (e) => {
     const { name, value } = e.target;
-    setRep(rep);
+    const existsInRepreal =
+      Array.isArray(repreal) && repreal.some((item) => item[name] === value);
 
+    if (existsInRepreal) {
+      toast.error("User has been added");
+      return;
+    }
+    setRep(rep);
     const updateState = (prev) => {
       const lastIndex = prev.length - 1;
       const lastItem = prev[lastIndex];
@@ -962,13 +968,19 @@ const ClientLocationDetails = ({ title }) => {
 
       return prev;
     };
-
     setRepreal((prev) => updateState(prev));
     setchoosingaddress((prev) => updateState(prev));
   };
 
   const AssignChanger = (e) => {
     const { name, value } = e.target;
+    const existsInRepreal =
+      Array.isArray(repreal) && repreal.some((item) => item[name] === value);
+
+    if (existsInRepreal) {
+      toast.error("Address has been added");
+      return;
+    }
 
     // Update the 'rep' state (if necessary)
     setRep(rep);
@@ -1801,7 +1813,10 @@ const ClientLocationDetails = ({ title }) => {
                       </div>
                       <div className="addaddressinner">
                         <ModalButton
-                          onClick={() => verify(updateIndex)}
+                          onClick={() => {
+                            verify(updateIndex);
+                            setUpdateIndex("");
+                          }}
                           background
                           color
                           // short
