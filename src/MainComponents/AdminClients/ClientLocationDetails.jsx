@@ -973,7 +973,7 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const AssignChanger = (e) => {
-    // const { name, value } = e.target;
+    const { name, value } = e.target;
     // const existsInRepreal =
     //   Array.isArray(repreal) && repreal.some((item) => item[name] === value);
 

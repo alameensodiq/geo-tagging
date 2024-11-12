@@ -293,47 +293,38 @@ function App() {
             path={`${businessprojects}/:id`}
             element={<ClientProjectDetails title="Projects" />}
           />
-
           <Route
             path={`${businessprojects}/location/:location`}
             element={<ClientLocationDetails title="Projects" />}
           />
-
           <Route
             path={`${businessusers}`}
             element={<ClientUsermanagement title="User management" />}
           />
-
           <Route
             path={`${businessusers}/:id`}
             element={<ClientUsermanagementDetails title="User management" />}
           />
-
           <Route
             path={`${businesssub}`}
             element={<ClientSubscription title="Subscriptions" />}
           />
-
           <Route
             path={`${businessreport}`}
             element={<ClientAdminReports title="Reports" />}
           />
-
           <Route
             path={`${businessreport}/normal`}
             element={<ClientAdminNormalReport title="Reports" />}
           />
-
           <Route
             path={`${businessreport}/abnormal`}
             element={<ClientAdminAbnormalReport title="Reports" />}
           />
-
           <Route
             path={`${businessreport}/emoji`}
             element={<ClientAdminEmoji title="Reports" />}
           />
-
           <Route
             path={businessaccounting}
             element={<ClientAdminAccount title="My Account" />}
