@@ -7860,7 +7860,7 @@ const AppUserModal = ({
                   fontWeight: "500"
                 }}
               >
-                {formatNumberWithCommas(assigned?.dailyPayout)}
+                N{formatNumberWithCommas(assigned?.dailyPayout)}
               </span>
             </div>
           </div>
