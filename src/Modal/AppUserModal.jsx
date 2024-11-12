@@ -8237,7 +8237,11 @@ const AppUserModal = ({
           >
             <LargeSignInButton
               title="Close"
-              onClick={() => handleCloseModal4()}
+              onClick={() => {
+                handleCloseModal4();
+                sessionStorage.removeItem("editprojectId");
+                navigate(`/${businessprojects}`);
+              }}
               big
               background
               color
