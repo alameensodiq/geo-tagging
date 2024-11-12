@@ -973,14 +973,14 @@ const ClientLocationDetails = ({ title }) => {
   };
 
   const AssignChanger = (e) => {
-    const { name, value } = e.target;
-    const existsInRepreal =
-      Array.isArray(repreal) && repreal.some((item) => item[name] === value);
+    // const { name, value } = e.target;
+    // const existsInRepreal =
+    //   Array.isArray(repreal) && repreal.some((item) => item[name] === value);
 
-    if (existsInRepreal) {
-      toast.error("Address has been added");
-      return;
-    }
+    // if (existsInRepreal) {
+    //   toast.error("Address has been added");
+    //   return;
+    // }
 
     // Update the 'rep' state (if necessary)
     setRep(rep);
