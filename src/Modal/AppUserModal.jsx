@@ -8240,7 +8240,7 @@ const AppUserModal = ({
               onClick={() => {
                 handleCloseModal4();
                 sessionStorage.removeItem("editprojectId");
-                navigate(`..${businessprojects}`);
+                navigate(`../${businessprojects}`);
               }}
               big
               background
