@@ -1128,6 +1128,16 @@ const ClientLocationDetails = ({ title }) => {
   const result = numericAmount * (numbers || 1);
 
   const SendAssignRep = () => {
+    for (let rep of repreal) {
+      if (!rep.user_id) {
+        toast.error("No User in one of the locations");
+        return;
+      }
+      if (!rep.location_id) {
+        toast.error("Rep must be added to a location");
+        return;
+      }
+    }
     dispatch(AssignedRep({ rep: repreal, projectId: addproject?.data?.id }));
     console.log(repreal);
     sessionStorage.setItem("projectId", JSON.stringify(addproject?.data?.id));
