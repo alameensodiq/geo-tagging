@@ -117,7 +117,12 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 {businessrepdetails?.data?.user?.lastName}{" "}
                 {businessrepdetails?.data?.user?.firstName}
               </span>
-              <span className="assigned">Assigned Project: Building Home</span>
+              <span className="assigned">
+                Assigned Project:{" "}
+                {businessrepdetails?.data?.user?.project
+                  ? businessrepdetails?.data?.user?.project
+                  : "N/A"}
+              </span>
               <span className="date">
                 Date Created:{" "}
                 <Moment format="DD-MM-YYYY">
