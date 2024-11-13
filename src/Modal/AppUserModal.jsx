@@ -44,6 +44,8 @@ import CameraComponent from "../MainComponents/Camera";
 import { ProjectRemove } from "../Store/Apis/ProjectRemove";
 import { useNavigate } from "react-router-dom";
 import { businessprojects, clients } from "../Routes";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const AppUserModal = ({
   setStep,
@@ -1889,6 +1891,26 @@ const AppUserModal = ({
   const formatNumberWithCommas = (number) => {
     if (number == null) return "0"; // Handle null or undefined
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const DownloadReceipt = () => {
+    console.log("sodiq");
+    const input = document.getElementById("App");
+    console.log(input);
+    html2canvas(input, {
+      logging: true,
+      letterRendering: 1,
+      useCORS: true
+    }).then((canvas) => {
+      // const imgWidth = 210;
+      const imgWidth = 205;
+      // const imgHeight = 200;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const imgData = canvas.toDataURL("image/jpeg", 1.4);
+      const pdf = new jsPDF("p", "mm", "a4", true);
+      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
+      pdf.save("Receipt.pdf");
+    });
   };
 
   return (
@@ -3842,6 +3864,7 @@ const AppUserModal = ({
             gap: "20px",
             paddingInline: "45px"
           }}
+          id="App"
         >
           <div
             style={{
@@ -3936,9 +3959,7 @@ const AppUserModal = ({
               <span style={{ color: "#5A6376", fontSize: "14px" }}>
                 Bank name
               </span>
-              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                GT Bank
-              </span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}></span>
             </div>
             <div
               style={{
@@ -3950,9 +3971,7 @@ const AppUserModal = ({
               <span style={{ color: "#5A6376", fontSize: "14px" }}>
                 Account number
               </span>
-              <span style={{ color: "#1E1B39", fontSize: "14px" }}>
-                0123670987
-              </span>
+              <span style={{ color: "#1E1B39", fontSize: "14px" }}></span>
             </div>
             <div
               style={{
@@ -4011,23 +4030,28 @@ const AppUserModal = ({
               </span>
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              gap: "10px"
-            }}
-          >
-            <LocationModalButton
-              background
-              color
-              downloading
-              onClick={() => ""}
-              title="Share"
-            />
-            <LocationModalButton sharing onClick={() => ""} title="Download" />
-          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            marginTop: "10px",
+            gap: 10
+          }}
+        >
+          <LocationModalButton
+            background
+            color
+            downloading
+            onClick={() => ""}
+            title="Share"
+          />
+          <LocationModalButton
+            sharing
+            onClick={() => DownloadReceipt()}
+            title="Download"
+          />
         </div>
       </AppModal>
       <AppModal
@@ -9427,6 +9451,7 @@ const AppUserModal = ({
               onClick={() => {
                 handleCloseModal4();
                 navigate(`${clients}/${businessprojects}`);
+                SendAssignRepBolu();
               }}
               big
               background
