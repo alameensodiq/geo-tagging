@@ -164,7 +164,7 @@ const SuperAdminCorporateDetails = ({ title }) => {
           <div className="up">
             <div className="activeinfo">
               <div className="activedetails">
-                <span className="image"></span>
+                {/* <span className="image"></span> */}
                 <span className="name">
                   {supercorporatedetails?.data?.lastName}{" "}
                   {supercorporatedetails?.data?.firstName}
