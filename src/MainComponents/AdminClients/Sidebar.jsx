@@ -99,6 +99,9 @@ function Sidebar({ name, role, open, setOpen }) {
         )}
         <Link
           to={clients}
+          onClick={() => {
+            sessionStorage.removeItem("editprojectId");
+          }}
           className={`item ${router.pathname === `${clients}` ? "active" : ""}`}
         >
           <div className="paint"></div>
@@ -131,6 +134,9 @@ function Sidebar({ name, role, open, setOpen }) {
         </Link>
         <Link
           to={businessreps}
+          onClick={() => {
+            sessionStorage.removeItem("editprojectId");
+          }}
           className={`item ${
             router.pathname === `${clients}/${businessreps}` ||
             router.pathname.startsWith(`${clients}/${businessreps}`)
@@ -160,6 +166,9 @@ function Sidebar({ name, role, open, setOpen }) {
         </Link>
         <Link
           to={businessprojects}
+          onClick={() => {
+            sessionStorage.removeItem("editprojectId");
+          }}
           className={`item ${
             router.pathname === `${clients}/${businessprojects}` ||
             router.pathname.startsWith(`${clients}/${businessprojects}`)
@@ -179,6 +188,9 @@ function Sidebar({ name, role, open, setOpen }) {
               ? "active"
               : ""
           }`}
+          onClick={() => {
+            sessionStorage.removeItem("editprojectId");
+          }}
         >
           <div className="paint"></div>
           <Sub className="nav-svg1" />
@@ -192,6 +204,9 @@ function Sidebar({ name, role, open, setOpen }) {
               ? "active"
               : ""
           }`}
+          onClick={() => {
+            sessionStorage.removeItem("editprojectId");
+          }}
         >
           <div className="paint"></div>
           <User className="nav-svg1" />
@@ -205,6 +220,9 @@ function Sidebar({ name, role, open, setOpen }) {
               ? "active"
               : ""
           }`}
+          onClick={() => {
+            sessionStorage.removeItem("editprojectId");
+          }}
         >
           <div className="paint"></div>
           <Report className="nav-svg1" />
@@ -214,6 +232,9 @@ function Sidebar({ name, role, open, setOpen }) {
           {open ? "" : <span className="settings">SETTINGS</span>}
           <Link
             to={businessaccounting}
+            onClick={() => {
+              sessionStorage.removeItem("editprojectId");
+            }}
             className={`item ${
               router.pathname === `${clients}/${businessaccounting}` ||
               router.pathname.startsWith(`${clients}/${businessaccounting}`)
