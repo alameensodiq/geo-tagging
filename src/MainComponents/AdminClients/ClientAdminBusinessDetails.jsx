@@ -178,8 +178,8 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 />
               </div>
               <div className="circlereal">
-                <span className="label">Total Attendance</span>
-                <span className="name">50%</span>
+                {/* <span className="label">Total Attendance</span> */}
+                {/* <span className="name">50%</span> */}
               </div>
             </div>
             <div className="target">
