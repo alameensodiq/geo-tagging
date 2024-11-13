@@ -1739,6 +1739,9 @@ const AppUserModal = ({
     if (setLog) {
       setLog(false);
     }
+    if (assigned) {
+      SendAssignRepBolu();
+    }
     if (activatedcam) {
       setactivatedcam(false);
       setWebcamActive(false);
