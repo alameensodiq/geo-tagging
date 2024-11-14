@@ -750,7 +750,7 @@ const Flex = styled.div`
           flex-direction: row;
           justify-content: center;
           gap: 40px;
-          padding-top: 70px;
+          padding-top: 30px;
           .attendance {
             display: flex;
             flex-direction: column;

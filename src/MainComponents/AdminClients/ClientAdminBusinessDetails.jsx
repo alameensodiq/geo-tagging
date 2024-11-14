@@ -183,8 +183,29 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 />
               </div>
               <div className="circlereal">
-                {/* <span className="label">Total Attendance</span> */}
-                {/* <span className="name">50%</span> */}
+                <span className="label">Total Attendance</span>
+                <span className="name">
+                  {(() => {
+                    const attendanceCaptured =
+                      businessrepdetails?.data?.attendanceCaptured;
+                    const targetAttendance =
+                      businessrepdetails?.data?.targetAttendance;
+
+                    // Check if attendanceCaptured and targetAttendance are valid and targetAttendance is not zero
+                    if (
+                      typeof attendanceCaptured === "number" &&
+                      typeof targetAttendance === "number" &&
+                      targetAttendance !== 0
+                    ) {
+                      return (
+                        ((attendanceCaptured / targetAttendance) * 100).toFixed(
+                          1
+                        ) + "%"
+                      );
+                    }
+                    return "0%";
+                  })()}
+                </span>
               </div>
             </div>
             <div className="target">
@@ -272,10 +293,11 @@ const ClientAdminBusinessDetails = ({ title }) => {
                     <span className="rate">
                       Punctual-
                       {businessrepdetails?.data?.totalPunctual
-                        ? (businessrepdetails?.data?.totalPunctual /
+                        ? (
+                            businessrepdetails?.data?.totalPunctual /
                             (businessrepdetails?.data?.totalPunctual +
-                              businessrepdetails?.data?.totalNonPunctual)) *
-                          100
+                              businessrepdetails?.data?.totalNonPunctual)
+                          ).toFixed(1) * 100
                         : "0"}
                     </span>
                   </div>
@@ -284,10 +306,11 @@ const ClientAdminBusinessDetails = ({ title }) => {
                     <span className="rate">
                       Late-
                       {businessrepdetails?.data?.totalNonPunctual
-                        ? (businessrepdetails?.data?.totalNonPunctual /
+                        ? (
+                            businessrepdetails?.data?.totalNonPunctual /
                             (businessrepdetails?.data?.totalPunctual +
-                              businessrepdetails?.data?.totalNonPunctual)) *
-                          100
+                              businessrepdetails?.data?.totalNonPunctual)
+                          ).toFixed(1) * 100
                         : "0"}
                     </span>
                   </div>
