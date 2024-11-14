@@ -24,7 +24,7 @@ const TransactionCards = ({
           ""
         )}
         {percent
-          ? ""
+          ? percent
           : // <span className='percent'>{percent}</span>
             ""}
       </div>

@@ -135,7 +135,7 @@ const ClientAdminNormalReport = ({ title }) => {
           </div>
           <Tables
             reportabnormal
-            data={clientreport?.data?.IncidentsCheck?.incidents}
+            data={clientreport?.data?.IncidentsCheck?.incidentsFree}
             setStep={setStep}
           />
         </div>
