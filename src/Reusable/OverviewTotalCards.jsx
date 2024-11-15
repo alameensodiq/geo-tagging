@@ -15,13 +15,19 @@ const OverviewTotalCards = ({
   percent4,
   data
 }) => {
+  const formatNumberWithCommas = (number) => {
+    if (number == null) return "0"; // Handle null or undefined
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   return (
     <Flex>
       <div className="totalclients">
         <div className="up">
           <div className="details">
             <span className="number">
-              {data?.TotalBusinessReps?.totalBusinessReps}
+              {formatNumberWithCommas(
+                data?.TotalBusinessReps?.totalBusinessReps
+              )}
             </span>
             <span className="clients">Total Business Reps</span>
           </div>
@@ -30,18 +36,24 @@ const OverviewTotalCards = ({
         <div className="down">
           <span className="activediv">
             <span className="active">Active</span>
-            {data?.TotalBusinessReps?.activeBusinessReps}
+            {formatNumberWithCommas(
+              data?.TotalBusinessReps?.activeBusinessReps
+            )}
           </span>
           <span className="deactivediv">
             <span className="deactive">Inactive</span>
-            {data?.TotalBusinessReps?.inactiveBusinessReps}
+            {formatNumberWithCommas(
+              data?.TotalBusinessReps?.inactiveBusinessReps
+            )}
           </span>
         </div>
       </div>
       <div className="totalemployees">
         <div className="up">
           <div className="details">
-            <span className="number">{data?.ProjectsCount?.totalProjects}</span>
+            <span className="number">
+              {formatNumberWithCommas(data?.ProjectsCount?.totalProjects)}
+            </span>
             <span className="clients">Total Clusters</span>
           </div>
           <Case />
@@ -49,11 +61,11 @@ const OverviewTotalCards = ({
         <div className="down">
           <span className="activediv">
             <span className="active">Active</span>
-            {data?.ProjectsCount?.activeProjects}
+            {formatNumberWithCommas(data?.ProjectsCount?.activeProjects)}
           </span>
           <span className="deactivediv">
             <span className="deactive">Inactive</span>
-            {data?.ProjectsCount?.inactiveProjects}
+            {formatNumberWithCommas(data?.ProjectsCount?.inactiveProjects)}
           </span>
         </div>
       </div>
@@ -61,7 +73,9 @@ const OverviewTotalCards = ({
         <div className="up">
           <div className="details">
             <span className="number">
-              {data?.StatisticsForHours?.cumulativeHours}
+              {formatNumberWithCommas(
+                data?.StatisticsForHours?.cumulativeHours
+              )}
             </span>
             <span className="clients">Total Work Hours</span>
           </div>
@@ -70,11 +84,11 @@ const OverviewTotalCards = ({
         <div className="down">
           <span className="activediv">
             <span className="active">Active</span>
-            {data?.StatisticsForHours?.activeHours}
+            {formatNumberWithCommas(data?.StatisticsForHours?.activeHours)}
           </span>
           <span className="deactivediv">
             <span className="deactive">Inactive</span>
-            {data?.StatisticsForHours?.inactiveHours}
+            {formatNumberWithCommas(data?.StatisticsForHours?.inactiveHours)}
           </span>
         </div>
       </div>
@@ -82,7 +96,7 @@ const OverviewTotalCards = ({
         <div className="up">
           <div className="details">
             <span className="number">
-              {data?.TotalEarningsByReps.toFixed(1)}
+              {formatNumberWithCommas(data?.TotalEarningsByReps).toFixed(1)}
             </span>
             <span className="clients">Total Earned Pay</span>
           </div>

@@ -13,13 +13,17 @@ const TransactionCards = ({
   increase,
   decrease
 }) => {
+  const formatNumberWithCommas = (number) => {
+    if (number == null) return "0"; // Handle null or undefined
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   return (
     <Flex transaction={transaction}>
       <div className="first">
         <span className="title">{title}</span>
         {time ? (
           // <span className='time'>{time}<sup>h</sup></span>
-          <span className="time">{time}</span>
+          <span className="time">{formatNumberWithCommas(time)}</span>
         ) : (
           ""
         )}
