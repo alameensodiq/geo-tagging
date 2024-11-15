@@ -258,7 +258,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
             <>
               <div className="searchContainer">
                 <span className="rate">Puntuality Rate(%)</span>
-                <div className="date-search">
+                {/* <div className="date-search">
                   <div className="main">
                     <DatePicker
                       className="input"
@@ -272,10 +272,11 @@ const ClientAdminBusinessDetails = ({ title }) => {
                     />
                     <Calendar onClick={() => PickDate()} className="calendar" />
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="donuts">
                 <Donuts
+                  punctual
                   data1={
                     businessrepdetails?.data?.totalPunctual
                       ? businessrepdetails?.data?.totalPunctual
@@ -293,12 +294,14 @@ const ClientAdminBusinessDetails = ({ title }) => {
                     <span className="rate">
                       Punctual-
                       {businessrepdetails?.data?.totalPunctual
-                        ? (
-                            businessrepdetails?.data?.totalPunctual /
-                            (businessrepdetails?.data?.totalPunctual +
-                              businessrepdetails?.data?.totalNonPunctual)
-                          ).toFixed(1) * 100
-                        : "0"}
+                        ? businessrepdetails?.data?.totalPunctual
+                        : // ? (
+                          //     businessrepdetails?.data?.totalPunctual
+                          //     /
+                          //     (businessrepdetails?.data?.totalPunctual +
+                          //       businessrepdetails?.data?.totalNonPunctual)
+                          //   ).toFixed(1) * 100
+                          "0"}
                     </span>
                   </div>
                   <div className="late-div">
@@ -306,12 +309,13 @@ const ClientAdminBusinessDetails = ({ title }) => {
                     <span className="rate">
                       Late-
                       {businessrepdetails?.data?.totalNonPunctual
-                        ? (
-                            businessrepdetails?.data?.totalNonPunctual /
-                            (businessrepdetails?.data?.totalPunctual +
-                              businessrepdetails?.data?.totalNonPunctual)
-                          ).toFixed(1) * 100
-                        : "0"}
+                        ? businessrepdetails?.data?.totalNonPunctual
+                        : // (
+                          //     businessrepdetails?.data?.totalNonPunctual /
+                          //     (businessrepdetails?.data?.totalPunctual +
+                          //       businessrepdetails?.data?.totalNonPunctual)
+                          //   ).toFixed(1) * 100
+                          "0"}
                     </span>
                   </div>
                 </div>

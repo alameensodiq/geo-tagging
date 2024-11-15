@@ -38,7 +38,7 @@ const TransactionCards = ({
           ? ""
           : // <span className='decrease'>{decrease} 8%</span>
             ""}
-        <span className="lastmonth">vs last month</span>
+        {/* <span className="lastmonth">vs last month</span> */}
       </div>
     </Flex>
   );

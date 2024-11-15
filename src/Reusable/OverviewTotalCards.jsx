@@ -81,7 +81,9 @@ const OverviewTotalCards = ({
       <div className="deactivated">
         <div className="up">
           <div className="details">
-            <span className="number">{data?.TotalEarningsByReps}</span>
+            <span className="number">
+              {data?.TotalEarningsByReps.toFixed(1)}
+            </span>
             <span className="clients">Total Earned Pay</span>
           </div>
           <Work />

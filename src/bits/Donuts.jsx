@@ -2,7 +2,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 import styled from "styled-components";
 
-function Donuts({ overview, report, data1, data2 }) {
+function Donuts({ overview, report, data1, data2, punctual }) {
   const parsePercentage = (value) => {
     if (typeof value === "string") {
       return parseFloat(value.replace("%", ""));
@@ -38,6 +38,9 @@ function Donuts({ overview, report, data1, data2 }) {
               show: true,
               label: "",
               formatter: () => {
+                if (punctual) {
+                  return `${data1Number + data2Number}`;
+                }
                 if (data1Number >= 0 && data2Number >= 0) {
                   if (!report) {
                     // Case when report is falsy
