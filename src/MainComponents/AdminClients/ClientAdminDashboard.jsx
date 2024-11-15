@@ -716,8 +716,9 @@ const Flex = styled.div`
           justify-content: center;
           color: #101828;
           .name {
-            font-size: 25px;
-            font-weight: 600;
+            font-size: 24px;
+            /* font-weight: 600; */
+            color: #28385c;
           }
           .label {
             font-size: 10px;
