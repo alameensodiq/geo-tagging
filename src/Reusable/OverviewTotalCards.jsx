@@ -96,7 +96,7 @@ const OverviewTotalCards = ({
         <div className="up">
           <div className="details">
             <span className="number">
-              {formatNumberWithCommas(data?.TotalEarningsByReps).toFixed(1)}
+              {formatNumberWithCommas(data?.TotalEarningsByReps)}
             </span>
             <span className="clients">Total Earned Pay</span>
           </div>
