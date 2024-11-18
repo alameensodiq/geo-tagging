@@ -374,7 +374,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                     <span className="name">
                       {corporatepunctual?.data?.punctualPercentage <= 0
                         ? "0"
-                        : corporatepunctual?.data?.punctualPercentage}
+                        : `${corporatepunctual?.data?.punctualPercentage}%`}
                     </span>
                   </div>
                   <div className="target">
