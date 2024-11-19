@@ -373,7 +373,7 @@ const ClientAdminDashboard = ({ title, overviewadmin }) => {
                     {/* <span className="label">Total Eligible Days</span> */}
                     <span className="name">
                       {corporatepunctual?.data?.punctualPercentage <= 0
-                        ? "0"
+                        ? "0%"
                         : `${corporatepunctual?.data?.punctualPercentage}%`}
                     </span>
                   </div>

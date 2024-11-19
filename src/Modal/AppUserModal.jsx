@@ -65,6 +65,8 @@ const AppUserModal = ({
   setPendingRoleExist1,
   setactivatedcam,
   activatedcam
+  // setfreereload,
+  // freereload
 }) => {
   const dispatch = useDispatch();
   const [hide, sethide] = useState(false);
@@ -1736,6 +1738,12 @@ const AppUserModal = ({
   };
 
   const handleCloseModal4 = () => {
+    // if (freereload) {
+    //   setfreereload(true);
+    // }
+    // if (!freereload) {
+    //   setfreereload(false);
+    // }
     if (setLog) {
       setLog(false);
     }
@@ -9453,8 +9461,8 @@ const AppUserModal = ({
               title="Close"
               onClick={() => {
                 handleCloseModal4();
-                navigate(`${clients}/${businessprojects}`);
                 SendAssignRepBolu();
+                navigate(`${clients}/${businessprojects}`);
               }}
               big
               background

@@ -59,6 +59,7 @@ const ClientLocationDetails = ({ title }) => {
   const [bustate11, setbustate11] = useState(false);
   const [bustate12, setbustate12] = useState(false);
   const [bustate79, setbustate79] = useState(false);
+  const [freereload, setfreereload] = useState(false);
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
@@ -665,9 +666,15 @@ const ClientLocationDetails = ({ title }) => {
     if (payment?.status && !authenticatingpayment && bustate12) {
       SetActivating1(false);
       SetActivate(true);
-      setStep(71);
+      if (assigned?.subscriptionName !== "FREE_TRIAL") {
+        setStep(71);
+      }
+      if (assigned?.subscriptionName === "FREE_TRIAL") {
+        setStep(0);
+      }
       SetPend(false);
       setbustate11(false);
+      setfreereload(false);
     }
   }, [
     reload,
@@ -685,6 +692,7 @@ const ClientLocationDetails = ({ title }) => {
     editprojectId,
     addproject?.message,
     bustate79
+    // freereload
   ]);
 
   useEffect(() => {
