@@ -36,7 +36,21 @@ const CameraComponent = ({ onCapture, stopWebcam, activatedcam }) => {
           mirrored={true}
         />
       )}
-      <button onClick={capturePhoto}>Capture</button>
+      <button
+        style={{
+          width: "100px",
+          height: "25px",
+          borderRadius: 10,
+          fontSize: 12,
+          border: "none",
+          backgroundColor: "#1A87D7",
+          color: "white",
+          cursor: "pointer"
+        }}
+        onClick={capturePhoto}
+      >
+        Capture
+      </button>
       {url && (
         <div>
           <img
