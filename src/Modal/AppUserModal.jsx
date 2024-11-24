@@ -64,7 +64,9 @@ const AppUserModal = ({
   projectbusId,
   setPendingRoleExist1,
   setactivatedcam,
-  activatedcam
+  activatedcam,
+  setreporter,
+  reporter
   // setfreereload,
   // freereload
 }) => {
@@ -1744,6 +1746,9 @@ const AppUserModal = ({
     // if (!freereload) {
     //   setfreereload(false);
     // }
+    if (reporter) {
+      setreporter("");
+    }
     if (setLog) {
       setLog(false);
     }
@@ -9329,9 +9334,11 @@ const AppUserModal = ({
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              width: "90px"
+              width: "90%"
             }}
-          ></div>
+          >
+            {reporter}
+          </div>
         </FlexUser>
       </AppModal>
       <AppModal

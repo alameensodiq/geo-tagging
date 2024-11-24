@@ -21,6 +21,7 @@ const ClientAdminNormalReport = ({ title }) => {
   const [locker, SetLocker] = useState(false);
   const [reload, setReload] = useState(false);
   const [onload, setOnload] = useState(false);
+  const [reporter, setreporter] = useState("");
   const [startDate, setStartDate] = useState(new Date("2022-01-01"));
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
@@ -89,7 +90,13 @@ const ClientAdminNormalReport = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        reporter={reporter}
+        setreporter={setreporter}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="firstdiv">
           <div className="backbutton">
@@ -135,6 +142,7 @@ const ClientAdminNormalReport = ({ title }) => {
           </div>
           <Tables
             reportabnormal
+            setreporter={setreporter}
             data={clientreport?.data?.IncidentsCheck?.incidentsFree}
             setStep={setStep}
           />

@@ -57,7 +57,8 @@ const Tables = ({
   customplan,
   setId,
   setDetail,
-  setProjectbusId
+  setProjectbusId,
+  setreporter
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -1844,6 +1845,7 @@ const Tables = ({
                       style={{ width: "25%" }}
                       onClick={() => {
                         dispatch(Remarks({ id: item?.projectUserShiftId }));
+                        setreporter(item?.report);
                         setStep(78);
                       }}
                     >
