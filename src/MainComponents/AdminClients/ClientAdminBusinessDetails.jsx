@@ -333,7 +333,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   </span>
                 </div>
                 <div className="date-search">
-                  <div className="main">
+                  {/* <div className="main">
                     <DatePicker
                       className="input"
                       selected={startDate}
@@ -345,7 +345,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
                       popperPlacement="bottom-start"
                     />
                     <Calendar onClick={() => PickDate()} className="calendar" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="label">
@@ -358,15 +358,15 @@ const ClientAdminBusinessDetails = ({ title }) => {
                   <span className="rate">Attendance captured-(0%)</span>
                 </div>
               </div>
-              <StackedBarchart data={compliance?.data} />
+              <StackedBarchart data={compliance?.data?.monthlyStatsDTOList} />
             </>
           ) : activated2 ? (
             <>
               <div className="date-search">
-                <InputSearch
+                {/* <InputSearch
                   onChange={(e) => setSearcher(e.target.value)}
                   placeholder="Search for Project name, geo location, e.t.c"
-                />
+                /> */}
               </div>
               <Tables
                 projects

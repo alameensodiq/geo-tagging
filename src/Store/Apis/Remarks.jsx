@@ -7,9 +7,9 @@ export const Remarks = createAsyncThunk("remarks", async ({ id }, thunkAPI) => {
 
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/corporate/remarkHasBeenRead?projectUserShiftId=${id}`,
+      `${process.env.REACT_APP_BASE_URL}corporate/remarkHasBeenRead?projectUserShiftId=${id}`,
       {
-        method: "GET",
+        method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

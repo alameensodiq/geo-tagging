@@ -3,6 +3,7 @@ import Chart from "react-apexcharts";
 import styled from "styled-components";
 
 function StackedBarchart({ data }) {
+  console.log(data);
   const months = [
     "JAUNARY",
     "FEBRUAR",
@@ -20,11 +21,11 @@ function StackedBarchart({ data }) {
   const series = [
     {
       //   name: 'Net Profit',
-      data: months.map((month) => data[month]?.expectedNumberOfCheckins || 0)
+      data: months.map((month) => data[month]?.timeStampCompliancePercent || 0)
     },
     {
       //   name: 'Net Profit',
-      data: months.map((month) => data[month]?.actualNumberOfCheckins || 0)
+      data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
     }
   ];
 

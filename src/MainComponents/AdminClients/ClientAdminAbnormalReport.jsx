@@ -15,6 +15,7 @@ import { ClientReport } from "../../Store/Apis/ClientReport";
 const ClientAdminAbnormalReport = ({ title }) => {
   const [step, setStep] = useState(0);
   const [activated, SetActivate] = useState(true);
+  const [reporter, setreporter] = useState("");
   const [pend, SetPend] = useState(false);
   const [status, setStatus] = useState("ACTIVE");
   const [searcher, setSearcher] = useState("");
@@ -89,7 +90,13 @@ const ClientAdminAbnormalReport = ({ title }) => {
   return (
     <Flex>
       <Navbar title={title} />
-      <AppUserModal setStep={setStep} step={step} setReload={setReload} />
+      <AppUserModal
+        reporter={reporter}
+        setreporter={setreporter}
+        setStep={setStep}
+        step={step}
+        setReload={setReload}
+      />
       <div className="maincontainer">
         <div className="firstdiv">
           <div className="backbutton">
@@ -97,7 +104,7 @@ const ClientAdminAbnormalReport = ({ title }) => {
               style={{ cursor: "pointer" }}
               onClick={() => navigate(-1)}
             />
-            <span className="name">Normal Reports</span>
+            <span className="name">Abnormal Reports</span>
           </div>
         </div>
         <div className="table">
@@ -134,9 +141,10 @@ const ClientAdminAbnormalReport = ({ title }) => {
             />
           </div>
           <Tables
-            reportnormal
+            reportabnormal
             data={clientreport?.data?.IncidentsCheck?.incidents}
             setStep={setStep}
+            setreporter={setreporter}
           />
         </div>
       </div>

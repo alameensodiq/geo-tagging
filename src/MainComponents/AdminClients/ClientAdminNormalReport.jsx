@@ -104,7 +104,7 @@ const ClientAdminNormalReport = ({ title }) => {
               style={{ cursor: "pointer" }}
               onClick={() => navigate(-1)}
             />
-            <span className="name">Abnormal Reports</span>
+            <span className="name">Normal Reports</span>
           </div>
         </div>
         <div className="table">
@@ -141,7 +141,8 @@ const ClientAdminNormalReport = ({ title }) => {
             />
           </div>
           <Tables
-            reportabnormal
+            // reportabnormal
+            reportnormal
             setreporter={setreporter}
             data={clientreport?.data?.IncidentsCheck?.incidentsFree}
             setStep={setStep}
