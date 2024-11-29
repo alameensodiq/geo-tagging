@@ -53,6 +53,7 @@ import { CompletePaymentSlice } from "./Reducers/CompletePayment";
 import { ProjectRemoveSlice } from "./Reducers/ProjectRemove";
 import { EditProjectSlice } from "./Reducers/EditProject";
 import { RemarksSlice } from "./Reducers/Remarks";
+import { SuperSubCountSlice } from "./Reducers/SuperSubCount";
 
 export default configureStore({
   reducer: {
@@ -98,7 +99,7 @@ export default configureStore({
     payment: PaymentSlice?.reducer,
     compliance: ComplianceSlice?.reducer,
     freeconversion: SuperFreeConversionSlice?.reducer,
-    supersubscount: SuperSubsSlice?.reducer,
+    supersubscount: SuperSubCountSlice?.reducer,
     subpunctual: SubPunctualSlice?.reducer,
     subcompliance: SubComplianceSlice?.reducer,
     subproject: SubProjectSlice?.reducer,

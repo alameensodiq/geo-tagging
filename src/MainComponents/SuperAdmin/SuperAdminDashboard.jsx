@@ -196,11 +196,13 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
     (state) => state.supersubscount
   );
 
-  console.log(authenticatingsupersubscount);
+  console.log(supersubscount);
 
   const { superanalysis, authenticatingsuperanalysis } = useSelector(
     (state) => state.superanalysis
   );
+
+  console.log(superanalysis);
 
   const { subproject, authenticatingsubproject } = useSelector(
     (state) => state.subproject
@@ -745,7 +747,7 @@ const SuperAdminDashboard = ({ title, overviewadmin }) => {
                         </div>
                         <div className="attendant">
                           <div className="wrap">
-                            <span className="second"></span>
+                            <span className="secondtime"></span>
                             <span className="targeted">
                               Total Non-Compliance
                             </span>
@@ -1611,6 +1613,12 @@ const Flex = styled.div`
                 height: 10px;
                 border-radius: 50%;
                 background: #28385c;
+              }
+              .secondtime {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #f3827c;
               }
               .targeted {
                 font-size: 14px;
