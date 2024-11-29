@@ -214,6 +214,11 @@ const SuperAdminSubscription = ({ title }) => {
     URL.revokeObjectURL(blob);
   };
 
+  const formatNumberWithCommas = (number) => {
+    if (number == null) return "0"; // Handle null or undefined
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <Flex>
       <SuperAdminNavbar title={title} />
@@ -431,11 +436,11 @@ const SuperAdminSubscription = ({ title }) => {
                     {/* <span className="free">1.Monthly Price:</span> */}
                     <span className="days">
                       {" "}
-                      {
+                      {formatNumberWithCommas(
                         supersub?.data?.find(
                           (item) => item?.name === "STANDARD"
                         )?.amount?.["NGN"]
-                      }
+                      )}
                     </span>
                   </div>
                   <SubscribeEditButton
@@ -461,11 +466,11 @@ const SuperAdminSubscription = ({ title }) => {
                   <div className="freedays">
                     {/* <span className="free">Number of Business Reps -</span> */}
                     <span className="days">
-                      {
+                      {formatNumberWithCommas(
                         supersub?.data?.find(
                           (item) => item?.name === "STANDARD"
                         )?.maxRepCount
-                      }
+                      )}
                     </span>
                   </div>
                   <SubscribeEditButton
@@ -504,11 +509,11 @@ const SuperAdminSubscription = ({ title }) => {
                   <div className="freedays">
                     {/* <span className="free">1.Monthly Price: </span> */}
                     <span className="days">
-                      {
+                      {formatNumberWithCommas(
                         supersub?.data?.find(
                           (item) => item?.name === "STANDARD_PLUS"
                         )?.amount?.["NGN"]
-                      }
+                      )}
                     </span>
                   </div>
                   <SubscribeEditButton
@@ -536,11 +541,11 @@ const SuperAdminSubscription = ({ title }) => {
                       Maximum Number of Business Reps -
                     </span> */}
                     <span className="days">
-                      {
+                      {formatNumberWithCommas(
                         supersub?.data?.find(
                           (item) => item?.name === "STANDARD_PLUS"
                         )?.maxRepCount
-                      }
+                      )}
                     </span>
                   </div>
                   <SubscribeEditButton
@@ -579,11 +584,11 @@ const SuperAdminSubscription = ({ title }) => {
                   <div className="freedays">
                     {/* <span className="free">1.Monthly Price: </span> */}
                     <span className="days">
-                      {
+                      {formatNumberWithCommas(
                         supersub?.data?.find(
                           (item) => item?.name === "ENTERPRISE"
                         )?.amount?.["NGN"]
-                      }
+                      )}
                     </span>
                   </div>
                   <SubscribeEditButton
@@ -611,11 +616,11 @@ const SuperAdminSubscription = ({ title }) => {
                       Maximum Number of Business Reps -
                     </span> */}
                     <span className="days">
-                      {
+                      {formatNumberWithCommas(
                         supersub?.data?.find(
                           (item) => item?.name === "ENTERPRISE"
                         )?.maxRepCount
-                      }
+                      )}
                     </span>
                   </div>
                   <SubscribeEditButton
@@ -654,11 +659,11 @@ const SuperAdminSubscription = ({ title }) => {
                   <div className="freedays">
                     {/* <span className="free">1.Monthly Price: </span> */}
                     <span className="days">
-                      {
+                      {formatNumberWithCommas(
                         supersub?.data?.find(
                           (item) => item?.name === "ENTERPRISE_PLUS"
                         )?.amount?.["NGN"]
-                      }
+                      )}
                     </span>
                   </div>
                   <SubscribeEditButton
@@ -686,11 +691,11 @@ const SuperAdminSubscription = ({ title }) => {
                       Maximum Number of Business Reps -
                     </span> */}
                     <span className="days">
-                      {
+                      {formatNumberWithCommas(
                         supersub?.data?.find(
                           (item) => item?.name === "ENTERPRISE_PLUS"
                         )?.maxRepCount
-                      }
+                      )}
                     </span>
                   </div>
                   <SubscribeEditButton

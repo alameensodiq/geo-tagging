@@ -18,10 +18,14 @@ function StackedBarchart({ data }) {
     "NOVEMBER",
     "DECEMBER"
   ];
+
+  console.log(
+    months.map((month) => data[month]?.timeStampCompliancePercent || 0)
+  );
   const series = [
     {
       //   name: 'Net Profit',
-      data: months.map((month) => data[month]?.timeStampCompliancePercent || 0)
+      data: data?.map((item) => item?.timeStampCompliancePercent || 0)
     },
     {
       //   name: 'Net Profit',
