@@ -28,7 +28,7 @@ const TransactionCards = ({
           ""
         )}
         {percent
-          ? percent
+          ? formatNumberWithCommas(percent)
           : // <span className='percent'>{percent}</span>
             ""}
       </div>

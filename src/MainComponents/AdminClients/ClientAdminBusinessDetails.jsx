@@ -85,6 +85,11 @@ const ClientAdminBusinessDetails = ({ title }) => {
   );
   console.log(compliance?.data);
 
+  const formatNumberWithCommas = (number) => {
+    if (number == null) return "0"; // Handle null or undefined
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <Flex>
       <Navbar title={title} />
@@ -383,7 +388,9 @@ const ClientAdminBusinessDetails = ({ title }) => {
                 <span className="rating">
                   Earned wages from Jan - Dec:{" "}
                   <span className="amount">
-                    {businessrepdetails?.data?.totalEarned?.AMOUNT}
+                    {formatNumberWithCommas(
+                      businessrepdetails?.data?.totalEarned?.AMOUNT
+                    )}
                   </span>
                 </span>
               </div>
