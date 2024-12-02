@@ -6,6 +6,10 @@ import { ReactComponent as Plus } from "../assets/standardplus.svg";
 import { ReactComponent as Mark } from "../assets/colormark.svg";
 
 const Plans = ({ standard, enterprise, plus, data, basic }) => {
+  const formatNumberWithCommas = (number) => {
+    if (number == null) return "0"; // Handle null or undefined
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   return (
     <Flex>
       <div className="header">
@@ -38,27 +42,37 @@ const Plans = ({ standard, enterprise, plus, data, basic }) => {
       </div>
       {standard ? (
         <div className="amountdiv">
-          <span className="amount">{data?.amount?.NGN}</span>
+          <span className="amount">
+            {formatNumberWithCommas(data?.amount?.NGN)}
+          </span>
           <span className="name">Per Business Rep</span>
         </div>
       ) : enterprise ? (
         <div className="amountdiv">
-          <span className="amount">{data?.amount?.NGN}</span>
+          <span className="amount">
+            {formatNumberWithCommas(data?.amount?.NGN)}
+          </span>
           <span className="name">Per Business Rep</span>
         </div>
       ) : plus ? (
         <div className="amountdiv">
-          <span className="amount">{data?.amount?.NGN}</span>
+          <span className="amount">
+            {formatNumberWithCommas(data?.amount?.NGN)}
+          </span>
           <span className="name">Per Business Rep</span>
         </div>
       ) : basic ? (
         <div className="amountdiv">
-          <span className="amount">{data?.amount?.NGN}</span>
+          <span className="amount">
+            {formatNumberWithCommas(data?.amount?.NGN)}
+          </span>
           <span className="name">Per Business Rep</span>
         </div>
       ) : (
         <div className="amountdiv">
-          <span className="amount">{data?.amount?.NGN}</span>
+          <span className="amount">
+            {formatNumberWithCommas(data?.amount?.NGN)}
+          </span>
           <span className="name">Per Business Rep</span>
         </div>
       )}
@@ -67,7 +81,8 @@ const Plans = ({ standard, enterprise, plus, data, basic }) => {
         {standard ? (
           <div className="categorydiv">
             <span className="category">
-              {data?.minRepCount}-{data?.maxRepCount} BusinessReps
+              {formatNumberWithCommas(data?.minRepCount)}-
+              {formatNumberWithCommas(data?.maxRepCount)} BusinessReps
             </span>
             <div className="statement">
               <span>You are eligible to registering a total number</span>
@@ -81,7 +96,8 @@ const Plans = ({ standard, enterprise, plus, data, basic }) => {
         ) : enterprise ? (
           <div className="categorydiv">
             <span className="category">
-              {data?.minRepCount}-{data?.maxRepCount} Business Reps
+              {formatNumberWithCommas(data?.minRepCount)}-
+              {formatNumberWithCommas(data?.maxRepCount)} Business Reps
             </span>
             <div className="statement">
               <span>You are eligible to registering a total number </span>
@@ -95,7 +111,8 @@ const Plans = ({ standard, enterprise, plus, data, basic }) => {
         ) : plus ? (
           <div className="categorydiv">
             <span className="category">
-              {data?.minRepCount}-{data?.maxRepCount} BusinessReps
+              {formatNumberWithCommas(data?.minRepCount)}-
+              {formatNumberWithCommas(data?.maxRepCount)} BusinessReps
             </span>
             <div className="statement">
               <span>You are eligible to registering a total number</span>
@@ -109,7 +126,8 @@ const Plans = ({ standard, enterprise, plus, data, basic }) => {
         ) : basic ? (
           <div className="categorydiv">
             <span className="category">
-              {data?.minRepCount}-{data?.maxRepCount} BusinessReps
+              {formatNumberWithCommas(data?.minRepCount)}-
+              {formatNumberWithCommas(data?.maxRepCount)} BusinessReps
             </span>
             <div className="statement">
               <span>You are eligible to registering a total number</span>
@@ -123,7 +141,8 @@ const Plans = ({ standard, enterprise, plus, data, basic }) => {
         ) : (
           <div className="categorydiv">
             <span className="category">
-              {data?.minRepCount}-{data?.maxRepCount} Business Reps
+              {formatNumberWithCommas(data?.minRepCount)}-
+              {formatNumberWithCommas(data?.maxRepCount)} Business Reps
             </span>
             <div className="statement">
               <span>You are eligible to registering a total number </span>
