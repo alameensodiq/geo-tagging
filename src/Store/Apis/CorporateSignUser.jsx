@@ -31,6 +31,11 @@ export const CorporateSignUser = createAsyncThunk(
       }
       console.log(data);
       sessionStorage.setItem("token", data?.data?.token);
+      sessionStorage.setItem(
+        "permissions",
+        JSON.stringify(data?.data?.permissions)
+      );
+      console.log(data);
 
       // Decode the token using jwt-decode
       const token = data?.data?.token;

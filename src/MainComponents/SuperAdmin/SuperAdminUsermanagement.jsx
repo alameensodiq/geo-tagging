@@ -29,6 +29,7 @@ const SuperAdminUsermanagement = ({ title }) => {
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
+  const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
   const [currentPage, setCurrentPage] = useState(0);
   const [first, setFirst] = useState("activate");
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -145,15 +146,17 @@ const SuperAdminUsermanagement = ({ title }) => {
               This Page Allow you to Manage Sub-Admin.
             </span>
           </div>
-          <div>
-            <ModalButton
-              // onClick={() => setStep(28)}
-              onClick={() => setStep(77)}
-              background
-              color
-              title="New Sub-Admin"
-            />
-          </div>
+          {savedPermissions && savedPermissions.includes("USER_CREATE") && (
+            <div>
+              <ModalButton
+                // onClick={() => setStep(28)}
+                onClick={() => setStep(77)}
+                background
+                color
+                title="New Sub-Admin"
+              />
+            </div>
+          )}
         </div>
         <div className="table">
           <div className="date-search">

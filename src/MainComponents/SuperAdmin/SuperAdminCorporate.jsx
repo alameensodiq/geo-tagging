@@ -36,6 +36,7 @@ const SuperAdminCorporate = ({ title }) => {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
+  const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
 
   useEffect(() => {
     dispatch(Dashboard());
@@ -168,15 +169,19 @@ const SuperAdminCorporate = ({ title }) => {
               Corporate
             </span>
           </div>
-          <div>
-            <ModalButton
-              onClick={() => setStep(22)}
-              background
-              color
-              title="New Corporate"
-            />
-          </div>
+          {savedPermissions &&
+            savedPermissions.includes("CORPORATE_CREATE") && (
+              <div>
+                <ModalButton
+                  onClick={() => setStep(22)}
+                  background
+                  color
+                  title="New Corporate"
+                />
+              </div>
+            )}
         </div>
+
         <div className="table">
           <div className="statuses">
             <div

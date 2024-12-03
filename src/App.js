@@ -52,6 +52,7 @@ import React from "react";
 import { Loader } from "./Loader.jsx";
 import Demo from "./Reusable/Demo.jsx";
 import ChangePasswords from "./Reusable/ChangePassword";
+import SuperChangePassword from "./Reusable/SuperChangePassword.jsx";
 
 const LazyIndexPage = React.lazy(() =>
   import("./MainComponents/LandingPage/MainPage.jsx")
@@ -269,6 +270,10 @@ function App() {
         <Route path="/super-login" element={<Login />} />
         <Route path="/demo" element={<Demo />} />
         <Route path="/change-password" element={<ChangePasswords />} />
+        <Route
+          path="/superadmin-changepassword"
+          element={<SuperChangePassword />}
+        />
         <Route path="/corporate-login" element={<CorporateLogin />} />
         <Route path="/corporate-reset" element={<CorporateResetPassword />} />
         <Route

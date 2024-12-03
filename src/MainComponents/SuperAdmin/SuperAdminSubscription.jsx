@@ -34,6 +34,7 @@ const SuperAdminSubscription = ({ title }) => {
   const [endDate, setEndDate] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
+  const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
   const [currentPage, setCurrentPage] = useState(0);
   const [first, setFirst] = useState("activate");
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -331,12 +332,15 @@ const SuperAdminSubscription = ({ title }) => {
                       Days
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => setStep(36)}
-                    background
-                    color
-                    title="Edit Free Trial days"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => setStep(36)}
+                        background
+                        color
+                        title="Edit Free Trial days"
+                      />
+                    )}
                 </div>
               </div>
               <div className="trialdiv">
@@ -356,12 +360,15 @@ const SuperAdminSubscription = ({ title }) => {
                       }
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => setStep(61)}
-                    background
-                    color
-                    title="Edit number"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => setStep(61)}
+                        background
+                        color
+                        title="Edit number"
+                      />
+                    )}
                 </div>
               </div>
               <div className="trialdiv">
@@ -381,12 +388,15 @@ const SuperAdminSubscription = ({ title }) => {
                       }
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => setStep(63)}
-                    background
-                    color
-                    title="Edit number"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => setStep(63)}
+                        background
+                        color
+                        title="Edit number"
+                      />
+                    )}
                 </div>
               </div>
               <div className="trialdiv">
@@ -406,12 +416,15 @@ const SuperAdminSubscription = ({ title }) => {
                       }
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => setStep(65)}
-                    background
-                    color
-                    title="Edit number"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => setStep(65)}
+                        background
+                        color
+                        title="Edit number"
+                      />
+                    )}
                 </div>
               </div>
             </div>
@@ -443,19 +456,22 @@ const SuperAdminSubscription = ({ title }) => {
                       )}
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => {
-                      setStep(40);
-                      setId(
-                        supersub?.data?.find(
-                          (item) => item?.name === "STANDARD"
-                        )?.id
-                      );
-                    }}
-                    background
-                    color
-                    title="Edit pricing"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => {
+                          setStep(40);
+                          setId(
+                            supersub?.data?.find(
+                              (item) => item?.name === "STANDARD"
+                            )?.id
+                          );
+                        }}
+                        background
+                        color
+                        title="Edit pricing"
+                      />
+                    )}
                 </div>
               </div>
               <div className="trialdiv">
@@ -473,19 +489,22 @@ const SuperAdminSubscription = ({ title }) => {
                       )}
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => {
-                      setStep(38);
-                      setId(
-                        supersub?.data?.find(
-                          (item) => item?.name === "STANDARD"
-                        )?.id
-                      );
-                    }}
-                    background
-                    color
-                    title="Edit number"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => {
+                          setStep(38);
+                          setId(
+                            supersub?.data?.find(
+                              (item) => item?.name === "STANDARD"
+                            )?.id
+                          );
+                        }}
+                        background
+                        color
+                        title="Edit number"
+                      />
+                    )}
                 </div>
               </div>
             </div>
@@ -516,19 +535,22 @@ const SuperAdminSubscription = ({ title }) => {
                       )}
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => {
-                      setStep(40);
-                      setId(
-                        supersub?.data?.find(
-                          (item) => item?.name === "STANDARD_PLUS"
-                        )?.id
-                      );
-                    }}
-                    background
-                    color
-                    title="Edit pricing"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => {
+                          setStep(40);
+                          setId(
+                            supersub?.data?.find(
+                              (item) => item?.name === "STANDARD_PLUS"
+                            )?.id
+                          );
+                        }}
+                        background
+                        color
+                        title="Edit pricing"
+                      />
+                    )}
                 </div>
               </div>
               <div className="trialdiv">
@@ -548,19 +570,22 @@ const SuperAdminSubscription = ({ title }) => {
                       )}
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => {
-                      setStep(38);
-                      setId(
-                        supersub?.data?.find(
-                          (item) => item?.name === "STANDARD_PLUS"
-                        )?.id
-                      );
-                    }}
-                    background
-                    color
-                    title="Edit number"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => {
+                          setStep(38);
+                          setId(
+                            supersub?.data?.find(
+                              (item) => item?.name === "STANDARD_PLUS"
+                            )?.id
+                          );
+                        }}
+                        background
+                        color
+                        title="Edit number"
+                      />
+                    )}
                 </div>
               </div>
             </div>
@@ -591,19 +616,22 @@ const SuperAdminSubscription = ({ title }) => {
                       )}
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => {
-                      setStep(40);
-                      setId(
-                        supersub?.data?.find(
-                          (item) => item?.name === "ENTERPRISE"
-                        )?.id
-                      );
-                    }}
-                    background
-                    color
-                    title="Edit pricing"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => {
+                          setStep(40);
+                          setId(
+                            supersub?.data?.find(
+                              (item) => item?.name === "ENTERPRISE"
+                            )?.id
+                          );
+                        }}
+                        background
+                        color
+                        title="Edit pricing"
+                      />
+                    )}
                 </div>
               </div>
               <div className="trialdiv">
@@ -623,19 +651,22 @@ const SuperAdminSubscription = ({ title }) => {
                       )}
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => {
-                      setStep(38);
-                      setId(
-                        supersub?.data?.find(
-                          (item) => item?.name === "ENTERPRISE"
-                        )?.id
-                      );
-                    }}
-                    background
-                    color
-                    title="Edit number"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => {
+                          setStep(38);
+                          setId(
+                            supersub?.data?.find(
+                              (item) => item?.name === "ENTERPRISE"
+                            )?.id
+                          );
+                        }}
+                        background
+                        color
+                        title="Edit number"
+                      />
+                    )}
                 </div>
               </div>
             </div>
@@ -666,19 +697,22 @@ const SuperAdminSubscription = ({ title }) => {
                       )}
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => {
-                      setStep(40);
-                      setId(
-                        supersub?.data?.find(
-                          (item) => item?.name === "ENTERPRISE_PLUS"
-                        )?.id
-                      );
-                    }}
-                    background
-                    color
-                    title="Edit pricing"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => {
+                          setStep(40);
+                          setId(
+                            supersub?.data?.find(
+                              (item) => item?.name === "ENTERPRISE_PLUS"
+                            )?.id
+                          );
+                        }}
+                        background
+                        color
+                        title="Edit pricing"
+                      />
+                    )}
                 </div>
               </div>
               <div className="trialdiv">
@@ -698,19 +732,22 @@ const SuperAdminSubscription = ({ title }) => {
                       )}
                     </span>
                   </div>
-                  <SubscribeEditButton
-                    onClick={() => {
-                      setStep(38);
-                      setId(
-                        supersub?.data?.find(
-                          (item) => item?.name === "ENTERPRISE_PLUS"
-                        )?.id
-                      );
-                    }}
-                    background
-                    color
-                    title="Edit number"
-                  />
+                  {savedPermissions &&
+                    savedPermissions.includes("SUBSCRIPTION_CREATE") && (
+                      <SubscribeEditButton
+                        onClick={() => {
+                          setStep(38);
+                          setId(
+                            supersub?.data?.find(
+                              (item) => item?.name === "ENTERPRISE_PLUS"
+                            )?.id
+                          );
+                        }}
+                        background
+                        color
+                        title="Edit number"
+                      />
+                    )}
                 </div>
               </div>
             </div>
