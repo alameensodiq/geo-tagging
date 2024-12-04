@@ -58,6 +58,8 @@ const Login = () => {
     corporateuser?.status &&
     !authenticating &&
     log &&
+    (sessionStorage.getItem("role") === "ADMIN" ||
+      sessionStorage.getItem("role") === "SUB_ADMIN") &&
     corporateuser?.data?.hasChangeDefaultPassword
   ) {
     const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
