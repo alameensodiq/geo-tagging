@@ -32,6 +32,7 @@ const ClientAdminBusinessReps = ({ title }) => {
   const [activater, setActivater] = useState(1);
   const [statuses, setStatuses] = useState(true);
   const dispatch = useDispatch();
+  const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
 
   useEffect(() => {
     dispatch(CorporateDashboard());
@@ -133,17 +134,20 @@ const ClientAdminBusinessReps = ({ title }) => {
               information of business reps
             </span>
           </div>
-          <div>
-            <ModalButton
-              onClick={() => {
-                setStep(1);
-                setactivatedcam(true);
-              }}
-              background
-              color
-              title="New Business Reps"
-            />
-          </div>
+          {savedPermissions &&
+            savedPermissions.includes("BUSINESS_REP_CREATE") && (
+              <div>
+                <ModalButton
+                  onClick={() => {
+                    setStep(1);
+                    setactivatedcam(true);
+                  }}
+                  background
+                  color
+                  title="New Business Reps"
+                />
+              </div>
+            )}
         </div>
         {businessrep?.data?.data ? (
           <div className="table">

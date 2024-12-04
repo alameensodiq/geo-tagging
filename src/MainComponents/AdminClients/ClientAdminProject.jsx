@@ -34,6 +34,7 @@ const ClientAdminProject = ({ title }) => {
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
 
   useEffect(() => {
     dispatch(CorporateDashboard());
@@ -128,16 +129,18 @@ const ClientAdminProject = ({ title }) => {
               This overview provides a comprehensive show of all clusters
             </span>
           </div>
-          <div>
-            <ModalButton
-              onClick={() =>
-                navigate(`../${businessprojects}/location/:location`)
-              }
-              background
-              color
-              title="New Cluster"
-            />
-          </div>
+          {savedPermissions && savedPermissions.includes("PROJECT_CREATE") && (
+            <div>
+              <ModalButton
+                onClick={() =>
+                  navigate(`../${businessprojects}/location/:location`)
+                }
+                background
+                color
+                title="New Cluster"
+              />
+            </div>
+          )}
         </div>
         <div className="table">
           <div className="statuses">

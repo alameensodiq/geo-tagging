@@ -19,12 +19,12 @@ function DoubleBarChart({ data }) {
   const series = data &&
     data && [
       {
-        name: "Income",
+        name: "Punctuality Rate",
         type: "column",
         data: months.map((month) => data[month]?.punctualityPercent || 0)
       },
       {
-        name: "Cashflow",
+        name: "Time Stamp Compliance Rate",
         type: "column",
         data: months.map(
           (month) => data[month]?.timeStampCompliancePercent || 0

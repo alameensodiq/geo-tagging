@@ -8001,7 +8001,7 @@ const AppUserModal = ({
               }}
             >
               <span>{assigned?.subscriptionName}</span>
-              <span>{assigned?.numberOfReps}</span>
+              <span>{formatNumberWithCommas(assigned?.numberOfReps)}</span>
             </div>
             <div
               style={{
@@ -8015,7 +8015,12 @@ const AppUserModal = ({
                 alignItems: "center"
               }}
             >
-              <span>N{assigned?.subscriptionAmountPerBusinessRep}</span>
+              <span>
+                N
+                {formatNumberWithCommas(
+                  assigned?.subscriptionAmountPerBusinessRep
+                )}
+              </span>
               <span>Each Business Rep</span>
             </div>
           </div>

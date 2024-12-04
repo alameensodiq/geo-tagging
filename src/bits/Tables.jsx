@@ -73,6 +73,7 @@ const Tables = ({
   const [superuseractivity, setSuperuseractivity] = useState("");
   const [proindex, setProIndex] = useState(null);
   const navigate = useNavigate();
+  const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
 
   const theme = createTheme({
     typography: {
@@ -280,17 +281,23 @@ const Tables = ({
                       <Action onClick={() => Details(item?.id)} />
                       {open && identify === item?.id && (
                         <div className="active">
-                          <div
-                            className="row"
-                            onClick={() => {
-                              setStep(59);
-                              setId(item?.id);
-                              setIdentifyinactive("");
-                            }}
-                          >
-                            <Deactivate />
-                            <span>Deactivate</span>
-                          </div>
+                          {savedPermissions &&
+                            savedPermissions.includes(
+                              "BUSINESS_REP_DEACTIVATE"
+                            ) && (
+                              <div
+                                className="row"
+                                onClick={() => {
+                                  setStep(59);
+                                  setId(item?.id);
+                                  setIdentifyinactive("");
+                                }}
+                              >
+                                <Deactivate />
+                                <span>Deactivate</span>
+                              </div>
+                            )}
+
                           <div
                             className="row"
                             onClick={() =>
@@ -404,17 +411,23 @@ const Tables = ({
                       <Action onClick={() => Detailsinactive(item?.id)} />
                       {open2 && identifyinactive === item?.id && (
                         <div className="active">
-                          <div
-                            className="row"
-                            onClick={() => {
-                              setStep(57);
-                              setId(item?.id);
-                              setIdentifyinactive("");
-                            }}
-                          >
-                            <Activate />
-                            <span>Activate</span>
-                          </div>
+                          {savedPermissions &&
+                            savedPermissions.includes(
+                              "BUSINESS_REP_ACTIVATE"
+                            ) && (
+                              <div
+                                className="row"
+                                onClick={() => {
+                                  setStep(57);
+                                  setId(item?.id);
+                                  setIdentifyinactive("");
+                                }}
+                              >
+                                <Activate />
+                                <span>Activate</span>
+                              </div>
+                            )}
+
                           <div
                             className="row"
                             onClick={() =>
@@ -655,26 +668,33 @@ const Tables = ({
                       <Action onClick={() => ProjectActive(item?.id)} />
                       {projectactive && projectitemactive === item?.id && (
                         <div className="activeprojectmodal">
-                          <div
-                            className="row"
-                            onClick={() =>
-                              navigate(`../${businessprojects}/${item?.id}`)
-                            }
-                          >
-                            <View />
-                            <span>View more</span>
-                          </div>
-                          <div
-                            className="row"
-                            onClick={() => {
-                              setStep(4);
-                              setId(item?.id);
-                              setProject(!projectactive);
-                            }}
-                          >
-                            <Deactivate />
-                            <span>Deactivate</span>
-                          </div>
+                          {savedPermissions &&
+                            savedPermissions.includes("PROJECT_VIEW") && (
+                              <div
+                                className="row"
+                                onClick={() =>
+                                  navigate(`../${businessprojects}/${item?.id}`)
+                                }
+                              >
+                                <View />
+                                <span>View more</span>
+                              </div>
+                            )}
+                          {savedPermissions &&
+                            savedPermissions.includes("PROJECT_EDIT") && (
+                              <div
+                                className="row"
+                                onClick={() => {
+                                  setStep(4);
+                                  setId(item?.id);
+                                  setProject(!projectactive);
+                                }}
+                              >
+                                <Deactivate />
+                                <span>Deactivate</span>
+                              </div>
+                            )}
+
                           {/* <div className="row" onClick={() => ""}>
                             <View />
                             <span>Renew Subscription</span>
@@ -822,15 +842,18 @@ const Tables = ({
                       </button>
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "5%" }}>
-                      <span
-                        className="projectactivate"
-                        onClick={() => {
-                          setStep(6);
-                          setId(item?.id);
-                        }}
-                      >
-                        Activate
-                      </span>
+                      {savedPermissions &&
+                        savedPermissions.includes("PROJECT_EDIT") && (
+                          <span
+                            className="projectactivate"
+                            onClick={() => {
+                              setStep(6);
+                              setId(item?.id);
+                            }}
+                          >
+                            Activate
+                          </span>
+                        )}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}

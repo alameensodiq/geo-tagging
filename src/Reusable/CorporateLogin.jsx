@@ -9,7 +9,13 @@ import AuthInputPassword from "../bits/AuthInputPassword";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { clients } from "../Routes";
+import {
+  businessprojects,
+  businessreport,
+  businessreps,
+  businesssub,
+  clients
+} from "../Routes";
 import { CorporateSignUser } from "../Store/Apis/CorporateSignUser";
 
 const CorporateLogin = () => {
@@ -81,7 +87,36 @@ const CorporateLogin = () => {
     log &&
     corporateuser?.data?.hasChangeDefaultPassword
   ) {
-    navigate(`${clients}`);
+    const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
+    if (savedPermissions && savedPermissions.includes("DASHBOARD_VIEW")) {
+      navigate(`${clients}`);
+    } else if (
+      savedPermissions &&
+      (savedPermissions.includes("BUSINESS_REP_VIEW") ||
+        savedPermissions.includes("BUSINESS_REP_CREATE") ||
+        savedPermissions.includes("BUSINESS_REP_ACTIVATE") ||
+        savedPermissions.includes("BUSINESS_REP_DEACTIVATE") ||
+        savedPermissions.includes("BUSINESS_REP_EDIT"))
+    ) {
+      navigate(`${clients}/${businessreps}`);
+    } else if (
+      savedPermissions &&
+      (savedPermissions.includes("PROJECT_VIEW") ||
+        savedPermissions.includes("PROJECT_CREATE") ||
+        savedPermissions.includes("PROJECT_LIST") ||
+        savedPermissions.includes("PROJECT_EDIT"))
+    ) {
+      navigate(`${clients}/${businessprojects}`);
+    } else if (
+      savedPermissions &&
+      (savedPermissions.includes("SUBSCRIPTION_VIEW") ||
+        savedPermissions.includes("SUBSCRIPTION_LIST") ||
+        savedPermissions.includes("PLAN_VIEW"))
+    ) {
+      navigate(`${clients}/${businesssub}`);
+    } else if (savedPermissions && savedPermissions.includes("REPORT_VIEW")) {
+      navigate(`${clients}/${businessreport}`);
+    }
   } else if (
     corporateuser?.status &&
     !corporateuser?.data?.hasChangeDefaultPassword &&

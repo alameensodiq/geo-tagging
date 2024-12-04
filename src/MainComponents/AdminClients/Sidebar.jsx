@@ -37,6 +37,7 @@ function Sidebar({ name, role, open, setOpen }) {
   const dispatch = useDispatch();
   const [searcher, setSearcher] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
   useEffect(() => {
     // dispatch(CorporateBusinessRep({ searcher, currentPage }));
     dispatch(CorporateDashboard());
@@ -97,105 +98,131 @@ function Sidebar({ name, role, open, setOpen }) {
             </span>
           </div>
         )}
-        <Link
-          to={clients}
-          onClick={() => {
-            sessionStorage.removeItem("editprojectId");
-          }}
-          className={`item ${router.pathname === `${clients}` ? "active" : ""}`}
-        >
-          <div className="paint"></div>
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="nav-svg1"
-          >
-            <path
-              d="M18.3333 7.10008V3.31675C18.3333 2.14175 17.8 1.66675 16.475 1.66675H13.1083C11.7833 1.66675 11.25 2.14175 11.25 3.31675V7.09175C11.25 8.27508 11.7833 8.74175 13.1083 8.74175H16.475C17.8 8.75008 18.3333 8.27508 18.3333 7.10008Z"
-              fill="#848D87"
-            />
-            <path
-              d="M18.3333 16.475V13.1083C18.3333 11.7833 17.8 11.25 16.475 11.25H13.1083C11.7833 11.25 11.25 11.7833 11.25 13.1083V16.475C11.25 17.8 11.7833 18.3333 13.1083 18.3333H16.475C17.8 18.3333 18.3333 17.8 18.3333 16.475Z"
-              fill="#848D87"
-            />
-            <path
-              d="M8.75008 7.10008V3.31675C8.75008 2.14175 8.21675 1.66675 6.89175 1.66675H3.52508C2.20008 1.66675 1.66675 2.14175 1.66675 3.31675V7.09175C1.66675 8.27508 2.20008 8.74175 3.52508 8.74175H6.89175C8.21675 8.75008 8.75008 8.27508 8.75008 7.10008Z"
-              fill="#848D87"
-            />
-            <path
-              d="M8.75008 16.475V13.1083C8.75008 11.7833 8.21675 11.25 6.89175 11.25H3.52508C2.20008 11.25 1.66675 11.7833 1.66675 13.1083V16.475C1.66675 17.8 2.20008 18.3333 3.52508 18.3333H6.89175C8.21675 18.3333 8.75008 17.8 8.75008 16.475Z"
-              fill="#848D87"
-            />
-          </svg>
-          <p className="man">Overview</p>
-        </Link>
-        <Link
-          to={businessreps}
-          onClick={() => {
-            sessionStorage.removeItem("editprojectId");
-          }}
-          className={`item ${
-            router.pathname === `${clients}/${businessreps}` ||
-            router.pathname.startsWith(`${clients}/${businessreps}`)
-              ? "active"
-              : ""
-          }`}
-        >
-          <div className="paint"></div>
-          <Rep className="nav-svg1" />
-          <p className="man">Business Reps</p>
-          <span
-            style={{
-              width: "20%",
-              height: "40%",
-              background: "#FF0007",
-              color: "#FFFFFF",
-              fontSize: "10px",
-              display: "flex",
-              flexDirection: "row",
-              borderRadius: "10px",
-              justifyContent: "center",
-              alignItems: "center"
+        {savedPermissions && savedPermissions.includes("DASHBOARD_VIEW") && (
+          <Link
+            to={clients}
+            onClick={() => {
+              sessionStorage.removeItem("editprojectId");
             }}
+            className={`item ${
+              router.pathname === `${clients}` ? "active" : ""
+            }`}
           >
-            {corporatedashboard?.data?.TotalBusinessReps?.totalBusinessReps}
-          </span>
-        </Link>
-        <Link
-          to={businessprojects}
-          onClick={() => {
-            sessionStorage.removeItem("editprojectId");
-          }}
-          className={`item ${
-            router.pathname === `${clients}/${businessprojects}` ||
-            router.pathname.startsWith(`${clients}/${businessprojects}`)
-              ? "active"
-              : ""
-          }`}
-        >
-          <div className="paint"></div>
-          <Project className="nav-svg1" />
-          <p className="man">Cluster Management</p>
-        </Link>
-        <Link
-          to={businesssub}
-          className={`item ${
-            router.pathname === `${clients}/${businesssub}` ||
-            router.pathname.startsWith(`${clients}/${businesssub}`)
-              ? "active"
-              : ""
-          }`}
-          onClick={() => {
-            sessionStorage.removeItem("editprojectId");
-          }}
-        >
-          <div className="paint"></div>
-          <Sub className="nav-svg1" />
-          <p className="man">Subscriptions</p>
-        </Link>
+            <div className="paint"></div>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="nav-svg1"
+            >
+              <path
+                d="M18.3333 7.10008V3.31675C18.3333 2.14175 17.8 1.66675 16.475 1.66675H13.1083C11.7833 1.66675 11.25 2.14175 11.25 3.31675V7.09175C11.25 8.27508 11.7833 8.74175 13.1083 8.74175H16.475C17.8 8.75008 18.3333 8.27508 18.3333 7.10008Z"
+                fill="#848D87"
+              />
+              <path
+                d="M18.3333 16.475V13.1083C18.3333 11.7833 17.8 11.25 16.475 11.25H13.1083C11.7833 11.25 11.25 11.7833 11.25 13.1083V16.475C11.25 17.8 11.7833 18.3333 13.1083 18.3333H16.475C17.8 18.3333 18.3333 17.8 18.3333 16.475Z"
+                fill="#848D87"
+              />
+              <path
+                d="M8.75008 7.10008V3.31675C8.75008 2.14175 8.21675 1.66675 6.89175 1.66675H3.52508C2.20008 1.66675 1.66675 2.14175 1.66675 3.31675V7.09175C1.66675 8.27508 2.20008 8.74175 3.52508 8.74175H6.89175C8.21675 8.75008 8.75008 8.27508 8.75008 7.10008Z"
+                fill="#848D87"
+              />
+              <path
+                d="M8.75008 16.475V13.1083C8.75008 11.7833 8.21675 11.25 6.89175 11.25H3.52508C2.20008 11.25 1.66675 11.7833 1.66675 13.1083V16.475C1.66675 17.8 2.20008 18.3333 3.52508 18.3333H6.89175C8.21675 18.3333 8.75008 17.8 8.75008 16.475Z"
+                fill="#848D87"
+              />
+            </svg>
+            <p className="man">Overview</p>
+          </Link>
+        )}
+
+        {savedPermissions &&
+          (savedPermissions.includes("BUSINESS_REP_VIEW") ||
+            savedPermissions.includes("BUSINESS_REP_CREATE") ||
+            savedPermissions.includes("BUSINESS_REP_ACTIVATE") ||
+            savedPermissions.includes("BUSINESS_REP_DEACTIVATE") ||
+            savedPermissions.includes("BUSINESS_REP_EDIT")) && (
+            <Link
+              to={businessreps}
+              onClick={() => {
+                sessionStorage.removeItem("editprojectId");
+              }}
+              className={`item ${
+                router.pathname === `${clients}/${businessreps}` ||
+                router.pathname.startsWith(`${clients}/${businessreps}`)
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="paint"></div>
+              <Rep className="nav-svg1" />
+              <p className="man">Business Reps</p>
+              <span
+                style={{
+                  width: "20%",
+                  height: "40%",
+                  background: "#FF0007",
+                  color: "#FFFFFF",
+                  fontSize: "10px",
+                  display: "flex",
+                  flexDirection: "row",
+                  borderRadius: "10px",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                {corporatedashboard?.data?.TotalBusinessReps?.totalBusinessReps}
+              </span>
+            </Link>
+          )}
+
+        {savedPermissions &&
+          (savedPermissions.includes("PROJECT_VIEW") ||
+            savedPermissions.includes("PROJECT_CREATE") ||
+            savedPermissions.includes("PROJECT_LIST") ||
+            savedPermissions.includes("PROJECT_EDIT")) && (
+            <Link
+              to={businessprojects}
+              onClick={() => {
+                sessionStorage.removeItem("editprojectId");
+              }}
+              className={`item ${
+                router.pathname === `${clients}/${businessprojects}` ||
+                router.pathname.startsWith(`${clients}/${businessprojects}`)
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="paint"></div>
+              <Project className="nav-svg1" />
+              <p className="man">Cluster Management</p>
+            </Link>
+          )}
+
+        {savedPermissions &&
+          (savedPermissions.includes("SUBSCRIPTION_VIEW") ||
+            savedPermissions.includes("SUBSCRIPTION_LIST") ||
+            savedPermissions.includes("PLAN_VIEW")) && (
+            <Link
+              to={businesssub}
+              className={`item ${
+                router.pathname === `${clients}/${businesssub}` ||
+                router.pathname.startsWith(`${clients}/${businesssub}`)
+                  ? "active"
+                  : ""
+              }`}
+              onClick={() => {
+                sessionStorage.removeItem("editprojectId");
+              }}
+            >
+              <div className="paint"></div>
+              <Sub className="nav-svg1" />
+              <p className="man">Subscriptions</p>
+            </Link>
+          )}
+
         <Link
           to={businessusers}
           className={`item ${
@@ -212,22 +239,25 @@ function Sidebar({ name, role, open, setOpen }) {
           <User className="nav-svg1" />
           <p className="man">User management</p>
         </Link>
-        <Link
-          to={businessreport}
-          className={`item ${
-            router.pathname === `${clients}/${businessreport}` ||
-            router.pathname.startsWith(`${clients}/${businessreport}`)
-              ? "active"
-              : ""
-          }`}
-          onClick={() => {
-            sessionStorage.removeItem("editprojectId");
-          }}
-        >
-          <div className="paint"></div>
-          <Report className="nav-svg1" />
-          <p className="man">Reports</p>
-        </Link>
+        {savedPermissions && savedPermissions.includes("REPORT_VIEW") && (
+          <Link
+            to={businessreport}
+            className={`item ${
+              router.pathname === `${clients}/${businessreport}` ||
+              router.pathname.startsWith(`${clients}/${businessreport}`)
+                ? "active"
+                : ""
+            }`}
+            onClick={() => {
+              sessionStorage.removeItem("editprojectId");
+            }}
+          >
+            <div className="paint"></div>
+            <Report className="nav-svg1" />
+            <p className="man">Reports</p>
+          </Link>
+        )}
+
         <div className="settingsdiv">
           {open ? "" : <span className="settings">SETTINGS</span>}
           <Link

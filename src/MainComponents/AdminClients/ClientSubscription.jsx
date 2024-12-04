@@ -35,6 +35,7 @@ const ClientSubscription = ({ title }) => {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [activater, setActivater] = useState(1);
   const dispatch = useDispatch();
+  const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
 
   useEffect(() => {
     dispatch(SuperSubs());
@@ -222,12 +223,14 @@ const ClientSubscription = ({ title }) => {
             >
               <span>Subscription History</span>
             </div>
-            <div
-              onClick={() => setPending()}
-              className={`${pend ? "active" : "status"}`}
-            >
-              <span>Subscription Plans Overview</span>
-            </div>
+            {savedPermissions && savedPermissions.includes("PLAN_VIEW") && (
+              <div
+                onClick={() => setPending()}
+                className={`${pend ? "active" : "status"}`}
+              >
+                <span>Subscription Plans Overview</span>
+              </div>
+            )}
           </div>
           <div className="date-search">
             {/* <div className="main">
