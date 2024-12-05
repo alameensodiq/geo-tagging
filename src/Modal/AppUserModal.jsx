@@ -66,7 +66,8 @@ const AppUserModal = ({
   setactivatedcam,
   activatedcam,
   setreporter,
-  reporter
+  reporter,
+  SendAddRepActiveProj
   // setfreereload,
   // freereload
 }) => {
@@ -8054,9 +8055,15 @@ const AppUserModal = ({
 
           <LargeSignInButton
             onClick={() => {
+              const addactivebusinesses = sessionStorage.getItem(
+                "addactivebusinesses"
+              );
+              const activeprojectId = sessionStorage.getItem("activeprojectId");
               if (assigned?.subscriptionName === "FREE_TRIAL") {
                 // if (assigned?.subscriptionName === "STANDARD_PLUS") {
                 setStep(80);
+              } else if (addactivebusinesses || activeprojectId) {
+                SendAddRepActiveProj();
               } else {
                 SendAssignRepBolu();
               }
@@ -9472,8 +9479,20 @@ const AppUserModal = ({
             <LargeSignInButton
               title="Close"
               onClick={() => {
+                const activeprojectId =
+                  sessionStorage.getItem("activeprojectId");
+                console.log(activeprojectId);
+
+                const addactivebusinesses = sessionStorage.getItem(
+                  "addactivebusinesses"
+                );
+                console.log(addactivebusinesses);
                 handleCloseModal4();
-                SendAssignRepBolu();
+                if (addactivebusinesses || activeprojectId) {
+                  SendAddRepActiveProj();
+                } else {
+                  SendAssignRepBolu();
+                }
                 navigate(`${clients}/${businessprojects}`);
               }}
               big
@@ -9482,6 +9501,170 @@ const AppUserModal = ({
             />
           </div>
         </div>
+      </AppModal>
+      <AppModal
+        step={81}
+        currentStep={step}
+        closeModal={handleCloseModal4}
+        noheadborder
+        // updateUserListData(update);
+        // window.location.reload()
+      >
+        {payment?.data?.subscriptionName === "FREE_TRIAL" ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Success />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center"
+              }}
+            >
+              Successful
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "5px",
+                fontSize: "12px",
+                color: "#667085"
+              }}
+            >
+              <span>
+                You have successfully Created add a Project and/or Rep with Free
+                Trial
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px"
+              }}
+            >
+              <LargeSignInButton
+                title="Close"
+                onClick={() => {
+                  handleCloseModal4();
+                  navigate(`${clients}/${businessprojects}`);
+                }}
+                big
+                background
+                color
+              />
+            </div>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: "10px"
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  alignItems: "center"
+                }}
+              >
+                <span
+                  style={{
+                    color: "#1E1B39",
+                    fontSize: "19px",
+                    fontWeight: "500"
+                  }}
+                >
+                  Payment Method
+                </span>
+                {/* <span
+                style={{
+                  color: "#788194",
+                  fontSize: "12px",
+                  fontWeight: "400"
+                }}
+              >
+                You are about to pay a total of 10,000 naira for five selected
+                business
+              </span> */}
+                <span
+                  style={{
+                    color: "#788194",
+                    fontSize: "12px",
+                    fontWeight: "400"
+                  }}
+                >
+                  Kindly select your preffered payment method below to continue
+                </span>
+              </div>
+            </div>
+            <div
+              onClick={handlePaymentRedirect}
+              style={{
+                width: "100%",
+                border: "1px solid #1A87D7",
+                borderRadius: "10px",
+                padding: "15px",
+                display: "flex",
+                height: "80px",
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                cursor: "pointer"
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "20px",
+                  color: "#1A87D7",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  alignItems: "center"
+                }}
+              >
+                <span>
+                  <Flutterwave />
+                </span>
+                <span>Flutterwave</span>
+              </div>
+            </div>
+
+            <LargeSignInButton
+              // onClick={() => handleCloseModal4()}
+              onClick={handlePaymentRedirect}
+              bigger
+              title={"Proceed"}
+              background
+              color
+            />
+          </div>
+        )}
       </AppModal>
     </div>
   );

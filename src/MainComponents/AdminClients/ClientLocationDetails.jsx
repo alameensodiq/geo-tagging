@@ -34,6 +34,8 @@ import { CompletePayment } from "../../Store/Apis/CompletePayment";
 import { businessprojects } from "../../Routes";
 import { EditProject } from "../../Store/Apis/EditProject";
 import { AddLocationActiveProject } from "../../Store/Apis/AddLocationActiveProject";
+import { AddRepActiveProject } from "../../Store/Apis/AddRepActiveProject";
+import { AddActiveRep } from "../../Store/Apis/AddActiveRep";
 
 const ClientLocationDetails = ({ title }) => {
   setDefaults({
@@ -240,6 +242,11 @@ const ClientLocationDetails = ({ title }) => {
     (state) => state.addproject
   );
   console.log(addproject);
+
+  const { addactiverep, authenticatingaddactiverep } = useSelector(
+    (state) => state.addactiverep
+  );
+  console.log(addactiverep);
 
   const { addlocationactiveproject, authenticatingaddlocationactiveproject } =
     useSelector((state) => state.addlocationactiveproject);
@@ -725,21 +732,21 @@ const ClientLocationDetails = ({ title }) => {
       setAmounts(assigned?.data?.calculatedAmount);
       setNumbers(assigned?.data?.numberOfReps);
     }
-    // if (
-    //   assigned?.data?.numberOfReps &&
-    //   assigned?.data?.calculatedAmount &&
-    //   assigned?.status &&
-    //   !authenticatingassigned &&
-    //   bustate11
-    // ) {
-    //   SetActivating1(true);
-    //   SetActivate(false);
-    //   SetPend(false);
-    //   setStep(69);
-    //   setbustate11(false);
-    //   setAmounts(assigned?.data?.calculatedAmount);
-    //   setNumbers(assigned?.data?.numberOfReps);
-    // }
+    if (
+      addrepactiveproject?.data?.numberOfReps &&
+      addrepactiveproject?.data?.calculatedAmount &&
+      addrepactiveproject?.status &&
+      !authenticatingaddrepactiveproject &&
+      bustate11
+    ) {
+      SetActivating1(true);
+      SetActivate(false);
+      SetPend(false);
+      setStep(69);
+      setbustate11(false);
+      setAmounts(addrepactiveproject?.data?.calculatedAmount);
+      setNumbers(addrepactiveproject?.data?.numberOfReps);
+    }
 
     if (payment?.status && !authenticatingpayment && bustate12) {
       SetActivating1(false);
@@ -748,6 +755,19 @@ const ClientLocationDetails = ({ title }) => {
         setStep(71);
       }
       if (assigned?.subscriptionName === "FREE_TRIAL") {
+        setStep(0);
+      }
+      SetPend(false);
+      setbustate11(false);
+      setfreereload(false);
+    }
+    if (addactiverep?.status && !authenticatingaddactiverep && bustate12) {
+      SetActivating1(false);
+      SetActivate(true);
+      if (addrepactiveproject?.subscriptionName !== "FREE_TRIAL") {
+        setStep(81);
+      }
+      if (addrepactiveproject?.subscriptionName === "FREE_TRIAL") {
         setStep(0);
       }
       SetPend(false);
@@ -774,7 +794,11 @@ const ClientLocationDetails = ({ title }) => {
     authenticatingaddlocationactiveproject,
     assigned?.subscriptionName,
     addrepactiveproject?.status,
-    authenticatingaddrepactiveproject
+    authenticatingaddrepactiveproject,
+    addrepactiveproject?.data?.calculatedAmount,
+    addrepactiveproject?.data?.numberOfReps,
+    addactiverep?.status,
+    authenticatingaddactiverep
 
     // freereload
   ]);
@@ -1246,21 +1270,36 @@ const ClientLocationDetails = ({ title }) => {
   const result = numericAmount * (numbers || 1);
 
   const SendAssignRep = () => {
-    for (let rep of repreal) {
-      if (!rep.user_id) {
-        toast.error("No User in one of the locations");
-        return;
+    if (addactivebusinesses) {
+      for (let rep of repreal) {
+        if (!rep.user_id) {
+          toast.error("No User in one of the locations");
+          return;
+        }
+        if (!rep.location_id) {
+          toast.error("Rep must be added to a location");
+          return;
+        }
       }
-      if (!rep.location_id) {
-        toast.error("Rep must be added to a location");
-        return;
+      dispatch(AddRepActiveProject({ repreal }));
+      setbustate11(true);
+    } else {
+      for (let rep of repreal) {
+        if (!rep.user_id) {
+          toast.error("No User in one of the locations");
+          return;
+        }
+        if (!rep.location_id) {
+          toast.error("Rep must be added to a location");
+          return;
+        }
       }
+      dispatch(AssignedRep({ rep: repreal, projectId: addproject?.data?.id }));
+      console.log(repreal);
+      sessionStorage.setItem("projectId", JSON.stringify(addproject?.data?.id));
+      sessionStorage.setItem("repdetails", JSON.stringify(repreal));
+      setbustate11(true);
     }
-    dispatch(AssignedRep({ rep: repreal, projectId: addproject?.data?.id }));
-    console.log(repreal);
-    sessionStorage.setItem("projectId", JSON.stringify(addproject?.data?.id));
-    sessionStorage.setItem("repdetails", JSON.stringify(repreal));
-    setbustate11(true);
   };
 
   const SendAssignRepBolu = () => {
@@ -1269,6 +1308,15 @@ const ClientLocationDetails = ({ title }) => {
         rep: repreal,
         projectId: addproject?.data?.id,
         amount: result
+      })
+    );
+    setbustate12(true);
+  };
+
+  const SendAddRepActiveProj = () => {
+    dispatch(
+      AddActiveRep({
+        repreal: repreal
       })
     );
     setbustate12(true);
@@ -1354,13 +1402,20 @@ const ClientLocationDetails = ({ title }) => {
       <Navbar title={title} />
       <AppUserModal
         setPendingRoleExist1={setPendingRoleExist1}
-        assigned={assigned?.data ? assigned?.data : []}
+        assigned={
+          assigned?.data
+            ? assigned?.data
+            : addrepactiveproject?.data
+            ? addrepactiveproject?.data
+            : []
+        }
         setStep={setStep}
         setbustate={setbustate}
+        SendAddRepActiveProj={SendAddRepActiveProj}
         step={step}
         SendAssignRepBolu={SendAssignRepBolu}
         setReload={setReload}
-        payment={payment ? payment : {}}
+        payment={payment ? payment : addactiverep ? addactiverep : {}}
       />
       <div className="maincontainer">
         <div className="firstdiv">

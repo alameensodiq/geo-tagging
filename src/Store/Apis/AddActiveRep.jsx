@@ -1,16 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const AddRepActiveProject = createAsyncThunk(
-  "addrepactiveproject",
+export const AddActiveRep = createAsyncThunk(
+  "addactiverep",
   async ({ repreal }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
     const addactivebusinesses = sessionStorage.getItem("addactivebusinesses");
+    const activeprojectId = sessionStorage.getItem("activeprojectId");
+    let id = activeprojectId || addactivebusinesses;
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/reps-to-existing-project/${addactivebusinesses}`,
+        `${process.env.REACT_APP_BASE_URL}user/assign-new-reps-summary/${id}`,
         {
           method: "POST",
           headers: {
