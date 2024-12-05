@@ -4,7 +4,7 @@ import { AddProject } from "../Apis/AddProject";
 export const AddProjectSlice = createSlice({
   name: "addproject",
   initialState: {
-    addteam: null,
+    addproject: null,
     authenticatingaddproject: false,
     authenticated: false,
     isError: false,

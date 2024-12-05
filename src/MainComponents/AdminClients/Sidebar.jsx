@@ -103,6 +103,8 @@ function Sidebar({ name, role, open, setOpen }) {
             to={clients}
             onClick={() => {
               sessionStorage.removeItem("editprojectId");
+              sessionStorage.removeItem("activeprojectId");
+              sessionStorage.removeItem("addactivebusinesses");
             }}
             className={`item ${
               router.pathname === `${clients}` ? "active" : ""
@@ -148,6 +150,8 @@ function Sidebar({ name, role, open, setOpen }) {
               to={businessreps}
               onClick={() => {
                 sessionStorage.removeItem("editprojectId");
+                sessionStorage.removeItem("activeprojectId");
+                sessionStorage.removeItem("addactivebusinesses");
               }}
               className={`item ${
                 router.pathname === `${clients}/${businessreps}` ||
@@ -187,6 +191,8 @@ function Sidebar({ name, role, open, setOpen }) {
               to={businessprojects}
               onClick={() => {
                 sessionStorage.removeItem("editprojectId");
+                sessionStorage.removeItem("activeprojectId");
+                sessionStorage.removeItem("addactivebusinesses");
               }}
               className={`item ${
                 router.pathname === `${clients}/${businessprojects}` ||
@@ -215,6 +221,8 @@ function Sidebar({ name, role, open, setOpen }) {
               }`}
               onClick={() => {
                 sessionStorage.removeItem("editprojectId");
+                sessionStorage.removeItem("activeprojectId");
+                sessionStorage.removeItem("addactivebusinesses");
               }}
             >
               <div className="paint"></div>
@@ -233,6 +241,8 @@ function Sidebar({ name, role, open, setOpen }) {
           }`}
           onClick={() => {
             sessionStorage.removeItem("editprojectId");
+            sessionStorage.removeItem("activeprojectId");
+            sessionStorage.removeItem("addactivebusinesses");
           }}
         >
           <div className="paint"></div>
@@ -250,6 +260,8 @@ function Sidebar({ name, role, open, setOpen }) {
             }`}
             onClick={() => {
               sessionStorage.removeItem("editprojectId");
+              sessionStorage.removeItem("activeprojectId");
+              sessionStorage.removeItem("addactivebusinesses");
             }}
           >
             <div className="paint"></div>
@@ -264,6 +276,8 @@ function Sidebar({ name, role, open, setOpen }) {
             to={businessaccounting}
             onClick={() => {
               sessionStorage.removeItem("editprojectId");
+              sessionStorage.removeItem("activeprojectId");
+              sessionStorage.removeItem("addactivebusinesses");
             }}
             className={`item ${
               router.pathname === `${clients}/${businessaccounting}` ||

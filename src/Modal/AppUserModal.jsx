@@ -4059,12 +4059,12 @@ const AppUserModal = ({
           <LocationModalButton
             background
             color
-            downloading
+            sharing
             onClick={() => ""}
             title="Share"
           />
           <LocationModalButton
-            sharing
+            downloading
             onClick={() => DownloadReceipt()}
             title="Download"
           />

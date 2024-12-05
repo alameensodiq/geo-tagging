@@ -33,6 +33,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { CompletePayment } from "../../Store/Apis/CompletePayment";
 import { businessprojects } from "../../Routes";
 import { EditProject } from "../../Store/Apis/EditProject";
+import { AddLocationActiveProject } from "../../Store/Apis/AddLocationActiveProject";
 
 const ClientLocationDetails = ({ title }) => {
   setDefaults({
@@ -240,11 +241,20 @@ const ClientLocationDetails = ({ title }) => {
   );
   console.log(addproject);
 
+  const { addlocationactiveproject, authenticatingaddlocationactiveproject } =
+    useSelector((state) => state.addlocationactiveproject);
+  console.log(addlocationactiveproject);
+
   const { assigned, authenticatingassigned } = useSelector(
     (state) => state.assigned
   );
 
   console.log(assigned);
+
+  const { addrepactiveproject, authenticatingaddrepactiveproject } =
+    useSelector((state) => state.addrepactiveproject);
+
+  console.log(addrepactiveproject);
 
   const { payment, authenticatingpayment } = useSelector(
     (state) => state.payment
@@ -281,6 +291,12 @@ const ClientLocationDetails = ({ title }) => {
   const editprojectId = sessionStorage.getItem("editprojectId");
   console.log(editprojectId);
 
+  const activeprojectId = sessionStorage.getItem("activeprojectId");
+  console.log(activeprojectId);
+
+  const addactivebusinesses = sessionStorage.getItem("addactivebusinesses");
+  console.log(addactivebusinesses);
+
   useEffect(() => {
     if (editprojectId) {
       dispatch(EditProject({ editprojectId }));
@@ -302,11 +318,45 @@ const ClientLocationDetails = ({ title }) => {
       dispatch(CompletePayment({ ref: tx_ref }));
       setPay(true);
     }
-  }, [tx_ref]);
+    if (activeprojectId) {
+      // dispatch(EditProject({ editprojectId }));
+      SetActivate(false);
+      SetPend(true);
+      SetActivating1(false);
+      SetLocker(false);
+      setStatus("PENDING");
+      setSearcher("");
+      setStartDate(new Date("2022-01-01"));
+      setEndDate(new Date(Date.now() + 3600 * 1000 * 24));
+      setCurrentPage(0);
+      setActivater(1);
+      setTimeout(() => {
+        setFirst("pending");
+      }, [500]);
+    }
+    if (addactivebusinesses) {
+      // dispatch(EditProject({ editprojectId }));
+      SetActivate(false);
+      SetPend(false);
+      SetActivating1(true);
+      SetLocker(false);
+      setStatus("PENDING");
+      setSearcher("");
+      setStartDate(new Date("2022-01-01"));
+      setEndDate(new Date(Date.now() + 3600 * 1000 * 24));
+      setCurrentPage(0);
+      setActivater(1);
+      setTimeout(() => {
+        setFirst("pending");
+      }, [500]);
+    }
+  }, [tx_ref, editprojectId, activeprojectId, addactivebusinesses]);
 
   const { complete, authenticatingcomplete } = useSelector(
     (state) => state.completepayment
   );
+
+  // sessionStorage.setItem("addactivebusinesses", id);
 
   const { editproject, authenticatingeditproject } = useSelector(
     (state) => state.editproject
@@ -627,6 +677,18 @@ const ClientLocationDetails = ({ title }) => {
       setbustate79(false);
       setStep(0);
     }
+    if (
+      addlocationactiveproject?.status &&
+      !authenticatingaddlocationactiveproject &&
+      bustate
+    ) {
+      SetActivating1(true);
+      SetActivate(false);
+      SetPend(false);
+      setbustate(false);
+      setbustate79(false);
+      setStep(0);
+    }
     if (addproject?.status && !authenticatingaddproject && bustate79) {
       SetActivating1(true);
       SetActivate(false);
@@ -663,6 +725,22 @@ const ClientLocationDetails = ({ title }) => {
       setAmounts(assigned?.data?.calculatedAmount);
       setNumbers(assigned?.data?.numberOfReps);
     }
+    // if (
+    //   assigned?.data?.numberOfReps &&
+    //   assigned?.data?.calculatedAmount &&
+    //   assigned?.status &&
+    //   !authenticatingassigned &&
+    //   bustate11
+    // ) {
+    //   SetActivating1(true);
+    //   SetActivate(false);
+    //   SetPend(false);
+    //   setStep(69);
+    //   setbustate11(false);
+    //   setAmounts(assigned?.data?.calculatedAmount);
+    //   setNumbers(assigned?.data?.numberOfReps);
+    // }
+
     if (payment?.status && !authenticatingpayment && bustate12) {
       SetActivating1(false);
       SetActivate(true);
@@ -691,7 +769,13 @@ const ClientLocationDetails = ({ title }) => {
     assigned?.data?.numberOfReps,
     editprojectId,
     addproject?.message,
-    bustate79
+    bustate79,
+    addlocationactiveproject?.status,
+    authenticatingaddlocationactiveproject,
+    assigned?.subscriptionName,
+    addrepactiveproject?.status,
+    authenticatingaddrepactiveproject
+
     // freereload
   ]);
 
@@ -726,6 +810,14 @@ const ClientLocationDetails = ({ title }) => {
       toast.error("You can't edit Project Details");
       return;
     }
+    if (activeprojectId) {
+      toast.error("You can't edit Project Details");
+      return;
+    }
+    if (addactivebusinesses) {
+      toast.error("You can't edit Project Details");
+      return;
+    }
     SetActivate(true);
     SetPend(false);
     SetActivating1(false);
@@ -741,19 +833,24 @@ const ClientLocationDetails = ({ title }) => {
     }, [500]);
   };
   const setPending = () => {
-    SetActivate(false);
-    SetPend(true);
-    SetActivating1(false);
-    SetLocker(false);
-    setStatus("PENDING");
-    setSearcher("");
-    setStartDate(new Date("2022-01-01"));
-    setEndDate(new Date(Date.now() + 3600 * 1000 * 24));
-    setCurrentPage(0);
-    setActivater(1);
-    setTimeout(() => {
-      setFirst("pending");
-    }, [500]);
+    if (addactivebusinesses) {
+      toast.error("you cant go back");
+      return;
+    } else {
+      SetActivate(false);
+      SetPend(true);
+      SetActivating1(false);
+      SetLocker(false);
+      setStatus("PENDING");
+      setSearcher("");
+      setStartDate(new Date("2022-01-01"));
+      setEndDate(new Date(Date.now() + 3600 * 1000 * 24));
+      setCurrentPage(0);
+      setActivater(1);
+      setTimeout(() => {
+        setFirst("pending");
+      }, [500]);
+    }
   };
 
   const setPendingRole1 = () => {
@@ -781,6 +878,10 @@ const ClientLocationDetails = ({ title }) => {
       minutesToAdd !== undefined &&
       minutesToAdd !== null;
 
+    if (activeprojectId && locations?.length >= 0) {
+      dispatch(AddLocationActiveProject({ locations }));
+      setbustate(true);
+    }
     if (areAllVariablesPresent) {
       if (editprojectId) {
         console.log("Id available");
@@ -900,6 +1001,15 @@ const ClientLocationDetails = ({ title }) => {
 
   const setPendingRoleReal1 = () => {
     if (addproject?.status && !authenticatingaddproject && bustate) {
+      SetActivating1(true);
+      SetActivate(false);
+      SetPend(false);
+      setbustate(false);
+    } else if (
+      addlocationactiveproject?.status &&
+      !authenticatingaddlocationactiveproject &&
+      bustate
+    ) {
       SetActivating1(true);
       SetActivate(false);
       SetPend(false);
@@ -1952,7 +2062,13 @@ const ClientLocationDetails = ({ title }) => {
               <div className="lastdiv">
                 <LocationModalButton
                   whitey
-                  onClick={() => setActivate()}
+                  onClick={() => {
+                    if (editprojectId || activeprojectId) {
+                      toast.error("You cant go back");
+                    } else {
+                      setActivate();
+                    }
+                  }}
                   title="Back"
                 />
                 <LocationModalButton
@@ -2110,7 +2226,13 @@ const ClientLocationDetails = ({ title }) => {
               <div className="lastdiv">
                 <LocationModalButton
                   whitey
-                  onClick={() => setPending()}
+                  onClick={() => {
+                    if (addactivebusinesses) {
+                      toast.error("You can't go back");
+                    } else {
+                      setPending();
+                    }
+                  }}
                   title="Back"
                 />
                 <LocationModalButton

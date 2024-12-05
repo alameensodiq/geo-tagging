@@ -115,24 +115,26 @@ const ClientProjectDetails = ({ title }) => {
               Cluster Name: {projectdetails?.data[0]?.projectName}
             </span>
           </div>
-          {/* <div className="modal-div">
+          <div className="modal-div">
             <ModalButton
-              onClick={() =>
-                navigate(`../${businessprojects}/location/:location`)
-              }
+              onClick={() => {
+                navigate(`../${businessprojects}/location/:location`);
+                sessionStorage.setItem("addactivebusinesses", id);
+              }}
               whitey
               reduce
               title={"New Business Reps"}
             />
             <ModalButton
-              onClick={() =>
-                navigate(`../${businessprojects}/location/:location`)
-              }
+              onClick={() => {
+                navigate(`../${businessprojects}/location/:location`);
+                sessionStorage.setItem("activeprojectId", id);
+              }}
               background
               color
               title={"New Locations"}
             />
-          </div> */}
+          </div>
         </div>
         <div className="table">
           <div className="date-search">
