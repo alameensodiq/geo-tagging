@@ -57,6 +57,7 @@ import { SuperSubCountSlice } from "./Reducers/SuperSubCount";
 import { AddLocationActiveProjectSlice } from "./Reducers/AddLocationActiveProject";
 import { AddRepActiveProjectSlice } from "./Reducers/AddRepActiveProject";
 import { AddActiveRepSlice } from "./Reducers/AddActiveRep";
+import { ProjectLocationsSlice } from "./Reducers/ProjectLocations";
 
 export default configureStore({
   reducer: {
@@ -117,6 +118,7 @@ export default configureStore({
     remarks: RemarksSlice?.reducer,
     addlocationactiveproject: AddLocationActiveProjectSlice?.reducer,
     addrepactiveproject: AddRepActiveProjectSlice?.reducer,
-    addactiverep: AddActiveRepSlice?.reducer
+    addactiverep: AddActiveRepSlice?.reducer,
+    projectlocations: ProjectLocationsSlice?.reducer
   }
 });

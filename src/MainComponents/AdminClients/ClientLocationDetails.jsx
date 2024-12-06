@@ -36,6 +36,7 @@ import { EditProject } from "../../Store/Apis/EditProject";
 import { AddLocationActiveProject } from "../../Store/Apis/AddLocationActiveProject";
 import { AddRepActiveProject } from "../../Store/Apis/AddRepActiveProject";
 import { AddActiveRep } from "../../Store/Apis/AddActiveRep";
+import { ProjectLocations } from "../../Store/Apis/ProjectLocations";
 
 const ClientLocationDetails = ({ title }) => {
   setDefaults({
@@ -263,6 +264,12 @@ const ClientLocationDetails = ({ title }) => {
 
   console.log(addrepactiveproject);
 
+  const { projectlocations, authenticatingprojectlocations } = useSelector(
+    (state) => state.projectlocations
+  );
+
+  console.log(projectlocations);
+
   const { payment, authenticatingpayment } = useSelector(
     (state) => state.payment
   );
@@ -346,6 +353,7 @@ const ClientLocationDetails = ({ title }) => {
       SetActivate(false);
       SetPend(false);
       SetActivating1(true);
+      dispatch(ProjectLocations());
       SetLocker(false);
       setStatus("PENDING");
       setSearcher("");
@@ -2173,16 +2181,20 @@ const ClientLocationDetails = ({ title }) => {
                           name="location_id"
                         >
                           <option value="">Select a location</option>
-                          {addproject?.data?.locations?.map((locationItem) => (
-                            <>
-                              <option
-                                key={locationItem?.id}
-                                value={String(locationItem?.id)}
-                              >
-                                {locationItem?.address}
-                              </option>
-                            </>
-                          ))}
+                          {addactivebusinesses
+                            ? ""
+                            : addproject?.data?.locations?.map(
+                                (locationItem) => (
+                                  <>
+                                    <option
+                                      key={locationItem?.id}
+                                      value={String(locationItem?.id)}
+                                    >
+                                      {locationItem?.address}
+                                    </option>
+                                  </>
+                                )
+                              )}
                         </select>
                       </div>
                     </div>
