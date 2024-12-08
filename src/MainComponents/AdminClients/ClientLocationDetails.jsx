@@ -269,6 +269,15 @@ const ClientLocationDetails = ({ title }) => {
   );
 
   console.log(projectlocations);
+  // console.log(
+  //   projectlocations?.data?.map((locationItem) => (
+  //     <>
+  //       <option key={locationItem?.id} value={String(locationItem?.id)}>
+  //         {locationItem?.address}
+  //       </option>
+  //     </>
+  //   ))
+  // );
 
   const { payment, authenticatingpayment } = useSelector(
     (state) => state.payment
@@ -1134,6 +1143,8 @@ const ClientLocationDetails = ({ title }) => {
 
     // Update the 'rep' state (if necessary)
     setRep(rep);
+    console.log(rep);
+    console.log(repreal);
 
     const updateState = (prev) => {
       const lastIndex = prev.length - 1;
@@ -2182,7 +2193,16 @@ const ClientLocationDetails = ({ title }) => {
                         >
                           <option value="">Select a location</option>
                           {addactivebusinesses
-                            ? ""
+                            ? projectlocations?.data?.map((locationItem) => (
+                                <>
+                                  <option
+                                    key={locationItem?.location_id}
+                                    value={String(locationItem?.location_id)}
+                                  >
+                                    {locationItem?.address}
+                                  </option>
+                                </>
+                              ))
                             : addproject?.data?.locations?.map(
                                 (locationItem) => (
                                   <>
@@ -2234,7 +2254,9 @@ const ClientLocationDetails = ({ title }) => {
 
                         console.log(addressy);
 
-                        const locations = addproject?.data?.locations || [];
+                        const locations = addactivebusinesses
+                          ? projectlocations?.data || []
+                          : addproject?.data?.locations || [];
 
                         console.log(locations);
 
@@ -2242,10 +2264,18 @@ const ClientLocationDetails = ({ title }) => {
 
                         if (addressy) {
                           // Find the real address based on location_id
-                          realaddress = locations.find(
-                            (location) =>
-                              location.id === Number(addressy.location_id)
-                          );
+                          if (addactivebusinesses) {
+                            realaddress = locations.find(
+                              (location) =>
+                                location.location_id === addressy.location_id
+                            );
+                          }
+                          if (!addactivebusinesses) {
+                            realaddress = locations.find(
+                              (location) =>
+                                location.id === Number(addressy.location_id)
+                            );
+                          }
 
                           // Log the found real address for debugging
                           console.log(realaddress);
