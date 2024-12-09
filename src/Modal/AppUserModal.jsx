@@ -8292,6 +8292,10 @@ const AppUserModal = ({
               onClick={() => {
                 handleCloseModal4();
                 sessionStorage.removeItem("editprojectId");
+                sessionStorage.removeItem("projectId");
+                sessionStorage.removeItem("repdetails");
+                sessionStorage.removeItem("activeprojectId");
+                sessionStorage.removeItem("addactivebusinesses");
                 navigate(`../${businessprojects}`);
               }}
               big

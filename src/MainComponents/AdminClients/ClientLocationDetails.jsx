@@ -37,6 +37,7 @@ import { AddLocationActiveProject } from "../../Store/Apis/AddLocationActiveProj
 import { AddRepActiveProject } from "../../Store/Apis/AddRepActiveProject";
 import { AddActiveRep } from "../../Store/Apis/AddActiveRep";
 import { ProjectLocations } from "../../Store/Apis/ProjectLocations";
+import { RenewCompletePayment } from "../../Store/Apis/RenewCompletePayment";
 
 const ClientLocationDetails = ({ title }) => {
   setDefaults({
@@ -285,6 +286,11 @@ const ClientLocationDetails = ({ title }) => {
 
   console.log(payment?.status);
 
+  const { renewcompletepayment, authenticatingrenewcompletepayment } =
+    useSelector((state) => state.renewcompletepayment);
+
+  console.log(renewcompletepayment?.status);
+
   // useEffect(() => {
   //   if (addproject?.data?.locations?.length > 0) {
   //     const defaultLocationId = addproject.data.locations[0].id;
@@ -336,6 +342,10 @@ const ClientLocationDetails = ({ title }) => {
       setTimeout(() => {
         setFirst("pending");
       }, [500]);
+    }
+    if (tx_ref && sessionStorage.getItem("renewid")) {
+      dispatch(RenewCompletePayment({ ref: tx_ref }));
+      setPay(true);
     }
     if (tx_ref) {
       dispatch(CompletePayment({ ref: tx_ref }));
@@ -390,6 +400,14 @@ const ClientLocationDetails = ({ title }) => {
 
   useEffect(() => {
     if (complete?.status && !authenticatingcomplete && pay) {
+      setStep(72);
+      setPay(false);
+    }
+    if (
+      renewcompletepayment?.status &&
+      !authenticatingrenewcompletepayment &&
+      pay
+    ) {
       setStep(72);
       setPay(false);
     }

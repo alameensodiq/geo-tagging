@@ -1,16 +1,23 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-export const AddRepActiveProject = createAsyncThunk(
-  "addrepactiveproject",
-  async ({ repreal }, thunkAPI) => {
+export const RenewCompletePayment = createAsyncThunk(
+  "renewcompletepayment",
+  async ({ ref }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
-    const addactivebusinesses = sessionStorage.getItem("addactivebusinesses");
+    const projectId = sessionStorage.getItem("projectId");
+    const repdetails = sessionStorage.getItem("repdetails");
+    const repdetailsReal = JSON.parse(repdetails);
+
+    // Wrap the details in the expected format
+    const requestBody = {
+      data: repdetailsReal // Assuming repdetailsReal is an array of user/location objects
+    };
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}user/assign-new-reps-summary/${addactivebusinesses}`,
+        `${process.env.REACT_APP_BASE_URL}user/project/verify-renewal?renewalTransactionId=${ref}`,
         {
           method: "POST",
           headers: {
@@ -18,29 +25,23 @@ export const AddRepActiveProject = createAsyncThunk(
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
           },
-          body: JSON.stringify({
-            data: repreal
-          })
+          // Convert the requestBody to JSON string
+          body: JSON.stringify(requestBody)
         }
       );
+
       let data = await response.json();
       if (data?.status) {
         // toast.success(data.message);
-      }
-      if (!data?.status) {
+      } else {
         toast.error(data.message);
       }
       console.log(data);
-      //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);
-      //   sessionStorage.setItem('role', data?.data?.user?.userRole);
-      // sessionStorage.setItem('token', data?.data?.token );
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({
         error: "Failed! To establish connection."
       });
-      // console.log('Error', e.response.data);
-      // thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );

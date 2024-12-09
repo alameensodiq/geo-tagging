@@ -28,6 +28,7 @@ import {
 } from "../Routes";
 import { ModalButton } from "./ModalButton";
 import { Remarks } from "../Store/Apis/Remarks";
+import { RenewSub } from "../Store/Apis/RenewSub";
 
 const Tables = ({
   active,
@@ -174,6 +175,16 @@ const Tables = ({
     (state) => state?.remarks
   );
   console.log(remarks);
+
+  const { renewsub, authenticatingrenewsub } = useSelector(
+    (state) => state?.renewsub
+  );
+  console.log(renewsub);
+
+  if (renewsub?.status) {
+    const paymentLink = renewsub?.data?.paymentLink;
+    window.location.href = paymentLink;
+  }
 
   console.log(data);
 
@@ -692,6 +703,21 @@ const Tables = ({
                               >
                                 <Deactivate />
                                 <span>Deactivate</span>
+                              </div>
+                            )}
+                          {savedPermissions &&
+                            savedPermissions.includes("PROJECT_EDIT") && (
+                              <div
+                                className="row"
+                                onClick={() => {
+                                  // setId(item?.id);
+                                  sessionStorage.setItem("renewid", item?.id);
+                                  dispatch(RenewSub({ projectId: item?.id }));
+                                  setProject(!projectactive);
+                                }}
+                              >
+                                <View />
+                                <span>Renew Subscription</span>
                               </div>
                             )}
 
@@ -2932,7 +2958,7 @@ const Flex = styled.div`
   }
   .activeprojectmodal {
     width: 150px;
-    height: 70px;
+    height: 90px;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 15px;
