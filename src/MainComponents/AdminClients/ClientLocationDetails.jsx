@@ -1309,7 +1309,7 @@ const ClientLocationDetails = ({ title }) => {
   const result = numericAmount * (numbers || 1);
 
   const SendAssignRep = () => {
-    if (addactivebusinesses) {
+    if (addactivebusinesses || activeprojectId) {
       for (let rep of repreal) {
         if (!rep.user_id) {
           toast.error("No User in one of the locations");
