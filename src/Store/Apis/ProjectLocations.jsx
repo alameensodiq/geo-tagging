@@ -6,7 +6,9 @@ export const ProjectLocations = createAsyncThunk(
   async (thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
-    const addactivebusinesses = sessionStorage.getItem("addactivebusinesses");
+    const addactivebusinesses =
+      sessionStorage.getItem("addactivebusinesses") ||
+      sessionStorage.getItem("activeprojectId");
     console.log(addactivebusinesses);
 
     try {

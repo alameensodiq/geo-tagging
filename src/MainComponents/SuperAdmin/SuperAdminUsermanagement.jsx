@@ -188,7 +188,7 @@ const SuperAdminUsermanagement = ({ title }) => {
             </div> */}
             <InputSearch
               onChange={(e) => setSearcher(e.target.value)}
-              placeholder="Search for Corporates name, email, RC Number, e.t.c"
+              placeholder="Search for Super users name, email, RC Number, e.t.c"
             />
           </div>
           <div className="wrapper">

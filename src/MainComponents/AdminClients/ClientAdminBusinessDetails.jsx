@@ -109,7 +109,7 @@ const ClientAdminBusinessDetails = ({ title }) => {
         <div className="top-div">
           <div className="activeinfo">
             <div className="activediv">
-              <span className="active">Active</span>
+              {/* <span className="active">Active</span> */}
             </div>
             <div className="activedetails">
               {/* <span className="image"></span> */}

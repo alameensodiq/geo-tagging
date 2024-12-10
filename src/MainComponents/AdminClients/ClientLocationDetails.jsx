@@ -939,11 +939,31 @@ const ClientLocationDetails = ({ title }) => {
 
     if (activeprojectId && locations?.length >= 0) {
       dispatch(AddLocationActiveProject({ locations }));
+      dispatch(ProjectLocations());
       setbustate(true);
-    }
-    if (areAllVariablesPresent) {
-      if (editprojectId) {
-        console.log("Id available");
+    } else {
+      if (areAllVariablesPresent) {
+        if (editprojectId) {
+          console.log("Id available");
+          dispatch(
+            AddProject({
+              name,
+              description,
+              minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
+              startDate: assigncopy.startDate,
+              stopDate: assigncopy.stopDate,
+              startTime,
+              existingProjectId: editprojectId,
+              stopTime,
+              // forceCreate,
+              isHourlyStamp,
+              duration: assigncopy.duration,
+              dailyPay: JSON.parse(assigncopy.dailyPay),
+              locations,
+              weekdays: assigncopy.weekdays
+            })
+          );
+        }
         dispatch(
           AddProject({
             name,
@@ -952,7 +972,7 @@ const ClientLocationDetails = ({ title }) => {
             startDate: assigncopy.startDate,
             stopDate: assigncopy.stopDate,
             startTime,
-            existingProjectId: editprojectId,
+            existingProjectId: null,
             stopTime,
             // forceCreate,
             isHourlyStamp,
@@ -962,29 +982,11 @@ const ClientLocationDetails = ({ title }) => {
             weekdays: assigncopy.weekdays
           })
         );
+        setbustate(true);
+      } else {
+        console.log(assigncopy);
+        toast.error("Some required variables are missing.");
       }
-      dispatch(
-        AddProject({
-          name,
-          description,
-          minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
-          startDate: assigncopy.startDate,
-          stopDate: assigncopy.stopDate,
-          startTime,
-          existingProjectId: null,
-          stopTime,
-          // forceCreate,
-          isHourlyStamp,
-          duration: assigncopy.duration,
-          dailyPay: JSON.parse(assigncopy.dailyPay),
-          locations,
-          weekdays: assigncopy.weekdays
-        })
-      );
-      setbustate(true);
-    } else {
-      console.log(assigncopy);
-      toast.error("Some required variables are missing.");
     }
   };
 
@@ -2210,7 +2212,7 @@ const ClientLocationDetails = ({ title }) => {
                           name="location_id"
                         >
                           <option value="">Select a location</option>
-                          {addactivebusinesses
+                          {addactivebusinesses || activeprojectId
                             ? projectlocations?.data?.map((locationItem) => (
                                 <>
                                   <option
@@ -2272,9 +2274,10 @@ const ClientLocationDetails = ({ title }) => {
 
                         console.log(addressy);
 
-                        const locations = addactivebusinesses
-                          ? projectlocations?.data || []
-                          : addproject?.data?.locations || [];
+                        const locations =
+                          addactivebusinesses || activeprojectId
+                            ? projectlocations?.data || []
+                            : addproject?.data?.locations || [];
 
                         console.log(locations);
 
@@ -2282,13 +2285,13 @@ const ClientLocationDetails = ({ title }) => {
 
                         if (addressy) {
                           // Find the real address based on location_id
-                          if (addactivebusinesses) {
+                          if (addactivebusinesses || activeprojectId) {
                             realaddress = locations.find(
                               (location) =>
                                 location.location_id === addressy.location_id
                             );
                           }
-                          if (!addactivebusinesses) {
+                          if (!addactivebusinesses && !activeprojectId) {
                             realaddress = locations.find(
                               (location) =>
                                 location.id === Number(addressy.location_id)
