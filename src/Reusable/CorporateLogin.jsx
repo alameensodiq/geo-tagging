@@ -122,6 +122,8 @@ const CorporateLogin = () => {
   } else if (
     corporateuser?.status &&
     !corporateuser?.data?.hasChangeDefaultPassword &&
+    (sessionStorage.getItem("role") === "USER" ||
+      sessionStorage.getItem("role") === "SUB_USER") &&
     !authenticating &&
     log
   ) {

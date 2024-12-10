@@ -54,6 +54,8 @@ const Login = () => {
   );
   console.log(corporateuser);
 
+  console.log(JSON.parse(sessionStorage.getItem("permissions")));
+
   if (
     corporateuser?.status &&
     !authenticating &&
@@ -64,7 +66,8 @@ const Login = () => {
   ) {
     const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
     if (savedPermissions && savedPermissions.includes("OVERVIEW_VIEW")) {
-      navigate(`${superadmins}`);
+      console.log("navigate");
+      window.location.pathname = `${superadmins}`;
     } else if (
       savedPermissions &&
       !savedPermissions.includes("OVERVIEW_VIEW") &&
@@ -90,6 +93,8 @@ const Login = () => {
   } else if (
     corporateuser?.status &&
     !authenticating &&
+    (sessionStorage.getItem("role") === "ADMIN" ||
+      sessionStorage.getItem("role") === "SUB_ADMIN") &&
     log &&
     !corporateuser?.data?.hasChangeDefaultPassword
   ) {

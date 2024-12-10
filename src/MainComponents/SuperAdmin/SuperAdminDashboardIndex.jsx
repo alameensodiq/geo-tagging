@@ -149,7 +149,8 @@ const SuperAdminDashboardIndex = () => {
   };
 
   return sessionStorage.getItem("token") &&
-    sessionStorage.getItem("role") === "ADMIN" ? (
+    (sessionStorage.getItem("role") === "ADMIN" ||
+      sessionStorage.getItem("role") === "SUB_ADMIN") ? (
     //  window.location.href = '/super'
     //  (supers)
 

@@ -42,7 +42,6 @@ export const CorporateSignUser = createAsyncThunk(
       const decodedToken = jwtDecode(token);
       sessionStorage.setItem("role", decodedToken?.role);
       console.log(decodedToken);
-
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue({
