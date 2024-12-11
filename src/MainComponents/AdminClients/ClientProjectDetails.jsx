@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { businessprojects } from "../../Routes";
 import { ProjectDetails } from "../../Store/Apis/ProjectDetails";
 import Pagination from "../../Reusable/Pagination";
+import toast from "react-hot-toast";
 
 const ClientProjectDetails = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -38,11 +39,23 @@ const ClientProjectDetails = ({ title }) => {
 
   useEffect(() => {
     dispatch(ProjectDetails({ id }));
+    dispatch(CorporateBusinessRep({ searcher, statuses: false }));
     if (reload) {
       dispatch(ProjectDetails({ id }));
+      dispatch(CorporateBusinessRep({ searcher, statuses: false }));
       setReload(false);
     }
   }, [reload, id]);
+
+  const { businessrep, authenticatingbusinessrep } = useSelector(
+    (state) => state.businessrep
+  );
+
+  console.log(businessrep);
+
+  const activate = businessrep?.data?.data?.filter(
+    (item) => item?.isOnActiveProject === false
+  );
 
   const { projectdetails, authenticatingprojectdetails } = useSelector(
     (state) => state.projectdetails
@@ -118,8 +131,12 @@ const ClientProjectDetails = ({ title }) => {
           <div className="modal-div">
             <ModalButton
               onClick={() => {
-                navigate(`../${businessprojects}/location/:location`);
-                sessionStorage.setItem("addactivebusinesses", id);
+                if (activate?.length >= 1) {
+                  navigate(`../${businessprojects}/location/:location`);
+                  sessionStorage.setItem("addactivebusinesses", id);
+                } else {
+                  toast.error("No inactive Business Rep. Please add rep(s)");
+                }
               }}
               whitey
               reduce
@@ -127,8 +144,12 @@ const ClientProjectDetails = ({ title }) => {
             />
             <ModalButton
               onClick={() => {
-                navigate(`../${businessprojects}/location/:location`);
-                sessionStorage.setItem("activeprojectId", id);
+                if (activate?.length >= 1) {
+                  navigate(`../${businessprojects}/location/:location`);
+                  sessionStorage.setItem("activeprojectId", id);
+                } else {
+                  toast.error("No inactive Business Rep. Please add rep(s)");
+                }
               }}
               background
               color

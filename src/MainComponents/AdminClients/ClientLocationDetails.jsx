@@ -914,6 +914,13 @@ const ClientLocationDetails = ({ title }) => {
 
   const setPendingRole1 = () => {
     console.log(assign?.minutesToAdd);
+    const parseIfJSON = (value) => {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value; // Return as-is if it's not valid JSON
+      }
+    };
     const {
       name,
       description,
@@ -949,18 +956,18 @@ const ClientLocationDetails = ({ title }) => {
             AddProject({
               name,
               description,
-              minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
-              startDate: assigncopy.startDate,
-              stopDate: assigncopy.stopDate,
+              minutesToAdd: parseIfJSON(assigncopy?.minutesToAdd),
+              startDate: assigncopy?.startDate,
+              stopDate: assigncopy?.stopDate,
               startTime,
               existingProjectId: editprojectId,
               stopTime,
               // forceCreate,
               isHourlyStamp,
-              duration: assigncopy.duration,
-              dailyPay: JSON.parse(assigncopy.dailyPay),
+              duration: assigncopy?.duration,
+              dailyPay: parseIfJSON(assigncopy?.dailyPay),
               locations,
-              weekdays: assigncopy.weekdays
+              weekdays: assigncopy?.weekdays
             })
           );
         }
@@ -968,18 +975,18 @@ const ClientLocationDetails = ({ title }) => {
           AddProject({
             name,
             description,
-            minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
-            startDate: assigncopy.startDate,
-            stopDate: assigncopy.stopDate,
+            minutesToAdd: parseIfJSON(assigncopy?.minutesToAdd),
+            startDate: assigncopy?.startDate,
+            stopDate: assigncopy?.stopDate,
             startTime,
             existingProjectId: null,
             stopTime,
             // forceCreate,
             isHourlyStamp,
-            duration: assigncopy.duration,
-            dailyPay: JSON.parse(assigncopy.dailyPay),
+            duration: assigncopy?.duration,
+            dailyPay: parseIfJSON(assigncopy?.dailyPay),
             locations,
-            weekdays: assigncopy.weekdays
+            weekdays: assigncopy?.weekdays
           })
         );
         setbustate(true);
@@ -992,6 +999,13 @@ const ClientLocationDetails = ({ title }) => {
 
   const setPendingRoleExist1 = () => {
     console.log(assign?.minutesToAdd);
+    const parseIfJSON = (value) => {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value; // Return as-is if it's not valid JSON
+      }
+    };
     const {
       name,
       description,
@@ -1020,18 +1034,18 @@ const ClientLocationDetails = ({ title }) => {
           AddProject({
             name,
             description,
-            minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
-            startDate: assigncopy.startDate,
-            stopDate: assigncopy.stopDate,
+            minutesToAdd: parseIfJSON(assigncopy?.minutesToAdd),
+            startDate: assigncopy?.startDate,
+            stopDate: assigncopy?.stopDate,
             startTime,
             stopTime,
             existingProjectId: editprojectId,
             // forceCreate: !forceCreate,
             isHourlyStamp,
-            duration: assigncopy.duration,
-            dailyPay: JSON.parse(assigncopy.dailyPay),
+            duration: assigncopy?.duration,
+            dailyPay: parseIfJSON(assigncopy?.dailyPay),
             locations,
-            weekdays: assigncopy.weekdays
+            weekdays: assigncopy?.weekdays
           })
         );
       }
@@ -1039,18 +1053,18 @@ const ClientLocationDetails = ({ title }) => {
         AddProject({
           name,
           description,
-          minutesToAdd: JSON.parse(assigncopy.minutesToAdd),
-          startDate: assigncopy.startDate,
-          stopDate: assigncopy.stopDate,
+          minutesToAdd: parseIfJSON(assigncopy?.minutesToAdd),
+          startDate: assigncopy?.startDate,
+          stopDate: assigncopy?.stopDate,
           startTime,
           stopTime,
           existingProjectId: null,
           // forceCreate: !forceCreate,
           isHourlyStamp,
-          duration: assigncopy.duration,
-          dailyPay: JSON.parse(assigncopy.dailyPay),
+          duration: assigncopy?.duration,
+          dailyPay: parseIfJSON(assigncopy?.dailyPay),
           locations,
-          weekdays: assigncopy.weekdays
+          weekdays: assigncopy?.weekdays
         })
       );
       setbustate79(true);
@@ -1369,8 +1383,8 @@ const ClientLocationDetails = ({ title }) => {
     fromAddress(e)
       .then(({ results }) => {
         if (results.length > 0) {
-          const { lat, lng } = results[0].geometry.location;
-          const placeId = results[0].place_id;
+          const { lat, lng } = results[0]?.geometry.location;
+          const placeId = results[0]?.place_id;
 
           console.log("Latitude:", lat);
           console.log("Longitude:", lng);
@@ -1463,8 +1477,18 @@ const ClientLocationDetails = ({ title }) => {
               style={{ cursor: "pointer" }}
               onClick={
                 tx_ref
-                  ? () => navigate(`../${businessprojects}`)
-                  : () => navigate(-1)
+                  ? () => {
+                      navigate(`../${businessprojects}`);
+                      sessionStorage.removeItem("editprojectId");
+                      sessionStorage.removeItem("activeprojectId");
+                      sessionStorage.removeItem("addactivebusinesses");
+                    }
+                  : () => {
+                      navigate(-1);
+                      sessionStorage.removeItem("editprojectId");
+                      sessionStorage.removeItem("activeprojectId");
+                      sessionStorage.removeItem("addactivebusinesses");
+                    }
               }
               // onClick={() => setStep(70)}
             />
