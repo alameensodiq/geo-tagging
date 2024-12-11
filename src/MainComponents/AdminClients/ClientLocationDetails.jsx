@@ -505,7 +505,9 @@ const ClientLocationDetails = ({ title }) => {
     authenticatingcomplete,
     pay,
     editproject,
-    editproject?.status
+    editproject?.status,
+    authenticatingrenewcompletepayment,
+    renewcompletepayment?.status
   ]);
 
   useEffect(() => {
@@ -730,6 +732,7 @@ const ClientLocationDetails = ({ title }) => {
       SetPend(false);
       setbustate(false);
       setbustate79(false);
+      dispatch(ProjectLocations());
       setStep(0);
     }
     if (addproject?.status && !authenticatingaddproject && bustate79) {
@@ -947,7 +950,6 @@ const ClientLocationDetails = ({ title }) => {
 
     if (activeprojectId && locations?.length >= 0) {
       dispatch(AddLocationActiveProject({ locations }));
-      dispatch(ProjectLocations());
       setbustate(true);
     } else {
       if (areAllVariablesPresent) {
