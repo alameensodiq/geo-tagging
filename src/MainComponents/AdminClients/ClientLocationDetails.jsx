@@ -343,12 +343,13 @@ const ClientLocationDetails = ({ title }) => {
         setFirst("pending");
       }, [500]);
     }
-    if (tx_ref && sessionStorage.getItem("renewid")) {
-      dispatch(RenewCompletePayment({ ref: tx_ref }));
-      setPay(true);
-    }
     if (tx_ref) {
-      dispatch(CompletePayment({ ref: tx_ref }));
+      const renewId = sessionStorage.getItem("renewid");
+      if (renewId) {
+        dispatch(RenewCompletePayment({ ref: tx_ref }));
+      } else {
+        dispatch(CompletePayment({ ref: tx_ref }));
+      }
       setPay(true);
     }
     if (activeprojectId) {
@@ -1482,12 +1483,14 @@ const ClientLocationDetails = ({ title }) => {
                       sessionStorage.removeItem("editprojectId");
                       sessionStorage.removeItem("activeprojectId");
                       sessionStorage.removeItem("addactivebusinesses");
+                      sessionStorage.removeItem("renewid");
                     }
                   : () => {
                       navigate(-1);
                       sessionStorage.removeItem("editprojectId");
                       sessionStorage.removeItem("activeprojectId");
                       sessionStorage.removeItem("addactivebusinesses");
+                      sessionStorage.removeItem("renewid");
                     }
               }
               // onClick={() => setStep(70)}

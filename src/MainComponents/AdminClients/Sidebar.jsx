@@ -105,6 +105,7 @@ function Sidebar({ name, role, open, setOpen }) {
               sessionStorage.removeItem("editprojectId");
               sessionStorage.removeItem("activeprojectId");
               sessionStorage.removeItem("addactivebusinesses");
+              sessionStorage.removeItem("renewid");
             }}
             className={`item ${
               router.pathname === `${clients}` ? "active" : ""
@@ -152,6 +153,7 @@ function Sidebar({ name, role, open, setOpen }) {
                 sessionStorage.removeItem("editprojectId");
                 sessionStorage.removeItem("activeprojectId");
                 sessionStorage.removeItem("addactivebusinesses");
+                sessionStorage.removeItem("renewid");
               }}
               className={`item ${
                 router.pathname === `${clients}/${businessreps}` ||
@@ -193,6 +195,7 @@ function Sidebar({ name, role, open, setOpen }) {
                 sessionStorage.removeItem("editprojectId");
                 sessionStorage.removeItem("activeprojectId");
                 sessionStorage.removeItem("addactivebusinesses");
+                sessionStorage.removeItem("renewid");
               }}
               className={`item ${
                 router.pathname === `${clients}/${businessprojects}` ||
@@ -223,6 +226,7 @@ function Sidebar({ name, role, open, setOpen }) {
                 sessionStorage.removeItem("editprojectId");
                 sessionStorage.removeItem("activeprojectId");
                 sessionStorage.removeItem("addactivebusinesses");
+                sessionStorage.removeItem("renewid");
               }}
             >
               <div className="paint"></div>
@@ -243,6 +247,7 @@ function Sidebar({ name, role, open, setOpen }) {
             sessionStorage.removeItem("editprojectId");
             sessionStorage.removeItem("activeprojectId");
             sessionStorage.removeItem("addactivebusinesses");
+            sessionStorage.removeItem("renewid");
           }}
         >
           <div className="paint"></div>
@@ -262,6 +267,7 @@ function Sidebar({ name, role, open, setOpen }) {
               sessionStorage.removeItem("editprojectId");
               sessionStorage.removeItem("activeprojectId");
               sessionStorage.removeItem("addactivebusinesses");
+              sessionStorage.removeItem("renewid");
             }}
           >
             <div className="paint"></div>
@@ -278,6 +284,7 @@ function Sidebar({ name, role, open, setOpen }) {
               sessionStorage.removeItem("editprojectId");
               sessionStorage.removeItem("activeprojectId");
               sessionStorage.removeItem("addactivebusinesses");
+              sessionStorage.removeItem("renewid");
             }}
             className={`item ${
               router.pathname === `${clients}/${businessaccounting}` ||

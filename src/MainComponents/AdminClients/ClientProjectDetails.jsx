@@ -122,7 +122,11 @@ const ClientProjectDetails = ({ title }) => {
           <div className="backbutton">
             <Goback
               style={{ cursor: "pointer" }}
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                navigate(-1);
+                sessionStorage.removeItem("addactivebusinesses");
+                sessionStorage.removeItem("projectId");
+              }}
             />
             <span className="name">
               Cluster Name: {projectdetails?.data[0]?.projectName}
@@ -134,6 +138,7 @@ const ClientProjectDetails = ({ title }) => {
                 if (activate?.length >= 1) {
                   navigate(`../${businessprojects}/location/:location`);
                   sessionStorage.setItem("addactivebusinesses", id);
+                  sessionStorage.setItem("projectId", id);
                 } else {
                   toast.error("No inactive Business Rep. Please add rep(s)");
                 }
@@ -147,6 +152,7 @@ const ClientProjectDetails = ({ title }) => {
                 if (activate?.length >= 1) {
                   navigate(`../${businessprojects}/location/:location`);
                   sessionStorage.setItem("activeprojectId", id);
+                  sessionStorage.setItem("projectId", id);
                 } else {
                   toast.error("No inactive Business Rep. Please add rep(s)");
                 }

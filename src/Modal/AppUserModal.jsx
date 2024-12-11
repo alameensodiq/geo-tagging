@@ -8296,6 +8296,7 @@ const AppUserModal = ({
                 sessionStorage.removeItem("repdetails");
                 sessionStorage.removeItem("activeprojectId");
                 sessionStorage.removeItem("addactivebusinesses");
+                sessionStorage.removeItem("renewid");
                 navigate(`../${businessprojects}`);
               }}
               big
