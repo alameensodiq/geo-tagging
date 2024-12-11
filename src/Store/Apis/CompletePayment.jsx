@@ -6,7 +6,10 @@ export const CompletePayment = createAsyncThunk(
   async ({ ref }, thunkAPI) => {
     console.log(process.env.REACT_APP_BASE_URL);
     const accessToken = sessionStorage.getItem("token");
-    const projectId = sessionStorage.getItem("projectId");
+    const projectId =
+      sessionStorage.getItem("projectId") ||
+      sessionStorage.getItem("activeprojectId") ||
+      sessionStorage.getItem("addactivebusinesses");
     const repdetails = sessionStorage.getItem("repdetails");
     const repdetailsReal = JSON.parse(repdetails);
 
