@@ -1336,6 +1336,7 @@ const ClientLocationDetails = ({ title }) => {
         }
       }
       dispatch(AddRepActiveProject({ repreal }));
+      sessionStorage.setItem("repdetails", JSON.stringify(repreal));
       setbustate11(true);
     } else {
       for (let rep of repreal) {

@@ -27,9 +27,9 @@ export const CompletePayment = createAsyncThunk(
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
-          },
-          // Convert the requestBody to JSON string
-          body: JSON.stringify(requestBody)
+          }
+          // // Convert the requestBody to JSON string
+          // body: JSON.stringify(requestBody)
         }
       );
 
