@@ -24,9 +24,9 @@ export const RenewCompletePayment = createAsyncThunk(
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
-          },
+          }
           // Convert the requestBody to JSON string
-          body: JSON.stringify(requestBody)
+          // body: JSON.stringify(requestBody)
         }
       );
 
