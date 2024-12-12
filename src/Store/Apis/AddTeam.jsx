@@ -39,8 +39,9 @@ export const AddTeam = createAsyncThunk(
       let data = await response.json();
       if (data?.status) {
         // toast.success(data.message);
-      } else {
-        toast.erro(data.message);
+      }
+      if (!data?.status) {
+        toast.error(data.message);
       }
       console.log(data);
       //   sessionStorage.setItem('firstName', data?.data?.user?.firstName);

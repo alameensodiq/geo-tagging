@@ -191,10 +191,10 @@ const ClientProjectDetails = ({ title }) => {
               />
               <Calendar onClick={() => PickDater()} className="calendar" />
             </div> */}
-            <InputSearch
+            {/* <InputSearch
               onChange={(e) => setSearcher(e.target.value)}
               placeholder="Search for Sub Corporate Admin name, email, e.t.c"
-            />
+            /> */}
           </div>
           <div className="wrapper">
             <Tables
