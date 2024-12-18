@@ -76,7 +76,10 @@ const CorporateResetPassword = () => {
     <Flex>
       <div className="seconddiv">
         <div className="first">
-          <CorporateLogo style={{ cursor: "pointer" }} />
+          <CorporateLogo
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          />
         </div>
         <div className="second">
           <span className="unique">Reset Password</span>

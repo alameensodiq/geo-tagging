@@ -15,7 +15,10 @@ const LandingNavbar = () => {
   const navigate = useNavigate();
   return (
     <Flex>
-      <LandingLogo />
+      <LandingLogo
+        style={{ cursor: "pointer" }}
+        onClick={() => navigate("/")}
+      />
       <LandingAppUserModal
         setStep={setStep}
         step={step}

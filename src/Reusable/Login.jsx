@@ -108,7 +108,7 @@ const Login = () => {
       </div>
       <div className="seconddiv">
         <div className="first">
-          <Logo style={{ cursor: "pointer" }} />
+          <Logo style={{ cursor: "pointer" }} onClick={() => navigate("/")} />
         </div>
         <div className="second">
           <span className="unique">Welcome!</span>
