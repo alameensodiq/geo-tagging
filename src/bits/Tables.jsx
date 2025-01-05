@@ -983,7 +983,7 @@ const Tables = ({
                     PAYMENT DATE
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "10%" }}>
-                    NO OF DAYS WORKED
+                    NO OF HOURS WORKED
                   </StyledTableCell>
                   <StyledTableCell style={{ width: "8%" }}>
                     ACTIONS
