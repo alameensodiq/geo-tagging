@@ -17,7 +17,7 @@ import Telecommunications from "../../assets/Telecommunications.png";
 
 const SixthMainComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0); // Track the active button
-  const [currentImage, setCurrentImage] = useState(seller); // Track the active image
+  const [currentImage, setCurrentImage] = useState(sellers); // Track the active image
 
   const buttons = [
     { label: "Brand Activation Organizations", Icon: Retail },
@@ -28,7 +28,7 @@ const SixthMainComponent = () => {
   ];
 
   const images = [
-    seller,
+    sellers,
     privatesecure,
     govtagencies,
     Telecommunications,
