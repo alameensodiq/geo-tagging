@@ -11,34 +11,44 @@ import { Toaster } from "react-hot-toast";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-    <Provider store={configureStore}>
-      <BrowserRouter>
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            success: {
-              style: {
-                fontSize: "16px",
-                marginTop: "14px",
-                color: "white",
-                background: "#3fb172",
-                padding: "10px"
-              }
-            },
-            error: {
-              style: {
-                fontSize: "16px",
-                marginTop: "14px",
-                color: "white",
-                background: "#ff0000",
-                padding: "10px"
-              }
+  <Provider store={configureStore}>
+    <BrowserRouter>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          success: {
+            style: {
+              fontSize: "16px",
+              marginTop: "14px",
+              color: "white",
+              background: "#3fb172",
+              padding: "10px"
             }
-          }}
-        />
-        <App />
-      </BrowserRouter>
-    </Provider>
+          },
+          error: {
+            style: {
+              fontSize: "16px",
+              marginTop: "14px",
+              color: "white",
+              background: "#ff0000",
+              padding: "10px"
+            }
+          }
+          // term: {
+          //   style: {
+          //     fontSize: "16px",
+          //     marginTop: "14px",
+          //     color: "black",
+          //     background: "#E4F2FB",
+          //     padding: "10px",
+          //     borderColor: "#69BCF2"
+          //   }
+          // }
+        }}
+      />
+      <App />
+    </BrowserRouter>
+  </Provider>
   // </React.StrictMode>
 );
 
