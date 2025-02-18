@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ReactComponent as Email } from "../assets/email.svg";
 
 const DemoInput = ({
-  placeholder,
+  placeholder = "Enter text...",
   reduce,
   auth,
   fixedWidth,
@@ -20,7 +20,7 @@ const DemoInput = ({
         name={name}
         value={value}
         onChange={(e) => onChange(e)}
-        placeholder={placeholder}
+        placeholder={placeholder || ""}
         className="input"
       />
     </Flex>

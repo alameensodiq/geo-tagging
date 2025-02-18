@@ -13,7 +13,6 @@ import { corporate, superadmins } from "../Routes";
 import { CorporateSignUser } from "../Store/Apis/CorporateSignUser";
 import DemoInputLabel from "../bits/DemoInputLabel";
 import { DemoButton } from "../bits/DemoButton";
-import { DemoApi } from "../Store/Apis/DemoApi";
 // import Aos from "aos";
 // import "aos/dist/aos.css";
 
@@ -45,30 +44,27 @@ const Demo = () => {
 
   const Authentication = () => {
     // navigate(`${superadmins}`)
-    setLog(true);
-    const { firstName, lastName, email, phoneNumber, businessRepCount } = user;
-    dispatch(
-      DemoApi({
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        businessRepCount
-      })
-    );
+    // setLog(true);
+    // const { email, password } = user;
+    // dispatch(CorporateSignUser({ email, password }));
   };
 
-  const { demoapi, authenticatingdemoapi } = useSelector(
-    (state) => state.demoapi
-  );
-  console.log(demoapi);
+  //   const { corporateuser, authenticating } = useSelector(
+  //     (state) => state.corporateuser
+  //   );
+  //   console.log(corporateuser);
 
-  if (demoapi?.status && !authenticatingdemoapi && log) {
-    navigate("/");
-  }
+  //   if (
+  //     corporateuser?.status &&
+  //     !authenticating &&
+  //     log &&
+  //     !corporateuser?.data?.hasChangeDefaultPassword
+  //   ) {
+  //     navigate(`${superadmins}`);
+  //   }
 
   return (
-    <Flex>
+    <Flex data-aos="fade-left">
       <div className="firstdiv">
         <img src={Banner} alt="auth" className="container" />
       </div>
@@ -160,13 +156,13 @@ const Demo = () => {
         </div>
 
         <div className="fourth">
-          <DemoButton
+          {/* <DemoButton
             onClick={() => Authentication()}
             big
             title={"Book now"}
             background
             color
-          />
+          /> */}
           {/* <span className="statement">
             Don't have an account ?{" "}
             <span className="colored">
@@ -316,7 +312,6 @@ const Flex = styled.div`
       flex-direction: column;
       align-items: center;
       width: 100%;
-      height: fit-content;
     }
   }
 `;

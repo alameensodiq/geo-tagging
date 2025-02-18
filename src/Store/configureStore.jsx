@@ -60,6 +60,7 @@ import { AddActiveRepSlice } from "./Reducers/AddActiveRep";
 import { ProjectLocationsSlice } from "./Reducers/ProjectLocations";
 import { RenewSubSlice } from "./Reducers/RenewSub";
 import { RenewCompletePaymentSlice } from "./Reducers/RenewCompletePayment";
+import { DemoApiSlice } from "./Reducers/DemoApi";
 
 export default configureStore({
   reducer: {
@@ -123,6 +124,7 @@ export default configureStore({
     addactiverep: AddActiveRepSlice?.reducer,
     projectlocations: ProjectLocationsSlice?.reducer,
     renewsub: RenewSubSlice?.reducer,
-    renewcompletepayment: RenewCompletePaymentSlice?.reducer
+    renewcompletepayment: RenewCompletePaymentSlice?.reducer,
+    demoapi: DemoApiSlice?.reducer
   }
 });
