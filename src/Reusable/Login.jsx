@@ -54,7 +54,7 @@ const Login = () => {
   );
   console.log(corporateuser);
 
-  console.log(JSON.parse(sessionStorage.getItem("permissions")));
+  // console.log(JSON.parse(sessionStorage.getItem("permissions")));
 
   if (
     corporateuser?.status &&
