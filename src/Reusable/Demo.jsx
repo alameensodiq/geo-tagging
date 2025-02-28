@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Banner from "../assets/demo.png";
-import { ReactComponent as Logo } from "../assets/Logo.svg";
+import { ReactComponent as DemoIcon } from "../assets/DemoIcon.svg";
 // import {ReactComponent as Logo} from '../../assets/smalllogo.svg';
 import AuthInputLabel from "../bits/AuthInputLabel";
 import { LargeSignInButton } from "../bits/LargeSignInButton";
@@ -63,63 +63,101 @@ const Demo = () => {
   );
   console.log(demoapi);
 
-  if (demoapi?.status && !authenticatingdemoapi && log) {
-    navigate("/");
-  }
+  // if (demoapi?.status && !authenticatingdemoapi && log) {
+  //   navigate("/");
+  // }
 
   return (
     <Flex>
-      <div className="firstdiv">
-        <img src={Banner} alt="auth" className="container" />
-      </div>
-      <div className="seconddiv">
-        <span className="falcon">Get Started with De - Faucon</span>
-        <div className="second">
-          <div className="welcome">
-            <span className="statement">
-              Schedule a 30-minute product demo complete with an
-            </span>
-            <span className="statement">expert Q&A session.</span>
+      {demoapi?.status && !authenticatingdemoapi && log ? (
+        <>
+          <div className="firstdiv">
+            <img src={Banner} alt="auth" className="container" />
           </div>
-        </div>
-        <div className="third">
-          <div className="wrapper">
-            <DemoInputLabel
-              onChange={(e) => Change(e)}
-              name="firstName"
-              value={user?.firstName}
-              reduce
-              placeholder="Enter your first name"
-              label="First Name"
-            />
-            <DemoInputLabel
-              onChange={(e) => Change(e)}
-              name="lastName"
-              value={user?.lastName}
-              reduce
-              placeholder="Enter your last name"
-              label="Last Name"
-            />
+          <div className="seconddiv">
+            <div className="successcontainer">
+              <div className="democontainer">
+                <DemoIcon />
+                <span
+                  style={{
+                    color: "#101828",
+                    fontSize: "18px",
+                    fontWeight: "bold"
+                  }}
+                >
+                  Demo Request Received.
+                </span>
+                <span style={{ textAlign: "center" }}>
+                  Thank you for requesting a demo of the De-Faucon Remote
+                  Project Management Platfom. One of our representatives will
+                  contact you shortly.
+                </span>
+              </div>
+              <div>
+                <DemoButton
+                  onClick={() => navigate("/")}
+                  bigger
+                  title={"Ok"}
+                  background
+                  color
+                />
+              </div>
+            </div>
           </div>
-          <div className="wrapper">
-            <DemoInputLabel
-              onChange={(e) => Change(e)}
-              name="phoneNumber"
-              value={user?.phoneNumber}
-              reduce
-              placeholder="Enter your phone number"
-              label="Phone Number"
-            />
-            <DemoInputLabel
-              onChange={(e) => Change(e)}
-              name="email"
-              value={user?.email}
-              reduce
-              placeholder="workemail@gmail.com"
-              label="Work Email"
-            />
+        </>
+      ) : (
+        <>
+          <div className="firstdiv">
+            <img src={Banner} alt="auth" className="container" />
           </div>
-          {/* <DemoInputLabel
+          <div className="seconddiv">
+            <span className="falcon">Get Started with De - Faucon</span>
+            <div className="second">
+              <div className="welcome">
+                <span className="statement">
+                  Schedule a 30-minute product demo complete with an
+                </span>
+                <span className="statement">expert Q&A session.</span>
+              </div>
+            </div>
+            <div className="third">
+              <div className="wrapper">
+                <DemoInputLabel
+                  onChange={(e) => Change(e)}
+                  name="firstName"
+                  value={user?.firstName}
+                  reduce
+                  placeholder="Enter your first name"
+                  label="First Name"
+                />
+                <DemoInputLabel
+                  onChange={(e) => Change(e)}
+                  name="lastName"
+                  value={user?.lastName}
+                  reduce
+                  placeholder="Enter your last name"
+                  label="Last Name"
+                />
+              </div>
+              <div className="wrapper">
+                <DemoInputLabel
+                  onChange={(e) => Change(e)}
+                  name="phoneNumber"
+                  value={user?.phoneNumber}
+                  reduce
+                  placeholder="Enter your phone number"
+                  label="Phone Number"
+                />
+                <DemoInputLabel
+                  onChange={(e) => Change(e)}
+                  name="email"
+                  value={user?.email}
+                  reduce
+                  placeholder="workemail@gmail.com"
+                  label="Work Email"
+                />
+              </div>
+              {/* <DemoInputLabel
             onChange={(e) => Change(e)}
             name="email"
             value={user?.email}
@@ -127,47 +165,47 @@ const Demo = () => {
             placeholder="Select your business industry"
             label="Business Industry"
           /> */}
-          <DemoInputLabel
-            onChange={(e) => Change(e)}
-            name="businessRepCount"
-            value={user?.businessRepCount}
-            auth
-            placeholder="Choose how many of your representative will use De - Faucon?"
-            label="Number of Business Representative"
-          />
-        </div>
-        <div className="containers">
-          <span className="state">
-            We respect your data. By submitting this form, you agree that we
-            will contact you in
-          </span>
-          <span className="state">
-            relation to our products and services, in accordance with our{" "}
-            <span className="colored" onClick={() => navigate("/policy")}>
-              privacy policy
-            </span>
-          </span>
-          <span className="state">
-            Corporate Manager?{" "}
-            <span
-              className="colored"
-              onClick={() => navigate("/corporate-login")}
-            >
-              Login
-            </span>{" "}
-            up here instead
-          </span>
-        </div>
+              <DemoInputLabel
+                onChange={(e) => Change(e)}
+                name="businessRepCount"
+                value={user?.businessRepCount}
+                auth
+                placeholder="Choose how many of your representative will use De - Faucon?"
+                label="Number of Business Representative"
+              />
+            </div>
+            <div className="containers">
+              <span className="state">
+                We respect your data. By submitting this form, you agree that we
+                will contact you in
+              </span>
+              <span className="state">
+                relation to our products and services, in accordance with our{" "}
+                <span className="colored" onClick={() => navigate("/policy")}>
+                  privacy policy
+                </span>
+              </span>
+              <span className="state">
+                Corporate Manager?{" "}
+                <span
+                  className="colored"
+                  onClick={() => navigate("/corporate-login")}
+                >
+                  Login
+                </span>{" "}
+                up here instead
+              </span>
+            </div>
 
-        <div className="fourth">
-          <DemoButton
-            onClick={() => Authentication()}
-            big
-            title={"Book now"}
-            background
-            color
-          />
-          {/* <span className="statement">
+            <div className="fourth">
+              <DemoButton
+                onClick={() => Authentication()}
+                big
+                title={authenticatingdemoapi ? "Booking..." : "Book now"}
+                background
+                color
+              />
+              {/* <span className="statement">
             Don't have an account ?{" "}
             <span className="colored">
               <Link
@@ -178,8 +216,10 @@ const Demo = () => {
               </Link>
             </span>
           </span> */}
-        </div>
-      </div>
+            </div>
+          </div>
+        </>
+      )}
     </Flex>
   );
 };
@@ -303,6 +343,25 @@ const Flex = styled.div`
           color: #1a87d7;
           cursor: pointer;
         }
+      }
+    }
+    .successcontainer {
+      width: 70%;
+      border: 1px solid #dddddd;
+      border-radius: 8px;
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      padding-inline: 2px;
+      padding-top: 100px;
+      gap: 40px;
+      /* border: ; */
+      .democontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        gap: 10px;
       }
     }
   }
