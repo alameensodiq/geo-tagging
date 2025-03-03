@@ -232,7 +232,13 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
               <div className="welfare">
                 <div className="detailscompliancy">
                   {clientreport?.data?.WelfareReports && (
-                    <div className="firstcompliance">
+                    <div
+                      onClick={() => {
+                        navigate(`../${businessreport}/emoji/laugh`);
+                        sessionStorage.setItem("emoji", "laugh");
+                      }}
+                      className="firstcompliance"
+                    >
                       <span className="emoji">😃</span>
                       <div className="main">
                         <span className="comp">Great</span>
@@ -255,7 +261,13 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                     </div>
                   )}
                   {clientreport?.data?.WelfareReports && (
-                    <div className="firstcompliance">
+                    <div
+                      onClick={() => {
+                        navigate(`../${businessreport}/emoji/smile`);
+                        sessionStorage.setItem("emoji", "smile");
+                      }}
+                      className="firstcompliance"
+                    >
                       <span className="emoji">😊</span>
                       <div className="main">
                         <span className="comp">Happy</span>
@@ -292,7 +304,13 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   </div>
                 </div> */}
                   {clientreport?.data?.WelfareReports && (
-                    <div className="firstcompliance">
+                    <div
+                      onClick={() => {
+                        navigate(`../${businessreport}/emoji/sad`);
+                        sessionStorage.setItem("emoji", "sad");
+                      }}
+                      className="firstcompliance"
+                    >
                       <span className="emoji">😌</span>
                       <div className="main">
                         <span className="comp">Okay</span>
@@ -333,7 +351,13 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   </div>
                 </div> */}
                   {clientreport?.data?.WelfareReports && (
-                    <div className="firstcompliance">
+                    <div
+                      onClick={() => {
+                        navigate(`../${businessreport}/emoji/sideview`);
+                        sessionStorage.setItem("emoji", "sideview");
+                      }}
+                      className="firstcompliance"
+                    >
                       <span className="emoji">😏</span>
                       <div className="main">
                         <span className="comp">Frustrated</span>
@@ -374,7 +398,13 @@ const ClientAdminReports = ({ title, overviewadmin }) => {
                   </div>
                 </div> */}
                   {clientreport?.data?.WelfareReports && (
-                    <div className="firstcompliance">
+                    <div
+                      onClick={() => {
+                        navigate(`../${businessreport}/emoji/angry`);
+                        sessionStorage.setItem("emoji", "angry");
+                      }}
+                      className="firstcompliance"
+                    >
                       <span className="emoji">😡</span>
                       <div className="main">
                         <span className="comp">Angry</span>

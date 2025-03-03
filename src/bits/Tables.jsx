@@ -59,7 +59,10 @@ const Tables = ({
   setId,
   setDetail,
   setProjectbusId,
-  setreporter
+  setreporter,
+  businessrepanalytics,
+  clusteranalytics,
+  reportwelfare
 }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -2922,6 +2925,254 @@ const Tables = ({
               </Table>
             </TableContainer>
           </>
+        ) : businessrepanalytics ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <input type="checkbox" />
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "13%" }}>
+                    START DATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    END DATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "13%" }}>
+                    BUSINESS REP.NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    PUNCTUALITY
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "12%" }}>
+                    TIME STAMP
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <input type="checkbox" />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "13%" }}>
+                      {item?.firstName} {item?.lastName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.totalActiveHours} hours
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "13%" }}>
+                      {item?.totalPunctuality}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.phoneNumber}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.project}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : clusteranalytics ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "10%" }}>
+                    <input type="checkbox" />
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "13%" }}>
+                    START DATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    END DATE
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "13%" }}>
+                    CLUSTER
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "15%" }}>
+                    PUNCTUALITY
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "12%" }}>
+                    TIME STAMP
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "10%" }}>
+                      <input type="checkbox" />
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "13%" }}>
+                      {item?.firstName} {item?.lastName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.totalActiveHours} hours
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "13%" }}>
+                      {item?.totalPunctuality}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "15%" }}>
+                      {item?.phoneNumber}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "12%" }}>
+                      {item?.project}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : reportwelfare ? (
+          <TableContainer
+            // component={Paper}
+            style={{ boxShadow: "none" }}
+          >
+            <Table
+              sx={{ minWidth: 700, tableLayout: "auto" }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow style={{ paddingRight: "0px" }}>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    PHOTO ID
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    BUSINESS REP'S NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    PROJECT NAME
+                  </StyledTableCell>
+                  <StyledTableCell style={{ width: "25%" }}>
+                    DATE REPORTED
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data?.map((item) => (
+                  <StyledTableRow style={{ position: "relative" }}>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "10px"
+                        }}
+                      >
+                        {/* <div
+                    style={{
+                      borderRadius: "50%",
+                      width: "30px",
+                      height: "30px",
+                      backgroundColor: "black"
+                    }}
+                  ></div> */}
+                        <img
+                          src={item?.avatar}
+                          alt="pics"
+                          style={{
+                            borderRadius: "50%",
+                            width: "30px",
+                            height: "30px"
+                            // backgroundColor: "black"
+                          }}
+                        />
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      {item?.businessRepName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      {item?.projectName}
+                    </StyledTableCell>
+                    <StyledTableCell style={{ width: "25%" }}>
+                      <Moment format="DD-MM-YYYY">{item?.dateSubmitted}</Moment>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* <StyledTableRow style={{ position: "relative" }}>
+                <StyledTableCell style={{ width: "20%" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "10px"
+                    }}
+                  >
+                    <div
+                      style={{
+                        borderRadius: "50%",
+                        width: "30px",
+                        height: "30px",
+                        backgroundColor: "black"
+                      }}
+                    ></div>
+                  </div>
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "20%" }}>
+                  Sheidu Susan
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "20%" }}>
+                  Building Homes
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "20%" }}>
+                  Hello please I want to...
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "20%" }}>
+                  20-10-2024
+                </StyledTableCell>
+              </StyledTableRow>
+              <StyledTableRow style={{ position: "relative" }}>
+                <StyledTableCell style={{ width: "20%" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "10px"
+                    }}
+                  >
+                    <div
+                      style={{
+                        borderRadius: "50%",
+                        width: "30px",
+                        height: "30px",
+                        backgroundColor: "black"
+                      }}
+                    ></div>
+                  </div>
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "20%" }}>
+                  Sheidu Susan
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "20%" }}>
+                  Building Homes
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "20%" }}>
+                  Hello please I want to...
+                </StyledTableCell>
+                <StyledTableCell style={{ width: "20%" }}>
+                  20-10-2024
+                </StyledTableCell>
+              </StyledTableRow> */}
+              </TableBody>
+            </Table>
+          </TableContainer>
         ) : (
           ""
         )}

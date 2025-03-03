@@ -14,6 +14,7 @@ import {
   businessreps,
   businesssub,
   businessusers,
+  businessanalytics,
   clients,
   corporate,
   superadmins,
@@ -53,6 +54,8 @@ import { Loader } from "./Loader.jsx";
 import Demo from "./Reusable/Demo.jsx";
 import ChangePasswords from "./Reusable/ChangePassword";
 import SuperChangePassword from "./Reusable/SuperChangePassword.jsx";
+import ClientAdminAnalytics from "./MainComponents/AdminClients/ClientAdminAnalytics.jsx";
+import ClientAdminWelfare from "./MainComponents/AdminClients/ClientAdminWelfare.jsx";
 
 const LazyIndexPage = React.lazy(() =>
   import("./MainComponents/LandingPage/MainPage.jsx")
@@ -295,6 +298,10 @@ function App() {
             element={<ClientAdminProject title="Projects" />}
           />
           <Route
+            path={`${businessanalytics}`}
+            element={<ClientAdminAnalytics title="Analytics" />}
+          />
+          <Route
             path={`${businessprojects}/:id`}
             element={<ClientProjectDetails title="Projects" />}
           />
@@ -327,8 +334,8 @@ function App() {
             element={<ClientAdminAbnormalReport title="Reports" />}
           />
           <Route
-            path={`${businessreport}/emoji`}
-            element={<ClientAdminEmoji title="Reports" />}
+            path={`${businessreport}/emoji/:id`}
+            element={<ClientAdminWelfare title="Reports" />}
           />
           <Route
             path={businessaccounting}

@@ -23,7 +23,8 @@ import {
   clients,
   businesssub,
   businessreport,
-  businessaccounting
+  businessaccounting,
+  businessanalytics
 } from "../../Routes";
 
 import { LogOutAuthentication } from "../../bits/LogOutAuthentication";
@@ -207,6 +208,37 @@ function Sidebar({ name, role, open, setOpen }) {
               <div className="paint"></div>
               <Project className="nav-svg1" />
               <p className="man">Cluster Management</p>
+            </Link>
+          )}
+
+        {savedPermissions &&
+          (savedPermissions.includes("BUSINESS_REP_VIEW") ||
+            savedPermissions.includes("BUSINESS_REP_CREATE") ||
+            savedPermissions.includes("BUSINESS_REP_ACTIVATE") ||
+            savedPermissions.includes("BUSINESS_REP_DEACTIVATE") ||
+            savedPermissions.includes("BUSINESS_REP_EDIT") ||
+            savedPermissions.includes("PROJECT_VIEW") ||
+            savedPermissions.includes("PROJECT_CREATE") ||
+            savedPermissions.includes("PROJECT_LIST") ||
+            savedPermissions.includes("PROJECT_EDIT")) && (
+            <Link
+              to={businessanalytics}
+              // onClick={() => {
+              //   sessionStorage.removeItem("editprojectId");
+              //   sessionStorage.removeItem("activeprojectId");
+              //   sessionStorage.removeItem("addactivebusinesses");
+              //   sessionStorage.removeItem("renewid");
+              // }}
+              className={`item ${
+                router.pathname === `${clients}/${businessanalytics}` ||
+                router.pathname.startsWith(`${clients}/${businessanalytics}`)
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="paint"></div>
+              <Project className="nav-svg1" />
+              <p className="man">Project</p>
             </Link>
           )}
 

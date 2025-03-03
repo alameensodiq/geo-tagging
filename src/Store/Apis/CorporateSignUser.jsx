@@ -31,6 +31,7 @@ export const CorporateSignUser = createAsyncThunk(
       }
       console.log(data);
       sessionStorage.setItem("token", data?.data?.token);
+      sessionStorage.setItem("businessentity", data?.data);
       sessionStorage.setItem(
         "permissions",
         JSON.stringify(data?.data?.permissions)

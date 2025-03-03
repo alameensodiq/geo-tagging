@@ -61,6 +61,9 @@ import { ProjectLocationsSlice } from "./Reducers/ProjectLocations";
 import { RenewSubSlice } from "./Reducers/RenewSub";
 import { RenewCompletePaymentSlice } from "./Reducers/RenewCompletePayment";
 import { DemoApiSlice } from "./Reducers/DemoApi";
+import { CorporateRepAnalyticsSlice } from "./Reducers/CorporateRepAnalytics";
+import { CorporateProjectAnalyticsSlice } from "./Reducers/CorporateProjectAnalytics";
+import { ClientWelfareSlice } from "./Reducers/ClientWelfare";
 
 export default configureStore({
   reducer: {
@@ -125,6 +128,9 @@ export default configureStore({
     projectlocations: ProjectLocationsSlice?.reducer,
     renewsub: RenewSubSlice?.reducer,
     renewcompletepayment: RenewCompletePaymentSlice?.reducer,
-    demoapi: DemoApiSlice?.reducer
+    demoapi: DemoApiSlice?.reducer,
+    corporaterepanalytics: CorporateRepAnalyticsSlice?.reducer,
+    corporateprojectanalytics: CorporateProjectAnalyticsSlice?.reducer,
+    clientwelfare: ClientWelfareSlice?.reducer
   }
 });
