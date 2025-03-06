@@ -16,7 +16,7 @@ const FifthMainComponent = () => {
   return (
     <Flex>
       <div className="cover">
-        <div className="topping">
+        <div className="topping" id="product-component">
           <FeaturesCard reduce row={3}>
             <img src={fifthfirst} alt="fifthfirst" style={{ width: "100%" }} />
             <img src={biometric} alt="biometric" style={{ width: "100%" }} />
@@ -35,7 +35,7 @@ const FifthMainComponent = () => {
             />
           </FeaturesCard>
         </div>
-        <div className="lastly">
+        <div className="lastly" id="fifth-component">
           <div className="down">
             <button className="ourservices">
               {" "}

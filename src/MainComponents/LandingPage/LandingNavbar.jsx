@@ -13,6 +13,33 @@ const LandingNavbar = () => {
   const [product, setProduct] = useState(null);
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
+  const handleScrollToFifthComponent = () => {
+    const element = document.getElementById("fifth-component");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleScrollToFourthComponent = () => {
+    const element = document.getElementById("fourth-component");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleScrollToProductComponent = () => {
+    const element = document.getElementById("product-component");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleScrollToThirdComponent = () => {
+    const element = document.getElementById("third-component");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <Flex>
       <LandingLogo
@@ -35,7 +62,8 @@ const LandingNavbar = () => {
           className={`item ${product === 3 ? "line" : ""}`}
           onClick={() => {
             setProduct(3);
-            navigate("/detailindustry-industries");
+            // navigate("/detailindustry-industries");
+            handleScrollToProductComponent();
           }}
         >
           <span className="name">Product Overview</span>
@@ -51,6 +79,7 @@ const LandingNavbar = () => {
             setStep(56);
             setActive(true);
             setProduct(1);
+            handleScrollToFourthComponent();
           }}
         >
           <span className="name">Features</span>
@@ -66,6 +95,7 @@ const LandingNavbar = () => {
             setStep(57);
             setActive(true);
             setProduct(2);
+            handleScrollToFifthComponent();
           }}
         >
           <span className="name">Applicable industries</span>
@@ -75,8 +105,19 @@ const LandingNavbar = () => {
             <CaretDownLanding />
           )}
         </div>
-        <div className="item">
+        <div onClick={() => handleScrollToThirdComponent()} className="item">
           <span className="name">How it works</span>
+        </div>
+        <div
+          onClick={() =>
+            window.open(
+              "https://forms.zohopublic.com/otellasociid1/form/ContactUs/formperma/cuhindUwRnq2jqk4lbJoGjlo9nO-wwnUPr-Tx3b8Om4",
+              "_blank"
+            )
+          }
+          className="item"
+        >
+          <span className="name">Contact Us</span>
         </div>
         {/* <div className="item" onClick={() => setStep(57)}>
           <span className="name">Industries</span>

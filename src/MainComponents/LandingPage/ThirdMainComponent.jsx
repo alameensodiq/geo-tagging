@@ -92,7 +92,7 @@ const ThirdMainComponent = () => {
             <img src={Thirdimage} className="thirdimage" alt="Thirdimage" />
           </div>
         </div>
-        <div className="down">
+        <div className="down" id="third-component">
           <button className="ourservices">
             {" "}
             <Service />

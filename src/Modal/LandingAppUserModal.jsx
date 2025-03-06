@@ -12,67 +12,67 @@ const LandingAppUserModal = ({ setStep, step, setReload, setActive }) => {
 
   const LocationNavigate = () => {
     setStep(0);
-    navigate("/main-products");
+    // navigate("/main-products");
   };
 
   const RealTimeNavigate = () => {
     setStep(0);
-    navigate("/realtime-products");
+    // navigate("/realtime-products");
   };
 
   const AdvancedNavigate = () => {
     setStep(0);
-    navigate("/advanced-products");
+    // navigate("/advanced-products");
   };
 
   const CampaignNavigate = () => {
     setStep(0);
-    navigate("/campaign-products");
+    // navigate("/campaign-products");
   };
 
   const IndustryNavigate = () => {
     setStep(0);
-    navigate("/main-industries");
+    // navigate("/main-industries");
   };
 
   const HealthNavigate = () => {
     setStep(0);
-    navigate("/health-industries");
+    // navigate("/health-industries");
   };
 
   const EducationNavigate = () => {
     setStep(0);
-    navigate("/education-industries");
+    // navigate("/education-industries");
   };
 
   const SecurityNavigate = () => {
     setStep(0);
-    navigate("/security-industries");
+    // navigate("/security-industries");
   };
 
   const LastIndustryNavigate = () => {
     setStep(0);
-    navigate("/detailindustry-industries");
+    // navigate("/detailindustry-industries");
   };
 
   const Punctuality = () => {
     setStep(0);
-    navigate("/punctuality");
+    // navigate("/punctuality");
   };
 
   const CustomerNavigate = () => {
     setStep(0);
-    navigate("/customer-resources");
+    // navigate("/customer-resources");
   };
 
   const AboutNavigate = () => {
     setStep(0);
-    navigate("/about-resources");
+    // navigate("/about-resources");
   };
 
   const Outsourcing = () => {
     setStep(0);
-    navigate("/outsourcing");
+    // navigate("/outsourcing");
   };
 
   return (

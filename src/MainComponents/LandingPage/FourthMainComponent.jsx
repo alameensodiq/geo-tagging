@@ -49,7 +49,7 @@ const FourthMainComponent = () => {
             Book a Demo <ArrowRight />
           </button>
         </div>
-        <div className="down" data-aos="fade-left">
+        <div className="down" data-aos="fade-left" id="fourth-component">
           <button className="ourservices">
             {" "}
             <Service />
