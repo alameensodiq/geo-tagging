@@ -20,6 +20,7 @@ const ClientAdminAnalytics = ({ title }) => {
   const [activated, SetActivate] = useState(true);
   const [pend, SetPend] = useState(false);
   const [id, setId] = useState("");
+  const [projectId, setprojectId] = useState("");
   const [status, setStatus] = useState("ACTIVE");
   const [searcher, setSearcher] = useState("");
   const [locker, SetLocker] = useState(false);
@@ -47,33 +48,45 @@ const ClientAdminAnalytics = ({ title }) => {
   const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
 
   useEffect(() => {
-    dispatch(CorporateDashboard());
-    if (reload) {
-      dispatch(CorporateDashboard());
-    }
-  }, [reload]);
-
-  const { corporatedashboard, authenticatingcorporatedashboard } = useSelector(
-    (state) => state.corporatedashboard
-  );
-
-  useEffect(() => {
-    dispatch(CorporateProjectAnalytics({ startDate, endDate }));
+    dispatch(CorporateProjectAnalytics({ startDate, endDate, projectId }));
     dispatch(CorporateRepAnalytics({ startDate2, endDate2, id }));
+    dispatch(CorporateBusinessRep({ searcher, currentPage, statuses }));
+    dispatch(CorporateProject({ searcher, currentPage, statuses }));
     if (reload) {
-      dispatch(CorporateProjectAnalytics({ startDate, endDate }));
+      dispatch(CorporateProjectAnalytics({ startDate, endDate, projectId }));
       dispatch(CorporateRepAnalytics({ startDate2, endDate2, id }));
+      dispatch(CorporateBusinessRep({ searcher, currentPage, statuses }));
+      dispatch(CorporateProject({ searcher, currentPage, statuses }));
       setReload(false);
     }
-  }, [reload, startDate, startDate2, endDate, endDate2, id]);
+  }, [
+    reload,
+    startDate,
+    startDate2,
+    endDate,
+    endDate2,
+    id,
+    projectId,
+    statuses
+  ]);
+
+  const { businessrep, authenticatingbusinessrep } = useSelector(
+    (state) => state.businessrep
+  );
+  console.log(businessrep?.data?.data);
+
+  const { project, authenticatingproject } = useSelector(
+    (state) => state.project
+  );
+  console.log(project?.data?.data);
 
   const { corporateprojectanalytics, authenticatingcorporateprojectanalytics } =
     useSelector((state) => state.corporateprojectanalytics);
-  console.log(corporateprojectanalytics?.data?.data);
+  console.log(corporateprojectanalytics?.data);
 
   const { corporaterepanalytics, authenticatingcorporaterepanalytics } =
     useSelector((state) => state.corporaterepanalytics);
-  console.log(corporaterepanalytics?.data?.data);
+  console.log(corporaterepanalytics?.data);
 
   const next = corporateprojectanalytics?.data?.meta?.next;
   const previous = corporateprojectanalytics?.data?.meta?.prev;
@@ -301,8 +314,17 @@ const ClientAdminAnalytics = ({ title }) => {
                           color: "#848484",
                           outline: "none"
                         }}
+                        onChange={(e) => setId(e.target.value)}
                       >
-                        <option>All</option>
+                        <option value={""}>All</option>
+                        {businessrep?.data?.data?.map((item) => (
+                          <option value={item?.id}>
+                            {" "}
+                            {item?.firstName}
+                            {item?.lastName}
+                          </option>
+                        ))}
+                        {/* <option>All</option> */}
                       </select>
                     </div>
                     <div
@@ -331,7 +353,7 @@ const ClientAdminAnalytics = ({ title }) => {
                           type="date"
                           onChange={(e) => {
                             console.log("Selected date:", e.target.value);
-                            setStartDate(e.target.value);
+                            setStartDate2(e.target.value);
                             // setShowDatePicker(false); // Hide after selection
                           }}
                           autoFocus // Ensures it pops up immediately
@@ -347,7 +369,7 @@ const ClientAdminAnalytics = ({ title }) => {
                           type="date"
                           onChange={(e) => {
                             console.log("Selected date:", e.target.value);
-                            setEndDate(e.target.value);
+                            setEndDate2(e.target.value);
                             // setShowDatePicker(false); // Hide after selection
                           }}
                           autoFocus // Ensures it pops up immediately
@@ -413,7 +435,7 @@ const ClientAdminAnalytics = ({ title }) => {
                 <Tables
                   setId={setId}
                   businessrepanalytics
-                  data={activate}
+                  data={corporaterepanalytics?.data}
                   setStep={setStep}
                 />
                 {corporateprojectanalytics?.data?.meta?.totalCount >= 10 && (
@@ -469,8 +491,12 @@ const ClientAdminAnalytics = ({ title }) => {
                           color: "#848484",
                           outline: "none"
                         }}
+                        onChange={(e) => setprojectId(e.target.value)}
                       >
-                        <option>All</option>
+                        <option value={""}>All</option>
+                        {project?.data?.data?.map((item) => (
+                          <option value={item?.id}> {item?.name}</option>
+                        ))}
                       </select>
                     </div>
                     <div
@@ -499,7 +525,7 @@ const ClientAdminAnalytics = ({ title }) => {
                           type="date"
                           onChange={(e) => {
                             console.log("Selected date:", e.target.value);
-                            setStartDate2(e.target.value);
+                            setStartDate(e.target.value);
                             // setShowDatePicker(false); // Hide after selection
                           }}
                           autoFocus // Ensures it pops up immediately
@@ -515,7 +541,7 @@ const ClientAdminAnalytics = ({ title }) => {
                           type="date"
                           onChange={(e) => {
                             console.log("Selected date:", e.target.value);
-                            setEndDate2(e.target.value);
+                            setEndDate(e.target.value);
                             // setShowDatePicker(false); // Hide after selection
                           }}
                           autoFocus // Ensures it pops up immediately
@@ -581,10 +607,10 @@ const ClientAdminAnalytics = ({ title }) => {
                 <Tables
                   setId={setId}
                   clusteranalytics
-                  data={inactivate}
+                  data={corporateprojectanalytics?.data}
                   setStep={setStep}
                 />
-                {corporaterepanalytics?.data?.meta?.totalCount >= 10 && (
+                {corporateprojectanalytics?.data?.meta?.totalCount >= 10 && (
                   <Pagination
                     set={activater}
                     currentPage={currentPage}

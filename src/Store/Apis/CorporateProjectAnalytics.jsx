@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export const CorporateProjectAnalytics = createAsyncThunk(
   "corporateprojectanalytics",
-  async ({ startDate, endDate }, thunkAPI) => {
+  async ({ startDate, endDate, projectId }, thunkAPI) => {
     const dateObj = new Date(startDate);
 
     const formattedDate = dateObj.toISOString().slice(0, 10);
@@ -15,17 +15,19 @@ export const CorporateProjectAnalytics = createAsyncThunk(
     const accessToken = sessionStorage.getItem("token");
 
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}corporate/projects-analytics?startDate=${formattedDate}&endDate=${formattedDated}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`
-          }
+      let url = `${process.env.REACT_APP_BASE_URL}corporate/projects-analytics?startDate=${formattedDate}&endDate=${formattedDated}&${projectId}`;
+
+      if (projectId && projectId !== "All") {
+        url += `&projectId=${projectId}`; // Append 'id' only if it is not an empty string
+      }
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`
         }
-      );
+      });
       let data = await response.json();
       // if(data?.status){
       //   toast.success(data.message);

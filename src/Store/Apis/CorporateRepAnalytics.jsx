@@ -17,8 +17,8 @@ export const CorporateRepAnalytics = createAsyncThunk(
     try {
       let url = `${process.env.REACT_APP_BASE_URL}corporate/reps-analytics?startDate=${formattedDate}&endDate=${formattedDated}`;
 
-      if (id) {
-        url += `&id=${id}`; // Append 'id' only if it is not an empty string
+      if (id && id !== "All") {
+        url += `&id=${id}`; // ✅ Only add 'id' if it's NOT "All"
       }
       const response = await fetch(url, {
         method: "GET",

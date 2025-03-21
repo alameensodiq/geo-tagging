@@ -2963,19 +2963,23 @@ const Tables = ({
                       <input type="checkbox" />
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
-                      {item?.firstName} {item?.lastName}
+                      {item?.startDate}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      {item?.totalActiveHours} hours
+                      {item?.endDate}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
-                      {item?.totalPunctuality}
+                      {item?.repName}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      {item?.phoneNumber}
+                      {item?.eventType === "Punctuality"
+                        ? item?.eventType
+                        : "N/A"}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      {item?.project}
+                      {item?.eventType === "Timestamp"
+                        ? item?.eventType
+                        : "N/A"}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -3020,19 +3024,19 @@ const Tables = ({
                       <input type="checkbox" />
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
-                      {item?.firstName} {item?.lastName}
+                      {item?.date}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      {item?.totalActiveHours} hours
+                      N/A
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
-                      {item?.totalPunctuality}
+                      {item?.projectName}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      {item?.phoneNumber}
+                      {item?.averagePunctuality}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      {item?.project}
+                      {item?.averageTimestamp}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
