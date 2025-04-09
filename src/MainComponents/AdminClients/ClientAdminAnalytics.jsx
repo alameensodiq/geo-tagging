@@ -3,17 +3,16 @@ import styled from "styled-components";
 import Navbar from "./Navbar";
 import { ModalButton } from "../../bits/ModalButton";
 import { useDispatch, useSelector } from "react-redux";
-import InputSearch from "../../bits/InputSearch";
 import Tables from "../../bits/Tables";
 import { CorporateBusinessRep } from "../../Store/Apis/CorporateBusinessRep";
 import AppUserModal from "../../Modal/AppUserModal";
-import { businessprojects } from "../../Routes";
 import { useNavigate } from "react-router-dom";
 import { CorporateProject } from "../../Store/Apis/CorporateProject";
 import Pagination from "../../Reusable/Pagination";
-import { CorporateDashboard } from "../../Store/Apis/CorporateDashboard";
 import { CorporateProjectAnalytics } from "../../Store/Apis/CorporateProjectAnalytics";
 import { CorporateRepAnalytics } from "../../Store/Apis/CorporateRepAnalytics";
+import { AllCorporateReps } from "../../Store/Apis/AllCorporateReps";
+import toast from "react-hot-toast";
 
 const ClientAdminAnalytics = ({ title }) => {
   const [step, setStep] = useState(0);
@@ -32,6 +31,7 @@ const ClientAdminAnalytics = ({ title }) => {
     new Date(Date.now() + 3600 * 1000 * 24)
   );
   const [startDate2, setStartDate2] = useState(new Date("2022-01-01"));
+  console.log(startDate2);
   const [endDate2, setEndDate2] = useState(
     new Date(Date.now() + 3600 * 1000 * 24)
   );
@@ -47,9 +47,18 @@ const ClientAdminAnalytics = ({ title }) => {
   const navigate = useNavigate();
   const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
 
+  const formatDate = (date) => {
+    if (!(date instanceof Date) || isNaN(date)) return "";
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
   useEffect(() => {
     dispatch(CorporateProjectAnalytics({ startDate, endDate, projectId }));
     dispatch(CorporateRepAnalytics({ startDate2, endDate2, id }));
+    dispatch(AllCorporateReps());
     dispatch(CorporateBusinessRep({ searcher, currentPage, statuses }));
     dispatch(CorporateProject({ searcher, currentPage, statuses }));
     if (reload) {
@@ -70,10 +79,10 @@ const ClientAdminAnalytics = ({ title }) => {
     statuses
   ]);
 
-  const { businessrep, authenticatingbusinessrep } = useSelector(
+  const { allcorporatereps, authenticatingallcorporatereps } = useSelector(
     (state) => state.businessrep
   );
-  console.log(businessrep?.data?.data);
+  console.log(allcorporatereps?.data?.data);
 
   const { project, authenticatingproject } = useSelector(
     (state) => state.project
@@ -143,100 +152,128 @@ const ClientAdminAnalytics = ({ title }) => {
     }, [500]);
   };
   const Download = () => {
-    // console.log("Starting download function");
-    // // Check if subhistory data is available
-    // if (!subhistory?.data || subhistory.data.length === 0) {
-    //   toast.error("No data available for download");
-    //   return;
-    // }
-    // // Extract headers from the first item
-    // const headers = Object.keys(subhistory.data[0]);
-    // // Identify headers related to 'amount'
-    // const amountHeaders = headers.filter((header) =>
-    //   header.toLowerCase().includes("amount")
-    // );
-    // console.log("Filtered Headers:", amountHeaders);
-    // // Prepare the header row
-    // const headerRow = headers.join(",");
-    // console.log("Header Row:", headerRow);
-    // // Prepare values for each row, replacing 'amount' values with the 'NGN' value
-    // const rows = subhistory.data
-    //   .map((item) => {
-    //     return headers
-    //       .map((header) => {
-    //         // If header is an 'amount' header, replace with NGN value
-    //         if (amountHeaders.includes(header) && item[header]) {
-    //           // Return the NGN value if available
-    //           return item[header].NGN || ""; // Replace with NGN value if it exists
-    //         }
-    //         return item[header];
-    //       })
-    //       .join(",");
-    //   })
-    //   .join("\n");
-    // console.log("Filtered Values:", rows);
-    // // Combine header row and values into CSV format
-    // const csv = [headerRow, rows].join("\n");
-    // console.log("CSV Content:", csv);
-    // // Create Blob and URL for download
-    // const blob = new Blob([csv], { type: "text/csv" });
-    // const url = URL.createObjectURL(blob);
-    // const a = document.createElement("a");
-    // a.download = "SubscriptionHistory.csv";
-    // a.href = url;
-    // a.click();
-    // // Cleanup
-    // a.remove();
-    // URL.revokeObjectURL(url);
-    // console.log("Download triggered");
+    console.log("Starting download function");
+
+    // Check if subhistory data is available
+    if (
+      !corporaterepanalytics?.data ||
+      corporaterepanalytics.data.length === 0
+    ) {
+      toast.error("No data available for download");
+      return;
+    }
+
+    // Extract headers from the first item
+    const headers = Object.keys(corporaterepanalytics.data[0]);
+
+    // Identify headers related to 'amount'
+    const amountHeaders = headers.filter((header) =>
+      header.toLowerCase().includes("amount")
+    );
+    console.log("Filtered Headers:", amountHeaders);
+
+    // Prepare the header row
+    const headerRow = headers.join(",");
+    console.log("Header Row:", headerRow);
+
+    // Prepare values for each row, replacing 'amount' values with the 'NGN' value
+    const rows = corporaterepanalytics.data
+      .map((item) => {
+        return headers
+          .map((header) => {
+            // If header is an 'amount' header, replace with NGN value
+            if (amountHeaders.includes(header) && item[header]) {
+              // Return the NGN value if available
+              return item[header].NGN || ""; // Replace with NGN value if it exists
+            }
+            return item[header];
+          })
+          .join(",");
+      })
+      .join("\n");
+
+    console.log("Filtered Values:", rows);
+
+    // Combine header row and values into CSV format
+    const csv = [headerRow, rows].join("\n");
+    console.log("CSV Content:", csv);
+
+    // Create Blob and URL for download
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.download = "Rep-Analytics.csv";
+    a.href = url;
+    a.click();
+
+    // Cleanup
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    console.log("Download triggered");
   };
   const Download2 = () => {
-    // console.log("Starting download function");
-    // // Check if subhistory data is available
-    // if (!subhistory?.data || subhistory.data.length === 0) {
-    //   toast.error("No data available for download");
-    //   return;
-    // }
-    // // Extract headers from the first item
-    // const headers = Object.keys(subhistory.data[0]);
-    // // Identify headers related to 'amount'
-    // const amountHeaders = headers.filter((header) =>
-    //   header.toLowerCase().includes("amount")
-    // );
-    // console.log("Filtered Headers:", amountHeaders);
-    // // Prepare the header row
-    // const headerRow = headers.join(",");
-    // console.log("Header Row:", headerRow);
-    // // Prepare values for each row, replacing 'amount' values with the 'NGN' value
-    // const rows = subhistory.data
-    //   .map((item) => {
-    //     return headers
-    //       .map((header) => {
-    //         // If header is an 'amount' header, replace with NGN value
-    //         if (amountHeaders.includes(header) && item[header]) {
-    //           // Return the NGN value if available
-    //           return item[header].NGN || ""; // Replace with NGN value if it exists
-    //         }
-    //         return item[header];
-    //       })
-    //       .join(",");
-    //   })
-    //   .join("\n");
-    // console.log("Filtered Values:", rows);
-    // // Combine header row and values into CSV format
-    // const csv = [headerRow, rows].join("\n");
-    // console.log("CSV Content:", csv);
-    // // Create Blob and URL for download
-    // const blob = new Blob([csv], { type: "text/csv" });
-    // const url = URL.createObjectURL(blob);
-    // const a = document.createElement("a");
-    // a.download = "SubscriptionHistory.csv";
-    // a.href = url;
-    // a.click();
-    // // Cleanup
-    // a.remove();
-    // URL.revokeObjectURL(url);
-    // console.log("Download triggered");
+    console.log("Starting download function");
+
+    // Check if subhistory data is available
+    if (
+      !corporateprojectanalytics?.data ||
+      corporateprojectanalytics.data.length === 0
+    ) {
+      toast.error("No data available for download");
+      return;
+    }
+
+    // Extract headers from the first item
+    const headers = Object.keys(corporateprojectanalytics.data[0]);
+
+    // Identify headers related to 'amount'
+    const amountHeaders = headers.filter((header) =>
+      header.toLowerCase().includes("amount")
+    );
+    console.log("Filtered Headers:", amountHeaders);
+
+    // Prepare the header row
+    const headerRow = headers.join(",");
+    console.log("Header Row:", headerRow);
+
+    // Prepare values for each row, replacing 'amount' values with the 'NGN' value
+    const rows = corporateprojectanalytics.data
+      .map((item) => {
+        return headers
+          .map((header) => {
+            // If header is an 'amount' header, replace with NGN value
+            if (amountHeaders.includes(header) && item[header]) {
+              // Return the NGN value if available
+              return item[header].NGN || ""; // Replace with NGN value if it exists
+            }
+            return item[header];
+          })
+          .join(",");
+      })
+      .join("\n");
+
+    console.log("Filtered Values:", rows);
+
+    // Combine header row and values into CSV format
+    const csv = [headerRow, rows].join("\n");
+    console.log("CSV Content:", csv);
+
+    // Create Blob and URL for download
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.download = "Cluster-Analytics.csv";
+    a.href = url;
+    a.click();
+
+    // Cleanup
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    console.log("Download triggered");
   };
   return (
     <Flex>
@@ -317,7 +354,7 @@ const ClientAdminAnalytics = ({ title }) => {
                         onChange={(e) => setId(e.target.value)}
                       >
                         <option value={""}>All</option>
-                        {businessrep?.data?.data?.map((item) => (
+                        {allcorporatereps?.data?.data?.map((item) => (
                           <option value={item?.id}>
                             {" "}
                             {item?.firstName}
@@ -353,7 +390,7 @@ const ClientAdminAnalytics = ({ title }) => {
                           type="date"
                           onChange={(e) => {
                             console.log("Selected date:", e.target.value);
-                            setStartDate2(e.target.value);
+                            setStartDate2(new Date(e.target.value));
                             // setShowDatePicker(false); // Hide after selection
                           }}
                           autoFocus // Ensures it pops up immediately
@@ -369,7 +406,7 @@ const ClientAdminAnalytics = ({ title }) => {
                           type="date"
                           onChange={(e) => {
                             console.log("Selected date:", e.target.value);
-                            setEndDate2(e.target.value);
+                            setEndDate2(new Date(e.target.value));
                             // setShowDatePicker(false); // Hide after selection
                           }}
                           autoFocus // Ensures it pops up immediately
@@ -388,6 +425,7 @@ const ClientAdminAnalytics = ({ title }) => {
                             justifyContent: "start",
                             cursor: "pointer",
                             paddingLeft: "10px",
+                            fontSize: "12px",
                             userSelect: "none" // Prevents text selection
                           }}
                           onClick={() => {
@@ -395,7 +433,7 @@ const ClientAdminAnalytics = ({ title }) => {
                             dateInputRef.current?.showPicker(); // Programmatically trigger date input
                           }}
                         >
-                          From
+                          {formatDate(startDate2)}
                         </div>
                         <div
                           style={{
@@ -410,6 +448,7 @@ const ClientAdminAnalytics = ({ title }) => {
                             justifyContent: "start",
                             cursor: "pointer",
                             paddingLeft: "10px",
+                            fontSize: "12px",
                             userSelect: "none" // Prevents text selection
                           }}
                           onClick={() => {
@@ -417,7 +456,7 @@ const ClientAdminAnalytics = ({ title }) => {
                             dateInputRef2.current?.showPicker(); // Programmatically trigger date input
                           }}
                         >
-                          To
+                          {formatDate(endDate2)}
                         </div>
                       </div>
                     </div>
@@ -525,7 +564,7 @@ const ClientAdminAnalytics = ({ title }) => {
                           type="date"
                           onChange={(e) => {
                             console.log("Selected date:", e.target.value);
-                            setStartDate(e.target.value);
+                            setStartDate(new Date(e.target.value));
                             // setShowDatePicker(false); // Hide after selection
                           }}
                           autoFocus // Ensures it pops up immediately
@@ -541,7 +580,7 @@ const ClientAdminAnalytics = ({ title }) => {
                           type="date"
                           onChange={(e) => {
                             console.log("Selected date:", e.target.value);
-                            setEndDate(e.target.value);
+                            setEndDate(new Date(e.target.value));
                             // setShowDatePicker(false); // Hide after selection
                           }}
                           autoFocus // Ensures it pops up immediately
@@ -560,6 +599,7 @@ const ClientAdminAnalytics = ({ title }) => {
                             justifyContent: "start",
                             cursor: "pointer",
                             paddingLeft: "10px",
+                            fontSize: "12px",
                             userSelect: "none" // Prevents text selection
                           }}
                           onClick={() => {
@@ -567,7 +607,7 @@ const ClientAdminAnalytics = ({ title }) => {
                             dateInputRef3.current?.showPicker(); // Programmatically trigger date input
                           }}
                         >
-                          From
+                          {formatDate(startDate)}
                         </div>
                         <div
                           style={{
@@ -582,6 +622,7 @@ const ClientAdminAnalytics = ({ title }) => {
                             justifyContent: "start",
                             cursor: "pointer",
                             paddingLeft: "10px",
+                            fontSize: "12px",
                             userSelect: "none" // Prevents text selection
                           }}
                           onClick={() => {
@@ -589,7 +630,7 @@ const ClientAdminAnalytics = ({ title }) => {
                             dateInputRef4.current?.showPicker(); // Programmatically trigger date input
                           }}
                         >
-                          To
+                          {formatDate(endDate)}
                         </div>
                       </div>
                     </div>

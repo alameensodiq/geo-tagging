@@ -2936,9 +2936,9 @@ const Tables = ({
             >
               <TableHead>
                 <TableRow style={{ paddingRight: "0px" }}>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  {/* <StyledTableCell style={{ width: "10%" }}>
                     <input type="checkbox" />
-                  </StyledTableCell>
+                  </StyledTableCell> */}
                   <StyledTableCell style={{ width: "13%" }}>
                     START DATE
                   </StyledTableCell>
@@ -2959,9 +2959,9 @@ const Tables = ({
               <TableBody>
                 {data?.map((item) => (
                   <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "10%" }}>
+                    {/* <StyledTableCell style={{ width: "10%" }}>
                       <input type="checkbox" />
-                    </StyledTableCell>
+                    </StyledTableCell> */}
                     <StyledTableCell style={{ width: "13%" }}>
                       {item?.startDate}
                     </StyledTableCell>
@@ -2974,12 +2974,10 @@ const Tables = ({
                     <StyledTableCell style={{ width: "15%" }}>
                       {item?.eventType === "Punctuality"
                         ? item?.eventType
-                        : "N/A"}
+                        : "-"}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "12%" }}>
-                      {item?.eventType === "Timestamp"
-                        ? item?.eventType
-                        : "N/A"}
+                      {item?.eventType === "Timestamp" ? item?.eventType : "-"}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -2997,9 +2995,9 @@ const Tables = ({
             >
               <TableHead>
                 <TableRow style={{ paddingRight: "0px" }}>
-                  <StyledTableCell style={{ width: "10%" }}>
+                  {/* <StyledTableCell style={{ width: "10%" }}>
                     <input type="checkbox" />
-                  </StyledTableCell>
+                  </StyledTableCell> */}
                   <StyledTableCell style={{ width: "13%" }}>
                     START DATE
                   </StyledTableCell>
@@ -3020,14 +3018,14 @@ const Tables = ({
               <TableBody>
                 {data?.map((item) => (
                   <StyledTableRow style={{ position: "relative" }}>
-                    <StyledTableCell style={{ width: "10%" }}>
+                    {/* <StyledTableCell style={{ width: "10%" }}>
                       <input type="checkbox" />
-                    </StyledTableCell>
+                    </StyledTableCell> */}
                     <StyledTableCell style={{ width: "13%" }}>
                       {item?.date}
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "15%" }}>
-                      N/A
+                      -
                     </StyledTableCell>
                     <StyledTableCell style={{ width: "13%" }}>
                       {item?.projectName}

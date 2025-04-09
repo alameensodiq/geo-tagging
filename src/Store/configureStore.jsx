@@ -64,6 +64,7 @@ import { DemoApiSlice } from "./Reducers/DemoApi";
 import { CorporateRepAnalyticsSlice } from "./Reducers/CorporateRepAnalytics";
 import { CorporateProjectAnalyticsSlice } from "./Reducers/CorporateProjectAnalytics";
 import { ClientWelfareSlice } from "./Reducers/ClientWelfare";
+import { AllCorporateRepsSlice } from "./Reducers/AllCorporateReps";
 
 export default configureStore({
   reducer: {
@@ -131,6 +132,7 @@ export default configureStore({
     demoapi: DemoApiSlice?.reducer,
     corporaterepanalytics: CorporateRepAnalyticsSlice?.reducer,
     corporateprojectanalytics: CorporateProjectAnalyticsSlice?.reducer,
-    clientwelfare: ClientWelfareSlice?.reducer
+    clientwelfare: ClientWelfareSlice?.reducer,
+    allcorporatereps: AllCorporateRepsSlice?.reducer
   }
 });
