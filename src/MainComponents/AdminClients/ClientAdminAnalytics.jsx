@@ -66,6 +66,7 @@ const ClientAdminAnalytics = ({ title }) => {
       dispatch(CorporateRepAnalytics({ startDate2, endDate2, id }));
       dispatch(CorporateBusinessRep({ searcher, currentPage, statuses }));
       dispatch(CorporateProject({ searcher, currentPage, statuses }));
+      dispatch(AllCorporateReps());
       setReload(false);
     }
   }, [
@@ -80,9 +81,9 @@ const ClientAdminAnalytics = ({ title }) => {
   ]);
 
   const { allcorporatereps, authenticatingallcorporatereps } = useSelector(
-    (state) => state.businessrep
+    (state) => state.allcorporatereps
   );
-  console.log(allcorporatereps?.data?.data);
+  console.log(allcorporatereps?.data);
 
   const { project, authenticatingproject } = useSelector(
     (state) => state.project
@@ -354,7 +355,7 @@ const ClientAdminAnalytics = ({ title }) => {
                         onChange={(e) => setId(e.target.value)}
                       >
                         <option value={""}>All</option>
-                        {allcorporatereps?.data?.data?.map((item) => (
+                        {allcorporatereps?.data?.map((item) => (
                           <option value={item?.id}>
                             {" "}
                             {item?.firstName}

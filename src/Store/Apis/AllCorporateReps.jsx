@@ -10,7 +10,7 @@ export const AllCorporateReps = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}admin/corporate/${id}/get-all-rep`,
+        `${process.env.REACT_APP_BASE_URL}admin/corporate/${id}/get-all-reps`,
         {
           method: "GET",
           headers: {
