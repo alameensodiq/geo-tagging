@@ -304,7 +304,7 @@ function Sidebar({ name, role, open, setOpen }) {
           >
             <div className="paint"></div>
             <Report className="nav-svg1" />
-            <p className="man">Reports</p>
+            <p className="man">Analytics</p>
           </Link>
         )}
 
