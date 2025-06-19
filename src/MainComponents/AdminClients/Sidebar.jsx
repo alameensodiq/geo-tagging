@@ -38,6 +38,7 @@ function Sidebar({ name, role, open, setOpen }) {
   const dispatch = useDispatch();
   const [searcher, setSearcher] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const [submenu, setSubmenu] = useState(false);
   const savedPermissions = JSON.parse(sessionStorage.getItem("permissions"));
   useEffect(() => {
     // dispatch(CorporateBusinessRep({ searcher, currentPage }));
@@ -211,36 +212,84 @@ function Sidebar({ name, role, open, setOpen }) {
             </Link>
           )}
 
-        {savedPermissions &&
-          (savedPermissions.includes("BUSINESS_REP_VIEW") ||
-            savedPermissions.includes("BUSINESS_REP_CREATE") ||
-            savedPermissions.includes("BUSINESS_REP_ACTIVATE") ||
-            savedPermissions.includes("BUSINESS_REP_DEACTIVATE") ||
-            savedPermissions.includes("BUSINESS_REP_EDIT") ||
-            savedPermissions.includes("PROJECT_VIEW") ||
-            savedPermissions.includes("PROJECT_CREATE") ||
-            savedPermissions.includes("PROJECT_LIST") ||
-            savedPermissions.includes("PROJECT_EDIT")) && (
-            <Link
-              to={businessanalytics}
-              // onClick={() => {
-              //   sessionStorage.removeItem("editprojectId");
-              //   sessionStorage.removeItem("activeprojectId");
-              //   sessionStorage.removeItem("addactivebusinesses");
-              //   sessionStorage.removeItem("renewid");
-              // }}
-              className={`item ${
-                router.pathname === `${clients}/${businessanalytics}` ||
-                router.pathname.startsWith(`${clients}/${businessanalytics}`)
-                  ? "active"
-                  : ""
-              }`}
-            >
-              <div className="paint"></div>
-              <Project className="nav-svg1" />
-              <p className="man">Project</p>
-            </Link>
-          )}
+        <div
+          // to={businessusers}
+          className={`item ${
+            router.pathname === `${clients}/${businessusers}` ||
+            router.pathname.startsWith(`${clients}/${businessusers}`)
+              ? "active"
+              : ""
+          }`}
+          onClick={() => {
+            setSubmenu(!submenu);
+            // sessionStorage.removeItem("editprojectId");
+            // sessionStorage.removeItem("activeprojectId");
+            // sessionStorage.removeItem("addactivebusinesses");
+            // sessionStorage.removeItem("renewid");
+          }}
+        >
+          <div className="paint"></div>
+          <User className="nav-svg1" />
+          <p className="man">Reports</p>
+        </div>
+
+        {submenu && (
+          <div style={{ marginLeft: "20px" }}>
+            {savedPermissions &&
+              (savedPermissions.includes("BUSINESS_REP_VIEW") ||
+                savedPermissions.includes("BUSINESS_REP_CREATE") ||
+                savedPermissions.includes("BUSINESS_REP_ACTIVATE") ||
+                savedPermissions.includes("BUSINESS_REP_DEACTIVATE") ||
+                savedPermissions.includes("BUSINESS_REP_EDIT") ||
+                savedPermissions.includes("PROJECT_VIEW") ||
+                savedPermissions.includes("PROJECT_CREATE") ||
+                savedPermissions.includes("PROJECT_LIST") ||
+                savedPermissions.includes("PROJECT_EDIT")) && (
+                <Link
+                  to={businessanalytics}
+                  // onClick={() => {
+                  //   sessionStorage.removeItem("editprojectId");
+                  //   sessionStorage.removeItem("activeprojectId");
+                  //   sessionStorage.removeItem("addactivebusinesses");
+                  //   sessionStorage.removeItem("renewid");
+                  // }}
+                  className={`item ${
+                    router.pathname === `${clients}/${businessanalytics}` ||
+                    router.pathname.startsWith(
+                      `${clients}/${businessanalytics}`
+                    )
+                      ? "active"
+                      : ""
+                  }`}
+                >
+                  <div className="paint"></div>
+                  <Project className="nav-svg1" />
+                  <p className="man">Project</p>
+                </Link>
+              )}
+            {savedPermissions && savedPermissions.includes("REPORT_VIEW") && (
+              <Link
+                to={businessreport}
+                className={`item ${
+                  router.pathname === `${clients}/${businessreport}` ||
+                  router.pathname.startsWith(`${clients}/${businessreport}`)
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() => {
+                  sessionStorage.removeItem("editprojectId");
+                  sessionStorage.removeItem("activeprojectId");
+                  sessionStorage.removeItem("addactivebusinesses");
+                  sessionStorage.removeItem("renewid");
+                }}
+              >
+                <div className="paint"></div>
+                <Report className="nav-svg1" />
+                <p className="man">Analytics</p>
+              </Link>
+            )}
+          </div>
+        )}
 
         {savedPermissions &&
           (savedPermissions.includes("SUBSCRIPTION_VIEW") ||
@@ -286,27 +335,6 @@ function Sidebar({ name, role, open, setOpen }) {
           <User className="nav-svg1" />
           <p className="man">User management</p>
         </Link>
-        {savedPermissions && savedPermissions.includes("REPORT_VIEW") && (
-          <Link
-            to={businessreport}
-            className={`item ${
-              router.pathname === `${clients}/${businessreport}` ||
-              router.pathname.startsWith(`${clients}/${businessreport}`)
-                ? "active"
-                : ""
-            }`}
-            onClick={() => {
-              sessionStorage.removeItem("editprojectId");
-              sessionStorage.removeItem("activeprojectId");
-              sessionStorage.removeItem("addactivebusinesses");
-              sessionStorage.removeItem("renewid");
-            }}
-          >
-            <div className="paint"></div>
-            <Report className="nav-svg1" />
-            <p className="man">Analytics</p>
-          </Link>
-        )}
 
         <div className="settingsdiv">
           {open ? "" : <span className="settings">SETTINGS</span>}
