@@ -49,6 +49,8 @@ function Sidebar({ name, role, open, setOpen }) {
     (state) => state.corporatedashboard
   );
 
+  //////////
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1100) {
